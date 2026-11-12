@@ -54,7 +54,7 @@ namespace Hellord
         {
             if (_altarScr53 == 1 && _altarView51 == (int)PactPath.Necromancer)
             {   // t493u/t535u: Necromancer node screen = approved v130b mock-up (HellordAltar130.cs); the old tree/strip/plates are not drawn
-                bool md = _confirm97 >= 0; _block53 = md; DrawNecro130(_altarView51); _block53 = false;
+                bool md = _confirm97 >= 0; _block53 = md; if (PmActive()) DrawNecroMenu(_altarView51); else DrawNecro130(_altarView51); _block53 = false;   // t1350: menu theme = mockup t1345_B (HellordPactMenu.cs); Stone1246 keeps the v130b screen
                 if (_altarMsgT51 > 0 && !string.IsNullOrEmpty(_altarMsg51)) { float w = TW97(_altarMsg51) + 14; Frame97(350 - w / 2, 370, w, 14, A_DEEP, U_AMB, 1); TxC97(_altarMsg51, 350, 374, U_YEL); }
                 if (md) DrawConfirm97(); return;
             }
@@ -397,7 +397,7 @@ namespace Hellord
             if (ok) { string lab; bool en; PrimaryLab97(p, f, out lab, out en); if (en) Primary97(p, f); else Msg51(lab); return; }
             int dx = lf ? -1 : rt ? 1 : 0, dy = up ? -1 : dn ? 1 : 0; if (dx == 0 && dy == 0) return;
             int best = -1; float bd = 1e9f;
-            if (Big97(p)) { for (int i = 0; i < 18; i++) { if (i == f) continue; Vector2 a = p == (int)PactPath.Necromancer ? TP130(i) : TP115(i), b = p == (int)PactPath.Necromancer ? TP130(f) : TP115(f); float ex = a.x - b.x, ey = a.y - b.y; float along = dx != 0 ? ex * dx : ey * dy, side = dx != 0 ? Mathf.Abs(ey) : Mathf.Abs(ex); if (along <= 0) continue; float d = along + side * 2.5f; if (d < bd) { bd = d; best = i; } } if (best >= 0) _focus97 = best; return; }
+            if (Big97(p)) { for (int i = 0; i < 18; i++) { if (i == f) continue; Vector2 a = p == (int)PactPath.Necromancer ? NP130(i) : TP115(i), b = p == (int)PactPath.Necromancer ? NP130(f) : TP115(f); float ex = a.x - b.x, ey = a.y - b.y; float along = dx != 0 ? ex * dx : ey * dy, side = dx != 0 ? Mathf.Abs(ey) : Mathf.Abs(ex); if (along <= 0) continue; float d = along + side * 2.5f; if (d < bd) { bd = d; best = i; } } if (best >= 0) _focus97 = best; return; }
             for (int i = G097(p); i < G097(p) + GN97(p); i++)
             {
                 if (i == f) continue; float ex = L[i * 2] - L[f * 2], ey = L[i * 2 + 1] - L[f * 2 + 1];
