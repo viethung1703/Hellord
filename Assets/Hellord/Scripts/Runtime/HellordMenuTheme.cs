@@ -172,7 +172,7 @@ namespace Hellord
                 MtFire(t);
             }
             // ---- three sin slots (niches 28x32 at x 256/306/356, y 74)
-            int[] nxs = { 256, 306, 356 }; const int NY = 74; string hdr = null; string hdrCol = "DIM";
+            int[] nxs = { 256, 306, 356 }; const int NY = 60; /* t1356: was 74 */ string hdr = null; string hdrCol = "DIM";
             for (int i = 0; i < 3; i++)
             {
                 int x = nxs[i]; bool unl = i < _sinSlots737 && i < SlotsMax737; string id = "slot" + i;
@@ -186,7 +186,7 @@ namespace Hellord
                 {
                     MtSpr("niche_locked", x, NY); bool can = i < SlotsMax737; bool over = can && MtOver(id, x, NY, 28, 32);
                     int sc = Arr737(ST737.sinSlotSoulCost737, i, 100), gc = Arr737(ST737.sinSlotSigilCost737, i, 1); bool next = i == _sinSlots737, afford = _souls51 >= sc && _sigils51 >= gc;
-                    if (can && i == 2) { MtSpr("icon_soul", 394, 87); MtTx(sc.ToString(System.Globalization.CultureInfo.InvariantCulture), 404, 86, afford && next ? "YELLOW" : "DIM"); }
+                    if (can && i == 2) { MtSpr("icon_soul", 394, NY + 13); MtTx(sc.ToString(System.Globalization.CultureInfo.InvariantCulture), 404, NY + 12, afford && next ? "YELLOW" : "DIM"); }
                     if (over) { MtBrackets(x, NY, 28, 32); if (_mtRep) MenuThemeLastHover = id; hdr = next ? "UNLOCK SLOT " + (i + 1) + ": " + sc + " SOULS + " + gc + " SIGIL" + (gc == 1 ? "" : "S") : "UNLOCK SLOT " + (_sinSlots737 + 1) + " FIRST"; hdrCol = next && afford ? "AMBER" : "HOT"; }
                     if (can && MtClick(id, x, NY, 28, 32))
                     {
@@ -197,13 +197,14 @@ namespace Hellord
                 }
             }
             // ---- currency + slot/owned headers
-            MtSpr("icon_soul", 52, 87); MtTx("SOULS " + _souls51, 64, 86, "YELLOW");
-            { string sg = "SIGILS " + _sigils51; int iw = MenuThemeData.Atlas["icon_sigil"][2]; int ix = 588 - iw; MtTx(sg, ix - 4 - MtW(sg, false), 86, "PINK"); MtSpr("icon_sigil", ix, 87); }
+            // t1356: SOULS / SIGILS in framed counter plates either side of the title (plates are in mt_scene at x 140 and 408, y 40, 92x20)
+            { string so = "SOULS " + _souls51; int iw0 = MenuThemeData.Atlas["icon_soul"][2], tw0 = iw0 + 4 + MtW(so, false), x0 = 140 + (92 - tw0) / 2; MtSpr("icon_soul", x0, 46); MtTx(so, x0 + iw0 + 4, 47, "YELLOW"); }
+            { string sg = "SIGILS " + _sigils51; int iw = MenuThemeData.Atlas["icon_sigil"][2], tw1 = MtW(sg, false) + 4 + iw, x1 = 408 + (92 - tw1) / 2; MtTx(sg, x1, 47, "PINK"); MtSpr("icon_sigil", x1 + MtW(sg, false) + 4, 46); }
             if (_mtMsg != null && MtClock() < _mtMsgUntil) { hdr = _mtMsg; hdrCol = _mtMsgCol; }
-            MtTxC(hdr ?? "SLOTS " + _sinSlots737 + "/" + SlotsMax737, 320, 110, hdr != null ? hdrCol : "DIM");
-            { string ow = "OWNED " + SinOwnedCount737 + "/" + HSins.Count; MtTx(ow, 588 - MtW(ow, false), 122, "DIM"); }
+            MtTxC(hdr ?? "SLOTS " + _sinSlots737 + "/" + SlotsMax737, 320, NY + 36, hdr != null ? hdrCol : "DIM");
+            { string ow = "OWNED " + SinOwnedCount737 + "/" + HSins.Count; MtTx(ow, 584 - MtW(ow, false), 108, "DIM"); }   // t1356: on the tabs row, right-aligned inside the right panel (was 588,122)
             // ---- tabs
-            string[] fl = { "ALL", "MORTAL", "DEMONIC", "HEAVEN-DEFYING" }; int tx = 52, TY = 121;
+            string[] fl = { "ALL", "MORTAL", "DEMONIC", "HEAVEN-DEFYING" }; int tx = 52, TY = 107;   // t1356: was 121
             for (int i = 0; i < 4; i++)
             {
                 int w = MtW(fl[i], true); bool sel = _sinFilter737 == i; string id = "tab" + i; bool over = !sel && MtOver(id, tx - 6, TY - 1, w + 12, 17);
@@ -222,7 +223,7 @@ namespace Hellord
             int pulse = Mathf.Clamp((int)((0.5f - 0.5f * Mathf.Cos(Mathf.Repeat(t / 2.4f, 1f) * 6.2831853f)) * 2.9999f), 0, 2); int hovShown = -1;
             for (int k = 0; k < per; k++)
             {
-                int x = 58 + (k % 8) * 30, y = 153 + (k / 8) * 30, li = _sinPage737 * per + k; var d = li < list.Count ? list[li] : null;
+                int x = 58 + (k % 8) * 30, y = 145 + (k / 8) * 30, li = _sinPage737 * per + k; var d = li < list.Count ? list[li] : null;
                 if (d == null) { MtSpr("cell_empty", x, y); continue; }
                 bool own = _sinOwned737[d.id], sel = _sinSel737 == d.id, eq = SinEquipped737(d.id), over = MtOver("cell" + k, x, y, 28, 28);
                 MtSpr(sel ? "cell_sel" + pulse : !own ? "cell_locked" : eq ? "cell_equipped" : "cell_normal", x, y);
@@ -261,7 +262,7 @@ namespace Hellord
         void MtDetail(int hovShown)
         {
             int sid = hovShown >= 0 ? hovShown : _sinSel737; if (sid != _mtShown) { _mtShown = sid; _mtPage = 0; }
-            const int IX = 337, IY = 161, DIVY = 197, EY = 269; int pulse = Mathf.Clamp((int)((0.5f - 0.5f * Mathf.Cos(Mathf.Repeat(MtClock() / 2.4f, 1f) * 6.2831853f)) * 2.9999f), 0, 2);
+            const int IX = 337, IY = 147, DIVY = 183, EY = 269; /* t1356: IY/DIVY were 161/197 */ int pulse = Mathf.Clamp((int)((0.5f - 0.5f * Mathf.Cos(Mathf.Repeat(MtClock() / 2.4f, 1f) * 6.2831853f)) * 2.9999f), 0, 2);
             MtSpr("cell_sel" + pulse, IX, IY);
             string act = "SELECT SIN", status = null, statusCol = "BONE"; bool actOn = false; int actKind = 0, free = -1; _mtPages = 1;
             if (sid < 0) { MtDisp("SELECT A SIN", 373, IY, MT_NAME_DIM, "dim"); MtTx("FROM THE GRID", 373, IY + 13, "DIM"); }
@@ -274,7 +275,7 @@ namespace Hellord
                 foreach (var ln in name) { if (small) { MtTx(ln, 373, ny + 1, own ? (d.tier == SinTier.HeavenDefying ? "YELLOW" : d.tier == SinTier.Demonic ? "AMBER" : "BONE") : "DIM", true); ny += 9; } else { MtDisp(ln, 373, ny, ramp, own ? "t" + MtTierIdx(d) : "dim"); ny += 12; } }
                 MtTx(sub, 373, ny + 1, "DIM");
                 int pitch = rows.Count <= 4 ? 11 : 9, cap = rows.Count <= 4 ? 4 : 5; int capP = rows.Count > cap ? cap - 1 : cap; _mtPages = Mathf.Max(1, (rows.Count + capP - 1) / capP); _mtPage = Mathf.Clamp(_mtPage, 0, _mtPages - 1);
-                for (int i = 0; i < capP; i++) { int ri = _mtPage * capP + i; if (ri >= rows.Count) break; MtTx(rows[ri][0], IX, 207 + i * pitch, rows[ri][1]); }
+                for (int i = 0; i < capP; i++) { int ri = _mtPage * capP + i; if (ri >= rows.Count) break; MtTx(rows[ri][0], IX, 194 + i * pitch, rows[ri][1]); }
                 if (_mtPages > 1)
                 {
                     string pg = (_mtPage + 1) + "/" + _mtPages; MtTx(pg, 555 - MtW(pg, false) / 2, 246, "BONE");
