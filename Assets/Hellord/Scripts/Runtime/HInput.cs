@@ -58,6 +58,8 @@ namespace Hellord
             if ((_frameMask & (1 << d)) != 0) { if (f - _keyFrame[d] > 15 && _keyFrame[d] != f) { _textFrame[d] = f; TextHits++; return true; } }
             return false;
         }
+        /// <summary>t1352: second key for the TEST MENU (` / ~): the Unity Editor can swallow F1 (Help), so the menu also opens with the backquote key.</summary>
+        public static bool BackQuote() { var kb = Keyboard.current; return kb != null && kb.backquoteKey.wasPressedThisFrame; }
         public static bool Down(HKey k)
         {
             var kb = Keyboard.current; if (kb == null) return false; Hook();
@@ -124,6 +126,7 @@ namespace Hellord
                 case HKey.Four: return KeyCode.Alpha4; case HKey.Five: return KeyCode.Alpha5; case HKey.F10: return KeyCode.F10; case HKey.SkillCycle: return KeyCode.N; case HKey.Glow: return KeyCode.G; case HKey.Traps: return KeyCode.T; case HKey.Atmos: return KeyCode.H; case HKey.HookThrower: return KeyCode.J; case HKey.GossipImp: return KeyCode.I; default: return KeyCode.Escape;
             }
         }
+        public static bool BackQuote() { return Input.GetKeyDown(KeyCode.BackQuote); }
         public static bool Down(HKey k)
         {
             if (k >= HKey.One && k <= HKey.Five && Shift()) return false;

@@ -10,7 +10,7 @@ namespace Hellord
 {
     public partial class HellordGame
     {
-        Texture2D _pmBg, _pmScene, _pmAtlas, _pmDots, _pmGlow, _pmLavaData; bool _pmTried, _pmLavaTried; Material _pmLava; RenderTexture _pmRt; string[][] _pmNames;
+        Texture2D _pmBg, _pmScene, _pmAtlas, _pmDots, _pmGlow, _pmLavaData; bool _pmTried, _pmLavaTried; Material _pmLava; RenderTexture _pmRt; string[][] _pmNames; float _pmWantT = -9; bool _pmRtOk, _pmBroken;
         static Texture2D PmTex(string n, bool linear = false) { var t = Resources.Load<Texture2D>("HellordArt/PactMenu/" + n); if (t) { t.filterMode = FilterMode.Point; t.wrapMode = TextureWrapMode.Clamp; } return t; }
         bool PmReady()
         {
@@ -23,10 +23,17 @@ namespace Hellord
             return _pmBg && _pmScene && _pmAtlas && _pmDots && _pmGlow;
         }
         /// <summary>true when the Necromancer node screen is drawn by the menu theme (also used so keyboard/pad navigation follows the on-screen positions).</summary>
-        bool PmActive() { return HellordUITheme.Active == HellordUITheme.Theme.MenuTheme && PmReady(); }
+        bool PmActive() { return !_pmBroken && HellordUITheme.Active == HellordUITheme.Theme.MenuTheme && PmReady(); }
         Vector2 NP130(int i) { return PmActive() ? new Vector2(PactMenuData.Pos[i][0], PactMenuData.Pos[i][1]) : TP130(i); }
 
-        void PmSpr(string n, int x, int y, float a = 1f) { var r = PactMenuData.Atlas[n]; MtBlit(_pmAtlas, r[0], r[1], r[2], r[3], x, y, a); }
+        void PmSpr(string n, int x, int y, float a = 1f) { int[] r; if (_pmAtlas == null || !PactMenuData.Atlas.TryGetValue(n, out r)) return; MtBlit(_pmAtlas, r[0], r[1], r[2], r[3], x, y, a); }
+        /// <summary>called from Update (never from OnGUI: Graphics.Blit inside OnGUI breaks the GUI projection and blanks the screen): renders the lava shader into the 640x360 RT while the screen is up.</summary>
+        void PmTick()
+        {
+            if (_pmBroken || _pmLava == null || _pmRt == null || Time.unscaledTime - _pmWantT > 0.3f) return;
+            try { _pmLava.SetFloat("_Clock", MtClock()); Graphics.Blit(_pmBg, _pmRt, _pmLava); _pmRtOk = true; }
+            catch (System.Exception e) { Debug.LogWarning("[Hellord] pact lava blit failed: " + e.Message); _pmLava = null; _pmRtOk = false; }
+        }
         void PmBackdrop(float t)
         {
             if (!_pmLavaTried)
@@ -44,14 +51,10 @@ namespace Hellord
                 }
                 catch (System.Exception e) { Debug.LogWarning("[Hellord] pact lava shader init failed: " + e.Message); _pmLava = null; }
             }
-            if (_pmLava != null && _pmRt != null)
+            _pmWantT = Time.unscaledTime;
+            if (_pmLava != null && _pmRt != null && _pmRtOk)
             {
-                try
-                {
-                    _pmLava.SetFloat("_Clock", t); Graphics.Blit(_pmBg, _pmRt, _pmLava);
-                    GUI.color = Color.white; GUI.DrawTexture(new Rect(_mtOx, _mtOy, 640 * _mtS, 360 * _mtS), _pmRt, ScaleMode.StretchToFill, false); return;
-                }
-                catch (System.Exception e) { Debug.LogWarning("[Hellord] pact lava blit failed: " + e.Message); _pmLava = null; }
+                GUI.color = Color.white; GUI.DrawTexture(new Rect(_mtOx, _mtOy, 640 * _mtS, 360 * _mtS), _pmRt, ScaleMode.StretchToFill, false); return;
             }
             MtBlit(_pmBg, 0, 0, 640, 360, 0, 0);
         }
@@ -122,7 +125,9 @@ namespace Hellord
             if (sr > s && W / sr >= 576f && H / sr >= 324f) s = sr; if (MenuThemeScale > 0) s = MenuThemeScale;
             _mtS = s; MenuThemeScaleUsed = s; _mtOx = Mathf.Round(W / 2 - s * 320f); _mtOy = Mathf.Round(H / 2 - s * 180f);
             GUI.matrix = Matrix4x4.identity;
-            try { PmBody(p, nodes, yours, locked); } finally { GUI.matrix = G; }
+            try { PmBody(p, nodes, yours, locked); }
+            catch (System.Exception e) { _pmBroken = true; Debug.LogError("[Hellord] menu-theme pact screen failed, falling back to the stone screen: " + e); }   // next frame DrawAltar97 uses DrawNecro130
+            finally { GUI.matrix = G; GUI.color = Color.white; }
         }
         void PmBody(int p, PactNode[] nodes, bool yours, bool locked)
         {

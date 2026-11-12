@@ -12,7 +12,7 @@ namespace Hellord
     public partial class HellordGame
     {
         bool _tmOpen, _tmGod, _tmFast; int _tmTab, _tmSel, _tmCount, _tmCols = 3, _tmTarget, _tmSpawnN = 1, _tmI, _jumpFloor = -1;
-        string _tmMsg = "Click a button, or arrows + Enter. F1 / Esc closes."; Action _tmPending; bool _tmAct, _tmDownK, _tmUpK, _tmLeftK, _tmRightK;
+        string _tmMsg = "Click a button, or arrows + Enter. F1 / ` / Esc closes."; Action _tmPending; bool _tmAct, _tmDownK, _tmUpK, _tmLeftK, _tmRightK;
         GUIStyle _tmBtn, _tmTab0, _tmHead, _tmTxt;
         static readonly string[] TmTabs = { "FLOOR", "PLAYER", "SKILLS", "SUPPORTS", "ENEMIES", "BOSS", "PACT", "SINS", "KEYS" }; // t770u: SINS tab // v0.0.53 pt480u: PACT tab (souls / sigils / reset save)
         static readonly string[] TmFloorNames = { "Ox Pit", "Frozen Hell", "Burning Hell" }; // v0.0.42: themes (any depth)
@@ -27,7 +27,8 @@ namespace Hellord
             if (!HitStop.Active) { float want = _tmFast ? Mathf.Max(0.1f, T.testFastSpeed) : 1f; if (Mathf.Abs(Time.timeScale - want) > 0.001f) Time.timeScale = want; }
             bool ok = mode == Mode.Play || mode == Mode.StartPick || MenuMode53; // pt480u: also on the main menu (PACT tab)
             if (_tmOpen && !ok) _tmOpen = false;
-            if (ok && HInput.Down(HKey.F1)) { _tmOpen = !_tmOpen; _tmSel = 0; _tmResetArm53 = false; if (MenuMode53) _tmTab = TmPactTab53; }
+            if (ok && (HInput.Down(HKey.F1) || HInput.BackQuote())) {   // t1352: F1, Shift+1 or ` (backquote; the Unity Editor can eat F1)
+                _tmOpen = !_tmOpen; _tmSel = 0; _tmResetArm53 = false; if (MenuMode53) _tmTab = TmPactTab53; }
             if (mode == Mode.Play && !_tmOpen && _tmPending != null) { var a = _tmPending; _tmPending = null; a(); }
             if (_tmGod && hp > 0 && hp < maxHp * 0.25f) hp = maxHp; // god mode safety net for damage that bypasses HurtHero
             return _tmOpen;

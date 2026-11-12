@@ -196,7 +196,7 @@ namespace Hellord
         {
             if (toastT > 0) toastT -= Time.unscaledDeltaTime;
             UpdateBanners(Time.unscaledDeltaTime);
-            PactTick51(); MenuAudioTick611(); // v0.0.61 t611u menu audio; v0.0.51 damnation pact (souls payout, menu keys)
+            PmTick(); PactTick51(); MenuAudioTick611(); // v0.0.61 t611u menu audio; v0.0.51 damnation pact (souls payout, menu keys)
             if (_rageBannerT > 0) _rageBannerT -= Time.unscaledDeltaTime; // v0.0.16: real time (hit-stop no longer freezes it), 3 s
             BenchTick(); BotStateTick(); HookPauseTick();
             if (HInput.Down(HKey.Tab)) { autoAim = !autoAim; Toast(autoAim ? "Aim: AUTO (nearest enemy)" : "Aim: MOUSE / STICK (hybrid)"); }
