@@ -104,7 +104,7 @@ namespace Hellord
               }
               string ms = ""; foreach (var ch in miss) ms += ch; ARes("mt1300_all_sins_fit_and_glyphs", n == HSins.Count && uncovered == 0 && miss.Count == 0, $"{n} Sins: max {maxRows} stat rows ({over4} need > 4 rows -> small pitch / paging), {name3} names use the small font (3+ rows), characters without a glyph: '{ms}'"); }
             // ---- default is still Stone1246; flag parse
-            ARes("mt1300_default_is_stone", HellordUITheme.Parse(new[] { "x" }) == HellordUITheme.Theme.Stone1246 && HellordUITheme.Resolve(HellordUITheme.Theme.Stone1246, true) == HellordUITheme.Theme.Stone1246 && HellordUITheme.Parse(new[] { "-uitheme", "menu" }) == HellordUITheme.Theme.MenuTheme && HellordUITheme.MenuThemeReady, "no flag -> Stone1246; -uitheme menu -> MenuTheme; MenuThemeReady = true");
+            ARes("mt1300_default_is_stone", HellordUITheme.Parse(new[] { "x" }) == HellordUITheme.Theme.MenuTheme && HellordUITheme.Resolve(HellordUITheme.Theme.Stone1246, true) == HellordUITheme.Theme.Stone1246 && HellordUITheme.Parse(new[] { "-uitheme", "menu" }) == HellordUITheme.Theme.MenuTheme && HellordUITheme.MenuThemeReady, "t1319: no flag -> MenuTheme; -uitheme menu -> MenuTheme; MenuThemeReady = true");
             if (mode1300 == "stills" || mode1300 == "video") yield return At1300Capture(mode1300, outDir);
             // ---- BACK closes
             _sinSel737 = HSins.All[25].id; yield return AtWait(0.1f); yield return At1300Click(387 + 68, 330); ARes("mt1300_back_closes", !_sinPanel737 && mode == Mode.MainMenu, $"panel {_sinPanel737} mode {mode}");

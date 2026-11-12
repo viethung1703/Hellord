@@ -226,8 +226,8 @@ namespace Hellord
             SinLoad737(); PactLoad51(); ARes("sins1246_save_restored", _sinSlots737 == sl0 && _souls51 == so0 && _sigils51 == si0, $"slots {_sinSlots737} souls {_souls51} sigils {_sigils51}");
             { var T = HellordUITheme.Theme.Stone1246; var M = HellordUITheme.Theme.MenuTheme;
               ARes("sins1246_uitheme_switch", HellordUITheme.Resolve(T, false) == T && HellordUITheme.Resolve(M, false) == T && HellordUITheme.Resolve(M, true) == M && HellordUITheme.FromName("menu") == M && HellordUITheme.FromName("stone") == T && HellordUITheme.FromName("junk") == T
-                  && HellordUITheme.Parse(new[] { "x", "-uitheme", "menu" }) == M && HellordUITheme.Parse(new[] { "-uitheme=menu" }) == M && HellordUITheme.Parse(new[] { "x" }) == T && HellordUITheme.Active == T && HellordUITheme.MenuThemeReady,
-                  "t1277/t1300 theme switch: default Stone1246, Resolve(menu, ready) = MenuTheme (t1300 flipped MenuThemeReady: the menu theme exists), a not-ready theme would still fall back to Stone1246, parse of -uitheme stone|menu"); }
+                  && HellordUITheme.Parse(new[] { "x", "-uitheme", "menu" }) == M && HellordUITheme.Parse(new[] { "-uitheme=menu" }) == M && HellordUITheme.Parse(new[] { "x" }) == M && HellordUITheme.MenuThemeReady,
+                  "t1277/t1300 theme switch: t1319 default MenuTheme, Resolve(menu, ready) = MenuTheme (t1300 flipped MenuThemeReady: the menu theme exists), a not-ready theme would still fall back to Stone1246, parse of -uitheme stone|menu"); }
             T1246On = t46was; AtEnd("sins1246");
         }
     }

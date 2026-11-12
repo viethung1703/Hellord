@@ -5,7 +5,7 @@ using UnityEngine;
 //   Stone1246 = the v0.1.0 look (HellordSin1246.cs + ui_t1246_* + HellordSinFX1246), kept fully intact incl. every fallback flag (-sins1246off, -embers1272off, ...). DEFAULT.
 //   MenuTheme = the new look designed to fit the main menu (HellordMenuTheme.cs: D2 Morta frame, lava background, main-menu fire). t1300: MenuThemeReady = true, drawn only when requested with -uitheme menu.
 //               (If the art cannot load, DrawSinPanelMenuTheme() returns false and the Stone1246 screen is drawn.)
-// Command line: -uitheme stone | menu   (also -uitheme=stone|menu). Unknown value = stone. The default stays Stone1246 until VH approves the new theme as default.
+// Command line: -uitheme stone | menu   (also -uitheme=stone|menu). Unknown value = stone. t1319: no flag = MenuTheme (VH made it the default); Stone1246 kept as fallback.
 namespace Hellord
 {
     public static class HellordUITheme
@@ -19,7 +19,7 @@ namespace Hellord
 
         public static Theme Parse(string[] args)
         {
-            if (args == null) return Theme.Stone1246;
+            if (args == null) return Theme.MenuTheme;
             for (int i = 0; i < args.Length; i++)
             {
                 string v = null;
@@ -27,7 +27,7 @@ namespace Hellord
                 else if (args[i].StartsWith("-uitheme=")) v = args[i].Substring(9);
                 if (v != null) return FromName(v);
             }
-            return Theme.Stone1246;
+            return Theme.MenuTheme; // t1319: VH made the menu theme the default; -uitheme stone brings back the v0.1.0 stone screen
         }
         public static Theme FromName(string v) { v = (v ?? "").Trim().ToLowerInvariant(); return v == "menu" || v == "menutheme" ? Theme.MenuTheme : Theme.Stone1246; }
         public static Theme Resolve(Theme requested, bool menuReady)
