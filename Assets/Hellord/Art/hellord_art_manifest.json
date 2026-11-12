@@ -1,0 +1,1031 @@
+{
+ "version": "2026-10-25",
+ "notes": [
+  "All sheets: horizontal strips, transparent background, 1 art px = 1 px, point filtering, no labels, no CRT.",
+  "HERO LAYOUT CHANGE: requested 0-3 idle / 4-7 walk; delivered 16 frames: idle 0-7 (8 fps), walk 8-15 (12 fps).",
+  "HERO PIVOT is (16,30), not (16,31): the 26x26 art has its foot line at row 24 and one row of feet outline/shadow below it; at (16,31) that row would be cut. Pivot = ground point between the feet.",
+  "The scene look (bloom, scanlines, RGB fringe, vignette, CRT) is a full-screen post effect done in the previews and must be recreated in Unity (e.g. URP post-processing / a final blit shader). Projectile trails, glow and impacts are Pixel FX Pack systems (Assets/PixelFXPack).",
+  "Target resolution used by the previews: 384x216 (Pixel FX Pack own demos use 240x135).",
+  "PixelLab (AI-assisted) sheets are flagged ai_generated=true: approved by Viet Hung for tests only."
+ ],
+ "sheets": [
+  {
+   "file": "hero/hero_base.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero",
+   "source": "code-made (final2 hero scaled to 80%)",
+   "ai_generated": false
+  },
+  {
+   "file": "hero/hero_skin_frost.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero_skin",
+   "replaces": "hero_base",
+   "note": "full-body palette swap; draw up_frost layer on top",
+   "source": "code-made",
+   "ai_generated": false
+  },
+  {
+   "file": "hero/hero_skin_toxic.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero_skin",
+   "replaces": "hero_base",
+   "note": "full-body palette swap; draw up_toxic layer on top",
+   "source": "code-made",
+   "ai_generated": false
+  },
+  {
+   "file": "hero/hero_tf_infernal.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero_transformation",
+   "display_name": "INFERNAL",
+   "replaces": "hero_base",
+   "note": "complete composited body; no upgrade layers while transformed",
+   "source": "code-made",
+   "ai_generated": false
+  },
+  {
+   "file": "hero/hero_tf_lich.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero_transformation",
+   "display_name": "LICH",
+   "replaces": "hero_base",
+   "note": "complete composited body; no upgrade layers while transformed",
+   "source": "code-made",
+   "ai_generated": false
+  },
+  {
+   "file": "hero/hero_tf_bloodfiend.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero_transformation",
+   "display_name": "BLOOD FIEND",
+   "replaces": "hero_base",
+   "note": "complete composited body; no upgrade layers while transformed",
+   "source": "code-made",
+   "ai_generated": false
+  },
+  {
+   "file": "hero/hero_up_wings.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero_upgrade_layer",
+   "slot": "BACK",
+   "sort_order": 2,
+   "sort_relative_to_base": "behind",
+   "display_name": "Lifesteal - bat wings",
+   "skill": "blood bolts heal",
+   "note": "same 32x32 frame/pivot as hero_base; draw at the identical position and frame index",
+   "source": "code-made",
+   "ai_generated": false
+  },
+  {
+   "file": "hero/hero_up_frost.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero_upgrade_layer",
+   "slot": "SKIN",
+   "sort_order": 11,
+   "sort_relative_to_base": "in front",
+   "display_name": "Frost - ice skin + shards",
+   "skill": "ice shard ring",
+   "note": "same 32x32 frame/pivot as hero_base; draw at the identical position and frame index",
+   "source": "code-made",
+   "ai_generated": false
+  },
+  {
+   "file": "hero/hero_up_toxic.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero_upgrade_layer",
+   "slot": "SKIN",
+   "sort_order": 11,
+   "sort_relative_to_base": "in front",
+   "display_name": "Toxic - green skin + drips",
+   "skill": "poison puddles",
+   "note": "same 32x32 frame/pivot as hero_base; draw at the identical position and frame index",
+   "source": "code-made",
+   "ai_generated": false
+  },
+  {
+   "file": "hero/hero_up_bleed.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero_upgrade_layer",
+   "slot": "SPIKES",
+   "sort_order": 12,
+   "sort_relative_to_base": "in front",
+   "display_name": "Bleed - bone spikes",
+   "skill": "bone fan",
+   "note": "same 32x32 frame/pivot as hero_base; draw at the identical position and frame index",
+   "source": "code-made",
+   "ai_generated": false
+  },
+  {
+   "file": "hero/hero_up_chains.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero_upgrade_layer",
+   "slot": "WRISTS",
+   "sort_order": 13,
+   "sort_relative_to_base": "in front",
+   "display_name": "Chains - wrist chains",
+   "skill": "chain whip sweep",
+   "note": "same 32x32 frame/pivot as hero_base; draw at the identical position and frame index",
+   "source": "code-made",
+   "ai_generated": false
+  },
+  {
+   "file": "hero/hero_up_glass.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero_upgrade_layer",
+   "slot": "HORNS",
+   "sort_order": 14,
+   "sort_relative_to_base": "in front",
+   "display_name": "Glass Horns - crystal crit",
+   "skill": "crit shards",
+   "note": "same 32x32 frame/pivot as hero_base; draw at the identical position and frame index",
+   "source": "code-made",
+   "ai_generated": false
+  },
+  {
+   "file": "hero/hero_up_hellfire.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero_upgrade_layer",
+   "slot": "HORN_FX",
+   "sort_order": 15,
+   "sort_relative_to_base": "in front",
+   "display_name": "Hellfire - flame horns",
+   "skill": "twin fireballs + hell spear",
+   "note": "same 32x32 frame/pivot as hero_base; draw at the identical position and frame index",
+   "source": "code-made",
+   "ai_generated": false
+  },
+  {
+   "file": "hero/hero_up_shock.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero_upgrade_layer",
+   "slot": "CROWN",
+   "sort_order": 16,
+   "sort_relative_to_base": "in front",
+   "display_name": "Shock - lightning crown",
+   "skill": "chain lightning",
+   "note": "same 32x32 frame/pivot as hero_base; draw at the identical position and frame index",
+   "source": "code-made",
+   "ai_generated": false
+  },
+  {
+   "file": "hero/hero_up_curse.png",
+   "frame_w": 32,
+   "frame_h": 32,
+   "frame_count": 16,
+   "pivot": [
+    16,
+    30
+   ],
+   "fps": 8,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 7,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "from": 8,
+     "to": 15,
+     "fps": 12,
+     "loop": true
+    }
+   },
+   "category": "hero_upgrade_layer",
+   "slot": "HALO",
+   "sort_order": 17,
+   "sort_relative_to_base": "in front",
+   "display_name": "Curse - violet halo",
+   "skill": "homing curse skulls",
+   "note": "same 32x32 frame/pivot as hero_base; draw at the identical position and frame index",
+   "source": "code-made",
+   "ai_generated": false
+  },
+  {
+   "file": "enemies/enemy_imp.png",
+   "frame_w": 16,
+   "frame_h": 22,
+   "frame_count": 20,
+   "pivot": [
+    8,
+    21
+   ],
+   "fps": 10,
+   "animations": {
+    "walk": {
+     "from": 0,
+     "to": 7,
+     "fps": 10,
+     "loop": true
+    },
+    "hit": {
+     "from": 8,
+     "to": 8,
+     "fps": 10,
+     "loop": false,
+     "note": "1-frame white flash (game also tints by damage element)"
+    },
+    "death": {
+     "from": 9,
+     "to": 19,
+     "fps": 20,
+     "loop": false,
+     "note": "dither dissolve, derived from walk frame 0 by code"
+    }
+   },
+   "category": "enemy",
+   "faces": "right (flip X to face left)",
+   "role": "imp (fodder)",
+   "gameplay": {
+    "hp": 1,
+    "speed_px_per_frame_at_30fps": 0.75,
+    "radius": 6
+   },
+   "source": "PixelLab (AI-assisted), snapped to the style14 palette + outlined by code. Approved by Viet Hung for TESTS ONLY; replace before release if \"no AI-generated art\" is required",
+   "ai_generated": true
+  },
+  {
+   "file": "enemies/enemy_shambler.png",
+   "frame_w": 14,
+   "frame_h": 26,
+   "frame_count": 20,
+   "pivot": [
+    7,
+    25
+   ],
+   "fps": 10,
+   "animations": {
+    "walk": {
+     "from": 0,
+     "to": 7,
+     "fps": 10,
+     "loop": true
+    },
+    "hit": {
+     "from": 8,
+     "to": 8,
+     "fps": 10,
+     "loop": false,
+     "note": "1-frame white flash (game also tints by damage element)"
+    },
+    "death": {
+     "from": 9,
+     "to": 19,
+     "fps": 20,
+     "loop": false,
+     "note": "dither dissolve, derived from walk frame 0 by code"
+    }
+   },
+   "category": "enemy",
+   "faces": "right (flip X to face left)",
+   "role": "ghoul",
+   "gameplay": {
+    "hp": 2,
+    "speed_px_per_frame_at_30fps": 0.38,
+    "radius": 6
+   },
+   "source": "PixelLab (AI-assisted), snapped to the style14 palette + outlined by code. Approved by Viet Hung for TESTS ONLY; replace before release if \"no AI-generated art\" is required",
+   "ai_generated": true
+  },
+  {
+   "file": "enemies/enemy_wraith.png",
+   "frame_w": 20,
+   "frame_h": 28,
+   "frame_count": 20,
+   "pivot": [
+    10,
+    27
+   ],
+   "fps": 10,
+   "animations": {
+    "walk": {
+     "from": 0,
+     "to": 7,
+     "fps": 10,
+     "loop": true
+    },
+    "hit": {
+     "from": 8,
+     "to": 8,
+     "fps": 10,
+     "loop": false,
+     "note": "1-frame white flash (game also tints by damage element)"
+    },
+    "death": {
+     "from": 9,
+     "to": 19,
+     "fps": 20,
+     "loop": false,
+     "note": "dither dissolve, derived from walk frame 0 by code"
+    }
+   },
+   "category": "enemy",
+   "faces": "right (flip X to face left)",
+   "role": "elite candidate (ranged/ghost)",
+   "gameplay": {
+    "hp": 4,
+    "speed_px_per_frame_at_30fps": 0.5,
+    "radius": 7
+   },
+   "source": "PixelLab (AI-assisted), snapped to the style14 palette + outlined by code. Approved by Viet Hung for TESTS ONLY; replace before release if \"no AI-generated art\" is required",
+   "ai_generated": true
+  },
+  {
+   "file": "enemies/enemy_hound.png",
+   "frame_w": 26,
+   "frame_h": 21,
+   "frame_count": 20,
+   "pivot": [
+    13,
+    20
+   ],
+   "fps": 10,
+   "animations": {
+    "walk": {
+     "from": 0,
+     "to": 7,
+     "fps": 10,
+     "loop": true
+    },
+    "hit": {
+     "from": 8,
+     "to": 8,
+     "fps": 10,
+     "loop": false,
+     "note": "1-frame white flash (game also tints by damage element)"
+    },
+    "death": {
+     "from": 9,
+     "to": 19,
+     "fps": 20,
+     "loop": false,
+     "note": "dither dissolve, derived from walk frame 0 by code"
+    }
+   },
+   "category": "enemy",
+   "faces": "right (flip X to face left)",
+   "role": "fast fodder / alt brute",
+   "gameplay": {
+    "hp": 2,
+    "speed_px_per_frame_at_30fps": 0.95,
+    "radius": 8
+   },
+   "source": "PixelLab (AI-assisted), snapped to the style14 palette + outlined by code. Approved by Viet Hung for TESTS ONLY; replace before release if \"no AI-generated art\" is required",
+   "ai_generated": true
+  },
+  {
+   "file": "enemies/enemy_skeleton.png",
+   "frame_w": 18,
+   "frame_h": 24,
+   "frame_count": 20,
+   "pivot": [
+    9,
+    23
+   ],
+   "fps": 10,
+   "animations": {
+    "walk": {
+     "from": 0,
+     "to": 7,
+     "fps": 10,
+     "loop": true
+    },
+    "hit": {
+     "from": 8,
+     "to": 8,
+     "fps": 10,
+     "loop": false,
+     "note": "1-frame white flash (game also tints by damage element)"
+    },
+    "death": {
+     "from": 9,
+     "to": 19,
+     "fps": 20,
+     "loop": false,
+     "note": "dither dissolve, derived from walk frame 0 by code"
+    }
+   },
+   "category": "enemy",
+   "faces": "right (flip X to face left)",
+   "role": "fodder",
+   "gameplay": {
+    "hp": 2,
+    "speed_px_per_frame_at_30fps": 0.5,
+    "radius": 6
+   },
+   "source": "code-made (style14 enemies_v3)",
+   "ai_generated": false
+  },
+  {
+   "file": "enemies/enemy_knight.png",
+   "frame_w": 26,
+   "frame_h": 28,
+   "frame_count": 20,
+   "pivot": [
+    13,
+    27
+   ],
+   "fps": 10,
+   "animations": {
+    "walk": {
+     "from": 0,
+     "to": 7,
+     "fps": 10,
+     "loop": true
+    },
+    "hit": {
+     "from": 8,
+     "to": 8,
+     "fps": 10,
+     "loop": false,
+     "note": "1-frame white flash (game also tints by damage element)"
+    },
+    "death": {
+     "from": 9,
+     "to": 19,
+     "fps": 20,
+     "loop": false,
+     "note": "dither dissolve, derived from walk frame 0 by code"
+    }
+   },
+   "category": "enemy",
+   "faces": "right (flip X to face left)",
+   "role": "brute",
+   "gameplay": {
+    "hp": 14,
+    "speed_px_per_frame_at_30fps": 0.32,
+    "radius": 10
+   },
+   "source": "code-made (style14 enemies_v3)",
+   "ai_generated": false
+  },
+  {
+   "file": "pickups/xp_blood_small.png",
+   "frame_w": 12,
+   "frame_h": 12,
+   "frame_count": 4,
+   "pivot": [
+    6,
+    9
+   ],
+   "fps": 6,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 3,
+     "fps": 6,
+     "loop": true
+    }
+   },
+   "category": "pickup",
+   "xp_value": 1,
+   "source": "code-made (matches in-game blood drop)",
+   "ai_generated": false
+  },
+  {
+   "file": "pickups/xp_blood_medium.png",
+   "frame_w": 12,
+   "frame_h": 12,
+   "frame_count": 4,
+   "pivot": [
+    6,
+    9
+   ],
+   "fps": 6,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 3,
+     "fps": 6,
+     "loop": true
+    }
+   },
+   "category": "pickup",
+   "xp_value": 5,
+   "source": "code-made (NEW size variant, not yet reviewed by Viet Hung)",
+   "ai_generated": false
+  },
+  {
+   "file": "pickups/xp_blood_large.png",
+   "frame_w": 12,
+   "frame_h": 12,
+   "frame_count": 4,
+   "pivot": [
+    6,
+    9
+   ],
+   "fps": 6,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 3,
+     "fps": 6,
+     "loop": true
+    }
+   },
+   "category": "pickup",
+   "xp_value": 25,
+   "source": "code-made (NEW size variant, not yet reviewed by Viet Hung)",
+   "ai_generated": false
+  },
+  {
+   "file": "pickups/bone_shard.png",
+   "frame_w": 12,
+   "frame_h": 12,
+   "frame_count": 4,
+   "pivot": [
+    6,
+    9
+   ],
+   "fps": 6,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 3,
+     "fps": 6,
+     "loop": true
+    }
+   },
+   "category": "pickup",
+   "source": "code-made (matches in-game bone drop)",
+   "ai_generated": false
+  },
+  {
+   "file": "pickups/bone_skull.png",
+   "frame_w": 12,
+   "frame_h": 12,
+   "frame_count": 4,
+   "pivot": [
+    6,
+    10
+   ],
+   "fps": 6,
+   "animations": {
+    "idle": {
+     "from": 0,
+     "to": 3,
+     "fps": 6,
+     "loop": true
+    }
+   },
+   "category": "pickup",
+   "source": "code-made (NEW, not yet reviewed by Viet Hung)",
+   "ai_generated": false
+  },
+  {
+   "file": "projectiles/proj_fireball.png",
+   "frame_w": 16,
+   "frame_h": 16,
+   "frame_count": 4,
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 14,
+   "animations": {
+    "fly": {
+     "from": 0,
+     "to": 3,
+     "fps": 14,
+     "loop": true
+    }
+   },
+   "category": "projectile",
+   "pack_element": "fire",
+   "faces": "right (+X); rotate to velocity (pack snaps to 22.5 deg steps)",
+   "source": "MoneyMaker Pixel FX Pack v1.5 (review/v15/bullets.py BODY sprites, code-made). Trails/impacts/glow are pack FX systems, not in this sheet",
+   "ai_generated": false
+  },
+  {
+   "file": "projectiles/proj_frost.png",
+   "frame_w": 16,
+   "frame_h": 16,
+   "frame_count": 4,
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 14,
+   "animations": {
+    "fly": {
+     "from": 0,
+     "to": 3,
+     "fps": 14,
+     "loop": true
+    }
+   },
+   "category": "projectile",
+   "pack_element": "soul",
+   "faces": "right (+X); rotate to velocity (pack snaps to 22.5 deg steps)",
+   "source": "MoneyMaker Pixel FX Pack v1.5 (review/v15/bullets.py BODY sprites, code-made). Trails/impacts/glow are pack FX systems, not in this sheet",
+   "ai_generated": false,
+   "note": "pack has no ice element; Frost uses the pack \"soul\" (blue orb) sprite"
+  },
+  {
+   "file": "projectiles/proj_storm.png",
+   "frame_w": 16,
+   "frame_h": 16,
+   "frame_count": 4,
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 14,
+   "animations": {
+    "fly": {
+     "from": 0,
+     "to": 3,
+     "fps": 14,
+     "loop": true
+    }
+   },
+   "category": "projectile",
+   "pack_element": "light",
+   "faces": "right (+X); rotate to velocity (pack snaps to 22.5 deg steps)",
+   "source": "MoneyMaker Pixel FX Pack v1.5 (review/v15/bullets.py BODY sprites, code-made). Trails/impacts/glow are pack FX systems, not in this sheet",
+   "ai_generated": false
+  },
+  {
+   "file": "projectiles/proj_bone.png",
+   "frame_w": 16,
+   "frame_h": 16,
+   "frame_count": 4,
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 14,
+   "animations": {
+    "fly": {
+     "from": 0,
+     "to": 3,
+     "fps": 14,
+     "loop": true
+    }
+   },
+   "category": "projectile",
+   "pack_element": "bone",
+   "faces": "right (+X); rotate to velocity (pack snaps to 22.5 deg steps)",
+   "source": "MoneyMaker Pixel FX Pack v1.5 (review/v15/bullets.py BODY sprites, code-made). Trails/impacts/glow are pack FX systems, not in this sheet",
+   "ai_generated": false
+  },
+  {
+   "file": "projectiles/proj_curse.png",
+   "frame_w": 16,
+   "frame_h": 16,
+   "frame_count": 4,
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 14,
+   "animations": {
+    "fly": {
+     "from": 0,
+     "to": 3,
+     "fps": 14,
+     "loop": true
+    }
+   },
+   "category": "projectile",
+   "pack_element": "curse",
+   "faces": "right (+X); rotate to velocity (pack snaps to 22.5 deg steps)",
+   "source": "MoneyMaker Pixel FX Pack v1.5 (review/v15/bullets.py BODY sprites, code-made). Trails/impacts/glow are pack FX systems, not in this sheet",
+   "ai_generated": false
+  },
+  {
+   "file": "floor/floor_style14.png",
+   "frame_w": 96,
+   "frame_h": 96,
+   "frame_count": 1,
+   "pivot": [
+    0,
+    0
+   ],
+   "fps": 0,
+   "animations": {},
+   "category": "floor",
+   "tiling": "seamless, repeat in X and Y; opaque",
+   "source": "code-made (style14 gameplay preview)",
+   "ai_generated": false
+  }
+ ],
+ "hero_layer_order_back_to_front": [
+  "hero_up_wings",
+  "hero_base (or hero_skin_frost / hero_skin_toxic / hero_tf_*)",
+  "hero_up_frost",
+  "hero_up_toxic",
+  "hero_up_bleed",
+  "hero_up_chains",
+  "hero_up_glass",
+  "hero_up_hellfire",
+  "hero_up_shock",
+  "hero_up_curse"
+ ],
+ "enemy_mapping": {
+  "imp": "enemy_imp (PixelLab)",
+  "ghoul": "enemy_shambler (PixelLab)",
+  "brute": "enemy_knight (code-made; hound is the PixelLab alternative)",
+  "elite": "enemy_wraith (PixelLab) - the most distinct silhouette; if no AI art at all, use enemy_knight tinted / scaled as elite",
+  "extra": [
+   "enemy_skeleton (code-made)",
+   "enemy_hound (PixelLab)"
+  ],
+  "no_ai_set": "only skeleton and knight are free of AI assistance"
+ }
+}

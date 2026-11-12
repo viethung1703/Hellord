@@ -1,0 +1,2780 @@
+fileFormatVersion: 2
+guid: 05f6474af644c8a32666c93fa556fb42
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 52799835210876190
+    second: boss_horseface_pestle_0
+  - first:
+      213: -8739525569839896872
+    second: boss_horseface_pestle_1
+  - first:
+      213: -9109344719643241875
+    second: boss_horseface_pestle_2
+  - first:
+      213: 8271776291294942146
+    second: boss_horseface_pestle_3
+  - first:
+      213: 4911345163802027773
+    second: boss_horseface_pestle_4
+  - first:
+      213: -2744392948369896588
+    second: boss_horseface_pestle_5
+  - first:
+      213: 3253700216363005446
+    second: boss_horseface_pestle_6
+  - first:
+      213: 9055575546375038672
+    second: boss_horseface_pestle_7
+  - first:
+      213: -3209061179824602698
+    second: boss_horseface_pestle_8
+  - first:
+      213: -7261367178642493955
+    second: boss_horseface_pestle_9
+  - first:
+      213: -3344604030237462013
+    second: boss_horseface_pestle_10
+  - first:
+      213: -1807694018875206017
+    second: boss_horseface_pestle_11
+  - first:
+      213: 3756256654550407622
+    second: boss_horseface_pestle_12
+  - first:
+      213: -4465817540711329866
+    second: boss_horseface_pestle_13
+  - first:
+      213: -1731218434255999955
+    second: boss_horseface_pestle_14
+  - first:
+      213: -5841125952803256572
+    second: boss_horseface_pestle_15
+  - first:
+      213: 7135028143198599776
+    second: boss_horseface_pestle_16
+  - first:
+      213: 8161112480043004508
+    second: boss_horseface_pestle_17
+  - first:
+      213: 6797887360725345631
+    second: boss_horseface_pestle_18
+  - first:
+      213: -8999906202691652990
+    second: boss_horseface_pestle_19
+  - first:
+      213: -7258357229759741760
+    second: boss_horseface_pestle_20
+  - first:
+      213: 8594788626516747452
+    second: boss_horseface_pestle_21
+  - first:
+      213: 6363153157028856646
+    second: boss_horseface_pestle_22
+  - first:
+      213: -7428621502025244610
+    second: boss_horseface_pestle_23
+  - first:
+      213: 6593390941493255363
+    second: boss_horseface_pestle_24
+  - first:
+      213: -6781934600625752989
+    second: boss_horseface_pestle_25
+  - first:
+      213: 8626664887144290991
+    second: boss_horseface_pestle_26
+  - first:
+      213: 3619642003916875577
+    second: boss_horseface_pestle_27
+  - first:
+      213: -2298454722849889119
+    second: boss_horseface_pestle_28
+  - first:
+      213: 8676820454135406308
+    second: boss_horseface_pestle_29
+  - first:
+      213: -34529209669066562
+    second: boss_horseface_pestle_30
+  - first:
+      213: 8533027543296980628
+    second: boss_horseface_pestle_31
+  - first:
+      213: -4154904287841875003
+    second: boss_horseface_pestle_32
+  - first:
+      213: 4187781807534820122
+    second: boss_horseface_pestle_33
+  - first:
+      213: 4637611173974134861
+    second: boss_horseface_pestle_34
+  - first:
+      213: 1042089789783302356
+    second: boss_horseface_pestle_35
+  - first:
+      213: -1417650283307556403
+    second: boss_horseface_pestle_36
+  - first:
+      213: -6149027742926830626
+    second: boss_horseface_pestle_37
+  - first:
+      213: 6040565499225254138
+    second: boss_horseface_pestle_38
+  - first:
+      213: -1323533870947752052
+    second: boss_horseface_pestle_39
+  - first:
+      213: 7204547491188779792
+    second: boss_horseface_pestle_40
+  - first:
+      213: 2789805584309335176
+    second: boss_horseface_pestle_41
+  - first:
+      213: 1454932786668540759
+    second: boss_horseface_pestle_42
+  - first:
+      213: 3419134490823987548
+    second: boss_horseface_pestle_43
+  - first:
+      213: -7497329801966651268
+    second: boss_horseface_pestle_44
+  - first:
+      213: 7943502554303253144
+    second: boss_horseface_pestle_45
+  - first:
+      213: 4908420873681778007
+    second: boss_horseface_pestle_46
+  - first:
+      213: -383739468064137208
+    second: boss_horseface_pestle_47
+  - first:
+      213: -64633635662581939
+    second: boss_horseface_pestle_48
+  - first:
+      213: 6098620791569425756
+    second: boss_horseface_pestle_49
+  - first:
+      213: 5834901524893951360
+    second: boss_horseface_pestle_50
+  - first:
+      213: -5519210627871592861
+    second: boss_horseface_pestle_51
+  - first:
+      213: -5152436086698622518
+    second: boss_horseface_pestle_52
+  - first:
+      213: -8993578826015337520
+    second: boss_horseface_pestle_53
+  - first:
+      213: 5164977425405064360
+    second: boss_horseface_pestle_54
+  - first:
+      213: -8710024979537095739
+    second: boss_horseface_pestle_55
+  - first:
+      213: 3890977628956075983
+    second: boss_horseface_pestle_56
+  - first:
+      213: -3445102176944886671
+    second: boss_horseface_pestle_57
+  - first:
+      213: -2724537565829486323
+    second: boss_horseface_pestle_58
+  - first:
+      213: -3145143868110093133
+    second: boss_horseface_pestle_59
+  - first:
+      213: -2868532931043614823
+    second: boss_horseface_pestle_60
+  - first:
+      213: 85283269517733668
+    second: boss_horseface_pestle_61
+  - first:
+      213: -7418903111122960591
+    second: boss_horseface_pestle_62
+  - first:
+      213: -8690260358109597684
+    second: boss_horseface_pestle_63
+  - first:
+      213: -1205126312914661254
+    second: boss_horseface_pestle_64
+  - first:
+      213: -9143588323130475528
+    second: boss_horseface_pestle_65
+  - first:
+      213: -1974254071535435307
+    second: boss_horseface_pestle_66
+  - first:
+      213: 901937340882998786
+    second: boss_horseface_pestle_67
+  - first:
+      213: -4367732591478562145
+    second: boss_horseface_pestle_68
+  - first:
+      213: -6437226019842694399
+    second: boss_horseface_pestle_69
+  - first:
+      213: -7672435676295839178
+    second: boss_horseface_pestle_70
+  - first:
+      213: -1611420084829540237
+    second: boss_horseface_pestle_71
+  - first:
+      213: 8319219942543443576
+    second: boss_horseface_pestle_72
+  - first:
+      213: 5679104040587910871
+    second: boss_horseface_pestle_73
+  - first:
+      213: 8936889158566970305
+    second: boss_horseface_pestle_74
+  - first:
+      213: 2167482879860542635
+    second: boss_horseface_pestle_75
+  - first:
+      213: 6767202993653387094
+    second: boss_horseface_pestle_76
+  - first:
+      213: 2652039989213033614
+    second: boss_horseface_pestle_77
+  - first:
+      213: 6030926129512930448
+    second: boss_horseface_pestle_78
+  - first:
+      213: 9069984524186974831
+    second: boss_horseface_pestle_79
+  - first:
+      213: 9121058112301618502
+    second: boss_horseface_pestle_80
+  - first:
+      213: 6671601516508422807
+    second: boss_horseface_pestle_81
+  - first:
+      213: -1877807530434221621
+    second: boss_horseface_pestle_82
+  - first:
+      213: -3853985889656870115
+    second: boss_horseface_pestle_83
+  - first:
+      213: -4507048946303713008
+    second: boss_horseface_pestle_84
+  - first:
+      213: -2852849526060973789
+    second: boss_horseface_pestle_85
+  - first:
+      213: 7628573824788574188
+    second: boss_horseface_pestle_86
+  - first:
+      213: -8625433507263654064
+    second: boss_horseface_pestle_87
+  - first:
+      213: 2242592587495898335
+    second: boss_horseface_pestle_88
+  - first:
+      213: -203779245225506517
+    second: boss_horseface_pestle_89
+  - first:
+      213: 7730643530352988678
+    second: boss_horseface_pestle_90
+  - first:
+      213: 2845656516040145959
+    second: boss_horseface_pestle_91
+  - first:
+      213: -8008968911651650651
+    second: boss_horseface_pestle_92
+  - first:
+      213: 2812078667808292589
+    second: boss_horseface_pestle_93
+  - first:
+      213: -3922596889730955914
+    second: boss_horseface_pestle_94
+  - first:
+      213: -8514673697259795854
+    second: boss_horseface_pestle_95
+  - first:
+      213: -1656369905372724000
+    second: boss_horseface_pestle_96
+  - first:
+      213: -3539454197688297946
+    second: boss_horseface_pestle_97
+  - first:
+      213: 4061739187620481682
+    second: boss_horseface_pestle_98
+  - first:
+      213: 2867857964183058491
+    second: boss_horseface_pestle_99
+  - first:
+      213: 7758607868695139422
+    second: boss_horseface_pestle_100
+  - first:
+      213: -6794565845137511347
+    second: boss_horseface_pestle_101
+  - first:
+      213: -5831956454328505590
+    second: boss_horseface_pestle_102
+  - first:
+      213: 304098423507739648
+    second: boss_horseface_pestle_103
+  - first:
+      213: 1733659675082416896
+    second: boss_horseface_pestle_104
+  - first:
+      213: -1142585099642279813
+    second: boss_horseface_pestle_105
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: boss_horseface_pestle_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 487
+        width: 47
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1581fd9b259bb000800000000000000
+      internalID: 52799835210876190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_1
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 487
+        width: 46
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d6ef385cc7f6b680800000000000000
+      internalID: -8739525569839896872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_2
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 487
+        width: 46
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d629519ad3b159180800000000000000
+      internalID: -9109344719643241875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_3
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 487
+        width: 46
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c3122016b04bc270800000000000000
+      internalID: 8271776291294942146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_4
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 487
+        width: 46
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df6a0c1b76a982440800000000000000
+      internalID: 4911345163802027773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_5
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 487
+        width: 47
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47b43546725f9e9d0800000000000000
+      internalID: -2744392948369896588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_6
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 487
+        width: 47
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 606bde1ab17772d20800000000000000
+      internalID: 3253700216363005446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_7
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 487
+        width: 47
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d6e56e1bfddbad70800000000000000
+      internalID: 9055575546375038672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_8
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 487
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b10f0afbdf1773d0800000000000000
+      internalID: -3209061179824602698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_9
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 487
+        width: 53
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfd655df5017a3b90800000000000000
+      internalID: -7261367178642493955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_10
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 488
+        width: 50
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3023b5fda549591d0800000000000000
+      internalID: -3344604030237462013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_11
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 488
+        width: 52
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f76585e0ed7c9e6e0800000000000000
+      internalID: -1807694018875206017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_12
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 487
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c99cab9687e02430800000000000000
+      internalID: 3756256654550407622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_13
+      rect:
+        serializedVersion: 2
+        x: 1268
+        y: 486
+        width: 56
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bf413e8b9a3602c0800000000000000
+      internalID: -4465817540711329866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_14
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 486
+        width: 57
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2c2095a10a79f7e0800000000000000
+      internalID: -1731218434255999955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_15
+      rect:
+        serializedVersion: 2
+        x: 1460
+        y: 486
+        width: 55
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 407c8deb4e620fea0800000000000000
+      internalID: -5841125952803256572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_16
+      rect:
+        serializedVersion: 2
+        x: 1556
+        y: 488
+        width: 56
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06a74c11b46b40360800000000000000
+      internalID: 7135028143198599776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_17
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 488
+        width: 57
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5278f8af88124170800000000000000
+      internalID: 8161112480043004508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_18
+      rect:
+        serializedVersion: 2
+        x: 1748
+        y: 488
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f55e62fa982f65e50800000000000000
+      internalID: 6797887360725345631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_19
+      rect:
+        serializedVersion: 2
+        x: 1844
+        y: 488
+        width: 56
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 282bab00ef8e91380800000000000000
+      internalID: -8999906202691652990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_20
+      rect:
+        serializedVersion: 2
+        x: 1946
+        y: 487
+        width: 45
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c048435e82254b90800000000000000
+      internalID: -7258357229759741760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_21
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 391
+        width: 41
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb4291bf7b2d64770800000000000000
+      internalID: 8594788626516747452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_22
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 391
+        width: 40
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6434c1835167e4850800000000000000
+      internalID: 6363153157028856646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_23
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 391
+        width: 42
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e30e4f83a1c38e890800000000000000
+      internalID: -7428621502025244610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_24
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 391
+        width: 47
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ccdbf4c02e608b50800000000000000
+      internalID: 6593390941493255363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_25
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 391
+        width: 52
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36475c7b96ab1e1a0800000000000000
+      internalID: -6781934600625752989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_26
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 392
+        width: 53
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faa1292420218b770800000000000000
+      internalID: 8626664887144290991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_27
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 392
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9376c81993d8b3230800000000000000
+      internalID: 3619642003916875577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_28
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 391
+        width: 41
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a4a6387b9f3a10e0800000000000000
+      internalID: -2298454722849889119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_29
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 391
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ee95943b324a6870800000000000000
+      internalID: 8676820454135406308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_30
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 392
+        width: 43
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb0ec43edd3558ff0800000000000000
+      internalID: -34529209669066562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_31
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 392
+        width: 41
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49637d837576b6670800000000000000
+      internalID: 8533027543296980628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_32
+      rect:
+        serializedVersion: 2
+        x: 1084
+        y: 392
+        width: 31
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cb00775090d656c0800000000000000
+      internalID: -4154904287841875003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_33
+      rect:
+        serializedVersion: 2
+        x: 1181
+        y: 392
+        width: 32
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1bc4fabd5dfd1a30800000000000000
+      internalID: 4187781807534820122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_34
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 392
+        width: 36
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d405c17aaca1c5040800000000000000
+      internalID: 4637611173974134861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_35
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 392
+        width: 31
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d06810842f367e00800000000000000
+      internalID: 1042089789783302356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_36
+      rect:
+        serializedVersion: 2
+        x: 1461
+        y: 391
+        width: 55
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc1a8bf049e735ce0800000000000000
+      internalID: -1417650283307556403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_37
+      rect:
+        serializedVersion: 2
+        x: 1557
+        y: 391
+        width: 55
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed303d4c8d34aaaa0800000000000000
+      internalID: -6149027742926830626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_38
+      rect:
+        serializedVersion: 2
+        x: 1654
+        y: 390
+        width: 54
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af82dc7315664d350800000000000000
+      internalID: 6040565499225254138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_39
+      rect:
+        serializedVersion: 2
+        x: 1749
+        y: 391
+        width: 55
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8726fde4fcd1ade0800000000000000
+      internalID: -1323533870947752052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_40
+      rect:
+        serializedVersion: 2
+        x: 1845
+        y: 391
+        width: 56
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01b2dbb95c1bbf360800000000000000
+      internalID: 7204547491188779792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_41
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 391
+        width: 57
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 884b82dd56167b620800000000000000
+      internalID: 2789805584309335176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_42
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 295
+        width: 56
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 753927139a5f03410800000000000000
+      internalID: 1454932786668540759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_43
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 295
+        width: 56
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5199dc34b4337f20800000000000000
+      internalID: 3419134490823987548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_44
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 295
+        width: 47
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c78f3d5844224f790800000000000000
+      internalID: -7497329801966651268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_45
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 295
+        width: 46
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89a47a59c7dfc3e60800000000000000
+      internalID: 7943502554303253144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_46
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 295
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7553ae757c63e1440800000000000000
+      internalID: 4908420873681778007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_47
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 295
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8006db7acfeacaaf0800000000000000
+      internalID: -383739468064137208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_48
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 295
+        width: 45
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4f2ac10d006a1ff0800000000000000
+      internalID: -64633635662581939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_49
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 294
+        width: 48
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c55ae4d4c47a2a450800000000000000
+      internalID: 6098620791569425756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_50
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 295
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08560b2b50cb9f050800000000000000
+      internalID: 5834901524893951360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_51
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 295
+        width: 51
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36e272d0d23d763b0800000000000000
+      internalID: -5519210627871592861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_52
+      rect:
+        serializedVersion: 2
+        x: 979
+        y: 295
+        width: 55
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac1cc6c8daede78b0800000000000000
+      internalID: -5152436086698622518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_53
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 296
+        width: 67
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d391ef25b3603380800000000000000
+      internalID: -8993578826015337520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_54
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 292
+        width: 74
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a43e2a6a9fada740800000000000000
+      internalID: 5164977425405064360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_55
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 292
+        width: 74
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c399e5cd66cf1780800000000000000
+      internalID: -8710024979537095739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_56
+      rect:
+        serializedVersion: 2
+        x: 1356
+        y: 292
+        width: 74
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc72beac9878ff530800000000000000
+      internalID: 3890977628956075983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_57
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 292
+        width: 74
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17c6640b2d98030d0800000000000000
+      internalID: -3445102176944886671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_58
+      rect:
+        serializedVersion: 2
+        x: 1565
+        y: 295
+        width: 39
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d09a683e48f703ad0800000000000000
+      internalID: -2724537565829486323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_59
+      rect:
+        serializedVersion: 2
+        x: 1656
+        y: 295
+        width: 46
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b4cccdc0543a54d0800000000000000
+      internalID: -3145143868110093133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_60
+      rect:
+        serializedVersion: 2
+        x: 1746
+        y: 295
+        width: 48
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99f92a25f7ce038d0800000000000000
+      internalID: -2868532931043614823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_61
+      rect:
+        serializedVersion: 2
+        x: 1841
+        y: 295
+        width: 48
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42f63e88eacfe2100800000000000000
+      internalID: 85283269517733668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_62
+      rect:
+        serializedVersion: 2
+        x: 1937
+        y: 295
+        width: 48
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13fb97e6de2ca0990800000000000000
+      internalID: -7418903111122960591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_63
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 199
+        width: 48
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c00f73d4f3ef56780800000000000000
+      internalID: -8690260358109597684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_64
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 199
+        width: 47
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a70de31e008864fe0800000000000000
+      internalID: -1205126312914661254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_65
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 191
+        width: 52
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fbf56b6dd27b1180800000000000000
+      internalID: -9143588323130475528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_66
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 199
+        width: 53
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d103c9c16a0a94e0800000000000000
+      internalID: -1974254071535435307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_67
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 199
+        width: 62
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 206ddfc9b33548c00800000000000000
+      internalID: 901937340882998786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_68
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 201
+        width: 63
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f92260b6952b263c0800000000000000
+      internalID: -4367732591478562145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_69
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 200
+        width: 55
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 103ef547a016aa6a0800000000000000
+      internalID: -6437226019842694399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_70
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 199
+        width: 56
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6324a581768068590800000000000000
+      internalID: -7672435676295839178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_71
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 199
+        width: 61
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3703ec378f513a9e0800000000000000
+      internalID: -1611420084829540237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_72
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 201
+        width: 45
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 876c5abe57ec37370800000000000000
+      internalID: 8319219942543443576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_73
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 200
+        width: 60
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7de5ab5290b30de40800000000000000
+      internalID: 5679104040587910871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_74
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 199
+        width: 48
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c38c6d0755360c70800000000000000
+      internalID: 8936889158566970305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_75
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 199
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bac04d60232741e10800000000000000
+      internalID: 2167482879860542635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_76
+      rect:
+        serializedVersion: 2
+        x: 1270
+        y: 199
+        width: 51
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65f8bafb44fe9ed50800000000000000
+      internalID: 6767202993653387094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_77
+      rect:
+        serializedVersion: 2
+        x: 1364
+        y: 199
+        width: 54
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e847c2fa150fdc420800000000000000
+      internalID: 2652039989213033614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_78
+      rect:
+        serializedVersion: 2
+        x: 1458
+        y: 199
+        width: 57
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09c5d309c5722b350800000000000000
+      internalID: 6030926129512930448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_79
+      rect:
+        serializedVersion: 2
+        x: 1551
+        y: 199
+        width: 60
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6a7472bede0fdd70800000000000000
+      internalID: 9069984524186974831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_80
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 199
+        width: 55
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 645de671702849e70800000000000000
+      internalID: 9121058112301618502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_81
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 199
+        width: 50
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 792217a4b3a469c50800000000000000
+      internalID: 6671601516508422807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_82
+      rect:
+        serializedVersion: 2
+        x: 1846
+        y: 199
+        width: 52
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc92ae70000b0f5e0800000000000000
+      internalID: -1877807530434221621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_83
+      rect:
+        serializedVersion: 2
+        x: 1941
+        y: 199
+        width: 53
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1b62ada044e38ac0800000000000000
+      internalID: -3853985889656870115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_84
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 103
+        width: 53
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 011c44adcdeb371c0800000000000000
+      internalID: -4507048946303713008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_85
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 110
+        width: 53
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3218e799874a868d0800000000000000
+      internalID: -2852849526060973789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_86
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 112
+        width: 52
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cefad59c9732ed960800000000000000
+      internalID: 7628573824788574188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_87
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 111
+        width: 52
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0575cc5bced4c4880800000000000000
+      internalID: -8625433507263654064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_88
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 103
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdcfd99931a4f1f10800000000000000
+      internalID: 2242592587495898335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_89
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 103
+        width: 53
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b298cbb2bd70c2df0800000000000000
+      internalID: -203779245225506517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_90
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 103
+        width: 43
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6029cd70553c84b60800000000000000
+      internalID: 7730643530352988678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_91
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 103
+        width: 43
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72c395f368dcd7720800000000000000
+      internalID: 2845656516040145959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_92
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 103
+        width: 51
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a34bdb453d6ad090800000000000000
+      internalID: -8008968911651650651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_93
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 103
+        width: 52
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deeba2b36a2860720800000000000000
+      internalID: 2812078667808292589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_94
+      rect:
+        serializedVersion: 2
+        x: 985
+        y: 103
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 675c88e59e22099c0800000000000000
+      internalID: -3922596889730955914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_95
+      rect:
+        serializedVersion: 2
+        x: 1082
+        y: 103
+        width: 47
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27ac770926dc5d980800000000000000
+      internalID: -8514673697259795854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_96
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 102
+        width: 43
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e48c9dc8546309e0800000000000000
+      internalID: -1656369905372724000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_97
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 102
+        width: 42
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6261608f82551eec0800000000000000
+      internalID: -3539454197688297946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_98
+      rect:
+        serializedVersion: 2
+        x: 1349
+        y: 102
+        width: 75
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29a076865423e5830800000000000000
+      internalID: 4061739187620481682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_99
+      rect:
+        serializedVersion: 2
+        x: 1446
+        y: 102
+        width: 77
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b38f765bf9dacc720800000000000000
+      internalID: 2867857964183058491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_100
+      rect:
+        serializedVersion: 2
+        x: 1569
+        y: 102
+        width: 64
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e54df1defbc1cab60800000000000000
+      internalID: 7758607868695139422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_101
+      rect:
+        serializedVersion: 2
+        x: 1665
+        y: 102
+        width: 63
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4ca39dec5ad4b1a0800000000000000
+      internalID: -6794565845137511347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_102
+      rect:
+        serializedVersion: 2
+        x: 1761
+        y: 102
+        width: 57
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0be33af08ab01fa0800000000000000
+      internalID: -5831956454328505590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_103
+      rect:
+        serializedVersion: 2
+        x: 1856
+        y: 102
+        width: 53
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0046feda7ef583400800000000000000
+      internalID: 304098423507739648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_104
+      rect:
+        serializedVersion: 2
+        x: 1949
+        y: 102
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 003e4b60a423f0810800000000000000
+      internalID: 1733659675082416896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_horseface_pestle_105
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 6
+        width: 52
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b78ea22d7e8b420f0800000000000000
+      internalID: -1142585099642279813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

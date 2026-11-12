@@ -1,0 +1,52 @@
+{
+"w": 672,
+"h": 384,
+"wallN": 48,
+"wallS": 16,
+"wallSide": 24,
+"braziers": [
+{
+"x": 30,
+"y": 60,
+"f": 1
+},
+{
+"x": 620,
+"y": 60,
+"f": 1
+}
+],
+"lights": [
+{
+"s": "rooms_light_pool_red",
+"x": 176,
+"y": 106,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_brazier",
+"x": -5,
+"y": 52,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_brazier",
+"x": 585,
+"y": 52,
+"mul": 0,
+"k": 1.0
+}
+],
+"gates": [],
+"doorX": 336,
+"doorY": 208,
+"spawnX": 336,
+"spawnY": 322,
+"chests": [],
+"shopX": 308,
+"shopY": 244,
+"shrineX": 336,
+"shrineY": 212
+}

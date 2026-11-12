@@ -1,0 +1,1730 @@
+fileFormatVersion: 2
+guid: 8238051af894bc20efb071dc3f6530f4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 606995444900408175
+    second: torture_iceblock_0
+  - first:
+      213: 1935349549422572225
+    second: torture_iceblock_1
+  - first:
+      213: 9125245487873707160
+    second: torture_iceblock_2
+  - first:
+      213: -2811743882617716754
+    second: torture_iceblock_3
+  - first:
+      213: 307530686392640062
+    second: torture_iceblock_4
+  - first:
+      213: 4433536938976541211
+    second: torture_iceblock_5
+  - first:
+      213: 3933133676976343353
+    second: torture_iceblock_6
+  - first:
+      213: 886646427399834516
+    second: torture_iceblock_7
+  - first:
+      213: 6184954188814259655
+    second: torture_iceblock_8
+  - first:
+      213: 7063917793154987671
+    second: torture_iceblock_9
+  - first:
+      213: 6434601006552390166
+    second: torture_iceblock_10
+  - first:
+      213: -3224200653348496769
+    second: torture_iceblock_11
+  - first:
+      213: -814165695535700652
+    second: torture_iceblock_12
+  - first:
+      213: -7389115201073591936
+    second: torture_iceblock_13
+  - first:
+      213: 2549860560756151983
+    second: torture_iceblock_14
+  - first:
+      213: -611100056737946218
+    second: torture_iceblock_15
+  - first:
+      213: 8570482642919314056
+    second: torture_iceblock_16
+  - first:
+      213: -6250426101282722523
+    second: torture_iceblock_17
+  - first:
+      213: -1356941021938093751
+    second: torture_iceblock_18
+  - first:
+      213: 5513637791881872259
+    second: torture_iceblock_19
+  - first:
+      213: -6413935519162150861
+    second: torture_iceblock_20
+  - first:
+      213: -3433801650411211757
+    second: torture_iceblock_21
+  - first:
+      213: -3039282222285621693
+    second: torture_iceblock_22
+  - first:
+      213: -8260768536011448646
+    second: torture_iceblock_23
+  - first:
+      213: 136437901283687571
+    second: torture_iceblock_24
+  - first:
+      213: -1326166570468320055
+    second: torture_iceblock_25
+  - first:
+      213: 4540663032367781724
+    second: torture_iceblock_26
+  - first:
+      213: -1533447796773371104
+    second: torture_iceblock_27
+  - first:
+      213: 515538227625276206
+    second: torture_iceblock_28
+  - first:
+      213: 5609913439344684417
+    second: torture_iceblock_29
+  - first:
+      213: -4039914631718957992
+    second: torture_iceblock_30
+  - first:
+      213: -8272395578174641993
+    second: torture_iceblock_31
+  - first:
+      213: -8209671978732164586
+    second: torture_iceblock_32
+  - first:
+      213: 2375459003185897647
+    second: torture_iceblock_33
+  - first:
+      213: -7152727364872997605
+    second: torture_iceblock_34
+  - first:
+      213: 3122914707686024838
+    second: torture_iceblock_35
+  - first:
+      213: -3179025690082122708
+    second: torture_iceblock_36
+  - first:
+      213: -2702725451794788210
+    second: torture_iceblock_37
+  - first:
+      213: -1178380783683754471
+    second: torture_iceblock_38
+  - first:
+      213: 4987316161635260266
+    second: torture_iceblock_39
+  - first:
+      213: 7712837497604469181
+    second: torture_iceblock_40
+  - first:
+      213: 3239400991355622832
+    second: torture_iceblock_41
+  - first:
+      213: 631628690603925229
+    second: torture_iceblock_42
+  - first:
+      213: 7326720264193437105
+    second: torture_iceblock_43
+  - first:
+      213: -3224348600266811451
+    second: torture_iceblock_44
+  - first:
+      213: 4515382996638954796
+    second: torture_iceblock_45
+  - first:
+      213: -7043242763835624742
+    second: torture_iceblock_46
+  - first:
+      213: 4495055435851771206
+    second: torture_iceblock_47
+  - first:
+      213: 4303514744819976328
+    second: torture_iceblock_48
+  - first:
+      213: 48534628684835542
+    second: torture_iceblock_49
+  - first:
+      213: -5248799781132804408
+    second: torture_iceblock_50
+  - first:
+      213: -8794616427989200225
+    second: torture_iceblock_51
+  - first:
+      213: -185314167257473753
+    second: torture_iceblock_52
+  - first:
+      213: 8733778572678347582
+    second: torture_iceblock_53
+  - first:
+      213: 9134833344352064909
+    second: torture_iceblock_54
+  - first:
+      213: -2017007807193511353
+    second: torture_iceblock_55
+  - first:
+      213: 8725789239844932475
+    second: torture_iceblock_56
+  - first:
+      213: -3816496365333163257
+    second: torture_iceblock_57
+  - first:
+      213: 5473961203382892965
+    second: torture_iceblock_58
+  - first:
+      213: 2160913217327583852
+    second: torture_iceblock_59
+  - first:
+      213: 1012393444635026411
+    second: torture_iceblock_60
+  - first:
+      213: 2440567662253907159
+    second: torture_iceblock_61
+  - first:
+      213: 8426043544524375632
+    second: torture_iceblock_62
+  - first:
+      213: -8636810729474091775
+    second: torture_iceblock_63
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: torture_iceblock_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6ba191242b7c6800800000000000000
+      internalID: 606995444900408175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c27b89492ebbda10800000000000000
+      internalID: 1935349549422572225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_2
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89cc2f07c6263ae70800000000000000
+      internalID: 9125245487873707160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_3
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eef713506ddaaf8d0800000000000000
+      internalID: -2811743882617716754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_4
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3227f7a781944400800000000000000
+      internalID: 307530686392640062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_5
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1af44a2b56178d30800000000000000
+      internalID: 4433536938976541211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_6
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9390d469d3c459630800000000000000
+      internalID: 3933133676976343353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_7
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49b49826a300e4c00800000000000000
+      internalID: 886646427399834516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_8
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c59650c01f55d550800000000000000
+      internalID: 6184954188814259655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_9
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 796709f7ec3180260800000000000000
+      internalID: 7063917793154987671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_10
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61a1de2068b4c4950800000000000000
+      internalID: 6434601006552390166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_11
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7a949c96965143d0800000000000000
+      internalID: -3224200653348496769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_12
+      rect:
+        serializedVersion: 2
+        x: 1013
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45529411d9083b4f0800000000000000
+      internalID: -814165695535700652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_13
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 089c193bfd6947990800000000000000
+      internalID: -7389115201073591936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_14
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa616a69bace26320800000000000000
+      internalID: 2549860560756151983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_15
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 156
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 695e9e37cbfe487f0800000000000000
+      internalID: -611100056737946218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_16
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8825bdc2e8870f670800000000000000
+      internalID: 8570482642919314056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_17
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52da63ab3960249a0800000000000000
+      internalID: -6250426101282722523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_18
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9417936745d2b2de0800000000000000
+      internalID: -1356941021938093751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_19
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 383c945fb50648c40800000000000000
+      internalID: 5513637791881872259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_20
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3305418b0af1df6a0800000000000000
+      internalID: -6413935519162150861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_21
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 314f61e879fa850d0800000000000000
+      internalID: -3433801650411211757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_22
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3467180fbec42d5d0800000000000000
+      internalID: -3039282222285621693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_23
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abe505fa8cadb5d80800000000000000
+      internalID: -8260768536011448646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_24
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39cf9ef5c89b4e100800000000000000
+      internalID: 136437901283687571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_25
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ccdc3ec782889de0800000000000000
+      internalID: -1326166570468320055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_26
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c57970178fca30f30800000000000000
+      internalID: 4540663032367781724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_27
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 023c7b77a5918bae0800000000000000
+      internalID: -1533447796773371104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_28
+      rect:
+        serializedVersion: 2
+        x: 1013
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e233dbd594f872700800000000000000
+      internalID: 515538227625276206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_29
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18d64dcec8a6add40800000000000000
+      internalID: 5609913439344684417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_30
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85c0d7dfb075fe7c0800000000000000
+      internalID: -4039914631718957992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_31
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 84
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b86369fc0c823d80800000000000000
+      internalID: -8272395578174641993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_32
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 12
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61ae03105d2611e80800000000000000
+      internalID: -8209671978732164586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_33
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 27
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa0266fa06357f020800000000000000
+      internalID: 2375459003185897647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_34
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 39
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b157781cb586cbc90800000000000000
+      internalID: -7152727364872997605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_35
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 35
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 686e7777162d65b20800000000000000
+      internalID: 3122914707686024838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_36
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 40
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2460d26af4d1e3d0800000000000000
+      internalID: -3179025690082122708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_37
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 38
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e805d50758dfd7ad0800000000000000
+      internalID: -2702725451794788210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_38
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 40
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 916226aabec85afe0800000000000000
+      internalID: -1178380783683754471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_39
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 34
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6795d400a1863540800000000000000
+      internalID: 4987316161635260266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_40
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 36
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db1f607f6d0890b60800000000000000
+      internalID: 7712837497604469181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_41
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 42
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b5dcced90aa4fc20800000000000000
+      internalID: 3239400991355622832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_42
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 39
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dee546592fef3c800800000000000000
+      internalID: 631628690603925229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_43
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 38
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bde7ebf24dbda560800000000000000
+      internalID: 7326720264193437105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_44
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 41
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c791190800d043d0800000000000000
+      internalID: -3224348600266811451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_45
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 37
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c25f08379ecd9ae30800000000000000
+      internalID: 4515382996638954796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_46
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 12
+        width: 44
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad2bcb2e500614e90800000000000000
+      internalID: -7043242763835624742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_47
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 30
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64d22a36a15a16e30800000000000000
+      internalID: 4495055435851771206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_48
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 31
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88886a20cd729bb30800000000000000
+      internalID: 4303514744819976328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_49
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 28
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6daa016dcfd6ca000800000000000000
+      internalID: 48534628684835542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_50
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 28
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ce5e6c88648827b0800000000000000
+      internalID: -5248799781132804408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_51
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 26
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9293e164fe33f580800000000000000
+      internalID: -8794616427989200225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_52
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 30
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72d55c82fb1ad6df0800000000000000
+      internalID: -185314167257473753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_53
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 33
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3b396b965d943970800000000000000
+      internalID: 8733778572678347582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_54
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 12
+        width: 44
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d859f7c378275ce70800000000000000
+      internalID: 9134833344352064909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_55
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 10
+        width: 44
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74a8a0ff5162204e0800000000000000
+      internalID: -2017007807193511353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_56
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 24
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7b02e9151b381970800000000000000
+      internalID: 8725789239844932475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_57
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 23
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7035fb1c6c4190bc0800000000000000
+      internalID: -3816496365333163257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_58
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 12
+        width: 44
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a938e156ba67fb40800000000000000
+      internalID: 5473961203382892965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_59
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 20
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c62d1454f1b1dfd10800000000000000
+      internalID: 2160913217327583852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_60
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 18
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be3a768597ebc0e00800000000000000
+      internalID: 1012393444635026411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_61
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 4
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dc13feab53aed120800000000000000
+      internalID: 2440567662253907159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_62
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 3
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 056495de5f15fe470800000000000000
+      internalID: 8426043544524375632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_iceblock_63
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 0
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1051a6db662e32880800000000000000
+      internalID: -8636810729474091775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

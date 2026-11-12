@@ -1,0 +1,52 @@
+{
+ "skel_warrior_all": {
+  "frame_w": 42,
+  "frame_h": 38,
+  "pivot": [
+   20,
+   35
+  ],
+  "rows": {
+   "idle_south": {
+    "frames": 9,
+    "fps": 8
+   },
+   "idle_east": {
+    "frames": 9,
+    "fps": 8
+   },
+   "idle_north": {
+    "frames": 9,
+    "fps": 8
+   },
+   "walk_south": {
+    "frames": 6,
+    "fps": 12
+   },
+   "walk_east": {
+    "frames": 6,
+    "fps": 12
+   },
+   "walk_north": {
+    "frames": 6,
+    "fps": 12
+   },
+   "attack_south": {
+    "frames": 6,
+    "fps": 12
+   },
+   "attack_east": {
+    "frames": 7,
+    "fps": 12
+   },
+   "death_south": {
+    "frames": 8,
+    "fps": 10
+   },
+   "death_east": {
+    "frames": 8,
+    "fps": 10
+   }
+  }
+ }
+}

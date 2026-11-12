@@ -1,0 +1,2905 @@
+fileFormatVersion: 2
+guid: 121219f5f0b5ca5f52b16c56601aa0a4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8298979358569930074
+    second: boss_ice_gorilla_0
+  - first:
+      213: -1772429726231007852
+    second: boss_ice_gorilla_1
+  - first:
+      213: 4706947728586303799
+    second: boss_ice_gorilla_2
+  - first:
+      213: 5786977938389054632
+    second: boss_ice_gorilla_3
+  - first:
+      213: 4597443909399702197
+    second: boss_ice_gorilla_4
+  - first:
+      213: -8380117873370403754
+    second: boss_ice_gorilla_5
+  - first:
+      213: -7991879959925655333
+    second: boss_ice_gorilla_6
+  - first:
+      213: 8784982644023325164
+    second: boss_ice_gorilla_7
+  - first:
+      213: 7268850801433438334
+    second: boss_ice_gorilla_8
+  - first:
+      213: 8262854747074742739
+    second: boss_ice_gorilla_9
+  - first:
+      213: 4238010380576886993
+    second: boss_ice_gorilla_10
+  - first:
+      213: -4710072180946117823
+    second: boss_ice_gorilla_11
+  - first:
+      213: 8423535386207359092
+    second: boss_ice_gorilla_12
+  - first:
+      213: -2788893225700787554
+    second: boss_ice_gorilla_13
+  - first:
+      213: 5739403663233389856
+    second: boss_ice_gorilla_14
+  - first:
+      213: 8517469742403048747
+    second: boss_ice_gorilla_15
+  - first:
+      213: 8088745815679250240
+    second: boss_ice_gorilla_16
+  - first:
+      213: 3768312324294003758
+    second: boss_ice_gorilla_17
+  - first:
+      213: 7522161820602982995
+    second: boss_ice_gorilla_18
+  - first:
+      213: 1981523057848099551
+    second: boss_ice_gorilla_19
+  - first:
+      213: 7567274321773759904
+    second: boss_ice_gorilla_20
+  - first:
+      213: 3995443473493871526
+    second: boss_ice_gorilla_21
+  - first:
+      213: 6372215197011363847
+    second: boss_ice_gorilla_22
+  - first:
+      213: -6546252020886051033
+    second: boss_ice_gorilla_23
+  - first:
+      213: -4495259957151967081
+    second: boss_ice_gorilla_24
+  - first:
+      213: 6039276009158798693
+    second: boss_ice_gorilla_25
+  - first:
+      213: -8994780626497868698
+    second: boss_ice_gorilla_26
+  - first:
+      213: -8643261859288992600
+    second: boss_ice_gorilla_27
+  - first:
+      213: -6831984950597736846
+    second: boss_ice_gorilla_28
+  - first:
+      213: -2924292797200117518
+    second: boss_ice_gorilla_29
+  - first:
+      213: 1753796559585218642
+    second: boss_ice_gorilla_30
+  - first:
+      213: 1378682667910337789
+    second: boss_ice_gorilla_31
+  - first:
+      213: -8544213706784415787
+    second: boss_ice_gorilla_32
+  - first:
+      213: 1678368676286581587
+    second: boss_ice_gorilla_33
+  - first:
+      213: -3705762247320607777
+    second: boss_ice_gorilla_34
+  - first:
+      213: 4190874678790596926
+    second: boss_ice_gorilla_35
+  - first:
+      213: -2836493283253623337
+    second: boss_ice_gorilla_36
+  - first:
+      213: 1108893120043728346
+    second: boss_ice_gorilla_37
+  - first:
+      213: -9028408637550597924
+    second: boss_ice_gorilla_38
+  - first:
+      213: -7577471088031482485
+    second: boss_ice_gorilla_39
+  - first:
+      213: -4520758178991101362
+    second: boss_ice_gorilla_40
+  - first:
+      213: 8479935231374182768
+    second: boss_ice_gorilla_41
+  - first:
+      213: -1865405445202695819
+    second: boss_ice_gorilla_42
+  - first:
+      213: 7482043185724776526
+    second: boss_ice_gorilla_43
+  - first:
+      213: 5855229331360183550
+    second: boss_ice_gorilla_44
+  - first:
+      213: -2342828198302487043
+    second: boss_ice_gorilla_45
+  - first:
+      213: -9037316526699338047
+    second: boss_ice_gorilla_46
+  - first:
+      213: -2411663979942186449
+    second: boss_ice_gorilla_47
+  - first:
+      213: -766123986767269895
+    second: boss_ice_gorilla_48
+  - first:
+      213: 7710361077875493401
+    second: boss_ice_gorilla_49
+  - first:
+      213: 9104127936649218199
+    second: boss_ice_gorilla_50
+  - first:
+      213: 4990173641813492734
+    second: boss_ice_gorilla_51
+  - first:
+      213: 704628213027861392
+    second: boss_ice_gorilla_52
+  - first:
+      213: 5055845321947679264
+    second: boss_ice_gorilla_53
+  - first:
+      213: -5698114999829302293
+    second: boss_ice_gorilla_54
+  - first:
+      213: 5287826276587863806
+    second: boss_ice_gorilla_55
+  - first:
+      213: -8000549948336674196
+    second: boss_ice_gorilla_56
+  - first:
+      213: 5518375355515562998
+    second: boss_ice_gorilla_57
+  - first:
+      213: 8708308894517379149
+    second: boss_ice_gorilla_58
+  - first:
+      213: 3400506416551223231
+    second: boss_ice_gorilla_59
+  - first:
+      213: -8265077960379134553
+    second: boss_ice_gorilla_60
+  - first:
+      213: 7107609446972809256
+    second: boss_ice_gorilla_61
+  - first:
+      213: 3273303256220946458
+    second: boss_ice_gorilla_62
+  - first:
+      213: -340500546160092291
+    second: boss_ice_gorilla_63
+  - first:
+      213: 3797644994523803376
+    second: boss_ice_gorilla_64
+  - first:
+      213: -5681328558717511578
+    second: boss_ice_gorilla_65
+  - first:
+      213: 4588873247735724848
+    second: boss_ice_gorilla_66
+  - first:
+      213: -2348504975706980565
+    second: boss_ice_gorilla_67
+  - first:
+      213: -7462846706174078847
+    second: boss_ice_gorilla_68
+  - first:
+      213: -3208972113423361747
+    second: boss_ice_gorilla_69
+  - first:
+      213: 4028502759115076335
+    second: boss_ice_gorilla_70
+  - first:
+      213: -6200114454587897532
+    second: boss_ice_gorilla_71
+  - first:
+      213: 2657026805205602792
+    second: boss_ice_gorilla_72
+  - first:
+      213: -4248782217169901274
+    second: boss_ice_gorilla_73
+  - first:
+      213: -4182747318534632844
+    second: boss_ice_gorilla_74
+  - first:
+      213: -5573362609014272804
+    second: boss_ice_gorilla_75
+  - first:
+      213: 1489314186966196569
+    second: boss_ice_gorilla_76
+  - first:
+      213: -1592647007714824374
+    second: boss_ice_gorilla_77
+  - first:
+      213: -4120944890260349425
+    second: boss_ice_gorilla_78
+  - first:
+      213: -5125723424578793519
+    second: boss_ice_gorilla_79
+  - first:
+      213: 6633883482576459921
+    second: boss_ice_gorilla_80
+  - first:
+      213: -8772184709415908602
+    second: boss_ice_gorilla_81
+  - first:
+      213: 9220370685073341972
+    second: boss_ice_gorilla_82
+  - first:
+      213: -7254464585719697809
+    second: boss_ice_gorilla_83
+  - first:
+      213: -3869843302972248697
+    second: boss_ice_gorilla_84
+  - first:
+      213: 3829995664754229669
+    second: boss_ice_gorilla_85
+  - first:
+      213: -6056110709970917228
+    second: boss_ice_gorilla_86
+  - first:
+      213: -8134045320011613502
+    second: boss_ice_gorilla_87
+  - first:
+      213: 4892529729288237448
+    second: boss_ice_gorilla_88
+  - first:
+      213: -8874158862983988693
+    second: boss_ice_gorilla_89
+  - first:
+      213: 1981071047002743983
+    second: boss_ice_gorilla_90
+  - first:
+      213: -650049978757139094
+    second: boss_ice_gorilla_91
+  - first:
+      213: -2089556879645911475
+    second: boss_ice_gorilla_92
+  - first:
+      213: -4280122326174579696
+    second: boss_ice_gorilla_93
+  - first:
+      213: 8285990818463770848
+    second: boss_ice_gorilla_94
+  - first:
+      213: -3170861266333898552
+    second: boss_ice_gorilla_95
+  - first:
+      213: -6421642581667959254
+    second: boss_ice_gorilla_96
+  - first:
+      213: -7939317978722003996
+    second: boss_ice_gorilla_97
+  - first:
+      213: -4702380831723697363
+    second: boss_ice_gorilla_98
+  - first:
+      213: 936275996155580076
+    second: boss_ice_gorilla_99
+  - first:
+      213: 4876385780389852186
+    second: boss_ice_gorilla_100
+  - first:
+      213: 2237452186245544795
+    second: boss_ice_gorilla_101
+  - first:
+      213: -3723421461772063223
+    second: boss_ice_gorilla_102
+  - first:
+      213: 8790545238446242511
+    second: boss_ice_gorilla_103
+  - first:
+      213: 5399024844709273255
+    second: boss_ice_gorilla_104
+  - first:
+      213: 8769303152687327395
+    second: boss_ice_gorilla_105
+  - first:
+      213: -9053556512324212614
+    second: boss_ice_gorilla_106
+  - first:
+      213: 8158947509596815923
+    second: boss_ice_gorilla_107
+  - first:
+      213: -5076758109295988943
+    second: boss_ice_gorilla_108
+  - first:
+      213: -6506542425787862625
+    second: boss_ice_gorilla_109
+  - first:
+      213: 635840949762976007
+    second: boss_ice_gorilla_110
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: boss_ice_gorilla_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 1203
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a2e3264e3a14dc80800000000000000
+      internalID: -8298979358569930074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_1
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 1204
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49d68a20e801767e0800000000000000
+      internalID: -1772429726231007852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_2
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 1204
+        width: 59
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 739e7ba4500725140800000000000000
+      internalID: 4706947728586303799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_3
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 1204
+        width: 60
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a4b3b436c97f4050800000000000000
+      internalID: 5786977938389054632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_4
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 1204
+        width: 59
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ba6d8690e66dcf30800000000000000
+      internalID: 4597443909399702197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_5
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 1204
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65cead5a137d3bb80800000000000000
+      internalID: -8380117873370403754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_6
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1123
+        width: 64
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd8711de483271190800000000000000
+      internalID: -7991879959925655333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_7
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 1122
+        width: 64
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce17bfe7b278ae970800000000000000
+      internalID: 8784982644023325164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_8
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 1123
+        width: 63
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e78e0c8ba4520e460800000000000000
+      internalID: 7268850801433438334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_9
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1123
+        width: 64
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d94a0e2d9e8ba270800000000000000
+      internalID: 8262854747074742739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_10
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 1123
+        width: 64
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d014b8bcff60da30800000000000000
+      internalID: 4238010380576886993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_11
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 1124
+        width: 65
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14bd1447e4672aeb0800000000000000
+      internalID: -4710072180946117823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_12
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 1124
+        width: 64
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47092dfcdc866e470800000000000000
+      internalID: 8423535386207359092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_13
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 1124
+        width: 64
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9a7c9d236cdb49d0800000000000000
+      internalID: -2788893225700787554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_14
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 1042
+        width: 43
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0251a99193576af40800000000000000
+      internalID: 5739403663233389856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_15
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 1042
+        width: 49
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b25521d6a91243670800000000000000
+      internalID: 8517469742403048747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_16
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 1042
+        width: 46
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04f2dfd967ff04070800000000000000
+      internalID: 8088745815679250240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_17
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 1043
+        width: 42
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2c4544f71cbb4430800000000000000
+      internalID: 3768312324294003758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_18
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 1043
+        width: 45
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 352eb0c5256146860800000000000000
+      internalID: 7522161820602982995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_19
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 1042
+        width: 42
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd22849f8b8cf7b10800000000000000
+      internalID: 1981523057848099551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_20
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 1042
+        width: 46
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ad824b07eb540960800000000000000
+      internalID: 7567274321773759904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_21
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 1042
+        width: 44
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ab41cd9baaa27730800000000000000
+      internalID: 3995443473493871526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_22
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 963
+        width: 59
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7084532d5f7ae6850800000000000000
+      internalID: 6372215197011363847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_23
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 962
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72767e4787a0725a0800000000000000
+      internalID: -6546252020886051033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_24
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 962
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7985be8c2e0ad91c0800000000000000
+      internalID: -4495259957151967081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_25
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 963
+        width: 58
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56de27a6881dfc350800000000000000
+      internalID: 6039276009158798693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_26
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 963
+        width: 59
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66c67053dae1c2380800000000000000
+      internalID: -8994780626497868698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_27
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 963
+        width: 59
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a4b5680227fc0880800000000000000
+      internalID: -8643261859288992600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_28
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 963
+        width: 59
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 276aec482e9ef21a0800000000000000
+      internalID: -6831984950597736846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_29
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 963
+        width: 58
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f057abc133da67d0800000000000000
+      internalID: -2924292797200117518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_30
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 883
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 250116ecdacb65810800000000000000
+      internalID: 1753796559585218642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_31
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 885
+        width: 68
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df498c6f490122310800000000000000
+      internalID: 1378682667910337789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_32
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 885
+        width: 70
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5df571227eadc6980800000000000000
+      internalID: -8544213706784415787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_33
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 885
+        width: 67
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35b44303b63ca4710800000000000000
+      internalID: 1678368676286581587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_34
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 885
+        width: 63
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd3e66abedc729cc0800000000000000
+      internalID: -3705762247320607777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_35
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 882
+        width: 60
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e392e7fe05af82a30800000000000000
+      internalID: 4190874678790596926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_36
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 880
+        width: 66
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d5e2e32360c2a8d0800000000000000
+      internalID: -2836493283253623337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_37
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 882
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: addb412ea64936f00800000000000000
+      internalID: 1108893120043728346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_38
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 803
+        width: 69
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd86abfbd26a4b280800000000000000
+      internalID: -9028408637550597924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_39
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 805
+        width: 63
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8d371e413a67d690800000000000000
+      internalID: -7577471088031482485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_40
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 805
+        width: 62
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4a2bc1636a0341c0800000000000000
+      internalID: -4520758178991101362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_41
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 805
+        width: 61
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 079c0601a28cea570800000000000000
+      internalID: 8479935231374182768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_42
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 801
+        width: 58
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5792d9481afbc16e0800000000000000
+      internalID: -1865405445202695819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_43
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 803
+        width: 71
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e40e147c2ae85d760800000000000000
+      internalID: 7482043185724776526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_44
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 803
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef4fb26fd04f14150800000000000000
+      internalID: 5855229331360183550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_45
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 723
+        width: 41
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfd696e9a2a9c7fd0800000000000000
+      internalID: -2342828198302487043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_46
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 724
+        width: 51
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c6a15f2080059280800000000000000
+      internalID: -9037316526699338047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_47
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 724
+        width: 43
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f22f0f5436c088ed0800000000000000
+      internalID: -2411663979942186449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_48
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 724
+        width: 44
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ffa4da0b4e2e55f0800000000000000
+      internalID: -766123986767269895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_49
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 724
+        width: 51
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91a44c09c84b00b60800000000000000
+      internalID: 7710361077875493401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_50
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 724
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 798cfa56f1c585e70800000000000000
+      internalID: 9104127936649218199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_51
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 723
+        width: 40
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef38fc7fc78a04540800000000000000
+      internalID: 4990173641813492734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_52
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 643
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0937e3060a757c900800000000000000
+      internalID: 704628213027861392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_53
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 645
+        width: 69
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02a03068888f92640800000000000000
+      internalID: 5055845321947679264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_54
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 653
+        width: 70
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be379d9f89a3ce0b0800000000000000
+      internalID: -5698114999829302293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_55
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 659
+        width: 67
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efefef18bf1226940800000000000000
+      internalID: 5287826276587863806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_56
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 660
+        width: 67
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6a6f91f53658f090800000000000000
+      internalID: -8000549948336674196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_57
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 640
+        width: 66
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fb66c2f525359c40800000000000000
+      internalID: 5518375355515562998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_58
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 645
+        width: 68
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d40451c0dc02ad870800000000000000
+      internalID: 8708308894517379149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_59
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 563
+        width: 73
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbfd8f6b196013f20800000000000000
+      internalID: 3400506416551223231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_60
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 563
+        width: 74
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ad01b2a26b8c4d80800000000000000
+      internalID: -8265077960379134553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_61
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 563
+        width: 74
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8206601622d43a260800000000000000
+      internalID: 7107609446972809256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_62
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 563
+        width: 74
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a10dd2508fb1d6d20800000000000000
+      internalID: 3273303256220946458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_63
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 563
+        width: 72
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7b1d4cae8c464bf0800000000000000
+      internalID: -340500546160092291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_64
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 563
+        width: 69
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fea1a17002f3b430800000000000000
+      internalID: 3797644994523803376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_65
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 483
+        width: 57
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6685c5dd6cdd721b0800000000000000
+      internalID: -5681328558717511578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_66
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 536
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03bb49ae7e3feaf30800000000000000
+      internalID: 4588873247735724848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_67
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 483
+        width: 49
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2f7fb1ea2f686fd0800000000000000
+      internalID: -2348504975706980565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_68
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 483
+        width: 65
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 180dc49e574ae6890800000000000000
+      internalID: -7462846706174078847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_69
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 528
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d29144d5dd07773d0800000000000000
+      internalID: -3208972113423361747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_70
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 483
+        width: 67
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe23cbd5aed18e730800000000000000
+      internalID: 4028502759115076335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_71
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 483
+        width: 68
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 449068fc0c4c4f9a0800000000000000
+      internalID: -6200114454587897532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_72
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 483
+        width: 68
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e198f24dc7afd420800000000000000
+      internalID: 2657026805205602792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_73
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 403
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6296791a51b4905c0800000000000000
+      internalID: -4248782217169901274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_74
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 404
+        width: 67
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47a86859975e3f5c0800000000000000
+      internalID: -4182747318534632844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_75
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 405
+        width: 69
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdc824d6c3077a2b0800000000000000
+      internalID: -5573362609014272804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_76
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 405
+        width: 69
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 951e111cc5b1ba410800000000000000
+      internalID: 1489314186966196569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_77
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 404
+        width: 67
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4fa1941cf7c5e9e0800000000000000
+      internalID: -1592647007714824374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_78
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 323
+        width: 61
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0e121db4767fc6c0800000000000000
+      internalID: -4120944890260349425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_79
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 323
+        width: 53
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1df051dd3b5cdd8b0800000000000000
+      internalID: -5125723424578793519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_80
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 323
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1981d4c21e9401c50800000000000000
+      internalID: 6633883482576459921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_81
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 323
+        width: 54
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60bc62bdb70f24680800000000000000
+      internalID: -8772184709415908602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_82
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 323
+        width: 63
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41eb835594655ff70800000000000000
+      internalID: 9220370685073341972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_83
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 323
+        width: 57
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6ea68425e6f25b90800000000000000
+      internalID: -7254464585719697809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_84
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 323
+        width: 63
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78d2aede40e8b4ac0800000000000000
+      internalID: -3869843302972248697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_85
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 243
+        width: 54
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a146f0d3c0e62530800000000000000
+      internalID: 3829995664754229669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_86
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 244
+        width: 54
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 498aebb556f54fba0800000000000000
+      internalID: -6056110709970917228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_87
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 244
+        width: 61
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ca77c1a0e01e1f80800000000000000
+      internalID: -8134045320011613502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_88
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 243
+        width: 67
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8817347fdd1c5e340800000000000000
+      internalID: 4892529729288237448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_89
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 243
+        width: 69
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2a747b0887a8d480800000000000000
+      internalID: -8874158862983988693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_90
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 243
+        width: 59
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa4e86ffe9d2e7b10800000000000000
+      internalID: 1981071047002743983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_91
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 164
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a653ee90dfe8af6f0800000000000000
+      internalID: -650049978757139094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_92
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 166
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d465bb2c6176003e0800000000000000
+      internalID: -2089556879645911475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_93
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 164
+        width: 59
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0144521eb63f994c0800000000000000
+      internalID: -4280122326174579696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_94
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 163
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e86ea29fb0cdf270800000000000000
+      internalID: 8285990818463770848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_95
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 82
+        width: 60
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c86f1c6a76def3d0800000000000000
+      internalID: -3170861266333898552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_96
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 83
+        width: 60
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2ea825681eb1e6a0800000000000000
+      internalID: -6421642581667959254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_97
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 83
+        width: 59
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e31767dc50e1d190800000000000000
+      internalID: -7939317978722003996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_98
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 139
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2bc08e3c89cdbeb0800000000000000
+      internalID: -4702380831723697363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_99
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 142
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cae0492de025efc00800000000000000
+      internalID: 936275996155580076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_100
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 83
+        width: 60
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1437e3f7076ca340800000000000000
+      internalID: 4876385780389852186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_101
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 82
+        width: 60
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5b361ba8e60d0f10800000000000000
+      internalID: 2237452186245544795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_102
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 83
+        width: 60
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90ea20678efb35cc0800000000000000
+      internalID: -3723421461772063223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_103
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 3
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcaf69fe15a4ef970800000000000000
+      internalID: 8790545238446242511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_104
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 6
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ae9762bd703dea40800000000000000
+      internalID: 5399024844709273255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_105
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 1
+        width: 59
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a824af61c2d2b970800000000000000
+      internalID: 8769303152687327395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_106
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 0
+        width: 59
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a78adf0e15e4b5280800000000000000
+      internalID: -9053556512324212614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_107
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 0
+        width: 68
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 332839238876a3170800000000000000
+      internalID: 8158947509596815923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_108
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 0
+        width: 66
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13f24dcb56bbb89b0800000000000000
+      internalID: -5076758109295988943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_109
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 0
+        width: 60
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f91f7ea032e14b5a0800000000000000
+      internalID: -6506542425787862625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_ice_gorilla_110
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 0
+        width: 60
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 709e44899f5f2d800800000000000000
+      internalID: 635840949762976007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

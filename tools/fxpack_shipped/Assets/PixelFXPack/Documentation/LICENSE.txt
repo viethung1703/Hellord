@@ -1,0 +1,7 @@
+Pixel FX Pack - Copyright (c) 2026 Viet Hung. All rights reserved.
+
+Unity Asset Store purchases: governed by the Unity Asset Store EULA (Standard, Single Entity unless stated).
+Other stores (itch.io etc.): you may use and modify this pack in any number of commercial or non-commercial
+games and apps. You may not resell, redistribute or share the source files (shaders, scripts) as-is or as part
+of another asset pack, template or tool. Compiled use inside a shipped game is fine.
+Provided "as is", without warranty of any kind.

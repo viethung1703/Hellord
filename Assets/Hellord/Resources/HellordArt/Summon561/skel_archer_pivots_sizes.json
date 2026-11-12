@@ -1,0 +1,40 @@
+{
+ "skel_archer_all": {
+  "frame_w": 38,
+  "frame_h": 39,
+  "pivot": [
+   19,
+   35
+  ],
+  "rows": {
+   "idle_south": {
+    "frames": 8,
+    "fps": 8
+   },
+   "idle_north": {
+    "frames": 8,
+    "fps": 8
+   },
+   "walk_south": {
+    "frames": 6,
+    "fps": 12
+   },
+   "walk_east": {
+    "frames": 6,
+    "fps": 12
+   },
+   "walk_north": {
+    "frames": 6,
+    "fps": 12
+   },
+   "shoot_south": {
+    "frames": 8,
+    "fps": 12
+   },
+   "shoot_east": {
+    "frames": 8,
+    "fps": 12
+   }
+  }
+ }
+}

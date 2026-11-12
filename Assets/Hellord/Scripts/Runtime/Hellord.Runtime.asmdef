@@ -1,0 +1,15 @@
+{
+    "name": "Hellord.Runtime",
+    "rootNamespace": "Hellord",
+    "references": ["PixelFXPack.Runtime", "Unity.InputSystem"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        { "name": "com.unity.inputsystem", "expression": "1.0.0", "define": "HELLORD_INPUT_SYSTEM" }
+    ],
+    "noEngineReferences": false
+}

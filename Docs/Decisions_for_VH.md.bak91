@@ -1,0 +1,13 @@
+## v0.0.91 (t1001u / t1002u) — Fireball hit + URP GrabPass gate (2026-11-06, Asia/Saigon)
+
+### Cause (Fireball purple disc)
+The hit looked like a purple dithered bubble because (1) PixelAoE mode-2 painted a radial filled disc (old ramp had ink/greyblue soot; even warm remakes still read as a soft bubble under CRT), and (2) pack soft Glow / HellfireNova LightPop added another translucent Glow disc on top. Neither path uses GrabPass; the disc was soft additive Glow + radial AoE, not fire puffs.
+
+### Fix
+- Fireball splash default: **HellfireNova** flame ring + white core + sparks/embers, sized to splash radius. **No** PixelAoE radial disc (`fxShaderFireball928=false`). **No** soft Glow/Ring wash (`fxFireSkipPackFlash988`). **No** LightPop Glow on that nova.
+- Warm Endesga fire ramp kept for optional shader path; mode-2 also discards dark fill if re-enabled later.
+- **t1002u URP:** `Shock934` (PixelShock GrabPass) is **skipped when `currentRenderPipeline != null`**. GrabPass shocks are Broken-in-URP until a URP-safe rewrite. Fireball hit path never used GrabPass.
+- FPS stamp/caps from v0.0.90 kept.
+
+### Untested
+Not play-tested in VH's URP Editor. Box Linux autotest `fireball1001` PASS (nova path, warm fire). Clip: `Builds/t1001u_review/clip_fireball_hit.mp4` (may be from slightly earlier nova build).

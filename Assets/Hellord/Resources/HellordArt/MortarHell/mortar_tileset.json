@@ -1,0 +1,100 @@
+{
+ "tile_size_px": 32,
+ "ppu": 16,
+ "note": "t560u: Mortar B packed bran, darker olive-gold, from step34 v95 tiles/mortarB (the v0.0.52 sheets were the rejected peach/orange). 16 uniform variants, no accent rule",
+ "floor": {
+  "file": "mortarB_floor_variants_32px.png",
+  "cols": 8,
+  "count": 16,
+  "pick_weights": [
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ]
+ },
+ "wall_cap": {
+  "file": "mortarB_wall_cap_16px.png",
+  "cell": [
+   16,
+   16
+  ],
+  "names": [
+   "cap_none",
+   "cap_S",
+   "cap_N",
+   "cap_E",
+   "cap_W",
+   "cap_SE",
+   "cap_SW",
+   "cap_NE",
+   "cap_NW",
+   "cap_S_alt1",
+   "cap_S_alt2"
+  ]
+ },
+ "wall_north_face": {
+  "file": "mortarB_wall_north_face_16x32.png",
+  "cell": [
+   16,
+   32
+  ],
+  "weights": [
+   30,
+   30,
+   30,
+   4,
+   3,
+   3,
+   0
+  ]
+ },
+ "wall_side": {
+  "file": "mortarB_wall_side_24x16.png",
+  "cell": [
+   24,
+   16
+  ],
+  "names": [
+   "side_L_0",
+   "side_L_1",
+   "side_R_0",
+   "side_R_1"
+  ]
+ },
+ "wall_ao": {
+  "file": "mortar_wall_ao.png",
+  "rects_xywh": {
+   "ao_base": [
+    0,
+    0,
+    16,
+    10
+   ],
+   "ao_side_L": [
+    16,
+    0,
+    10,
+    16
+   ],
+   "ao_side_R": [
+    32,
+    0,
+    10,
+    16
+   ]
+  }
+ }
+}

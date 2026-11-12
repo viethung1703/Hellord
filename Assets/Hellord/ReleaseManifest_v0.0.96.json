@@ -1,0 +1,27 @@
+{
+  "release_version": "0.0.96",
+  "package": "Hellord_Prototype_v0.0.96.unitypackage",
+  "previous_package": "Hellord_Prototype_v0.0.95.unitypackage",
+  "unity_editor": "6000.3.16f1",
+  "scope": "Current applied production sources/assets; approved Sins stone UI + original step83/85 FX + step92 exit; live Pacts91/92; all applied post-v095 gameplay/boss changes retained",
+  "not_implemented": "Pact UI mockups/concepts93-101 and AI ossuary concepts",
+  "external_unity_packages": {
+    "com.unity.inputsystem": "1.19.0"
+  },
+  "payload_roots": [
+    "Assets/Hellord",
+    "Assets/PixelFXPack",
+    "Assets/WebGLTemplates"
+  ],
+  "excluded_production_payload": [
+    "HellordAutoTest.cs",
+    "HellordAutoTest26.cs",
+    "HellordAutoTestBuild.cs",
+    "*.bak*",
+    "Art/previews",
+    "Builds",
+    "Backups",
+    "normal user saves"
+  ],
+  "runtime_sandbox_changes": false
+}

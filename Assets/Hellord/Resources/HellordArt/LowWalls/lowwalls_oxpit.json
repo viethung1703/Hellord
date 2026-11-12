@@ -1,0 +1,318 @@
+{
+ "level": "oxpit",
+ "side_door_centre_y": 196,
+ "items": [
+  {
+   "key": "door_W",
+   "file": "oxpit_door_W",
+   "w": 32,
+   "h": 54,
+   "frames": 5,
+   "pivot": [
+    16,
+    53
+   ],
+   "ms": [
+    0,
+    70,
+    70,
+    90,
+    0
+   ],
+   "order": [
+    "open",
+    "closing_1",
+    "closing_2",
+    "closing_3",
+    "locked"
+   ]
+  },
+  {
+   "key": "boss_W",
+   "file": "oxpit_boss_W",
+   "w": 32,
+   "h": 66,
+   "frames": 2,
+   "pivot": [
+    16,
+    65
+   ],
+   "ms": [
+    0,
+    0
+   ],
+   "order": [
+    "locked",
+    "open"
+   ]
+  },
+  {
+   "key": "wall_W",
+   "file": "oxpit_wall_W",
+   "w": 32,
+   "h": 16,
+   "frames": 1,
+   "pivot": [
+    16,
+    15
+   ],
+   "ms": [
+    0
+   ],
+   "order": [
+    "tile"
+   ]
+  },
+  {
+   "key": "NW",
+   "file": "oxpit_NW",
+   "w": 32,
+   "h": 48,
+   "frames": 1,
+   "pivot": [
+    16,
+    47
+   ],
+   "ms": [
+    0
+   ],
+   "order": [
+    "tile"
+   ]
+  },
+  {
+   "key": "SW",
+   "file": "oxpit_SW",
+   "w": 32,
+   "h": 24,
+   "frames": 1,
+   "pivot": [
+    16,
+    23
+   ],
+   "ms": [
+    0
+   ],
+   "order": [
+    "tile"
+   ]
+  },
+  {
+   "key": "door_E",
+   "file": "oxpit_door_E",
+   "w": 32,
+   "h": 54,
+   "frames": 5,
+   "pivot": [
+    16,
+    53
+   ],
+   "ms": [
+    0,
+    70,
+    70,
+    90,
+    0
+   ],
+   "order": [
+    "open",
+    "closing_1",
+    "closing_2",
+    "closing_3",
+    "locked"
+   ]
+  },
+  {
+   "key": "boss_E",
+   "file": "oxpit_boss_E",
+   "w": 32,
+   "h": 66,
+   "frames": 2,
+   "pivot": [
+    16,
+    65
+   ],
+   "ms": [
+    0,
+    0
+   ],
+   "order": [
+    "locked",
+    "open"
+   ]
+  },
+  {
+   "key": "wall_E",
+   "file": "oxpit_wall_E",
+   "w": 32,
+   "h": 16,
+   "frames": 1,
+   "pivot": [
+    16,
+    15
+   ],
+   "ms": [
+    0
+   ],
+   "order": [
+    "tile"
+   ]
+  },
+  {
+   "key": "NE",
+   "file": "oxpit_NE",
+   "w": 32,
+   "h": 48,
+   "frames": 1,
+   "pivot": [
+    16,
+    47
+   ],
+   "ms": [
+    0
+   ],
+   "order": [
+    "tile"
+   ]
+  },
+  {
+   "key": "SE",
+   "file": "oxpit_SE",
+   "w": 32,
+   "h": 24,
+   "frames": 1,
+   "pivot": [
+    16,
+    23
+   ],
+   "ms": [
+    0
+   ],
+   "order": [
+    "tile"
+   ]
+  },
+  {
+   "key": "door_S",
+   "file": "oxpit_door_S",
+   "w": 48,
+   "h": 32,
+   "frames": 5,
+   "pivot": [
+    24,
+    31
+   ],
+   "ms": [
+    0,
+    70,
+    70,
+    90,
+    0
+   ],
+   "order": [
+    "open",
+    "closing_1",
+    "closing_2",
+    "closing_3",
+    "locked"
+   ]
+  },
+  {
+   "key": "boss_S",
+   "file": "oxpit_boss_S",
+   "w": 64,
+   "h": 40,
+   "frames": 2,
+   "pivot": [
+    32,
+    39
+   ],
+   "ms": [
+    0,
+    0
+   ],
+   "order": [
+    "locked",
+    "open"
+   ]
+  },
+  {
+   "key": "wall_S",
+   "file": "oxpit_wall_S",
+   "w": 16,
+   "h": 24,
+   "frames": 1,
+   "pivot": [
+    8,
+    23
+   ],
+   "ms": [
+    0
+   ],
+   "order": [
+    "tile"
+   ]
+  },
+  {
+   "key": "glow",
+   "file": "oxpit_glow",
+   "w": 64,
+   "h": 64,
+   "frames": 1,
+   "pivot": [
+    32,
+    32
+   ],
+   "ms": [
+    0
+   ],
+   "order": [
+    "tile"
+   ]
+  },
+  {
+   "key": "door_N",
+   "file": "oxpit_door_N",
+   "w": 32,
+   "h": 48,
+   "frames": 5,
+   "pivot": [
+    16,
+    47
+   ],
+   "ms": [
+    0,
+    70,
+    70,
+    90,
+    0
+   ],
+   "order": [
+    "open",
+    "closing_1",
+    "closing_2",
+    "closing_3",
+    "locked"
+   ]
+  },
+  {
+   "key": "boss_N",
+   "file": "oxpit_boss_N",
+   "w": 48,
+   "h": 48,
+   "frames": 2,
+   "pivot": [
+    24,
+    47
+   ],
+   "ms": [
+    0,
+    0
+   ],
+   "order": [
+    "locked",
+    "open"
+   ]
+  }
+ ]
+}

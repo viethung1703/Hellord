@@ -1,0 +1,66 @@
+{
+"w": 768,
+"h": 432,
+"wallN": 48,
+"wallS": 16,
+"wallSide": 24,
+"braziers": [
+{
+"x": 257,
+"y": 109,
+"f": 3
+},
+{
+"x": 209,
+"y": 287,
+"f": 3
+}
+],
+"lights": [
+{
+"s": "oxpit_light_pool_warm",
+"x": 204,
+"y": 212,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 566,
+"y": 272,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 164,
+"y": 252,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 314,
+"y": 202,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_brazier",
+"x": 222,
+"y": 99,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_brazier",
+"x": 174,
+"y": 277,
+"mul": 0,
+"k": 1.0
+}
+],
+"gates": [],
+"doorX": 384,
+"doorY": 232
+}

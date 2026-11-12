@@ -1,0 +1,11 @@
+Hellord autotest  2026-11-06 19:57  screen 1280x720  gfx llvmpipe (LLVM 19.1.7, 256 bits)
+OVERALL: PASS
+
+PASS  lu1058:open                        mode LevelUp cards 4/4 free 1 bones 0
+PASS  lu1058:free_reroll                 free 0 bones 0 cards 4
+PASS  lu1058:deny_poor                   bones 14->14 cards 4 (cost 15)
+PASS  lu1058:paid_reroll                 bones 35->20 expect 20 cards 4
+PASS  lu1058:second_paid                 bones 20->5
+PASS  lu1058:reopen_free                 free 1 bones 50 cards 4
+PASS  levelup_reroll1058:frame_checks    all per-frame checks clean
+PASS  console:no_errors                  errors/exceptions logged: 0

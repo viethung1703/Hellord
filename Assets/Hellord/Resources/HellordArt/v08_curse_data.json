@@ -1,0 +1,122 @@
+{
+"w": 1152,
+"h": 656,
+"wallN": 48,
+"wallS": 16,
+"wallSide": 24,
+"braziers": [
+{
+"x": 89,
+"y": 88,
+"f": 3
+},
+{
+"x": 317,
+"y": 568,
+"f": 3
+}
+],
+"lights": [
+{
+"s": "oxpit_shadow_pool",
+"x": 472,
+"y": 440,
+"mul": 1,
+"k": 1.0
+},
+{
+"s": "oxpit_shadow_pool",
+"x": 242,
+"y": 198,
+"mul": 1,
+"k": 1.0
+},
+{
+"s": "oxpit_shadow_pool",
+"x": 778,
+"y": 500,
+"mul": 1,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 284,
+"y": 124,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 670,
+"y": 164,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 204,
+"y": 436,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 770,
+"y": 376,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 900,
+"y": 244,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 950,
+"y": 496,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 940,
+"y": 334,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 164,
+"y": 476,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 314,
+"y": 426,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_brazier",
+"x": 54,
+"y": 78,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_brazier",
+"x": 282,
+"y": 558,
+"mul": 0,
+"k": 1.0
+}
+],
+"gates": [],
+"doorX": 576,
+"doorY": 344
+}

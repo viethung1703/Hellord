@@ -1,0 +1,2130 @@
+fileFormatVersion: 2
+guid: e00ece55607f0043bd065abfa5d42375
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5287235347612916481
+    second: torture_ox_0
+  - first:
+      213: 3006987630086854570
+    second: torture_ox_1
+  - first:
+      213: 7323487321572970895
+    second: torture_ox_2
+  - first:
+      213: 2387532340093189597
+    second: torture_ox_3
+  - first:
+      213: -234514441397611733
+    second: torture_ox_4
+  - first:
+      213: 6698525815870762709
+    second: torture_ox_5
+  - first:
+      213: 4799438207984657130
+    second: torture_ox_6
+  - first:
+      213: -908387189622292981
+    second: torture_ox_7
+  - first:
+      213: -5056909010579738639
+    second: torture_ox_8
+  - first:
+      213: -3987888227047901094
+    second: torture_ox_9
+  - first:
+      213: 4712215448564176381
+    second: torture_ox_10
+  - first:
+      213: -5103031472729431347
+    second: torture_ox_11
+  - first:
+      213: 5561941004809779738
+    second: torture_ox_12
+  - first:
+      213: 2562611743318600790
+    second: torture_ox_13
+  - first:
+      213: 2228092207973561460
+    second: torture_ox_14
+  - first:
+      213: -7407921600214718801
+    second: torture_ox_15
+  - first:
+      213: -3448314653532664843
+    second: torture_ox_16
+  - first:
+      213: 9196639412641586308
+    second: torture_ox_17
+  - first:
+      213: -2689916027858874505
+    second: torture_ox_18
+  - first:
+      213: 1105659457618258684
+    second: torture_ox_19
+  - first:
+      213: -2229538917346812342
+    second: torture_ox_20
+  - first:
+      213: -8573513125813326635
+    second: torture_ox_21
+  - first:
+      213: 971612047118246157
+    second: torture_ox_22
+  - first:
+      213: 7561307414419171762
+    second: torture_ox_23
+  - first:
+      213: -5287103969828527102
+    second: torture_ox_24
+  - first:
+      213: -647269207383151486
+    second: torture_ox_25
+  - first:
+      213: -7356203920940105184
+    second: torture_ox_26
+  - first:
+      213: -1240686606319918809
+    second: torture_ox_27
+  - first:
+      213: 145445807062661913
+    second: torture_ox_28
+  - first:
+      213: -7151214982656263043
+    second: torture_ox_29
+  - first:
+      213: -8123101065072055227
+    second: torture_ox_30
+  - first:
+      213: 2032659616685029628
+    second: torture_ox_31
+  - first:
+      213: -4461034067048093381
+    second: torture_ox_32
+  - first:
+      213: 500887206898354968
+    second: torture_ox_33
+  - first:
+      213: -5196292705621230264
+    second: torture_ox_34
+  - first:
+      213: -890666600075125883
+    second: torture_ox_35
+  - first:
+      213: 5284828311365524708
+    second: torture_ox_36
+  - first:
+      213: -5865191395670752025
+    second: torture_ox_37
+  - first:
+      213: -7577921271447319038
+    second: torture_ox_38
+  - first:
+      213: 4416914653535570335
+    second: torture_ox_39
+  - first:
+      213: 6395395422002289321
+    second: torture_ox_40
+  - first:
+      213: 8709474518458872570
+    second: torture_ox_41
+  - first:
+      213: -7440257794617527898
+    second: torture_ox_42
+  - first:
+      213: -2953816854175495822
+    second: torture_ox_43
+  - first:
+      213: 7572831626988629215
+    second: torture_ox_44
+  - first:
+      213: -8502113814141341156
+    second: torture_ox_45
+  - first:
+      213: -4342031559684181140
+    second: torture_ox_46
+  - first:
+      213: 7766408064638088952
+    second: torture_ox_47
+  - first:
+      213: 4451396738608007224
+    second: torture_ox_48
+  - first:
+      213: 2727022194388846578
+    second: torture_ox_49
+  - first:
+      213: 5344910307388562045
+    second: torture_ox_50
+  - first:
+      213: -4813386879650889299
+    second: torture_ox_51
+  - first:
+      213: -793278509944409354
+    second: torture_ox_52
+  - first:
+      213: 422966656195437701
+    second: torture_ox_53
+  - first:
+      213: -3820498574535492095
+    second: torture_ox_54
+  - first:
+      213: -2680398617495953566
+    second: torture_ox_55
+  - first:
+      213: -8663406710095974873
+    second: torture_ox_56
+  - first:
+      213: 4315776196959764062
+    second: torture_ox_57
+  - first:
+      213: -1610129314482189870
+    second: torture_ox_58
+  - first:
+      213: 2900302628353199607
+    second: torture_ox_59
+  - first:
+      213: 509651697423565676
+    second: torture_ox_60
+  - first:
+      213: -667463508209079720
+    second: torture_ox_61
+  - first:
+      213: -8480024819211220287
+    second: torture_ox_62
+  - first:
+      213: -5437756337303037423
+    second: torture_ox_63
+  - first:
+      213: -8133072550372064847
+    second: torture_ox_64
+  - first:
+      213: -2975855193585054512
+    second: torture_ox_65
+  - first:
+      213: 7593946241582683934
+    second: torture_ox_66
+  - first:
+      213: -8428176040698722741
+    second: torture_ox_67
+  - first:
+      213: 5733574284322773279
+    second: torture_ox_68
+  - first:
+      213: -888409594142698851
+    second: torture_ox_69
+  - first:
+      213: -6741499572060359571
+    second: torture_ox_70
+  - first:
+      213: -9141348879858957818
+    second: torture_ox_71
+  - first:
+      213: 753146798881901427
+    second: torture_ox_72
+  - first:
+      213: -6414682557671373619
+    second: torture_ox_73
+  - first:
+      213: 3468921330352421990
+    second: torture_ox_74
+  - first:
+      213: 8203689837541164061
+    second: torture_ox_75
+  - first:
+      213: -2549871841761786771
+    second: torture_ox_76
+  - first:
+      213: 6127059205176992639
+    second: torture_ox_77
+  - first:
+      213: 1858797431604150612
+    second: torture_ox_78
+  - first:
+      213: 9145091676953759051
+    second: torture_ox_79
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: torture_ox_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 492
+        width: 214
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10b5b522988006940800000000000000
+      internalID: 5287235347612916481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_1
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 523
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa7125f5157fab920800000000000000
+      internalID: 3006987630086854570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_2
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 525
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f811f6fdae042a560800000000000000
+      internalID: 7323487321572970895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_3
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 492
+        width: 215
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dddf20d7308322120800000000000000
+      internalID: 2387532340093189597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_4
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 523
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b23dbc9ab56debcf0800000000000000
+      internalID: -234514441397611733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_5
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 525
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dea2cd3db1f5fc50800000000000000
+      internalID: 6698525815870762709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_6
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 492
+        width: 215
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae2ec542f970b9240800000000000000
+      internalID: 4799438207984657130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_7
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 523
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0e3c04f9a2c463f0800000000000000
+      internalID: -908387189622292981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_8
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 525
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ff2cea2c0042d9b0800000000000000
+      internalID: -5056909010579738639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_9
+      rect:
+        serializedVersion: 2
+        x: 1298
+        y: 492
+        width: 215
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a58f8d649cc28a8c0800000000000000
+      internalID: -3987888227047901094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_10
+      rect:
+        serializedVersion: 2
+        x: 1612
+        y: 523
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df596ccebf6256140800000000000000
+      internalID: 4712215448564176381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_11
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 525
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc2e25e99e36e29b0800000000000000
+      internalID: -5103031472729431347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_12
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 467
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1abd5d10ebff2d40800000000000000
+      internalID: 5561941004809779738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_13
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 469
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65cefb1adc9309320800000000000000
+      internalID: 2562611743318600790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_14
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 467
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4747417ee06cbee10800000000000000
+      internalID: 2228092207973561460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_15
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 469
+        width: 27
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa6224fad86c13990800000000000000
+      internalID: -7407921600214718801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_16
+      rect:
+        serializedVersion: 2
+        x: 1250
+        y: 467
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fb4962b7102520d0800000000000000
+      internalID: -3448314653532664843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_17
+      rect:
+        serializedVersion: 2
+        x: 1272
+        y: 469
+        width: 28
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48cdbd5e1d601af70800000000000000
+      internalID: 9196639412641586308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_18
+      rect:
+        serializedVersion: 2
+        x: 1683
+        y: 467
+        width: 21
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77f87dbdf9f7baad0800000000000000
+      internalID: -2689916027858874505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_19
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 469
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfa23ed2b67185f00800000000000000
+      internalID: 1105659457618258684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 214
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4e52a2da261f01e0800000000000000
+      internalID: -2229538917346812342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_21
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 367
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dc6fba8c33c40980800000000000000
+      internalID: -8573513125813326635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_22
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 369
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0129ff420cdb7d00800000000000000
+      internalID: 971612047118246157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_23
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 336
+        width: 215
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b96bf928092fe860800000000000000
+      internalID: 7561307414419171762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_24
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 367
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20420d3a3fe60a6b0800000000000000
+      internalID: -5287103969828527102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_25
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 369
+        width: 27
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28ce0e3d5107407f0800000000000000
+      internalID: -647269207383151486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_26
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 336
+        width: 215
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 022870d328389e990800000000000000
+      internalID: -7356203920940105184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_27
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 367
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72167b0ea1238cee0800000000000000
+      internalID: -1240686606319918809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_28
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 369
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91b3a00e03ab40200800000000000000
+      internalID: 145445807062661913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_29
+      rect:
+        serializedVersion: 2
+        x: 1298
+        y: 336
+        width: 215
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7c725eacd7c1cc90800000000000000
+      internalID: -7151214982656263043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_30
+      rect:
+        serializedVersion: 2
+        x: 1613
+        y: 367
+        width: 21
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54c68cd8e92f44f80800000000000000
+      internalID: -8123101065072055227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_31
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 369
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf8fac1e625753c10800000000000000
+      internalID: 2032659616685029628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_32
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 311
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b39aeaec6293712c0800000000000000
+      internalID: -4461034067048093381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_33
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 313
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81bc6b7c24283f600800000000000000
+      internalID: 500887206898354968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_34
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 311
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84d3e7cb05f03e7b0800000000000000
+      internalID: -5196292705621230264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_35
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 313
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58b97393277b3a3f0800000000000000
+      internalID: -890666600075125883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_36
+      rect:
+        serializedVersion: 2
+        x: 1250
+        y: 311
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ec9ed5595b775940800000000000000
+      internalID: 5284828311365524708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_37
+      rect:
+        serializedVersion: 2
+        x: 1272
+        y: 313
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e40e513087aa9ea0800000000000000
+      internalID: -5865191395670752025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_38
+      rect:
+        serializedVersion: 2
+        x: 1682
+        y: 311
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20e818fc0c0d5d690800000000000000
+      internalID: -7577921271447319038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_39
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 313
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f99843fb9780c4d30800000000000000
+      internalID: 4416914653535570335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 180
+        width: 214
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aa1b96804201c850800000000000000
+      internalID: 6395395422002289321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_41
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 211
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af2be050ee44ed870800000000000000
+      internalID: 8709474518458872570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_42
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 213
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a1bd7ab4f4eeb890800000000000000
+      internalID: -7440257794617527898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_43
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 180
+        width: 215
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 279ce4b983fe107d0800000000000000
+      internalID: -2953816854175495822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_44
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 211
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdc208efd3a181960800000000000000
+      internalID: 7572831626988629215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_45
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 213
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c12f92c388c620a80800000000000000
+      internalID: -8502113814141341156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_46
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 180
+        width: 215
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c633d713d410eb3c0800000000000000
+      internalID: -4342031559684181140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_47
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 211
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f67b719cf2d7cb60800000000000000
+      internalID: 7766408064638088952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_48
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 213
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 838001fcfb986cd30800000000000000
+      internalID: 4451396738608007224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_49
+      rect:
+        serializedVersion: 2
+        x: 1298
+        y: 180
+        width: 215
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f74727cc3458d520800000000000000
+      internalID: 2727022194388846578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_50
+      rect:
+        serializedVersion: 2
+        x: 1612
+        y: 211
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7a18342b9fec2a40800000000000000
+      internalID: 5344910307388562045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_51
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 213
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da102e7a22a633db0800000000000000
+      internalID: -4813386879650889299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_52
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 24
+        width: 214
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f2ffcee565bdf4f0800000000000000
+      internalID: -793278509944409354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_53
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 155
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5842d5eceedaed500800000000000000
+      internalID: 422966656195437701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_54
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 157
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10efcefc9ccdafac0800000000000000
+      internalID: -3820498574535492095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_55
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 155
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26f94b3a8af4dcad0800000000000000
+      internalID: -2680398617495953566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_56
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 157
+        width: 27
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72e6ef37f7565c780800000000000000
+      internalID: -8663406710095974873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_57
+      rect:
+        serializedVersion: 2
+        x: 1250
+        y: 155
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5e7fddc597b4eb30800000000000000
+      internalID: 4315776196959764062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_58
+      rect:
+        serializedVersion: 2
+        x: 1272
+        y: 157
+        width: 28
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d988d75beba7a9e0800000000000000
+      internalID: -1610129314482189870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_59
+      rect:
+        serializedVersion: 2
+        x: 1683
+        y: 155
+        width: 21
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fdcf10cfd1ff3820800000000000000
+      internalID: 2900302628353199607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_60
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 157
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c634b10c485a21700800000000000000
+      internalID: 509651697423565676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_61
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 55
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85a69a4c971bcb6f0800000000000000
+      internalID: -667463508209079720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_62
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 57
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ca4b642b56e05a80800000000000000
+      internalID: -8480024819211220287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_63
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 24
+        width: 215
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11a5ce3fb653984b0800000000000000
+      internalID: -5437756337303037423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_64
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 55
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b1c7963b95812f80800000000000000
+      internalID: -8133072550372064847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_65
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 57
+        width: 27
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dc8c5bd773a3b6d0800000000000000
+      internalID: -2975855193585054512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_66
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 24
+        width: 215
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e17d2fc4fdd136960800000000000000
+      internalID: 7593946241582683934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_67
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 55
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b46c1bd9b8a190b80800000000000000
+      internalID: -8428176040698722741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_68
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 57
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f199f5e0f6fb19f40800000000000000
+      internalID: 5733574284322773279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_69
+      rect:
+        serializedVersion: 2
+        x: 1298
+        y: 24
+        width: 215
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d92531e5e2cbba3f0800000000000000
+      internalID: -888409594142698851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_70
+      rect:
+        serializedVersion: 2
+        x: 1613
+        y: 55
+        width: 21
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d64f4e17bd16172a0800000000000000
+      internalID: -6741499572060359571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_71
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 57
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 602871070a7632180800000000000000
+      internalID: -9141348879858957818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_72
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37b0413f507b37a00800000000000000
+      internalID: 753146798881901427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_73
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 1
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc48a1343387af6a0800000000000000
+      internalID: -6414682557671373619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_74
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 0
+        width: 21
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66c7e612295142030800000000000000
+      internalID: 3468921330352421990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_75
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 1
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d148f16317c59d170800000000000000
+      internalID: 8203689837541164061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_76
+      rect:
+        serializedVersion: 2
+        x: 1250
+        y: 0
+        width: 21
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d648409d1190d9cd0800000000000000
+      internalID: -2549871841761786771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_77
+      rect:
+        serializedVersion: 2
+        x: 1272
+        y: 1
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f73ac5272efa70550800000000000000
+      internalID: 6127059205176992639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_78
+      rect:
+        serializedVersion: 2
+        x: 1682
+        y: 0
+        width: 22
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4518c2c6a66cbc910800000000000000
+      internalID: 1858797431604150612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_ox_79
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 1
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4dc53b6d64e9ee70800000000000000
+      internalID: 9145091676953759051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

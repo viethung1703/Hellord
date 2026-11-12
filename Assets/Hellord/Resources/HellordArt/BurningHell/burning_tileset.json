@@ -1,0 +1,362 @@
+{
+ "approved": "Viet Hung, 2026-10-28 (Burning G v2)",
+ "import": {
+  "ppu": 16,
+  "filter": "Point",
+  "compression": "None",
+  "mipmaps": false,
+  "sprite_mode": "Multiple (grid by cell)"
+ },
+ "note": "32px floor tile = 2x2 game tiles. Pixels unchanged from approved mock-up.",
+ "floor": {
+  "file": "burningG_floor_variants_32px_v48.png",
+  "size": [
+   256,
+   64
+  ],
+  "cell": [
+   32,
+   32
+  ],
+  "cols": 8,
+  "count": 13,
+  "names": [
+   "base_0",
+   "base_1",
+   "base_2",
+   "base_3",
+   "base_4",
+   "base_5",
+   "base_6",
+   "base_7",
+   "base_8",
+   "base_9",
+   "accent_crack",
+   "accent_scorch",
+   "accent_ember"
+  ],
+  "weights": [
+   10,
+   10,
+   10,
+   10,
+   10,
+   10,
+   10,
+   10,
+   10,
+   10,
+   2,
+   2,
+   2
+  ],
+  "pivot": [
+   0.5,
+   0.5
+  ],
+  "rules": "v0.0.48 step35b soft cracked stone (VH approved option B). Random pick by weight, random flipX OK; accents (10-12) never touch another accent. Old v0.0.44 sheet burningG_floor_variants_32px.png kept for HellordTuning.burningFloorV48 = false."
+ },
+ "wall_cap": {
+  "file": "burningG_wall_cap_16px.png",
+  "size": [
+   176,
+   16
+  ],
+  "cell": [
+   16,
+   16
+  ],
+  "names": [
+   "cap_none",
+   "cap_S",
+   "cap_N",
+   "cap_E",
+   "cap_W",
+   "cap_SE",
+   "cap_SW",
+   "cap_NE",
+   "cap_NW",
+   "cap_S_alt1",
+   "cap_S_alt2"
+  ],
+  "pivot": [
+   0.5,
+   0.5
+  ],
+  "rules": "north wall cap row: cycle cap_S, cap_S_alt1, cap_S_alt2"
+ },
+ "wall_north_face": {
+  "file": "burningG_wall_north_face_16x32.png",
+  "size": [
+   112,
+   32
+  ],
+  "cell": [
+   16,
+   32
+  ],
+  "names": [
+   "face_plain_0",
+   "face_plain_1",
+   "face_plain_2",
+   "face_skull_carving",
+   "face_chain",
+   "face_crack",
+   "face_sconce_unlit"
+  ],
+  "weights": [
+   30,
+   25,
+   20,
+   6,
+   7,
+   6,
+   6
+  ],
+  "pivot": [
+   0.5,
+   0.0
+  ],
+  "rules": "north wall 48px = cap row (16) + face (32). Accents are harmless decor, no collision change. All faces share one brick-row grid so any order tiles."
+ },
+ "wall_side": {
+  "file": "burningG_wall_side_24x16.png",
+  "size": [
+   96,
+   16
+  ],
+  "cell": [
+   24,
+   16
+  ],
+  "names": [
+   "side_L_0",
+   "side_L_1",
+   "side_R_0",
+   "side_R_1"
+  ],
+  "pivot": [
+   0.5,
+   0.5
+  ],
+  "rules": "alternate _0/_1 down the wall"
+ },
+ "wall_ao": {
+  "file": "burningG_wall_ao.png",
+  "size": [
+   48,
+   16
+  ],
+  "rects_xywh": {
+   "ao_base": [
+    0,
+    0,
+    16,
+    10
+   ],
+   "ao_side_L": [
+    16,
+    0,
+    10,
+    16
+   ],
+   "ao_side_R": [
+    32,
+    0,
+    10,
+    16
+   ]
+  },
+  "rules": "shadow strip under north wall and inside side walls, alpha, drawn over floor"
+ },
+ "lava_pieces": {
+  "file": "lavaA_pieces_32px_decal_sheet.png",
+  "size": [
+   320,
+   416
+  ],
+  "cell": [
+   32,
+   32
+  ],
+  "rows": [
+   "H_0",
+   "H_1",
+   "H_2",
+   "V_0",
+   "V_1",
+   "bend_W_N",
+   "bend_W_S",
+   "bend_E_N",
+   "bend_E_S",
+   "end_W",
+   "end_E",
+   "end_N",
+   "end_S"
+  ],
+  "cols": [
+   "asleep",
+   "wake_1",
+   "wake_2",
+   "wake_3",
+   "loop_0",
+   "loop_1",
+   "loop_2",
+   "loop_3",
+   "loop_4",
+   "loop_5"
+  ],
+  "pivot": [
+   0.0,
+   1.0
+  ],
+  "placement": "top-left on the 32px floor grid; transparent decal drawn over any floor tile, sorted under sprites",
+  "join_rules": [
+   "Pieces connect only at the middle of a tile edge: rows/cols 14-18 (5px wide), identical on every piece, so any matching pair is seamless.",
+   "Name = sides it connects: H = W+E, V = N+S, bend_X_Y = sides X and Y, end_X = connects on side X only and fades out inside the tile.",
+   "Every open side must face a piece with the opposite side (W<->E, N<->S); finish every crack with end pieces.",
+   "All pieces of one crack must share the same state and frame index (one crack = one animator)."
+  ]
+ },
+ "lava_states": {
+  "asleep": {
+   "cols": [
+    0
+   ],
+   "ms": [
+    400
+   ],
+   "loop": "hold",
+   "damage": false,
+   "look": "warm dark crust, no glow, harmless"
+  },
+  "wake_tell": {
+   "cols": [
+    1,
+    2,
+    3
+   ],
+   "ms": [
+    160,
+    130,
+    100
+   ],
+   "total_ms": 390,
+   "damage": false
+  },
+  "active": {
+   "cols": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "ms": [
+    120,
+    120,
+    120,
+    120,
+    120,
+    120
+   ],
+   "total_ms": 720,
+   "loop": true,
+   "damage": true
+  },
+  "cooldown": {
+   "cols": [
+    2,
+    1,
+    0
+   ],
+   "ms": [
+    120,
+    120,
+    120
+   ],
+   "damage": false
+  },
+  "cycle": "asleep -> wake_tell -> active (loop for hazard duration) -> cooldown -> asleep"
+ },
+ "pulse_offsets": {
+  "rule": "each crack starts its active loop at a different frame so cracks don't pulse in step: frame = (loop_index + offset) % 6",
+  "baked_layouts": {
+   "L1_straight": 0,
+   "L2_bend": 2,
+   "L3_zigzag": 4
+  },
+  "runtime_pieces": "pick offset 0-5 per crack (random or by crack id)"
+ },
+ "layouts": {
+  "note": "pre-baked example cracks, 10 frames left->right in the same column order as lava_pieces, pulse offset already baked in",
+  "L1_straight": {
+   "file": "lavaA_layout_L1_straight_frames.png",
+   "frame": [
+    160,
+    32
+   ],
+   "grid": [
+    [
+     "end_E",
+     "H_0",
+     "H_1",
+     "H_2",
+     "end_W"
+    ]
+   ],
+   "offset": 0
+  },
+  "L2_bend": {
+   "file": "lavaA_layout_L2_bend_frames.png",
+   "frame": [
+    96,
+    96
+   ],
+   "grid": [
+    [
+     "end_E",
+     "H_1",
+     "bend_W_S"
+    ],
+    [
+     null,
+     null,
+     "V_0"
+    ],
+    [
+     null,
+     null,
+     "end_N"
+    ]
+   ],
+   "offset": 2
+  },
+  "L3_zigzag": {
+   "file": "lavaA_layout_L3_zigzag_frames.png",
+   "frame": [
+    96,
+    96
+   ],
+   "grid": [
+    [
+     "end_S",
+     null,
+     null
+    ],
+    [
+     "V_1",
+     null,
+     null
+    ],
+    [
+     "bend_E_N",
+     "H_2",
+     "end_W"
+    ]
+   ],
+   "offset": 4
+  }
+ }
+}

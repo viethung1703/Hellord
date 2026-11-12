@@ -1,0 +1,694 @@
+<cursor_untrusted_data_1337 source="ReadCanvas">
+
+Canvas "Hellord – Core Combat Design v0.2.8" (https://cursor.com/canvas/store-ccd80942-9c51-4dcf-9aee-9f8a9e259846/05204468-a85b-430d-b712-40dd1212ac63):
+
+import { Page, Section, Text, Table, TableOfContents, Callout, NumberedList, BulletList, Steps, ProsCons, Equation, Pow, Paren } from "grok/canvas";
+
+const L = (t: string) => ({ text: t, tone: "success" as const });
+const P = (t: string) => ({ text: t, tone: "warning" as const });
+const Y = { text: "✓", tone: "success" as const };
+const N = { text: "✗", tone: "danger" as const };
+const W = { text: "weak", tone: "warning" as const };
+
+const xp: string[][] = [["1","9","9"],["2","12","21"],["3","16","37"],["4","20","57"],["5","24","81"],["6","28","109"],["7","33","142"],["8","38","180"],["9","43","223"],["10","48","271"],["11","54","325"],["12","59","384"],["13","65","449"],["14","72","521"],["15","78","599"],["16","85","684"],["17","92","776"],["18","99","875"],["19","106","981"],["20","114","1095"],["21","122","1217"],["22","130","1347"],["23","138","1485"],["24","147","1632"],["25","156","1788"],["26","165","1953"],["27","174","2127"],["28","184","2311"],["29","194","2505"],["30","204","2709"]];
+
+const EX = { text: "Exists", tone: "success" as const };
+const PH = { text: "Placeholder", tone: "warning" as const };
+const ND = { text: "Needed", tone: "danger" as const };
+const DEC = { text: "Decided", tone: "success" as const };
+const PRO = { text: "Proposed", tone: "warning" as const };
+const AP = { text: "Approved (preview)", tone: "success" as const };
+
+const newSkills: string[][] = [
+  ["Brimstone Lance", "Fire", "Piercing spear that leaves a line of fire; aim lays it like a wall."],
+  ["Magma Trail", "Fire", "Lava ball bounces between enemies, leaves burning pools."],
+  ["Hellfissure", "Fire", "Ground crack in a line erupts after 1 s; burning enemies in it detonate."],
+  ["Ember Concoction", "Fire", "Thrown flask explodes; explodes again when ignite causes an explosion."],
+  ["Frost Wall", "Cold", "Ice wall; lightning or fire hitting it shatters it into an explosion."],
+  ["Icicle Shards", "Cold", "Shotgun spread that leaves chilling caltrops."],
+  ["Frost Bomb", "Cold", "Orb makes enemies weak to elements, then detonates."],
+  ["Glacial Cascade", "Cold", "Line of rolling spikes; last spike shatters frozen enemies."],
+  ["Storm Spear", "Lightning", "Splits into bolts on hit."],
+  ["Tempest Bell", "Lightning", "Bell totem rings a shockwave whenever any skill hits it."],
+  ["Falling Thunder", "Lightning", "Cone slam that spends charges, +1 bolt per charge."],
+  ["Voltaic Grenade", "Lightning", "Bouncing grenade fires bolts when shock happens nearby."],
+  ["Bone Cage", "Bone", "Ring of spikes traps enemies for detonations."],
+  ["Boneshatter", "Bone", "Heavy hit; stunned or frozen enemies burst into shrapnel."],
+  ["Spearfield", "Bone", "Planted spears impale and bleed enemies."],
+  ["Ripwire Ballista", "Bone", "Turret that shoots on its own, counts as a separate shooter."],
+  ["Imp Legion", "Chaos/minion", "3 imps that hunt cursed enemies first."],
+  ["Volatile Dead", "Chaos", "Corpses become seeking bombs."],
+  ["Hexes", "Chaos/curse", "Curse aura around you, one per element."],
+  ["Herald of Ash", "Fire/chaos", "Kills explode and spread burning; takes a skill slot."],
+];
+
+const newSupports: string[][] = [
+  ["Fire", "Fire Penetration, Wildfire (ignite spreads on death), Searing Flame (stronger ignite, 30% less hit), Burning Ground, Detonate (consume burn for burst)"],
+  ["Cold", "Deep Freeze, Freezefork (fork off frozen), Frost Nexus (chilled ground), Shatter, Creeping Chill (chill spreads)"],
+  ["Lightning", "Coursing Current, Shock Conduction, Thrill of the Kill (speed on kill), Overcharge (+1 chain, 25% less dmg), Shock Siphon (consume shock)"],
+  ["Bone", "Bone Shrapnel, Impale (stores and releases damage), Maim, Ruthless (every 3rd hit double), Fortress (armor)"],
+  ["Chaos / curse / minion", "Withering Touch, Heightened Curse (stronger, smaller), Abiding Hex, Minion Pact (+20% minions, 20% less life), Elemental Army, Last Gasp"],
+  ["General", "Spell Echo (repeat, 30% slower), Spell Cascade, Unleash (store charges, burst), Cast on Crit (20% less dmg)"],
+];
+
+const levels: string[][] = [
+  ["1", "Tongue Pulling – Liars", "Hook chains drag you; Tongue trap (VH-approved): floor slit, player within 24 px → 0.4 s tell, strike point locked → 1u radius + 2u lash for 0.15 s, 12 dmg (normal i-frames, 20% cap), 3 s cooldown (dim slit); 3–6 per room near walls, ≥3u from doors/spawn; hits enemies optional (40 dmg, off)", "Imp, Hell-cat, Skeleton Archer, Shaman, Bloater", "Gossip Imp, Hook Thrower", "Silver-Tongued Judge"],
+  ["2", "Scissors – Broken Bonds", "Floor shears snap on lines", "Imp, Shambler, Splitter, Skeleton Archer, Shaman", "Thread Puppet, Needle Wisp (proposed)", "Seamstress Hag"],
+  ["3", "Iron Tree – Discord", "Blade trees: cover that drops leaves", "Imp, Hell-cat, Shambler, Wraith, Summoner", "Branch Hanger, Rootling", "Hanging Elder"],
+  ["4", "Mirror of Retribution – Hidden Sins", "Mirrors bounce projectiles", "Wraith, Skeleton Archer, Splitter, Shaman, Shield Knight", "Reflection, Shard Bat (proposed)", "Mirror Warden"],
+  ["5", "Steamer – Slanderers", "Steam vents hide areas", "Imp, Shambler, Bloater, Fire Spitter, Summoner", "Dumpling Ghoul, Cook", "Head Chef Demon"],
+  ["6", "Copper Pillar – Arsonists", "Pillars heat in a pattern", "Imp, Fire Spitter, Hell-cat, Brute, Shaman", "Ash Walker, Chained Sinner", "Bronze Executioner"],
+  ["7", "Mountain of Knives – Greedy", "Spike waves leave safe paths", "Imp, Hell-cat, Shield Knight, Skeleton Archer, Splitter", "Blade Climber, Coin Hoarder", "Thousand-Blade General"],
+  ["8", "Ice Mountain – Cold-Hearted", "Slippery ice, blizzard push", "Shambler, Wraith, Bloater, Shaman, Brute", "Frozen Sinner, Ice Golem", "Frost Matron"],
+  ["9", "Cauldron of Oil – Thieves", "Oil pools ignite from fire", "Imp, Fire Spitter, Bloater, Summoner, Shield Knight", "Oil-Drenched Sinner, Ladle Demon", "Cauldron Lord"],
+  ["10", "Ox Pit – Animal Cruelty", "Stampede lanes", "Hell-cat, Brute, Shambler, Skeleton Archer, Splitter", "Ox Demon Calf, Herder", "Ox-Head"],
+  ["11", "Stone Crushing – Infant Abandonment", "Boulders fall on shadows", "Shambler, Brute, Shield Knight, Wraith, Summoner", "Rock Crawler, Slab Bearer", "Stone Warden"],
+  ["12", "Pounding Mortar – Wasteful", "Pestles slam to a beat", "Imp, Splitter, Fire Spitter, Shaman, Bloater", "Rice Ghost, Grinder Monk", "Horse-Face"],
+  ["13", "Blood Pool – Unfilial", "Deep blood slows; bleeders heal", "Shambler, Splitter, Shaman, Wraith, Bloater", "Blood Leech, Pool Drowner", "Crimson Mother"],
+  ["14", "Wrongful Death – Restless", "Lanterns go out; dark hides wraiths", "Wraith, Summoner, Hell-cat, Skeleton Archer, Splitter", "Hungry Ghost, Lantern Spirit", "Weeping Bride"],
+  ["15", "Dismemberment – Murderous", "Swinging hooks, flying cleavers", "Brute, Shield Knight, Hell-cat, Bloater, Summoner", "Butcher Demon, Stitched Horror", "Grand Butcher"],
+  ["16", "Mountain of Fire – Wrathful", "Eruptions, spreading lava", "Fire Spitter, Imp, Brute, Bloater, Shaman", "Magma Golem, Ash Wraith", "Wrath Titan"],
+  ["17", "Stone Mill – Corrupt", "Millstones push and crush", "Shield Knight, Summoner, Splitter, Skeleton Archer, Shambler", "Gear Imp, Corrupt Official", "Mill Magistrate"],
+  ["18", "Saws – Deceitful", "Saws on rails; switches redirect", "Hell-cat, Brute, Wraith, Fire Spitter, Splitter", "Saw Rider, Twin Liar", "Sawmaster"],
+  ["7th", "King Yama's Court (always last)", "Judgment scale, Book of Life and Death", "Mixed from cleared levels", "Ten Kings (3 random)", "King Yama"],
+];
+
+const bosses: string[][] = [
+  ["1 Silver-Tongued Judge", "Tongue Whip, Hook Pull, Gavel Slam", "Lie: fake warnings mixed with real ones; real ones must stay distinguishable; hook chains", "Pull combo + slam; break gavel (5 hits) = stun"],
+  ["2 Seamstress Hag", "Thread Wall, Shear Throw (boomerang), Needle Rain", "Bind tether; floor scissors", "Closing thread cage; cut anchors with fire/blade = shield drops"],
+  ["3 Hanging Elder", "Root Grab, Blade Leaf Storm, Grow Tree", "Root Drag; Branch Hangers drop", "Uproots and chases; burn roots = falls over"],
+  ["4 Mirror Warden", "Copy your top skill, Mirror Beam, Shard Burst", "Hides in 1 of 4 mirrors (cracked = real); Reflections", "Full copy of you; break all mirrors = normal"],
+  ["5 Head Chef Demon", "Cleaver Toss, Boiling Splash cone, Steamer Lid Trap", "Steam fog; serves Dumpling Ghouls", "Full Course chain; cleaver hits steamer = blinded"],
+  ["6 Bronze Executioner", "Pillar Slam (fire lines), Chain Lash, Brand", "Pillars heat; drags pillars", "Overheated state; chill/freeze = double damage"],
+  ["7 Thousand-Blade General", "Knife Ring, Lunge, Blade Rain", "Spike walls close in; Blade Climbers", "Thousand Cuts; stuck sword after missed lunge"],
+  ["8 Frost Matron", "Ice Lance, Freeze Field (half arena), Icicle Drop", "Blizzard push; Frozen Sinners", "Absolute Zero, stand on warm runes; fire cracks shell"],
+  ["9 Cauldron Lord", "Oil Wave, Ladle Throw, Ignite", "Tips cauldron, arena floods with oil; Ladle Demons", "Leaps in, fires blobs; break 3 legs = tips onto him"],
+  ["10 Ox-Head", "Gore Charge, Horn Sweep, Stomp rings", "Triple charge; Call the Herd lanes", "Bloodrage fire trails; wall hit = 3 s stun, 2x damage"],
+  ["11 Stone Warden", "Boulder Throw, Quake Line, Rock Armor", "Ceiling falls on shadows; Slab Bearers", "Collapse shrinks arena; lure under boulders = armor breaks"],
+  ["12 Horse-Face", "Pestle Combo (3 slams), Spin, Rice Scatter", "Mortars pound to the beat, faster", "Frenzy Pound; dodge 3 slams on beat = stun"],
+  ["13 Crimson Mother", "Blood Wave, Leech Spawn, Hemorrhage puddles", "Pool rises; heals from corpses", "Blood Moon drain; freeze pool = no healing"],
+  ["14 Weeping Bride", "Shriek cone, Veil Teleport, Ghost Hands", "Lanterns out; Hungry Ghosts", "Total dark; relight 3 lanterns = visible + stunned"],
+  ["15 Grand Butcher", "Cleaver Throw, Hook Pull, Chop Combo", "Swinging hooks; throws Stitched Horrors", "Frenzy blood trails; caught by own hook = window"],
+  ["16 Wrath Titan", "Fist Slam eruption, Lava Spit, Rage Roar push", "Lava rises, arena shrinks; Magma Golems", "Meteor rain; cold hardens lava into platforms"],
+  ["17 Mill Magistrate", "Gear Throw, Bribe (shields guards), Grind Line", "Mill flips direction; Corrupt Officials", "Arena spins; break bone coffers = stagger"],
+  ["18 Sawmaster", "Bounce Saw, Rail Switch, Spin Dash", "Floor becomes saw tracks; Saw Riders", "Saw storm; flip switches = saws hit him"],
+  ["Yama's Court", "3 of the Ten Kings in turn, each with an attack from a cleared level", "Judgment Scale reflects your main element; switch top skill to tip it", "Yama: Book of Life and Death text lines, Pen Strike death mark (5 s), Throne Quake"],
+];
+
+export default function Doc() {
+  return (
+    <Page title="Hellord – Core Combat Design v0.2.8" width="wide"
+      summary="Living design doc for Viet Hung, MoneyMaker (FX) and Hellord Art (sprites). v0.2 adds the skill system, 20 new skills and 30 supports, the room-based map, 18 levels, enemies, bosses, and an FX and art production list with the status of every asset. Decided items say Decided or Locked; everything else is a proposal.">
+      <TableOfContents items={[
+        { label: "Locked decisions", id: "locked" }, { label: "1. Stats", id: "stats" }, { label: "2. XP curve", id: "xp" },
+        { label: "3. Level-up", id: "levelup" }, { label: "4. Skill levelling & 5 main skills", id: "skills" },
+        { label: "5. Support pool", id: "supports" }, { label: "6. Slot unlocking", id: "slots" },
+        { label: "7. Currencies", id: "currency" }, { label: "8. Enemy HP & damage example", id: "hp" },
+        { label: "9. New skills, supports & builds (v0.2)", id: "content" }, { label: "10. Map & rooms", id: "map" },
+        { label: "11. The 18 levels", id: "levels" }, { label: "12. Enemies", id: "enemies" }, { label: "13. Bosses", id: "bosses" },
+        { label: "14. FX & art production", id: "prod" }, { label: "Tech specs", id: "specs", depth: 1 },
+        { label: "Hero & skills", id: "p-skills", depth: 1 }, { label: "Supports & statuses", id: "p-supports", depth: 1 },
+        { label: "Enemies", id: "p-enemies", depth: 1 }, { label: "Bosses", id: "p-bosses", depth: 1 },
+        { label: "Levels", id: "p-levels", depth: 1 }, { label: "Rooms & UI", id: "p-ui", depth: 1 },
+        { label: "Priority order", id: "p-priority", depth: 1 }, { label: "15. Open questions", id: "questions" }]} />
+
+      <Callout tone="info" lead="Changelog v0.2.8 (26 Oct 2026)">Viet Hung decided to grow the small rooms (relayed by Hellord Art): bone shrine about 672×384 (1.05×1.07 screens, camera scrolls a little), secret room 640×360 (exactly one screen). Hellord Art is drawing new art for both (bigger shrine, room-specific props), not exported; production rows updated. Small-rooms question closed; all 4 art-pass questions (AI art, hell-cat, camera, small rooms) are now answered. Earlier, v0.2.7 (26 Oct 2026): Viet Hung decided the camera (relayed by Hellord Art): in rooms smaller than the 640×360 view, the camera stays still, clamped and centred on the room; otherwise it follows the hero, clamped to the room bounds. Camera question closed; the small shrine/secret room size question stays pending until Viet Hung sees a comparison. Earlier, v0.2.6 (26 Oct 2026): Viet Hung decided (relayed by Hellord Art): PixelLab sprites are allowed as an explicit exception to the no-AI-art rule, as long as Hellord Art cleans them up and palette-matches them. The hell-cat replaces the Hound: Hound removed from the roster, level rosters, production table and priority list; totals recounted (HA Placeholder 5, MM Needed 72). Both questions closed; small rooms and camera stay pending. Earlier, v0.2.5 (26 Oct 2026): Ox-Head boss art: candidate A, the Club Jailer (iron-shod club, nose ring, one shoulder plate), about 52px tall (up from 44px) in a frame up to 72×72, pivot at the feet; Bloodrage recolours only cracks, eyes and nostril steam. Chosen by Hellord Art after Viet Hung asked HA to choose; approved (preview), not exported. Ox Pit boss-size question resolved; telegraph sizes now defined in world pixels from the boss pivot; gameplay check added under Bosses. Earlier, v0.2.4 (26 Oct 2026): Viet Hung decided the Splitter splits into 2 children, not 3 (spawn at death frame index 4, ±13px apart, child 27×25); section 12 updated and the clash note removed. Calf B confirmed as one sprite: the calf wearing a skull mask, 34×34. Earlier, v0.2.3 (26 Oct 2026): Approved by Viet Hung (relayed by Hellord Art), previews only, not exported: Stampede ox = Ox A (black), side run 40×30, front/back 30×40, replacing the planned 32×24; Stampede gate = Gate B bone-tooth drop-gate 48×48, replacing 48×32; Brute B 47×50, Archer A 38×38, Splitter (purple pustule blob) 60×40 with 27×25 children, Calf B (skull mask) 34×34, Herder A (straw hat) 38×35. Section 14 totals recounted (hell-cat row and these changes). The 4 open questions (AI art, hell-cat, small rooms, camera) stay pending. Earlier, v0.2.2 (26 Oct 2026): Decided with Hellord Art: resolution 640×360 (3× to 1080p) at 16 PPU, replacing 384×216; room pixel sizes kept, screen counts recalculated. Hero is final2 at full size (about 20px); the 80% version is rejected. Regular enemies are PixelLab size-32 at native size with PAL14 snap and a 1px outline (old 12/16/24 classes removed). Palette is PAL14, not Endesga 32. Wraith floats. Hell-cat proposed to replace the Hound: PENDING Viet Hung. Earlier, v0.2.1 (25 Oct 2026): FX rows now state gameplay function only; MoneyMaker designs every FX look. Added an art ownership rule: the doc gives theme and gameplay needs, Hellord Art designs the look; level Look lines are now Feel (mood to interpret) + Needs. Removed old colour, shape and look prescriptions. Approved hero is final2 (the 80% export is not approved). Resolution, palette and boss/enemy sizes marked pending Viet Hung's visual approval.</Callout>
+
+      <Section heading="Locked decisions" id="locked">
+        <Text>Hellord: Unity 6 top-down auto-attack survivor. Cute-creepy, Isaac-like art. A small demon rises to king of hell. No wearable gear. Goal: crazy-fun, readable combat that sells in clips.</Text>
+        <Table columns={["Decision", "Status", "Detail"]} rows={[
+          ["Run structure", L("Locked"), "7 levels: 6 random from the 18 levels of hell, then King Yama's Court as level 7. Full-clear run 30–45 min, about 25 min rushing."],
+          ["Skill system", L("Locked"), "3 active skills × up to 4 supports. Pick 1 of 5 random skills at run start. Skill slots 2 and 3 open at player Lv 5 and Lv 12."],
+          ["Skill levels", L("Locked"), "Skills level only through level-up cards, max Lv 5; each level opens a support slot. At least one card always levels an owned skill."],
+          ["Support sources", L("Locked"), "Level-up cards (only if a slot is open and it fits; you pick the target skill), elite chests (pick 1 of 3), bone shrines (buy or swap)."],
+          ["Incompatible supports", L("Locked"), "Greyed out with a warning that names the missing tag."],
+          ["Content set", L("Accepted for now"), "20 new skills, 30 supports, 7 build archetypes (section 9)."],
+          ["Map", L("Locked"), "Each level is one floor of 8–11 big rooms with an Isaac-style minimap. Doors lock on entry until the room is cleared (section 10)."],
+          ["Levels, enemies, bosses", L("Locked"), "18 levels from Địa Ngục 18 Tầng, a shared roster of 12 enemies plus uniques, and a 3-phase boss template (sections 11–13)."],
+          ["Pacing fixes", P("Proposed"), "Earned support slots, trade-off supports, a Spirit cap for auras and orbitals. Not decided."],
+          ["Hybrid aim", L("Locked"), "Skills auto-fire. Projectile, beam, dash, melee and placed zones follow mouse / right-stick aim; else nearest enemy. Aura, nova, orbital ignore aim. Aim-mode setting: Mouse / Stick / Auto."],
+          ["Skill slots", L("Locked"), "3 active skills, each with up to 4 support slots (PoE-style). Main skill chosen at run start."],
+          ["Support tags", L("Locked"), "Incompatible support can't be socketed. Player sees a warning, e.g. “Fork needs a Projectile skill.”"],
+          ["Combo visuals", L("Locked"), "Combo visuals are built automatically from parts: form + element/status + modifiers. Only evolutions and reactions are hand-made. MoneyMaker designs how each part looks (section 14 rule)."],
+          ["Damage formula", L("Locked"), "SkillBase(level) × (1 + ΣIncreased%) × ΠMore × crit × reactions. Enemy HP on a fixed curve."],
+          ["Pickups", L("Locked"), "Blood drops = XP (HellFX.BloodDrop). Bones = currency (HellFX.BonePickup)."],
+        ]} />
+      </Section>
+
+      <Section heading="1. Stats" id="stats" caption="Increased% stats add into one pool. Supports are the only source of More multipliers.">
+        <Table columns={["Stat", "Base", "Auto per level", "Stat card (1 pick)", "Cap"]} rows={[
+          ["Max HP", "100", "+2", "+10%", "—"],
+          ["HP regen", "0.2/s", "—", "+0.4/s", "—"],
+          ["Armor", "0", "—", "+5 (dmg taken ×100/(100+Armor))", "—"],
+          ["Move speed", "100%", "+0.5%", "+8%", "160%"],
+          ["Damage (increased)", "0%", "+1%", "+10%", "—"],
+          ["Cast speed", "0%", "—", "+8% (shorter cooldown)", "+60%"],
+          ["Area", "0%", "—", "+10%", "+100%"],
+          ["Projectile speed", "0%", "—", "+12%", "+80%"],
+          ["Duration", "0%", "—", "+12%", "+100%"],
+          ["Crit chance", "5%", "—", "+5%", "60%"],
+          ["Crit multiplier", "×1.5", "—", "+0.25", "×3.0"],
+          ["Pickup range", "2.0 m", "—", "+15%", "+150%"],
+          ["Luck", "0", "—", "+1 (better card rarity, more bones)", "10"],
+        ]} />
+        <Text>At level 20 auto gains alone give +38 HP, +19% damage and +9.5% speed. Levels always feel like progress, even on a weak pick.</Text>
+      </Section>
+
+      <Section heading="2. XP curve" id="xp">
+        <Text>Blood to next level = round(6 + 3·L + 0.12·L²). A normal enemy drops 1 blood, elites 5, bosses 25. Big drops use bigger BloodDrop variants.</Text>
+        <Table columns={["Level", "Blood to next", "Total blood"]} rows={xp} align={["start","end","end"]} />
+        <Text>Target pacing (about 5 min per run level, ~35 min a run):</Text>
+        <Table columns={["End of run level", "1", "2", "3", "4", "5", "6", "7 (throne)"]} rows={[
+          ["Expected player level", "6", "11", "15", "19", "22", "25", "27"],
+          ["Total blood collected", "~110", "~325", "~600", "~980", "~1350", "~1790", "~2130"],
+        ]} />
+        <Text>About 16 level-ups in the first half, about 11 in the second. Early runs feel fast; the late game slows so each pick matters.</Text>
+      </Section>
+
+      <Section heading="3. What happens on level-up" id="levelup">
+        <NumberedList items={[
+          "Auto stat gains apply (+2 HP, +1% damage, +0.5% move speed).",
+          "Heal 10% of max HP. Not a full heal, so HP stays a resource.",
+          "Game pauses; player picks 1 of 3 cards.",
+        ]} />
+        <Table columns={["Card type", "Base weight", "Notes"]} rows={[
+          ["Skill level (owned skill +1)", "35", "Removed when the skill is Lv 8."],
+          ["New main skill", "10", "Only if a skill slot is free."],
+          ["Support (choose target skill on the card)", "40", "Shows which of your skills it fits; red warning on ones it can't. Half of support rolls upgrade a support you own."],
+          ["Stat card", "15", "Always fills in if no other card is valid."],
+        ]} />
+        <Table columns={["Action", "Cost", "Limit"]} rows={[
+          ["Reroll all 3 cards", "1 free per level-up, then 10 bones (+5 each use per run)", "Free reroll doesn't stack."],
+          ["Banish a card (gone for the run)", "15 bones", "3 per run"],
+          ["Skip (take 20 bones)", "Free", "—"],
+        ]} />
+      </Section>
+
+      <Section heading="4. Skill levelling & the 5 main skills" id="skills">
+        <ProsCons prosHeading="A. Level by picking the skill card (recommended)" consHeading="B. Skill gains XP from its own kills"
+          pros={["Every level is a clear player choice, like Vampire Survivors.", "Easy to balance and read on the card.", "Competes with supports for picks: a real trade-off."]}
+          cons={["Snowballs: the strongest skill gets all kills, weak ones never level.", "Aura and orbital skills get far more kills than snipers.", "Less decision-making, harder to tune."]} />
+        <Callout tone="info" lead="Updated in v0.2">Option A is decided, with max skill Lv 5 (not 8). The 8-level tables below are v0.1 numbers and will be retuned to 5 levels.</Callout>
+        <Table columns={["Skill", "Tags", "Aim"]} rows={[
+          ["Fireball", "Projectile, Fire, Hit, Area (burst)", "Follows aim"],
+          ["Frost Cleave", "Melee, Frost, Hit, Area", "Follows aim"],
+          ["Storm Ring", "Aura, Shock, Hit, Area, Duration", "Ignores aim"],
+          ["Bone Orbit", "Orbital, Physical, Bleed, Hit, Duration", "Ignores aim"],
+          ["Curse Rune", "Zone, Curse, Hit, Area, Duration, Placed", "Placed at aim"],
+        ]} />
+        <Table columns={["Fireball", "1","2","3","4","5","6","7","8"]} rows={[
+          ["Damage", "10","13","16","19","22","26","30","35"], ["Cooldown (s)", "1.2","1.2","1.1","1.1","1.0","1.0","0.9","0.85"],
+          ["Count", "1","1","1","2","2","2","2","3"], ["Burst radius (m)", "0.8","0.8","0.9","0.9","1.0","1.0","1.1","1.2"]]} />
+        <Table columns={["Frost Cleave", "1","2","3","4","5","6","7","8"]} rows={[
+          ["Damage", "16","20","25","30","35","41","47","55"], ["Cooldown (s)", "1.4","1.4","1.3","1.3","1.2","1.2","1.1","1.0"],
+          ["Arc / range", "120° 2m","120° 2m","130° 2.2m","130° 2.2m","140° 2.4m","150° 2.4m","160° 2.6m","180° 2.8m"], ["Chill on hit", "20%","20%","25%","25%","30%","30%","35%","40%"]]} />
+        <Table columns={["Storm Ring", "1","2","3","4","5","6","7","8"]} rows={[
+          ["Damage per tick", "4","5","6","7","8","10","11","13"], ["Tick (s)", "0.5","0.5","0.5","0.45","0.45","0.4","0.4","0.35"],
+          ["Radius (m)", "2.0","2.2","2.4","2.6","2.8","3.0","3.2","3.5"], ["Shock chance", "10%","10%","15%","15%","20%","20%","25%","30%"]]} />
+        <Table columns={["Bone Orbit", "1","2","3","4","5","6","7","8"]} rows={[
+          ["Damage per hit", "8","10","12","14","17","20","23","27"], ["Skulls", "2","2","3","3","4","4","5","6"],
+          ["Spin (rev/s)", "0.8","0.8","0.9","0.9","1.0","1.0","1.1","1.2"], ["Bleed (dmg/s, 3s)", "2","2","3","3","4","5","6","7"]]} />
+        <Table columns={["Curse Rune", "1","2","3","4","5","6","7","8"]} rows={[
+          ["Explosion dmg", "24","30","37","44","52","61","70","82"], ["Cooldown (s)", "3.0","3.0","2.8","2.8","2.6","2.4","2.2","2.0"],
+          ["Radius (m)", "1.5","1.6","1.7","1.8","2.0","2.1","2.2","2.5"], ["Runes active", "1","1","1","2","2","2","3","3"]]} />
+        <Text>Curse Rune arms in 0.5 s and curses enemies inside (+15% damage taken), then explodes after 2 s. Cursed enemies that die burst for 30% of the explosion.</Text>
+        <Text>Single-target DPS at Lv 8 is kept close (about 45–60) so no starter is a trap. Area skills trade single-target damage for coverage.</Text>
+      </Section>
+
+      <Section heading="5. Support pool" id="supports" caption="Supports level 1–5. Values shown as Lv1 → Lv5. More multipliers stack multiplicatively.">
+        <Table columns={["Support", "Needs tag", "Effect (Lv1 → Lv5)", "Downside"]} rows={[
+          ["Multiple Projectiles", "Projectile", "+1 → +3 projectiles (Lv1 +1, Lv3 +2, Lv5 +3)", "×0.75 → ×0.85 More damage each"],
+          ["Pierce", "Projectile", "Pierce 1 → 4", "−15% damage per enemy pierced"],
+          ["Fork", "Projectile", "Splits into 2 on first hit; forks deal 60% → 80%", "Ends pierce chain"],
+          ["Bounce", "Projectile", "Bounces 1 → 3 to a nearby enemy", "−20% per bounce"],
+          ["Homing", "Projectile", "Turn rate 90°/s → 270°/s", "×0.9 projectile speed"],
+          ["Faster Projectiles", "Projectile", "+20% → +60% speed and range; ×1.05 → ×1.15 More", "—"],
+          ["Bigger Area", "Area", "×1.2 → ×1.5 area", "×0.95 More damage"],
+          ["Echo", "Area or Melee", "Repeats once at 40% → 70% damage", "+15% cooldown"],
+          ["Pulse", "Aura or Zone", "Burst every 3 s for 150% → 300% tick damage", "—"],
+          ["More Orbitals", "Orbital", "+1 → +3 orbitals", "×0.85 More damage each"],
+          ["Faster Spin", "Orbital", "+20% → +60% spin speed", "−10% radius"],
+          ["Burn", "Hit", "Ignite 3 s; 20% → 50% of hit damage per s", "—"],
+          ["Chill", "Hit", "Slow 20% → 40% for 2 s; 3 stacks freeze 1 s", "×0.9 More damage"],
+          ["Shock", "Hit", "Shocked enemies take ×1.10 → ×1.30 damage, 3 s", "—"],
+          ["Bleed", "Hit", "Bleed 4 s; 15% → 35% of hit damage per s, stacks 5", "—"],
+          ["Curse", "Hit", "Cursed take +10% → +25%; cursed kills burst 20% → 40%", "×0.9 More damage"],
+          ["Fire Ground", "Hit + Burn", "Burning kills leave fire 3 s, 4 → 12 dmg/s (scales with skill level)", "Needs Burn on the same skill"],
+          ["Shatter", "Hit + Chill", "Frozen kills shatter for 50% → 120% of max hit in 1.5 m", "Needs Chill"],
+          ["Chain Arc", "Hit + Shock", "Shocked hits arc to 1 → 3 enemies for 30% → 50%", "Needs Shock"],
+          ["Added Damage", "Any", "×1.15 → ×1.40 More damage", "—"],
+          ["Faster Casting", "Any with cooldown", "−10% → −30% cooldown", "×0.95 More damage"],
+          ["Life Leech", "Hit", "Heal 0.5% → 1.5% of damage dealt (cap 3 HP/s)", "×0.9 More damage"],
+          ["Knockback", "Hit", "Push 0.5 → 1.5 m (follows aim direction)", "Spreads groups, so area hits fewer"],
+          ["Elemental Swap", "Fire, Frost, Shock or Curse", "Changes element and status; ×1.0 → ×1.2 More", "Loses the old element's status"],
+        ]} />
+        <Callout lead="Hit order rule">Pierce first, then Fork, then Bounce. A projectile pierces until pierce runs out, forks once on the next hit (forks can't fork again), then bounces. Each step keeps its damage penalty, so the chain never explodes.</Callout>
+        <Table columns={["Support", "Fireball", "Frost Cleave", "Storm Ring", "Bone Orbit", "Curse Rune"]} rows={[
+          ["Multiple Proj / Pierce / Fork / Bounce / Homing / Faster Proj", Y, N, N, N, N],
+          ["Bigger Area", Y, Y, Y, N, Y],
+          ["Echo", Y, Y, N, N, Y],
+          ["Pulse", N, N, Y, N, Y],
+          ["More Orbitals / Faster Spin", N, N, N, Y, N],
+          ["Burn / Chill / Shock / Bleed / Curse", Y, Y, Y, Y, Y],
+          ["Fire Ground / Shatter / Chain Arc", "if status", "if status", "if status", "if status", "if status"],
+          ["Added Damage / Faster Casting", Y, Y, Y, Y, Y],
+          ["Life Leech", Y, Y, W, Y, W],
+          ["Knockback", Y, Y, W, Y, W],
+          ["Elemental Swap", Y, Y, Y, N, Y],
+        ]} />
+        <Text>“If status” means the skill needs Burn, Chill or Shock from a support or its own element. Fireball fits Fire Ground natively, Frost Cleave fits Shatter, Storm Ring fits Chain Arc. “Weak” means allowed but low value, with no warning.</Text>
+      </Section>
+
+      <Section heading="6. Slot unlocking" id="slots">
+        <Table columns={["Slot", "Unlocks when", "Status"]} rows={[
+          ["Skill slot 1", "Run start: pick 1 of 5 random skills", DEC],
+          ["Skill slot 2", "Player level 5", DEC],
+          ["Skill slot 3", "Player level 12", DEC],
+          ["Support slots 1–4", "Skill Lv 1–4 open slots 1–4; Lv 5 is max", DEC],
+          ["Earned support slots", "Start with 1 slot; clearing levels 2, 4, 6 raises to 2, 3, 4 (pacing fix for builds filling too fast)", PRO],
+          ["Trade-off supports", "Strong supports carry a cost, e.g. Multiple Projectiles +2 but 30% less damage each", PRO],
+          ["Spirit cap", "Bone Orbit, Curse Rune and auras share 100 Spirit; raised only by boss drops", PRO],
+        ]} />
+        <Text>Boss-gated unlocks from v0.1 were rejected. The three pacing fixes answer the prototype feedback (too easy, builds fill too fast) and still need your call.</Text>
+      </Section>
+
+      <Section heading="7. Currencies" id="currency" caption="Three total. Each has one job, so players never wonder what to spend.">
+        <Table columns={["Currency", "Kept?", "Sources", "Sinks"]} rows={[
+          ["Blood (XP)", "No, in-run only", "Every enemy drop (1 / 5 / 25)", "Player level-ups"],
+          ["Bones", "In-run; 10% converts to Souls at run end", "~1 per 8 kills, elites 5, chests 20–40, skipped cards 20", "Rerolls, banishes, shrines between levels (heal, stat buff, support upgrade)"],
+          ["Souls", "Yes, meta", "Run end: 2 per run level cleared, 10 per boss, plus bone conversion", "Unlock main skills and supports into the pool; small permanent upgrades (e.g. +5% HP, 5 ranks each)"],
+        ]} />
+        <Text>Why only three: one for growth inside a run, one for choices inside a run, one for progress between runs. More would clutter the HUD and the clips.</Text>
+      </Section>
+
+      <Section heading="8. Enemy HP curve & worked example" id="hp">
+        <Equation>HP = BaseHP × <Pow base="1.35" exp="(runLevel − 1)" /> × <Paren>1 + 0.05 × minute</Paren></Equation>
+        <Text>Base HP: Imp 12, Ghoul 30, Brute 80, elites ×5, circle boss 4000, throne boss 15000. Minute counts from the start of that run level (0–5).</Text>
+        <Table columns={["Run level", "Imp, min 0", "Imp, min 4", "Brute, min 4"]} rows={[
+          ["1", "12", "14", "96"], ["2", "16", "19", "130"], ["4", "29", "35", "236"], ["6", "54", "65", "430"], ["7", "73", "88", "580"]]} />
+        <Text>Worked example: player level 20 on run level 4, Fireball Lv 5 with Added Damage Lv 3 and Burn Lv 1.</Text>
+        <Table columns={["Step", "Value", "Running total"]} rows={[
+          ["SkillBase (Fireball Lv 5)", "22", "22"],
+          ["Increased: +19% auto, +40% from 4 stat cards", "×1.59", "35"],
+          ["More: Added Damage Lv 3", "×1.275", "44.6"],
+          ["Crit (average): 10% chance at ×1.5", "×1.05", "46.8 average per hit"],
+          ["Reaction: target Shocked by another skill", "×1.2", "56"],
+          ["Burn Lv 1 on top", "20% of hit per s × 3 s", "≈ +34 over 3 s"],
+        ]} />
+        <Text>Result: one hit kills an imp (35 HP), and two hits plus burn kill a ghoul (88 HP). A Brute (236 HP) takes about 4 seconds of focus, so it stays a threat.</Text>
+      </Section>
+
+      <Section heading="9. New skills, supports & builds (v0.2)" id="content" caption="Accepted for now. Mechanics are Hellord designs inspired by ARPG support-gem systems. Percentages are placeholders.">
+        <Text>Prototype feedback: fun feel, but too easy, skills and supports fill too fast, and enemies are too simple. This content adds depth; enemy variety is in sections 12–13.</Text>
+        <Table columns={["New skill", "Element", "What it does"]} rows={newSkills} />
+        <Table columns={["Support group", "30 new supports"]} rows={newSupports} />
+        <Table columns={["Build archetype", "Core skills", "Fantasy"]} rows={[
+          ["Freeze-Shatter", "Frost Bomb, Glacial Cascade, Boneshatter", "Freeze, then smash"],
+          ["Ignite-Explode", "Brimstone Lance, Ember Concoction, Herald of Ash", "Burning spreads across the screen"],
+          ["Shock Conductor", "Storm Spear, Storm Ring, Tempest Bell", "Orbiting bones keep ringing the bell"],
+          ["Imp Legion", "Imp Legion, Curse Rune, Volatile Dead", "Imps hunt the cursed; corpses become bombs"],
+          ["Turret Fort", "Ripwire Ballista, Frost Wall, Spearfield", "Hold a line against the horde"],
+          ["Bleed Butcher", "Spearfield, Frost Cleave, Bone Cage", "Bleeds stack, Impale bursts them"],
+          ["Charge Burst", "Falling Thunder, Fireball, Bone Orbit", "Build charges, burst triggers fireballs"],
+        ]} />
+      </Section>
+
+      <Section heading="10. Map & rooms" id="map">
+        <Table columns={["Rule", "Decision", "Status"]} rows={[
+          ["Level shape", "One floor of 8–11 rooms on a grid, Isaac-style, but rooms are big horde arenas. Later levels have more rooms.", DEC],
+          ["Main path", "Start → 3–4 fight rooms → boss room. Boss door is always far from the start.", DEC],
+          ["Side rooms", "1 elite, 1 bone shrine, 1–2 of curse / treasure / secret, 1–2 extra fights. All optional.", DEC],
+          ["Doors", "Lock on entry; you can't leave until the room is cleared. You only choose which rooms to enter.", DEC],
+          ["Minimap", "Shows cleared rooms, adjacent rooms and type icons of seen rooms; fight-room goal icons once seen.", DEC],
+          ["Generation", "Main path first, then side rooms. Each room uses a hand-made layout from that level's set (8–12 per level to start).", DEC],
+          ["Pacing", "Fight room 40–90 s, elite 60 s, boss 2–3 min. Level 6–8 min full clear, about 4 min main path.", DEC],
+        ]} />
+        <Table columns={["Room type", "Goal", "Size (px)", "Screens at 640×360"]} rows={[
+          ["Fight: survive", "Last 60–90 s of growing waves", "1152×648", "1.8×1.8"],
+          ["Fight: nests", "Destroy 3–4 spawner nests", "1536×864 or long strip", "2.4×2.4"],
+          ["Fight: hunt", "Kill a set number, e.g. 150", "768×432", "1.2×1.2"],
+          ["Elite", "Kill the elite and guards; chest, pick 1 of 3 supports", "1536×864", "2.4×2.4"],
+          ["Bone shrine", "No fight; buy or swap supports", "672×384 (about)", "1.05×1.07"],
+          ["Curse", "Accept a curse, survive a hard wave, get a rare support", "1152×648", "1.8×1.8"],
+          ["Treasure", "Short gauntlet, then a free reward", "768×432", "1.2×1.2"],
+          ["Secret", "Behind a cracked wall; bones or a rare drop", "640×360", "1×1"],
+          ["Boss", "Beat the boss to open the way down", "Custom; Ox Pit arena 1536×864", "2.4×2.4"],
+        ]} />
+        <Text>v0.2.2: room sizes were first set in old 384×216 screens. Pixel sizes are kept; at 640×360 each room is fewer screens. Camera (decided by Viet Hung, v0.2.7): in rooms smaller than the 640×360 view, the camera stays still, clamped and centred on the room; otherwise it follows the hero, clamped to the room's bounds. Small rooms grow (decided by Viet Hung, v0.2.8): the bone shrine room becomes about 672×384, so the camera scrolls a little; the secret room becomes 640×360, exactly one screen, so the camera stays still. Hellord Art is drawing new art for both rooms (a bigger shrine and room-specific props); not exported yet.</Text>
+        <BulletList items={[
+          "Every room has an open middle for kiting.",
+          "Cover and chokepoints sit at the edges and never fully block the way.",
+          "Hazards telegraph at least 0.5 s before they hit.",
+          "Enemies spawn at edges or themed spots (hooks, cauldrons, graves), never on the player.",
+          "Every room gives XP; skippable rooms carry the better rewards.",
+        ]} />
+      </Section>
+
+      <Section heading="11. The 18 levels of hell" id="levels" caption="Based on Địa Ngục 18 Tầng. 1–6 sins of words and family, 7–12 body and greed, 13–18 violence and cruelty. Rooms and boss follow the level theme.">
+        <Table columns={["#", "Level – sin", "Hazard", "Shared enemies", "Unique enemies", "Boss"]} rows={levels} />
+      </Section>
+
+      <Section heading="12. Enemies" id="enemies">
+        <Table columns={["Enemy", "Role", "Behaviour"]} rows={[
+          ["Imp", "Swarm", "Fast, weak, big packs"], ["Shambler", "Swarm", "Slow, tanky, blocks paths"], ["Hell-cat", "Swarm", "Fast beast (dark cat, ember tail): dashes after a short warning. Replaces the Hound (REMOVED, decided by Viet Hung in v0.2.6)"],
+          ["Skeleton Archer", "Ranged", "Slow dodgeable arrows"], ["Fire Spitter", "Ranged", "Lobbed fireballs leave burning ground"], ["Wraith", "Ranged", "Floats through walls, lightly homing bolts"],
+          ["Bloater", "Special", "Explodes on death"], ["Shield Knight", "Special", "Blocks frontal hits"], ["Shaman", "Special", "Heals and hastes nearby enemies"],
+          ["Splitter", "Special", "Splits into 2 children on death (spawn at death frame 4, ±13px apart, child 27×25)"], ["Summoner", "Special", "Raises imps until killed"], ["Brute", "Special", "Slow giant, telegraphed ground slam"],
+        ]} />
+        <Text>Each level uses 5–6 shared enemies plus 1–2 uniques. Elites are any enemy with a random affix (Fast, Splitting, Frost-immune, Vampiric). Later levels lean on Brute, Summoner and Shield Knight so difficulty climbs even with random level order.</Text>
+      </Section>
+
+      <Section heading="13. Bosses" id="bosses">
+        <Table columns={["Template rule", "Decision"]} rows={[
+          ["Phase 1 (100–60% HP)", "3 attacks that teach their tells"],
+          ["Phase 2 (60–25%)", "Faster attacks, 1 new attack, the level hazard joins"],
+          ["Phase 3 (below 25%)", "Desperation move plus a punish mechanic for a big damage window"],
+          ["Tells", "Every attack has a readable tell 0.5–1 s before it hits; how it looks is MoneyMaker's and the animator's call"],
+          ["Adds", "Fewer small enemies keep spawning"],
+          ["Reward", "Top-tier support and bones"],
+        ]} />
+        <Table columns={["Boss", "Phase 1", "Phase 2", "Phase 3 / punish"]} rows={bosses} />
+        <Callout tone="success" lead="VH-approved direction (27 Oct 2026): bigger AOE, shoots everywhere">Viet Hung found the boss too easy: easy to dodge, and you could kill it without getting hit. All bosses now use bigger AOE (about 1.5–2x) and fire bullet patterns that cover the whole arena, bullet-hell style. Hard rules: every pattern keeps a readable tell (0.45 s or more) and always leaves an escape gap. No new bullets while the boss is stunned, and the bullets clear when it dies. The target is that a hero who keeps moving still takes hits (hits per 30 s &gt; 0) but survives (projected time-to-death well over the fight length).</Callout>
+        <Table columns={["Ox-Head (prototype v0.0.17)", "Before", "Now"]} rows={[
+          ["Horn sweep cone", "3.75 u reach, 110°", "6.25 u reach (100 px), 130°"],
+          ["Charge lane width", "40 px", "56 px"],
+          ["Stomp shockwave", "4 u rim, 64 px tell", "7 u rim over 0.55 s, 112 px tell; the first ring also fires a bullet ring"],
+          ["Radial burst", "—", "26 bullets (32 in rage) at 4.8 u/s, always 2 gaps 3 bullets wide"],
+          ["Aimed fan", "—", "7 bullets 13° apart at 6.2 u/s; rage: 11 bullets 11° apart at 7.2 u/s"],
+          ["Double ring", "—", "Phase 2 and up"],
+          ["Spiral (while walking or recovering)", "—", "2 arms, 3 from phase 2, at 3.8 u/s (4.4 in rage)"],
+          ["Pattern cooldown", "—", "1.7 s / 1.45 s in phase 2 / 1.2 s in rage; 8 dmg per bullet, 0.45 s tell"],
+          ["Harness, circling + dodging Lv-bot, 30 s", "0 hits possible", "Phase 1: 1 hit, projected TTD 150 s. Rage: 1 hit, 150 s. Circling only: 2 hits, 188 s. 160–285 bullets fired, up to 125 on screen"],
+        ]} />
+        <Text>FX needs for MoneyMaker (function only, look is MM's call): a boss bullet that reads as hostile inside a horde and differs from player projectiles (stand-in: tinted proj_curse); a short tell for where a pattern comes from (stand-in: boss crouch + DustPuff); a stunned-state cue on the boss HP bar that doesn't look like lost HP (stand-in: blinking 1 px frame).</Text>
+      </Section>
+
+      <Section heading="14. FX & art production" id="prod" caption="Asset status checked on 25 Oct 2026 against Art/export/manifest.json, PixelFXPack v1.6.0 (HELLORD_FX_MAP.md) and HellordFXHooks.cs.">
+        <Callout tone="warning" lead="FX ownership rule (decided by Viet Hung)">This doc specifies only each effect's gameplay function: what it must tell the player, its timing (tells 0.5–1 s before a hit), readability inside a horde, and perf limits (pooled, batch-friendly, within pack caps, visual only). MoneyMaker researches the best FX packs and pixel games for that skill or attack type and designs the look (colour, shape, motion) itself. Effect names in the stand-in column are existing pack effects usable as placeholders, not look specs.</Callout>
+        <Callout tone="warning" lead="Art ownership rule (decided by Viet Hung)">For levels, tiles, props, enemies, bosses and UI, this doc gives only the theme and the gameplay needs (readability, silhouettes, required states and frames, hitbox-relevant sizes, room sizes in screens). Hellord Art researches the best pixel games for each and designs the look (colours, armour, shapes, details) itself.</Callout>
+        <Text>Status: Exists = ready to use (file or effect named). Placeholder = a stand-in exists, final asset still needed. Needed = nothing usable yet. HA = Hellord Art (sprites, tiles, props, UI art). MM = MoneyMaker (FX).</Text>
+        <Table columns={["Owner", "Needed", "Approved (preview)", "Placeholder", "Exists"]} rows={[
+          ["HA (Hellord Art)", "119", "7", "5", "5"],
+          ["MM (MoneyMaker)", "72", "0", "60", "34"],
+        ]} align={["start", "end", "end", "end", "end"]} />
+        <Text>Recounted 26 Oct 2026 (v0.2.6): the removed Hound row is no longer counted (HA Placeholder 6 to 5, MM Needed 73 to 72). Earlier recount (v0.2.3) from the tables below, including the hell-cat row, the 34 unique-enemy sprites still Needed and the 10 Ten Kings variants. Approved (preview) = approved by Viet Hung, preview only, not exported yet: Brute B, Archer A, Splitter, Calf B, Herder A, stampede ox, stampede gate.</Text>
+
+        <Section heading="Global tech specs" id="specs">
+          <Table columns={["Spec", "Rule"]} rows={[
+            ["Pixels per unit", "16 (`HellFX.PPU = 16`, `HordeFX.I.pixelsPerUnit = 16`)"],
+            ["Hero", "Decided: the final2 chibi in `Art/previews/hero_s14_final2/` at full size, about 20px tall (32×32 frame, idle 8 @ 8 fps, walk 8 @ 12 fps, pivot 16,30). The 80% version (`hero_s14_final2_80`, current `export/hero/*`) is REJECTED: do not use it; the export must be redone at 100%. Readability: 1px warm cream outline `#FFDB9E` at 0.6 strength, FX dimmed within about 10px of the hero, hero drawn above FX. Layers share frame and pivot."],
+            ["Enemies", "Decided: regular enemies are PixelLab size-32 at native size, PAL14 palette snap + 1px outline (replaces the old 12/16/24 size classes). Frames: imp 31×38, hell-cat 46×30, shambler 22×39, wraith 24×41. Pivot at the feet. Walk 4 frames × 4 directions @ 12 fps; 8-frame code death; no white hit frame (shader flash). Wraith floats: no legs, bob + hem ripple, baked shadow. Bosses add wind-up and strike frames per attack; boss sizes still pending Viet Hung's visual approval."],
+            ["Approved sprites v0.2.3", "Approved by Viet Hung (via HA); previews only, not exported, do not wire yet. Owner HA. Files: `Art/previews/step4_roster`, `step5_calf_herder`, `step6_stampede` (sheets + json, 16 PPU, pivot at the feet). Cell sizes: Brute B 47×50; Archer A 38×38; Splitter (purple pustule blob) 60×40, spawns 2 children at death frame index 4, ±13px apart, child 27×25; Calf B (skull mask) 34×34; Herder A (straw hat) 38×35, haste buff lands on whip frame 3. Stampede ox: Ox A (black), replaces the planned 32×24: side run 40×30, 6 frames @ 14 fps facing east (flip for west), front/back runs 30×40, about 1.5× hero height. Stampede gate: Gate B bone-tooth drop-gate, 48×48 to match the north wall, replaces 48×32 (bottom 32px match the old 48×32); frames closed, 2 shake, 3 opening, open."],
+            ["Resolution", "Decided: 640×360 (3× to 1080p) at 16 PPU, replacing 384×216. Sprite sizes stay as drawn, so each screen shows more map. Enemy cap about 125 on screen, scaling with visible area."],
+            ["Projectiles", "16×16, 4 frames, 14 fps, pivot (8,8)"],
+            ["Pickups", "12×12, 4 frames"],
+            ["Floor", "96×96 tiles (`floor_style14.png` is the current one)"],
+            ["Palette", "Decided: the style-14 hero palette (PAL14), not strict Endesga 32. All sprites snap to PAL14."],
+            ["Style", "Cute-creepy, Isaac-like; clean readable silhouettes, no visual noise"],
+            ["Export", "Horizontal strips, transparent, 1 art px = 1 px, point filtering, add each sheet to manifest.json"],
+            ["AI art", "No AI-generated art in the game. v0.2.2: the old PixelLab test sheets are replaced by HA's new PixelLab size-32 enemies (PAL14 snap + outline), which Viet Hung chose with HA. Exception (decided by Viet Hung, v0.2.6): PixelLab sprites are allowed, as long as Hellord Art cleans them up and palette-matches them. No other AI-generated art."],
+            ["FX runtime", "Pooled, batch-friendly, within pack caps (Projectile 1024, ChainFX 48×32, ReactionFX 48×48, StatusCap 32, HellFX 600 sprites)"],
+            ["FX and hits", "FX are visual only. Damage and hit tests live in game code; never rely on FX colliders."],
+            ["Telegraphs", "Every enemy, boss and hazard attack shows a readable tell 0.5–1 s before it hits, clearly distinguishable from player FX"],
+            ["Post look", "Bloom, scanlines and vignette are a Unity full-screen pass, not baked into sprites"],
+          ]} />
+        </Section>
+
+        <Section heading="Hero & skills" id="p-skills">
+          <Table columns={["Hero asset", "File / note", "Status", "Owner"]} rows={[
+            ["Base body (approved design)", "final2 chibi: `previews/hero_s14_final2/layers/base_*.png`", EX, "HA"],
+            ["Game export of final2", "Must be re-exported at 100% (about 20px tall). Current `export/hero/*` is the REJECTED 80% version: do not use.", PH, "HA"],
+            ["Element layers, skins, transformations", "Designed in final2 `layers/` (wings, frost, toxic, bleed, chains, glass, hellfire, shock, curse; skins frost/toxic; tf infernal/lich/bloodfiend). Exports follow the base export decision.", EX, "HA"],
+            ["Minion layer (Imp Legion)", "New layer, e.g. imp-horn crown, same 32×32 frame", ND, "HA"],
+            ["Turret layer (Ballista, Spearfield)", "New layer, e.g. bone toolbelt", ND, "HA"],
+            ["Hurt and death frames", "Hero has only idle and walk today", ND, "HA"],
+          ]} />
+          <Table columns={["Skill", "FX must show (function)", "Existing stand-in", "Status", "Owner"]} rows={[
+            ["Fireball", "Projectile path and travel; impact and burst area", "`ProjectileFX.Fireball`", EX, "MM"],
+            ["Frost Cleave", "Melee arc reach; which enemies got chilled; frozen-kill shatter", "`ReactionFX.FrostCleave`, `FrostShatter`, `HFX.FrostCleave`", EX, "MM"],
+            ["Bone Orbit", "Where each orbiting hitbox is; hits", "`HellFX.OrbitWeapons`", EX, "MM"],
+            ["Storm Ring", "Persistent aura radius and each damage tick", "`ProjectileFX.Ring` / `ChainLightningPoints` (no persistent version yet)", PH, "MM"],
+            ["Curse Rune", "Zone area; armed state (after 0.5 s); explosion after 2 s", "`RuneCircle`, `AuraField`", PH, "MM"],
+            ["Brimstone Lance", "Piercing projectile; the burning line it leaves and how long it lasts", "`HellfireSpear`", PH, "MM"],
+            ["Magma Trail", "Bounce targets; burning pools and their area", "Bouncing proj + `LavaGround`", PH, "MM"],
+            ["Hellfissure", "Line that will erupt, 1 s before; eruption; detonation of burning enemies", "—", ND, "MM"],
+            ["Ember Concoction", "Thrown arc and landing spot; first and second explosion", "`HellfireNova` for the burst", ND, "MM"],
+            ["Frost Wall", "Wall extent and lifetime; shatter explosion when hit by fire/lightning", "`FrostShatter` for the shatter", ND, "MM"],
+            ["Icicle Shards", "Spread cone; chilling caltrop areas", "`ProjectileFX.Spread`", PH, "MM"],
+            ["Frost Bomb", "Bomb position; which enemies are weakened; detonation area", "—", ND, "MM"],
+            ["Glacial Cascade", "Path of the spike line; final shatter", "`FrostShatter` for the end", ND, "MM"],
+            ["Storm Spear", "Projectile; split into bolts on hit", "`HellfireSpear` + Splitting proj", PH, "MM"],
+            ["Tempest Bell", "Totem position; each shockwave and its radius when hit", "Shockwave Ring", ND, "MM"],
+            ["Falling Thunder", "Cone area; charges held; one bolt per spent charge", "`LightningBolt` for bolts", ND, "MM"],
+            ["Voltaic Grenade", "Grenade position; bolts fired when shock happens nearby", "Bouncing proj + `ChainLightning`", PH, "MM"],
+            ["Bone Cage", "Trap area and its duration", "—", ND, "MM"],
+            ["Boneshatter", "Heavy hit area; shrapnel burst from stunned/frozen enemies", "Slash Arc + `BoneShard`", PH, "MM"],
+            ["Spearfield", "Where spears are planted; impale and bleed hits", "—", ND, "MM"],
+            ["Ripwire Ballista", "Turret deploy; each shot and target", "—", ND, "MM"],
+            ["Imp Legion", "Summon and despawn; minion attacks; which enemy they target", "`SpawnPortal` for summon", ND, "MM"],
+            ["Volatile Dead", "Which corpse became a bomb; its path; blast area", "—", ND, "MM"],
+            ["Hexes", "Curse aura radius and which element it applies", "`AuraField`", PH, "MM"],
+            ["Herald of Ash", "Kill explosion area; burning spreading to neighbours", "`HellfireNova` + Burn", PH, "MM"],
+          ]} />
+          <Table columns={["Skill sprite", "Size / frames", "Status", "Owner"]} rows={[
+            ["Projectiles: fireball, frost, storm, bone, curse", "projectiles/proj_*.png, 16×16 ×4", EX, "HA"],
+            ["Ember flask", "16×16 ×4, spinning", ND, "HA"],
+            ["Voltaic grenade", "16×16 ×4", ND, "HA"],
+            ["Frost Bomb orb", "16×16 ×4", ND, "HA"],
+            ["Magma ball", "16×16 ×4", ND, "HA"],
+            ["Ice wall segment", "32×24, idle + crack states", ND, "HA"],
+            ["Tempest Bell totem", "24×32, idle + ring 4 frames", ND, "HA"],
+            ["Ripwire Ballista turret", "24×24, 8 aim directions + fire", ND, "HA"],
+            ["Planted spear", "8×24, rise 3 frames", ND, "HA"],
+            ["Bone Cage spike", "16×16, rise 3 frames", ND, "HA"],
+            ["Friendly imp minion", "16×16, walk + attack; must read as friendly, never confused with the enemy imp", ND, "HA"],
+          ]} />
+        </Section>
+
+        <Section heading="Supports & statuses" id="p-supports" caption="Combo visuals stay automatic (form + element + modifiers). Each support also needs a card icon (UI table).">
+          <Table columns={["Support", "FX must show (function)", "Existing stand-in", "Status", "Owner"]} rows={[
+            ["Fire Penetration", "None (stat only)", "Icon only", "No FX", "MM"],
+            ["Wildfire", "Ignite jumps to nearby enemy on death", "Embers (54) as base", ND, "MM"],
+            ["Searing Flame", "Burn is the stronger Searing version", "`PixelFX.burnColor`", EX, "MM"],
+            ["Burning Ground", "Burning ground area and duration", "`LavaGround` / `PoisonPuddle`", PH, "MM"],
+            ["Detonate", "Burn consumed into a burst", "`HellfireNova` (63)", PH, "MM"],
+            ["Deep Freeze", "Freeze is the longer Deep Freeze version", "`PixelFX.frozenAmount` (18)", EX, "MM"],
+            ["Freezefork", "Frost projectile forks", "ProjectileFX Splitting + Frost", EX, "MM"],
+            ["Frost Nexus", "Chilled ground area and duration", "`PoisonPuddle`", PH, "MM"],
+            ["Shatter", "Frozen kills burst", "`ReactionFX.FrostShatter` (99)", EX, "MM"],
+            ["Creeping Chill", "Frost creeps enemy to enemy", "—", ND, "MM"],
+            ["Coursing Current", "Arcs between shocked enemies", "`ChainLightning` (92)", PH, "MM"],
+            ["Shock Conduction", "Stronger shock zaps", "`ReactionFX.ShockStatus` (96)", EX, "MM"],
+            ["Thrill of the Kill", "Hero speed buff is active", "Buff Aura (48)", PH, "MM"],
+            ["Overcharge", "Extra chain hop", "`ChainLightning` jumps +1", EX, "MM"],
+            ["Shock Siphon", "Shock consumed into a big hit", "—", ND, "MM"],
+            ["Bone Shrapnel", "Bone chips on hit", "`BoneShard` spread (77)", EX, "MM"],
+            ["Impale", "Stuck spikes stack, then release burst", "—", ND, "MM"],
+            ["Maim", "Enemy is maimed (slowed)", "`BleedStatus`", PH, "MM"],
+            ["Ruthless", "Every 3rd hit is the empowered one", "`CritPop` (70)", PH, "MM"],
+            ["Fortress", "Hero armour buff is active", "Buff Aura / Rim Light", PH, "MM"],
+            ["Withering Touch", "Wither stacks on enemy (count readable)", "—", ND, "MM"],
+            ["Heightened Curse", "Curse radius (smaller) and stronger effect", "`RuneCircle` (64)", PH, "MM"],
+            ["Abiding Hex", "Longer-lasting curse", "`AuraField` (60)", PH, "MM"],
+            ["Minion Pact", "None (stat only)", "Icon only", "No FX", "MM"],
+            ["Elemental Army", "Which element each minion deals", "Palette Swap (v1.0)", PH, "MM"],
+            ["Last Gasp", "Minion ghost keeps fighting briefly", "—", ND, "MM"],
+            ["Spell Echo", "Ghost repeat of the cast", "Afterimage (v1.0)", PH, "MM"],
+            ["Spell Cascade", "Extra copies offset", "Re-use the skill FX", PH, "MM"],
+            ["Unleash", "Charge pips orbit, release flash", "—", ND, "MM"],
+            ["Cast on Crit", "Crit flash triggers a cast", "`CritPop` + cast flash (87)", PH, "MM"],
+          ]} />
+          <Table columns={["Status / reaction", "Reuse / existing", "Status", "Owner"]} rows={[
+            ["Shock", "`ReactionFX.ShockStatus` (96), `HFX.ShockStatus`", EX, "MM"],
+            ["Bleed", "`ReactionFX.BleedStatus` (98), `HFX.BleedStatus`", EX, "MM"],
+            ["Overload (burn + shock)", "`ReactionFX.Overload` (97), `HFX.Overload`", EX, "MM"],
+            ["Shatter (frozen kill)", "`ReactionFX.FrostShatter` (99), `HFX.Shatter`", EX, "MM"],
+            ["Burn", "Shader burn (19) breaks horde batching; need a pooled overlay like Shock", PH, "MM"],
+            ["Chill / freeze", "Shader frozen (18), same batching issue; pooled overlay needed", PH, "MM"],
+            ["Ignite explosion", "`HellfireNova` (63)", PH, "MM"],
+            ["Curse mark", "Enemy is cursed; pooled overlay", ND, "MM"],
+            ["Exposure (Frost Bomb weakness)", "Pooled mark over head", ND, "MM"],
+          ]} />
+        </Section>
+
+        <Section heading="Enemies" id="p-enemies">
+          <Table columns={["Shared enemy", "Sprite", "Sprite status", "Attack FX", "FX status"]} rows={[
+            ["Imp", "HA: PixelLab size-32, 31×38, PAL14 + outline. Preview only in `previews/enemies_final/`, not exported", PH, "Melee; `HordeFX` hit and death", EX],
+            ["Shambler", "HA: 22×39, PAL14 + outline. Preview only, not exported", PH, "Melee; `HordeFX`", EX],
+            ["Hell-cat", "HA: dark cat with ember tail, 46×30. The fast beast; replaces the Hound (decided v0.2.6). Preview only, not exported", PH, "Dash lane telegraph", ND],
+            ["Hound (REMOVED)", "Replaced by the Hell-cat (v0.2.6). Old enemy_hound.png is not used; not counted", "—", "—", "—"],
+            ["Skeleton Archer", "HA: Archer A, 38×38 cells. Approved by Viet Hung; preview only in `previews/step4_roster`, not exported (old enemy_skeleton.png stands in)", AP, "Slow arrow (ProjectileFX preset, new arrow sprite)", PH],
+            ["Fire Spitter", "—", ND, "Lobbed fireball + burning ground (Fireball + `LavaGround`)", PH],
+            ["Wraith", "HA: 24×41, floats (no legs, bob + hem ripple, baked shadow), PAL14 + outline. Preview only, not exported", PH, "Homing bolt (stand-in `SoulOrb` 78)", EX],
+            ["Bloater", "—", ND, "Swell warning + death blast (`Telegraph` + `HellfireNova`)", PH],
+            ["Shield Knight", "enemy_knight.png; add shield block frame", EX, "Block spark (Hit Sparks 49)", PH],
+            ["Shaman", "—", ND, "Heal and haste link (Heal 47, Buff Aura 48)", PH],
+            ["Splitter", "HA: purple pustule blob, 60×40 cells; spawns 2 children at death frame index 4, ±13px apart; child 27×25. Approved (2 children decided by Viet Hung, v0.2.4); preview only in `previews/step4_roster`, not exported.", AP, "Split pop (`CheapBurst`)", PH],
+            ["Summoner", "—", ND, "Summon rift: `SpawnPortal` (68)", EX],
+            ["Brute", "HA: Brute B, 47×50 cells. Approved; preview only in `previews/step4_roster`, not exported (knight stands in)", AP, "Slam: `Telegraph` (69) + Shockwave Ring", EX],
+            ["Elite affixes", "Affix icons: Fast, Splitting, Frost-immune, Vampiric", ND, "Affix outline/aura per affix (Outline v1.0 as base)", PH],
+          ]} />
+          <Text>Shared sprites are HA; attack FX are MM. Unique enemy sprites (HA): 34 Needed; 2 Approved (preview, not exported): Ox Demon Calf = Calf B, the calf wearing a skull mask (one sprite, 34×34, confirmed) and Herder = Herder A (straw hat) 38×35, haste buff on whip frame 3, in `previews/step5_calf_herder`.</Text>
+          <Table columns={["Lv", "Unique enemy", "Attack FX (MM)", "FX status"]} rows={[
+            ["1", "Gossip Imp", "Shout area + player aim is scrambled", ND], ["1", "Hook Thrower", "Hook chain pull (Chain Whip base)", PH],
+            ["2", "Thread Puppet", "Thread tether between the pair", ND], ["2", "Needle Wisp (proposed)", "Needle volley (stand-in `MagicMissile`)", PH],
+            ["3", "Branch Hanger", "Drop shadow telegraph (`Telegraph`)", PH], ["3", "Rootling", "Ground burst (Dust 50)", PH],
+            ["4", "Reflection", "Copies your skill FX; must read as enemy-owned", PH], ["4", "Shard Bat (proposed)", "Shard burst area (stand-in `FrostShatter`)", PH],
+            ["5", "Dumpling Ghoul", "Split pop + steam puff (Dust)", PH], ["5", "Cook", "Boiling water lob + splash", ND],
+            ["6", "Ash Walker", "Fire trail (small `LavaGround`)", PH], ["6", "Chained Sinner", "Chain tether to pillar", ND],
+            ["7", "Blade Climber", "Leap + landing telegraph", PH], ["7", "Coin Hoarder", "Coin spill (`EliteChestOpen` coins)", EX],
+            ["8", "Frozen Sinner", "Ice break-out (`FrostShatter`)", EX], ["8", "Ice Golem", "Freezing ground area (stand-in `PoisonPuddle`)", PH],
+            ["9", "Oil-Drenched Sinner", "Bursts into flame (`HellfireNova`)", PH], ["9", "Ladle Demon", "Oil lob + oil pool that ignites", ND],
+            ["10", "Ox Demon Calf", "Charge lane telegraph + dust", ND], ["10", "Herder", "Whip + haste (Chain Whip, Buff Aura)", PH],
+            ["11", "Rock Crawler", "Disguise pop (Dust)", PH], ["11", "Slab Bearer", "Projectile block sparks (Hit Sparks)", EX],
+            ["12", "Rice Ghost", "Rice swarm + revive puff", ND], ["12", "Grinder Monk", "Shockwave Ring", EX],
+            ["13", "Blood Leech", "Drain stream (`BloodStream`)", EX], ["13", "Pool Drowner", "Pull-under ripple", ND],
+            ["14", "Hungry Ghost", "Pickup steal (`SoulStream` 67)", PH], ["14", "Lantern Spirit", "Light radius + death blast", ND],
+            ["15", "Butcher Demon", "Cleaver combo (Slash Arc)", PH], ["15", "Stitched Horror", "Fall-apart pop (`CheapBurst`)", PH],
+            ["16", "Magma Golem", "Splits into lava blobs (`LavaGround`)", PH], ["16", "Ash Wraith", "Smoke cloud hide", ND],
+            ["17", "Gear Imp", "None beyond `HordeFX`", EX], ["17", "Corrupt Official", "Bone shield bubble on allies", ND],
+            ["18", "Saw Rider", "Spark trail (Hit Sparks)", PH], ["18", "Twin Liar", "Real vs fake twin distinguishable (stand-in Hologram)", PH],
+          ]} />
+        </Section>
+
+        <Section heading="Bosses" id="p-bosses" caption="All boss sprites Needed (HA). Required states: idle, move, wind-up + strike per attack, hurt, stunned, phase change, death. Frame counts and look are HA's call.">
+          <Table columns={["Boss", "Sprite size (pending approval)", "Telegraphs must show (function; look by MM)", "Sprite", "FX"]} rows={[
+            ["Silver-Tongued Judge", "64×64", "Tongue whip reach; hook pull line; gavel slam area; real warnings distinguishable from fake ones", ND, ND],
+            ["Seamstress Hag", "64×64", "Thread wall line; shears path out and back; needle rain impact spots; tether link", ND, ND],
+            ["Hanging Elder", "96×96", "Root grab spots; leaf spiral path; where trees will grow", ND, ND],
+            ["Mirror Warden", "64×64", "Beam path including bounces; shard burst area; which mirror is about to fire", ND, ND],
+            ["Head Chef Demon", "64×64", "Cleaver arc; splash cone; lid-drop landing area", ND, ND],
+            ["Bronze Executioner", "64×64", "Fire lines from slam; brand delayed-blast timer; overheated state (chill/freeze window)", ND, ND],
+            ["Thousand-Blade General", "64×64", "Dodgeable knife volley; lunge line; blade rain impact spots", ND, ND],
+            ["Frost Matron", "64×64", "Which half of the arena will freeze; icicle impact spots; safe warm zones", ND, ND],
+            ["Cauldron Lord", "96×96", "Oil wave path; ignite sweep; boiling hazard areas", ND, ND],
+            ["Ox-Head", "Decided: about 52px tall in a frame up to 72×72, pivot at the feet (HA candidate A, Club Jailer: iron-shod club, nose ring, one shoulder plate). Reads clearly bigger than the 40px oxen. Bloodrage recolours only cracks, eyes and nostril steam, clear of the tell red. Approved (preview), chosen by HA at Viet Hung's request; not exported; owner HA.", "Charge lane: the line the boss will charge along, 0.5–1 s before; horn cone; 3 dodgeable stomp shockwaves (count is a rule); stunned state", AP, ND],
+            ["Stone Warden", "96×96", "Quake line; where ceiling pieces will fall; armor broken state", ND, ND],
+            ["Horse-Face", "64×64", "Pestle slam spots on a beat; spin attack radius; rice slow area", ND, ND],
+            ["Crimson Mother", "64×64", "Blood wave path; Blood Moon drain phase is active; heal stream source", ND, ND],
+            ["Weeping Bride", "64×64", "Shriek cone; teleport destination; ghost hand spots; reduced-vision phase", ND, ND],
+            ["Grand Butcher", "64×64", "Cleaver throw path; hook line; chop combo timing", ND, ND],
+            ["Wrath Titan", "96×96", "Eruption cracks; rising lava edge; meteor impact spots (`MeteorRain` stand-in)", ND, ND],
+            ["Mill Magistrate", "64×64", "Gear throw path; shield active; grind line", ND, ND],
+            ["Sawmaster", "64×64", "Saw path incl. bounces; rail switch about to happen; spin dash line", ND, ND],
+            ["Ten Kings", "64×64, 1 base + 10 variants", "Same functions as the cleared-level attacks they reuse", ND, PH],
+            ["King Yama", "128×128", "Book lines that will strike; Pen Strike 5 s mark on the player; Throne Quake area; Judgment Scale state", ND, ND],
+          ]} />
+          <Text>Rule (v0.2.5): telegraph and hit sizes are defined in world pixels from the boss pivot (feet), not by sprite size. The other bosses' 64/96/128 sizes stay pending.</Text>
+          <Table columns={["Ox-Head check (52px body)", "Prototype v0.5 now (16 px = 1 u)", "Effect of 52px body"]} rows={[
+            ["Hurt / contact radius", "`BossRadius` 1.1 u = 17.6 px, centred on the feet; contact hit at 1.4 u = 22 px", "Circle covers only the legs of a 52px body. Centre it about 24 px above the pivot, radius about 18–20 px"],
+            ["Gore Charge lane", "Tell width 22 px, 8 px above feet; speed 15 u/s; damage is body contact at 22 px radius", "Conflict: damage swath is about 45 px wide but the lane shows 22 px. Lane width must equal the contact width, about 40 px"],
+            ["Horn Sweep", "Origin 16 px above feet, reach 2.9 u = 46 px, 110° cone (±55°); tell radius 46 px matches", "Origin should sit at horn height, about 36–40 px; 46 px reach only clears the body by about 20–26 px, so set reach about 56–64 px"],
+            ["Stomp rings", "3 rings to 4 u = 64 px in 0.45 s, y squash 0.6, hit band ±7 px", "OK: the rim clears the body. No change needed"],
+            ["Wall stun", "Contact point 13 px up, minus 17.6 px along the wall normal; arena clamp keeps feet 21 px from the north wall", "A 52px body overlaps the north wall by about 30 px; raise that margin to about 52 px. Contact point should follow the new hurt circle"],
+            ["Arena", "Code arena 22×12 u = 352×192 px", "Conflict with the doc's 1536×864 Ox Pit arena; placeholder to resize"],
+          ]} />
+          <Text>Pixel FX Pack v1.8.4 tells (lane 22 px, cone 46 px, stomp 64 px, stun stars 36 px) and the v0.5 test boss in `HellordBoss.cs` use placeholder sizes and must be retuned to these world-pixel values once the sprite is exported.</Text>
+          <Table columns={["Shared boss FX kit", "Reuse / existing", "Status", "Owner"]} rows={[
+            ["Area telegraph (where it will hit)", "`HellFX.Telegraph` (69)", EX, "MM"],
+            ["Dodgeable shockwave", "Shockwave Ring (v1.0)", EX, "MM"],
+            ["Boss hit flash and death", "`HitFlash.Play` / `DissolveFX.PlayOut`", EX, "MM"],
+            ["Meteor / falling objects", "`MeteorRain` (65)", EX, "MM"],
+            ["Line / lane telegraph", "—", ND, "MM"],
+            ["Cone telegraph", "—", ND, "MM"],
+            ["Stunned-state cue", "—", ND, "MM"],
+            ["Punish-window cue (boss is open to big damage)", "—", ND, "MM"],
+          ]} />
+        </Section>
+
+        <Section heading="Levels: tilesets, props, hazards" id="p-levels" caption="Each tileset: 96×96 floor variants, wall edges, door frame, 6–10 props. Hazard props are HA sprites; their motion and telegraph are MM.">
+          <Text>The Feel lines are each level's mood for Hellord Art to interpret, not exact drawing instructions. Hellord Art researches top games with great floors and designs each floor from the level's feel; the Needs lines are gameplay requirements.</Text>
+          <Table columns={["#", "Feel (mood for HA) + gameplay needs", "Hazard FX (MM)", "Tiles", "Hazard FX"]} rows={[
+            ["1", "Feel: red cave, hanging tongues, hook chains (liars' hell). Needs: open middle; hook hazard lanes readable", "Hook chain shot + drag line; Tongue trap (VH-approved): 0.4 s tell → whip toward the locked point → retract → dim cooldown. 8-dir sheet: HA mock-up = PLACEHOLDER", ND, ND],
+          ]} />
+          <Text>Tunables (v0.0.21): every trap number above, plus hero i-frames 0.8 s, non-boss hit cap 20%, room-enter grace 1.5 s, first hunt 60 kills, boss HP 2500, boss bullet damage 8, pattern warning lead 0.45 s and burn (30% of hit as DPS, 3 s, 0.5 s ticks), lives in one data asset (HellordTuning, Resources/HellordTuning.asset). The trap art is loaded through a swappable reference, so the final HA sheet drops in without code changes.</Text>
+          <Table columns={["#", "Feel (mood for HA) + gameplay needs", "Hazard FX (MM)", "Tiles", "Hazard FX"]} rows={[
+            ["2", "Feel: rusty tailor shop, threads, giant shears. Needs: shear snap lines readable on the floor", "Shear snap line: where it will cut, before it does", ND, ND],
+            ["3", "Feel: black iron trees, blade leaves. Needs: trees read as cover; leaf-drop area clear", "Leaf drop area when a tree is hit", ND, ND],
+            ["4", "Feel: broken mirror palace, silver light. Needs: mirrors clearly readable as bounce surfaces", "Which mirror will bounce a shot, before it does", ND, ND],
+            ["5", "Feel: kitchen, bamboo steamers. Needs: steam vents visible before they fog", "Vent about to fog; fogged area", ND, ND],
+            ["6", "Feel: dark hall, red-hot copper pillars. Needs: pillars readable as obstacles and hazards", "Pillar is heating up and will burn, 0.5–1 s before", ND, ND],
+            ["7", "Feel: pale blade mountain, ridges. Needs: safe paths between spike waves readable", "Spike wave warning and safe path", ND, ND],
+            ["8", "Feel: frozen peak, sinners in ice. Needs: slippery ice areas distinguishable from normal floor", "Blizzard push direction; slippery ice areas", ND, ND],
+            ["9", "Feel: boiling cauldrons, chains. Needs: oil pools readable before they ignite", "Oil pool ignites (and its area)", ND, ND],
+            ["10", "Feel: dusty arena, fences, bones. Needs: stampede lanes readable; walls for Ox-Head stun", "Stampede lane warning + oxen sprite", ND, ND],
+            ["11", "Feel: dark quarry, hanging boulders. Needs: boulder landing spots readable", "Where a boulder will land + impact (stand-in `MeteorRain`)", ND, PH],
+            ["12", "Feel: temple kitchen, mortars, rice. Needs: slam spots readable on the beat", "Pestle slam spot on beat (stand-in `Telegraph` + Shockwave)", ND, PH],
+            ["13", "Feel: blood lake, bone islands, mist. Needs: deep (slowing) areas distinguishable from safe ground", "Deep (slowing) blood areas", ND, ND],
+            ["14", "Feel: ghost town, lanterns, graves. Needs: lanterns findable in the dark; play still readable when dark", "Lantern going out; reduced-vision area", ND, ND],
+            ["15", "Feel: butcher hall, hooks, blocks. Needs: hook swing paths readable", "Swinging hook path, flying cleaver path", ND, ND],
+            ["16", "Feel: volcano, lava rivers, ash rain. Needs: lava edge and eruption spots readable", "Eruption spots before they erupt (stand-in `LavaGround`, `MeteorRain`)", ND, PH],
+            ["17", "Feel: millstones, gears, dust. Needs: millstone push/crush zones readable", "Rotation direction; crush zone", ND, ND],
+            ["18", "Feel: dark factory, saw rails, sparks. Needs: saw rails and switches readable", "Saw position on rails; switch about to redirect", ND, ND],
+            ["Court", "Feel: Yama's hall, scale, banners, Book. Needs: Judgment Scale state readable", "In the Yama boss row", ND, "—"],
+          ]} />
+          <Table columns={["Ox Pit hazard sprite", "Size / frames", "Status", "Owner"]} rows={[
+            ["Stampede ox", "Ox A (black), replaces planned 32×24. Side run 40×30, 6 frames @ 14 fps, faces east (flip for west); front/back runs 30×40; about 1.5× hero height. Preview `previews/step6_stampede`, not exported", AP, "HA"],
+            ["Stampede gate", "Gate B bone-tooth drop-gate, 48×48 to match the north wall, replaces 48×32 (bottom 32px match). Frames: closed, 2 shake, 3 opening, open. Preview `previews/step6_stampede`, not exported", AP, "HA"],
+          ]} />
+        </Section>
+
+        <Section heading="Rooms, minimap & UI" id="p-ui">
+          <Table columns={["Asset", "Detail", "Status", "Owner"]} rows={[
+            ["Minimap frame + cells", "Current, cleared, seen, adjacent states", ND, "HA"],
+            ["Room-type icons (minimap + HUD)", "One per type: start, survive, nests, hunt, elite, bone shrine, curse, treasure, secret, boss. Each type distinguishable at minimap size; look and size by HA", ND, "HA"],
+            ["Door", "Open, closing, locked frames", ND, "HA"],
+            ["Boss door", "Themed per level later; one generic first", ND, "HA"],
+            ["Cracked wall (secret)", "Intact, cracked, broken. Secret room is now 640×360 (v0.2.8); HA drawing room-specific props, not exported", ND, "HA"],
+            ["Spawner nest", "Idle, hurt, destroyed", ND, "HA"],
+            ["Room goal HUD", "Timer, kill counter, nests left", ND, "HA"],
+            ["Bone shrine + shop panel", "Bigger shrine statue for the about 672×384 room (v0.2.8), room-specific props, and buy/swap UI. HA drawing, not exported", ND, "HA"],
+            ["Curse altar", "Sprite + accept prompt", ND, "HA"],
+            ["Chest", "Closed and open (elite, treasure)", ND, "HA"],
+            ["Stairs down", "Opens after boss", ND, "HA"],
+            ["Door lock FX", "Doors are now locked (you can't leave); sound cue", ND, "MM"],
+            ["Door unlock / room cleared", "Room is cleared and doors are open (stand-in Light Pop / `LevelUpBurst`)", PH, "MM"],
+            ["Nest destroyed", "Explosion (51)", PH, "MM"],
+            ["Descend to next level", "Teleport Beam (v1.0)", PH, "MM"],
+            ["Enemy spawn", "`SpawnPortal` (68)", EX, "MM"],
+            ["Elite chest open", "`ReactionFX.EliteChestOpen` (100), `HFX.Chest`", EX, "MM"],
+            ["Level-up card frames", "Skill, support, stat card types", ND, "HA"],
+            ["Card choice highlight (which card is selected)", "`HellFX.ChoiceGlow` (58)", EX, "MM"],
+            ["Skill icons", "25 icons, each skill recognisable on a card and in the HUD", ND, "HA"],
+            ["Support icons", "54 icons (24 v0.1 + 30 new)", ND, "HA"],
+            ["Tag chips", "Projectile, Melee, Area, Aura, Zone, Orbital, Minion, Fire, Cold, Lightning, Bone, Chaos", ND, "HA"],
+            ["Incompatible support", "Greyed card + warning line naming the missing tag", ND, "HA"],
+            ["Skill slot HUD", "3 skills × 4 sockets, locked socket look", ND, "HA"],
+            ["Start pick screen", "Pick 1 of 5 skills", ND, "HA"],
+            ["Boss HP bar", "With phase marks at 60% and 25%", ND, "HA"],
+            ["Pickups", "xp_blood_small/medium/large, bone_shard, bone_skull", EX, "HA"],
+            ["Damage numbers, crits", "`HordeFX.Number`, `CritPop` (70)", EX, "MM"],
+            ["Level-up burst", "`HellFX.LevelUpBurst` (57)", EX, "MM"],
+          ]} />
+        </Section>
+
+        <Section heading="Suggested priority order" id="p-priority" caption="Proposed.">
+          <NumberedList items={[
+            "Vertical slice, Level 10 Ox Pit: tileset, stampede hazard, Ox Demon Calf, Herder, Ox-Head. Ox-Head teaches the boss template; its charge lane telegraph is reused by Hell-cat and Calf. Level 1 is the backup pick.",
+            "Shared roster: export the 4 new size-32 enemies (imp, shambler, wraith, hell-cat) from previews; Brute B, Splitter, Archer A, Calf B, Herder A, stampede ox and gate approved (previews, export next); then draw Bloater, Shaman, Summoner, Fire Spitter. Hound removed (replaced by the hell-cat). MM: Hell-cat dash lane, line and cone telegraphs.",
+            "Room system and minimap: doors and lock FX, minimap cells, 10 room icons, nest, goal HUD, chest, shrine, stairs.",
+            "Skill UI: card frames, tag chips, incompatible warning, slot HUD, start pick screen, icons for the 5 starter skills.",
+            "Pooled Burn and Chill overlays plus curse mark, so horde batching survives fire and cold builds.",
+            "Archetype skills one build at a time, starting with Freeze-Shatter and Ignite-Explode (most FX reuse).",
+            "Remaining levels and bosses in batches of 3, Yama's Court last.",
+          ]} />
+        </Section>
+      </Section>
+
+      <Section heading="15. Open questions for Viet Hung" id="questions">
+        <NumberedList items={[
+          "Pacing fixes: earned support slots, trade-off supports, Spirit cap. Which do you want?",
+          "Vertical slice: Level 10 Ox Pit or Level 1 Tongue Pulling?",
+          "Levels 2 and 4 have one unique each; keep the proposed Needle Wisp and Shard Bat?",
+          "10% heal on level-up, or none?",
+          "Should rerolls cost bones after the free one?",
+          "Can supports move between skills mid-run, or only at bone shrines?",
+          "Boss sprite sizes (64/96 px) were set before the size-32 enemies; recheck against them? Ox Pit resolved in v0.2.5 (Ox-Head about 52px); other bosses still pending.",
+        ]} />
+      </Section>
+    </Page>
+  );
+}
+
+
+</cursor_untrusted_data_1337>

@@ -1,0 +1,1305 @@
+fileFormatVersion: 2
+guid: 92f8d8d1a85b888e3abd0934df08d85f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8260040634766081294
+    second: enemy_fire_wheel_0
+  - first:
+      213: -2215796017267523914
+    second: enemy_fire_wheel_1
+  - first:
+      213: 8119784022314571269
+    second: enemy_fire_wheel_2
+  - first:
+      213: 2104865477019831698
+    second: enemy_fire_wheel_3
+  - first:
+      213: 7675342754559064947
+    second: enemy_fire_wheel_4
+  - first:
+      213: -2371412537528936549
+    second: enemy_fire_wheel_5
+  - first:
+      213: -3318271201856783579
+    second: enemy_fire_wheel_6
+  - first:
+      213: 2485307834096184318
+    second: enemy_fire_wheel_7
+  - first:
+      213: -2814014558687378014
+    second: enemy_fire_wheel_8
+  - first:
+      213: -4588209436279846203
+    second: enemy_fire_wheel_9
+  - first:
+      213: -8879799317350843005
+    second: enemy_fire_wheel_10
+  - first:
+      213: -1731371835861852165
+    second: enemy_fire_wheel_11
+  - first:
+      213: -3871857628737784111
+    second: enemy_fire_wheel_12
+  - first:
+      213: -8553874388095381897
+    second: enemy_fire_wheel_13
+  - first:
+      213: -8302958224526691194
+    second: enemy_fire_wheel_14
+  - first:
+      213: 323642073276787238
+    second: enemy_fire_wheel_15
+  - first:
+      213: 358652724845093043
+    second: enemy_fire_wheel_16
+  - first:
+      213: 5292717718750351552
+    second: enemy_fire_wheel_17
+  - first:
+      213: 35891096439484402
+    second: enemy_fire_wheel_18
+  - first:
+      213: -4250579151398960816
+    second: enemy_fire_wheel_19
+  - first:
+      213: -953008834937361823
+    second: enemy_fire_wheel_20
+  - first:
+      213: 5879547529474433816
+    second: enemy_fire_wheel_21
+  - first:
+      213: -5972773775636677969
+    second: enemy_fire_wheel_22
+  - first:
+      213: -9019861095800527498
+    second: enemy_fire_wheel_23
+  - first:
+      213: -5377206564166099461
+    second: enemy_fire_wheel_24
+  - first:
+      213: 7664255912831813107
+    second: enemy_fire_wheel_25
+  - first:
+      213: 4910083401582710572
+    second: enemy_fire_wheel_26
+  - first:
+      213: 301424411853894137
+    second: enemy_fire_wheel_27
+  - first:
+      213: -3697265993096172382
+    second: enemy_fire_wheel_28
+  - first:
+      213: -2411718272712041263
+    second: enemy_fire_wheel_29
+  - first:
+      213: 4504272353034491897
+    second: enemy_fire_wheel_30
+  - first:
+      213: -5926134230722402087
+    second: enemy_fire_wheel_31
+  - first:
+      213: -1031964851598140678
+    second: enemy_fire_wheel_32
+  - first:
+      213: -1268934426020568204
+    second: enemy_fire_wheel_33
+  - first:
+      213: -825802783400884724
+    second: enemy_fire_wheel_34
+  - first:
+      213: 1813289084754852623
+    second: enemy_fire_wheel_35
+  - first:
+      213: 273886239607409233
+    second: enemy_fire_wheel_36
+  - first:
+      213: 3937913587308703970
+    second: enemy_fire_wheel_37
+  - first:
+      213: 7783231267947203955
+    second: enemy_fire_wheel_38
+  - first:
+      213: -4502487415155925474
+    second: enemy_fire_wheel_39
+  - first:
+      213: -8491475918817195671
+    second: enemy_fire_wheel_40
+  - first:
+      213: 1728762174309286716
+    second: enemy_fire_wheel_41
+  - first:
+      213: 4288869859345091250
+    second: enemy_fire_wheel_42
+  - first:
+      213: 6417994240822594162
+    second: enemy_fire_wheel_43
+  - first:
+      213: -1095835641018421163
+    second: enemy_fire_wheel_44
+  - first:
+      213: 1966148905159315276
+    second: enemy_fire_wheel_45
+  - first:
+      213: 1314952155596015567
+    second: enemy_fire_wheel_46
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: enemy_fire_wheel_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 162
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f2c9766ec07e5d80800000000000000
+      internalID: -8260040634766081294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_1
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 163
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6be3b081349ef31e0800000000000000
+      internalID: -2215796017267523914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_2
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 162
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 506d3fe3c844fa070800000000000000
+      internalID: 8119784022314571269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 163
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29d00c1dffbf53d10800000000000000
+      internalID: 2104865477019831698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_4
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 163
+        width: 35
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37b7cdec19b448a60800000000000000
+      internalID: 7675342754559064947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_5
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 164
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b971ea48cdc071fd0800000000000000
+      internalID: -2371412537528936549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 162
+        width: 36
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52bfae04ce123f1d0800000000000000
+      internalID: -3318271201856783579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_7
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 163
+        width: 33
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efb6cc0be469d7220800000000000000
+      internalID: 2485307834096184318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_8
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 122
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a549ac0bac92f8d0800000000000000
+      internalID: -2814014558687378014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_9
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 122
+        width: 31
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cac17bb3d76350c0800000000000000
+      internalID: -4588209436279846203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_10
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 123
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38dfb8c619d94c480800000000000000
+      internalID: -8879799317350843005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_11
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 122
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bff965d0d7ee8f7e0800000000000000
+      internalID: -1731371835861852165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_12
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 122
+        width: 29
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d6b23a2006644ac0800000000000000
+      internalID: -3871857628737784111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_13
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 122
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77e434c70988a4980800000000000000
+      internalID: -8553874388095381897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_14
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 122
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 684bd2a5c77f5cc80800000000000000
+      internalID: -8302958224526691194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_15
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 122
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62aa80c30cecd7400800000000000000
+      internalID: 323642073276787238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_16
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 122
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b02e16c0c03af400800000000000000
+      internalID: 358652724845093043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_17
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 122
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c0d78229b2837940800000000000000
+      internalID: 5292717718750351552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_18
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 122
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ffefd513c28f7000800000000000000
+      internalID: 35891096439484402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_19
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 122
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0510f2748c8e205c0800000000000000
+      internalID: -4250579151398960816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_20
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 82
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16aefbd838b36c2f0800000000000000
+      internalID: -953008834937361823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_21
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 82
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 813695ea359589150800000000000000
+      internalID: 5879547529474433816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_22
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 82
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faa386b65e17c1da0800000000000000
+      internalID: -5972773775636677969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_23
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 110
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 675a1756f1403d280800000000000000
+      internalID: -9019861095800527498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_24
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 111
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfd1bfa9e135065b0800000000000000
+      internalID: -5377206564166099461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_25
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 82
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f507005528ec5a60800000000000000
+      internalID: 7664255912831813107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_26
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 82
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2f01e8c6de142440800000000000000
+      internalID: 4910083401582710572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_27
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 82
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f1be23d7efde2400800000000000000
+      internalID: 301424411853894137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_28
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 82
+        width: 31
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2acee511b2ca0bcc0800000000000000
+      internalID: -3697265993096172382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_29
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 112
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dc1ea0420bd78ed0800000000000000
+      internalID: -2411718272712041263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_30
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 82
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f7db3627d3628e30800000000000000
+      internalID: 4504272353034491897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_31
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 42
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d8228ea05422cda0800000000000000
+      internalID: -5926134230722402087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_32
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 42
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afaddcf5f69bda1f0800000000000000
+      internalID: -1031964851598140678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_33
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 42
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 473a7c5dcd6d36ee0800000000000000
+      internalID: -1268934426020568204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_34
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 42
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c068cd86eb82a84f0800000000000000
+      internalID: -825802783400884724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_35
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 42
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0bf7ebb0d81a2910800000000000000
+      internalID: 1813289084754852623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_36
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 42
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15acaa4751a0dc300800000000000000
+      internalID: 273886239607409233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_37
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 2
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e038bf2b8746a630800000000000000
+      internalID: 3937913587308703970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_38
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 2
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37dc4b2d997930c60800000000000000
+      internalID: 7783231267947203955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_39
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 3
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1ed6f51d83f381c0800000000000000
+      internalID: -4502487415155925474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_40
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 3
+        width: 37
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9690e1044a7382a80800000000000000
+      internalID: -8491475918817195671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_41
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 2
+        width: 39
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3346d4c90ccdf710800000000000000
+      internalID: 1728762174309286716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_42
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 1
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bac426e960258b30800000000000000
+      internalID: 4288869859345091250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_43
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 18
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27acbbe02cb411950800000000000000
+      internalID: 6417994240822594162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_44
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 1
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55072ec5a4fcac0f0800000000000000
+      internalID: -1095835641018421163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_45
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 1
+        width: 23
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4f4b8b130a294b10800000000000000
+      internalID: 1966148905159315276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_fire_wheel_46
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 6
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc74fe2c406af3210800000000000000
+      internalID: 1314952155596015567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,2530 @@
+fileFormatVersion: 2
+guid: e7cb9f553d0f57546502336ca8b6ab38
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5568060301886429275
+    second: enemy_grinder_monk_0
+  - first:
+      213: 2550966759413934232
+    second: enemy_grinder_monk_1
+  - first:
+      213: 3396950691179808974
+    second: enemy_grinder_monk_2
+  - first:
+      213: 6561990422804995027
+    second: enemy_grinder_monk_3
+  - first:
+      213: 6472424719064873016
+    second: enemy_grinder_monk_4
+  - first:
+      213: 1152755224240105875
+    second: enemy_grinder_monk_5
+  - first:
+      213: 4896332456912542217
+    second: enemy_grinder_monk_6
+  - first:
+      213: 1986316248682147492
+    second: enemy_grinder_monk_7
+  - first:
+      213: -4181903966657762945
+    second: enemy_grinder_monk_8
+  - first:
+      213: -2714693161664915144
+    second: enemy_grinder_monk_9
+  - first:
+      213: -4566476002353480464
+    second: enemy_grinder_monk_10
+  - first:
+      213: -1151679946627019281
+    second: enemy_grinder_monk_11
+  - first:
+      213: -4050402943979726015
+    second: enemy_grinder_monk_12
+  - first:
+      213: -2749622691035613447
+    second: enemy_grinder_monk_13
+  - first:
+      213: 3000510149587994421
+    second: enemy_grinder_monk_14
+  - first:
+      213: 7030699263415773898
+    second: enemy_grinder_monk_15
+  - first:
+      213: 8013083061471606635
+    second: enemy_grinder_monk_16
+  - first:
+      213: 5164886739533740042
+    second: enemy_grinder_monk_17
+  - first:
+      213: -8953364908208780523
+    second: enemy_grinder_monk_18
+  - first:
+      213: -4412230192169844000
+    second: enemy_grinder_monk_19
+  - first:
+      213: -1150263393547916729
+    second: enemy_grinder_monk_20
+  - first:
+      213: 4563764530909867326
+    second: enemy_grinder_monk_21
+  - first:
+      213: 8761274556952914696
+    second: enemy_grinder_monk_22
+  - first:
+      213: -6556555782204884794
+    second: enemy_grinder_monk_23
+  - first:
+      213: -4840264882330018614
+    second: enemy_grinder_monk_24
+  - first:
+      213: 776909659045235035
+    second: enemy_grinder_monk_25
+  - first:
+      213: -7117941214413950317
+    second: enemy_grinder_monk_26
+  - first:
+      213: 7330599345385379107
+    second: enemy_grinder_monk_27
+  - first:
+      213: -6542545036911380970
+    second: enemy_grinder_monk_28
+  - first:
+      213: -6415172620300252878
+    second: enemy_grinder_monk_29
+  - first:
+      213: -330182703897525354
+    second: enemy_grinder_monk_30
+  - first:
+      213: -5115345527431826258
+    second: enemy_grinder_monk_31
+  - first:
+      213: -3271900494413626971
+    second: enemy_grinder_monk_32
+  - first:
+      213: -491281876770784236
+    second: enemy_grinder_monk_33
+  - first:
+      213: -2669075133215912565
+    second: enemy_grinder_monk_34
+  - first:
+      213: 8128221474236997207
+    second: enemy_grinder_monk_35
+  - first:
+      213: 7973493284156428903
+    second: enemy_grinder_monk_36
+  - first:
+      213: 2028336242186578220
+    second: enemy_grinder_monk_37
+  - first:
+      213: 4600997368447973507
+    second: enemy_grinder_monk_38
+  - first:
+      213: 5398572419919564242
+    second: enemy_grinder_monk_39
+  - first:
+      213: -4512411343721423234
+    second: enemy_grinder_monk_40
+  - first:
+      213: -97046739555530991
+    second: enemy_grinder_monk_41
+  - first:
+      213: -3985493686190725787
+    second: enemy_grinder_monk_42
+  - first:
+      213: 8431297450261042136
+    second: enemy_grinder_monk_43
+  - first:
+      213: -253934616119177575
+    second: enemy_grinder_monk_44
+  - first:
+      213: 68534774549273088
+    second: enemy_grinder_monk_45
+  - first:
+      213: 7894380732060831009
+    second: enemy_grinder_monk_46
+  - first:
+      213: 2155361297966720414
+    second: enemy_grinder_monk_47
+  - first:
+      213: 903513952506307117
+    second: enemy_grinder_monk_48
+  - first:
+      213: -6248802924469769963
+    second: enemy_grinder_monk_49
+  - first:
+      213: -3852785519402243276
+    second: enemy_grinder_monk_50
+  - first:
+      213: -2335787748965655126
+    second: enemy_grinder_monk_51
+  - first:
+      213: -8783134174362902174
+    second: enemy_grinder_monk_52
+  - first:
+      213: 8954429978198924662
+    second: enemy_grinder_monk_53
+  - first:
+      213: -35611409622181740
+    second: enemy_grinder_monk_54
+  - first:
+      213: -2850460732200616986
+    second: enemy_grinder_monk_55
+  - first:
+      213: -1181787618259943758
+    second: enemy_grinder_monk_56
+  - first:
+      213: 4346650932907606787
+    second: enemy_grinder_monk_57
+  - first:
+      213: 5008776941710236168
+    second: enemy_grinder_monk_58
+  - first:
+      213: 8494161683615171631
+    second: enemy_grinder_monk_59
+  - first:
+      213: 8421848909109266766
+    second: enemy_grinder_monk_60
+  - first:
+      213: -1932166066888261322
+    second: enemy_grinder_monk_61
+  - first:
+      213: -3916970355659494143
+    second: enemy_grinder_monk_62
+  - first:
+      213: 257285845906271567
+    second: enemy_grinder_monk_63
+  - first:
+      213: 2543336904912700482
+    second: enemy_grinder_monk_64
+  - first:
+      213: -4315451625297593603
+    second: enemy_grinder_monk_65
+  - first:
+      213: -4977815140685534756
+    second: enemy_grinder_monk_66
+  - first:
+      213: -190681327298415423
+    second: enemy_grinder_monk_67
+  - first:
+      213: 3456072651625026138
+    second: enemy_grinder_monk_68
+  - first:
+      213: -4716636949026603595
+    second: enemy_grinder_monk_69
+  - first:
+      213: 5377256588157072788
+    second: enemy_grinder_monk_70
+  - first:
+      213: -2337302700577179066
+    second: enemy_grinder_monk_71
+  - first:
+      213: 4160010557757577046
+    second: enemy_grinder_monk_72
+  - first:
+      213: 3443754063903987729
+    second: enemy_grinder_monk_73
+  - first:
+      213: 5629751305738052612
+    second: enemy_grinder_monk_74
+  - first:
+      213: 416895214497501932
+    second: enemy_grinder_monk_75
+  - first:
+      213: 2947733590563223301
+    second: enemy_grinder_monk_76
+  - first:
+      213: 2071100860280286419
+    second: enemy_grinder_monk_77
+  - first:
+      213: 7119412675847724353
+    second: enemy_grinder_monk_78
+  - first:
+      213: -7863266417148818789
+    second: enemy_grinder_monk_79
+  - first:
+      213: -1729586788876104757
+    second: enemy_grinder_monk_80
+  - first:
+      213: -2093945854662861051
+    second: enemy_grinder_monk_81
+  - first:
+      213: 5856131078613856951
+    second: enemy_grinder_monk_82
+  - first:
+      213: 1051636901975562553
+    second: enemy_grinder_monk_83
+  - first:
+      213: -3677545221590260642
+    second: enemy_grinder_monk_84
+  - first:
+      213: 2026008784097643682
+    second: enemy_grinder_monk_85
+  - first:
+      213: 8784559225505569794
+    second: enemy_grinder_monk_86
+  - first:
+      213: -6627031591949016574
+    second: enemy_grinder_monk_87
+  - first:
+      213: -1329170432135269412
+    second: enemy_grinder_monk_88
+  - first:
+      213: -5891417801864809435
+    second: enemy_grinder_monk_89
+  - first:
+      213: 6625486318121590056
+    second: enemy_grinder_monk_90
+  - first:
+      213: 6242293592519786114
+    second: enemy_grinder_monk_91
+  - first:
+      213: -8871175294377611645
+    second: enemy_grinder_monk_92
+  - first:
+      213: 3035000310848131577
+    second: enemy_grinder_monk_93
+  - first:
+      213: 7609425419907951275
+    second: enemy_grinder_monk_94
+  - first:
+      213: -9028075420594647869
+    second: enemy_grinder_monk_95
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: enemy_grinder_monk_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 355
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5815edf759b54d40800000000000000
+      internalID: 5568060301886429275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_1
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 355
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89862b880cad66320800000000000000
+      internalID: 2550966759413934232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_2
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 355
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec84a43e7a4642f20800000000000000
+      internalID: 3396950691179808974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_3
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 355
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3db9ecac58fd01b50800000000000000
+      internalID: 6561990422804995027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_4
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 355
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 838b1575dfba2d950800000000000000
+      internalID: 6472424719064873016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_5
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 355
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 399aec5d4c86fff00800000000000000
+      internalID: 1152755224240105875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_6
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 355
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90adc7c7d6443f340800000000000000
+      internalID: 4896332456912542217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_7
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 355
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ae294eaa10d09b10800000000000000
+      internalID: 1986316248682147492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_8
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 323
+        width: 20
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f79219ebf74e6f5c0800000000000000
+      internalID: -4181903966657762945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_9
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 323
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 839d7c8d3f8735ad0800000000000000
+      internalID: -2714693161664915144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_10
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 324
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fcff54254e90a0c0800000000000000
+      internalID: -4566476002353480464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_11
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 324
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fed0b5eb0396400f0800000000000000
+      internalID: -1151679946627019281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_12
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 323
+        width: 20
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14b54ee7bf31ac7c0800000000000000
+      internalID: -4050402943979726015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_13
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 323
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f6f77a0bb067d9d0800000000000000
+      internalID: -2749622691035613447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_14
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 324
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 537852b6514f3a920800000000000000
+      internalID: 3000510149587994421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_15
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 324
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aca6f76dabf029160800000000000000
+      internalID: 7030699263415773898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_16
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 291
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b67f6bad690343f60800000000000000
+      internalID: 8013083061471606635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_17
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 291
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a08b807ff1d5da740800000000000000
+      internalID: 5164886739533740042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_18
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 291
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51b84cd8d024fb380800000000000000
+      internalID: -8953364908208780523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_19
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 292
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e28678640c94c2c0800000000000000
+      internalID: -4412230192169844000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_20
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 291
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74ae075b9817900f0800000000000000
+      internalID: -1150263393547916729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_21
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 291
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3de86739afb55f30800000000000000
+      internalID: 4563764530909867326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_22
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 291
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80ba8d25acc469970800000000000000
+      internalID: 8761274556952914696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_23
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 292
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c8f4a3114f6205a0800000000000000
+      internalID: -6556555782204884794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_24
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 259
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: accdbedfbbce3dcb0800000000000000
+      internalID: -4840264882330018614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_25
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 259
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5906f9f73328ca00800000000000000
+      internalID: 776909659045235035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_26
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 259
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3927ebe8d2ef73d90800000000000000
+      internalID: -7117941214413950317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_27
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 259
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3251864f3458bb560800000000000000
+      internalID: 7330599345385379107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_28
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 259
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 616f6ebe3f53435a0800000000000000
+      internalID: -6542545036911380970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_29
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 259
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 239013aad7ab8f6a0800000000000000
+      internalID: -6415172620300252878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_30
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 259
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 693c5378494fa6bf0800000000000000
+      internalID: -330182703897525354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_31
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 259
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea4fa065854a209b0800000000000000
+      internalID: -5115345527431826258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_32
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 227
+        width: 19
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a10d0ae5dfd792d0800000000000000
+      internalID: -3271900494413626971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_33
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 227
+        width: 20
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41c7d7a6cbd9e29f0800000000000000
+      internalID: -491281876770784236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_34
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 227
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8d46d5ce4a85fad0800000000000000
+      internalID: -2669075133215912565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_35
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 227
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75e199b9d5e3dc070800000000000000
+      internalID: 8128221474236997207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_36
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 227
+        width: 19
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7625b1585e987ae60800000000000000
+      internalID: 7973493284156428903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_37
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 227
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c29e490d019162c10800000000000000
+      internalID: 2028336242186578220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_38
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 227
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38839debab60adf30800000000000000
+      internalID: 4600997368447973507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_39
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 227
+        width: 19
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ddc68753059bea40800000000000000
+      internalID: 5398572419919564242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_40
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 195
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7e9a096ac1b061c0800000000000000
+      internalID: -4512411343721423234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_41
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 195
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 117ce2a218837aef0800000000000000
+      internalID: -97046739555530991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_42
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 195
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5652a04cb9ea0b8c0800000000000000
+      internalID: -3985493686190725787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_43
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 195
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d3577e2c5cf10570800000000000000
+      internalID: 8431297450261042136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_44
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 195
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99e8a02efc7d97cf0800000000000000
+      internalID: -253934616119177575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_45
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 196
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00a55cba30c73f000800000000000000
+      internalID: 68534774549273088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_46
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 195
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12d8c2813797e8d60800000000000000
+      internalID: 7894380732060831009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_47
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 196
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e956eef4ea169ed10800000000000000
+      internalID: 2155361297966720414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_48
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 163
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d226fbc172de98c00800000000000000
+      internalID: 903513952506307117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_49
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 163
+        width: 24
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 519ae8709dac749a0800000000000000
+      internalID: -6248802924469769963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_50
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 163
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43ba248abf7288ac0800000000000000
+      internalID: -3852785519402243276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_51
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 163
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aad5138fa6d959fd0800000000000000
+      internalID: -2335787748965655126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_52
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 164
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2616182e00a0c1680800000000000000
+      internalID: -8783134174362902174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_53
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 164
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67dd7a06f96844c70800000000000000
+      internalID: 8954429978198924662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_54
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 163
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 498d4839c9b718ff0800000000000000
+      internalID: -35611409622181740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_55
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 163
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6eb7bf201112178d0800000000000000
+      internalID: -2850460732200616986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_56
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 131
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2be39ad2c62799fe0800000000000000
+      internalID: -1181787618259943758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_57
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 130
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30304927ef7625c30800000000000000
+      internalID: 4346650932907606787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_58
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 130
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80a5ec14710c28540800000000000000
+      internalID: 5008776941710236168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_59
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 130
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f24cd981c0351e570800000000000000
+      internalID: 8494161683615171631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_60
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 130
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e49087346fa60e470800000000000000
+      internalID: 8421848909109266766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_61
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 130
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 631cf0003319f25e0800000000000000
+      internalID: -1932166066888261322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_62
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 130
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10d2e2be63024a9c0800000000000000
+      internalID: -3916970355659494143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_63
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 130
+        width: 21
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4daafa1d10129300800000000000000
+      internalID: 257285845906271567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_64
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 99
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2448679907fbb4320800000000000000
+      internalID: 2543336904912700482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_65
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 99
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfa31cc6c9f6c14c0800000000000000
+      internalID: -4315451625297593603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_66
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 98
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd9a0edc08f3beab0800000000000000
+      internalID: -4977815140685534756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_67
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 98
+        width: 25
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c4f315d7509a5df0800000000000000
+      internalID: -190681327298415423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_68
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 98
+        width: 25
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a525d0ef3cf66ff20800000000000000
+      internalID: 3456072651625026138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_69
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 99
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bd79c64fa32b8eb0800000000000000
+      internalID: -4716636949026603595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_70
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 98
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4953b33806adf9a40800000000000000
+      internalID: 5377256588157072788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_71
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 100
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64a398fc39b309fd0800000000000000
+      internalID: -2337302700577179066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_72
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 67
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 657d305cf835bb930800000000000000
+      internalID: 4160010557757577046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_73
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 67
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1181ec8431caacf20800000000000000
+      internalID: 3443754063903987729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_74
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 67
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 404ee402cf4e02e40800000000000000
+      internalID: 5629751305738052612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_75
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 67
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce21fa02dfb19c500800000000000000
+      internalID: 416895214497501932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_76
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 67
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 507f106351478e820800000000000000
+      internalID: 2947733590563223301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_77
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 67
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dc230f52470ebc10800000000000000
+      internalID: 2071100860280286419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_78
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 67
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14d1151cb1c3dc260800000000000000
+      internalID: 7119412675847724353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_79
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 67
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9a069fdad010e290800000000000000
+      internalID: -7863266417148818789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_80
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 35
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcbc4d0baf54ff7e0800000000000000
+      internalID: -1729586788876104757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_81
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 35
+        width: 23
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50f1be1e65fc0f2e0800000000000000
+      internalID: -2093945854662861051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_82
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 35
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b277ea5038254150800000000000000
+      internalID: 5856131078613856951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_83
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 35
+        width: 21
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93912f6c03a289e00800000000000000
+      internalID: 1051636901975562553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_84
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 35
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e546dadfa1cb6fcc0800000000000000
+      internalID: -3677545221590260642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_85
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 35
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ac06ff3144dd1c10800000000000000
+      internalID: 2026008784097643682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_86
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 35
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20cd3a0b21609e970800000000000000
+      internalID: 8784559225505569794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_87
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 35
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 202669ee0ed0804a0800000000000000
+      internalID: -6627031591949016574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_88
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 3
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd3ff92c886dd8de0800000000000000
+      internalID: -1329170432135269412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_89
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 3
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5247f6829ba7d3ea0800000000000000
+      internalID: -5891417801864809435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_90
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 4
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82d19d7f3b472fb50800000000000000
+      internalID: 6625486318121590056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_91
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 4
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28eb6d503f411a650800000000000000
+      internalID: 6242293592519786114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_92
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 5
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38ea66e321143e480800000000000000
+      internalID: -8871175294377611645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_93
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 7
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f19d4dd3bc7e1a20800000000000000
+      internalID: 3035000310848131577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_94
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 9
+        width: 29
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baae07a5a1c1a9960800000000000000
+      internalID: 7609425419907951275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_grinder_monk_95
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 9
+        width: 29
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cc450edc35d5b280800000000000000
+      internalID: -9028075420594647869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

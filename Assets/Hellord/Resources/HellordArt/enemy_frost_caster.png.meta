@@ -1,0 +1,2455 @@
+fileFormatVersion: 2
+guid: 2b54d2430b8ef6c679afd8acd951c3b4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6935927722326016059
+    second: enemy_frost_caster_0
+  - first:
+      213: -5005483755237214653
+    second: enemy_frost_caster_1
+  - first:
+      213: -731035504746213875
+    second: enemy_frost_caster_2
+  - first:
+      213: 2786961610414375311
+    second: enemy_frost_caster_3
+  - first:
+      213: 5841464267531155463
+    second: enemy_frost_caster_4
+  - first:
+      213: -7152832468178978635
+    second: enemy_frost_caster_5
+  - first:
+      213: -81088422932076209
+    second: enemy_frost_caster_6
+  - first:
+      213: 6100026097084136648
+    second: enemy_frost_caster_7
+  - first:
+      213: -2097769780997148134
+    second: enemy_frost_caster_8
+  - first:
+      213: -7024820497464938224
+    second: enemy_frost_caster_9
+  - first:
+      213: -7001933916801126836
+    second: enemy_frost_caster_10
+  - first:
+      213: 7571594845782556609
+    second: enemy_frost_caster_11
+  - first:
+      213: 4879544701929530663
+    second: enemy_frost_caster_12
+  - first:
+      213: -2201620090596710134
+    second: enemy_frost_caster_13
+  - first:
+      213: 1682496373946850238
+    second: enemy_frost_caster_14
+  - first:
+      213: -427118829451435254
+    second: enemy_frost_caster_15
+  - first:
+      213: 8999590930579397829
+    second: enemy_frost_caster_16
+  - first:
+      213: -6774308224810077990
+    second: enemy_frost_caster_17
+  - first:
+      213: 2757886808028422738
+    second: enemy_frost_caster_18
+  - first:
+      213: 1843120232494945794
+    second: enemy_frost_caster_19
+  - first:
+      213: -1920990362558889731
+    second: enemy_frost_caster_20
+  - first:
+      213: -1526646020941850545
+    second: enemy_frost_caster_21
+  - first:
+      213: 4531266522564659086
+    second: enemy_frost_caster_22
+  - first:
+      213: 2179994138721739694
+    second: enemy_frost_caster_23
+  - first:
+      213: 5856383705667093439
+    second: enemy_frost_caster_24
+  - first:
+      213: 1303481665691665088
+    second: enemy_frost_caster_25
+  - first:
+      213: -8213388817359647052
+    second: enemy_frost_caster_26
+  - first:
+      213: -1279509968323670341
+    second: enemy_frost_caster_27
+  - first:
+      213: -3028826309422142949
+    second: enemy_frost_caster_28
+  - first:
+      213: 5537900060260834635
+    second: enemy_frost_caster_29
+  - first:
+      213: -9189623007258994925
+    second: enemy_frost_caster_30
+  - first:
+      213: 5049540811932208923
+    second: enemy_frost_caster_31
+  - first:
+      213: 3606776873702130733
+    second: enemy_frost_caster_32
+  - first:
+      213: 1022681623672785576
+    second: enemy_frost_caster_33
+  - first:
+      213: 688930543309068363
+    second: enemy_frost_caster_34
+  - first:
+      213: -6874337992788956849
+    second: enemy_frost_caster_35
+  - first:
+      213: 6071925170700119748
+    second: enemy_frost_caster_36
+  - first:
+      213: 8120429842691219441
+    second: enemy_frost_caster_37
+  - first:
+      213: -4651115249006952925
+    second: enemy_frost_caster_38
+  - first:
+      213: 6229496951096880453
+    second: enemy_frost_caster_39
+  - first:
+      213: 8465064459967633909
+    second: enemy_frost_caster_40
+  - first:
+      213: -7208053660562865010
+    second: enemy_frost_caster_41
+  - first:
+      213: 7186199357257027430
+    second: enemy_frost_caster_42
+  - first:
+      213: -7315704874139950277
+    second: enemy_frost_caster_43
+  - first:
+      213: -5426695822437676974
+    second: enemy_frost_caster_44
+  - first:
+      213: 6619285674154951699
+    second: enemy_frost_caster_45
+  - first:
+      213: 1993440100897975916
+    second: enemy_frost_caster_46
+  - first:
+      213: -5346238707505312892
+    second: enemy_frost_caster_47
+  - first:
+      213: 3815959102443912580
+    second: enemy_frost_caster_48
+  - first:
+      213: 7975155558914178020
+    second: enemy_frost_caster_49
+  - first:
+      213: 8256694828328909804
+    second: enemy_frost_caster_50
+  - first:
+      213: 6700260884751734330
+    second: enemy_frost_caster_51
+  - first:
+      213: 1745181510253166630
+    second: enemy_frost_caster_52
+  - first:
+      213: -6558023151441484587
+    second: enemy_frost_caster_53
+  - first:
+      213: 3382113595820673556
+    second: enemy_frost_caster_54
+  - first:
+      213: -4028293739489919109
+    second: enemy_frost_caster_55
+  - first:
+      213: 2310547993917874325
+    second: enemy_frost_caster_56
+  - first:
+      213: -8916988984969950291
+    second: enemy_frost_caster_57
+  - first:
+      213: -8383782328959589956
+    second: enemy_frost_caster_58
+  - first:
+      213: 1371603144902645220
+    second: enemy_frost_caster_59
+  - first:
+      213: 6865186854446373672
+    second: enemy_frost_caster_60
+  - first:
+      213: 7507069636193553622
+    second: enemy_frost_caster_61
+  - first:
+      213: 1754606083576128157
+    second: enemy_frost_caster_62
+  - first:
+      213: -4684008554539716191
+    second: enemy_frost_caster_63
+  - first:
+      213: 7213684871831832998
+    second: enemy_frost_caster_64
+  - first:
+      213: 7352094377209537248
+    second: enemy_frost_caster_65
+  - first:
+      213: 8513492153453199576
+    second: enemy_frost_caster_66
+  - first:
+      213: 4485810773052399157
+    second: enemy_frost_caster_67
+  - first:
+      213: -9166349220173766296
+    second: enemy_frost_caster_68
+  - first:
+      213: -697053886812233134
+    second: enemy_frost_caster_69
+  - first:
+      213: 3405697082741018546
+    second: enemy_frost_caster_70
+  - first:
+      213: 9056458983359731933
+    second: enemy_frost_caster_71
+  - first:
+      213: 7086144202124311285
+    second: enemy_frost_caster_72
+  - first:
+      213: -3803052996730837680
+    second: enemy_frost_caster_73
+  - first:
+      213: -7011581301398337584
+    second: enemy_frost_caster_74
+  - first:
+      213: 3254520337886773649
+    second: enemy_frost_caster_75
+  - first:
+      213: 2005247487664393078
+    second: enemy_frost_caster_76
+  - first:
+      213: -4015812581089852157
+    second: enemy_frost_caster_77
+  - first:
+      213: -1220895030481042555
+    second: enemy_frost_caster_78
+  - first:
+      213: 3630154257824467446
+    second: enemy_frost_caster_79
+  - first:
+      213: -8450714557149244925
+    second: enemy_frost_caster_80
+  - first:
+      213: 5997256724472065048
+    second: enemy_frost_caster_81
+  - first:
+      213: -1624496149245327868
+    second: enemy_frost_caster_82
+  - first:
+      213: -8543480837199645783
+    second: enemy_frost_caster_83
+  - first:
+      213: -4473875325212564050
+    second: enemy_frost_caster_84
+  - first:
+      213: -7466898004077832794
+    second: enemy_frost_caster_85
+  - first:
+      213: 1430240072542121131
+    second: enemy_frost_caster_86
+  - first:
+      213: -5500960135631827323
+    second: enemy_frost_caster_87
+  - first:
+      213: 5669937100841774660
+    second: enemy_frost_caster_88
+  - first:
+      213: -6564432506933265375
+    second: enemy_frost_caster_89
+  - first:
+      213: 449474100628082092
+    second: enemy_frost_caster_90
+  - first:
+      213: 3192138195294326134
+    second: enemy_frost_caster_91
+  - first:
+      213: -6201717414510553571
+    second: enemy_frost_caster_92
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: enemy_frost_caster_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 354
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b30c60de38d514060800000000000000
+      internalID: 6935927722326016059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_1
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 354
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 346f8187b03f88ab0800000000000000
+      internalID: -5005483755237214653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 354
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0e4765e417dad5f0800000000000000
+      internalID: -731035504746213875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_3
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 354
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f81466791d64da620800000000000000
+      internalID: 2786961610414375311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_4
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 354
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 708f45a4dcc011150800000000000000
+      internalID: 5841464267531155463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_5
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 354
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b8bf4c74c80cbc90800000000000000
+      internalID: -7152832468178978635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_6
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 354
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f49acbb428aefdef0800000000000000
+      internalID: -81088422932076209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_7
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 354
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ccff4d7a65a7a450800000000000000
+      internalID: 6100026097084136648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_8
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 322
+        width: 19
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a12bd17af7933e2e0800000000000000
+      internalID: -2097769780997148134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_9
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 322
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01138b50af2d28e90800000000000000
+      internalID: -7024820497464938224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_10
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 322
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4e2f44533224de90800000000000000
+      internalID: -7001933916801126836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_11
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 322
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cf3c0e6565b31960800000000000000
+      internalID: 7571594845782556609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_12
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 322
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7252620bd00a7b340800000000000000
+      internalID: 4879544701929530663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_13
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 322
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a09ae9931364271e0800000000000000
+      internalID: -2201620090596710134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_14
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 322
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebb1cf0b98d695710800000000000000
+      internalID: 1682496373946850238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_15
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 322
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a03aaa500b1921af0800000000000000
+      internalID: -427118829451435254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_16
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 290
+        width: 31
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cc130df448f4ec70800000000000000
+      internalID: 8999590930579397829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_17
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 290
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad03035bf82dcf1a0800000000000000
+      internalID: -6774308224810077990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_18
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 290
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2522543a07bf54620800000000000000
+      internalID: 2757886808028422738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_19
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 290
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20652301614149910800000000000000
+      internalID: 1843120232494945794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_20
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 290
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df08abe61754755e0800000000000000
+      internalID: -1920990362558889731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_21
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 290
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f485fff488340dae0800000000000000
+      internalID: -1526646020941850545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_22
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 290
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e87061405ea42ee30800000000000000
+      internalID: 4531266522564659086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_23
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 290
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea361fa7e15e04e10800000000000000
+      internalID: 2179994138721739694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_24
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 258
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb34caca3fd064150800000000000000
+      internalID: 5856383705667093439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_25
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 258
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c249c63ba5e61210800000000000000
+      internalID: 1303481665691665088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_26
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 258
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4becc13136e240e80800000000000000
+      internalID: -8213388817359647052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_27
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 258
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbe0f7386744e3ee0800000000000000
+      internalID: -1279509968323670341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_28
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 258
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1a298cd48277f5d0800000000000000
+      internalID: -3028826309422142949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_29
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 258
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4d167583c29adc40800000000000000
+      internalID: 5537900060260834635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_30
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 258
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31712984096e77080800000000000000
+      internalID: -9189623007258994925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_31
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 258
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1f8e066d92931640800000000000000
+      internalID: 5049540811932208923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_32
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 226
+        width: 19
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d240c150578dd0230800000000000000
+      internalID: 3606776873702130733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_33
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 226
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8aa0651b48b413e00800000000000000
+      internalID: 1022681623672785576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_34
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 226
+        width: 23
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b489ad4dda29f8900800000000000000
+      internalID: 688930543309068363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_35
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 226
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f49a7d174027990a0800000000000000
+      internalID: -6874337992788956849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_36
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 226
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ce6556b5cfc34450800000000000000
+      internalID: 6071925170700119748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_37
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 226
+        width: 23
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ff57150bef81b070800000000000000
+      internalID: 8120429842691219441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_38
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 226
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32eb98dd25be37fb0800000000000000
+      internalID: -4651115249006952925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_39
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 226
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54d2283c87e937650800000000000000
+      internalID: 6229496951096880453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_40
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 194
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f99729c643f97570800000000000000
+      internalID: 8465064459967633909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_41
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 194
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e844238b269d7fb90800000000000000
+      internalID: -7208053660562865010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_42
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 194
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66f0276cd328ab360800000000000000
+      internalID: 7186199357257027430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_43
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 194
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b336b4f5d25697a90800000000000000
+      internalID: -7315704874139950277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_44
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 194
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 258818fb6e080b4b0800000000000000
+      internalID: -5426695822437676974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_45
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 194
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31486da004d6cdb50800000000000000
+      internalID: 6619285674154951699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_46
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 194
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6eea07c53f1aab10800000000000000
+      internalID: 1993440100897975916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_47
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 194
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48bc3ba98385ec5b0800000000000000
+      internalID: -5346238707505312892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_48
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 162
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48d769af59205f430800000000000000
+      internalID: 3815959102443912580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_49
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 162
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ebbf850ab17dae60800000000000000
+      internalID: 7975155558914178020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_50
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 162
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ceb7955533ca59270800000000000000
+      internalID: 8256694828328909804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_51
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 162
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a36521276cb1cfc50800000000000000
+      internalID: 6700260884751734330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_52
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 161
+        width: 25
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62048335651283810800000000000000
+      internalID: 1745181510253166630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_53
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 162
+        width: 25
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d4ea8d80b83df4a0800000000000000
+      internalID: -6558023151441484587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_54
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 162
+        width: 25
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41a09ec656eafee20800000000000000
+      internalID: 3382113595820673556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_55
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 162
+        width: 25
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7ff5cecf20a818c0800000000000000
+      internalID: -4028293739489919109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_56
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 130
+        width: 19
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59067fd9827b01020800000000000000
+      internalID: 2310547993917874325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_57
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 130
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dab8bcc23cd704480800000000000000
+      internalID: -8916988984969950291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_58
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 130
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb1aa281462d6ab80800000000000000
+      internalID: -8383782328959589956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_59
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 130
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e51bb01bc9e80310800000000000000
+      internalID: 1371603144902645220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_60
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 130
+        width: 29
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82b15ff121b064f50800000000000000
+      internalID: 6865186854446373672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_61
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 130
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dc00795f087e2860800000000000000
+      internalID: 7507069636193553622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_62
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 130
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d926b4ccfec995810800000000000000
+      internalID: 1754606083576128157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_63
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 130
+        width: 19
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a1f4cd590f0ffeb0800000000000000
+      internalID: -4684008554539716191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_64
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 98
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a94523db282c1460800000000000000
+      internalID: 7213684871831832998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_65
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 98
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e2a8bc02e2e70660800000000000000
+      internalID: 7352094377209537248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_66
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 98
+        width: 29
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d047a4d100062670800000000000000
+      internalID: 8513492153453199576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_67
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 98
+        width: 27
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53e9869912dc04e30800000000000000
+      internalID: 4485810773052399157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_68
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 97
+        width: 23
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8612d5c13f59ac080800000000000000
+      internalID: -9166349220173766296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_69
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 97
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 252604fde219356f0800000000000000
+      internalID: -697053886812233134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_70
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 98
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bfcc5dd377734f20800000000000000
+      internalID: 3405697082741018546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_71
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 98
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd85d0256710fad70800000000000000
+      internalID: 9056458983359731933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_72
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 66
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fa30da9b9a075260800000000000000
+      internalID: 7086144202124311285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_73
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 66
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 055afdbe277d83bc0800000000000000
+      internalID: -3803052996730837680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_74
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 66
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d7816094fbd1be90800000000000000
+      internalID: -7011581301398337584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_75
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 66
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 191860e01016a2d20800000000000000
+      internalID: 3254520337886773649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_76
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 66
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67b0bfc37f114db10800000000000000
+      internalID: 2005247487664393078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_77
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 66
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3054893fbb7f448c0800000000000000
+      internalID: -4015812581089852157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_78
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 34
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 583432830728e0fe0800000000000000
+      internalID: -1220895030481042555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_79
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 34
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f9cf796016e06230800000000000000
+      internalID: 3630154257824467446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_80
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 34
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30295e252e709ba80800000000000000
+      internalID: -8450714557149244925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_81
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 34
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81ceaf057398a3350800000000000000
+      internalID: 5997256724472065048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_82
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 34
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4060e35fb51a479e0800000000000000
+      internalID: -1624496149245327868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_83
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 34
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a3bb51a1757f6980800000000000000
+      internalID: -8543480837199645783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_84
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 2
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea5e157681a99e1c0800000000000000
+      internalID: -4473875325212564050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_85
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 2
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a51edc93df306890800000000000000
+      internalID: -7466898004077832794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_86
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 3
+        width: 33
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bace66ba4cb39d310800000000000000
+      internalID: 1430240072542121131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_87
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 2
+        width: 35
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58e8418e6e9a8a3b0800000000000000
+      internalID: -5500960135631827323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_88
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 2
+        width: 39
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44e6b7aa0c9afae40800000000000000
+      internalID: 5669937100841774660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_89
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 2
+        width: 40
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12c37303a6376e4a0800000000000000
+      internalID: -6564432506933265375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_90
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 2
+        width: 30
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cadcca7205adc3600800000000000000
+      internalID: 449474100628082092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_91
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 2
+        width: 40
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67d8974a6c0cc4c20800000000000000
+      internalID: 3192138195294326134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_frost_caster_92
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 2
+        width: 11
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d169ebe9ed21fe9a0800000000000000
+      internalID: -6201717414510553571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

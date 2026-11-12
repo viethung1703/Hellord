@@ -1,0 +1,27 @@
+{
+  "release_version": "0.0.97",
+  "package": "Hellord_Prototype_v0.0.97.unitypackage",
+  "previous_package": "Hellord_Prototype_v0.0.96.unitypackage",
+  "unity_editor": "6000.3.16f1",
+  "scope": "v0.0.96 + render-pipeline-safe Sins fire (SRP immediate path) + Sins UI feel: confirm-before-unlock modal with input guard, release-to-activate buttons, pressed bevel, unlock ceremony, denied feedback, currency countdown, UI sounds; no economy changes",
+  "not_implemented": "Pact UI mockups/concepts93-101 and AI ossuary concepts",
+  "external_unity_packages": {
+    "com.unity.inputsystem": "1.19.0"
+  },
+  "payload_roots": [
+    "Assets/Hellord",
+    "Assets/PixelFXPack",
+    "Assets/WebGLTemplates"
+  ],
+  "excluded_production_payload": [
+    "HellordAutoTest.cs",
+    "HellordAutoTest26.cs",
+    "HellordAutoTestBuild.cs",
+    "*.bak*",
+    "Art/previews",
+    "Builds",
+    "Backups",
+    "normal user saves"
+  ],
+  "runtime_sandbox_changes": false
+}

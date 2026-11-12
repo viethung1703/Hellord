@@ -1,0 +1,426 @@
+{
+ "cell": 20,
+ "columns": [
+  {
+   "col": 0,
+   "code": "M01",
+   "sin": "Greed of the Ox Pit",
+   "source": "step49d_sin_icons_object/pieces/M01_greed_of_the_ox_pit_icon20_plate.png"
+  },
+  {
+   "col": 1,
+   "code": "M02",
+   "sin": "Killing of Naihe Bridge",
+   "source": "step49d_sin_icons_object/pieces/M02_killing_of_naihe_bridge_icon20_plate.png"
+  },
+  {
+   "col": 2,
+   "code": "M03",
+   "sin": "Greed of the Needle-Throat",
+   "source": "step49d_sin_icons_object/pieces/M03_greed_of_the_needle_throat_icon20_plate.png"
+  },
+  {
+   "col": 3,
+   "code": "M04",
+   "sin": "Delusion of the Iron Bed",
+   "source": "step49d_sin_icons_object/pieces/M04_delusion_of_the_iron_bed_icon20_plate.png"
+  },
+  {
+   "col": 4,
+   "code": "M05",
+   "sin": "Slander of the Tongue Court",
+   "source": "step49d_sin_icons_object/pieces/M05_slander_of_the_tongue_court_icon20_plate.png"
+  },
+  {
+   "col": 5,
+   "code": "M06",
+   "sin": "Hatred of the Sawing Court",
+   "source": "step49d_sin_icons_object/pieces/M06_hatred_of_the_sawing_court_icon20_plate.png"
+  },
+  {
+   "col": 6,
+   "code": "M07",
+   "sin": "Hatred of the Burning Hell",
+   "source": "step49d_sin_icons_object/pieces/M07_hatred_of_the_burning_hell_icon20_plate.png"
+  },
+  {
+   "col": 7,
+   "code": "M08",
+   "sin": "Hatred of the Frozen Hell",
+   "source": "step49d_sin_icons_object/pieces/M08_hatred_of_the_frozen_hell_icon20_plate.png"
+  },
+  {
+   "col": 8,
+   "code": "M09",
+   "sin": "Hatred of the Thunder Court",
+   "source": "step49d_sin_icons_object/pieces/M09_hatred_of_the_thunder_court_icon20_plate.png"
+  },
+  {
+   "col": 9,
+   "code": "M10",
+   "sin": "Hatred of the Knife Mountain",
+   "source": "step49d_sin_icons_object/pieces/M10_hatred_of_the_knife_mountain_icon20_plate.png"
+  },
+  {
+   "col": 10,
+   "code": "M11",
+   "sin": "Killing of the Gong",
+   "source": "step49d_sin_icons_object/pieces/M11_killing_of_the_gong_icon20_plate.png"
+  },
+  {
+   "col": 11,
+   "code": "M12",
+   "sin": "Idle Speech of the Grave",
+   "source": "step49d_sin_icons_object/pieces/M12_idle_speech_of_the_grave_icon20_plate.png"
+  },
+  {
+   "col": 12,
+   "code": "M13",
+   "sin": "Wrong View of the Nine Springs",
+   "source": "step49d_sin_icons_object/pieces/M13_wrong_view_of_the_nine_springs_icon20_plate.png"
+  },
+  {
+   "col": 13,
+   "code": "M14",
+   "sin": "Greed and Delusion of the Iron City",
+   "source": "step49d_sin_icons_object/pieces/M14_greed_and_delusion_of_the_iron_city_icon20_plate.png"
+  },
+  {
+   "col": 14,
+   "code": "M15",
+   "sin": "Greed and Killing of the Ghost Road",
+   "source": "step49d_sin_icons_object/pieces/M15_greed_and_killing_of_the_ghost_road_icon20_plate.png"
+  },
+  {
+   "col": 15,
+   "code": "M16",
+   "sin": "Hatred and Slander of the Judge's Desk",
+   "source": "step49d_sin_icons_object/pieces/M16_hatred_and_slander_of_the_judge_s_desk_icon20_plate.png"
+  },
+  {
+   "col": 16,
+   "code": "M17",
+   "sin": "Hatred and Wrong View of the Burning City",
+   "source": "step49d_sin_icons_object/pieces/M17_hatred_and_wrong_view_of_the_burning_city_icon20_plate.png"
+  },
+  {
+   "col": 17,
+   "code": "M18",
+   "sin": "Hatred and Killing of the Eight Cold Hells",
+   "source": "step49d_sin_icons_object/pieces/M18_hatred_and_killing_of_the_eight_cold_hells_icon20_plate.png"
+  },
+  {
+   "col": 18,
+   "code": "M19",
+   "sin": "Hatred and Slander of the Storm Gate",
+   "source": "step49d_sin_icons_object/pieces/M19_hatred_and_slander_of_the_storm_gate_icon20_plate.png"
+  },
+  {
+   "col": 19,
+   "code": "M20",
+   "sin": "Hatred of the Blood Pool",
+   "source": "step49d_sin_icons_object/pieces/M20_hatred_of_the_blood_pool_icon20_plate.png"
+  },
+  {
+   "col": 20,
+   "code": "M21",
+   "sin": "Idle Speech and Greed of the Ghost Festival",
+   "source": "step49d_sin_icons_object/pieces/M21_idle_speech_and_greed_of_the_ghost_festival_icon20_plate.png"
+  },
+  {
+   "col": 21,
+   "code": "M22",
+   "sin": "Greed and Theft of the Hungry Ghost",
+   "source": "step49d_sin_icons_object/pieces/M22_greed_and_theft_of_the_hungry_ghost_icon20_plate.png"
+  },
+  {
+   "col": 22,
+   "code": "M23",
+   "sin": "Killing of the Black Wind",
+   "source": "step49d_sin_icons_object/pieces/M23_killing_of_the_black_wind_icon20_plate.png"
+  },
+  {
+   "col": 23,
+   "code": "M24",
+   "sin": "Wrong View of the Wheel of Rebirth",
+   "source": "step49d_sin_icons_object/pieces/M24_wrong_view_of_the_wheel_of_rebirth_icon20_plate.png"
+  },
+  {
+   "col": 24,
+   "code": "M25",
+   "sin": "Hatred and Killing of the Hanged Ghost",
+   "source": "step49d_sin_icons_object/pieces/M25_hatred_and_killing_of_the_hanged_ghost_icon20_plate.png"
+  },
+  {
+   "col": 25,
+   "code": "D01",
+   "sin": "Spear of the Tongue-Ripping Court",
+   "source": "step50_pixellab_sins/pieces/D01_icon20.png"
+  },
+  {
+   "col": 26,
+   "code": "D02",
+   "sin": "Meng Po's Bitter Ladle",
+   "source": "step50_pixellab_sins/pieces/D02_icon20.png"
+  },
+  {
+   "col": 27,
+   "code": "D03",
+   "sin": "Mouth of the Needle-Throat Ghost",
+   "source": "step50_pixellab_sins/pieces/D03_icon20.png"
+  },
+  {
+   "col": 28,
+   "code": "D04",
+   "sin": "Veil of the Sea of Fire",
+   "source": "step50b_pixellab_fix/pieces/D04_icon20.png"
+  },
+  {
+   "col": 29,
+   "code": "D05",
+   "sin": "Thunder Drum of the Fifth Court",
+   "source": "step50_pixellab_sins/pieces/D05_icon20.png"
+  },
+  {
+   "col": 30,
+   "code": "D06",
+   "sin": "Hook of the Blood Pool",
+   "source": "step50b_pixellab_fix/pieces/D06_icon20.png"
+  },
+  {
+   "col": 31,
+   "code": "D07",
+   "sin": "Lantern of the Naihe Ferry",
+   "source": "step50_pixellab_sins/pieces/D07_icon20.png"
+  },
+  {
+   "col": 32,
+   "code": "D08",
+   "sin": "Brush of the Book of Life and Death",
+   "source": "step50_pixellab_sins/pieces/D08_icon20.png"
+  },
+  {
+   "col": 33,
+   "code": "D09",
+   "sin": "Ox-Head's Iron Fork",
+   "source": "step50_pixellab_sins/pieces/D09_icon20.png"
+  },
+  {
+   "col": 34,
+   "code": "D10",
+   "sin": "Cinder Beads of the Burning Hell",
+   "source": "step50b_pixellab_fix/pieces/D10_icon20.png"
+  },
+  {
+   "col": 35,
+   "code": "D11",
+   "sin": "Cleaver of the Sawing Court",
+   "source": "step50_pixellab_sins/pieces/D11_icon20.png"
+  },
+  {
+   "col": 36,
+   "code": "D12",
+   "sin": "Bone Abacus of the Karma Ledger",
+   "source": "step50_pixellab_sins/pieces/D12_icon20.png"
+  },
+  {
+   "col": 37,
+   "code": "D13",
+   "sin": "Incense of the Ghost Festival",
+   "source": "step50_pixellab_sins/pieces/D13_icon20.png"
+  },
+  {
+   "col": 38,
+   "code": "D14",
+   "sin": "Death Bell of White Impermanence",
+   "source": "step50b_pixellab_fix/pieces/D14_icon20.png"
+  },
+  {
+   "col": 39,
+   "code": "D15",
+   "sin": "Ribs of the Knife Mountain",
+   "source": "step50b_pixellab_fix/pieces/D15_icon20.png"
+  },
+  {
+   "col": 40,
+   "code": "D16",
+   "sin": "Joss Paper of the Burned Offering",
+   "source": "step50_pixellab_sins/pieces/D16_icon20.png"
+  },
+  {
+   "col": 41,
+   "code": "D17",
+   "sin": "Shard of the Karma Mirror",
+   "source": "step50_pixellab_sins/pieces/D17_icon20.png"
+  },
+  {
+   "col": 42,
+   "code": "D18",
+   "sin": "Oath of the Yin Soldiers",
+   "source": "step50c_pixellab_fix/pieces/D18_icon20.png"
+  },
+  {
+   "col": 43,
+   "code": "D19",
+   "sin": "Fire Wheel of Nezha's Ghost",
+   "source": "step50_pixellab_sins/pieces/D19_icon20.png"
+  },
+  {
+   "col": 44,
+   "code": "D20",
+   "sin": "Hell Bank Note of the First Hand",
+   "source": "step50_pixellab_sins/pieces/D20_icon20.png"
+  },
+  {
+   "col": 45,
+   "code": "D21",
+   "sin": "Dirge of the Unburied",
+   "source": "step50b_pixellab_fix/pieces/D21_icon20.png"
+  },
+  {
+   "col": 46,
+   "code": "D22",
+   "sin": "The Broken Talisman of Zhong Kui",
+   "source": "step50_pixellab_sins/pieces/D22_icon20.png"
+  },
+  {
+   "col": 47,
+   "code": "D23",
+   "sin": "Nails of the Bronze Pillar",
+   "source": "step50_pixellab_sins/pieces/D23_icon20.png"
+  },
+  {
+   "col": 48,
+   "code": "D24",
+   "sin": "Red Thread of the Ghost Bride",
+   "source": "step50l_icons_finish/pieces/D24_icon20.png"
+  },
+  {
+   "col": 49,
+   "code": "D25",
+   "sin": "Second Belly of the Hungry Ghost",
+   "source": "step50b_pixellab_fix/pieces/D25_icon20.png"
+  },
+  {
+   "col": 50,
+   "code": "D26",
+   "sin": "The Unmourned Child",
+   "source": "step50b_pixellab_fix/pieces/D26_icon20.png"
+  },
+  {
+   "col": 51,
+   "code": "D27",
+   "sin": "Hand of the Frozen Hell",
+   "source": "step50c_pixellab_fix/pieces/D27_icon20.png"
+  },
+  {
+   "col": 52,
+   "code": "D28",
+   "sin": "Black Impermanence's Chain",
+   "source": "step50b_pixellab_fix/pieces/D28_icon20.png"
+  },
+  {
+   "col": 53,
+   "code": "D29",
+   "sin": "Blade of the Beheading Platform",
+   "source": "step50_pixellab_sins/pieces/D29_icon20.png"
+  },
+  {
+   "col": 54,
+   "code": "D30",
+   "sin": "Nine-Forked Lie of the Tongue Court",
+   "source": "step50c_pixellab_fix/pieces/D30_icon20.png"
+  },
+  {
+   "col": 55,
+   "code": "D31",
+   "sin": "Heart of the Oil Cauldron",
+   "source": "step50_pixellab_sins/pieces/D31_icon20.png"
+  },
+  {
+   "col": 56,
+   "code": "D32",
+   "sin": "Debt Ledger of the Ten Courts",
+   "source": "step50b_pixellab_fix/pieces/D32_icon20.png"
+  },
+  {
+   "col": 57,
+   "code": "D33",
+   "sin": "Bone Throne of the Pit of Ox-Head",
+   "source": "step50l_icons_finish/pieces/D33_icon20.png"
+  },
+  {
+   "col": 58,
+   "code": "D34",
+   "sin": "Breath of the Hanged Ghost",
+   "source": "step50_pixellab_sins/pieces/D34_icon20.png"
+  },
+  {
+   "col": 59,
+   "code": "H35",
+   "sin": "Pearl of the Dragon King",
+   "source": "step50c_pixellab_fix/pieces/H35_icon20.png"
+  },
+  {
+   "col": 60,
+   "code": "H36",
+   "sin": "Ten Thousand Ghost Banner",
+   "source": "step50_pixellab_sins/pieces/H36_icon20.png"
+  },
+  {
+   "col": 61,
+   "code": "H37",
+   "sin": "Tongue of the Needle-Throat Ghost",
+   "source": "step50b_pixellab_fix/pieces/H37_icon20.png"
+  },
+  {
+   "col": 62,
+   "code": "H38",
+   "sin": "Golden Crow of the Sun",
+   "source": "step50p_crow_VH_final/H38_VH_final_icon20.png"
+  },
+  {
+   "col": 63,
+   "code": "H39",
+   "sin": "Lamp of the Nine Nether Springs",
+   "source": "step50_pixellab_sins/pieces/H39_icon20.png"
+  },
+  {
+   "col": 64,
+   "code": "H40",
+   "sin": "Ring of the Burning City",
+   "source": "step50b_pixellab_fix/pieces/H40_icon20.png"
+  },
+  {
+   "col": 65,
+   "code": "H41",
+   "sin": "Ghost Mushrooms of Fengdu",
+   "source": "step50l_icons_finish/pieces/H41_icon20.png"
+  },
+  {
+   "col": 66,
+   "code": "H42",
+   "sin": "Ox-Head and Horse-Face Answer the Call",
+   "source": "step50_pixellab_sins/pieces/H42_icon20.png"
+  },
+  {
+   "col": 67,
+   "code": "H43",
+   "sin": "Blade of the Eight Cold Hells",
+   "source": "step50_pixellab_sins/pieces/H43_icon20.png"
+  },
+  {
+   "col": 68,
+   "code": "H44",
+   "sin": "Lightning Rod of the Heavenly Tribulation",
+   "source": "step50l_icons_finish/pieces/H44_icon20.png"
+  },
+  {
+   "col": 69,
+   "code": "H45",
+   "sin": "Samsara Wheel of Six Rings",
+   "source": "step50_pixellab_sins/pieces/H45_icon20.png"
+  }
+ ],
+ "approved": "VH t866u (H38), t912u approve all"
+}

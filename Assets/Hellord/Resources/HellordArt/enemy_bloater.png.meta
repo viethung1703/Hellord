@@ -1,0 +1,2580 @@
+fileFormatVersion: 2
+guid: e08cd6c1f75bbf0c3c1fd976b883ab93
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4713379856699223185
+    second: enemy_bloater_0
+  - first:
+      213: 2870718040218812578
+    second: enemy_bloater_1
+  - first:
+      213: -1267575980656161998
+    second: enemy_bloater_2
+  - first:
+      213: 6330725505112172350
+    second: enemy_bloater_3
+  - first:
+      213: 4952805757699193948
+    second: enemy_bloater_4
+  - first:
+      213: 4278516113184059026
+    second: enemy_bloater_5
+  - first:
+      213: 4631444063719404331
+    second: enemy_bloater_6
+  - first:
+      213: -3295588805863945098
+    second: enemy_bloater_7
+  - first:
+      213: -4985185811240344414
+    second: enemy_bloater_8
+  - first:
+      213: 1706356201216367930
+    second: enemy_bloater_9
+  - first:
+      213: 3080353585881243353
+    second: enemy_bloater_10
+  - first:
+      213: -2137997687571008267
+    second: enemy_bloater_11
+  - first:
+      213: 5695730333462942452
+    second: enemy_bloater_12
+  - first:
+      213: -5950783212942825481
+    second: enemy_bloater_13
+  - first:
+      213: 5803271515357034798
+    second: enemy_bloater_14
+  - first:
+      213: -2061680844350881969
+    second: enemy_bloater_15
+  - first:
+      213: -4411086171339106056
+    second: enemy_bloater_16
+  - first:
+      213: -6880416818914138584
+    second: enemy_bloater_17
+  - first:
+      213: -7074859038271989570
+    second: enemy_bloater_18
+  - first:
+      213: 3618782864865477635
+    second: enemy_bloater_19
+  - first:
+      213: 1176440975963723788
+    second: enemy_bloater_20
+  - first:
+      213: 5992273195919962008
+    second: enemy_bloater_21
+  - first:
+      213: 4950431695006581550
+    second: enemy_bloater_22
+  - first:
+      213: -4819955593849033682
+    second: enemy_bloater_23
+  - first:
+      213: 4508776410122349016
+    second: enemy_bloater_24
+  - first:
+      213: -4284874134405231776
+    second: enemy_bloater_25
+  - first:
+      213: 1716960111236719360
+    second: enemy_bloater_26
+  - first:
+      213: 5891155835363407418
+    second: enemy_bloater_27
+  - first:
+      213: -5871372201333536620
+    second: enemy_bloater_28
+  - first:
+      213: -3082159116949798274
+    second: enemy_bloater_29
+  - first:
+      213: 7670313656746636072
+    second: enemy_bloater_30
+  - first:
+      213: -1799587511495856380
+    second: enemy_bloater_31
+  - first:
+      213: 6686189451394041755
+    second: enemy_bloater_32
+  - first:
+      213: -8239702285926512715
+    second: enemy_bloater_33
+  - first:
+      213: 4759412913113526532
+    second: enemy_bloater_34
+  - first:
+      213: -2535167334631885009
+    second: enemy_bloater_35
+  - first:
+      213: -298127421383355093
+    second: enemy_bloater_36
+  - first:
+      213: 3856691671206234650
+    second: enemy_bloater_37
+  - first:
+      213: -9220348322928706778
+    second: enemy_bloater_38
+  - first:
+      213: -1737940725855184508
+    second: enemy_bloater_39
+  - first:
+      213: 4921915315345969150
+    second: enemy_bloater_40
+  - first:
+      213: 1600456466524021064
+    second: enemy_bloater_41
+  - first:
+      213: 5388992915510392968
+    second: enemy_bloater_42
+  - first:
+      213: -4004649927080175384
+    second: enemy_bloater_43
+  - first:
+      213: -3463153813984620930
+    second: enemy_bloater_44
+  - first:
+      213: -707647107733841084
+    second: enemy_bloater_45
+  - first:
+      213: -5409642918889109073
+    second: enemy_bloater_46
+  - first:
+      213: 1538913081965414273
+    second: enemy_bloater_47
+  - first:
+      213: -8841024710451471885
+    second: enemy_bloater_48
+  - first:
+      213: -2617070453698105676
+    second: enemy_bloater_49
+  - first:
+      213: -5179680155540265801
+    second: enemy_bloater_50
+  - first:
+      213: 4249846896612896654
+    second: enemy_bloater_51
+  - first:
+      213: -3214107327108380119
+    second: enemy_bloater_52
+  - first:
+      213: -3191713221990301965
+    second: enemy_bloater_53
+  - first:
+      213: 3824766286691928343
+    second: enemy_bloater_54
+  - first:
+      213: 5851627983979355910
+    second: enemy_bloater_55
+  - first:
+      213: -111802880338801773
+    second: enemy_bloater_56
+  - first:
+      213: 93931174124626512
+    second: enemy_bloater_57
+  - first:
+      213: -4986732615907754755
+    second: enemy_bloater_58
+  - first:
+      213: 4371447781846977050
+    second: enemy_bloater_59
+  - first:
+      213: -6658615973552669271
+    second: enemy_bloater_60
+  - first:
+      213: -4123725349765369489
+    second: enemy_bloater_61
+  - first:
+      213: -8846562734839997541
+    second: enemy_bloater_62
+  - first:
+      213: -4751471192319958819
+    second: enemy_bloater_63
+  - first:
+      213: 5386443677265702272
+    second: enemy_bloater_64
+  - first:
+      213: -1572556426660238836
+    second: enemy_bloater_65
+  - first:
+      213: -4388438400640504295
+    second: enemy_bloater_66
+  - first:
+      213: 877361987504643731
+    second: enemy_bloater_67
+  - first:
+      213: 6358839976659207509
+    second: enemy_bloater_68
+  - first:
+      213: -8258625043956820377
+    second: enemy_bloater_69
+  - first:
+      213: -2282926898541294137
+    second: enemy_bloater_70
+  - first:
+      213: -4660092768403785547
+    second: enemy_bloater_71
+  - first:
+      213: -6943648875923715403
+    second: enemy_bloater_72
+  - first:
+      213: 6276785639026060930
+    second: enemy_bloater_73
+  - first:
+      213: 6699332686108261112
+    second: enemy_bloater_74
+  - first:
+      213: 1373322509596383708
+    second: enemy_bloater_75
+  - first:
+      213: -9093870530446458006
+    second: enemy_bloater_76
+  - first:
+      213: 7158292698810367055
+    second: enemy_bloater_77
+  - first:
+      213: 693811299037180043
+    second: enemy_bloater_78
+  - first:
+      213: 7485031913987602754
+    second: enemy_bloater_79
+  - first:
+      213: 8395896471602234213
+    second: enemy_bloater_80
+  - first:
+      213: 8332794709031516678
+    second: enemy_bloater_81
+  - first:
+      213: -4521195765045012077
+    second: enemy_bloater_82
+  - first:
+      213: -1025653222091471681
+    second: enemy_bloater_83
+  - first:
+      213: -8512034545770631580
+    second: enemy_bloater_84
+  - first:
+      213: -6655117455947111761
+    second: enemy_bloater_85
+  - first:
+      213: 8211638349511685088
+    second: enemy_bloater_86
+  - first:
+      213: -6341636790408491866
+    second: enemy_bloater_87
+  - first:
+      213: -555951920075728701
+    second: enemy_bloater_88
+  - first:
+      213: 1699404937085744952
+    second: enemy_bloater_89
+  - first:
+      213: 4419765029186908130
+    second: enemy_bloater_90
+  - first:
+      213: -3787139402436317595
+    second: enemy_bloater_91
+  - first:
+      213: -827831419715320842
+    second: enemy_bloater_92
+  - first:
+      213: 7831777237763739431
+    second: enemy_bloater_93
+  - first:
+      213: -4449595481634125629
+    second: enemy_bloater_94
+  - first:
+      213: 5199716822035091138
+    second: enemy_bloater_95
+  - first:
+      213: 7584321765529529675
+    second: enemy_bloater_96
+  - first:
+      213: 6010776710002513608
+    second: enemy_bloater_97
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: enemy_bloater_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 355
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19ce902d10a496140800000000000000
+      internalID: 4713379856699223185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 358
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a04c8d09d6d6d720800000000000000
+      internalID: 2870718040218812578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_2
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 358
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23b0c2b8c5aa86ee0800000000000000
+      internalID: -1267575980656161998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 358
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3767b62e414bd750800000000000000
+      internalID: 6330725505112172350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_4
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 355
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5c7b257896ebb440800000000000000
+      internalID: 4952805757699193948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_5
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 358
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29eee148cb7506b30800000000000000
+      internalID: 4278516113184059026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_6
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 358
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b23361766d1364040800000000000000
+      internalID: 4631444063719404331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_7
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 358
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67cc9bc1177b342d0800000000000000
+      internalID: -3295588805863945098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_8
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 323
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a4a3b5daef01dab0800000000000000
+      internalID: -4985185811240344414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_9
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 323
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3d59c1ace13ea710800000000000000
+      internalID: 1706356201216367930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_10
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 323
+        width: 23
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9de5d05144d9fba20800000000000000
+      internalID: 3080353585881243353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_11
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 323
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f439b54e6e4452e0800000000000000
+      internalID: -2137997687571008267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_12
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 323
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f2d97e9f8c4b0f40800000000000000
+      internalID: 5695730333462942452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_13
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 323
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f76f2942329a6da0800000000000000
+      internalID: -5950783212942825481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_14
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 323
+        width: 23
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e29bff732bc598050800000000000000
+      internalID: 5803271515357034798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_15
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 323
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4ffc3002307363e0800000000000000
+      internalID: -2061680844350881969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_16
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 291
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f8d1b38f7ca8c2c0800000000000000
+      internalID: -4411086171339106056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_17
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 291
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 826eff17b59d380a0800000000000000
+      internalID: -6880416818914138584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_18
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 291
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb816db503d01dd90800000000000000
+      internalID: -7074859038271989570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_19
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 291
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 304c39ba7df783230800000000000000
+      internalID: 3618782864865477635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_20
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 291
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c081887a5de835010800000000000000
+      internalID: 1176440975963723788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_21
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 291
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89f67e729b4d82350800000000000000
+      internalID: 5992273195919962008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_22
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 291
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e23c3b9e56773b440800000000000000
+      internalID: 4950431695006581550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_23
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 291
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2ca873bce31c1db0800000000000000
+      internalID: -4819955593849033682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_24
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 259
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d9e009a144629e30800000000000000
+      internalID: 4508776410122349016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_25
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 259
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06b448f4da11984c0800000000000000
+      internalID: -4284874134405231776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_26
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 261
+        width: 29
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 003a7c3df1ed3d710800000000000000
+      internalID: 1716960111236719360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_27
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 260
+        width: 29
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a363e43050791c150800000000000000
+      internalID: 5891155835363407418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_28
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 260
+        width: 29
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 498496b3712b48ea0800000000000000
+      internalID: -5871372201333536620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_29
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 260
+        width: 29
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e72c9f4fc98f935d0800000000000000
+      internalID: -3082159116949798274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_30
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 261
+        width: 29
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 823f53ab1ad627a60800000000000000
+      internalID: 7670313656746636072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_31
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 260
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40f6f0361b49607e0800000000000000
+      internalID: -1799587511495856380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_32
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 227
+        width: 23
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b974e4f81ed1acc50800000000000000
+      internalID: 6686189451394041755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_33
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 227
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b740604d62b6ad80800000000000000
+      internalID: -8239702285926512715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_34
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 227
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 401f989f3d4dc0240800000000000000
+      internalID: 4759412913113526532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_35
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 227
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f27b715bdb641dcd0800000000000000
+      internalID: -2535167334631885009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_36
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 227
+        width: 23
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2554a690b6dcdbf0800000000000000
+      internalID: -298127421383355093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_37
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 227
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1a847e24a8b58530800000000000000
+      internalID: 3856691671206234650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_38
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 227
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62b37724d0eba0080800000000000000
+      internalID: -9220348322928706778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_39
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 228
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48997ba2e1891e7e0800000000000000
+      internalID: -1737940725855184508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_40
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 195
+        width: 29
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eff40c1e6e72e4440800000000000000
+      internalID: 4921915315345969150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_41
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 195
+        width: 30
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84124ad3da6f53610800000000000000
+      internalID: 1600456466524021064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_42
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 195
+        width: 31
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 888f71a218c89ca40800000000000000
+      internalID: 5388992915510392968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_43
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 195
+        width: 29
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e8979edb10ac68c0800000000000000
+      internalID: -4004649927080175384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_44
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 195
+        width: 29
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7e48ea64f760ffc0800000000000000
+      internalID: -3463153813984620930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_45
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 195
+        width: 29
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44b113d64beed26f0800000000000000
+      internalID: -707647107733841084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_46
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 195
+        width: 29
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa948e14d661de4b0800000000000000
+      internalID: -5409642918889109073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_47
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 195
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18700c66b415b5510800000000000000
+      internalID: 1538913081965414273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_48
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 163
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f9d61b1ede5e4580800000000000000
+      internalID: -8841024710451471885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_49
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 163
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4be6727c94c4eabd0800000000000000
+      internalID: -2617070453698105676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_50
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 163
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b4e1e677541e18b0800000000000000
+      internalID: -5179680155540265801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_51
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 162
+        width: 29
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8f686e5c3d7afa30800000000000000
+      internalID: 4249846896612896654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_52
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 163
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92a89b14a623563d0800000000000000
+      internalID: -3214107327108380119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_53
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 163
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3feb95a2cb1c4b3d0800000000000000
+      internalID: -3191713221990301965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_54
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 164
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 719892b5cac441530800000000000000
+      internalID: 3824766286691928343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_55
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 164
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60f13dee5a8253150800000000000000
+      internalID: 5851627983979355910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_56
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 163
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39b4a886fdbc27ef0800000000000000
+      internalID: -111802880338801773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_57
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 131
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 052a80bb7e5bd4100800000000000000
+      internalID: 93931174124626512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_58
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 131
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfcb6fe4b119bcab0800000000000000
+      internalID: -4986732615907754755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_59
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 134
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1a882fb8908aac30800000000000000
+      internalID: 4371447781846977050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_60
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 131
+        width: 29
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9adb6a80d08d793a0800000000000000
+      internalID: -6658615973552669271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_61
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 131
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6136ff84a595c6c0800000000000000
+      internalID: -4123725349765369489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_62
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 131
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9b57a25012ba3580800000000000000
+      internalID: -8846562734839997541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_63
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 131
+        width: 25
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd0644dff126f0eb0800000000000000
+      internalID: -4751471192319958819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_64
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 131
+        width: 24
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08d22126cfd70ca40800000000000000
+      internalID: 5386443677265702272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_65
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 131
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0aa8aff2482d2ae0800000000000000
+      internalID: -1572556426660238836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_66
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 99
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91ea32b86822913c0800000000000000
+      internalID: -4388438400640504295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_67
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 99
+        width: 29
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39e15a444140d2c00800000000000000
+      internalID: 877361987504643731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_68
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 100
+        width: 29
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5554358a4432f3850800000000000000
+      internalID: 6358839976659207509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_69
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 100
+        width: 29
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7661fc15748736d80800000000000000
+      internalID: -8258625043956820377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_70
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 99
+        width: 30
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cd034cc41a6150e0800000000000000
+      internalID: -2282926898541294137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_71
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 99
+        width: 29
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b8fcee3156045fb0800000000000000
+      internalID: -4660092768403785547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_72
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 99
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bac689e22433af90800000000000000
+      internalID: -6943648875923715403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_73
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 99
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28eeb69684f9b1750800000000000000
+      internalID: 6276785639026060930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_74
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 67
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fa75ab559fc8fc50800000000000000
+      internalID: 6699332686108261112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_75
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 67
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd95a8adb850f0310800000000000000
+      internalID: 1373322509596383708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_76
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 67
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6388571fe41cc180800000000000000
+      internalID: -9093870530446458006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_77
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 69
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4c3dd6884d575360800000000000000
+      internalID: 7158292698810367055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_78
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 69
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b80734453b9e0a900800000000000000
+      internalID: 693811299037180043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_79
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 67
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24971bd4edc20e760800000000000000
+      internalID: 7485031913987602754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_80
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 67
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5638ec88b57348470800000000000000
+      internalID: 8395896471602234213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_81
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 67
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60af31a83a804a370800000000000000
+      internalID: 8332794709031516678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_82
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 35
+        width: 23
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 399dd70f76c7141c0800000000000000
+      internalID: -4521195765045012077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_83
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 35
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb4c08224d524c1f0800000000000000
+      internalID: -1025653222091471681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_84
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 35
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46eec77edad2fd980800000000000000
+      internalID: -8512034545770631580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_85
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 35
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa265c32fe544a3a0800000000000000
+      internalID: -6655117455947111761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_86
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 35
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e37e9e529995f170800000000000000
+      internalID: 8211638349511685088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_87
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 35
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ac472540fafdf7a0800000000000000
+      internalID: -6341636790408491866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_88
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 35
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c890bb9cacd848f0800000000000000
+      internalID: -555951920075728701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_89
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 35
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8377a8459cf759710800000000000000
+      internalID: 1699404937085744952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_90
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 3
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ef216b80e8265d30800000000000000
+      internalID: 4419765029186908130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_91
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 2
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56ee5e257c0617bc0800000000000000
+      internalID: -3787139402436317595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_92
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 2
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f306f5b5b3f284f0800000000000000
+      internalID: -827831419715320842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_93
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 2
+        width: 25
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72fc5e837ef00bc60800000000000000
+      internalID: 7831777237763739431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_94
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 2
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c8c3030c7cdf32c0800000000000000
+      internalID: -4449595481634125629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_95
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 2
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ce460e76ea192840800000000000000
+      internalID: 5199716822035091138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_96
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 2
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4da6a8567ce04960800000000000000
+      internalID: 7584321765529529675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bloater_97
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 2
+        width: 34
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c614ef32919a6350800000000000000
+      internalID: 6010776710002513608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

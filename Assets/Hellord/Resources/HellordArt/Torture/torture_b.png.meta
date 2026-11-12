@@ -1,0 +1,1555 @@
+fileFormatVersion: 2
+guid: 48bd769b6532fe08baccabfeb70b9b8a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3223797242587633543
+    second: torture_b_0
+  - first:
+      213: -1412798895384272854
+    second: torture_b_1
+  - first:
+      213: 7484414399981586407
+    second: torture_b_2
+  - first:
+      213: 4605982185984872818
+    second: torture_b_3
+  - first:
+      213: 6393048605420746697
+    second: torture_b_4
+  - first:
+      213: 442342141805418092
+    second: torture_b_5
+  - first:
+      213: 4962958159029568048
+    second: torture_b_6
+  - first:
+      213: 4543968125819724873
+    second: torture_b_7
+  - first:
+      213: -2921796831915185466
+    second: torture_b_8
+  - first:
+      213: -8295882119809989467
+    second: torture_b_9
+  - first:
+      213: 1920937213786013992
+    second: torture_b_10
+  - first:
+      213: -1451795876514285685
+    second: torture_b_11
+  - first:
+      213: 8921990920685255521
+    second: torture_b_12
+  - first:
+      213: -7773246389400729562
+    second: torture_b_13
+  - first:
+      213: 6689369169535240665
+    second: torture_b_14
+  - first:
+      213: 3677384585742396398
+    second: torture_b_15
+  - first:
+      213: 7596490903174125233
+    second: torture_b_16
+  - first:
+      213: 285608427335871165
+    second: torture_b_17
+  - first:
+      213: -5562119328747765794
+    second: torture_b_18
+  - first:
+      213: -5567802060702643702
+    second: torture_b_19
+  - first:
+      213: 1851701826013171508
+    second: torture_b_20
+  - first:
+      213: -1791165231959192602
+    second: torture_b_21
+  - first:
+      213: 9165428912365092872
+    second: torture_b_22
+  - first:
+      213: -8372962091738377588
+    second: torture_b_23
+  - first:
+      213: 5554888821580064608
+    second: torture_b_24
+  - first:
+      213: 7189698701271376804
+    second: torture_b_25
+  - first:
+      213: -2485669306227203840
+    second: torture_b_26
+  - first:
+      213: 4732144584444883265
+    second: torture_b_27
+  - first:
+      213: -1484925341550038307
+    second: torture_b_28
+  - first:
+      213: 5465920061254177479
+    second: torture_b_29
+  - first:
+      213: -7582351110014981286
+    second: torture_b_30
+  - first:
+      213: 2218064738177116254
+    second: torture_b_31
+  - first:
+      213: -6767646258821901995
+    second: torture_b_32
+  - first:
+      213: -7826771757981058212
+    second: torture_b_33
+  - first:
+      213: -5438984200622847843
+    second: torture_b_34
+  - first:
+      213: 657977462231584855
+    second: torture_b_35
+  - first:
+      213: 6773438749796034804
+    second: torture_b_36
+  - first:
+      213: 8085446893070692937
+    second: torture_b_37
+  - first:
+      213: -411503510778073940
+    second: torture_b_38
+  - first:
+      213: -8728033691746410736
+    second: torture_b_39
+  - first:
+      213: 5691744959245409267
+    second: torture_b_40
+  - first:
+      213: -8596649968886337421
+    second: torture_b_41
+  - first:
+      213: -5849627565330832616
+    second: torture_b_42
+  - first:
+      213: 1314043241072185439
+    second: torture_b_43
+  - first:
+      213: -4680927597917479712
+    second: torture_b_44
+  - first:
+      213: 6020506437564269191
+    second: torture_b_45
+  - first:
+      213: 8528319459265019597
+    second: torture_b_46
+  - first:
+      213: -7693012428615121517
+    second: torture_b_47
+  - first:
+      213: -9118698811715138173
+    second: torture_b_48
+  - first:
+      213: 3747911388795614335
+    second: torture_b_49
+  - first:
+      213: 8016687857778947473
+    second: torture_b_50
+  - first:
+      213: 606190642653333526
+    second: torture_b_51
+  - first:
+      213: 1493886366470371830
+    second: torture_b_52
+  - first:
+      213: -6340276959783467934
+    second: torture_b_53
+  - first:
+      213: 939900028004959232
+    second: torture_b_54
+  - first:
+      213: 430095724898930728
+    second: torture_b_55
+  - first:
+      213: 5547220195126183000
+    second: torture_b_56
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: torture_b_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 746
+        width: 114
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 787d150038a3dbc20800000000000000
+      internalID: 3223797242587633543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_1
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 665
+        width: 66
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a206e85d3eab46ce0800000000000000
+      internalID: -1412798895384272854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_2
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 742
+        width: 114
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e788be1e3bfdd760800000000000000
+      internalID: 7484414399981586407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_3
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 665
+        width: 66
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 271d765056cbbef30800000000000000
+      internalID: 4605982185984872818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_4
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 738
+        width: 128
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c7f8e5b5dba8b850800000000000000
+      internalID: 6393048605420746697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_5
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 665
+        width: 66
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c665f7795d3832600800000000000000
+      internalID: 442342141805418092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_6
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 734
+        width: 157
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03285189628ffd440800000000000000
+      internalID: 4962958159029568048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_7
+      rect:
+        serializedVersion: 2
+        x: 1767
+        y: 665
+        width: 65
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 944ae2a7fea6f0f30800000000000000
+      internalID: 4543968125819724873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_8
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 701
+        width: 76
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ca65dff241b377d0800000000000000
+      internalID: -2921796831915185466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_9
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 701
+        width: 76
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a4063e5a2b1fdc80800000000000000
+      internalID: -8295882119809989467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_10
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 701
+        width: 76
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8214b87e73a88aa10800000000000000
+      internalID: 1920937213786013992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_11
+      rect:
+        serializedVersion: 2
+        x: 1528
+        y: 701
+        width: 76
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b873dfd975f2adbe0800000000000000
+      internalID: -1451795876514285685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_12
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 527
+        width: 114
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16b74bcb87741db70800000000000000
+      internalID: 8921990920685255521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_13
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 443
+        width: 66
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6288e20e791ef1490800000000000000
+      internalID: -7773246389400729562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_14
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 535
+        width: 114
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d9099161d965dc50800000000000000
+      internalID: 6689369169535240665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_15
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 527
+        width: 84
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eeb2caf0cc1b80330800000000000000
+      internalID: 3677384585742396398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_16
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 443
+        width: 66
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b61e2f7a382c6960800000000000000
+      internalID: 7596490903174125233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_17
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 535
+        width: 114
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dba6638f95fa6f300800000000000000
+      internalID: 285608427335871165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_18
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 527
+        width: 84
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edfb7ab90f16fc2b0800000000000000
+      internalID: -5562119328747765794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_19
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 443
+        width: 66
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0a812876813bb2b0800000000000000
+      internalID: -5567802060702643702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_20
+      rect:
+        serializedVersion: 2
+        x: 1395
+        y: 535
+        width: 114
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43f0571000192b910800000000000000
+      internalID: 1851701826013171508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_21
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 527
+        width: 84
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ebca0726b08427e0800000000000000
+      internalID: -1791165231959192602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_22
+      rect:
+        serializedVersion: 2
+        x: 1767
+        y: 443
+        width: 65
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 800cd970905223f70800000000000000
+      internalID: 9165428912365092872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_23
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 479
+        width: 76
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c825f14e6534dcb80800000000000000
+      internalID: -8372962091738377588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_24
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 479
+        width: 76
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0676111c3fde61d40800000000000000
+      internalID: 5554888821580064608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_25
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 479
+        width: 76
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a32e5b40e0f6c360800000000000000
+      internalID: 7189698701271376804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_26
+      rect:
+        serializedVersion: 2
+        x: 1528
+        y: 479
+        width: 76
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0016c358fe0218dd0800000000000000
+      internalID: -2485669306227203840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_27
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 313
+        width: 114
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14130a57d64fba140800000000000000
+      internalID: 4732144584444883265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_28
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 305
+        width: 84
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd23fe2f44c746be0800000000000000
+      internalID: -1484925341550038307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_29
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 221
+        width: 66
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c29cb50659dadb40800000000000000
+      internalID: 5465920061254177479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_30
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 313
+        width: 114
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5ba445a6d316c690800000000000000
+      internalID: -7582351110014981286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_31
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 305
+        width: 84
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e58edd7a02628ce10800000000000000
+      internalID: 2218064738177116254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_32
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 221
+        width: 66
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5515b69859d7412a0800000000000000
+      internalID: -6767646258821901995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_33
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 313
+        width: 114
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5bba7bdd88b16390800000000000000
+      internalID: -7826771757981058212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_34
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 305
+        width: 84
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d98c9eebfa8d484b0800000000000000
+      internalID: -5438984200622847843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_35
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 221
+        width: 66
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 750d68a040b912900800000000000000
+      internalID: 657977462231584855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_36
+      rect:
+        serializedVersion: 2
+        x: 1395
+        y: 313
+        width: 114
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f8657dd7a6100e50800000000000000
+      internalID: 6773438749796034804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_37
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 305
+        width: 84
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 942b3c75c17453070800000000000000
+      internalID: 8085446893070692937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_38
+      rect:
+        serializedVersion: 2
+        x: 1767
+        y: 221
+        width: 65
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cac2f38bcbb0a4af0800000000000000
+      internalID: -411503510778073940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_39
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 257
+        width: 76
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01f50d7b99bcfd680800000000000000
+      internalID: -8728033691746410736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_40
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 257
+        width: 76
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fb51ff52e32dfe40800000000000000
+      internalID: 5691744959245409267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_41
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 257
+        width: 76
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 370382a766092b880800000000000000
+      internalID: -8596649968886337421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_42
+      rect:
+        serializedVersion: 2
+        x: 1528
+        y: 257
+        width: 76
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8136f14d8b2f1dea0800000000000000
+      internalID: -5849627565330832616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_43
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 91
+        width: 114
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f505c9b9d5b6c3210800000000000000
+      internalID: 1314043241072185439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_44
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 83
+        width: 84
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ec5eca76210a0fb0800000000000000
+      internalID: -4680927597917479712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_45
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 0
+        width: 66
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78288faf4b22d8350800000000000000
+      internalID: 6020506437564269191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_46
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 91
+        width: 114
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcefa8cfc5daa5670800000000000000
+      internalID: 8528319459265019597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_47
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 83
+        width: 84
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3950bbb94fdec3590800000000000000
+      internalID: -7693012428615121517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_48
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 0
+        width: 66
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38d41f16ebfd37180800000000000000
+      internalID: -9118698811715138173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_49
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 83
+        width: 114
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f74bdc20d81430430800000000000000
+      internalID: 3747911388795614335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_50
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 0
+        width: 66
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 195f916e12ff04f60800000000000000
+      internalID: 8016687857778947473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_51
+      rect:
+        serializedVersion: 2
+        x: 1395
+        y: 83
+        width: 114
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61884818d2f996800800000000000000
+      internalID: 606190642653333526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_52
+      rect:
+        serializedVersion: 2
+        x: 1767
+        y: 0
+        width: 65
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f9f3404cb95bb410800000000000000
+      internalID: 1493886366470371830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_53
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 35
+        width: 76
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 264438282bfc208a0800000000000000
+      internalID: -6340276959783467934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_54
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 35
+        width: 76
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0048d9d78123b0d00800000000000000
+      internalID: 939900028004959232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_55
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 35
+        width: 76
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 820d30678c108f500800000000000000
+      internalID: 430095724898930728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_b_56
+      rect:
+        serializedVersion: 2
+        x: 1528
+        y: 35
+        width: 76
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8548e55806fabfc40800000000000000
+      internalID: 5547220195126183000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

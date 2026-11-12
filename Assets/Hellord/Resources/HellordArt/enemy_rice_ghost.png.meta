@@ -1,0 +1,2630 @@
+fileFormatVersion: 2
+guid: 1d9f6c9d83ad54f267d0f3291ea599e9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6595431282463601164
+    second: enemy_rice_ghost_0
+  - first:
+      213: -8711231256926201471
+    second: enemy_rice_ghost_1
+  - first:
+      213: 2062115805859950138
+    second: enemy_rice_ghost_2
+  - first:
+      213: 7905969278509669137
+    second: enemy_rice_ghost_3
+  - first:
+      213: 3823232485649625331
+    second: enemy_rice_ghost_4
+  - first:
+      213: -1971279488411447714
+    second: enemy_rice_ghost_5
+  - first:
+      213: 4541973634440068746
+    second: enemy_rice_ghost_6
+  - first:
+      213: 8009756595247960514
+    second: enemy_rice_ghost_7
+  - first:
+      213: -1597746569089803487
+    second: enemy_rice_ghost_8
+  - first:
+      213: -4520232926349093714
+    second: enemy_rice_ghost_9
+  - first:
+      213: -5965387678336624284
+    second: enemy_rice_ghost_10
+  - first:
+      213: 2223284248092176017
+    second: enemy_rice_ghost_11
+  - first:
+      213: -4683879212800939591
+    second: enemy_rice_ghost_12
+  - first:
+      213: -5069530263761678451
+    second: enemy_rice_ghost_13
+  - first:
+      213: -2770194201815078030
+    second: enemy_rice_ghost_14
+  - first:
+      213: -4162180072020944580
+    second: enemy_rice_ghost_15
+  - first:
+      213: -4616425032384343155
+    second: enemy_rice_ghost_16
+  - first:
+      213: -4013624901325939955
+    second: enemy_rice_ghost_17
+  - first:
+      213: 7194994541132567596
+    second: enemy_rice_ghost_18
+  - first:
+      213: -7105430081554227714
+    second: enemy_rice_ghost_19
+  - first:
+      213: 287295943020128554
+    second: enemy_rice_ghost_20
+  - first:
+      213: 5930028263961275083
+    second: enemy_rice_ghost_21
+  - first:
+      213: -5203783648362457921
+    second: enemy_rice_ghost_22
+  - first:
+      213: 1506122311520511966
+    second: enemy_rice_ghost_23
+  - first:
+      213: -4790308856968386163
+    second: enemy_rice_ghost_24
+  - first:
+      213: 5265672975506615453
+    second: enemy_rice_ghost_25
+  - first:
+      213: 8038636279456943017
+    second: enemy_rice_ghost_26
+  - first:
+      213: 1596550052943617388
+    second: enemy_rice_ghost_27
+  - first:
+      213: -4553848795386425390
+    second: enemy_rice_ghost_28
+  - first:
+      213: -8213435962632793528
+    second: enemy_rice_ghost_29
+  - first:
+      213: -2589900996220830818
+    second: enemy_rice_ghost_30
+  - first:
+      213: 6497608050922153729
+    second: enemy_rice_ghost_31
+  - first:
+      213: 7858292988597624511
+    second: enemy_rice_ghost_32
+  - first:
+      213: 6814702994588287485
+    second: enemy_rice_ghost_33
+  - first:
+      213: -8824385612762940257
+    second: enemy_rice_ghost_34
+  - first:
+      213: -996567686918935346
+    second: enemy_rice_ghost_35
+  - first:
+      213: -8065790074079914320
+    second: enemy_rice_ghost_36
+  - first:
+      213: 2262674018603026813
+    second: enemy_rice_ghost_37
+  - first:
+      213: -304166558294238278
+    second: enemy_rice_ghost_38
+  - first:
+      213: -8998704253891639389
+    second: enemy_rice_ghost_39
+  - first:
+      213: -2537941726174690501
+    second: enemy_rice_ghost_40
+  - first:
+      213: -2980538073763905346
+    second: enemy_rice_ghost_41
+  - first:
+      213: -2451760684069310376
+    second: enemy_rice_ghost_42
+  - first:
+      213: 4344909157012072480
+    second: enemy_rice_ghost_43
+  - first:
+      213: 8799961752379971232
+    second: enemy_rice_ghost_44
+  - first:
+      213: 2441976580259129524
+    second: enemy_rice_ghost_45
+  - first:
+      213: 732853887037236953
+    second: enemy_rice_ghost_46
+  - first:
+      213: 2724753588249290691
+    second: enemy_rice_ghost_47
+  - first:
+      213: 210909637048308790
+    second: enemy_rice_ghost_48
+  - first:
+      213: 8004005371762529671
+    second: enemy_rice_ghost_49
+  - first:
+      213: -4216143486226879279
+    second: enemy_rice_ghost_50
+  - first:
+      213: -3952239368130538702
+    second: enemy_rice_ghost_51
+  - first:
+      213: 4216430966680052674
+    second: enemy_rice_ghost_52
+  - first:
+      213: -7050152950083848614
+    second: enemy_rice_ghost_53
+  - first:
+      213: -2404089030071607154
+    second: enemy_rice_ghost_54
+  - first:
+      213: 6293964699162754281
+    second: enemy_rice_ghost_55
+  - first:
+      213: 423401560990416727
+    second: enemy_rice_ghost_56
+  - first:
+      213: 1576553517306696481
+    second: enemy_rice_ghost_57
+  - first:
+      213: -5940289552078765189
+    second: enemy_rice_ghost_58
+  - first:
+      213: 6598993671936184926
+    second: enemy_rice_ghost_59
+  - first:
+      213: -8609082373862079067
+    second: enemy_rice_ghost_60
+  - first:
+      213: 4280276434303945973
+    second: enemy_rice_ghost_61
+  - first:
+      213: -8956165887764221494
+    second: enemy_rice_ghost_62
+  - first:
+      213: 1772768921515075795
+    second: enemy_rice_ghost_63
+  - first:
+      213: 8652629157126746378
+    second: enemy_rice_ghost_64
+  - first:
+      213: 1475285813927894252
+    second: enemy_rice_ghost_65
+  - first:
+      213: 6652821840351779196
+    second: enemy_rice_ghost_66
+  - first:
+      213: -5824753098670984102
+    second: enemy_rice_ghost_67
+  - first:
+      213: -7434170128674354158
+    second: enemy_rice_ghost_68
+  - first:
+      213: -6996450053416356602
+    second: enemy_rice_ghost_69
+  - first:
+      213: 7485619110277255246
+    second: enemy_rice_ghost_70
+  - first:
+      213: 4543332121150982678
+    second: enemy_rice_ghost_71
+  - first:
+      213: -6874747822130235137
+    second: enemy_rice_ghost_72
+  - first:
+      213: -9184150508731329224
+    second: enemy_rice_ghost_73
+  - first:
+      213: 5072867891758594613
+    second: enemy_rice_ghost_74
+  - first:
+      213: -2467938735980194966
+    second: enemy_rice_ghost_75
+  - first:
+      213: -6324348927200001256
+    second: enemy_rice_ghost_76
+  - first:
+      213: -2841244602186931336
+    second: enemy_rice_ghost_77
+  - first:
+      213: -8677806561760191050
+    second: enemy_rice_ghost_78
+  - first:
+      213: -2988754460360575271
+    second: enemy_rice_ghost_79
+  - first:
+      213: -2045776268017571467
+    second: enemy_rice_ghost_80
+  - first:
+      213: 7595678764156918353
+    second: enemy_rice_ghost_81
+  - first:
+      213: -150272485074999113
+    second: enemy_rice_ghost_82
+  - first:
+      213: 7747225845132786521
+    second: enemy_rice_ghost_83
+  - first:
+      213: -4364970794130643414
+    second: enemy_rice_ghost_84
+  - first:
+      213: 8591437074566428221
+    second: enemy_rice_ghost_85
+  - first:
+      213: 8196945641513867967
+    second: enemy_rice_ghost_86
+  - first:
+      213: -4630173179912106200
+    second: enemy_rice_ghost_87
+  - first:
+      213: 127415908714039301
+    second: enemy_rice_ghost_88
+  - first:
+      213: -1510192194579809596
+    second: enemy_rice_ghost_89
+  - first:
+      213: -163129053936757810
+    second: enemy_rice_ghost_90
+  - first:
+      213: 2433041426125978795
+    second: enemy_rice_ghost_91
+  - first:
+      213: 3056787411757315261
+    second: enemy_rice_ghost_92
+  - first:
+      213: -9113650698797207256
+    second: enemy_rice_ghost_93
+  - first:
+      213: -3543129824799059659
+    second: enemy_rice_ghost_94
+  - first:
+      213: -5097860547828185535
+    second: enemy_rice_ghost_95
+  - first:
+      213: 6348042750413823444
+    second: enemy_rice_ghost_96
+  - first:
+      213: 3381525152391643447
+    second: enemy_rice_ghost_97
+  - first:
+      213: -5960372221391661460
+    second: enemy_rice_ghost_98
+  - first:
+      213: -6567754858171220016
+    second: enemy_rice_ghost_99
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: enemy_rice_ghost_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 355
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fd024451325874a0800000000000000
+      internalID: -6595431282463601164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 356
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18952ae635d7b1780800000000000000
+      internalID: -8711231256926201471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_2
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 355
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3e200e566b1e9c10800000000000000
+      internalID: 2062115805859950138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 355
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11b58b2db25a7bd60800000000000000
+      internalID: 7905969278509669137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_4
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 355
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f031e870b9de0530800000000000000
+      internalID: 3823232485649625331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_5
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 356
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5ec834efbb94a4e0800000000000000
+      internalID: -1971279488411447714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_6
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 355
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8e7df3c4f4580f30800000000000000
+      internalID: 4541973634440068746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_7
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 355
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c1d8159f2f582f60800000000000000
+      internalID: 8009756595247960514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_8
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 323
+        width: 25
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12b9d4ce5f9a3d9e0800000000000000
+      internalID: -1597746569089803487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_9
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 323
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea410fa4a18e441c0800000000000000
+      internalID: -4520232926349093714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_10
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 324
+        width: 26
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 469d045338fa63da0800000000000000
+      internalID: -5965387678336624284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_11
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 323
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19e61428e31bade10800000000000000
+      internalID: 2223284248092176017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_12
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 323
+        width: 25
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b9e9261ca48ffeb0800000000000000
+      internalID: -4683879212800939591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_13
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 323
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8f846aa51965a9b0800000000000000
+      internalID: -5069530263761678451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_14
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 324
+        width: 26
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27b27f1fc0b4e89d0800000000000000
+      internalID: -2770194201815078030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_15
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 323
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c395bf3d647fc36c0800000000000000
+      internalID: -4162180072020944580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_16
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 291
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d83928454e92fefb0800000000000000
+      internalID: -4616425032384343155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_17
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 292
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0b1ec6da6dbc48c0800000000000000
+      internalID: -4013624901325939955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_18
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 310
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c24d4191a61c9d360800000000000000
+      internalID: 7194994541132567596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_19
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 291
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efdd59cacf0746d90800000000000000
+      internalID: -7105430081554227714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_20
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 291
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a292025532eacf300800000000000000
+      internalID: 287295943020128554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_21
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 291
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bca20759941bb4250800000000000000
+      internalID: 5930028263961275083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_22
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 292
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb49e57b75278c7b0800000000000000
+      internalID: -5203783648362457921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_23
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 310
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed768763342d6e410800000000000000
+      internalID: 1506122311520511966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_24
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 291
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d89edf78977658db0800000000000000
+      internalID: -4790308856968386163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_25
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 291
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9c22782cad631940800000000000000
+      internalID: 5265672975506615453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_26
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 259
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ab499b0b19fe8f60800000000000000
+      internalID: 8038636279456943017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_27
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 259
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6dd5d370d5182610800000000000000
+      internalID: 1596550052943617388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_28
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 260
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dfc62ed5aa7dc0c0800000000000000
+      internalID: -4553848795386425390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_29
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 260
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8429ad53283040e80800000000000000
+      internalID: -8213435962632793528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_30
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 259
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9bb3dc04c2de0cd0800000000000000
+      internalID: -2589900996220830818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_31
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 259
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 107eee4b8142c2a50800000000000000
+      internalID: 6497608050922153729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_32
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 259
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbedd4e86d34e0d60800000000000000
+      internalID: 7858292988597624511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_33
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 259
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df1c93a8440b29e50800000000000000
+      internalID: 6814702994588287485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_34
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 227
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9c723ee90c798580800000000000000
+      internalID: -8824385612762940257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_35
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 227
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecc609208fa7b22f0800000000000000
+      internalID: -996567686918935346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_36
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 228
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b6589979ae801090800000000000000
+      internalID: -8065790074079914320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_37
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 229
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d79c6512802a66f10800000000000000
+      internalID: 2262674018603026813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_38
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 229
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abb9154702267cbf0800000000000000
+      internalID: -304166558294238278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_39
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 228
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a70ef3882e2e1380800000000000000
+      internalID: -8998704253891639389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_40
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 227
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3347b6527b67ccd0800000000000000
+      internalID: -2537941726174690501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_41
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 227
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb086c9d96003a6d0800000000000000
+      internalID: -2980538073763905346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_42
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 195
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 850b7c7d5a899fdd0800000000000000
+      internalID: -2451760684069310376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_43
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 195
+        width: 23
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 028eb05abd73c4c30800000000000000
+      internalID: 4344909157012072480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_44
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 196
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a6d1afe69ebf1a70800000000000000
+      internalID: 8799961752379971232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_45
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 197
+        width: 23
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b82b28f2c4a3e120800000000000000
+      internalID: 2441976580259129524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_46
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 197
+        width: 23
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d66e193abe9b2a00800000000000000
+      internalID: 732853887037236953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_47
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 196
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c7e110c3f440d520800000000000000
+      internalID: 2724753588249290691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_48
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 195
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63498fb823d4de200800000000000000
+      internalID: 210909637048308790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_49
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 195
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78559348a70f31f60800000000000000
+      internalID: 8004005371762529671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_50
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 163
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dcae5d56df3d75c0800000000000000
+      internalID: -4216143486226879279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_51
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 163
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 233d34b0c33d629c0800000000000000
+      internalID: -3952239368130538702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_52
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 163
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c3ebe4ef95c38a30800000000000000
+      internalID: 4216430966680052674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_53
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 163
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a567416ce33d82e90800000000000000
+      internalID: -7050152950083848614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_54
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 163
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e802b2ab3c5f2aed0800000000000000
+      internalID: -2404089030071607154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_55
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 163
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ecb17a0c87a85750800000000000000
+      internalID: 6293964699162754281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_56
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 163
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75ffd28f97930e500800000000000000
+      internalID: 423401560990416727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_57
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 163
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1235570321b01e510800000000000000
+      internalID: 1576553517306696481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_58
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 131
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b738169102adf8da0800000000000000
+      internalID: -5940289552078765189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_59
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 131
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e529eca18c5549b50800000000000000
+      internalID: 6598993671936184926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_60
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 131
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a5cfdf9135668880800000000000000
+      internalID: -8609082373862079067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_61
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 131
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fc89273db8966b30800000000000000
+      internalID: 4280276434303945973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_62
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 131
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac1b75ea39e45b380800000000000000
+      internalID: -8956165887764221494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_63
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 131
+        width: 29
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d822cb01f32a9810800000000000000
+      internalID: 1772768921515075795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_64
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 131
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a013ab3ff50541870800000000000000
+      internalID: 8652629157126746378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_65
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 131
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cec5851a1a4497410800000000000000
+      internalID: 1475285813927894252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_66
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 99
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c79d0243732935c50800000000000000
+      internalID: 6652821840351779196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_67
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 99
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a543c59eae15a2fa0800000000000000
+      internalID: -5824753098670984102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_68
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 99
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21c8b88e7a584d890800000000000000
+      internalID: -7434170128674354158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_69
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 99
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 605fa55cebd97ee90800000000000000
+      internalID: -6996450053416356602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_70
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 99
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4093f79be242e760800000000000000
+      internalID: 7485619110277255246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_71
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 99
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61a83d91e782d0f30800000000000000
+      internalID: 4543332121150982678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_72
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 99
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff8798d974df790a0800000000000000
+      internalID: -6874747822130235137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_73
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 99
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8359853a5c75b8080800000000000000
+      internalID: -9184150508731329224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_74
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 67
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53a71c86872766640800000000000000
+      internalID: 5072867891758594613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_75
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 68
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a63597a9bce10cdd0800000000000000
+      internalID: -2467938735980194966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_76
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 68
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8130f9698266b38a0800000000000000
+      internalID: -6324348927200001256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_77
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 68
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 873e6ae761fd198d0800000000000000
+      internalID: -2841244602186931336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_78
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 67
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bddab8b8ec329780800000000000000
+      internalID: -8677806561760191050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_79
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 68
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d6f75547afc586d0800000000000000
+      internalID: -2988754460360575271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_80
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 68
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57963eeb251fb93e0800000000000000
+      internalID: -2045776268017571467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_81
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 68
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15a1d85a795496960800000000000000
+      internalID: 7595678764156918353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_82
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 35
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b8e69398ff1aedf0800000000000000
+      internalID: -150272485074999113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_83
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 35
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95b7ddd0cdca38b60800000000000000
+      internalID: 7747225845132786521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_84
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 35
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2663e870328c63c0800000000000000
+      internalID: -4364970794130643414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_85
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 35
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3637abff7aea3770800000000000000
+      internalID: 8591437074566428221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_86
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 35
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbade95b1a661c170800000000000000
+      internalID: 8196945641513867967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_87
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 35
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82f4cca46025ebfb0800000000000000
+      internalID: -4630173179912106200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_88
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 35
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50842a9081ca4c100800000000000000
+      internalID: 127415908714039301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_89
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 35
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cab08b4338ba0be0800000000000000
+      internalID: -1510192194579809596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_90
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 3
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec3dd8f5df27cbdf0800000000000000
+      internalID: -163129053936757810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_91
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 23
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bac7c084946e3c120800000000000000
+      internalID: 2433041426125978795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_92
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 3
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db43ea794f3eb6a20800000000000000
+      internalID: 3056787411757315261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_93
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 24
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 821b333c9fec58180800000000000000
+      internalID: -9113650698797207256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_94
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 3
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53192c7523644dec0800000000000000
+      internalID: -3543129824799059659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_95
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 3
+        width: 24
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 146093467d2c049b0800000000000000
+      internalID: -5097860547828185535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_96
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 3
+        width: 24
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ddd8658f37c81850800000000000000
+      internalID: 6348042750413823444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_97
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 3
+        width: 24
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7314a53c5379dee20800000000000000
+      internalID: 3381525152391643447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_98
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 3
+        width: 28
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6618d64b01884da0800000000000000
+      internalID: -5960372221391661460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_rice_ghost_99
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 3
+        width: 28
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dfbbd201c5aad4a0800000000000000
+      internalID: -6567754858171220016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

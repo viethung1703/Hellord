@@ -1,0 +1,1955 @@
+fileFormatVersion: 2
+guid: 3024593b5626375019befaccdf2f0b4f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -467883852653806123
+    second: lavaA_pieces_32px_decal_sheet_0
+  - first:
+      213: 7282853212108258738
+    second: lavaA_pieces_32px_decal_sheet_1
+  - first:
+      213: 823882886531993815
+    second: lavaA_pieces_32px_decal_sheet_2
+  - first:
+      213: 5244745371484677423
+    second: lavaA_pieces_32px_decal_sheet_3
+  - first:
+      213: 1934415248506809980
+    second: lavaA_pieces_32px_decal_sheet_4
+  - first:
+      213: -3486419168101920024
+    second: lavaA_pieces_32px_decal_sheet_5
+  - first:
+      213: 1029091989069006407
+    second: lavaA_pieces_32px_decal_sheet_6
+  - first:
+      213: 5621151200723031661
+    second: lavaA_pieces_32px_decal_sheet_7
+  - first:
+      213: 5101617513389291872
+    second: lavaA_pieces_32px_decal_sheet_8
+  - first:
+      213: -5131871764015794436
+    second: lavaA_pieces_32px_decal_sheet_9
+  - first:
+      213: 501234426409638454
+    second: lavaA_pieces_32px_decal_sheet_10
+  - first:
+      213: -8766131675697434543
+    second: lavaA_pieces_32px_decal_sheet_11
+  - first:
+      213: 1177731523540434235
+    second: lavaA_pieces_32px_decal_sheet_12
+  - first:
+      213: 2326549931693009085
+    second: lavaA_pieces_32px_decal_sheet_13
+  - first:
+      213: -7222628447099547372
+    second: lavaA_pieces_32px_decal_sheet_14
+  - first:
+      213: -841296799963789135
+    second: lavaA_pieces_32px_decal_sheet_15
+  - first:
+      213: -685738973044988470
+    second: lavaA_pieces_32px_decal_sheet_16
+  - first:
+      213: -430362307718176590
+    second: lavaA_pieces_32px_decal_sheet_17
+  - first:
+      213: -1846240429358381886
+    second: lavaA_pieces_32px_decal_sheet_18
+  - first:
+      213: 3632790271275966633
+    second: lavaA_pieces_32px_decal_sheet_19
+  - first:
+      213: -4123191047242148116
+    second: lavaA_pieces_32px_decal_sheet_20
+  - first:
+      213: -828386006234520552
+    second: lavaA_pieces_32px_decal_sheet_21
+  - first:
+      213: 4960614271517046616
+    second: lavaA_pieces_32px_decal_sheet_22
+  - first:
+      213: -245199218092896474
+    second: lavaA_pieces_32px_decal_sheet_23
+  - first:
+      213: 3934383219880340164
+    second: lavaA_pieces_32px_decal_sheet_24
+  - first:
+      213: -8577439052222754543
+    second: lavaA_pieces_32px_decal_sheet_25
+  - first:
+      213: 8847399387998755674
+    second: lavaA_pieces_32px_decal_sheet_26
+  - first:
+      213: 1592931198623129021
+    second: lavaA_pieces_32px_decal_sheet_27
+  - first:
+      213: -7601764095352020366
+    second: lavaA_pieces_32px_decal_sheet_28
+  - first:
+      213: 7984706695574676172
+    second: lavaA_pieces_32px_decal_sheet_29
+  - first:
+      213: -42145597553508877
+    second: lavaA_pieces_32px_decal_sheet_30
+  - first:
+      213: -1602751203416579650
+    second: lavaA_pieces_32px_decal_sheet_31
+  - first:
+      213: -9056589882703613932
+    second: lavaA_pieces_32px_decal_sheet_32
+  - first:
+      213: -4668044021255297900
+    second: lavaA_pieces_32px_decal_sheet_33
+  - first:
+      213: -269882416286758801
+    second: lavaA_pieces_32px_decal_sheet_34
+  - first:
+      213: 8668524234845413028
+    second: lavaA_pieces_32px_decal_sheet_35
+  - first:
+      213: 31786884928795772
+    second: lavaA_pieces_32px_decal_sheet_36
+  - first:
+      213: -1083201148993778407
+    second: lavaA_pieces_32px_decal_sheet_37
+  - first:
+      213: 871662492856893664
+    second: lavaA_pieces_32px_decal_sheet_38
+  - first:
+      213: -2352200677985784140
+    second: lavaA_pieces_32px_decal_sheet_39
+  - first:
+      213: 9214794552357283373
+    second: lavaA_pieces_32px_decal_sheet_40
+  - first:
+      213: -5679901398142614150
+    second: lavaA_pieces_32px_decal_sheet_41
+  - first:
+      213: 4499603300717403972
+    second: lavaA_pieces_32px_decal_sheet_42
+  - first:
+      213: -6312093568106020879
+    second: lavaA_pieces_32px_decal_sheet_43
+  - first:
+      213: -8087987883869658549
+    second: lavaA_pieces_32px_decal_sheet_44
+  - first:
+      213: 6355310600477639313
+    second: lavaA_pieces_32px_decal_sheet_45
+  - first:
+      213: 1119271077579598902
+    second: lavaA_pieces_32px_decal_sheet_46
+  - first:
+      213: 3490131035548588458
+    second: lavaA_pieces_32px_decal_sheet_47
+  - first:
+      213: 194368773849136704
+    second: lavaA_pieces_32px_decal_sheet_48
+  - first:
+      213: -4191428859104949686
+    second: lavaA_pieces_32px_decal_sheet_49
+  - first:
+      213: -163844381949312263
+    second: lavaA_pieces_32px_decal_sheet_50
+  - first:
+      213: -5478598941897026216
+    second: lavaA_pieces_32px_decal_sheet_51
+  - first:
+      213: 6851041017692452646
+    second: lavaA_pieces_32px_decal_sheet_52
+  - first:
+      213: -6427268577690485374
+    second: lavaA_pieces_32px_decal_sheet_53
+  - first:
+      213: 8841145831179389168
+    second: lavaA_pieces_32px_decal_sheet_54
+  - first:
+      213: 5068694181097308748
+    second: lavaA_pieces_32px_decal_sheet_55
+  - first:
+      213: 1505792551443766041
+    second: lavaA_pieces_32px_decal_sheet_56
+  - first:
+      213: -8334954339808633540
+    second: lavaA_pieces_32px_decal_sheet_57
+  - first:
+      213: -881783040890469520
+    second: lavaA_pieces_32px_decal_sheet_58
+  - first:
+      213: -8375807611274973878
+    second: lavaA_pieces_32px_decal_sheet_59
+  - first:
+      213: -3331909338676788588
+    second: lavaA_pieces_32px_decal_sheet_60
+  - first:
+      213: -4973059146456370356
+    second: lavaA_pieces_32px_decal_sheet_61
+  - first:
+      213: -5946041403597536146
+    second: lavaA_pieces_32px_decal_sheet_62
+  - first:
+      213: -8043680622284538684
+    second: lavaA_pieces_32px_decal_sheet_63
+  - first:
+      213: -7768538715148512506
+    second: lavaA_pieces_32px_decal_sheet_64
+  - first:
+      213: 2984998694741553085
+    second: lavaA_pieces_32px_decal_sheet_65
+  - first:
+      213: -4707116109850547411
+    second: lavaA_pieces_32px_decal_sheet_66
+  - first:
+      213: 1094082686537550683
+    second: lavaA_pieces_32px_decal_sheet_67
+  - first:
+      213: -546182824953066511
+    second: lavaA_pieces_32px_decal_sheet_68
+  - first:
+      213: -7917928074571141898
+    second: lavaA_pieces_32px_decal_sheet_69
+  - first:
+      213: 3552126682509893257
+    second: lavaA_pieces_32px_decal_sheet_70
+  - first:
+      213: -7896155164226693984
+    second: lavaA_pieces_32px_decal_sheet_71
+  - first:
+      213: 1152249838479958184
+    second: lavaA_pieces_32px_decal_sheet_72
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 320
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ddbd6e6d1eb189f0800000000000000
+      internalID: -467883852653806123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 320
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bd76030964e11560800000000000000
+      internalID: 7282853212108258738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 320
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d05344ce150f6b00800000000000000
+      internalID: 823882886531993815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 235
+        width: 27
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f25e7b4a02419c840800000000000000
+      internalID: 5244745371484677423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 230
+        width: 33
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7ee8576b6c68da10800000000000000
+      internalID: 1934415248506809980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 230
+        width: 33
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e21c2b0d30cd9fc0800000000000000
+      internalID: -3486419168101920024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 230
+        width: 33
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74688a136b1184e00800000000000000
+      internalID: 1029091989069006407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 230
+        width: 33
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d665bd32c37520e40800000000000000
+      internalID: 5621151200723031661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 230
+        width: 33
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 069fa7159169cc640800000000000000
+      internalID: 5101617513389291872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_9
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 230
+        width: 33
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf63bf802dde7c8b0800000000000000
+      internalID: -5131871764015794436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_10
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 230
+        width: 33
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63ad75f1e0eb4f600800000000000000
+      internalID: 501234426409638454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_11
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 230
+        width: 33
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15031c79fa1785680800000000000000
+      internalID: -8766131675697434543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_12
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 230
+        width: 33
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3d386da494285010800000000000000
+      internalID: 1177731523540434235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 171
+        width: 33
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db865c616d0994020800000000000000
+      internalID: 2326549931693009085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_14
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 166
+        width: 34
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 411100ac1b114cb90800000000000000
+      internalID: -7222628447099547372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_15
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 166
+        width: 34
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b84c7f840d1354f0800000000000000
+      internalID: -841296799963789135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_16
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 166
+        width: 34
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac523078904cb76f0800000000000000
+      internalID: -685738973044988470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_17
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 166
+        width: 34
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b0adb3e2cb070af0800000000000000
+      internalID: -430362307718176590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_18
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 166
+        width: 34
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c4012e7c16d066e0800000000000000
+      internalID: -1846240429358381886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_19
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 166
+        width: 34
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a026ee11834a6230800000000000000
+      internalID: 3632790271275966633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_20
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 166
+        width: 34
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce69f00969b77c6c0800000000000000
+      internalID: -4123191047242148116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_21
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 166
+        width: 34
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 814ac79f05bf084f0800000000000000
+      internalID: -828386006234520552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_22
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 166
+        width: 33
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 857b181c564a7d440800000000000000
+      internalID: 4960614271517046616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_23
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 127
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62f8e5a3c90e89cf0800000000000000
+      internalID: -245199218092896474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_24
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 127
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4caa93771bcb99630800000000000000
+      internalID: 3934383219880340164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_25
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 127
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11113b190a0d6f880800000000000000
+      internalID: -8577439052222754543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_26
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 127
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5b9cab2ed648ca70800000000000000
+      internalID: 8847399387998755674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_27
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 127
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbd91954c7a3b1610800000000000000
+      internalID: 1592931198623129021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_28
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 127
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2726936c4db118690800000000000000
+      internalID: -7601764095352020366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_29
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 127
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc269615f606fce60800000000000000
+      internalID: 7984706695574676172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_30
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 127
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fdf9f46dc44a6ff0800000000000000
+      internalID: -42145597553508877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_31
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 127
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb16601b542e1c9e0800000000000000
+      internalID: -1602751203416579650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_32
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 127
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 410fd0d4c77805280800000000000000
+      internalID: -9056589882703613932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 103
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 494213de1b6c73fb0800000000000000
+      internalID: -4668044021255297900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_34
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 98
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f688a1e4f5f214cf0800000000000000
+      internalID: -269882416286758801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_35
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 98
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ae53d02dd8cc4870800000000000000
+      internalID: 8668524234845413028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_36
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 98
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7472b0e00ee07000800000000000000
+      internalID: 31786884928795772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_37
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 98
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91d4ee54b42b7f0f0800000000000000
+      internalID: -1083201148993778407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_38
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 98
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e044c24b64c81c00800000000000000
+      internalID: 871662492856893664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_39
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 98
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4be693422fd4b5fd0800000000000000
+      internalID: -2352200677985784140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_40
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 98
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d26e573c2d681ef70800000000000000
+      internalID: 9214794552357283373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_41
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 98
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a75077495cfec21b0800000000000000
+      internalID: -5679901398142614150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_42
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 98
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44f9f61bc5dc17e30800000000000000
+      internalID: 4499603300717403972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_43
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 69
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ff330cb750f668a0800000000000000
+      internalID: -6312093568106020879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_44
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 64
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4229422fd1b1cf80800000000000000
+      internalID: -8087987883869658549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_45
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 64
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1928ebab159923850800000000000000
+      internalID: 6355310600477639313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_46
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 64
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63c208a6d13788f00800000000000000
+      internalID: 1119271077579598902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_47
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 64
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa990717faf6f6030800000000000000
+      internalID: 3490131035548588458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_48
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 64
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04eb4b8be5982b200800000000000000
+      internalID: 194368773849136704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_49
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 64
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4a8ab7e8ad05d5c0800000000000000
+      internalID: -4191428859104949686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_50
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 64
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f2c7771768e9bdf0800000000000000
+      internalID: -163844381949312263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_51
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 64
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85595690a4b18f3b0800000000000000
+      internalID: -5478598941897026216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_52
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 64
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6277039d189c31f50800000000000000
+      internalID: 6851041017692452646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_53
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 42
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28d7abe1841cdc6a0800000000000000
+      internalID: -6427268577690485374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_54
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 37
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f88fd28a4f02ba70800000000000000
+      internalID: 8841145831179389168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_55
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 37
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c42056ba08e975640800000000000000
+      internalID: 5068694181097308748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_56
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 37
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91b1c36f856a5e410800000000000000
+      internalID: 1505792551443766041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_57
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 37
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3d1b9c303b445c80800000000000000
+      internalID: -8334954339808633540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_58
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 37
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07382c60ff643c3f0800000000000000
+      internalID: -881783040890469520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_59
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 37
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4d21feba5723cb80800000000000000
+      internalID: -8375807611274973878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_60
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 37
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4920d541c1ea2c1d0800000000000000
+      internalID: -3331909338676788588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_61
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 37
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c43f5700e052cfab0800000000000000
+      internalID: -4973059146456370356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_62
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 37
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e64cdcec8da6b7da0800000000000000
+      internalID: -5946041403597536146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_63
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 0
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cc790e571b1f5090800000000000000
+      internalID: -8043680622284538684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_64
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 0
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60314b3b23b903490800000000000000
+      internalID: -7768538715148512506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_65
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 0
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbf23176f78dc6920800000000000000
+      internalID: 2984998694741553085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_66
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 0
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2be6d366d6fcaeb0800000000000000
+      internalID: -4707116109850547411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_67
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 0
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5bc9fd1866fe2f00800000000000000
+      internalID: 1094082686537550683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_68
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 0
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fbc0405d919b68f0800000000000000
+      internalID: -546182824953066511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_69
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 0
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fc281efd5edd1290800000000000000
+      internalID: -7917928074571141898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_70
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 0
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98e5034d560bb4130800000000000000
+      internalID: 3552126682509893257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_71
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 0
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a4d6e8b6b83b6290800000000000000
+      internalID: -7896155164226693984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lavaA_pieces_32px_decal_sheet_72
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 0
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a0691b8f1d9dff00800000000000000
+      internalID: 1152249838479958184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

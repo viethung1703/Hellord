@@ -1,0 +1,6430 @@
+fileFormatVersion: 2
+guid: a4a3453970106d641e1fbb2835f2d832
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7931587963556779163
+    second: boss_qilin_chariot_0
+  - first:
+      213: 4413869523958563039
+    second: boss_qilin_chariot_1
+  - first:
+      213: 4851965535649144175
+    second: boss_qilin_chariot_2
+  - first:
+      213: 390869043810469125
+    second: boss_qilin_chariot_3
+  - first:
+      213: -1751483718563438021
+    second: boss_qilin_chariot_4
+  - first:
+      213: -6357045774540361664
+    second: boss_qilin_chariot_5
+  - first:
+      213: -6661262864465690862
+    second: boss_qilin_chariot_6
+  - first:
+      213: -462771613368242792
+    second: boss_qilin_chariot_7
+  - first:
+      213: -2908442213521368579
+    second: boss_qilin_chariot_8
+  - first:
+      213: -4786753276376097090
+    second: boss_qilin_chariot_9
+  - first:
+      213: 4802807356579875776
+    second: boss_qilin_chariot_10
+  - first:
+      213: 6653959920651410145
+    second: boss_qilin_chariot_11
+  - first:
+      213: -7242214696247800316
+    second: boss_qilin_chariot_12
+  - first:
+      213: -7761627688093994898
+    second: boss_qilin_chariot_13
+  - first:
+      213: 1574990674773970578
+    second: boss_qilin_chariot_14
+  - first:
+      213: 8591339966899384874
+    second: boss_qilin_chariot_15
+  - first:
+      213: -701960594071856911
+    second: boss_qilin_chariot_16
+  - first:
+      213: -2806965895143931872
+    second: boss_qilin_chariot_17
+  - first:
+      213: 3663472376854997137
+    second: boss_qilin_chariot_18
+  - first:
+      213: 2852162520840688935
+    second: boss_qilin_chariot_19
+  - first:
+      213: 5309109920217136644
+    second: boss_qilin_chariot_20
+  - first:
+      213: 3782596436631708994
+    second: boss_qilin_chariot_21
+  - first:
+      213: -7777538548485997049
+    second: boss_qilin_chariot_22
+  - first:
+      213: 4733192388740394105
+    second: boss_qilin_chariot_23
+  - first:
+      213: -3371866055812292745
+    second: boss_qilin_chariot_24
+  - first:
+      213: -6804273977006382118
+    second: boss_qilin_chariot_25
+  - first:
+      213: 2585990461997854935
+    second: boss_qilin_chariot_26
+  - first:
+      213: 3715113618388550825
+    second: boss_qilin_chariot_27
+  - first:
+      213: -2641744656258016470
+    second: boss_qilin_chariot_28
+  - first:
+      213: -6080912490711199887
+    second: boss_qilin_chariot_29
+  - first:
+      213: 8117159653334665408
+    second: boss_qilin_chariot_30
+  - first:
+      213: -4595046118072051964
+    second: boss_qilin_chariot_31
+  - first:
+      213: 7949548797255796447
+    second: boss_qilin_chariot_32
+  - first:
+      213: -8222725996320131187
+    second: boss_qilin_chariot_33
+  - first:
+      213: -2684376544271379651
+    second: boss_qilin_chariot_34
+  - first:
+      213: -5010671110415320220
+    second: boss_qilin_chariot_35
+  - first:
+      213: -5813105194046000271
+    second: boss_qilin_chariot_36
+  - first:
+      213: 1299336841654319067
+    second: boss_qilin_chariot_37
+  - first:
+      213: -1046067093722213370
+    second: boss_qilin_chariot_38
+  - first:
+      213: 7783594933292628433
+    second: boss_qilin_chariot_39
+  - first:
+      213: -3303368408152200801
+    second: boss_qilin_chariot_40
+  - first:
+      213: 6498149817066040446
+    second: boss_qilin_chariot_41
+  - first:
+      213: 6467215460744841025
+    second: boss_qilin_chariot_42
+  - first:
+      213: 8067528428971682950
+    second: boss_qilin_chariot_43
+  - first:
+      213: 2455277567986068257
+    second: boss_qilin_chariot_44
+  - first:
+      213: -2897168583161696375
+    second: boss_qilin_chariot_45
+  - first:
+      213: 2688197427126011956
+    second: boss_qilin_chariot_46
+  - first:
+      213: -1875986786151007453
+    second: boss_qilin_chariot_47
+  - first:
+      213: -4970079747000271847
+    second: boss_qilin_chariot_48
+  - first:
+      213: -6045302764753629090
+    second: boss_qilin_chariot_49
+  - first:
+      213: -6039277595459880814
+    second: boss_qilin_chariot_50
+  - first:
+      213: -4776571279477914351
+    second: boss_qilin_chariot_51
+  - first:
+      213: -1194715870706556576
+    second: boss_qilin_chariot_52
+  - first:
+      213: -8567026055648338706
+    second: boss_qilin_chariot_53
+  - first:
+      213: -6420580470371404003
+    second: boss_qilin_chariot_54
+  - first:
+      213: -5031778118207066382
+    second: boss_qilin_chariot_55
+  - first:
+      213: -2974144079833805921
+    second: boss_qilin_chariot_56
+  - first:
+      213: 7266259032052912117
+    second: boss_qilin_chariot_57
+  - first:
+      213: 6608528198304326413
+    second: boss_qilin_chariot_58
+  - first:
+      213: -8718344386073363954
+    second: boss_qilin_chariot_59
+  - first:
+      213: -4337933215670692624
+    second: boss_qilin_chariot_60
+  - first:
+      213: 5250358273461753257
+    second: boss_qilin_chariot_61
+  - first:
+      213: 43457495949568534
+    second: boss_qilin_chariot_62
+  - first:
+      213: 8070847327772027532
+    second: boss_qilin_chariot_63
+  - first:
+      213: 3469744047564571664
+    second: boss_qilin_chariot_64
+  - first:
+      213: -5188835484906798040
+    second: boss_qilin_chariot_65
+  - first:
+      213: 7600896435031863055
+    second: boss_qilin_chariot_66
+  - first:
+      213: 5672331166667671456
+    second: boss_qilin_chariot_67
+  - first:
+      213: -1526935564407153827
+    second: boss_qilin_chariot_68
+  - first:
+      213: 3953776307967423512
+    second: boss_qilin_chariot_69
+  - first:
+      213: 5632361129702354052
+    second: boss_qilin_chariot_70
+  - first:
+      213: -4827872743757489945
+    second: boss_qilin_chariot_71
+  - first:
+      213: -1672504950942880058
+    second: boss_qilin_chariot_72
+  - first:
+      213: -6614761967223131342
+    second: boss_qilin_chariot_73
+  - first:
+      213: -2636909511192620540
+    second: boss_qilin_chariot_74
+  - first:
+      213: 7704590644297121523
+    second: boss_qilin_chariot_75
+  - first:
+      213: -3295517377326169507
+    second: boss_qilin_chariot_76
+  - first:
+      213: -6242309580447084682
+    second: boss_qilin_chariot_77
+  - first:
+      213: -5250453850395646150
+    second: boss_qilin_chariot_78
+  - first:
+      213: -5054177321434877066
+    second: boss_qilin_chariot_79
+  - first:
+      213: 415779823983168809
+    second: boss_qilin_chariot_80
+  - first:
+      213: 4658164222927139437
+    second: boss_qilin_chariot_81
+  - first:
+      213: 4765786826895901559
+    second: boss_qilin_chariot_82
+  - first:
+      213: -4792297923020863656
+    second: boss_qilin_chariot_83
+  - first:
+      213: -9094579862437465106
+    second: boss_qilin_chariot_84
+  - first:
+      213: -6691023400388322
+    second: boss_qilin_chariot_85
+  - first:
+      213: 5523352956074196974
+    second: boss_qilin_chariot_86
+  - first:
+      213: -3931036569734271924
+    second: boss_qilin_chariot_87
+  - first:
+      213: 6806777737551427835
+    second: boss_qilin_chariot_88
+  - first:
+      213: 5611312655728188132
+    second: boss_qilin_chariot_89
+  - first:
+      213: -2866675108702492256
+    second: boss_qilin_chariot_90
+  - first:
+      213: 2226259253600187171
+    second: boss_qilin_chariot_91
+  - first:
+      213: -3942482457051396711
+    second: boss_qilin_chariot_92
+  - first:
+      213: -1233049268506382534
+    second: boss_qilin_chariot_93
+  - first:
+      213: -3543655228219012534
+    second: boss_qilin_chariot_94
+  - first:
+      213: 1997159184807027842
+    second: boss_qilin_chariot_95
+  - first:
+      213: -2782440539226057967
+    second: boss_qilin_chariot_96
+  - first:
+      213: 7352395504815602562
+    second: boss_qilin_chariot_97
+  - first:
+      213: -4999256777913688270
+    second: boss_qilin_chariot_98
+  - first:
+      213: 517150212652944648
+    second: boss_qilin_chariot_99
+  - first:
+      213: -8315109033640948095
+    second: boss_qilin_chariot_100
+  - first:
+      213: 173331498804742451
+    second: boss_qilin_chariot_101
+  - first:
+      213: -7182220440059064709
+    second: boss_qilin_chariot_102
+  - first:
+      213: 4367632609625978487
+    second: boss_qilin_chariot_103
+  - first:
+      213: -7033196036431530575
+    second: boss_qilin_chariot_104
+  - first:
+      213: 2980077112635713103
+    second: boss_qilin_chariot_105
+  - first:
+      213: -3441431112965709740
+    second: boss_qilin_chariot_106
+  - first:
+      213: 7777810140152653641
+    second: boss_qilin_chariot_107
+  - first:
+      213: -2697232073994129473
+    second: boss_qilin_chariot_108
+  - first:
+      213: 4061351461123698713
+    second: boss_qilin_chariot_109
+  - first:
+      213: -1277158354658724865
+    second: boss_qilin_chariot_110
+  - first:
+      213: 4683612732378304388
+    second: boss_qilin_chariot_111
+  - first:
+      213: -3140953118467498425
+    second: boss_qilin_chariot_112
+  - first:
+      213: 9187347417006931890
+    second: boss_qilin_chariot_113
+  - first:
+      213: -4846425381587539366
+    second: boss_qilin_chariot_114
+  - first:
+      213: -641171298581356716
+    second: boss_qilin_chariot_115
+  - first:
+      213: 5272703522542508
+    second: boss_qilin_chariot_116
+  - first:
+      213: 4157423007864198154
+    second: boss_qilin_chariot_117
+  - first:
+      213: -1104893644933924674
+    second: boss_qilin_chariot_118
+  - first:
+      213: -6593295458121424449
+    second: boss_qilin_chariot_119
+  - first:
+      213: 2760844193597313435
+    second: boss_qilin_chariot_120
+  - first:
+      213: -234622934506111517
+    second: boss_qilin_chariot_121
+  - first:
+      213: 8975005482942347271
+    second: boss_qilin_chariot_122
+  - first:
+      213: 1685389546681105028
+    second: boss_qilin_chariot_123
+  - first:
+      213: -4922222963600779275
+    second: boss_qilin_chariot_124
+  - first:
+      213: -7959451920335439346
+    second: boss_qilin_chariot_125
+  - first:
+      213: -3967180399221394530
+    second: boss_qilin_chariot_126
+  - first:
+      213: -7058000197091627076
+    second: boss_qilin_chariot_127
+  - first:
+      213: -1869368836930018780
+    second: boss_qilin_chariot_128
+  - first:
+      213: 6715407392641105009
+    second: boss_qilin_chariot_129
+  - first:
+      213: -8080843123020366434
+    second: boss_qilin_chariot_130
+  - first:
+      213: 4300084081545565082
+    second: boss_qilin_chariot_131
+  - first:
+      213: 20761440584364735
+    second: boss_qilin_chariot_132
+  - first:
+      213: 5758981515204775806
+    second: boss_qilin_chariot_133
+  - first:
+      213: -7295599216098023623
+    second: boss_qilin_chariot_134
+  - first:
+      213: -2606273354471167091
+    second: boss_qilin_chariot_135
+  - first:
+      213: 2108647619465486622
+    second: boss_qilin_chariot_136
+  - first:
+      213: -2103394024005157192
+    second: boss_qilin_chariot_137
+  - first:
+      213: -3654552926624805058
+    second: boss_qilin_chariot_138
+  - first:
+      213: 5370611829142040081
+    second: boss_qilin_chariot_139
+  - first:
+      213: -1408435747413000097
+    second: boss_qilin_chariot_140
+  - first:
+      213: -3264060274042969056
+    second: boss_qilin_chariot_141
+  - first:
+      213: 5023393985675794495
+    second: boss_qilin_chariot_142
+  - first:
+      213: -7826839544889365404
+    second: boss_qilin_chariot_143
+  - first:
+      213: 5970684162851457185
+    second: boss_qilin_chariot_144
+  - first:
+      213: -4171735465595343262
+    second: boss_qilin_chariot_145
+  - first:
+      213: -4377393950249955182
+    second: boss_qilin_chariot_146
+  - first:
+      213: -42483418191059318
+    second: boss_qilin_chariot_147
+  - first:
+      213: -2504997060522056548
+    second: boss_qilin_chariot_148
+  - first:
+      213: 296979308694661911
+    second: boss_qilin_chariot_149
+  - first:
+      213: -552732167819070237
+    second: boss_qilin_chariot_150
+  - first:
+      213: 5646875806206504530
+    second: boss_qilin_chariot_151
+  - first:
+      213: -4620595493138251477
+    second: boss_qilin_chariot_152
+  - first:
+      213: -8824844175755490809
+    second: boss_qilin_chariot_153
+  - first:
+      213: -4886452815411020910
+    second: boss_qilin_chariot_154
+  - first:
+      213: -4800765164357039099
+    second: boss_qilin_chariot_155
+  - first:
+      213: -8377067788159633692
+    second: boss_qilin_chariot_156
+  - first:
+      213: -8449994164018700312
+    second: boss_qilin_chariot_157
+  - first:
+      213: 6794575777599182009
+    second: boss_qilin_chariot_158
+  - first:
+      213: -2493473651454162308
+    second: boss_qilin_chariot_159
+  - first:
+      213: 3126151647642276378
+    second: boss_qilin_chariot_160
+  - first:
+      213: -3936804832669758208
+    second: boss_qilin_chariot_161
+  - first:
+      213: -4375283974357822328
+    second: boss_qilin_chariot_162
+  - first:
+      213: 3538914527359400242
+    second: boss_qilin_chariot_163
+  - first:
+      213: 4288551324875203339
+    second: boss_qilin_chariot_164
+  - first:
+      213: 3484542596607418754
+    second: boss_qilin_chariot_165
+  - first:
+      213: -2258006993485133785
+    second: boss_qilin_chariot_166
+  - first:
+      213: -1022710108796899495
+    second: boss_qilin_chariot_167
+  - first:
+      213: 4061001737792807192
+    second: boss_qilin_chariot_168
+  - first:
+      213: -1760719022505233749
+    second: boss_qilin_chariot_169
+  - first:
+      213: 8046053837995724228
+    second: boss_qilin_chariot_170
+  - first:
+      213: 4061130580973150418
+    second: boss_qilin_chariot_171
+  - first:
+      213: 1289549289483540982
+    second: boss_qilin_chariot_172
+  - first:
+      213: -2767488104494206344
+    second: boss_qilin_chariot_173
+  - first:
+      213: 6514120212245716912
+    second: boss_qilin_chariot_174
+  - first:
+      213: -6631129135505314484
+    second: boss_qilin_chariot_175
+  - first:
+      213: 2753579635557536152
+    second: boss_qilin_chariot_176
+  - first:
+      213: -998099644863655241
+    second: boss_qilin_chariot_177
+  - first:
+      213: -5401430972331136271
+    second: boss_qilin_chariot_178
+  - first:
+      213: 5844271752530351329
+    second: boss_qilin_chariot_179
+  - first:
+      213: -7683865775910716893
+    second: boss_qilin_chariot_180
+  - first:
+      213: -7042377155920822250
+    second: boss_qilin_chariot_181
+  - first:
+      213: 1568961647871907407
+    second: boss_qilin_chariot_182
+  - first:
+      213: -5630060076691036759
+    second: boss_qilin_chariot_183
+  - first:
+      213: 5289774165202123867
+    second: boss_qilin_chariot_184
+  - first:
+      213: 902673169686674141
+    second: boss_qilin_chariot_185
+  - first:
+      213: 835689106059423308
+    second: boss_qilin_chariot_186
+  - first:
+      213: 5246105070073947631
+    second: boss_qilin_chariot_187
+  - first:
+      213: 5743992811479719691
+    second: boss_qilin_chariot_188
+  - first:
+      213: -5003770618806666329
+    second: boss_qilin_chariot_189
+  - first:
+      213: -7217271080038629366
+    second: boss_qilin_chariot_190
+  - first:
+      213: -3548195006505106238
+    second: boss_qilin_chariot_191
+  - first:
+      213: -3501102896367269905
+    second: boss_qilin_chariot_192
+  - first:
+      213: 8310055259574828807
+    second: boss_qilin_chariot_193
+  - first:
+      213: 8193562770904269969
+    second: boss_qilin_chariot_194
+  - first:
+      213: -9171319967227330970
+    second: boss_qilin_chariot_195
+  - first:
+      213: 8671211025348945189
+    second: boss_qilin_chariot_196
+  - first:
+      213: -6478925427432704394
+    second: boss_qilin_chariot_197
+  - first:
+      213: -3068453465058828786
+    second: boss_qilin_chariot_198
+  - first:
+      213: 335034642509374675
+    second: boss_qilin_chariot_199
+  - first:
+      213: -6675598535192195154
+    second: boss_qilin_chariot_200
+  - first:
+      213: -32865328468165826
+    second: boss_qilin_chariot_201
+  - first:
+      213: -1220451788597186402
+    second: boss_qilin_chariot_202
+  - first:
+      213: -3544832792608603666
+    second: boss_qilin_chariot_203
+  - first:
+      213: 8500730901513665227
+    second: boss_qilin_chariot_204
+  - first:
+      213: -2940707915934413574
+    second: boss_qilin_chariot_205
+  - first:
+      213: -3080287888087121758
+    second: boss_qilin_chariot_206
+  - first:
+      213: -5748635649265334680
+    second: boss_qilin_chariot_207
+  - first:
+      213: -4266219019727623146
+    second: boss_qilin_chariot_208
+  - first:
+      213: -1691171017150754657
+    second: boss_qilin_chariot_209
+  - first:
+      213: 169112532991609538
+    second: boss_qilin_chariot_210
+  - first:
+      213: -1644246332436759542
+    second: boss_qilin_chariot_211
+  - first:
+      213: 3380369811435057343
+    second: boss_qilin_chariot_212
+  - first:
+      213: -3414440655939475275
+    second: boss_qilin_chariot_213
+  - first:
+      213: -7318467007979680866
+    second: boss_qilin_chariot_214
+  - first:
+      213: 3607714870362661592
+    second: boss_qilin_chariot_215
+  - first:
+      213: -9067243568226430391
+    second: boss_qilin_chariot_216
+  - first:
+      213: 4603231557510240589
+    second: boss_qilin_chariot_217
+  - first:
+      213: -5545787583012613240
+    second: boss_qilin_chariot_218
+  - first:
+      213: -8463405293631596981
+    second: boss_qilin_chariot_219
+  - first:
+      213: 4966306211548004001
+    second: boss_qilin_chariot_220
+  - first:
+      213: 2626375038212429042
+    second: boss_qilin_chariot_221
+  - first:
+      213: -232498534327811162
+    second: boss_qilin_chariot_222
+  - first:
+      213: 2129606216539668600
+    second: boss_qilin_chariot_223
+  - first:
+      213: 5240794679543669953
+    second: boss_qilin_chariot_224
+  - first:
+      213: 2537680487705089014
+    second: boss_qilin_chariot_225
+  - first:
+      213: -1469233458580581454
+    second: boss_qilin_chariot_226
+  - first:
+      213: 668579943817669778
+    second: boss_qilin_chariot_227
+  - first:
+      213: 6730734755270466395
+    second: boss_qilin_chariot_228
+  - first:
+      213: 8581793544702200021
+    second: boss_qilin_chariot_229
+  - first:
+      213: 2385264871285393784
+    second: boss_qilin_chariot_230
+  - first:
+      213: 2543058649856984389
+    second: boss_qilin_chariot_231
+  - first:
+      213: -8711758157203827966
+    second: boss_qilin_chariot_232
+  - first:
+      213: 3010959225914297358
+    second: boss_qilin_chariot_233
+  - first:
+      213: 4207711112980442704
+    second: boss_qilin_chariot_234
+  - first:
+      213: -5775803490978461417
+    second: boss_qilin_chariot_235
+  - first:
+      213: 4599682359981631056
+    second: boss_qilin_chariot_236
+  - first:
+      213: -8954268603697499728
+    second: boss_qilin_chariot_237
+  - first:
+      213: -3718526411827174722
+    second: boss_qilin_chariot_238
+  - first:
+      213: 2794787211924603943
+    second: boss_qilin_chariot_239
+  - first:
+      213: 2206649482700684733
+    second: boss_qilin_chariot_240
+  - first:
+      213: -2553165798155887207
+    second: boss_qilin_chariot_241
+  - first:
+      213: 5184623757436473874
+    second: boss_qilin_chariot_242
+  - first:
+      213: 8337495093674479233
+    second: boss_qilin_chariot_243
+  - first:
+      213: -996194517794115645
+    second: boss_qilin_chariot_244
+  - first:
+      213: -6568481213544885313
+    second: boss_qilin_chariot_245
+  - first:
+      213: -8062805188462540014
+    second: boss_qilin_chariot_246
+  - first:
+      213: -5165022719394677779
+    second: boss_qilin_chariot_247
+  - first:
+      213: 6515857878388779298
+    second: boss_qilin_chariot_248
+  - first:
+      213: -6846099915923946550
+    second: boss_qilin_chariot_249
+  - first:
+      213: 4251228038357194283
+    second: boss_qilin_chariot_250
+  - first:
+      213: -8665952830110995661
+    second: boss_qilin_chariot_251
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: boss_qilin_chariot_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 2598
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b94d090ca39a21e60800000000000000
+      internalID: 7931587963556779163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_1
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 2598
+        width: 111
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd0097442f6314d30800000000000000
+      internalID: 4413869523958563039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_2
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 2598
+        width: 111
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6d1ec6a2f4a55340800000000000000
+      internalID: 4851965535649144175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_3
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 2598
+        width: 111
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 505050e0355ac6500800000000000000
+      internalID: 390869043810469125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_4
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 2598
+        width: 111
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b32652576da71b7e0800000000000000
+      internalID: -1751483718563438021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_5
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 2598
+        width: 111
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 040bf939c8c37c7a0800000000000000
+      internalID: -6357045774540361664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_6
+      rect:
+        serializedVersion: 2
+        x: 985
+        y: 2598
+        width: 111
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21f7508b7b07e83a0800000000000000
+      internalID: -6661262864465690862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_7
+      rect:
+        serializedVersion: 2
+        x: 1146
+        y: 2598
+        width: 109
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89d2d056ba7e399f0800000000000000
+      internalID: -462771613368242792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_8
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 2704
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df9de45673323a7d0800000000000000
+      internalID: -2908442213521368579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_9
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 2454
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebe5a26a149029db0800000000000000
+      internalID: -4786753276376097090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_10
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 2454
+        width: 135
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cb839d28dff6a240800000000000000
+      internalID: 4802807356579875776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_11
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 2454
+        width: 135
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ea1d1c2b4d975c50800000000000000
+      internalID: 6653959920651410145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_12
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 2454
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40e490bca1c7e7b90800000000000000
+      internalID: -7242214696247800316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_13
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 2559
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6032549db8294490800000000000000
+      internalID: -7761627688093994898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_14
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 2454
+        width: 134
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29e847e8cad7bd510800000000000000
+      internalID: 1574990674773970578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_15
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 2454
+        width: 134
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2277a75e229a3770800000000000000
+      internalID: 8591339966899384874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_16
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 2454
+        width: 134
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f856001f822246f0800000000000000
+      internalID: -701960594071856911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_17
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 2550
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0204f4be367ab09d0800000000000000
+      internalID: -2806965895143931872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_18
+      rect:
+        serializedVersion: 2
+        x: 1134
+        y: 2454
+        width: 136
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 198e5e287b447d230800000000000000
+      internalID: 3663472376854997137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_19
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 2310
+        width: 119
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 725546883bae49720800000000000000
+      internalID: 2852162520840688935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_20
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 2310
+        width: 119
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40e7b04f75fbda940800000000000000
+      internalID: 5309109920217136644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_21
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 2310
+        width: 117
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24567160b6b7e7430800000000000000
+      internalID: 3782596436631708994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_22
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 2310
+        width: 119
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70eb596b5e1a01490800000000000000
+      internalID: -7777538548485997049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_23
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 2429
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97c2478666dafa140800000000000000
+      internalID: 4733192388740394105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_24
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 2430
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77f5c19efa9b431d0800000000000000
+      internalID: -3371866055812292745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_25
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 2310
+        width: 118
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad3a9165edc5291a0800000000000000
+      internalID: -6804273977006382118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_26
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 2310
+        width: 119
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d03eefbf9843e320800000000000000
+      internalID: 2585990461997854935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_27
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 2310
+        width: 119
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a40444072cbe8330800000000000000
+      internalID: 3715113618388550825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_28
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 2310
+        width: 119
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2b54705b33a65bd0800000000000000
+      internalID: -2641744656258016470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_29
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 2166
+        width: 111
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17f4ce8ce424c9ba0800000000000000
+      internalID: -6080912490711199887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_30
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 2166
+        width: 110
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c8452ab2b1f5a070800000000000000
+      internalID: 8117159653334665408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_31
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 2166
+        width: 110
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40717c5b6ed1b30c0800000000000000
+      internalID: -4595046118072051964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_32
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 2166
+        width: 110
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd6c0193388725e60800000000000000
+      internalID: 7949548797255796447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_33
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 2166
+        width: 110
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d87f7ffa54203ed80800000000000000
+      internalID: -8222725996320131187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_34
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 2166
+        width: 110
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d33505361cd2fbad0800000000000000
+      internalID: -2684376544271379651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_35
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 2166
+        width: 110
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46bf1693c25867ab0800000000000000
+      internalID: -5010671110415320220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_36
+      rect:
+        serializedVersion: 2
+        x: 1146
+        y: 2166
+        width: 110
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 173f8ea00a3b35fa0800000000000000
+      internalID: -5813105194046000271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_37
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 2022
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd7326a29fb280210800000000000000
+      internalID: 1299336841654319067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_38
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 2022
+        width: 112
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6045673458f9b71f0800000000000000
+      internalID: -1046067093722213370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_39
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 2022
+        width: 111
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d9ff624a52e40c60800000000000000
+      internalID: 7783594933292628433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_40
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 2022
+        width: 107
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9927dd4fe31822d0800000000000000
+      internalID: -3303368408152200801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_41
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 2022
+        width: 109
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7cad7774d01e2a50800000000000000
+      internalID: 6498149817066040446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_42
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 2022
+        width: 112
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1474c9f523a20c950800000000000000
+      internalID: 6467215460744841025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_43
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 2022
+        width: 108
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68ce830dc5e95ff60800000000000000
+      internalID: 8067528428971682950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_44
+      rect:
+        serializedVersion: 2
+        x: 1145
+        y: 2034
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12b6bc080f5e21220800000000000000
+      internalID: 2455277567986068257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_45
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 2022
+        width: 105
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98fa93206803bc7d0800000000000000
+      internalID: -2897168583161696375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_46
+      rect:
+        serializedVersion: 2
+        x: 1249
+        y: 2034
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43807f931556e4520800000000000000
+      internalID: 2688197427126011956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_47
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 2039
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32b742815f727f5e0800000000000000
+      internalID: -1875986786151007453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_48
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 2022
+        width: 107
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91c7fae7dcab60bb0800000000000000
+      internalID: -4970079747000271847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_49
+      rect:
+        serializedVersion: 2
+        x: 1411
+        y: 2039
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e505c233a25ca1ca0800000000000000
+      internalID: -6045302764753629090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_50
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 1878
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29873ae360d203ca0800000000000000
+      internalID: -6039277595459880814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_51
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 1878
+        width: 135
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 115c26a8ab536bdb0800000000000000
+      internalID: -4776571279477914351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_52
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 1978
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 061a307de348b6fe0800000000000000
+      internalID: -1194715870706556576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_53
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 1878
+        width: 135
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eec9093413fcb1980800000000000000
+      internalID: -8567026055648338706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_54
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 1878
+        width: 135
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d17b3b3741485e6a0800000000000000
+      internalID: -6420580470371404003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_55
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 1878
+        width: 135
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fe2fa306788b2ab0800000000000000
+      internalID: -5031778118207066382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_56
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 1980
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9bcca297b7b9b6d0800000000000000
+      internalID: -2974144079833805921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_57
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 1878
+        width: 135
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ffcc736710f6d460800000000000000
+      internalID: 7266259032052912117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_58
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 1878
+        width: 138
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d03e414026536bb50800000000000000
+      internalID: 6608528198304326413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_59
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 1878
+        width: 135
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0a739ef8f7320780800000000000000
+      internalID: -8718344386073363954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_60
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 1878
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f4949449b09cc3c0800000000000000
+      internalID: -4337933215670692624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_61
+      rect:
+        serializedVersion: 2
+        x: 814
+        y: 1895
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a5983938050dd840800000000000000
+      internalID: 5250358273461753257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_62
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 1734
+        width: 119
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61ae6e0cc546a9000800000000000000
+      internalID: 43457495949568534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_63
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 1734
+        width: 119
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8a234822e8610070800000000000000
+      internalID: 8070847327772027532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_64
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 1734
+        width: 118
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 014cc98e3d1072030800000000000000
+      internalID: 3469744047564571664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_65
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 1734
+        width: 130
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 824403c3e9d8df7b0800000000000000
+      internalID: -5188835484906798040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_66
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 1852
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0f6b90590fcb7960800000000000000
+      internalID: 7600896435031863055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_67
+      rect:
+        serializedVersion: 2
+        x: 977
+        y: 1734
+        width: 128
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a78a9d842b28be40800000000000000
+      internalID: 5672331166667671456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_68
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 1734
+        width: 119
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5bd998b13c3fcae0800000000000000
+      internalID: -1526935564407153827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_69
+      rect:
+        serializedVersion: 2
+        x: 1301
+        y: 1734
+        width: 119
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 814f0c5aa92aed630800000000000000
+      internalID: 3953776307967423512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_70
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 1734
+        width: 118
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48c60ae1b9a2a2e40800000000000000
+      internalID: 5632361129702354052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_71
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 1734
+        width: 117
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e85b879153fffcb0800000000000000
+      internalID: -4827872743757489945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_72
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1590
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cea7f1cb911ac8e0800000000000000
+      internalID: -1672504950942880058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_73
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1590
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 233b6ed8905a334a0800000000000000
+      internalID: -6614761967223131342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_74
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 1590
+        width: 110
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 402d38045c0d76bd0800000000000000
+      internalID: -2636909511192620540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_75
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1590
+        width: 110
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3feb02dce543cea60800000000000000
+      internalID: 7704590644297121523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_76
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 1590
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d52c85dd768f342d0800000000000000
+      internalID: -3295517377326169507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_77
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 1590
+        width: 110
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67f0f6f728cde59a0800000000000000
+      internalID: -6242309580447084682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_78
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 1590
+        width: 131
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a37e5998a04a227b0800000000000000
+      internalID: -5250453850395646150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_79
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 1688
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 673f90c1184fbd9b0800000000000000
+      internalID: -5054177321434877066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_80
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 1693
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92d8a490c8525c500800000000000000
+      internalID: 415779823983168809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_81
+      rect:
+        serializedVersion: 2
+        x: 1146
+        y: 1590
+        width: 110
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6271054eaf15a040800000000000000
+      internalID: 4658164222927139437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_82
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 1590
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 773cd5c6ed9732240800000000000000
+      internalID: 4765786826895901559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_83
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 1627
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 857cf700e665e7db0800000000000000
+      internalID: -4792297923020863656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_84
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 1446
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee37efddccf89c180800000000000000
+      internalID: -9094579862437465106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_85
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 1446
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e193907bc8a38eff0800000000000000
+      internalID: -6691023400388322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_86
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 1446
+        width: 136
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eeff7e3ef34e6ac40800000000000000
+      internalID: 5523352956074196974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_87
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 1446
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4c2bed31172279c0800000000000000
+      internalID: -3931036569734271924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_88
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 1446
+        width: 136
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf83ac7d948867e50800000000000000
+      internalID: 6806777737551427835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_89
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 1446
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ea155061236fdd40800000000000000
+      internalID: 5611312655728188132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_90
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 1550
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a9655b4d268738d0800000000000000
+      internalID: -2866675108702492256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_91
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 1446
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 323f3c4fef245ee10800000000000000
+      internalID: 2226259253600187171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_92
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 1446
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9950e3ee71d7949c0800000000000000
+      internalID: -3942482457051396711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_93
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 1446
+        width: 140
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3f2f18293453eee0800000000000000
+      internalID: -1233049268506382534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_94
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 1302
+        width: 119
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4acc83585862dec0800000000000000
+      internalID: -3543655228219012534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_95
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 1302
+        width: 119
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 284e45a72b557bb10800000000000000
+      internalID: 1997159184807027842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_96
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1295
+        width: 119
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 113d8c25219c269d0800000000000000
+      internalID: -2782440539226057967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_97
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 1300
+        width: 119
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28b76b8c1c4f80660800000000000000
+      internalID: 7352395504815602562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_98
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 1302
+        width: 119
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23f9d7b92721f9ab0800000000000000
+      internalID: -4999256777913688270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_99
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 1419
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80d42b0e0694d2700800000000000000
+      internalID: 517150212652944648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_100
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 1422
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18e8035a36cca9c80800000000000000
+      internalID: -8315109033640948095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_101
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 1302
+        width: 128
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33984ae641cc76200800000000000000
+      internalID: 173331498804742451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_102
+      rect:
+        serializedVersion: 2
+        x: 1301
+        y: 1302
+        width: 119
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7ecab31090a35c90800000000000000
+      internalID: -7182220440059064709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_103
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 1302
+        width: 136
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7763b2eb7b2fc9c30800000000000000
+      internalID: 4367632609625978487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_104
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 1302
+        width: 134
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b530d4e771156e90800000000000000
+      internalID: -7033196036431530575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_105
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1158
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f466ce5485c5b5920800000000000000
+      internalID: 2980077112635713103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_106
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1158
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 450a3b0e2a49d30d0800000000000000
+      internalID: -3441431112965709740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_107
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 1158
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 947ea362d1550fb60800000000000000
+      internalID: 7777810140152653641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_108
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1158
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbf2ac028b1819ad0800000000000000
+      internalID: -2697232073994129473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_109
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 1151
+        width: 124
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 910ba4cc2a1dc5830800000000000000
+      internalID: 4061351461123698713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_110
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 1270
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff3f4ac3e3f964ee0800000000000000
+      internalID: -1277158354658724865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_111
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 1151
+        width: 126
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48fc7ea17f88ff040800000000000000
+      internalID: 4683612732378304388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_112
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 1154
+        width: 110
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74ed69db7c71964d0800000000000000
+      internalID: -3140953118467498425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_113
+      rect:
+        serializedVersion: 2
+        x: 1146
+        y: 1158
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bffcc29cc3008f70800000000000000
+      internalID: 9187347417006931890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_114
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 1158
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5aa90cfac90ebcb0800000000000000
+      internalID: -4846425381587539366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_115
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 1153
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45fd1ebd91a1a17f0800000000000000
+      internalID: -641171298581356716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_116
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 1014
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca39774fe7bb21000800000000000000
+      internalID: 5272703522542508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_117
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 1014
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0418ccd23222b930800000000000000
+      internalID: 4157423007864198154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_118
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 1014
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb8702b7511aaa0f0800000000000000
+      internalID: -1104893644933924674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_119
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 1014
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb1e97fa6b8ef74a0800000000000000
+      internalID: -6593295458121424449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_120
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 1051
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b91519f9a2d705620800000000000000
+      internalID: 2760844193597313435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_121
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 1014
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ed7a942fa37ebcf0800000000000000
+      internalID: -234622934506111517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_122
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 1014
+        width: 140
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70836f36fef9d8c70800000000000000
+      internalID: 8975005482942347271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_123
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 1014
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48a7516fcd4b36710800000000000000
+      internalID: 1685389546681105028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_124
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 1014
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f71e4d2b40c0bbb0800000000000000
+      internalID: -4922222963600779275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_125
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 1014
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0afa9146a85a8190800000000000000
+      internalID: -7959451920335439346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_126
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 870
+        width: 119
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e933488227eb1f8c0800000000000000
+      internalID: -3967180399221394530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_127
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 870
+        width: 117
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbf67b33732fc0e90800000000000000
+      internalID: -7058000197091627076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_128
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 870
+        width: 123
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 422e99872faae06e0800000000000000
+      internalID: -1869368836930018780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_129
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 870
+        width: 130
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17cb760a17be13d50800000000000000
+      internalID: 6715407392641105009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_130
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 870
+        width: 140
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9d76b66ef31bdf80800000000000000
+      internalID: -8080843123020366434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_131
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 870
+        width: 140
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a93d5d870b7fcab30800000000000000
+      internalID: 4300084081545565082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_132
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 870
+        width: 140
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb27e039b62c94000800000000000000
+      internalID: 20761440584364735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_133
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 870
+        width: 119
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7f42d9fc230cef40800000000000000
+      internalID: 5758981515204775806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_134
+      rect:
+        serializedVersion: 2
+        x: 1301
+        y: 870
+        width: 119
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 937ebdcaa23d0ca90800000000000000
+      internalID: -7295599216098023623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_135
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 728
+        width: 111
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8b2e275138a4dbd0800000000000000
+      internalID: -2606273354471167091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_136
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 836
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e11a6ba76db634d10800000000000000
+      internalID: 2108647619465486622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_137
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 837
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8be3e78874e3fc2e0800000000000000
+      internalID: -2103394024005157192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_138
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 844
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3f0aa3d97b684dc0800000000000000
+      internalID: -3654552926624805058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_139
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 837
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11ea58ef00f388a40800000000000000
+      internalID: 5370611829142040081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_140
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 838
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f508c72662b347ce0800000000000000
+      internalID: -1408435747413000097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_141
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 727
+        width: 109
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0246438797ab3b2d0800000000000000
+      internalID: -3264060274042969056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_142
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 726
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f381a03073ea6b540800000000000000
+      internalID: 5023393985675794495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_143
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 729
+        width: 109
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46ca3ecf6ea716390800000000000000
+      internalID: -7826839544889365404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_144
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 582
+        width: 136
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a8cfc0bc912cd250800000000000000
+      internalID: 5970684162851457185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_145
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 583
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26e6a4462b40b16c0800000000000000
+      internalID: -4171735465595343262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_146
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 582
+        width: 134
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2905869056f5043c0800000000000000
+      internalID: -4377393950249955182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_147
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 681
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a86a0e56e81196ff0800000000000000
+      internalID: -42483418191059318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_148
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 680
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c946f2c02767c3dd0800000000000000
+      internalID: -2504997060522056548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_149
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 681
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71be2689b151f1400800000000000000
+      internalID: 296979308694661911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_150
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 582
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e47639950d4458f0800000000000000
+      internalID: -552732167819070237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_151
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 552
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25eafa790abbd5e40800000000000000
+      internalID: 5646875806206504530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_152
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 556
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2149b441e850efb0800000000000000
+      internalID: -4620595493138251477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_153
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 438
+        width: 110
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70a4be96afad78580800000000000000
+      internalID: -8824844175755490809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_154
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 555
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29bf7bdcd05df2cb0800000000000000
+      internalID: -4886452815411020910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_155
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 561
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50ccd60c481406db0800000000000000
+      internalID: -4800765164357039099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_156
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 438
+        width: 109
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e6b063fa3daebb80800000000000000
+      internalID: -8377067788159633692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_157
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 560
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ef9a8be3179bba80800000000000000
+      internalID: -8449994164018700312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_158
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 560
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b4d547abae2b4e50800000000000000
+      internalID: 6794575777599182009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_159
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 557
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7a474ccce6656dd0800000000000000
+      internalID: -2493473651454162308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_160
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 551
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1258b74c52526b20800000000000000
+      internalID: 3126151647642276378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_161
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 438
+        width: 112
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00d8daedcd8ad59c0800000000000000
+      internalID: -3936804832669758208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_162
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 558
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88451f4186ed743c0800000000000000
+      internalID: -4375283974357822328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_163
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 550
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 239f9bd3300cc1130800000000000000
+      internalID: 3538914527359400242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_164
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 556
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b03a73055bef38b30800000000000000
+      internalID: 4288551324875203339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_165
+      rect:
+        serializedVersion: 2
+        x: 1015
+        y: 553
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 281a08b97059b5030800000000000000
+      internalID: 3484542596607418754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_166
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 560
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72888f45a92f9a0e0800000000000000
+      internalID: -2258006993485133785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_167
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 553
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95fa5f8139a9ec1f0800000000000000
+      internalID: -1022710108796899495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_168
+      rect:
+        serializedVersion: 2
+        x: 1173
+        y: 553
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 811626d70939b5830800000000000000
+      internalID: 4061001737792807192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_169
+      rect:
+        serializedVersion: 2
+        x: 1210
+        y: 555
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba27d42b06ba097e0800000000000000
+      internalID: -1760719022505233749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_170
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 438
+        width: 111
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cd4769f55359af60800000000000000
+      internalID: 8046053837995724228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_171
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 438
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d061612fb80c5830800000000000000
+      internalID: 4061130580973150418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_172
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 549
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f916081f3665e110800000000000000
+      internalID: 1289549289483540982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_173
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 438
+        width: 111
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 872f0835b38e799d0800000000000000
+      internalID: -2767488104494206344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_174
+      rect:
+        serializedVersion: 2
+        x: 985
+        y: 438
+        width: 111
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bf191bd1ddc66a50800000000000000
+      internalID: 6514120212245716912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_175
+      rect:
+        serializedVersion: 2
+        x: 1145
+        y: 438
+        width: 111
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4d667a3f2f79f3a0800000000000000
+      internalID: -6631129135505314484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_176
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 397
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8911826e61ea63620800000000000000
+      internalID: 2753579635557536152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_177
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 401
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b2557149a90622f0800000000000000
+      internalID: -998099644863655241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_178
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 401
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fae86f06234a05b0800000000000000
+      internalID: -5401430972331136271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_179
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 407
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e4db64d1360b1150800000000000000
+      internalID: 5844271752530351329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_180
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 399
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32a7f05a9cc6d5590800000000000000
+      internalID: -7683865775910716893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_181
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 403
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 610830fe943744e90800000000000000
+      internalID: -7042377155920822250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_182
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 403
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f46dd975e4216c510800000000000000
+      internalID: 1568961647871907407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_183
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 397
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a5e8b880320ed1b0800000000000000
+      internalID: -5630060076691036759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_184
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 405
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5c39eaa39d096940800000000000000
+      internalID: 5289774165202123867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_185
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 399
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dda337b1770f68c00800000000000000
+      internalID: 902673169686674141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_186
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 402
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4ee55570d6f89b00800000000000000
+      internalID: 835689106059423308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_187
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 398
+        width: 11
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe5222424c8edc840800000000000000
+      internalID: 5246105070073947631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_188
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 407
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0f55a07703c6bf40800000000000000
+      internalID: 5743992811479719691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_189
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 399
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7abfd7022290f8ab0800000000000000
+      internalID: -5003770618806666329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_190
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 405
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a000992013a17db90800000000000000
+      internalID: -7217271080038629366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_191
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 400
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c4c273d07742cec0800000000000000
+      internalID: -3548195006505106238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_192
+      rect:
+        serializedVersion: 2
+        x: 1253
+        y: 397
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe700f32775996fc0800000000000000
+      internalID: -3501102896367269905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_193
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 293
+        width: 135
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70ff2d2ea3f335370800000000000000
+      internalID: 8310055259574828807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_194
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 293
+        width: 135
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1944d94cde165b170800000000000000
+      internalID: 8193562770904269969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_195
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 294
+        width: 135
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66eb7ffd41de8b080800000000000000
+      internalID: -9171319967227330970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_196
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 395
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 525ef5a4c74565870800000000000000
+      internalID: 8671211025348945189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_197
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 394
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 676b0ab86ab3616a0800000000000000
+      internalID: -6478925427432704394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_198
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 393
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0e1a55b4d9aa65d0800000000000000
+      internalID: -3068453465058828786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_199
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 393
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d4a8367b3846a400800000000000000
+      internalID: 335034642509374675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_200
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 391
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaf40c640828b53a0800000000000000
+      internalID: -6675598535192195154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_201
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 398
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3b7a3b682d3b8ff0800000000000000
+      internalID: -32865328468165826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_202
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 398
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e90bc238095101fe0800000000000000
+      internalID: -1220451788597186402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_203
+      rect:
+        serializedVersion: 2
+        x: 999
+        y: 393
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee188604b593ecec0800000000000000
+      internalID: -3544832792608603666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_204
+      rect:
+        serializedVersion: 2
+        x: 1058
+        y: 393
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bca78e357b9a8f570800000000000000
+      internalID: 8500730901513665227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_205
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 393
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afccc822bb18037d0800000000000000
+      internalID: -2940707915934413574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_206
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 395
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a001a06c7e9045d0800000000000000
+      internalID: -3080287888087121758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_207
+      rect:
+        serializedVersion: 2
+        x: 1243
+        y: 389
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8668466a55eb830b0800000000000000
+      internalID: -5748635649265334680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_208
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 294
+        width: 133
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61cae1ba7685bc4c0800000000000000
+      internalID: -4266219019727623146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_209
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 293
+        width: 133
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f901b4c8be0c788e0800000000000000
+      internalID: -1691171017150754657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_210
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 389
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ca0808e3fec85200800000000000000
+      internalID: 169112532991609538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_211
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 389
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0c3ed71ca67e29e0800000000000000
+      internalID: -1644246332436759542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_212
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 293
+        width: 133
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb07a0cfe6c79ee20800000000000000
+      internalID: 3380369811435057343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_213
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 391
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b8631c50587d90d0800000000000000
+      internalID: -3414440655939475275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_214
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 294
+        width: 133
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9b84f8f7059f6a90800000000000000
+      internalID: -7318467007979680866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_215
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 294
+        width: 133
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d26cd26f8d211230800000000000000
+      internalID: 3607714870362661592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_216
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 150
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9421be7d30eaa2280800000000000000
+      internalID: -9067243568226430391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_217
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 150
+        width: 113
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d49144c66b6f1ef30800000000000000
+      internalID: 4603231557510240589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_218
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 150
+        width: 110
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 883d2ca73976903b0800000000000000
+      internalID: -5545787583012613240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_219
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 148
+        width: 116
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b469deaf9b1fb8a80800000000000000
+      internalID: -8463405293631596981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_220
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 258
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ae7221df2ddbe440800000000000000
+      internalID: 4966306211548004001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_221
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 146
+        width: 113
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f4da9f9e22c27420800000000000000
+      internalID: 2626375038212429042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_222
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 262
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a3879a90dff5ccf0800000000000000
+      internalID: -232498534327811162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_223
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 262
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8708f402291ed8d10800000000000000
+      internalID: 2129606216539668600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_224
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 261
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c425fe7efa0bb840800000000000000
+      internalID: 5240794679543669953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_225
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 146
+        width: 28
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f31a1755f6a73320800000000000000
+      internalID: 2537680487705089014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_226
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 143
+        width: 112
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b39f2924fb3c9be0800000000000000
+      internalID: -1469233458580581454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_227
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 143
+        width: 29
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29ce337aae5474900800000000000000
+      internalID: 668579943817669778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_228
+      rect:
+        serializedVersion: 2
+        x: 979
+        y: 143
+        width: 111
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5b9545599f586d50800000000000000
+      internalID: 6730734755270466395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_229
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 143
+        width: 27
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d807b7b2c7a81770800000000000000
+      internalID: 8581793544702200021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_230
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 143
+        width: 114
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8790f2443c92a1120800000000000000
+      internalID: 2385264871285393784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_231
+      rect:
+        serializedVersion: 2
+        x: 1244
+        y: 143
+        width: 26
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 545c5bb4e52ca4320800000000000000
+      internalID: 2543058649856984389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_232
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 143
+        width: 114
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20311c6ec1e991780800000000000000
+      internalID: -8711758157203827966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_233
+      rect:
+        serializedVersion: 2
+        x: 1403
+        y: 143
+        width: 27
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0c8ec5967319c920800000000000000
+      internalID: 3010959225914297358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_234
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 6
+        width: 135
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05ea9aeb6fac46a30800000000000000
+      internalID: 4207711112980442704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_235
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 5
+        width: 135
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71984c3935938dfa0800000000000000
+      internalID: -5775803490978461417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_236
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 5
+        width: 135
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 056e55a7cba55df30800000000000000
+      internalID: 4599682359981631056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_237
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 102
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b17d2d852c0cb380800000000000000
+      internalID: -8954268603697499728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_238
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 113
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb222271ee3256cc0800000000000000
+      internalID: -3718526411827174722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_239
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 102
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 724029d692419c620800000000000000
+      internalID: 2794787211924603943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_240
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 110
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbd7c2063089f9e10800000000000000
+      internalID: 2206649482700684733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_241
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 112
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99ddd3cdb35519cd0800000000000000
+      internalID: -2553165798155887207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_242
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 6
+        width: 135
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2125d0c86db73f740800000000000000
+      internalID: 5184623757436473874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_243
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 100
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18e870f1d9bb4b370800000000000000
+      internalID: 8337495093674479233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_244
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 102
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cfa0b73d5ecc22f0800000000000000
+      internalID: -996194517794115645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_245
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 5
+        width: 135
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb394d8332118d4a0800000000000000
+      internalID: -6568481213544885313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_246
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 101
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21b838056692b1090800000000000000
+      internalID: -8062805188462540014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_247
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 98
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deb78a1c3372258b0800000000000000
+      internalID: -5165022719394677779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_248
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 5
+        width: 145
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2292b48c73afc6a50800000000000000
+      internalID: 6515857878388779298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_249
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 4
+        width: 146
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac3858e0664cdf0a0800000000000000
+      internalID: -6846099915923946550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_250
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 4
+        width: 146
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b26167d70656ffa30800000000000000
+      internalID: 4251228038357194283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_qilin_chariot_251
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 4
+        width: 145
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33b61f0b0d95cb780800000000000000
+      internalID: -8665952830110995661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

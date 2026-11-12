@@ -1,0 +1,2130 @@
+fileFormatVersion: 2
+guid: 6e92cc4f744a567098ad676c72342c45
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 546711336426813985
+    second: boss_oxhead_clubjailer_bloodrage_0
+  - first:
+      213: 3440052051662428852
+    second: boss_oxhead_clubjailer_bloodrage_1
+  - first:
+      213: 8705559525348572378
+    second: boss_oxhead_clubjailer_bloodrage_2
+  - first:
+      213: -2218453022001219235
+    second: boss_oxhead_clubjailer_bloodrage_3
+  - first:
+      213: 6174517053270360740
+    second: boss_oxhead_clubjailer_bloodrage_4
+  - first:
+      213: -2752564425714246851
+    second: boss_oxhead_clubjailer_bloodrage_5
+  - first:
+      213: -3289082088048401842
+    second: boss_oxhead_clubjailer_bloodrage_6
+  - first:
+      213: -5266178393475861716
+    second: boss_oxhead_clubjailer_bloodrage_7
+  - first:
+      213: 2456994164709555002
+    second: boss_oxhead_clubjailer_bloodrage_8
+  - first:
+      213: 5848101211172859235
+    second: boss_oxhead_clubjailer_bloodrage_9
+  - first:
+      213: -2001719908654259383
+    second: boss_oxhead_clubjailer_bloodrage_10
+  - first:
+      213: -5468301226663097508
+    second: boss_oxhead_clubjailer_bloodrage_11
+  - first:
+      213: 8050472194613881547
+    second: boss_oxhead_clubjailer_bloodrage_12
+  - first:
+      213: -5702134651662576994
+    second: boss_oxhead_clubjailer_bloodrage_13
+  - first:
+      213: -429770925482451534
+    second: boss_oxhead_clubjailer_bloodrage_14
+  - first:
+      213: 6100396945560559166
+    second: boss_oxhead_clubjailer_bloodrage_15
+  - first:
+      213: -7622159457667307662
+    second: boss_oxhead_clubjailer_bloodrage_16
+  - first:
+      213: -9120270917336950843
+    second: boss_oxhead_clubjailer_bloodrage_17
+  - first:
+      213: 2153706501008281502
+    second: boss_oxhead_clubjailer_bloodrage_18
+  - first:
+      213: -2560119949696017437
+    second: boss_oxhead_clubjailer_bloodrage_19
+  - first:
+      213: -1032462687022838567
+    second: boss_oxhead_clubjailer_bloodrage_20
+  - first:
+      213: -7125191547676018215
+    second: boss_oxhead_clubjailer_bloodrage_21
+  - first:
+      213: 3895767138624275495
+    second: boss_oxhead_clubjailer_bloodrage_22
+  - first:
+      213: -1962501167300418457
+    second: boss_oxhead_clubjailer_bloodrage_23
+  - first:
+      213: -3658265680706416558
+    second: boss_oxhead_clubjailer_bloodrage_24
+  - first:
+      213: -5946246040660681910
+    second: boss_oxhead_clubjailer_bloodrage_25
+  - first:
+      213: -5517152696485435304
+    second: boss_oxhead_clubjailer_bloodrage_26
+  - first:
+      213: -3064403533676346900
+    second: boss_oxhead_clubjailer_bloodrage_27
+  - first:
+      213: -1584177226399582516
+    second: boss_oxhead_clubjailer_bloodrage_28
+  - first:
+      213: 3101465436257897664
+    second: boss_oxhead_clubjailer_bloodrage_29
+  - first:
+      213: 53397689501236994
+    second: boss_oxhead_clubjailer_bloodrage_30
+  - first:
+      213: 2008293659571189599
+    second: boss_oxhead_clubjailer_bloodrage_31
+  - first:
+      213: -4415667905546646483
+    second: boss_oxhead_clubjailer_bloodrage_32
+  - first:
+      213: 7716718792488577372
+    second: boss_oxhead_clubjailer_bloodrage_33
+  - first:
+      213: 2918882830051871094
+    second: boss_oxhead_clubjailer_bloodrage_34
+  - first:
+      213: 1146686323902150513
+    second: boss_oxhead_clubjailer_bloodrage_35
+  - first:
+      213: -103372507290486210
+    second: boss_oxhead_clubjailer_bloodrage_36
+  - first:
+      213: -6345132444043927950
+    second: boss_oxhead_clubjailer_bloodrage_37
+  - first:
+      213: 1124167638826153621
+    second: boss_oxhead_clubjailer_bloodrage_38
+  - first:
+      213: 2242553825365732020
+    second: boss_oxhead_clubjailer_bloodrage_39
+  - first:
+      213: 6442277934259242725
+    second: boss_oxhead_clubjailer_bloodrage_40
+  - first:
+      213: -364359765555290751
+    second: boss_oxhead_clubjailer_bloodrage_41
+  - first:
+      213: 3037215142208283444
+    second: boss_oxhead_clubjailer_bloodrage_42
+  - first:
+      213: -8827690299091408325
+    second: boss_oxhead_clubjailer_bloodrage_43
+  - first:
+      213: -8776926871222166541
+    second: boss_oxhead_clubjailer_bloodrage_44
+  - first:
+      213: 7772892132938763474
+    second: boss_oxhead_clubjailer_bloodrage_45
+  - first:
+      213: -4346192658154728395
+    second: boss_oxhead_clubjailer_bloodrage_46
+  - first:
+      213: -8612596762860093751
+    second: boss_oxhead_clubjailer_bloodrage_47
+  - first:
+      213: 6419063673494026453
+    second: boss_oxhead_clubjailer_bloodrage_48
+  - first:
+      213: -1060918337160254492
+    second: boss_oxhead_clubjailer_bloodrage_49
+  - first:
+      213: 1195387903809425565
+    second: boss_oxhead_clubjailer_bloodrage_50
+  - first:
+      213: -891056741656253871
+    second: boss_oxhead_clubjailer_bloodrage_51
+  - first:
+      213: -2942673167272770355
+    second: boss_oxhead_clubjailer_bloodrage_52
+  - first:
+      213: -5001956292107191899
+    second: boss_oxhead_clubjailer_bloodrage_53
+  - first:
+      213: 89284296355503624
+    second: boss_oxhead_clubjailer_bloodrage_54
+  - first:
+      213: 1383056847525369827
+    second: boss_oxhead_clubjailer_bloodrage_55
+  - first:
+      213: 2864643139775462565
+    second: boss_oxhead_clubjailer_bloodrage_56
+  - first:
+      213: -1038597568358681470
+    second: boss_oxhead_clubjailer_bloodrage_57
+  - first:
+      213: -9001653752996864356
+    second: boss_oxhead_clubjailer_bloodrage_58
+  - first:
+      213: 5883124307454802703
+    second: boss_oxhead_clubjailer_bloodrage_59
+  - first:
+      213: 1893916652192174366
+    second: boss_oxhead_clubjailer_bloodrage_60
+  - first:
+      213: 8715416450000055858
+    second: boss_oxhead_clubjailer_bloodrage_61
+  - first:
+      213: -3434361951187857476
+    second: boss_oxhead_clubjailer_bloodrage_62
+  - first:
+      213: -9038353676839029293
+    second: boss_oxhead_clubjailer_bloodrage_63
+  - first:
+      213: -5533395859333446115
+    second: boss_oxhead_clubjailer_bloodrage_64
+  - first:
+      213: -3974627311933586348
+    second: boss_oxhead_clubjailer_bloodrage_65
+  - first:
+      213: -4846144940234139088
+    second: boss_oxhead_clubjailer_bloodrage_66
+  - first:
+      213: 6162453929461308815
+    second: boss_oxhead_clubjailer_bloodrage_67
+  - first:
+      213: -9194171346871767436
+    second: boss_oxhead_clubjailer_bloodrage_68
+  - first:
+      213: -8096851426540393696
+    second: boss_oxhead_clubjailer_bloodrage_69
+  - first:
+      213: 5206107735840577685
+    second: boss_oxhead_clubjailer_bloodrage_70
+  - first:
+      213: 8429031449133191660
+    second: boss_oxhead_clubjailer_bloodrage_71
+  - first:
+      213: -2671413966689492741
+    second: boss_oxhead_clubjailer_bloodrage_72
+  - first:
+      213: -4355766575323832532
+    second: boss_oxhead_clubjailer_bloodrage_73
+  - first:
+      213: 4487658079806455224
+    second: boss_oxhead_clubjailer_bloodrage_74
+  - first:
+      213: 2168893419207716694
+    second: boss_oxhead_clubjailer_bloodrage_75
+  - first:
+      213: -4463563239528302040
+    second: boss_oxhead_clubjailer_bloodrage_76
+  - first:
+      213: 2584640888168606953
+    second: boss_oxhead_clubjailer_bloodrage_77
+  - first:
+      213: 5775885727914505121
+    second: boss_oxhead_clubjailer_bloodrage_78
+  - first:
+      213: 1467780298216381913
+    second: boss_oxhead_clubjailer_bloodrage_79
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 148
+        width: 61
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12a366a501f469700800000000000000
+      internalID: 546711336426813985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 148
+        width: 61
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ba51346d158dbf20800000000000000
+      internalID: 3440052051662428852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_2
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 148
+        width: 62
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adc7b67a34c50d870800000000000000
+      internalID: 8705559525348572378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_3
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 148
+        width: 63
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d59b9b8fab87631e0800000000000000
+      internalID: -2218453022001219235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_4
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 148
+        width: 61
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a285c3cb8a40b550800000000000000
+      internalID: 6174517053270360740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_5
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 148
+        width: 60
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3bdcef0d3decc9d0800000000000000
+      internalID: -2752564425714246851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_6
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 148
+        width: 61
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4266c86445da52d0800000000000000
+      internalID: -3289082088048401842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_7
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 148
+        width: 60
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c23b80d07a6cae6b0800000000000000
+      internalID: -5266178393475861716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_8
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 148
+        width: 61
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3b78b2dc2ff81220800000000000000
+      internalID: 2456994164709555002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_9
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 148
+        width: 61
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36d6d762111a82150800000000000000
+      internalID: 5848101211172859235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_10
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 148
+        width: 61
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 943e5d049567834e0800000000000000
+      internalID: -2001719908654259383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_11
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 148
+        width: 62
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5bc9e3b101bc14b0800000000000000
+      internalID: -5468301226663097508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_12
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 148
+        width: 61
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcaae1acec509bf60800000000000000
+      internalID: 8050472194613881547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_13
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 148
+        width: 61
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e92d43adeb2fdd0b0800000000000000
+      internalID: -5702134651662576994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_14
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 148
+        width: 30
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bdd3dbce95290af0800000000000000
+      internalID: -429770925482451534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_15
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 148
+        width: 33
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3ed30163b6f8a450800000000000000
+      internalID: 6100396945560559166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_16
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 148
+        width: 33
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2772b507b56a83690800000000000000
+      internalID: -7622159457667307662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_17
+      rect:
+        serializedVersion: 2
+        x: 1243
+        y: 148
+        width: 29
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c71ec40ce94e6180800000000000000
+      internalID: -9120270917336950843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_18
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 148
+        width: 29
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9f4c0fd6a083ed10800000000000000
+      internalID: 2153706501008281502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_19
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 148
+        width: 33
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3eb5af74870a87cd0800000000000000
+      internalID: -2560119949696017437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_20
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 148
+        width: 37
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dc882808a4fba1f0800000000000000
+      internalID: -1032462687022838567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_21
+      rect:
+        serializedVersion: 2
+        x: 1531
+        y: 148
+        width: 29
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d9b72cc90c3e1d90800000000000000
+      internalID: -7125191547676018215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_22
+      rect:
+        serializedVersion: 2
+        x: 1585
+        y: 148
+        width: 54
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7240759629b801630800000000000000
+      internalID: 3895767138624275495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_23
+      rect:
+        serializedVersion: 2
+        x: 1666
+        y: 148
+        width: 47
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 764e4cb069bc3c4e0800000000000000
+      internalID: -1962501167300418457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_24
+      rect:
+        serializedVersion: 2
+        x: 1737
+        y: 148
+        width: 47
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 250dd77eeba3b3dc0800000000000000
+      internalID: -3658265680706416558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_25
+      rect:
+        serializedVersion: 2
+        x: 1803
+        y: 148
+        width: 52
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4bd8570bb0ba7da0800000000000000
+      internalID: -5946246040660681910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_26
+      rect:
+        serializedVersion: 2
+        x: 1876
+        y: 148
+        width: 53
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 858a56a8ad22f63b0800000000000000
+      internalID: -5517152696485435304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_27
+      rect:
+        serializedVersion: 2
+        x: 1949
+        y: 148
+        width: 55
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce105c6d83d0975d0800000000000000
+      internalID: -3064403533676346900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_28
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 76
+        width: 54
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc67037b43fd30ae0800000000000000
+      internalID: -1584177226399582516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_29
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 76
+        width: 54
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cccd4bc16e9a0b20800000000000000
+      internalID: 3101465436257897664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_30
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 76
+        width: 60
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20f3c8a6ae4bdb000800000000000000
+      internalID: 53397689501236994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_31
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 76
+        width: 60
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f57f8676174eedb10800000000000000
+      internalID: 2008293659571189599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_32
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 76
+        width: 53
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2c8cc36f6568b2c0800000000000000
+      internalID: -4415667905546646483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_33
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 76
+        width: 48
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c59ecd95bda471b60800000000000000
+      internalID: 7716718792488577372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_34
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 76
+        width: 51
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6798a321874f18820800000000000000
+      internalID: 2918882830051871094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_35
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 76
+        width: 54
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1777cfcd229d9ef00800000000000000
+      internalID: 1146686323902150513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_36
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 76
+        width: 55
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3ab867904fb09ef0800000000000000
+      internalID: -103372507290486210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_37
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 76
+        width: 37
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27e94fbf8af81f7a0800000000000000
+      internalID: -6345132444043927950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_38
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 76
+        width: 41
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 596f83ce288d99f00800000000000000
+      internalID: 1124167638826153621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_39
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 76
+        width: 47
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ba2e9692d62f1f10800000000000000
+      internalID: 2242553825365732020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_40
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 76
+        width: 36
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e60cd706a1976950800000000000000
+      internalID: 6442277934259242725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_41
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 76
+        width: 38
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18dd1a349b881faf0800000000000000
+      internalID: -364359765555290751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_42
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 76
+        width: 42
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43323c9741b562a20800000000000000
+      internalID: 3037215142208283444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_43
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 76
+        width: 43
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3aae7fa17ebd7580800000000000000
+      internalID: -8827690299091408325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_44
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 76
+        width: 58
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fbd8354387123680800000000000000
+      internalID: -8776926871222166541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_45
+      rect:
+        serializedVersion: 2
+        x: 1237
+        y: 76
+        width: 51
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dc4e3d563cdedb60800000000000000
+      internalID: 7772892132938763474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_46
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 76
+        width: 53
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 534d645fdc83fa3c0800000000000000
+      internalID: -4346192658154728395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_47
+      rect:
+        serializedVersion: 2
+        x: 1380
+        y: 76
+        width: 52
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ce7b0c20e8e97880800000000000000
+      internalID: -8612596762860093751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_48
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 76
+        width: 56
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d8b931c668151950800000000000000
+      internalID: 6419063673494026453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_49
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 76
+        width: 60
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eb6dd1b46cd641f0800000000000000
+      internalID: -1060918337160254492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_50
+      rect:
+        serializedVersion: 2
+        x: 1592
+        y: 76
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d901c5f07fed69010800000000000000
+      internalID: 1195387903809425565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_51
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 76
+        width: 55
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15aacde4d9452a3f0800000000000000
+      internalID: -891056741656253871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_52
+      rect:
+        serializedVersion: 2
+        x: 1736
+        y: 71
+        width: 56
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc402a668568927d0800000000000000
+      internalID: -2942673167272770355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_53
+      rect:
+        serializedVersion: 2
+        x: 1809
+        y: 74
+        width: 55
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a9bbeaf04b759ab0800000000000000
+      internalID: -5001956292107191899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_54
+      rect:
+        serializedVersion: 2
+        x: 1879
+        y: 76
+        width: 61
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80e5a4038933d3100800000000000000
+      internalID: 89284296355503624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_55
+      rect:
+        serializedVersion: 2
+        x: 1948
+        y: 76
+        width: 65
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e7dbe400ea913310800000000000000
+      internalID: 1383056847525369827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_56
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 4
+        width: 68
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ac739212c141c720800000000000000
+      internalID: 2864643139775462565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_57
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 4
+        width: 67
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2847569a3092691f0800000000000000
+      internalID: -1038597568358681470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_58
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 4
+        width: 61
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9e5f8dba93b31380800000000000000
+      internalID: -9001653752996864356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_59
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 4
+        width: 63
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0b3f43336e05a150800000000000000
+      internalID: 5883124307454802703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_60
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 4
+        width: 58
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e119c18292b884a10800000000000000
+      internalID: 1893916652192174366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_61
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 4
+        width: 58
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23e69d3c51163f870800000000000000
+      internalID: 8715416450000055858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_62
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 4
+        width: 63
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbf845d5002b650d0800000000000000
+      internalID: -3434361951187857476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_63
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 4
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d5f9a9d731519280800000000000000
+      internalID: -9038353676839029293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_64
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 4
+        width: 61
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1600da78cd6533b0800000000000000
+      internalID: -5533395859333446115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_65
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 4
+        width: 60
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45402ada48947d8c0800000000000000
+      internalID: -3974627311933586348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_66
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 4
+        width: 65
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03a99435ad80fbcb0800000000000000
+      internalID: -4846144940234139088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_67
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 4
+        width: 68
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8d5042e23f658550800000000000000
+      internalID: 6162453929461308815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_68
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 4
+        width: 68
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47e22a17fddb76080800000000000000
+      internalID: -9194171346871767436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_69
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 4
+        width: 67
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02be1f9c68432af80800000000000000
+      internalID: -8096851426540393696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_70
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 4
+        width: 60
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 598d031176fcf3840800000000000000
+      internalID: 5206107735840577685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_71
+      rect:
+        serializedVersion: 2
+        x: 1085
+        y: 4
+        width: 61
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce11e2ea17fe9f470800000000000000
+      internalID: 8429031449133191660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_72
+      rect:
+        serializedVersion: 2
+        x: 1156
+        y: 4
+        width: 61
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf0a47ba62b3dead0800000000000000
+      internalID: -2671413966689492741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_73
+      rect:
+        serializedVersion: 2
+        x: 1226
+        y: 4
+        width: 63
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2f9d49a0653d83c0800000000000000
+      internalID: -4355766575323832532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_74
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 4
+        width: 66
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bd76483f3d574e30800000000000000
+      internalID: 4487658079806455224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_75
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 4
+        width: 65
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65fee8fc215791e10800000000000000
+      internalID: 2168893419207716694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_76
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 4
+        width: 65
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82a7c63f1ec3e02c0800000000000000
+      internalID: -4463563239528302040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_77
+      rect:
+        serializedVersion: 2
+        x: 1512
+        y: 4
+        width: 65
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ec6d3b913d7ed320800000000000000
+      internalID: 2584640888168606953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_78
+      rect:
+        serializedVersion: 2
+        x: 1588
+        y: 2
+        width: 65
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a3b793b771182050800000000000000
+      internalID: 5775885727914505121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_oxhead_clubjailer_bloodrage_79
+      rect:
+        serializedVersion: 2
+        x: 1656
+        y: 4
+        width: 65
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dd1183976a9e5410800000000000000
+      internalID: 1467780298216381913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

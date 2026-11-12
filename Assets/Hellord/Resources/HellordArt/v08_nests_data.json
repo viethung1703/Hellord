@@ -1,0 +1,223 @@
+{
+"w": 1536,
+"h": 864,
+"wallN": 48,
+"wallS": 16,
+"wallSide": 24,
+"braziers": [
+{
+"x": 257,
+"y": 109,
+"f": 3
+},
+{
+"x": 645,
+"y": 352,
+"f": 2
+},
+{
+"x": 815,
+"y": 482,
+"f": 2
+},
+{
+"x": 209,
+"y": 719,
+"f": 3
+}
+],
+"lights": [
+{
+"s": "oxpit_shadow_pool",
+"x": 112,
+"y": 508,
+"mul": 1,
+"k": 1.0
+},
+{
+"s": "oxpit_shadow_pool",
+"x": 1262,
+"y": 508,
+"mul": 1,
+"k": 1.0
+},
+{
+"s": "oxpit_shadow_pool",
+"x": 472,
+"y": 648,
+"mul": 1,
+"k": 1.0
+},
+{
+"s": "oxpit_shadow_pool",
+"x": 912,
+"y": 98,
+"mul": 1,
+"k": 1.0
+},
+{
+"s": "oxpit_shadow_pool",
+"x": 242,
+"y": 198,
+"mul": 1,
+"k": 1.0
+},
+{
+"s": "oxpit_shadow_pool",
+"x": 1162,
+"y": 708,
+"mul": 1,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 612,
+"y": 442,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 284,
+"y": 124,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 1054,
+"y": 164,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 204,
+"y": 644,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 1154,
+"y": 584,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 464,
+"y": 374,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 884,
+"y": 464,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 124,
+"y": 364,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 1284,
+"y": 244,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 604,
+"y": 724,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 864,
+"y": 64,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 1334,
+"y": 704,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 1174,
+"y": 384,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 1324,
+"y": 334,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 164,
+"y": 684,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_pool_warm",
+"x": 314,
+"y": 634,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_brazier",
+"x": 610,
+"y": 342,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_brazier",
+"x": 780,
+"y": 472,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_brazier",
+"x": 222,
+"y": 99,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_brazier",
+"x": 1335,
+"y": 393,
+"mul": 0,
+"k": 1.0
+},
+{
+"s": "oxpit_light_brazier",
+"x": 174,
+"y": 709,
+"mul": 0,
+"k": 1.0
+}
+],
+"gates": [],
+"doorX": 768,
+"doorY": 448
+}

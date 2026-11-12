@@ -1,0 +1,955 @@
+fileFormatVersion: 2
+guid: 39e6c38c86e948df6be6ff43fddbd63f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -786661866995489549
+    second: ui_v53_sin_icons_20_0
+  - first:
+      213: -4205087269773677426
+    second: ui_v53_sin_icons_20_1
+  - first:
+      213: 9052849321644406205
+    second: ui_v53_sin_icons_20_2
+  - first:
+      213: -8267283286440411690
+    second: ui_v53_sin_icons_20_3
+  - first:
+      213: -7560576015310105022
+    second: ui_v53_sin_icons_20_4
+  - first:
+      213: 8522719125887877894
+    second: ui_v53_sin_icons_20_5
+  - first:
+      213: 8111686980634105371
+    second: ui_v53_sin_icons_20_6
+  - first:
+      213: -2562840855032191628
+    second: ui_v53_sin_icons_20_7
+  - first:
+      213: -4419652528986792658
+    second: ui_v53_sin_icons_20_8
+  - first:
+      213: -2381222893893563783
+    second: ui_v53_sin_icons_20_9
+  - first:
+      213: -7212552421464469571
+    second: ui_v53_sin_icons_20_10
+  - first:
+      213: -5990765927335021758
+    second: ui_v53_sin_icons_20_11
+  - first:
+      213: -7479915689887842723
+    second: ui_v53_sin_icons_20_12
+  - first:
+      213: -5462428383689158338
+    second: ui_v53_sin_icons_20_13
+  - first:
+      213: 2026139257922863919
+    second: ui_v53_sin_icons_20_14
+  - first:
+      213: 1108759696873325616
+    second: ui_v53_sin_icons_20_15
+  - first:
+      213: 8402776119234172760
+    second: ui_v53_sin_icons_20_16
+  - first:
+      213: -2000228305568935798
+    second: ui_v53_sin_icons_20_17
+  - first:
+      213: 6372705919928856141
+    second: ui_v53_sin_icons_20_18
+  - first:
+      213: -5027228619367350706
+    second: ui_v53_sin_icons_20_19
+  - first:
+      213: 6446415593135035666
+    second: ui_v53_sin_icons_20_20
+  - first:
+      213: -7963427091238646071
+    second: ui_v53_sin_icons_20_21
+  - first:
+      213: -847832413975783605
+    second: ui_v53_sin_icons_20_22
+  - first:
+      213: 6063160715576617079
+    second: ui_v53_sin_icons_20_23
+  - first:
+      213: -5946756403218388755
+    second: ui_v53_sin_icons_20_24
+  - first:
+      213: -8002963413782231897
+    second: ui_v53_sin_icons_20_25
+  - first:
+      213: -1810472601849438558
+    second: ui_v53_sin_icons_20_26
+  - first:
+      213: -2246951039204885069
+    second: ui_v53_sin_icons_20_27
+  - first:
+      213: -333869032674682955
+    second: ui_v53_sin_icons_20_28
+  - first:
+      213: 8015087639713909078
+    second: ui_v53_sin_icons_20_29
+  - first:
+      213: -7370262113922727825
+    second: ui_v53_sin_icons_20_30
+  - first:
+      213: 1265609981738920450
+    second: ui_v53_sin_icons_20_31
+  - first:
+      213: 9039259730586193011
+    second: ui_v53_sin_icons_20_32
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 521
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f4636b23373515f0800000000000000
+      internalID: -786661866995489549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_1
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 0
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8c6f9b586784a5c0800000000000000
+      internalID: -4205087269773677426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_2
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 0
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db530c57e7e22ad70800000000000000
+      internalID: 9052849321644406205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_3
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 0
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ddf13627a5b44d80800000000000000
+      internalID: -8267283286440411690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_4
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 0
+        width: 42
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2465a16fb20731790800000000000000
+      internalID: -7560576015310105022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_5
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 0
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60389f2c3e7c64670800000000000000
+      internalID: 8522719125887877894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_6
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 0
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b165bd1d450829070800000000000000
+      internalID: 8111686980634105371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_7
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 0
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 475a2f322d5fe6cd0800000000000000
+      internalID: -2562840855032191628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_8
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 0
+        width: 82
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2dd513f07d3aa2c0800000000000000
+      internalID: -4419652528986792658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_9
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 0
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97a427ee46234fed0800000000000000
+      internalID: -2381222893893563783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_10
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 0
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbf0ab259cdd7eb90800000000000000
+      internalID: -7212552421464469571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_11
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 243bea821268cdca0800000000000000
+      internalID: -5990765927335021758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_12
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 0
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5e3d527f40023890800000000000000
+      internalID: -7479915689887842723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_13
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 0
+        width: 82
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e315233835e8134b0800000000000000
+      internalID: -5462428383689158338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_14
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 0
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2347fd8bea4e1c10800000000000000
+      internalID: 2026139257922863919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_15
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 0
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0348761e11b136f00800000000000000
+      internalID: 1108759696873325616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_16
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 0
+        width: 62
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85796125c58ac9470800000000000000
+      internalID: 8402776119234172760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_17
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 0
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a80d1e824f2cd34e0800000000000000
+      internalID: -2000228305568935798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_18
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 0
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4e63672546607850800000000000000
+      internalID: 6372705919928856141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_19
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 0
+        width: 42
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4e7ee1c432bb3ab0800000000000000
+      internalID: -5027228619367350706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_20
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 0
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2155a5fc3d4467950800000000000000
+      internalID: 6446415593135035666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_21
+      rect:
+        serializedVersion: 2
+        x: 1119
+        y: 0
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ce8ff7a0493c7190800000000000000
+      internalID: -7963427091238646071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_22
+      rect:
+        serializedVersion: 2
+        x: 1140
+        y: 0
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4759e759e4eb34f0800000000000000
+      internalID: -847832413975783605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_23
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 0
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7782c0cfb8ca42450800000000000000
+      internalID: 6063160715576617079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_24
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 0
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de8636cfe80e87da0800000000000000
+      internalID: -5946756403218388755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_25
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a4001b3d23cfe090800000000000000
+      internalID: -8002963413782231897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_26
+      rect:
+        serializedVersion: 2
+        x: 1219
+        y: 0
+        width: 61
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aedf2bc2c8efd6e0800000000000000
+      internalID: -1810472601849438558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_27
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 0
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bd7f784fe931d0e0800000000000000
+      internalID: -2246951039204885069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_28
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 0
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b71ce932ebdd5bf0800000000000000
+      internalID: -333869032674682955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_29
+      rect:
+        serializedVersion: 2
+        x: 1317
+        y: 0
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65985c81ebf4b3f60800000000000000
+      internalID: 8015087639713909078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_30
+      rect:
+        serializedVersion: 2
+        x: 1339
+        y: 0
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f60cd1e18a197b990800000000000000
+      internalID: -7370262113922727825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_31
+      rect:
+        serializedVersion: 2
+        x: 1359
+        y: 0
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20aacb9a299509110800000000000000
+      internalID: 1265609981738920450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_v53_sin_icons_20_32
+      rect:
+        serializedVersion: 2
+        x: 1379
+        y: 0
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37c451a35d6e17d70800000000000000
+      internalID: 9039259730586193011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

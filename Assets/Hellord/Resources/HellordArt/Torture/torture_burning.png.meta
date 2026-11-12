@@ -1,0 +1,2105 @@
+fileFormatVersion: 2
+guid: 67fe5c0cb378eb157c433154005d6c16
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8805755308736099258
+    second: torture_burning_0
+  - first:
+      213: 3887535826848912479
+    second: torture_burning_1
+  - first:
+      213: -6003279884363047630
+    second: torture_burning_2
+  - first:
+      213: -6727969191463514907
+    second: torture_burning_3
+  - first:
+      213: 5036923990533286187
+    second: torture_burning_4
+  - first:
+      213: -8188478029420548425
+    second: torture_burning_5
+  - first:
+      213: -5369929620405656352
+    second: torture_burning_6
+  - first:
+      213: -8832313459500125094
+    second: torture_burning_7
+  - first:
+      213: -4372402627033769306
+    second: torture_burning_8
+  - first:
+      213: -6326706349129394631
+    second: torture_burning_9
+  - first:
+      213: 7419008250176441554
+    second: torture_burning_10
+  - first:
+      213: -2949065406251896169
+    second: torture_burning_11
+  - first:
+      213: 2211825429479423074
+    second: torture_burning_12
+  - first:
+      213: 2392852340790368584
+    second: torture_burning_13
+  - first:
+      213: -7205546453275002947
+    second: torture_burning_14
+  - first:
+      213: -3181352480754961545
+    second: torture_burning_15
+  - first:
+      213: -9022700549158383076
+    second: torture_burning_16
+  - first:
+      213: 3261257252576796296
+    second: torture_burning_17
+  - first:
+      213: 1218456314087796557
+    second: torture_burning_18
+  - first:
+      213: -65242548961049804
+    second: torture_burning_19
+  - first:
+      213: -7404243656390676924
+    second: torture_burning_20
+  - first:
+      213: 5699891535405526225
+    second: torture_burning_21
+  - first:
+      213: -5767081835036639812
+    second: torture_burning_22
+  - first:
+      213: 7434172207888306354
+    second: torture_burning_23
+  - first:
+      213: -3894893839971165154
+    second: torture_burning_24
+  - first:
+      213: -6005715607011787298
+    second: torture_burning_25
+  - first:
+      213: 7772552572021550537
+    second: torture_burning_26
+  - first:
+      213: 8764928093412837683
+    second: torture_burning_27
+  - first:
+      213: 8228559547960613341
+    second: torture_burning_28
+  - first:
+      213: -1664612792584676059
+    second: torture_burning_29
+  - first:
+      213: 3592987010384806677
+    second: torture_burning_30
+  - first:
+      213: 5589687190846260985
+    second: torture_burning_31
+  - first:
+      213: 568361291146650650
+    second: torture_burning_32
+  - first:
+      213: -4563566276864067239
+    second: torture_burning_33
+  - first:
+      213: 8742676929471628441
+    second: torture_burning_34
+  - first:
+      213: -6437543732983064926
+    second: torture_burning_35
+  - first:
+      213: -8708124411494565312
+    second: torture_burning_36
+  - first:
+      213: -831410893315901518
+    second: torture_burning_37
+  - first:
+      213: -3378997095592482860
+    second: torture_burning_38
+  - first:
+      213: 5032376346829895452
+    second: torture_burning_39
+  - first:
+      213: 358804996685925986
+    second: torture_burning_40
+  - first:
+      213: 1581879617669197722
+    second: torture_burning_41
+  - first:
+      213: -7879761605881238498
+    second: torture_burning_42
+  - first:
+      213: -4366840475565853786
+    second: torture_burning_43
+  - first:
+      213: -6761795560025517097
+    second: torture_burning_44
+  - first:
+      213: -4358637537186814227
+    second: torture_burning_45
+  - first:
+      213: 5039753536835400262
+    second: torture_burning_46
+  - first:
+      213: -6163096420832578345
+    second: torture_burning_47
+  - first:
+      213: -7792163699771640050
+    second: torture_burning_48
+  - first:
+      213: -1754885997003522898
+    second: torture_burning_49
+  - first:
+      213: -539663465129889096
+    second: torture_burning_50
+  - first:
+      213: -5630904748053583392
+    second: torture_burning_51
+  - first:
+      213: 5975494501867655351
+    second: torture_burning_52
+  - first:
+      213: -6079879898683780490
+    second: torture_burning_53
+  - first:
+      213: -7411261378780047270
+    second: torture_burning_54
+  - first:
+      213: -1042381194852566540
+    second: torture_burning_55
+  - first:
+      213: -3534930720135628343
+    second: torture_burning_56
+  - first:
+      213: -3021541239098924608
+    second: torture_burning_57
+  - first:
+      213: -5515813106702950254
+    second: torture_burning_58
+  - first:
+      213: 5489615799261322272
+    second: torture_burning_59
+  - first:
+      213: 2487334640023986360
+    second: torture_burning_60
+  - first:
+      213: 3478032466574313880
+    second: torture_burning_61
+  - first:
+      213: -7119096136343748714
+    second: torture_burning_62
+  - first:
+      213: -2265962128601540208
+    second: torture_burning_63
+  - first:
+      213: 660347226133637036
+    second: torture_burning_64
+  - first:
+      213: 8029478145263096268
+    second: torture_burning_65
+  - first:
+      213: 7028955622179727786
+    second: torture_burning_66
+  - first:
+      213: -7534273676861765058
+    second: torture_burning_67
+  - first:
+      213: 1351333478374944524
+    second: torture_burning_68
+  - first:
+      213: 5511742681473855585
+    second: torture_burning_69
+  - first:
+      213: -889258430834045567
+    second: torture_burning_70
+  - first:
+      213: -2320333769480574243
+    second: torture_burning_71
+  - first:
+      213: 7534771261923991610
+    second: torture_burning_72
+  - first:
+      213: 1902299061357185921
+    second: torture_burning_73
+  - first:
+      213: -8119520950256029610
+    second: torture_burning_74
+  - first:
+      213: -6351875290542763360
+    second: torture_burning_75
+  - first:
+      213: -4041127805021114701
+    second: torture_burning_76
+  - first:
+      213: 1722488540807151182
+    second: torture_burning_77
+  - first:
+      213: 2436748060732293223
+    second: torture_burning_78
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: torture_burning_0
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 784
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab3b9346cc3543a70800000000000000
+      internalID: 8805755308736099258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_1
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 785
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f541feacc3d43f530800000000000000
+      internalID: 3887535826848912479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_2
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 779
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23dda4d70c010bca0800000000000000
+      internalID: -6003279884363047630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_3
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 787
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ec8b0baaa371a2a0800000000000000
+      internalID: -6727969191463514907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_4
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 781
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b292160ceafb6e540800000000000000
+      internalID: 5036923990533286187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_5
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 789
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7be2c4ddd9eac5e80800000000000000
+      internalID: -8188478029420548425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_6
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 776
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e46fda167d2a75b0800000000000000
+      internalID: -5369929620405656352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_7
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 777
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a54f79544b15d6580800000000000000
+      internalID: -8832313459500125094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_8
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 769
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aadaa80afa1253c0800000000000000
+      internalID: -4372402627033769306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_9
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 772
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9361fe588160338a0800000000000000
+      internalID: -6326706349129394631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 602
+        width: 243
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dc857922bc95f660800000000000000
+      internalID: 7419008250176441554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_11
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 767
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79276f843a0d217d0800000000000000
+      internalID: -2949065406251896169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_12
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 766
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26cfb45628bf1be10800000000000000
+      internalID: 2211825429479423074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_13
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 755
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84995cca68e153120800000000000000
+      internalID: 2392852340790368584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_14
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 602
+        width: 244
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db7b7f76da1c00c90800000000000000
+      internalID: -7205546453275002947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_15
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 757
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 773fa4736c099d3d0800000000000000
+      internalID: -3181352480754961545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_16
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 602
+        width: 243
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1251b4a7ade8c280800000000000000
+      internalID: -9022700549158383076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_17
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 759
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88e910d3130524d20800000000000000
+      internalID: 3261257252576796296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_18
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 590
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4fe88fdf83d8e010800000000000000
+      internalID: 1218456314087796557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_19
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 602
+        width: 244
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4338fe45f36381ff0800000000000000
+      internalID: -65242548961049804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_20
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 592
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44ee466bf97de3990800000000000000
+      internalID: -7404243656390676924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_21
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 581
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dc2a12f6251a1f40800000000000000
+      internalID: 5699891535405526225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_22
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 583
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbd780850a537ffa0800000000000000
+      internalID: -5767081835036639812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_23
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 576
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b093423c3c7b2760800000000000000
+      internalID: 7434172207888306354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_24
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 584
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1c59a640be82f9c0800000000000000
+      internalID: -3894893839971165154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_25
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 578
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eddfa0e997967aca0800000000000000
+      internalID: -6005715607011787298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_26
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 586
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cda46d2267addb60800000000000000
+      internalID: 7772552572021550537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_27
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 573
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 339c6b199a743a970800000000000000
+      internalID: 8764928093412837683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_28
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 575
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd95755ef47b13270800000000000000
+      internalID: 8228559547960613341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_29
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 567
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52d5b611c7b16e8e0800000000000000
+      internalID: -1664612792584676059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 401
+        width: 243
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 513449446aadcd130800000000000000
+      internalID: 3592987010384806677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_31
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 560
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f641f772ee829d40800000000000000
+      internalID: 5589687190846260985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_32
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 401
+        width: 244
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a14e0ee359933e700800000000000000
+      internalID: 568361291146650650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_33
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 562
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 959b09666a4faa0c0800000000000000
+      internalID: -4563566276864067239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_34
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 566
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 994c82fb85a345970800000000000000
+      internalID: 8742676929471628441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_35
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 554
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a69089151049a6a0800000000000000
+      internalID: -6437543732983064926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_36
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 556
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04a75f04cf6862780800000000000000
+      internalID: -8708124411494565312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_37
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 389
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b7f381923c3674f0800000000000000
+      internalID: -831410893315901518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_38
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 401
+        width: 244
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d722245b046b11d0800000000000000
+      internalID: -3378997095592482860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_39
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 391
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c17bfd0ff9796d540800000000000000
+      internalID: 5032376346829895452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_40
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 401
+        width: 243
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26e89135e3bbaf400800000000000000
+      internalID: 358804996685925986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_41
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 365
+        width: 14
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9f6a909127f3f510800000000000000
+      internalID: 1581879617669197722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_42
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 387
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1cefa6719675a290800000000000000
+      internalID: -7879761605881238498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_43
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 380
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a3791759bdd563c0800000000000000
+      internalID: -4366840475565853786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_44
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 382
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d39dd083c64922a0800000000000000
+      internalID: -6761795560025517097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_45
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 383
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de6eb43c0420383c0800000000000000
+      internalID: -4358637537186814227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_46
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 368
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 642b796d32dc0f540800000000000000
+      internalID: 5039753536835400262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_47
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 370
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d4facf6578487aa0800000000000000
+      internalID: -6163096420832578345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_48
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 372
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e07fa63566cacd390800000000000000
+      internalID: -7792163699771640050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_49
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 374
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eac3c47cb7465a7e0800000000000000
+      internalID: -1754885997003522898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_50
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 357
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b23dae00fab288f0800000000000000
+      internalID: -539663465129889096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_51
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 200
+        width: 244
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e9a43827f10bd1b0800000000000000
+      internalID: -5630904748053583392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_52
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 359
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b01f1507983de250800000000000000
+      internalID: 5975494501867655351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_53
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 200
+        width: 244
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6725ae9d17def9ba0800000000000000
+      internalID: -6079879898683780490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_54
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 361
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a585e34ea09e52990800000000000000
+      internalID: -7411261378780047270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_55
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 364
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f9f34873d7b881f0800000000000000
+      internalID: -1042381194852566540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_56
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 353
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c933b82d3761fec0800000000000000
+      internalID: -3534930720135628343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_57
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 243
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c1a05970445116d0800000000000000
+      internalID: -3021541239098924608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_58
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 188
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 290e6871435e373b0800000000000000
+      internalID: -5515813106702950254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_59
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 200
+        width: 243
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02cd754fb780f2c40800000000000000
+      internalID: 5489615799261322272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_60
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 190
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b067283da9c48220800000000000000
+      internalID: 2487334640023986360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_61
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 184
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8990077d914744030800000000000000
+      internalID: 3478032466574313880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_62
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 186
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69fff5758c3e33d90800000000000000
+      internalID: -7119096136343748714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_63
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 176
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 099973a137fad80e0800000000000000
+      internalID: -2265962128601540208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_64
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 178
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca72c12bd460a2900800000000000000
+      internalID: 660347226133637036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_65
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 179
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc15b24c4df6e6f60800000000000000
+      internalID: 8029478145263096268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_66
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 174
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa9e10ab5eddb8160800000000000000
+      internalID: 7028955622179727786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_67
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 164
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3a041a5202e07790800000000000000
+      internalID: -7534273676861765058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_68
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 169
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0fa1af83a6e0c210800000000000000
+      internalID: 1351333478374944524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_69
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 171
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 160bb9e24c4ad7c40800000000000000
+      internalID: 5511742681473855585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_70
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 165
+        width: 17
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18d8d9c2b28b8a3f0800000000000000
+      internalID: -889258430834045567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_71
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 154
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dda64c5fab48ccfd0800000000000000
+      internalID: -2320333769480574243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_72
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 156
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a302dc2ba82e09860800000000000000
+      internalID: 7534771261923991610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_73
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 158
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18b01c0eae2566a10800000000000000
+      internalID: 1902299061357185921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_74
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 160
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 650b5adf6baa15f80800000000000000
+      internalID: -8119520950256029610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_75
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 243
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a21e91b31b99d7a0800000000000000
+      internalID: -6351875290542763360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_76
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 0
+        width: 244
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3be23c11ca70be7c0800000000000000
+      internalID: -4041127805021114701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_77
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 0
+        width: 244
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4ebd74a33287e710800000000000000
+      internalID: 1722488540807151182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torture_burning_78
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 0
+        width: 243
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7600217637111d120800000000000000
+      internalID: 2436748060732293223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

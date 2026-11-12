@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: fx928_grave
+  m_Shader: {fileID: 4800000, guid: 830e1e2846534777aeb006b0718d776c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _CellTex:
+        m_Texture: {fileID: 2800000, guid: 7954729aa0994cf982cb66f01cfb1d9f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: 2fe12fa402df490aba8ddb52b40c3d88, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RampTex:
+        m_Texture: {fileID: 2800000, guid: 15c309b2357640fa92e14a461784d775, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Mode: 1
+    - _RampCount: 8
+    - _Squash: 0.75
+    - _CellPx: 1.0
+    - _Warp: 0.45
+    - _EdgeNoise: 0.22
+    - _EdgeW: 0.16
+    - _NGain: 2.2
+    - _TimeStep: 12
+    - _PPU: 16
+    - _Grow: 1
+    m_Colors:
+    - _Flow: {r: 0.03, g: 0.02, b: 0, a: 0}
+    - _Scroll: {r: 0.02, g: 0.01, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

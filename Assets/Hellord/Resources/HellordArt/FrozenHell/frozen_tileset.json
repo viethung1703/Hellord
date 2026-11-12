@@ -1,0 +1,120 @@
+{
+ "tile_size_px": 32,
+ "ppu": 16,
+ "note": "32px floor tile = 2x2 game tiles; walls follow Ox Pit formats",
+ "floor": {
+  "file": "frozen_floorB_variants_32px.png",
+  "cols": 6,
+  "names": [
+   "B_orig_0",
+   "B_orig_1",
+   "B_orig_2",
+   "B_orig_3",
+   "B_new_4",
+   "B_new_5",
+   "B_new_9",
+   "B_new_10",
+   "B_new_13"
+  ],
+  "pick_weights": [
+   10,
+   10,
+   10,
+   10,
+   8,
+   8,
+   8,
+   8,
+   8
+  ],
+  "rules": "random pick by weight, random flipX ok; accents never adjacent"
+ },
+ "wall_cap": {
+  "file": "frozen_wall_cap_16px.png",
+  "cell": [
+   16,
+   16
+  ],
+  "names": [
+   "cap_none",
+   "cap_S",
+   "cap_N",
+   "cap_E",
+   "cap_W",
+   "cap_SE",
+   "cap_SW",
+   "cap_NE",
+   "cap_NW"
+  ]
+ },
+ "wall_north_face": {
+  "file": "frozen_wall_north_face_16x32.png",
+  "cell": [
+   16,
+   32
+  ],
+  "names": [
+   "face_plain_0",
+   "face_plain_1",
+   "face_damage",
+   "face_icicle",
+   "face_chain"
+  ],
+  "rules": "north wall 48px = cap row + face; plain 70%, damage/icicle/chain 10% each"
+ },
+ "wall_side": {
+  "file": "frozen_wall_side_24x16.png",
+  "cell": [
+   24,
+   16
+  ],
+  "names": [
+   "side_L_0",
+   "side_L_1",
+   "side_R_0",
+   "side_R_1"
+  ]
+ },
+ "wall_ao": {
+  "file": "frozen_wall_ao.png",
+  "rects_xywh": {
+   "ao_base": [
+    0,
+    0,
+    16,
+    10
+   ],
+   "ao_side_L": [
+    16,
+    0,
+    10,
+    16
+   ],
+   "ao_side_R": [
+    32,
+    0,
+    10,
+    16
+   ]
+  }
+ },
+ "hazard_ice_patch": {
+  "file": "frozen_hazard_ice_patch_64x28_4f.png",
+  "cell": [
+   64,
+   28
+  ],
+  "frames": 4,
+  "ms": [
+   160,
+   160,
+   160,
+   400
+  ],
+  "pivot": [
+   0.5,
+   0.5
+  ],
+  "note": "glint loop; floor-level decal, sorted under sprites"
+ }
+}
