@@ -40,12 +40,13 @@ namespace Hellord
                     case 3: r = kb.rightArrowKey.wasPressedThisFrame || kb.dKey.wasPressedThisFrame; break;
                     case 4: r = kb.enterKey.wasPressedThisFrame || kb.numpadEnterKey.wasPressedThisFrame || kb.spaceKey.wasPressedThisFrame; break;
                     case 5: r = kb.escapeKey.wasPressedThisFrame || kb.backspaceKey.wasPressedThisFrame; break;
+                    case 6: r = kb.xKey.wasPressedThisFrame; break; // t1380: X = SEAL / UNSEAL in the menu-theme Altar
                 }
             if (!r && gp != null) switch (which)
                 {
                     case 0: r = gp.dpad.up.wasPressedThisFrame; break; case 1: r = gp.dpad.down.wasPressedThisFrame; break;
                     case 2: r = gp.dpad.left.wasPressedThisFrame; break; case 3: r = gp.dpad.right.wasPressedThisFrame; break;
-                    case 4: r = gp.buttonSouth.wasPressedThisFrame || gp.startButton.wasPressedThisFrame; break; case 5: r = gp.buttonEast.wasPressedThisFrame; break;
+                    case 4: r = gp.buttonSouth.wasPressedThisFrame || gp.startButton.wasPressedThisFrame; break; case 5: r = gp.buttonEast.wasPressedThisFrame; break; case 6: r = gp.buttonWest.wasPressedThisFrame; break;
                 }
             return r;
 #else
@@ -56,6 +57,7 @@ namespace Hellord
                 case 2: return Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A);
                 case 3: return Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D);
                 case 4: return Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0);
+                case 6: return Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.JoystickButton2);
                 default: return Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.JoystickButton1);
             }
 #endif

@@ -58,6 +58,11 @@ namespace Hellord
                 if (_altarMsgT51 > 0 && !string.IsNullOrEmpty(_altarMsg51)) { float w = TW97(_altarMsg51) + 14; Frame97(350 - w / 2, 370, w, 14, A_DEEP, U_AMB, 1); TxC97(_altarMsg51, 350, 374, U_YEL); }
                 if (md) DrawConfirm97(); return;
             }
+            if (_altarScr53 == 0 && AmActive())
+            {   // t1380: menu-theme Sacrifice Altar overview = mockup t1379 (HellordAltarMenu.cs); any failure falls back to the carousel below
+                bool md0 = _confirm97 >= 0; _block53 = md0; DrawAltarMenu(); _block53 = false;
+                if (!_amBroken) { if (_altarMsgT51 > 0 && !string.IsNullOrEmpty(_altarMsg51)) { float w = TW97(_altarMsg51) + 14; Frame97(350 - w / 2, 370, w, 14, A_DEEP, U_AMB, 1); TxC97(_altarMsg51, 350, 374, U_YEL); } if (md0) DrawConfirm97(); return; }
+            }
             var bg = T53("altar_bg", true); if (bg) GUI.DrawTexture(new Rect(0, 0, 700, 392), bg);
             R53(0, 0, 700, 392, new Color(0.04f, 0.02f, 0.06f, 0.72f));
             Frame97(64, 12, 572, 368, new Color32(26, 20, 32, 245), A_EDGE, 2); Ol53(68, 16, 564, 360, new Color32(62, 39, 49, 255));
@@ -238,7 +243,7 @@ namespace Hellord
             // buttons
             string lab; bool en; PrimaryLab97(p, f, out lab, out en);
             if (Btn97(84, 350, 140, lab, en, "A")) Primary97(p, f);
-            if (yours) { if (Btn97(470, 350, 74, "PACT", true, "Y")) _altarScr53 = 2; }
+            if (yours) { if (!AmActive()) { if (Btn97(470, 350, 74, "PACT", true, "Y")) _altarScr53 = 2; } }   // t1380: no YOUR PACT screen in the menu theme
             else if (locked) Btn97(440, 350, 104, "LOCKED", false);
             else if (Btn97(440, 350, 104, "CHOOSE PATH", true, "Y")) ChoosePath97(p);
             if (Btn97(550, 350, 66, "BACK", true, "B")) _altarScr53 = 0;
@@ -357,6 +362,7 @@ namespace Hellord
         void Primary97(int p, int f)
         {
             if (!Unlocked51(p, f)) { TryUnlock51(p, f); return; }
+            if (AmLocked()) { Msg51("PACT SEALED: UNSEAL FIRST"); return; } // t1380
             if (_pactPath51 >= 0 && _pactPath51 != p && SelCount51() > 0) { _confirm97 = p; _confirmChoose97 = false; return; }
             if (p == (int)PactPath.Necromancer) { string lab; bool en; PrimaryLab97(p, f, out lab, out en); if (!en) { Msg51(lab); return; } } // t580u: SIGN needs parents signed; REMOVE keeps the path valid
             TrySelect51(p, f);
@@ -364,6 +370,7 @@ namespace Hellord
         void ChoosePath97(int p)
         {
             if (PathLocked97(p)) { Msg51("PATH LOCKED: UNLOCK A NODE FIRST"); return; }
+            if (AmLocked()) { Msg51("PACT SEALED: UNSEAL FIRST"); return; } // t1380
             if (_pactPath51 >= 0 && _pactPath51 != p && SelCount51() > 0) { _confirm97 = p; _confirmChoose97 = true; return; }
             _pactPath51 = p; _pactSel51 = 0; PactSave51(); Msg51("YOUR PATH: " + PactData.PathShort[p]);
         }
@@ -385,8 +392,9 @@ namespace Hellord
             bool up = Nav69(0), dn = Nav69(1), lf = Nav69(2), rt = Nav69(3), ok = K69Down(4), back = K69Down(5);
             var mv = HInput.Move(); _navX69 = mv.x; _navY69 = mv.y;
             if (_confirm97 >= 0) { if (ok) ConfirmYes97(); else if (back) _confirm97 = -1; return; }
+            if (_altarScr53 == 0 && AmActive() && K69Down(6)) { AmSealToggle(); return; } // t1380: X = SEAL / UNSEAL
             if (back) { if (_altarScr53 == 1) _altarScr53 = 0; else mode = Mode.MainMenu; return; }
-            if (HInput.Down(HKey.Tab) && _altarScr53 == 0) { _altarScr53 = 2; return; }
+            if (HInput.Down(HKey.Tab) && _altarScr53 == 0 && !AmActive()) { _altarScr53 = 2; return; }
             if (_altarScr53 == 0)
             {
                 if (lf) Scroll97(-1); else if (rt) Scroll97(1); else if (ok) { _altarScr53 = 1; _focus97 = -1; }

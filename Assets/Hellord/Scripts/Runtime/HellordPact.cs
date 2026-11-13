@@ -53,7 +53,7 @@ namespace Hellord
     {
         // ---- meta save (PlayerPrefs) ----
         const string PK = "hellord.pact51.";
-        int _souls51, _sigils51, _pactPath51 = -1, _pactSel51; int[] _unlock51 = new int[4]; bool _pactLoaded51;
+        int _souls51, _sigils51, _pactPath51 = -1, _pactSel51; bool _pactSealed51 /* t1380: Pact SEALED (menu-theme Altar): picks frozen until UNSEAL; PlayerPrefs 'sealed' */; int[] _unlock51 = new int[4]; bool _pactLoaded51;
         // ---- run state ----
         bool _pactPaid51, _lastRitesUsed51; int _pactBossKills51, _soulsEarned51, _sigilsEarned51; bool _pactActive51;
         // ---- ui state ----
@@ -71,6 +71,7 @@ namespace Hellord
             PactMigrate539();
             if (_pactPath51 < 0 || _pactPath51 > 3) { _pactPath51 = -1; _pactSel51 = 0; }
             _pactSel51 &= _pactPath51 >= 0 ? _unlock51[_pactPath51] : 0; // never select a locked node (save repair)
+            _pactSealed51 = PlayerPrefs.GetInt(PK + "sealed", 0) == 1 && _pactPath51 >= 0 && _pactSel51 != 0; // t1380
             _altarView51 = Mathf.Max(0, _pactPath51);
         }
         // t539u: one-time save migration. Old layout: 0 Pyro, 1 BONE WARDEN (10 nodes), 2 Storm, 3 Blood, 4 Necromancer (18 nodes). New: 1 = Necromancer.
@@ -94,6 +95,8 @@ namespace Hellord
             PlayerPrefs.SetInt(PK + "souls", _souls51); PlayerPrefs.SetInt(PK + "sigils", _sigils51);
             PlayerPrefs.SetInt(PK + "path", _pactPath51); PlayerPrefs.SetInt(PK + "sel", _pactSel51);
             for (int p = 0; p < 4; p++) PlayerPrefs.SetInt(PK + "unlock" + p, _unlock51[p]);
+            if (_pactPath51 < 0 || _pactSel51 == 0 || HellordUITheme.Active != HellordUITheme.Theme.MenuTheme) _pactSealed51 = false; // t1380: the seal only exists with picks, and only in the menu theme (stone can edit picks)
+            PlayerPrefs.SetInt(PK + "sealed", _pactSealed51 ? 1 : 0);
             PlayerPrefs.Save();
         }
 
@@ -136,6 +139,7 @@ namespace Hellord
         {
             var n = PactData.Nodes[p][i];
             if (!Unlocked51(p, i)) { Msg51("UNLOCK FIRST"); return; }
+            if (AmLocked()) { Msg51("PACT SEALED: UNSEAL FIRST"); return; } // t1380
             if (_pactPath51 >= 0 && _pactPath51 != p && SelCount51() > 0) { _confirmSwitch51 = p; return; } // v1.6: switching Path asks + clears
             if (_pactPath51 != p) { _pactPath51 = p; _pactSel51 = 0; }
             if ((_pactSel51 & Bit(i)) != 0) { _pactSel51 &= ~Bit(i); if (_pactSel51 == 0) _pactPath51 = -1; PactSave51(); return; }
