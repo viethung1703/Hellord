@@ -140,10 +140,8 @@ for p in range(4):
     SPR[f'tab_{p}'] = keyed(tab, tw, th)
     sockx = tx0 + WALL + 12 + SM.width(name) + g1 + SM.width('NODES') + 7; cntx = sockx + nodes_w + 7; divx = cntx + SM.width('3/8') + 9; crestx = divx + 1 + 9
     TABINFO.append((tx0, CAV_Y, tw, th, sockx, cntx, crestx)); print(name, 'tab', tx0, tw, 'sock', sockx, 'cnt', cntx, 'crest', crestx, 'right pad', tx0 + tw - WALL - (crestx + crest_w))
-# ---- buttons (105x19 OPEN TREE green / BACK, 89x15 SEAL red; hover = lighter bands + orange corner brackets)
-def brackets(cv, x, y, w, h):
-    for (cx, cy, sx, sy) in ((x - 2, y - 2, 1, 1), (x + w + 1, y - 2, -1, 1), (x - 2, y + h + 1, 1, -1), (x + w + 1, y + h + 1, -1, -1)):
-        for i in range(3): cv.p(cx + sx * i, cy, 'ORANGE'); cv.p(cx, cy + sy * i, 'ORANGE')
+# ---- buttons (OPEN TREE green / BACK 105x19, SEAL red 89x15, arrows 17x23). Hover/press "zoom" = the button REDRAWN at a larger/smaller size (frames + labels stay crisp, label re-centred by the same real-bbox rule):
+# _n_<dw>_<dh> = normal palette (press / rest), _h_<dw>_<dh> = hover palette (brighter). Sizes are w+dw, h+dh (dw, dh even => label parity is unchanged). Hover corner brackets are drawn at runtime (MtBrackets) around the grown rect.
 def band_fill(bands, h):
     nb = len(bands)
     def fill(j, i, d):
@@ -151,27 +149,35 @@ def band_fill(bands, h):
         if b > 0 and k - int(k) < 0.34 and (i + j) % 2 == 0: b -= 1
         return bands[b]
     return fill
-def keybtn(cv, x, y, w, h, label, key, lit, dark_, bands, tcol, kcol, dcol, hover, shadow='DEEP'):
+def keybtn(cv, x, y, w, h, label, key, lit, dark_, bands, tcol, kcol, dcol):
     S.raised(cv, x, y, rect_mask(w, h, 3), lit, dark_, band_fill(bands, h))
-    put(cv, (x, y, w, h), label, tcol, role='button', cont=(x, y, w, h), shadow=shadow)
+    put(cv, (x, y, w, h), label, tcol, role='button', cont=(x, y, w, h), shadow='DEEP')
     put(cv, (x + 4, y, 13, h), key, kcol, role='key', cont=(x, y, w, h)); cv.vl(x + 17, y + 4, h - 8, dcol)
-    if hover: brackets(cv, x, y, w, h)
-for hv, nm in ((False, 'n'), (True, 'h')):
-    gb = ['G1', 'G2', 'G2', 'G3', 'G3', 'G4'] if hv else ['G2', 'G2', 'G3', 'G3', 'G3', 'G4']
-    SPR['open_' + nm] = keyed(lambda cv, x, y, gb=gb, hv=hv: keybtn(cv, x, y, 105, 19, 'OPEN TREE', 'A', ['DEEP', 'G1', 'G2', 'G3'], ['DEEP', 'G4', 'G3', 'G4'], gb, 'BONE', 'DIM', 'G4', hv), 105, 19, 2)
-    def back(cv, x, y, hv=hv):
-        S.button(cv, x, y, 105, 19, '', 'hover' if hv else 'normal', 0.15, False); put(cv, (x, y, 105, 19), 'BACK', 'BONE', role='button', cont=(x, y, 105, 19), shadow='DEEP')
-        put(cv, (x + 4, y, 13, 19), 'B', 'DIM', role='key', cont=(x, y, 105, 19)); cv.vl(x + 17, y + 4, 11, 'P2')
-    SPR['back_' + nm] = keyed(back, 105, 19, 2)
-    SPR['seal_un_' + nm] = keyed(lambda cv, x, y, hv=hv: keybtn(cv, x, y, 89, 15, 'SEAL', 'X', ['DEEP', 'PINK', 'RED', 'DRED'], ['DEEP', 'R0', 'DRED', 'BLOOD'], ['RED', 'DRED', 'DRED', 'BLOOD', 'BLOOD', 'BLOOD', 'R0'] if not hv else ['PINK', 'RED', 'RED', 'DRED', 'DRED', 'BLOOD', 'BLOOD'], 'BONE', 'DIM', 'R0', hv), 89, 15, 2)
-    SPR['seal_se_' + nm] = keyed(lambda cv, x, y, hv=hv: keybtn(cv, x, y, 89, 15, 'UNSEAL', 'X', ['DEEP', 'PINK', 'RED', 'DRED'], ['DEEP', 'DRED', 'BLOOD', 'R0'], ['BLOOD', 'DRED', 'DRED', 'R0', 'R0'] if not hv else ['DRED', 'RED', 'DRED', 'BLOOD', 'BLOOD'], 'YELLOW', 'CLAY', 'R0', hv), 89, 15, 2)
-for d_, nm in ((1, 'l'), (-1, 'r')):
-    for hv, st in ((False, 'n'), (True, 'h')):
-        def arrow(cv, x, y, d_=d_, hv=hv):
-            S.button(cv, x, y, 17, 23, '', 'hover' if hv else 'normal', 0.15, False)
-            rows_ = ['..#', '.##', '###', '.##', '..#'] if d_ > 0 else ['#..', '##.', '###', '##.', '#..']
-            cv.blit([r.replace('#', 'B') for r in rows_], dict(B='BONE'), x + 7, y + 9)
-        SPR[f'arr_{nm}_{st}'] = keyed(arrow, 17, 23, 2)
+DN = [(-4, -2), (-2, 0), (0, 0)]; DH = [(2, 0), (4, 2), (6, 2)]; ADN = [(-2, -2), (0, 0)]; ADH = [(0, 0), (2, 2)]
+def dn(d): return ('m' if d < 0 else '') + str(abs(d))
+GN = (['DEEP', 'G1', 'G2', 'G3'], ['DEEP', 'G4', 'G3', 'G4'])
+BN = (['DEEP', 'T2', 'P2', 'PLUM'], ['DEEP', 'P2', 'PLUM', 'N2'], ['PLUM', 'PLUM', 'N2', 'N2', 'N1', 'N1'])
+BH = (['DEEP', 'CLAY', 'B2', 'P2'], ['DEEP', 'BROWN', 'P2', 'PLUM'], ['P2', 'P2', 'PLUM', 'PLUM', 'N2', 'N2'])
+RL = ['DEEP', 'PINK', 'RED', 'DRED']
+SPECS = {   # name: (w, h, label, key, {n|h: (lit, dark, bands)}, text colour, key colour, divider colour)
+ 'open': (105, 19, 'OPEN TREE', 'A', {'n': (GN[0], GN[1], ['G2', 'G2', 'G3', 'G3', 'G3', 'G4']), 'h': (GN[0], GN[1], ['G1', 'G2', 'G2', 'G3', 'G3', 'G4'])}, 'BONE', 'DIM', 'G4'),
+ 'back': (105, 19, 'BACK', 'B', {'n': BN, 'h': BH}, 'BONE', 'DIM', 'P2'),
+ 'seal_un': (89, 15, 'SEAL', 'X', {'n': (RL, ['DEEP', 'R0', 'DRED', 'BLOOD'], ['RED', 'DRED', 'DRED', 'BLOOD', 'BLOOD', 'BLOOD', 'R0']), 'h': (RL, ['DEEP', 'R0', 'DRED', 'BLOOD'], ['PINK', 'RED', 'RED', 'DRED', 'DRED', 'BLOOD', 'BLOOD'])}, 'BONE', 'DIM', 'R0'),
+ 'seal_se': (89, 15, 'UNSEAL', 'X', {'n': (RL, ['DEEP', 'DRED', 'BLOOD', 'R0'], ['BLOOD', 'DRED', 'DRED', 'R0', 'R0']), 'h': (RL, ['DEEP', 'DRED', 'BLOOD', 'R0'], ['DRED', 'RED', 'DRED', 'BLOOD', 'BLOOD'])}, 'YELLOW', 'CLAY', 'R0'),
+}
+for nm, (w0, h0, lab, key, pals, tc, kc, dc) in SPECS.items():
+    for hv, deltas in (('n', DN), ('h', DH)):
+        for dw, dh in deltas:
+            w, h = w0 + dw, h0 + dh; lit, dk, bands = pals[hv]
+            SPR[f'{nm}_{hv}_{dn(dw)}_{dn(dh)}'] = keyed(lambda cv, x, y, w=w, h=h, lit=lit, dk=dk, bands=bands: keybtn(cv, x, y, w, h, lab, key, lit, dk, bands, tc, kc, dc), w, h)
+for side, d_ in (('l', 1), ('r', -1)):
+    for hv, deltas, pal in (('n', ADN, BN), ('h', ADH, BH)):
+        for dw, dh in deltas:
+            def arrow(cv, x, y, w=17 + dw, h=23 + dh, d_=d_, pal=pal):
+                S.raised(cv, x, y, rect_mask(w, h, 3), pal[0], pal[1], band_fill(pal[2], h))
+                rows_ = ['..#', '.##', '###', '.##', '..#'] if d_ > 0 else ['#..', '##.', '###', '##.', '#..']
+                cv.blit([r.replace('#', 'B') for r in rows_], dict(B='BONE'), x + (w - 3) // 2, y + (h - 5) // 2)
+            SPR[f'arr_{side}_{hv}_{dn(dw)}_{dn(dh)}'] = keyed(arrow, 17 + dw, 23 + dh)
 # ------------------------------------------------------------------ atlas pack (shelf)
 names = list(SPR.keys()); AW = 512; x = y = rowh = 0; RECT = {}
 for n in sorted(names, key=lambda n: -SPR[n].shape[0]):

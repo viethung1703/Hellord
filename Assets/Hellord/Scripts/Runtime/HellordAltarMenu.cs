@@ -20,7 +20,7 @@ namespace Hellord
         /// <summary>true when the menu-theme Altar overview is drawn (and handles keys); anything missing/failed falls back to the stone carousel.</summary>
         bool AmActive() { return !_amBroken && HellordUITheme.Active == HellordUITheme.Theme.MenuTheme && NP97 == 4 && PmReady() && AmReady(); }
         /// <summary>menu theme + sealed: the Pact picks are frozen until UNSEAL.</summary>
-        bool AmLocked() { return _pactSealed51 && HellordUITheme.Active == HellordUITheme.Theme.MenuTheme && _pactPath51 >= 0 && _pactSel51 != 0; }
+        bool AmLocked() { return _pactSealed51 && HellordUITheme.Active == HellordUITheme.Theme.MenuTheme && _pactPath51 >= 0; }
 
         void AmSpr(string n, int x, int y, float a = 1f) { int[] r; if (_amAtlas == null || !AltarMenuData.Atlas.TryGetValue(n, out r)) return; MtBlit(_amAtlas, r[0], r[1], r[2], r[3], x, y, a); }
         /// <summary>integer-scaled (nearest) blit of a whole texture at (x,y) in the 640x360 grid.</summary>
@@ -53,10 +53,48 @@ namespace Hellord
 
         // ---------------------------------------------------------------- seal
         void AmSealToggle()
-        {
+        {   // the seal belongs to YOUR Pact path; an empty Pact can be sealed too (picks stay frozen until UNSEAL)
+            int v = _altarView51;
             if (_pactSealed51) { _pactSealed51 = false; PactSave51(); Msg51("PACT UNSEALED"); HellordAudio.Play("ui_back"); return; }
-            if (_pactPath51 < 0 || _pactSel51 == 0) { Msg51("PICK NODES FIRST"); return; }
-            _pactSealed51 = true; PactSave51(); Msg51("PACT SEALED"); HellordAudio.Play("ui_confirm");
+            if (_pactPath51 != v)
+            {
+                if (_pactPath51 >= 0 && _pactSel51 != 0) { Msg51("SEAL APPLIES TO YOUR PATH: " + PactData.PathShort[_pactPath51]); return; }
+                if (PathLocked97(v)) { Msg51("PATH LOCKED: UNLOCK A NODE FIRST"); return; }
+                _pactPath51 = v; _pactSel51 = 0;
+            }
+            _pactSealed51 = true; PactSave51(); Msg51(_pactSel51 == 0 ? "PACT SEALED (EMPTY)" : "PACT SEALED"); HellordAudio.Play("ui_confirm");
+        }
+        void AmDo(string id) { if (id == "amopen") { _altarScr53 = 1; _focus97 = -1; } else if (id == "amback") mode = Mode.MainMenu; }
+
+        // ---------------------------------------------------------------- button juice: per-control spring (level -2 pressed .. 0 rest .. +2 hover, overshoot to +3); the control is REDRAWN at the matching baked size (frames stay crisp)
+        class AmAnim { public float x, v; public int frame = -1; public float pressUntil; }
+        readonly Dictionary<string, AmAnim> _amAnim = new Dictionary<string, AmAnim>();
+        string _amPend; float _amPendAt;
+        AmAnim AmA(string id) { AmAnim a; if (!_amAnim.TryGetValue(id, out a)) { a = new AmAnim(); _amAnim[id] = a; } return a; }
+        /// <summary>keyboard / pad press feedback: shows the pressed state for ~0.1 s.</summary>
+        void AmKick(string id) { AmA(id).pressUntil = Time.unscaledTime + 0.1f; }
+        int AmLevel(string id, bool over, bool pressed)
+        {
+            var a = AmA(id); if (a.pressUntil > Time.unscaledTime) pressed = true;
+            float target = pressed ? -2f : over ? 2f : 0f;
+            if (a.frame != Time.frameCount)
+            {
+                a.frame = Time.frameCount; float dt = Mathf.Min(Time.unscaledDeltaTime, 1f / 30f) * 0.5f;
+                for (int k = 0; k < 2; k++) { float acc = 900f * (target - a.x) - 24f * a.v; a.v += acc * dt; a.x += a.v * dt; }   // ~0.12 s to settle, ~25% overshoot
+                if (Mathf.Abs(target - a.x) < 0.02f && Mathf.Abs(a.v) < 0.05f) { a.x = target; a.v = 0; }
+            }
+            return Mathf.Clamp(Mathf.RoundToInt(a.x), -2, 3);
+        }
+        static string AmD(int d) { return (d < 0 ? "m" : "") + Mathf.Abs(d); }
+        /// <summary>one juicy button: returns true when clicked. (x,y,w,h) = the rest rect (also the hit rect); arrow = square growth.</summary>
+        bool AmBtn(string id, string spr, int x, int y, int w, int h, bool free, bool arrow = false, float alpha = 1f)
+        {
+            bool over = free && MtOver(id, x, y, w, h), pr = MtPressed(id, over); int lv = AmLevel(id, over, pr);
+            int dw, dh; if (arrow) dw = dh = 2 * (lv / 2); else { dw = 2 * lv; dh = 2 * (lv / 2); }
+            int ox = x - dw / 2, oy = y - dh / 2 + (lv < 0 ? 1 : 0);
+            AmSpr(spr + (lv >= 1 ? "_h_" : "_n_") + AmD(dw) + "_" + AmD(dh), ox, oy, alpha);
+            if (over) MtBrackets(ox, oy, w + dw, h + dh);
+            return MtClick(id, x, y, w, h, free);
         }
 
         // ---------------------------------------------------------------- screen
@@ -76,7 +114,7 @@ namespace Hellord
             float t = MtClock(); bool free = _confirm97 < 0; int NP = NP97, v = Mathf.Clamp(_altarView51, 0, NP - 1), l = (v + NP - 1) % NP, r = (v + 1) % NP;
             var nodes = PactData.Nodes[v]; bool yours = _pactPath51 == v, locked = PathLocked97(v);
             var tk = new List<int>(); if (yours) for (int i = 0; i < nodes.Length; i++) if (Taken97(v, i)) tk.Add(i);
-            int n = tk.Count; bool sealed_ = _pactSealed51 && yours && n > 0;
+            int n = tk.Count; bool sealed_ = _pactSealed51 && yours;
             if (_mtRep)
             {
                 GUI.color = MT_INK; GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Texture2D.whiteTexture); GUI.color = Color.white;
@@ -104,18 +142,18 @@ namespace Hellord
             if (locked) AmSpr("lock", 253 + 134 - 18, 99 + 134 - 18);
             if (sealed_) AmSpr("chip", AltarMenuData.CardX + 7, AltarMenuData.CardY + 7);
             AmTxIn(PactData.PathShort[v], 249, 82, 141, 15, locked ? "DIM" : "BONE");
-            // ---- SEAL / UNSEAL straddling the card's bottom frame
-            if (yours && n > 0)
+            // ---- SEAL / UNSEAL straddling the card's bottom frame (always drawn; dimmed when your Pact is on another path)
             {
-                int bx = AltarMenuData.SealX, by = AltarMenuData.SealY; bool ov = free && MtOver("amseal", bx, by, 89, 15);
-                AmSpr((sealed_ ? "seal_se_" : "seal_un_") + (ov ? "h" : "n"), bx - 2, by - 2);
-                if (MtClick("amseal", bx, by, 89, 15, free)) AmSealToggle();
+                bool other = !yours && _pactPath51 >= 0 && _pactSel51 != 0;
+                if (AmBtn("amseal", sealed_ ? "seal_se" : "seal_un", AltarMenuData.SealX, AltarMenuData.SealY, 89, 15, free, false, other ? 0.5f : 1f)) AmSealToggle();
             }
             // ---- side cards (frames + plate boxes are in the scene): 1x avatar dimmed, plate name, status lines
             for (int sd = 0; sd < 2; sd++)
             {
                 int cx = AltarMenuData.SideCx[sd], p = sd == 0 ? l : r, sy0 = AltarMenuData.SideY + 10, sx0 = cx - 35; bool lk = PathLocked97(p), mine = _pactPath51 == p;
-                AmBlitN(T97(Av97(p, lk, false)), sx0 + 3, sy0 + 3, 1, 0.65f);
+                string sid = "amside" + sd; int cx0 = cx - AltarMenuData.SideW / 2; bool sov = free && MtOver(sid, cx0, AltarMenuData.SideY, AltarMenuData.SideW, AltarMenuData.SideH), spr_ = MtPressed(sid, sov); int slv = AmLevel(sid, sov, spr_);
+                AmBlitN(T97(Av97(p, lk, false)), sx0 + 3, sy0 + 3, 1, Mathf.Min(1f, 0.65f + 0.12f * Mathf.Max(0, slv)));
+                if (sov || slv > 0) MtBrackets(cx0 - slv, AltarMenuData.SideY - slv, AltarMenuData.SideW + 2 * slv, AltarMenuData.SideH + 2 * slv);
                 if (lk) AmSpr("lock", sx0 + 52, sy0 + 52);
                 int px = cx - AltarMenuData.SideW / 2 + (AltarMenuData.SideW - 89) / 2;
                 AmTxIn(PactData.PathShort[p], px, AltarMenuData.SideY - 7, 89, 15, lk ? "DIM" : "BONE");
@@ -127,12 +165,7 @@ namespace Hellord
                 if (MtClick("amside" + sd, cx - AltarMenuData.SideW / 2, AltarMenuData.SideY, AltarMenuData.SideW, AltarMenuData.SideH, free)) Scroll97(sd == 0 ? -1 : 1);
             }
             // ---- arrows
-            for (int sd = 0; sd < 2; sd++)
-            {
-                int ax = sd == 0 ? AltarMenuData.ArrL : AltarMenuData.ArrR, ay = AltarMenuData.ArrY; bool ov = free && MtOver("amarr" + sd, ax, ay, 17, 23);
-                AmSpr("arr_" + (sd == 0 ? "l" : "r") + (ov ? "_h" : "_n"), ax - 2, ay - 2);
-                if (MtClick("amarr" + sd, ax, ay, 17, 23, free)) Scroll97(sd == 0 ? -1 : 1);
-            }
+            for (int sd = 0; sd < 2; sd++) if (AmBtn("amarr" + sd, sd == 0 ? "arr_l" : "arr_r", sd == 0 ? AltarMenuData.ArrL : AltarMenuData.ArrR, AltarMenuData.ArrY, 17, 23, free, true)) Scroll97(sd == 0 ? -1 : 1);
             // ---- path faces: 24x24 1:1 head crops of the 64px game avatars in 26px frames (viewed = amber, others dimmed, locked = lock avatar)
             for (int p = 0; p < NP; p++)
             {
@@ -144,10 +177,9 @@ namespace Hellord
             }
             // ---- OPEN TREE [A] (green) / BACK [B]
             {
-                int by = AltarMenuData.BtnY; bool ov = free && MtOver("amopen", AltarMenuData.OpenX, by, 105, 19), ob = free && MtOver("amback", AltarMenuData.BackX, by, 105, 19);
-                AmSpr(ov ? "open_h" : "open_n", AltarMenuData.OpenX - 2, by - 2); AmSpr(ob ? "back_h" : "back_n", AltarMenuData.BackX - 2, by - 2);
-                if (MtClick("amopen", AltarMenuData.OpenX, by, 105, 19, free)) { _altarScr53 = 1; _focus97 = -1; }
-                if (MtClick("amback", AltarMenuData.BackX, by, 105, 19, free)) mode = Mode.MainMenu;
+                int by = AltarMenuData.BtnY;
+                if (AmBtn("amopen", "open", AltarMenuData.OpenX, by, 105, 19, free)) AmDo("amopen");
+                if (AmBtn("amback", "back", AltarMenuData.BackX, by, 105, 19, free)) AmDo("amback");
             }
             // ---- lava life + light (drawn last so the glow also warms the lower UI)
             if (_mtRep)

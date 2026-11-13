@@ -392,7 +392,14 @@ namespace Hellord
             bool up = Nav69(0), dn = Nav69(1), lf = Nav69(2), rt = Nav69(3), ok = K69Down(4), back = K69Down(5);
             var mv = HInput.Move(); _navX69 = mv.x; _navY69 = mv.y;
             if (_confirm97 >= 0) { if (ok) ConfirmYes97(); else if (back) _confirm97 = -1; return; }
-            if (_altarScr53 == 0 && AmActive() && K69Down(6)) { AmSealToggle(); return; } // t1380: X = SEAL / UNSEAL
+            if (_altarScr53 == 0 && AmActive())
+            {   // t1380: key / pad presses show the same press feedback as the mouse; OPEN TREE / BACK fire after ~0.09 s so it is visible
+                if (_amPend != null) { if (Time.unscaledTime >= _amPendAt) { var pid = _amPend; _amPend = null; AmDo(pid); } return; }
+                if (K69Down(6)) { AmKick("amseal"); AmSealToggle(); return; }   // X = SEAL / UNSEAL
+                if (ok) { AmKick("amopen"); _amPend = "amopen"; _amPendAt = Time.unscaledTime + 0.09f; return; }
+                if (back) { AmKick("amback"); _amPend = "amback"; _amPendAt = Time.unscaledTime + 0.09f; return; }
+                if (lf) { AmKick("amarr0"); Scroll97(-1); return; } if (rt) { AmKick("amarr1"); Scroll97(1); return; }
+            }
             if (back) { if (_altarScr53 == 1) _altarScr53 = 0; else mode = Mode.MainMenu; return; }
             if (HInput.Down(HKey.Tab) && _altarScr53 == 0 && !AmActive()) { _altarScr53 = 2; return; }
             if (_altarScr53 == 0)
