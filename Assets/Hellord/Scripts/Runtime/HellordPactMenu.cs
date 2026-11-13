@@ -203,13 +203,18 @@ namespace Hellord
         void AmCrestPanel(bool active, int n, bool yours)
         {
             AmGlyphs(); int at = PT.pactCrestAt51; const int RX = 534, RY = 250, RW = 89, MAXW = 83;
-            var a = new List<string>(); { string t0 = "GRAVECALLER CREST"; if (MtW(t0, false) <= MAXW) a.Add(t0); else { int sp = t0.LastIndexOf(' '); a.Add(t0.Substring(0, sp)); a.Add(t0.Substring(sp + 1)); } }
-            var b = new List<string>(); string sc = active ? "GREEN" : "DIM";
-            if (active) b.Add("ACTIVE");
-            else { string full = "SIGN " + at + " TO AWAKEN (" + n + "/" + at + ")"; if (MtW(full, false) <= MAXW) b.Add(full); else { b.Add("SIGN " + at + " TO AWAKEN"); b.Add("(" + n + "/" + at + ")"); } }
+            var a = AmFit2("GRAVECALLER CREST", MAXW); var b = new List<string>(); string sc = active ? "GREEN" : "DIM";
+            if (active) b.Add("ACTIVE"); else b = AmFit2("SIGN " + at + " TO AWAKEN (" + n + "/" + at + ")", MAXW);
             int H = a.Count * 8 - 1 + 6 + b.Count * 8 - 1, y = RY + 3 + (48 - H) / 2;
             foreach (var s0 in a) { AmTxRaw(s0, RX, RW, y, "BONE"); y += 8; }
             y += 6 - 1; foreach (var s0 in b) { AmTxRaw(s0, RX, RW, y, sc); y += 8; }
+        }
+        /// <summary>one line if it fits, else the split at a space that gives the narrowest two lines.</summary>
+        static List<string> AmFit2(string t, int maxW)
+        {
+            var o = new List<string>(); if (MtW(t, false) <= maxW) { o.Add(t); return o; }
+            int best = -1, bw = int.MaxValue; for (int i = 0; i < t.Length; i++) if (t[i] == ' ') { int w = Mathf.Max(MtW(t.Substring(0, i), false), MtW(t.Substring(i + 1), false)); if (w < bw) { bw = w; best = i; } }
+            if (best < 0) { o.Add(t); return o; } o.Add(t.Substring(0, best)); o.Add(t.Substring(best + 1)); return o;
         }
         List<string> PmWrap(string s, int maxW)
         {
