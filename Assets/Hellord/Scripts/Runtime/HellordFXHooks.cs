@@ -55,6 +55,7 @@ namespace Hellord
         /// <summary>Frozen enemy shatters on death (cached burst settings, no allocation).</summary>
         public static void Shatter(Vector2 pos)
         {
+            if (IceFX3.Ok) { var p = pos + Vector2.up * 0.3f; HordeFX.CheapBurst(p, IceArt.Pale, 3); HordeFX.CheapBurst(p, IceArt.Cyan, 4); HordeFX.CheapBurst(p, IceArt.Mid, 3); return; } // t1409u v3: a few small chips, no white burst
             if (ReactionFX.FrostShatter(pos, 10, 14)) return;
             if (_shatter == null) _shatter = new PixelBurstSettings { count = 14, speed = new Vector2(1.5f, 4f), spreadDegrees = 360, lifetime = new Vector2(0.25f, 0.5f), gravity = 6f, drag = 1.5f, sizePixels = new Vector2Int(1, 2), colorOverLife = PixelBurstSettings.DefaultGradient(Color.white, Ice), colorSteps = 3 };
             PixelParticles.Burst(_shatter, pos);
@@ -66,7 +67,7 @@ namespace Hellord
         public static int BleedStatus(Transform t, float seconds, float radiusUnits) => ReactionFX.BleedStatus(t, seconds, Mathf.Max(6, radiusUnits * 2 * HArt.PPU), 0);
         /// <summary>v0.5: StatusFX burn / chill overlays (loop until we stop them; feet = enemy root).</summary>
         public static int BurnStatus(Enemy e) => StatusFX.BurnStatus(e.tr, 0f, Mathf.Clamp(e.radius * 2.5f * HArt.PPU, 6, 24), 0f);
-        public static int ChillStatus(Enemy e) => StatusFX.ChillStatus(e.tr, 0f, e.freezeT > 0, Mathf.Clamp(e.radius * 2.5f * HArt.PPU, 6, 24), Mathf.Clamp(e.radius * 2f * HArt.PPU, 4, 24), 0f);
+        public static int ChillStatus(Enemy e) => !e.boss && IceFX3.Ok ? -1 : StatusFX.ChillStatus(e.tr, 0f, e.freezeT > 0, Mathf.Clamp(e.radius * 2.5f * HArt.PPU, 6, 24), Mathf.Clamp(e.radius * 2f * HArt.PPU, 4, 24), 0f);
         public static void StopTell(ref int handle) { if (handle >= 0) StatusFX.StopStatus(handle); handle = -1; }
         public static void Stop(ref int handle) { if (handle >= 0) ReactionFX.StopStatus(handle); handle = -1; }
         public static bool Alive(int handle) => handle >= 0 && ReactionFX.IsAlive(handle);
@@ -117,12 +118,12 @@ namespace Hellord
         int _statusFxCount;
         void UpdateStatusFx(Enemy e)
         {
-            bool tint = runTime < e.tint948Until; bool want = e.chillT > 0 || e.freezeT > 0 || e.shockT > 0 || e.bleedT > 0 || tint;
+            bool tint = runTime < e.tint948Until; bool ice3 = !e.boss && IceFX3.Ok; /* t1409u: v3 draws chill/freeze itself (IceFX3.StatusSprite) */ bool want = (!ice3 && (e.chillT > 0 || e.freezeT > 0)) || e.shockT > 0 || e.bleedT > 0 || tint;
             if (want && e.fx == null && (e.elite || _statusFxCount < MaxStatusFx)) AttachFx(e);
             if (e.fx == null) return;
             if (!want && !e.elite) { DetachFx(e); return; }
             e.fx.burnAmount = 0f; // v0.0.12: _BurnAmount is the pack's burn-AWAY dissolve (erases the sprite bottom-up; assumes uv 0..1, our sprites are sheet frames) -> it erased hit enemies. Burn = orange pulse instead.
-            e.fx.frozenAmount = e.boss ? (e.freezeT > 0 || e.chillT > 0 ? 0.25f : 0f) : e.freezeT > 0 ? 1f : e.chillT > 0 ? 0.35f : 0f; // v0.0.14: full 'frozen' read as a translucent blue ghost on the boss
+            e.fx.frozenAmount = ice3 ? 0f : e.boss ? (e.freezeT > 0 || e.chillT > 0 ? 0.25f : 0f) : e.freezeT > 0 ? 1f : e.chillT > 0 ? 0.35f : 0f; // v0.0.14: full 'frozen' read as a translucent blue ghost on the boss
             // t948u: no 3 s full pulse on shock/bleed any more; a brief partial tint (speed 0 -> constant 0.5*amount in the Uber shader)
             e.fx.pulseAmount = tint ? Mathf.Clamp01(e.tint948Amt * 2f) : 0f; e.fx.pulseSpeed = 0f;
             e.fx.pulseColor = e.tint948Col;

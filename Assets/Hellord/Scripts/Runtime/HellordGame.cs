@@ -673,7 +673,7 @@ namespace Hellord
                 if (v.sqrMagnitude > 0.01f) e.walkRow = HArt.WalkRow(v); // 4-direction walk rows (west is its own row, no flip)
                 e.sr.sprite = e.frames[e.walkRow + (int)e.animT % HArt.EnemyWalkN]; e.sr.flipX = false; if (e.variant >= 3) Animate44(e, v, to, dt); if (e.m53 > 0) Animate53(e, v, dt); // hit flash = HordeFX material swap (no hit frame)
                 var tint = EnemyArtMap.Map[e.type].tint * v37t;
-                if (!HordeFXBusy(e)) SetCol(e.sr, tint * (e.fx != null ? (e.curseT > 0 ? new Color(0.8f, 0.6f, 1f) : Color.white) : e.freezeT > 0 ? new Color(0.6f, 0.9f, 1f) : e.curseT > 0 ? new Color(0.8f, 0.6f, 1f) : e.chillT > 0 ? new Color(0.8f, 0.92f, 1f) : Color.white));
+                if (!HordeFXBusy(e)) SetCol(e.sr, tint * (e.fx != null ? (e.curseT > 0 ? new Color(0.8f, 0.6f, 1f) : Color.white) : e.curseT > 0 ? new Color(0.8f, 0.6f, 1f) : !IceFX3.Ok ? (e.freezeT > 0 ? new Color(0.6f, 0.9f, 1f) : e.chillT > 0 ? new Color(0.8f, 0.92f, 1f) : Color.white) : Color.white)); // t1409u: with the v3 ice shader the chill/freeze tint is done in-shader (no whole-sprite colour)
                 UpdateStatusFx(e);
                 if (e.bleedT > 0 && e.bleedH < 0 && e.dotTick > 0.45f) HFX.Bleed(e.pos + Vector2.up * e.hitY); // stand-in when BleedStatus failed
                 UpdateStatusHandles(e);
@@ -814,7 +814,7 @@ namespace Hellord
                 {
                     case 0: TortureBlast52(b.pos, b.r, 0); ProjectileFX.Impact(b.pos, ProjElement.Fire, Vector2.zero); HellordAudio.Play("fireball_impact"); break;
                     case 1: break; // overload: drawn below once targets are known
-                    case 2: HordeFX.CheapBurst(b.pos, new Color(0.7f, 0.95f, 1f), 12); break; // shatter visual already played in KillEnemy (HFX.Shatter)
+                    case 2: HordeFX.CheapBurst(b.pos, IceFX3.Ok ? IceArt.Cyan : new Color(0.7f, 0.95f, 1f), IceFX3.Ok ? 4 : 12); break; // shatter visual already played in KillEnemy (HFX.Shatter)
                     case 3: if (cfx738++ < HellordTuning.I.curseBlastFxPerFrame738) { ProjectileFX.Impact(b.pos, ProjElement.Curse, Vector2.zero); HordeFX.CheapBurst(b.pos, new Color(0.75f, 0.4f, 1f), 10); } break; // t738u cap visuals
                     case 4: HordeFX.CheapBurst(b.pos, new Color(1f, 0.55f, 0.15f), 14); break; // v0.0.36 Explode on Kill (no shake)
                 }
