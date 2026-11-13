@@ -163,6 +163,7 @@ SPECS = {   # name: (w, h, label, key, {n|h: (lit, dark, bands)}, text colour, k
  'open': (105, 19, 'OPEN TREE', 'A', {'n': (GN[0], GN[1], ['G2', 'G2', 'G3', 'G3', 'G3', 'G4']), 'h': (GN[0], GN[1], ['G1', 'G2', 'G2', 'G3', 'G3', 'G4'])}, 'BONE', 'DIM', 'G4'),
  'back': (105, 19, 'BACK', 'B', {'n': BN, 'h': BH}, 'BONE', 'DIM', 'P2'),
  'seal_un': (89, 15, 'SEAL', 'X', {'n': (RL, ['DEEP', 'R0', 'DRED', 'BLOOD'], ['RED', 'DRED', 'DRED', 'BLOOD', 'BLOOD', 'BLOOD', 'R0']), 'h': (RL, ['DEEP', 'R0', 'DRED', 'BLOOD'], ['PINK', 'RED', 'RED', 'DRED', 'DRED', 'BLOOD', 'BLOOD'])}, 'BONE', 'DIM', 'R0'),
+ 'seal_ul': (89, 15, 'UNLOCK', 'X', {'n': (RL, ['DEEP', 'R0', 'DRED', 'BLOOD'], ['RED', 'DRED', 'DRED', 'BLOOD', 'BLOOD', 'BLOOD', 'R0']), 'h': (RL, ['DEEP', 'R0', 'DRED', 'BLOOD'], ['PINK', 'RED', 'RED', 'DRED', 'DRED', 'BLOOD', 'BLOOD'])}, 'BONE', 'DIM', 'R0'),   # t1384: locked Path = red button reading UNLOCK
  'seal_se': (89, 15, 'UNSEAL', 'X', {'n': (RL, ['DEEP', 'DRED', 'BLOOD', 'R0'], ['BLOOD', 'DRED', 'DRED', 'R0', 'R0']), 'h': (RL, ['DEEP', 'DRED', 'BLOOD', 'R0'], ['DRED', 'RED', 'DRED', 'BLOOD', 'BLOOD'])}, 'YELLOW', 'CLAY', 'R0'),
 }
 for nm, (w0, h0, lab, key, pals, tc, kc, dc) in SPECS.items():

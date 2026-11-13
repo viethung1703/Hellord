@@ -139,10 +139,9 @@ namespace Hellord
         {
             var n = PactData.Nodes[p][i];
             if (!Unlocked51(p, i)) { Msg51("UNLOCK FIRST"); return; }
-            if (AmLocked()) { Msg51("PACT SEALED: UNSEAL FIRST"); return; } // t1380
             if (_pactPath51 >= 0 && _pactPath51 != p && SelCount51() > 0) { _confirmSwitch51 = p; return; } // v1.6: switching Path asks + clears
-            if (_pactPath51 != p) { _pactPath51 = p; _pactSel51 = 0; }
-            if ((_pactSel51 & Bit(i)) != 0) { _pactSel51 &= ~Bit(i); if (_pactSel51 == 0) _pactPath51 = -1; PactSave51(); return; }
+            if (_pactPath51 != p) { _pactPath51 = p; _pactSel51 = 0; _pactSealed51 = false; }
+            if ((_pactSel51 & Bit(i)) != 0) { _pactSel51 &= ~Bit(i); if (_pactSel51 == 0 && !AmSealKeep()) _pactPath51 = -1; PactSave51(); return; } // t1384: a sealed (active) Path stays chosen with 0 picks
             if (SelCount51() >= MaxSel51()) { Msg51("PACT FULL: " + MaxSel51() + " MAX"); return; }
             if (n.keystone) { int k = KeyCount53(); if (k >= MaxKeys51()) { Msg51(KeyMaxLab51); return; } }
             _pactSel51 |= Bit(i); PactSave51();
@@ -155,7 +154,7 @@ namespace Hellord
         void PactApply51()
         {
             SinRecalc737(); // t770u Infernal Sins (before the no-pact early return)
-            PactLoad51(); _pactActive51 = _pactPath51 >= 0 && _pactSel51 != 0; if (!_pactActive51) return;
+            PactLoad51(); _pactActive51 = _pactPath51 >= 0 && _pactSel51 != 0 && (_pactSealed51 || HellordUITheme.Active != HellordUITheme.Theme.MenuTheme); if (!_pactActive51) return; // t1384: menu theme: only the SEALED Path counts for a run
             int n = SelCount51(); bool crest = n >= PT.pactCrestAt51; var p = (PactPath)_pactPath51;
             switch (p)
             {

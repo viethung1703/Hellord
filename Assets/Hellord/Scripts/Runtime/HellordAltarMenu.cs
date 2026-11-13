@@ -19,8 +19,21 @@ namespace Hellord
         }
         /// <summary>true when the menu-theme Altar overview is drawn (and handles keys); anything missing/failed falls back to the stone carousel.</summary>
         bool AmActive() { return !_amBroken && HellordUITheme.Active == HellordUITheme.Theme.MenuTheme && NP97 == 4 && PmReady() && AmReady(); }
-        /// <summary>menu theme + sealed: the Pact picks are frozen until UNSEAL.</summary>
-        bool AmLocked() { return _pactSealed51 && HellordUITheme.Active == HellordUITheme.Theme.MenuTheme && _pactPath51 >= 0; }
+        /// <summary>menu theme + sealed: the Pact path is the ACTIVE path for runs (picks stay editable).</summary>
+        bool AmSealKeep() { return _pactSealed51 && HellordUITheme.Active == HellordUITheme.Theme.MenuTheme; }
+        static bool _amGlyphs;
+        /// <summary>the generated SMALL font has no ( ) glyphs (the game's Sanitize drops them); the crest line needs them, so they are added once at runtime (drawn through AmTxRaw, which skips Sanitize).</summary>
+        static void AmGlyphs()
+        {
+            if (_amGlyphs) return; _amGlyphs = true; var d = MenuThemeData.Small;
+            if (!d.ContainsKey('(')) d['('] = new[] { ".#", "#.", "#.", "#.", "#.", "#.", ".#" };
+            if (!d.ContainsKey(')')) d[')'] = new[] { "#.", ".#", ".#", ".#", ".#", ".#", "#." };
+        }
+        /// <summary>text WITHOUT Sanitize, real bbox centred horizontally in [rx, rx+rw), glyph-box top at y.</summary>
+        void AmTxRaw(string s, int rx, int rw, int y, string col)
+        {
+            int l, r; AmBb(s, out l, out r); int bw = r - l + 1; MtDrawTex(MtTextTex(s, false, new[] { MtC(col) }, false, col), rx + (rw - bw) / 2 - l, y);
+        }
 
         void AmSpr(string n, int x, int y, float a = 1f) { int[] r; if (_amAtlas == null || !AltarMenuData.Atlas.TryGetValue(n, out r)) return; MtBlit(_amAtlas, r[0], r[1], r[2], r[3], x, y, a); }
         /// <summary>integer-scaled (nearest) blit of a whole texture at (x,y) in the 640x360 grid.</summary>
@@ -52,17 +65,29 @@ namespace Hellord
         }
 
         // ---------------------------------------------------------------- seal
+        int _amSealPend = -1, _amSealPendFrame;
+        /// <summary>entry node of a locked Path = the cheapest node without a requirement (the game's own unlock rule: TryUnlock51 / NodeCost51 / ReqMet51).</summary>
+        int AmRoot(int p) { var ns = PactData.Nodes[p]; int best = -1; for (int i = 0; i < ns.Length; i++) if (string.IsNullOrEmpty(ns[i].req) && (best < 0 || NodeCost51(ns[i]) < NodeCost51(ns[best]))) best = i; return best; }
+        bool AmCanUnlock(int p) { int ix = AmRoot(p); if (ix < 0) return false; var n = PactData.Nodes[p][ix]; return _souls51 >= NodeCost51(n) && _sigils51 >= (n.keystone ? PT.pactKeystoneSigils51 : 0); }
+        void AmUnlockPath(int p)
+        {
+            int ix = AmRoot(p); if (ix < 0) { Msg51("NO ENTRY NODE"); return; }
+            var n = PactData.Nodes[p][ix]; int c = NodeCost51(n), sg = n.keystone ? PT.pactKeystoneSigils51 : 0;
+            if (_souls51 < c || _sigils51 < sg) { Msg51(_souls51 < c ? "NEED " + (c - _souls51) + " MORE SOULS TO UNLOCK" : "NEED " + (sg - _sigils51) + " MORE SIGILS TO UNLOCK"); return; }
+            TryUnlock51(p, ix); if (!PathLocked97(p)) { Msg51("UNLOCKED " + PactData.PathShort[p]); HellordAudio.Play("ui_confirm"); }
+        }
+        /// <summary>SEAL = make the viewed Path the ACTIVE Path for runs (switching from another Path clears that Path's picks after the usual confirm); UNSEAL = no active Path (picks are kept); a locked Path is UNLOCKed first.</summary>
         void AmSealToggle()
-        {   // the seal belongs to YOUR Pact path; an empty Pact can be sealed too (picks stay frozen until UNSEAL)
+        {
             int v = _altarView51;
-            if (_pactSealed51) { _pactSealed51 = false; PactSave51(); Msg51("PACT UNSEALED"); HellordAudio.Play("ui_back"); return; }
+            if (PathLocked97(v)) { AmUnlockPath(v); return; }
+            if (_pactSealed51 && _pactPath51 == v) { _pactSealed51 = false; PactSave51(); Msg51("PACT UNSEALED"); HellordAudio.Play("ui_back"); return; }
             if (_pactPath51 != v)
             {
-                if (_pactPath51 >= 0 && _pactSel51 != 0) { Msg51("SEAL APPLIES TO YOUR PATH: " + PactData.PathShort[_pactPath51]); return; }
-                if (PathLocked97(v)) { Msg51("PATH LOCKED: UNLOCK A NODE FIRST"); return; }
+                if (_pactPath51 >= 0 && SelCount51() > 0) { _confirm97 = v; _confirmChoose97 = true; _amSealPend = v; _amSealPendFrame = Time.frameCount; return; }   // same confirm as CHOOSE PATH; ConfirmYes97 seals
                 _pactPath51 = v; _pactSel51 = 0;
             }
-            _pactSealed51 = true; PactSave51(); Msg51(_pactSel51 == 0 ? "PACT SEALED (EMPTY)" : "PACT SEALED"); HellordAudio.Play("ui_confirm");
+            _pactSealed51 = true; PactSave51(); Msg51("PACT SEALED: " + PactData.PathShort[v] + (_pactSel51 == 0 ? " (EMPTY)" : "")); HellordAudio.Play("ui_confirm");
         }
         void AmDo(string id) { if (id == "amopen") { _altarScr53 = 1; _focus97 = -1; } else if (id == "amback") mode = Mode.MainMenu; }
 
@@ -142,11 +167,9 @@ namespace Hellord
             if (locked) AmSpr("lock", 253 + 134 - 18, 99 + 134 - 18);
             if (sealed_) AmSpr("chip", AltarMenuData.CardX + 7, AltarMenuData.CardY + 7);
             AmTxIn(PactData.PathShort[v], 249, 82, 141, 15, locked ? "DIM" : "BONE");
-            // ---- SEAL / UNSEAL straddling the card's bottom frame (always drawn; dimmed when your Pact is on another path)
-            {
-                bool other = !yours && _pactPath51 >= 0 && _pactSel51 != 0;
-                if (AmBtn("amseal", sealed_ ? "seal_se" : "seal_un", AltarMenuData.SealX, AltarMenuData.SealY, 89, 15, free, false, other ? 0.5f : 1f)) AmSealToggle();
-            }
+            // ---- SEAL / UNSEAL (UNLOCK on a locked Path) straddling the card's bottom frame; always drawn
+            if (_amSealPend >= 0 && _confirm97 < 0 && Time.frameCount > _amSealPendFrame) _amSealPend = -1;
+            if (AmBtn("amseal", locked ? "seal_ul" : sealed_ ? "seal_se" : "seal_un", AltarMenuData.SealX, AltarMenuData.SealY, 89, 15, free, false, locked && !AmCanUnlock(v) ? 0.5f : 1f)) AmSealToggle();
             // ---- side cards (frames + plate boxes are in the scene): 1x avatar dimmed, plate name, status lines
             for (int sd = 0; sd < 2; sd++)
             {

@@ -162,18 +162,8 @@ namespace Hellord
             {
                 var st = State130(p, i); int cx = D[i][0], cy = D[i][1], x = cx - PactMenuData.Cell / 2, y = cy - PactMenuData.Cell / 2, c = PactMenuData.Cell;
                 int kind = st == NS130.Taken || st == NS130.Owned || st == NS130.Full || st == NS130.NeedSign ? 0 : st == NS130.Avail ? 1 : 2;
-                PmSpr(_pmNames[i][kind], x, y);
-                if (st == NS130.Taken) { var am = (Color)MtC("AMBER"); MtFill(x - 1, y - 1, c + 2, 1, am); MtFill(x - 1, y + c, c + 2, 1, am); MtFill(x - 1, y, 1, c, am); MtFill(x + c, y, 1, c, am); }   // signed: amber ring (no mockup look for this state)
+                PmSpr(_pmNames[i][kind] + (st == NS130.Taken || _focus97 == i ? "_g" : ""), x, y);   // t1384: selected / signed node = its own frame turns green (baked _g sprite, same size, crisp 1x); no outer ring / brackets
                 var lb = PactMenuData.Label[i]; PmSpr(_pmNames[i][3 + (st == NS130.Taken ? 2 : kind == 2 ? 1 : 0)], lb[0], lb[1]);
-                if (_focus97 == i && _mtRep)
-                {
-                    var o = (Color)MtC("ORANGE");
-                    for (int sx = -1; sx <= 1; sx += 2) for (int sy = -1; sy <= 1; sy += 2)
-                    {
-                        int ax = sx < 0 ? x - 2 : x + c + 1, ay = sy < 0 ? y - 2 : y + c + 1;
-                        MtFill(sx < 0 ? ax : ax - 3, ay, 4, 1, o); MtFill(ax, sy < 0 ? ay : ay - 3, 1, 4, o);
-                    }
-                }
                 if (MtClick("pmn" + i, x, y, c, c, free)) _focus97 = i;
             }
             // ---- right column: keystone slot, detail, crest
@@ -183,19 +173,15 @@ namespace Hellord
                 int ty = 112; string nm = nd.name;
                 if (MtW(nm, true) <= 79) MtDisp(nm, 539, ty, nd.keystone ? MT_TAB_H : MT_TAB_N, nd.keystone ? "H" : "N");
                 else { var nl = PmWrap(nm, 79); for (int l = 0; l < nl.Count && l < 2; l++) MtTx(nl[l], 539, ty + l * 9, nd.keystone ? "AMBER" : "BONE", true); }
-                int y = 130; y = PmLines(PmWrap((nd.keystone ? "KEYSTONE " : "NOTABLE ") + (f < 9 ? "SUMMON" : "BONE"), 79), y, "DIM", 11) + 5;
+                int y = 130;   // t1384: no tier line ('NOTABLE SUMMON') and no status line ('READY TO SIGN'): the rest moves up
                 string req = string.IsNullOrEmpty(nd.req) ? "NONE" : AnyReq51(nd.req) ? "ANY 2 " + (nd.req[1] == 'A' ? "SUMMON" : "BONE") + " NOTABLES" : ReqNames130(p, nd.req);
-                string stt; string sc;
-                switch (fs) { case NS130.Locked: stt = "LOCKED"; sc = "DIM"; break; case NS130.Avail: stt = "AVAILABLE"; sc = "ORANGE"; break; case NS130.Owned: stt = "READY TO SIGN"; sc = "AMBER"; break; case NS130.NeedSign: stt = "SIGN PARENT FIRST"; sc = "CLAY"; break; case NS130.Taken: stt = "SIGNED"; sc = "GREEN"; break; case NS130.KMax: stt = "KEYSTONE SLOT FULL " + kc + "/" + PT.necroMaxKeystones549; sc = "HOT"; break; default: stt = "PACT FULL " + n + "/" + mx; sc = "HOT"; break; }
-                y = PmLines(PmWrap(stt, 79), y, sc, 11) + 5;
                 int cs = NodeCost51(nd), sg = nd.keystone ? PT.pactKeystoneSigils51 : 0; bool afford = _souls51 >= cs && _sigils51 >= sg;
                 if (fs == NS130.Locked) y = PmLines(PmWrap("NEEDS: " + req, 79), y, "HOT", 11) + 9;
                 else if (fs == NS130.NeedSign) y = PmLines(PmWrap("SIGN FIRST: " + req, 79), y, "HOT", 11) + 9;
                 else if (fs == NS130.Avail) y = PmLines(PmWrap("COST " + cs + " SOULS" + (sg > 0 ? " + " + sg + " SIGIL" : ""), 79), y, afford ? "YELLOW" : "HOT", 11) + 9;
                 else y = PmLines(PmWrap("PICK " + n + "/" + mx + (nd.keystone ? " KEYSTONE SLOT " + kc + "/" + PT.necroMaxKeystones549 : ""), 79), y, "BONE", 11) + 9;
                 PmLines(PmWrap(nd.desc, 79), y, "DIM", 12);
-                bool crest = yours && n >= PT.pactCrestAt51;
-                MtTx(crest ? "ACTIVE" : "LOCKED " + n + "/" + PT.pactCrestAt51, 539, 271, crest ? "GREEN" : "DIM"); MtTx("+15% MINIONS", 539, 284, crest ? "CLAY" : "DIM"); MtTx("+15% BONE DMG", 539, 294, crest ? "CLAY" : "DIM");
+                AmCrestPanel(yours && n >= PT.pactCrestAt51, n, yours);
                 // SIGN (raised to y 264): ONE action for the focused node, same rules as Btn140
                 _act140 = fs == NS130.Avail ? 1 : fs == NS130.Owned ? 2 : fs == NS130.Taken ? 3 : 0; _actOn140 = fs != NS130.Avail || afford; _actF140 = f;
                 string bl = _act140 == 1 ? "unlock" : _act140 == 3 ? "remove" : "sign"; bool on = _act140 != 0 && _actOn140; int bx = PactMenuData.SignX, by = PactMenuData.SignY;
@@ -212,6 +198,18 @@ namespace Hellord
                 PmDomes(t); float boost; PmBursts(t, out boost);
                 float a = Mathf.Clamp(0.94f + 0.04f * Mathf.Sin(t * 6.1f) + 0.03f * Mathf.Sin(t * 11.7f) + 0.30f * boost, 0f, 1.4f); MtBlit(_pmGlow, 0, 0, 640, 360, 0, 0, a);
             }
+        }
+        /// <summary>t1384: crest panel (534,250,89,54): title 'GRAVECALLER CREST' + 'SIGN n TO AWAKEN (k/n)' (-> 'ACTIVE' green). Lines are centred on their real glyph bbox in the panel, the whole block is centred vertically in the 48px inside; text that does not fit 83px wraps to two centred lines.</summary>
+        void AmCrestPanel(bool active, int n, bool yours)
+        {
+            AmGlyphs(); int at = PT.pactCrestAt51; const int RX = 534, RY = 250, RW = 89, MAXW = 83;
+            var a = new List<string>(); { string t0 = "GRAVECALLER CREST"; if (MtW(t0, false) <= MAXW) a.Add(t0); else { int sp = t0.LastIndexOf(' '); a.Add(t0.Substring(0, sp)); a.Add(t0.Substring(sp + 1)); } }
+            var b = new List<string>(); string sc = active ? "GREEN" : "DIM";
+            if (active) b.Add("ACTIVE");
+            else { string full = "SIGN " + at + " TO AWAKEN (" + n + "/" + at + ")"; if (MtW(full, false) <= MAXW) b.Add(full); else { b.Add("SIGN " + at + " TO AWAKEN"); b.Add("(" + n + "/" + at + ")"); } }
+            int H = a.Count * 8 - 1 + 6 + b.Count * 8 - 1, y = RY + 3 + (48 - H) / 2;
+            foreach (var s0 in a) { AmTxRaw(s0, RX, RW, y, "BONE"); y += 8; }
+            y += 6 - 1; foreach (var s0 in b) { AmTxRaw(s0, RX, RW, y, sc); y += 8; }
         }
         List<string> PmWrap(string s, int maxW)
         {

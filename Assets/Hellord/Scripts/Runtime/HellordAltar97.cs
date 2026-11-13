@@ -362,7 +362,6 @@ namespace Hellord
         void Primary97(int p, int f)
         {
             if (!Unlocked51(p, f)) { TryUnlock51(p, f); return; }
-            if (AmLocked()) { Msg51("PACT SEALED: UNSEAL FIRST"); return; } // t1380
             if (_pactPath51 >= 0 && _pactPath51 != p && SelCount51() > 0) { _confirm97 = p; _confirmChoose97 = false; return; }
             if (p == (int)PactPath.Necromancer) { string lab; bool en; PrimaryLab97(p, f, out lab, out en); if (!en) { Msg51(lab); return; } } // t580u: SIGN needs parents signed; REMOVE keeps the path valid
             TrySelect51(p, f);
@@ -370,9 +369,8 @@ namespace Hellord
         void ChoosePath97(int p)
         {
             if (PathLocked97(p)) { Msg51("PATH LOCKED: UNLOCK A NODE FIRST"); return; }
-            if (AmLocked()) { Msg51("PACT SEALED: UNSEAL FIRST"); return; } // t1380
             if (_pactPath51 >= 0 && _pactPath51 != p && SelCount51() > 0) { _confirm97 = p; _confirmChoose97 = true; return; }
-            _pactPath51 = p; _pactSel51 = 0; PactSave51(); Msg51("YOUR PATH: " + PactData.PathShort[p]);
+            _pactPath51 = p; _pactSel51 = 0; _pactSealed51 = false; PactSave51(); Msg51("YOUR PATH: " + PactData.PathShort[p]);
         }
         void DrawConfirm97()
         {
@@ -384,7 +382,7 @@ namespace Hellord
             _confirm97 = c;
             if (yes) ConfirmYes97(); else if (no || (Hit51(0, 0, 700, 392) && !new Rect(x, y, w, h).Contains(Event.current.mousePosition))) _confirm97 = -1;
         }
-        void ConfirmYes97() { int np = _confirm97; _confirm97 = -1; _pactPath51 = np; _pactSel51 = 0; PactSave51(); if (!_confirmChoose97 && _altarView51 == np && _focus97 >= 0) TrySelect51(np, _focus97); else Msg51("YOUR PATH: " + PactData.PathShort[np]); }
+        void ConfirmYes97() { int np = _confirm97; _confirm97 = -1; _pactPath51 = np; _pactSel51 = 0; _pactSealed51 = _amSealPend == np && AmActive(); _amSealPend = -1; PactSave51(); if (!_confirmChoose97 && _altarView51 == np && _focus97 >= 0) TrySelect51(np, _focus97); else Msg51("YOUR PATH: " + PactData.PathShort[np]); }
 
         // ---------------- keys / pad ----------------
         void AltarTick97()

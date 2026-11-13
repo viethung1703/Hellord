@@ -33,14 +33,17 @@ def keyed(fn, w, h, m=0):
     rgba = np.zeros((y1 - y0, x1 - x0, 4), np.uint8); rgba[..., :3] = a[y0:y1, x0:x1]; rgba[..., 3] = np.where(d, 0, 255); rgba[d, :3] = 0
     return rgba
 SPR = {}
-def node_sprite(cv, x, y, ico, kind, big):
+E.PAL.update({'G1': (99, 199, 77), 'G2': (62, 137, 72), 'G3': (38, 92, 66), 'G4': (25, 60, 62)})   # t1384: Endesga greens (SIGNED / OPEN TREE family)
+def node_sprite(cv, x, y, ico, kind, big, green=False):
     lit, dark, fill = S.profiles('normal' if kind == 'open' else 'locked', 0.15)
+    if green: lit, dark = ['G1'] + list(lit[1:]), ['G2'] + list(dark[1:])      # t1384: selected / signed node = its OWN frame (outer line) turns green, same size, crisp 1x
     socket(cv, x, y, rect_mask(X.CELL, X.CELL, 4 if big else 2), lit, dark, fill)
     cv.asset_blit(X.icon24(ico, kind != 'open'), x + 1, y + 1)
     if kind == 'lock': cv.asset_blit(E.LOCK, x + X.CELL - 10, y + 1)
 for c in CODE:
     i = IDX[c]; big = X.NODE[c][5]
     for kind in ('open', 'dim', 'lock'): SPR[f'n{i}_{kind}'] = keyed(lambda cv, x, y, i=i, kind=kind, big=big: node_sprite(cv, x, y, i, kind, big), X.CELL, X.CELL)
+    for kind in ('open', 'dim', 'lock'): SPR[f'n{i}_{kind}_g'] = keyed(lambda cv, x, y, i=i, kind=kind, big=big: node_sprite(cv, x, y, i, kind, big, True), X.CELL, X.CELL)
     pos, f, rr = placed[c][1], placed[c][2], placed[c][3]
     for nm, col in (('bone', 'BONE'), ('dim', 'DIM'), ('amb', 'AMBER')):
         def lab(cv, x, y, f=f, pos=pos, rr=rr, col=col):
@@ -100,7 +103,7 @@ def static_scene(bgarr):
     P.ct(cv, 578, 52, 'KEYSTONE SLOT', 'BONE', 'ks')
     for k in range(2): cv.blit(['...d...', '..dBd..', '.dB.Bd.', 'dB...Bd', '.dB.Bd.', '..dBd..', '...d...'], dict(d='DEEP', B='P2'), 581 + k * 10, 66)
     P.ct(cv, 578, 83, 'MAX 2', 'DIM', 'ks')
-    P.box(cv, 534, 104, 89, 136); P.box(cv, 534, 250, 89, 54); P.ct(cv, 578, 258, 'GRAVECALLER', 'BONE', 'crest', (534, 250, 89, 54))
+    P.box(cv, 534, 104, 89, 136); P.box(cv, 534, 250, 89, 54)   # t1384: crest title + lines are runtime text now (HellordPactMenu.cs)
     X.fork(cv, 302, 302); X.TINY.draw(cv, 308, 300, 'PICK ONE OF A PAIR', 'DIM', role='legend')
     return cv
 s = static_scene(bg).a.copy()
