@@ -70,7 +70,7 @@ namespace Hellord
             e.pos = HellordRoom.Px(BossStartX, BossStartY); _bossIntroT = BossIntro; e.type = EType.Elite; e.elite = true; e.boss = true;
             e.maxHp = e.hp = SinBossHpMul818() * BossHp * (1 + HellordTuning.I.bossHpPerMinute * (runTime / 60f)) * (1 + HellordTuning.I.floorBossHpGrowth * FloorIdx); e.speed = HellordTuning.I.bossP1Speed * (1 + 0.04f * FloorIdx); e.radius = BossRadius; e.hitY = BossHurtY; e.dmg = 20; e.xp = 60; e.alive = true; e.dying = false;
             SetBossLook37(); e.frames = _bossF; _phase2 = false; Play("roar", true); HellordAudio.Play("oxhead_roar"); _gs = Gate.Closed;
-            e.burnT = e.chillT = e.shockT = e.bleedT = e.curseT = e.freezeT = e.orbitCd = e.auraCd = 0; e.chillHits = 0; e.push = Vector2.zero; e.hitT = 0;
+            e.burnT = e.chillT = e.shockT = e.bleedT = e.curseT = e.freezeT = e.orbitCd = e.auraCd = 0; e.chillHits = 0; e.iceBuild = 0; e.push = Vector2.zero; e.hitT = 0;
             _bossRoot.position = e.pos; _bossRoot.localScale = Vector3.one; _bossBody.transform.localPosition = Vector3.zero; /* t502u */ _bossRoot.gameObject.SetActive(true); _bossBody.gameObject.SetActive(true); _bossBody.enabled = true; _bossBody.color = Color.white;
             HordeFX.Prepare(_bossBody); if (e.fx == null) AttachFx(e);
             _raging = false; _atk = 0; Go(BS.Walk, 1.5f); ClearBBullets(); _bbCd = 2.0f; _bbPat = 0; _spiralA = 0;

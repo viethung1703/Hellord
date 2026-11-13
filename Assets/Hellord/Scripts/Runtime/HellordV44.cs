@@ -50,7 +50,7 @@ namespace Hellord
         }
         void ClearV44()
         {
-            Clear49();
+            Clear49(); ClearIce();
             _drops44.Clear(); _shots44.Clear(); _trails44.Clear(); ClearFireWalls948(); _air44 = false; if (_bossBody) _bossBody.transform.localPosition = Vector3.zero;
             _fxA44 = _fxTr44 = -1; _gTail44 = 0; _pools44.Clear();
             if (_fx44Setup) { IceGorillaFX.Clear(); QilinChariotFX.Clear(); MinionFX.Clear(); HeroSkillFX.Clear(); } SkillLightFX.Clear(); _orbLg667.Clear(); // t667u

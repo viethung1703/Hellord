@@ -35,6 +35,7 @@ namespace Hellord
                 case SkillId.SoulSpears: return new Color(0.55f, 1f, 0.85f, 1);                                  // soul
                 case SkillId.CurseRune: return new Color(0.75f, 0.4f, 1f, 1);                                    // curse / necro purple
                 case SkillId.GravePool: return new Color(0.45f, 1f, 0.45f, 1);                                   // grave necro green
+                case SkillId.Frostbolt: case SkillId.IceNova: case SkillId.FrostBomb: case SkillId.Hurricane: return new Color(0.5f, 0.8f, 1f, 1); // t1393u ice cool
                 default: return Color.clear;
             }
         }

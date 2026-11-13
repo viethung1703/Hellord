@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Hellord
 {
     [Flags] public enum STag { None = 0, Projectile = 1, Area = 2, Orbital = 4, Hit = 8, Melee = 16, Aura = 32, Zone = 64, Minion = 128, Chain = 256, Duration = 512, Curse = 1024, Strike = 2048, Physical = 4096, Fire = 8192, Cold = 16384, Lightning = 32768, Blood = 65536, Bone = 131072, Soul = 262144, Any = 1 << 20 } // t626u: approved tag design v0.1 // t536u Minion: summoned units' hits (never a player skill)
-    public enum SkillId { Fireball, FrostCleave, StormRing, BoneOrbit, CurseRune, ChainLightning, HellfirePillar, BloodWhip, SoulSpears, GravePool, SkeletonWarriors, SkeletonArchers } // v0.0.36: last 5 are new (placeholder icons)
+    public enum SkillId { Fireball, FrostCleave, StormRing, BoneOrbit, CurseRune, ChainLightning, HellfirePillar, BloodWhip, SoulSpears, GravePool, SkeletonWarriors, SkeletonArchers, Frostbolt, IceNova, FrostBomb, Hurricane } // t1393u: ids 12-15 are the ice skills; v0.0.36: last 5 are new (placeholder icons)
     public enum SupportId { MultipleProjectiles, Pierce, Fork, Bounce, Homing, BiggerArea, Echo, MoreOrbitals, Burn, Chill, Shock, Bleed, AddedDamage, FasterCasting, Executioner, LifeLeech, Knockback, SoulHarvest, ExplodeOnKill } // v0.0.36: last 5 are new
     public enum StatId { MaxHP, Speed, Pickup, Armor, Crit, Slot }
     public enum Status { None, Burn, Chill, Shock, Bleed, Curse }
@@ -39,6 +39,11 @@ namespace Hellord
             new SkillDef { id = SkillId.GravePool,      name = "Grave Pool",      tags = STag.Area | STag.Zone | STag.Hit | STag.Duration,       baseDmg = 5,  cooldown = 1.2f,  aimable = false, innate = Status.None,  desc = "Leaves slowing, damaging puddles where you walk. Bigger and longer per level." },
             new SkillDef { id = SkillId.SkeletonWarriors, name = "Skeleton Warriors", tags = STag.Minion | STag.Melee | STag.Hit | STag.Physical | STag.Bone, baseDmg = 6, cooldown = 0.5f, aimable = false, innate = Status.None, desc = "Raise sword-and-shield skeletons beside you. They fight up front, block bullets and rise again after dying." }, // t561u
             new SkillDef { id = SkillId.SkeletonArchers,  name = "Skeleton Archers",  tags = STag.Minion | STag.Projectile | STag.Hit | STag.Physical | STag.Bone, baseDmg = 5, cooldown = 0.5f, aimable = false, innate = Status.None, desc = "Raise skeleton archers that hang back and shoot bone arrows. They rise again after dying." }, // t561u
+            // t1393u ice skills (PoE 2 / D2 inspired). innate = None: chill is applied by the skills themselves (stacking CHILL -> FREEZE, see IceChill) so tick hits don't re-freeze every frame.
+            new SkillDef { id = SkillId.Frostbolt, name = "Frostbolt",  tags = STag.Area | STag.Hit | STag.Cold,                      baseDmg = 12, cooldown = 1.25f, aimable = true,  innate = Status.None, desc = "Slow frost orbs pierce through demons and leave chilling ground. They burst on walls. More orbs per level." },
+            new SkillDef { id = SkillId.IceNova,   name = "Ice Nova",   tags = STag.Area | STag.Hit | STag.Cold,                      baseDmg = 16, cooldown = 3.0f,  aimable = false, innate = Status.None, desc = "A ring of frost pulses out from you. Chills, and shoves close demons hardest. Bigger and faster per level." },
+            new SkillDef { id = SkillId.FrostBomb, name = "Frost Bomb", tags = STag.Area | STag.Zone | STag.Hit | STag.Cold | STag.Duration, baseDmg = 20, cooldown = 4.5f, aimable = false, innate = Status.None, desc = "Drops an ice crystal on a demon cluster. It pulses chill for 2s, then detonates for heavy cold damage." },
+            new SkillDef { id = SkillId.Hurricane, name = "Hurricane",  tags = STag.Aura | STag.Area | STag.Hit | STag.Cold | STag.Duration, baseDmg = 4, cooldown = 9.0f, aimable = false, innate = Status.None, desc = "A cold storm circles you for several seconds, ticking damage and chilling. Lasts longer and wider per level." },
         };
         public static readonly SupportDef[] Supports =
         {

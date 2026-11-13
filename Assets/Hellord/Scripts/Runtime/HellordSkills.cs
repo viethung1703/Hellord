@@ -26,7 +26,7 @@ namespace Hellord
         }
 
         // v0.0.10 FX self-check (Shift+9 overlay): last cast time per skill
-        readonly float[] _lastCast = new float[12]; // v0.0.36 (t561u: +2 summons): one slot per SkillId
+        readonly float[] _lastCast = new float[16]; // v0.0.36 (t561u: +2 summons): one slot per SkillId
         void Cast(SkillInst s, float mul)
         {
             float dmg = SkillDamage(s) * mul; // v0.0.13: _lastCast is stamped only after a real cast (early 'no target' returns no longer count -> no false FX WARN)
@@ -105,6 +105,10 @@ namespace Hellord
                 case SkillId.BloodWhip: if (!CastBloodWhip(s, dmg)) return; break;
                 case SkillId.SoulSpears: if (!CastSoulSpears(s, dmg)) return; break;
                 case SkillId.GravePool: if (!CastGravePool(s, dmg, mul)) return; break;
+                case SkillId.Frostbolt: if (!CastFrostbolt(s, dmg)) return; break; // t1393u ice skills (HellordIceSkills.cs)
+                case SkillId.IceNova: if (!CastIceNova(s, dmg)) return; break;
+                case SkillId.FrostBomb: if (!CastFrostBomb(s, dmg)) return; break;
+                case SkillId.Hurricane: if (!CastHurricane(s, dmg)) return; break;
             }
             _lastCast[(int)s.def.id] = Time.time;
         }

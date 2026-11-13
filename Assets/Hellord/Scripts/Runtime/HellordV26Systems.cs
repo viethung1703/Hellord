@@ -201,7 +201,8 @@ namespace Hellord
                     }
                     float fl = HellordTuning.I.skillReadyFlash > 0 ? Mathf.Clamp01(_sbReadyFlash[i] / HellordTuning.I.skillReadyFlash) : 0;
                     GUI.color = new Color(1, 1, 1, _sbA);
-                    if (_tSkill24 != null) { var pt = _icons44 ? Color.white : PhTint(k.def.id); GUI.color = new Color(pt.r, pt.g, pt.b, _sbA); Blit(_tSkill24, ic * 28, 0, 24, 24, ix, iy); GUI.color = new Color(1, 1, 1, _sbA); var tg = _icons44 ? null : PhTag(k.def.id); if (tg != null) Text(tg, ix + 1, iy + 16, Color.white); } // v0.0.36: PLACEHOLDER icon = tinted base tile + 2-letter tag
+                    if (IceIconBlit(k.def.id, ix, iy, 24)) { GUI.color = new Color(1, 1, 1, _sbA); }
+                    else if (_tSkill24 != null) { var pt = _icons44 ? Color.white : PhTint(k.def.id); GUI.color = new Color(pt.r, pt.g, pt.b, _sbA); Blit(_tSkill24, ic * 28, 0, 24, 24, ix, iy); GUI.color = new Color(1, 1, 1, _sbA); var tg = _icons44 ? null : PhTag(k.def.id); if (tg != null) Text(tg, ix + 1, iy + 16, Color.white); } // v0.0.36: PLACEHOLDER icon = tinted base tile + 2-letter tag
                     if (fl > 0) { GUI.color = new Color(1, 1, 1, 0.6f * fl * _sbA); GUI.DrawTexture(new Rect(ix, iy, 24, 24), Texture2D.whiteTexture); GUI.color = new Color(1, 1, 1, fl * _sbA); GUI.DrawTexture(new Rect(ix - 2, iy - 2, 28, 1), Texture2D.whiteTexture); GUI.DrawTexture(new Rect(ix - 2, iy + 25, 28, 1), Texture2D.whiteTexture); GUI.DrawTexture(new Rect(ix - 2, iy - 2, 1, 28), Texture2D.whiteTexture); GUI.DrawTexture(new Rect(ix + 25, iy - 2, 1, 28), Texture2D.whiteTexture); }
                     if (cooling)
                     {
