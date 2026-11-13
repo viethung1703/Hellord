@@ -118,7 +118,7 @@ namespace Hellord
         int _statusFxCount;
         void UpdateStatusFx(Enemy e)
         {
-            bool tint = runTime < e.tint948Until; bool ice3 = !e.boss && IceFX3.Ok; /* t1409u: v3 draws chill/freeze itself (IceFX3.StatusSprite) */ bool want = (!ice3 && (e.chillT > 0 || e.freezeT > 0)) || e.shockT > 0 || e.bleedT > 0 || tint;
+            bool tint = runTime < e.tint948Until; bool ice3 = !e.boss && IceFX3.Ok; /* t1410u: IceFX3 draws chill/freeze (tint + chips) */ bool want = (!ice3 && (e.chillT > 0 || e.freezeT > 0)) || e.shockT > 0 || e.bleedT > 0 || tint;
             if (want && e.fx == null && (e.elite || _statusFxCount < MaxStatusFx)) AttachFx(e);
             if (e.fx == null) return;
             if (!want && !e.elite) { DetachFx(e); return; }

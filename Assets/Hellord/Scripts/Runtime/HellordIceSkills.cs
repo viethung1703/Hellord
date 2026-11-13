@@ -68,7 +68,7 @@ namespace Hellord
         class IceOrb { public Vector2 p, v; public float life, age, dmg, r, burstR, trailLife, trailAcc; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
         class IcePatch { public Vector2 p; public float r, life, life0, tick; public SkillInst s; public bool drawn; }
         class IceNovaRing { public Vector2 c; public float r, rMax, t, dur, dmg, kClose, kFar, chillS, build; public bool spawned; public int pulse; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
-        class IceBombE { public Vector2 p; public float t, dur, pulseT, r, dmg, pulseDmg; public SkillInst s; public IceFX3.Inst fx; }
+        class IceBombE { public Vector2 p; public float t, dur, pulseT, r, dmg, pulseDmg; public SkillInst s; public IceFX3.Inst fx; public Enemy tgt; }
         class IceStormE { public Vector2 c; public float t, dur, r, tick, dmg, age; public SkillInst s; }
         readonly List<IceOrb> _iceOrbs = new List<IceOrb>(); readonly List<IcePatch> _icePatches = new List<IcePatch>(); readonly List<IceNovaRing> _iceNovas = new List<IceNovaRing>();
         readonly List<IceBombE> _iceBombs = new List<IceBombE>(); IceStormE _iceStorm;
@@ -105,16 +105,16 @@ namespace Hellord
         {
             var T = HellordTuning.I;
             if (Nearest(_heroPos, T.frostbRangeU, -1) < 0 && !Aiming()) { s.cd = 0.1f; return false; } // hold fire when nothing is near
-            EnsureFX44(); Vector2 dir = AimDir(); Vector2 c = HeroCenter;
+            EnsureFX44(); Vector2 dir = AimDir(); Vector2 c = HeroCenter + new Vector2(dir.x >= 0f ? 0.45f : -0.45f, 0.45f); // t1410u: leaves the hero's casting hand (on the facing side), not the body centre
             int n = HData.At(T.frostbOrbs, s.level, 1) + PCount49; float spread = n > 1 ? Mathf.Min(T.frostbSpreadDeg, 120f / (n - 1)) : 0f;
             float burstR = HData.At(T.frostbBurstU, s.level, 1.2f) * s.AreaMul, trail = HData.At(T.frostbTrailSeconds, s.level, 1.5f) * SinDuration737;
             for (int i = 0; i < n; i++)
             {
-                Vector2 d = (Vector2)(Quaternion.Euler(0, 0, (i - (n - 1) * 0.5f) * spread) * dir); Vector2 p0 = c + d * 0.4f;
+                Vector2 d = (Vector2)(Quaternion.Euler(0, 0, (i - (n - 1) * 0.5f) * spread) * dir); Vector2 p0 = c + d * 0.25f;
                 var o = new IceOrb { p = p0, v = d * HData.At(T.frostbSpeedU, s.level, 5.5f), life = T.frostbLifeS, dmg = dmg, r = T.frostbRadiusU, burstR = burstR, trailLife = trail, s = s };
                 _iceOrbs.Add(o);
             }
-            HellordAudio.Play("frost_cleave", 1.25f); IceVfxCast(c + dir * 0.5f);
+            HellordAudio.Play("frost_cleave", 1.25f); IceVfxCast(c + dir * 0.35f);
             if (!_echo738) s.cd *= HData.At(T.frostbCdMul, s.level, 1f); return true;
         }
         bool CastIceNova(SkillInst s, float dmg)
@@ -145,7 +145,7 @@ namespace Hellord
                     if (near) continue; Query(cp, r, _iceQ2); if (_iceQ2.Count > bestScore) { bestScore = _iceQ2.Count; best = ci; }
                 }
                 if (best < 0) break; Vector2 at = _en[best].pos; ClampToRoom(ref at, 6);
-                var be = new IceBombE { p = at, dur = HData.At(T.bombSeconds, s.level, 2f) * SinDuration737, pulseT = T.bombPulseS, r = r, dmg = dmg * T.bombBlastMul, pulseDmg = dmg * T.bombPulseDmgMul, s = s }; _iceBombs.Add(be); placed++;
+                var be = new IceBombE { tgt = _en[best], p = at, dur = HData.At(T.bombSeconds, s.level, 2f) * SinDuration737, pulseT = T.bombPulseS, r = r, dmg = dmg * T.bombBlastMul, pulseDmg = dmg * T.bombPulseDmgMul, s = s }; _iceBombs.Add(be); placed++;
                 HellordAudio.Play("pool_cast", 1.3f); be.fx = IceVfxBombDrop(at, r, be.dur);
             }
             if (placed == 0) { s.cd = 0.3f; return false; }
@@ -213,6 +213,10 @@ namespace Hellord
             for (int i = _iceBombs.Count - 1; i >= 0; i--)
             {
                 var b = _iceBombs[i]; b.t += dt; b.pulseT -= dt;
+                // t1410u: the crystal sticks to its demon and rides with it (it used to stay where the cluster WAS and the demons walked out of the blast: 0 hit, 0 kills). If that demon dies it hops to the nearest one in reach.
+                if (b.tgt != null && (!b.tgt.alive || b.tgt.dying)) { int nx = Nearest(b.p, 2.5f, -1); b.tgt = nx >= 0 ? _en[nx] : null; }
+                if (b.tgt != null) { b.p = b.tgt.pos; ClampToRoom(ref b.p, 6); }
+                if (b.fx != null) b.fx.c = b.p;
                 if (b.pulseT <= 0f && b.t < b.dur)
                 {
                     b.pulseT += T.bombPulseS; float pr = b.r * T.bombPulseRadiusMul; Query(b.p, pr, _iceQ);
@@ -256,9 +260,8 @@ namespace Hellord
             IceVfxOrbBurst(o.p, o.burstR); HellordAudio.Play("fireball_impact", 1.4f);
         }
 
-        // ================================================================ ICE VFX  (t1409u: Hellord FX v3 "restrained" look, replaces the v1 decals and the pack placeholders)
-        // Pixel-perfect (16 PPU grid, Endesga 32), few and small ice pieces, demons never covered. All drawing = IceFX3 (HellordPixelIce shader quads);
-        // radii / durations come from the live gameplay values the callers pass in, so scaling (level, Bigger Area, Duration) is automatic. HellordTuning.iceShader1400 = off -> minimal CPU-only fallbacks.
+        // ================================================================ ICE VFX  (t1410u: CPU pixel-art sprites, see HellordIceFX3.cs; replaces the t1409u shader)
+        // Radii / durations come from the live gameplay values the callers pass in (level, Bigger Area, Duration scale automatically). HellordTuning.iceVfx1410 = off -> minimal fallbacks.
         SpriteRenderer IceSR(Sprite sp, Vector2 pos, int order, Color c)
         {
             if (_iceSrN >= _iceSr.Count) _iceSr.Add(NewSR("ice_sr", null, null, 0)); var sr = _iceSr[_iceSrN++]; if (!sr.gameObject.activeSelf) sr.gameObject.SetActive(true);
@@ -266,106 +269,83 @@ namespace Hellord
         }
         void IceHideSr() { for (int i = _iceSrN; i < _iceSr.Count; i++) if (_iceSr[i] != null && _iceSr[i].gameObject.activeSelf) _iceSr[i].gameObject.SetActive(false); }
 
-        /// <summary>ONCE per cast: muzzle puff at the hero (CPU particles).</summary>
-        void IceVfxCast(Vector2 p) { HordeFX.CheapBurst(p, IceArt.Pale, 6); }
-        /// <summary>EVERY FRAME per orb in flight: shader orb (small core, 3 shard streaks). Fallback (shader off): two small discs.</summary>
+        /// <summary>ONCE per cast: small muzzle puff at the casting hand.</summary>
+        void IceVfxCast(Vector2 p) { HordeFX.CheapBurst(p, IceArt.Cyan, 4); }
+        /// <summary>EVERY FRAME per orb in flight: crystal-cored cold bolt with a comet tail. Fallback (effect off): two small discs.</summary>
         void IceVfxOrb(Vector2 p, Vector2 v, float age)
         {
-            if (IceFX3.Ok) { IceFX3.Orb(p, v, age, false, YSort(p.y) + 30); return; }
-            Vector2 at = p + Vector2.up * 0.6f; ZDisc(at, 0.36f, IceArt.Hex(0x0099db, 0.9f), 1f, 7); ZDisc(at, 0.18f, Color.white, 1f, 8);
+            if (IceFX3.Ok) { IceFX3.Orb(p + Vector2.up * 0.08f, v, age, YSort(p.y) + 30); return; }
+            Vector2 at = p + Vector2.up * 0.1f; ZDisc(at, 0.3f, IceArt.Hex(0x0099db, 0.9f), 1f, 7); ZDisc(at, 0.15f, Color.white, 1f, 8);
         }
         /// <summary>ONCE per enemy pierced.</summary>
-        void IceVfxOrbHit(Vector2 p) { HordeFX.CheapBurst(p + Vector2.up * 0.6f, IceArt.Pale, 4); }
-        /// <summary>ONCE when an orb dies on a wall or at the end of its life. r = live burst radius: a few small spikes (4 f) + brief sparse frost + 7 CPU chips. No column wall.</summary>
+        void IceVfxOrbHit(Vector2 p) { HordeFX.CheapBurst(p + Vector2.up * 0.6f, IceArt.Cyan, 4); }
+        /// <summary>ONCE when an orb dies on a wall or at the end of its life. r = live burst radius: ring of crystal shards + a brief frost film.</summary>
         void IceVfxOrbBurst(Vector2 p, float r)
         {
             float rp = Mathf.Clamp(r * HArt.PPU, 8f, 28f); if (!IceFX3.Ok) { ReactionFX.FrostShatter(p + Vector2.up * 0.4f, 8, rp); return; }
-            IceFX3.Plates(p, rp * 0.8f, 4f, 22f, 8f, 12f, p.x * 0.37f + 2.3f, 0.58f); IceFX3.Columns(p, rp, 7f, 4f, 0.80f, 0f, 1f, p.x * 0.21f + 3f, 11f, 5f, 6f);
-            HordeFX.CheapBurst(p + Vector2.up * 0.3f, IceArt.Cyan, 7);
+            IceFX3.ShardBurst(p + Vector2.up * 0.1f, rp, p.x * 0.37f + 2.3f); HordeFX.CheapBurst(p + Vector2.up * 0.3f, IceArt.Cyan, 5);
         }
-        /// <summary>ONCE per chill patch (first frame it is called): 8 px of sparse veins for ~1 s. The chill AREA (p.r) is unchanged, only the drawing is short and small.</summary>
+        /// <summary>EVERY FRAME per chill patch: a few flat frost plates + 2 tiny spikes that melt away over the last 40 % of the life. The chill AREA (p.r) is unchanged.</summary>
         void IceVfxChillGround(IcePatch pt)
         {
-            if (pt.drawn) return; pt.drawn = true; if (!IceFX3.Ok) return;
-            IceFX3.Plates(pt.p, 8f, 4f, 30f, 10f, 16f, pt.p.x * 0.31f + pt.p.y * 0.17f, 0.62f);
+            if (!IceFX3.Ok) return; IceFX3.Patch(pt.p, Mathf.Max(8f, pt.r * HArt.PPU * 0.8f), pt.life / pt.life0, (int)(pt.p.x * 7f + pt.p.y * 13f));
         }
         /// <summary>ONCE per pulse (the cast): six small shard squares around the hero. No ring.</summary>
         void IceVfxNovaCast(Vector2 c, float rMax) { for (int k = 0; k < 6; k++) { float a = k * Mathf.PI / 3f; HordeFX.CheapBurst(c + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * 0.8f, IceArt.Pale, 4); } }
-        /// <summary>EVERY FRAME while a nova pulse expands; acts on the FIRST frame only (the shader instances own their time after that). Pulse 1: light frost creep + a few small spikes at the passing front; pulse 2 (Lv5, 0.7x): spikes only.</summary>
+        /// <summary>EVERY FRAME while a nova pulse expands; acts on the FIRST frame only (the effect owns its time after that): a wave of small ice spikes rising as the front passes + light frost film, a thin travelling front line.</summary>
         void IceVfxNova(IceNovaRing n)
         {
             if (n.spawned) return; n.spawned = true; if (!IceFX3.Ok) return;
             float rp = n.rMax * HArt.PPU, front = Mathf.Max(3f, n.dur * 30f); bool second = n.pulse > 0;
-            if (!second) IceFX3.Plates(n.c + Vector2.down * 0.05f, rp, front, 46f, 22f, 18f, n.c.x * 0.13f + 4f, 0.75f);
-            IceFX3.Columns(n.c, rp, Mathf.Min(8f, rp * 0.11f), front, 0.915f, 0.30f, second ? 0.7f : 1f, n.c.x * 0.21f + 9f + (second ? 5f : 0f), 24f, 13f, 9f);
+            IceFX3.Field(n.c + Vector2.down * 0.05f, rp * 0.9f, 52f, 26f, 18f, n.c.x * 0.13f + 4f, second ? 0.2f : 0.75f);
+            IceFX3.Crest(n.c, rp, Mathf.Clamp((int)(rp / 1.6f), 26, 64), Mathf.Clamp(rp * 0.2f, 9f, 15f), front, 0.22f, 0.06f, second ? 0.8f : 1f, n.c.x * 0.21f + 9f + (second ? 5f : 0f), 40f, 24f, 14f);
         }
-        /// <summary>ONCE when a bomb lands: puff + (shader) a light frost field that lives for the fuse and melts shortly after the blast. Returns the field so the crystal hook can grow / flicker it.</summary>
+        /// <summary>ONCE when a bomb lands: puff + a light frost film under the crystal that lives for the fuse and melts after the blast. Returns it so the crystal hook can grow / flicker it.</summary>
         IceFX3.Inst IceVfxBombDrop(Vector2 p, float r, float dur)
         {
             HordeFX.CheapBurst(p + Vector2.up * 0.3f, IceArt.Pale, 6); if (!IceFX3.Ok) return null; float f = dur * 30f;
-            var n = IceFX3.Plates(p, r * HArt.PPU, 4f, f + 28f, f + 10f, 16f, p.x * 0.17f + 7f, 0.75f); if (n != null) n.reach = 1f; return n;
+            return IceFX3.Field(p, r * HArt.PPU, f + 30f, f + 8f, 16f, p.x * 0.17f + 7f, 0.55f);
         }
-        /// <summary>EVERY FRAME per bomb while it ticks. life01 = elapsed / duration, age in s. The crystal strip fx_frostbomb_crystal (24x32 x4 loop, pivot bottom centre, t1406) is kept. Frost creeps wider each pulse; last 0.5 s the plates flicker lit / dark every 3 f.</summary>
+        /// <summary>EVERY FRAME per bomb while it ticks (life01 = elapsed / duration, age in s). The crystal strip fx_frostbomb_crystal is kept. Frost creeps wider each pulse; the last 0.5 s the plates flicker lit / dark.</summary>
         void IceVfxBombCrystal(Vector2 p, float life01, float age, float dur, IceFX3.Inst fx)
         {
             var st = IceArt.Get("fx_frostbomb_crystal", 24, 32, 8f, true, 0f);
             float flicker = 0.75f + 0.25f * Mathf.Sin(age * (8f + 14f * life01));
             if (st != null) IceSR(st.At(age), p, YSort(p.y) + 10, Color.white); else IceSR(IceArt.CrystalPlaceholder(), p, YSort(p.y) + 10, Color.Lerp(Color.white, IceArt.Cyan, 1f - flicker));
             if (fx == null) return; float f = age * 30f; int pulses = Mathf.Clamp(Mathf.FloorToInt(age / Mathf.Max(0.05f, HellordTuning.I.bombPulseS)), 0, 3);
-            fx.reach = fx.r * 0.8f * (pulses == 0 ? 0.34f : pulses == 1 ? 0.67f : pulses == 2 ? 0.84f : 1f) * Mathf.Min(1f, (f + 1f) / 4f);
-            float rem = dur - age; fx.bright = rem < 0.5f ? (((int)f % 6) < 3 ? 0.04f + 0.09f * (1f - rem / 0.5f) : 0f) : 0f;
+            fx.reach = fx.r * 0.85f * (pulses == 0 ? 0.45f : pulses == 1 ? 0.65f : pulses == 2 ? 0.85f : 1f) * Mathf.Min(1f, (f + 1f) / 4f);
+            float rem = dur - age; fx.bright = rem < 0.5f && ((int)f % 6) < 3 ? 1f : 0f;
         }
-        /// <summary>ONCE per chill pulse (r = pulse radius, 1.1 x blast radius): a thin band of a few small spikes travelling to the rim in 9 f + 5 CPU squares.</summary>
+        /// <summary>ONCE per chill pulse (r = pulse radius, 1.1 x blast radius): a thin travelling band of dots and tiny spikes + 5 CPU squares.</summary>
         void IceVfxBombPulse(Vector2 p, float r)
         {
             HordeFX.CheapBurst(p + Vector2.up * 0.4f, IceArt.Pale, 5); if (!IceFX3.Ok) return;
-            IceFX3.PulseBand(p, r * HArt.PPU, p.x * 0.11f + 1f);
+            IceFX3.Band(p, r * HArt.PPU, p.x * 0.11f + 1f);
         }
-        /// <summary>ONCE on detonation (r = blast radius): a few small spikes (18 f) + 6 small CPU shards. The frost field melts on its own timer.</summary>
+        /// <summary>ONCE on detonation (r = blast radius): bright flash, ring of ice spikes, flying crystal chunks, 8 CPU shards. Clearly readable (~0.6 s).</summary>
         void IceVfxBombBurst(Vector2 p, float r, IceFX3.Inst fx)
         {
-            if (fx != null) { fx.reach = fx.r * 0.8f; fx.bright = 0f; }
-            float rp = r * HArt.PPU; ReactionFX.FrostShatter(p + Vector2.up * 0.4f, 6, Mathf.Clamp(rp * 0.3f, 8f, 16f)); if (!IceFX3.Ok) return;
-            IceFX3.Columns(p, rp, Mathf.Min(8f, rp * 0.17f), 8f, 0.91f, 0.12f, 1f, p.x * 0.19f + 21f, 18f, 9f, 9f);
+            if (fx != null) { fx.reach = fx.r * 0.85f; fx.bright = 0f; }
+            float rp = r * HArt.PPU; ReactionFX.FrostShatter(p + Vector2.up * 0.4f, 8, Mathf.Clamp(rp * 0.3f, 8f, 16f));
+            for (int k = 0; k < 6; k++) { float a = k * Mathf.PI / 3f + 0.3f; HordeFX.CheapBurst(p + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * r * 0.6f, IceArt.Cyan, 4); }
+            if (!IceFX3.Ok) return; IceFX3.BlastBurst(p, rp, p.x * 0.19f + 21f);
         }
-        float _iceFleck;
-        /// <summary>ONCE when the Hurricane starts. (The v1 AuraField fill is gone: the storm is a thin shell of 7 orbiting crystals, drawn every frame by IceVfxHurricane.)</summary>
+        /// <summary>ONCE when the Hurricane starts (the wind vortex is drawn every frame by IceVfxHurricane).</summary>
         void IceVfxHurricaneStart(float r, float secs) { }
-        /// <summary>EVERY FRAME while the storm lasts (c follows the hero; r live; age in s; fade 0..1 over the last 0.5 s). Diablo 2 Frozen Armor: a thin frost shell, 7 small crystals orbiting at 0.80-0.95 R,
-        /// a faint rim on the hero and a few frost flecks on the edge. A crystal that would overlap the hero or a demon is skipped, so nobody is ever covered.</summary>
+        /// <summary>EVERY FRAME while the storm lasts (c follows the hero; r live; age in s; fade 0..1 over the last 0.5 s): swirling wind streaks, dotted rim arcs and blown snow spiralling up round the hero. Thin, nothing filled.</summary>
         void IceVfxHurricane(Vector2 c, float r, float age, float fade)
         {
             if (!IceFX3.Ok) { ZRing(c, r, IceArt.Hex(0x2ce8f5, 0.55f * fade), 0.85f, 3); return; }
-            float rp = r * HArt.PPU; IceFX3.Armor(c, rp, age, fade, IceBlockedBySprite);
-            if (_heroBase != null && _heroBase.sprite != null && _heroBase.gameObject.activeInHierarchy && Mathf.Abs(_heroBase.transform.lossyScale.x - 1f) < 0.01f && fade > 0.01f)
-                IceFX3.StatusSprite(_heroBase.sprite, _heroBase.transform.position, _heroPos, 8f, 4, 0.7f, age * 30f, _heroBase.sortingOrder + 1, _heroBase.flipX);
-            _iceFleck -= Time.deltaTime; if (_iceFleck <= 0f && fade > 0.3f)
-            {   // a few 1-2 px flecks on the shell edge (CPU, ~8 / s)
-                _iceFleck = 0.12f; float a = Random.value * Mathf.PI * 2f; HordeFX.CheapBurst(c + new Vector2(Mathf.Cos(a), Mathf.Sin(a) * 0.75f) * r * (0.85f + 0.1f * Random.value), Random.value < 0.5f ? IceArt.Cyan : IceArt.Pale, 1);
-            }
+            IceFX3.Vortex(_heroPos, r * HArt.PPU, age, fade, (_heroBase != null ? _heroBase.sortingOrder : YSort(_heroPos.y)) + 3);
         }
-        /// <summary>True when a 8x12 px crystal centred at pos (world u) would overlap the hero or a demon sprite box. Sizes are approximations: demon box = 2 x (radius px + 3) wide, ~2.2 x radius px + 8 tall.</summary>
-        bool IceBlockedBySprite(Vector2 pos)
-        {
-            const float PX = 1f / 16f; float hx = 4f * PX, hy = 6f * PX;
-            Vector2 hf = _heroPos; if (Mathf.Abs(pos.x - hf.x) < 9f * PX + hx && pos.y > hf.y - 3f * PX - hy && pos.y < hf.y + 30f * PX + hy) return true;
-            Query(pos, 1.6f, _iceQ3);
-            foreach (int ei in _iceQ3)
-            {
-                var e = _en[ei]; if (!e.alive || e.dying) continue; float rpx = e.radius * 16f;
-                if (Mathf.Abs(pos.x - e.pos.x) < (rpx + 3f) * PX + hx && pos.y > e.pos.y - 2f * PX - hy && pos.y < e.pos.y + (rpx * 2.2f + 8f) * PX + hy) return true;
-            }
-            return false;
-        }
-        /// <summary>Chill / freeze on demons (non-boss; bosses keep the pack overlay): drawn over the demon's own sprite pixels, never over empty ones. Chill L1 / L2 (build up), freeze = light frost tint + a few chips.</summary>
+        /// <summary>Chill / freeze chips on demons (non-boss; bosses keep the pack overlay): a few tiny ice crystals at the feet and shoulders. The demon sprite itself gets a light cold tint (UpdateEnemies).</summary>
         void IceStatusPass()
         {
             if (!IceFX3.Ok) return; int drawn = 0;
-            for (int i = 0; i < maxEnemies && drawn < 48; i++)
+            for (int i = 0; i < maxEnemies && drawn < 40; i++)
             {
-                var e = _en[i]; if (!e.alive || e.dying || e.boss || e.sr == null || e.sr.sprite == null || e.chillT <= 0f && e.freezeT <= 0f || !e.sr.gameObject.activeInHierarchy) continue;
-                int lvl = e.freezeT > 0f ? 3 : e.iceBuild >= HellordTuning.I.iceFreezeAt * 0.5f ? 2 : 1; drawn++;
-                IceFX3.StatusSprite(e.sr.sprite, e.tr.position, e.pos, Mathf.Clamp(e.radius * HArt.PPU, 6f, 14f), lvl, e.id * 0.3f, runTime * 30f, e.sr.sortingOrder + 1);
+                var e = _en[i]; if (!e.alive || e.dying || e.boss || e.sr == null || e.sr.sprite == null || (e.chillT <= 0f && e.freezeT <= 0f) || !e.sr.gameObject.activeInHierarchy) continue;
+                drawn++; IceFX3.Chips(e.tr.position, e.radius * HArt.PPU, e.freezeT > 0f ? 3 : 1, e.id, runTime, e.sr.sortingOrder + 1);
             }
         }
         void IceStripOnce(IceArt.Strip st, Vector2 p) { _iceStripOnce.Add(new IceOnce { st = st, p = p }); }

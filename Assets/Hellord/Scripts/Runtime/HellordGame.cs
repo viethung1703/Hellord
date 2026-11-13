@@ -673,7 +673,7 @@ namespace Hellord
                 if (v.sqrMagnitude > 0.01f) e.walkRow = HArt.WalkRow(v); // 4-direction walk rows (west is its own row, no flip)
                 e.sr.sprite = e.frames[e.walkRow + (int)e.animT % HArt.EnemyWalkN]; e.sr.flipX = false; if (e.variant >= 3) Animate44(e, v, to, dt); if (e.m53 > 0) Animate53(e, v, dt); // hit flash = HordeFX material swap (no hit frame)
                 var tint = EnemyArtMap.Map[e.type].tint * v37t;
-                if (!HordeFXBusy(e)) SetCol(e.sr, tint * (e.fx != null ? (e.curseT > 0 ? new Color(0.8f, 0.6f, 1f) : Color.white) : e.curseT > 0 ? new Color(0.8f, 0.6f, 1f) : !IceFX3.Ok ? (e.freezeT > 0 ? new Color(0.6f, 0.9f, 1f) : e.chillT > 0 ? new Color(0.8f, 0.92f, 1f) : Color.white) : Color.white)); // t1409u: with the v3 ice shader the chill/freeze tint is done in-shader (no whole-sprite colour)
+                if (!HordeFXBusy(e)) SetCol(e.sr, tint * (e.fx != null ? (e.curseT > 0 ? new Color(0.8f, 0.6f, 1f) : Color.white) : e.curseT > 0 ? new Color(0.8f, 0.6f, 1f) : e.freezeT > 0 ? new Color(IceFX3.Ok ? 0.7f : 0.6f, 0.9f, 1f) : e.chillT > 0 ? new Color(0.85f, 0.94f, 1f) : Color.white)); // t1410u: light cold tint (+ IceFX3.Chips)
                 UpdateStatusFx(e);
                 if (e.bleedT > 0 && e.bleedH < 0 && e.dotTick > 0.45f) HFX.Bleed(e.pos + Vector2.up * e.hitY); // stand-in when BleedStatus failed
                 UpdateStatusHandles(e);

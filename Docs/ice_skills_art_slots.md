@@ -17,9 +17,9 @@ Placeholders are already there (drawn by hand in Endesga 32 blues). Overwrite th
 Horizontal strips, frames left to right, 16 px per world unit, never rescaled. Missing file = placeholder.
 | file | frame | frames | fps | loop | what |
 |---|---|---|---|---|---|
-| fx_frostbolt_orb.png | 16x16 | 4 | 12 | yes | orb in flight, round (drawn unrotated), centred | **(t1409u: no longer used, the Hellord FX v3 shader draws this; kept only so old art does not break)**
-| fx_frostbolt_burst.png | 48x48 | 6 | 16 | once | burst on wall / end of life, centred | **(t1409u: no longer used, the Hellord FX v3 shader draws this; kept only so old art does not break)**
-| fx_chill_ground.png | 32x32 | 3 | 6 | yes | flat chill patch left behind by the orb (ground layer) | **(t1409u: no longer used, the Hellord FX v3 shader draws this; kept only so old art does not break)**
+| fx_frostbolt_orb.png | 16x16 | 4 | 12 | yes | orb in flight, round (drawn unrotated), centred | **(t1409u: no longer used, HellordIceFX3 (CPU pixel-art sprites) draws this; kept only so old art does not break)**
+| fx_frostbolt_burst.png | 48x48 | 6 | 16 | once | burst on wall / end of life, centred | **(t1409u: no longer used, HellordIceFX3 (CPU pixel-art sprites) draws this; kept only so old art does not break)**
+| fx_chill_ground.png | 32x32 | 3 | 6 | yes | flat chill patch left behind by the orb (ground layer) | **(t1409u: no longer used, HellordIceFX3 (CPU pixel-art sprites) draws this; kept only so old art does not break)**
 | fx_frostbomb_crystal.png | 24x32 | 4 | 8 | yes | crystal while it ticks; pivot = bottom centre (feet) |
 
 ## Hellord FX (HFX): scalable effects = code hooks (they get the LIVE radius, so no pixel art is ever resampled)
@@ -36,4 +36,4 @@ Palette used by the placeholders: Endesga 32 #124e89 #0099db #2ce8f5 #c0cbdc #ff
 Frozen demons that die shatter (existing 35% max-HP blast).
 
 
-t1409u: ice VFX = Hellord FX v3 (Resources/HellordShaders/HellordPixelIce + HellordIceFX3.cs). Only the Frost Bomb crystal strip (fx_frostbomb_crystal) and the 24 px icons are still art slots. HellordTuning.iceShader1400 switches the shader effects off.
+t1410u: ice VFX = HellordIceFX3.cs (CPU-drawn pixel-art sprites on plain SpriteRenderers, Endesga-32 colours, integer scale, no shader; the t1409u PixelIce shader was removed because its output did not render in the player). Only the Frost Bomb crystal strip (fx_frostbomb_crystal) and the 24 px icons are still art slots. Switch: HellordTuning.iceVfx1410.
