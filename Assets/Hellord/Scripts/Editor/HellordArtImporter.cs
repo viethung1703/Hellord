@@ -48,7 +48,7 @@ namespace Hellord.EditorTools
             if (AllowBigSheets45 && big > 2048) ti.maxTextureSize = big > 4096 ? 8192 : 4096; // v0.0.45: boss_qilin_chariot is 1440x2736; a 2048 cap shrank it so HArt could not slice 160x144 cells and the boss drew a blank placeholder
             ti.textureCompression = TextureImporterCompression.Uncompressed; ti.npotScale = TextureImporterNPOTScale.None;
             ti.alphaIsTransparency = true;
-            ti.isReadable = System.IO.Path.GetFileName(assetPath).StartsWith("hero_") || assetPath.Contains("/HellordArt/FrozenHell/") || assetPath.Contains("/HellordArt/BurningHell/"); // v0.6: hero outline is built from the pixels; v0.0.44: Frozen floor B tiles are composed at runtime
+            ti.isReadable = System.IO.Path.GetFileName(assetPath).StartsWith("hero_") || (assetPath.Contains("/IceSkills/fx_icenova_burst") && assetPath.Contains("_glow")) /* t1419: runtime reads the glow mask to get the per-frame ring radius */ || assetPath.Contains("/HellordArt/FrozenHell/") || assetPath.Contains("/HellordArt/BurningHell/"); // v0.6: hero outline is built from the pixels; v0.0.44: Frozen floor B tiles are composed at runtime
             ti.wrapMode = assetPath.Contains("floor_") ? TextureWrapMode.Repeat : TextureWrapMode.Clamp;
         }
     }

@@ -1,0 +1,1055 @@
+fileFormatVersion: 2
+guid: e6da32be33bf15d58a9f7bdffdc66f84
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6356542495247018937
+    second: fx_icenova_burst_lv5_back_0
+  - first:
+      213: 8348537579299722159
+    second: fx_icenova_burst_lv5_back_1
+  - first:
+      213: -306695919597853812
+    second: fx_icenova_burst_lv5_back_2
+  - first:
+      213: -6351044215064157951
+    second: fx_icenova_burst_lv5_back_3
+  - first:
+      213: 8193282218317270473
+    second: fx_icenova_burst_lv5_back_4
+  - first:
+      213: 4890853508013111224
+    second: fx_icenova_burst_lv5_back_5
+  - first:
+      213: -6366824219303728432
+    second: fx_icenova_burst_lv5_back_6
+  - first:
+      213: 7222777678123430496
+    second: fx_icenova_burst_lv5_back_7
+  - first:
+      213: -3157515985820049817
+    second: fx_icenova_burst_lv5_back_8
+  - first:
+      213: -7234915940363985363
+    second: fx_icenova_burst_lv5_back_9
+  - first:
+      213: -6844777626587587351
+    second: fx_icenova_burst_lv5_back_10
+  - first:
+      213: 5394460287124790686
+    second: fx_icenova_burst_lv5_back_11
+  - first:
+      213: 3425507470011537492
+    second: fx_icenova_burst_lv5_back_12
+  - first:
+      213: -7968338858283828046
+    second: fx_icenova_burst_lv5_back_13
+  - first:
+      213: 7754379926932262425
+    second: fx_icenova_burst_lv5_back_14
+  - first:
+      213: 5181977704553609498
+    second: fx_icenova_burst_lv5_back_15
+  - first:
+      213: 5012338233792886453
+    second: fx_icenova_burst_lv5_back_16
+  - first:
+      213: 3775057011828341229
+    second: fx_icenova_burst_lv5_back_17
+  - first:
+      213: -6248305391292939049
+    second: fx_icenova_burst_lv5_back_18
+  - first:
+      213: 7767349535999799357
+    second: fx_icenova_burst_lv5_back_19
+  - first:
+      213: -8637854011593831736
+    second: fx_icenova_burst_lv5_back_20
+  - first:
+      213: -2019016975557775882
+    second: fx_icenova_burst_lv5_back_21
+  - first:
+      213: -8022518441767766225
+    second: fx_icenova_burst_lv5_back_22
+  - first:
+      213: -7096740573608128564
+    second: fx_icenova_burst_lv5_back_23
+  - first:
+      213: -4575464385443476778
+    second: fx_icenova_burst_lv5_back_24
+  - first:
+      213: 4615457797691680179
+    second: fx_icenova_burst_lv5_back_25
+  - first:
+      213: 7303382066204586374
+    second: fx_icenova_burst_lv5_back_26
+  - first:
+      213: -9154801028435604025
+    second: fx_icenova_burst_lv5_back_27
+  - first:
+      213: -5587223358148754198
+    second: fx_icenova_burst_lv5_back_28
+  - first:
+      213: -7867893672959928126
+    second: fx_icenova_burst_lv5_back_29
+  - first:
+      213: -1708486915616412641
+    second: fx_icenova_burst_lv5_back_30
+  - first:
+      213: 5625114129344167018
+    second: fx_icenova_burst_lv5_back_31
+  - first:
+      213: 3732107916321029818
+    second: fx_icenova_burst_lv5_back_32
+  - first:
+      213: -8448654551772066569
+    second: fx_icenova_burst_lv5_back_33
+  - first:
+      213: -6862581724283952489
+    second: fx_icenova_burst_lv5_back_34
+  - first:
+      213: -4220451353118677152
+    second: fx_icenova_burst_lv5_back_35
+  - first:
+      213: 1210599971121388649
+    second: fx_icenova_burst_lv5_back_36
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_0
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 48
+        width: 134
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 744502b674609c7a0800000000000000
+      internalID: -6356542495247018937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_1
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 89
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa3d82822b6fbd370800000000000000
+      internalID: 8348537579299722159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_2
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 51
+        width: 151
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c83ee42afa56ebbf0800000000000000
+      internalID: -306695919597853812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_3
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 93
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1012d488fee8cd7a0800000000000000
+      internalID: -6351044215064157951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_4
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 95
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cd435784c264b170800000000000000
+      internalID: 8193282218317270473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_5
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 49
+        width: 156
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b738994a5dcfd340800000000000000
+      internalID: 4890853508013111224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_6
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 92
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0da2c0dfa1f74a7a0800000000000000
+      internalID: -6366824219303728432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_7
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 96
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 062fa24c7067c3460800000000000000
+      internalID: 7222777678123430496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_8
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 96
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76e149ca0ff3e24d0800000000000000
+      internalID: -3157515985820049817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_9
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 97
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2e1bc2d84a689b90800000000000000
+      internalID: -7234915940363985363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_10
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 94
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ec94b883077201a0800000000000000
+      internalID: -6844777626587587351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_11
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 91
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9d5601dc09fcda40800000000000000
+      internalID: 5394460287124790686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_12
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 51
+        width: 156
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4581c7515e8d98f20800000000000000
+      internalID: 3425507470011537492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_13
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 93
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bcfc06c606ca6190800000000000000
+      internalID: -7968338858283828046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_14
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 96
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91e873685771d9b60800000000000000
+      internalID: 7754379926932262425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_15
+      rect:
+        serializedVersion: 2
+        x: 1044
+        y: 97
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1979e954451ae740800000000000000
+      internalID: 5181977704553609498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_16
+      rect:
+        serializedVersion: 2
+        x: 1081
+        y: 98
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b6755f21176f8540800000000000000
+      internalID: 5012338233792886453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_17
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 92
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de930e4e952b36430800000000000000
+      internalID: 3775057011828341229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 51
+        width: 156
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d483dff95f8949a0800000000000000
+      internalID: -6248305391292939049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_19
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 92
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d303093ff3b2bcb60800000000000000
+      internalID: 7767349535999799357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_20
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 96
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ca4441ba8d202880800000000000000
+      internalID: -8637854011593831736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_21
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 97
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fd256802c20bf3e0800000000000000
+      internalID: -2019016975557775882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_22
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 97
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f27796a7bf94aa090800000000000000
+      internalID: -8022518441767766225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_23
+      rect:
+        serializedVersion: 2
+        x: 1261
+        y: 92
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccf4cf66c00538d90800000000000000
+      internalID: -7096740573608128564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_24
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 51
+        width: 156
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dac03f126fa080c0800000000000000
+      internalID: -4575464385443476778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_25
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 96
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b5283bc9666d0040800000000000000
+      internalID: 4615457797691680179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_26
+      rect:
+        serializedVersion: 2
+        x: 1409
+        y: 95
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68135135b43da5560800000000000000
+      internalID: 7303382066204586374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_27
+      rect:
+        serializedVersion: 2
+        x: 1480
+        y: 50
+        width: 156
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cd07b608fc93f080800000000000000
+      internalID: -9154801028435604025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_28
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 95
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae447c845f13672b0800000000000000
+      internalID: -5587223358148754198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_29
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 95
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c81eace360afc290800000000000000
+      internalID: -7867893672959928126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_30
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 50
+        width: 156
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1ce743c33c3a48e0800000000000000
+      internalID: -1708486915616412641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_31
+      rect:
+        serializedVersion: 2
+        x: 1700
+        y: 95
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6cf69c5f7b601e40800000000000000
+      internalID: 5625114129344167018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_32
+      rect:
+        serializedVersion: 2
+        x: 1863
+        y: 94
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abefcb7506c1bc330800000000000000
+      internalID: 3732107916321029818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_33
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 49
+        width: 32
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fc83a3b27950ca80800000000000000
+      internalID: -8448654551772066569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_34
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 49
+        width: 97
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 792a7f1084633c0a0800000000000000
+      internalID: -6862581724283952489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_35
+      rect:
+        serializedVersion: 2
+        x: 1808
+        y: 59
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0676b81fad1fd65c0800000000000000
+      internalID: -4220451353118677152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_icenova_burst_lv5_back_36
+      rect:
+        serializedVersion: 2
+        x: 1811
+        y: 48
+        width: 640
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96cd9cb724aecc010800000000000000
+      internalID: 1210599971121388649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

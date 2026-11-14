@@ -67,7 +67,7 @@ namespace Hellord
         // ---------------------------------------------------------------- entities
         class IceOrb { public Vector2 p, v; public float life, age, dmg, r, burstR, trailLife, trailAcc; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
         class IcePatch { public Vector2 p; public float r, life, life0, tick; public SkillInst s; public bool drawn; }
-        class IceNovaRing { public Vector2 c; public float r, rMax, t, dur, dmg, kClose, kFar, chillS, build; public bool spawned; public int pulse; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
+        class IceNovaRing { public Vector2 c; public float r, rMax, t, dur, dmg, kClose, kFar, chillS, build; public bool spawned; public int pulse, vs = -1; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
         class IceBombE { public Vector2 p; public float t, dur, pulseT, r, dmg, pulseDmg; public SkillInst s; public IceFX3.Inst fx; public Enemy tgt; }
         class IceStormE { public Vector2 c; public float t, dur, r, tick, dmg, age; public SkillInst s; }
         readonly List<IceOrb> _iceOrbs = new List<IceOrb>(); readonly List<IcePatch> _icePatches = new List<IcePatch>(); readonly List<IceNovaRing> _iceNovas = new List<IceNovaRing>();
@@ -128,7 +128,8 @@ namespace Hellord
         void SpawnIceNova(SkillInst s, float dmg, float rMax, int pulse = 0)
         {
             if (mode == Mode.StartPick) return; var T = HellordTuning.I; Vector2 c = _heroPos + Vector2.up * 0.3f;
-            _iceNovas.Add(new IceNovaRing { c = c, r = 0, rMax = rMax, dur = T.novaExpandS, dmg = dmg, kClose = T.novaKnockClose, kFar = T.novaKnockFar, chillS = T.novaChillS, build = T.novaBuild, pulse = pulse, s = s });
+            int vs = NovaFX1419.Pick(rMax * 16f); // t1420: strip set (per level, nearest full radius); -1 = old visual
+            _iceNovas.Add(new IceNovaRing { c = c, r = 0, rMax = rMax, vs = vs, dur = vs >= 0 ? NovaFX1419.FullSec(vs) : T.novaExpandS, dmg = dmg, kClose = T.novaKnockClose, kFar = T.novaKnockFar, chillS = T.novaChillS, build = T.novaBuild, pulse = pulse, s = s });
             SkillArea53(c, rMax, dmg, (int)s.def.id); HellordAudio.Play("frost_cleave", 0.8f); if (pulse == 0) { IceVfxNovaCast(c, rMax); ScreenShake.Add(3, 0.18f); } // t1412u: small kick on cast
         }
         bool CastFrostBomb(SkillInst s, float dmg)
@@ -199,12 +200,16 @@ namespace Hellord
             // ---- Ice Nova rings: hit each demon once as the ring passes it, knock-back falls off with distance
             for (int i = _iceNovas.Count - 1; i >= 0; i--)
             {
-                var n = _iceNovas[i]; n.t += dt; float k = Mathf.Clamp01(n.t / n.dur); n.r = n.rMax * (1f - (1f - k) * (1f - k)); // ease-out
+                var n = _iceNovas[i]; n.t += dt; float k = Mathf.Clamp01(n.t / n.dur); n.r = n.rMax * (n.vs >= 0 ? NovaFX1419.Front01(n.vs, n.t) : 1f - (1f - k) * (1f - k)); // ease-out; t1419: with the new burst the hit ring follows the visual front radius (same max radius)
                 Query(n.c, n.r + 0.8f, _iceQ);
                 foreach (int ei in _iceQ)
                 {
                     var e = _en[ei]; if (!e.alive || n.hit.Contains(e.id)) continue; Vector2 d = e.pos - n.c; float dist = d.magnitude; if (dist > n.r + e.radius) continue;
-                    n.hit.Add(e.id); Vector2 dir = dist > 0.01f ? d / dist : Vector2.up; float kn = Mathf.Lerp(n.kClose, n.kFar, Mathf.Clamp01(dist / n.rMax));
+                    n.hit.Add(e.id);
+#if HELLORD_AUTOTEST
+                    Debug.Log("[nova1420] hit set=" + n.vs + " t=" + n.t.ToString("0.000") + " frame=" + (n.t * 30f).ToString("0.0") + " distPx=" + (dist * 16f).ToString("0.0") + " ringPx=" + (n.r * 16f).ToString("0.0") + " visualFrontPx=" + (n.vs >= 0 ? NovaFX1419.Front01(n.vs, n.t) * NovaFX1419.FullPx(n.vs) : -1f).ToString("0.0") + " rMaxPx=" + (n.rMax * 16f).ToString("0.0"));
+#endif
+                    Vector2 dir = dist > 0.01f ? d / dist : Vector2.up; float kn = Mathf.Lerp(n.kClose, n.kFar, Mathf.Clamp01(dist / n.rMax));
                     Hit(e, n.dmg, n.s, dir * kn); IceChill(e, n.chillS, n.build);
                 }
                 IceVfxNova(n); if (k >= 1f) _iceNovas.RemoveAt(i);
@@ -291,10 +296,11 @@ namespace Hellord
             if (!IceFX3.Ok) return; IceFX3.Patch(pt.p, Mathf.Max(8f, pt.r * HArt.PPU * 0.8f), pt.life / pt.life0, (int)(pt.p.x * 7f + pt.p.y * 13f));
         }
         /// <summary>ONCE per pulse (the cast): six small shard squares around the hero. No ring.</summary>
-        void IceVfxNovaCast(Vector2 c, float rMax) { for (int k = 0; k < 6; k++) { float a = k * Mathf.PI / 3f; HordeFX.CheapBurst(c + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * 0.8f, IceArt.Pale, 4); } }
+        void IceVfxNovaCast(Vector2 c, float rMax) { if (NovaFX1419.Ok) return; for (int k = 0; k < 6; k++) { float a = k * Mathf.PI / 3f; HordeFX.CheapBurst(c + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * 0.8f, IceArt.Pale, 4); } }
         /// <summary>EVERY FRAME while a nova pulse expands; acts on the FIRST frame only (the effect owns its time after that): a wave of small ice spikes rising as the front passes + light frost film, a thin travelling front line.</summary>
         void IceVfxNova(IceNovaRing n)
         {
+            if (n.vs >= 0) { NovaFX1419.Drive(n, n.c + Vector2.down * 0.3f, n.t, YSort(n.c.y - 0.3f) + 1, n.vs); return; } // t1419: strips + glow + haze (old visual below stays behind HellordTuning.novaGlow1419)
             if (n.spawned) return; n.spawned = true; if (!IceFX3.Ok) return;
             float rp = n.rMax * HArt.PPU, front = Mathf.Max(3f, n.dur * 30f); bool second = n.pulse > 0;
             IceFX3.Shock(n.c, rp, front, YSort(n.c.y - n.rMax) + 80, n.c.x * 0.31f + 3f); // t1412u impulse ring above the actors
