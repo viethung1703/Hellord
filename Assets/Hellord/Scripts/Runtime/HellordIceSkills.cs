@@ -298,8 +298,7 @@ namespace Hellord
             if (n.spawned) return; n.spawned = true; if (!IceFX3.Ok) return;
             float rp = n.rMax * HArt.PPU, front = Mathf.Max(3f, n.dur * 30f); bool second = n.pulse > 0;
             IceFX3.Shock(n.c, rp, front, YSort(n.c.y - n.rMax) + 80, n.c.x * 0.31f + 3f); // t1412u impulse ring above the actors
-            IceFX3.Field(n.c + Vector2.down * 0.05f, rp * 0.9f, 52f, 26f, 18f, n.c.x * 0.13f + 4f, second ? 0.2f : 0.75f);
-            IceFX3.Crest(n.c, rp, Mathf.Clamp((int)(rp / 1.6f), 26, 64), Mathf.Clamp(rp * 0.2f, 9f, 15f), front, 0.22f, 0.06f, second ? 0.8f : 1f, n.c.x * 0.21f + 9f + (second ? 5f : 0f), 40f, 24f, 14f);
+            IceFX3.Field(n.c + Vector2.down * 0.05f, rp * 0.9f, 52f, 26f, 18f, n.c.x * 0.13f + 4f, second ? 0.12f : 0.4f); // t1414u: faint plates
         }
         /// <summary>ONCE when a bomb lands: puff + a light frost film under the crystal that lives for the fuse and melts after the blast. Returns it so the crystal hook can grow / flicker it.</summary>
         IceFX3.Inst IceVfxBombDrop(Vector2 p, float r, float dur)
