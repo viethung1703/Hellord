@@ -1,0 +1,630 @@
+fileFormatVersion: 2
+guid: 99030b3dd4b9217afb630af1d998ca06
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4508210279357389049
+    second: fx_frostbolt_hit_glow_0
+  - first:
+      213: 4982363625923797639
+    second: fx_frostbolt_hit_glow_1
+  - first:
+      213: -4805397313294853139
+    second: fx_frostbolt_hit_glow_2
+  - first:
+      213: -1905636666813542155
+    second: fx_frostbolt_hit_glow_3
+  - first:
+      213: 1157778612468141004
+    second: fx_frostbolt_hit_glow_4
+  - first:
+      213: 8788105757097414282
+    second: fx_frostbolt_hit_glow_5
+  - first:
+      213: 8051856751298860797
+    second: fx_frostbolt_hit_glow_6
+  - first:
+      213: 7088723726607757938
+    second: fx_frostbolt_hit_glow_7
+  - first:
+      213: -701778549698854488
+    second: fx_frostbolt_hit_glow_8
+  - first:
+      213: -5117937551025850488
+    second: fx_frostbolt_hit_glow_9
+  - first:
+      213: 1978845012117122656
+    second: fx_frostbolt_hit_glow_10
+  - first:
+      213: -4675294364825278651
+    second: fx_frostbolt_hit_glow_11
+  - first:
+      213: -5198380903306304844
+    second: fx_frostbolt_hit_glow_12
+  - first:
+      213: 6774582551909441607
+    second: fx_frostbolt_hit_glow_13
+  - first:
+      213: -5630124940774987077
+    second: fx_frostbolt_hit_glow_14
+  - first:
+      213: -8737934503814125214
+    second: fx_frostbolt_hit_glow_15
+  - first:
+      213: -422513328799606980
+    second: fx_frostbolt_hit_glow_16
+  - first:
+      213: 6370404142056855320
+    second: fx_frostbolt_hit_glow_17
+  - first:
+      213: -3394873340503098060
+    second: fx_frostbolt_hit_glow_18
+  - first:
+      213: 8233982813288386644
+    second: fx_frostbolt_hit_glow_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_0
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 27
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f89cd11d51609e30800000000000000
+      internalID: 4508210279357389049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_1
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 27
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 782e301f159e42540800000000000000
+      internalID: 4982363625923797639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_2
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 18
+        width: 32
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deb91788a9ccf4db0800000000000000
+      internalID: -4805397313294853139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_3
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 18
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f09e9b4c81dd85e0800000000000000
+      internalID: -1905636666813542155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_4
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 19
+        width: 32
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccb45bc8381411010800000000000000
+      internalID: 1157778612468141004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_5
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 19
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8e4b5cef9f95f970800000000000000
+      internalID: 8788105757097414282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_6
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 18
+        width: 34
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df6df730e01fdbf60800000000000000
+      internalID: 8051856751298860797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_7
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 14
+        width: 39
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 272b653fba4306260800000000000000
+      internalID: 7088723726607757938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_8
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 13
+        width: 44
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a106329028c246f0800000000000000
+      internalID: -701778549698854488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_9
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 12
+        width: 48
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 887b870d9ee69f8b0800000000000000
+      internalID: -5117937551025850488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_10
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 12
+        width: 50
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06e6bccdd05467b10800000000000000
+      internalID: 1978845012117122656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_11
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 12
+        width: 52
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5472434cb840e1fb0800000000000000
+      internalID: -4675294364825278651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_12
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 15
+        width: 52
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b2e0435c14abd7b0800000000000000
+      internalID: -5198380903306304844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_13
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 16
+        width: 52
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7402f1c00f6240e50800000000000000
+      internalID: 6774582551909441607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_14
+      rect:
+        serializedVersion: 2
+        x: 1019
+        y: 18
+        width: 50
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bba2a003237cdd1b0800000000000000
+      internalID: -5630124940774987077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_15
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 19
+        width: 48
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 269a7854dde9cb680800000000000000
+      internalID: -8737934503814125214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_16
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 21
+        width: 46
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c371804bd5ee22af0800000000000000
+      internalID: -422513328799606980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_17
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 22
+        width: 43
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 817d9fab0d8386850800000000000000
+      internalID: 6370404142056855320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_18
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 23
+        width: 40
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43d7ed10facf2e0d0800000000000000
+      internalID: -3394873340503098060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_hit_glow_19
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 26
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 450d9b04ebbf44270800000000000000
+      internalID: 8233982813288386644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

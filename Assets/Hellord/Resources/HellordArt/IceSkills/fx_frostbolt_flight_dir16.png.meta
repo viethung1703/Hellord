@@ -1,0 +1,6230 @@
+fileFormatVersion: 2
+guid: 32c672701fee426ff8af4ebede5faf0c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8214032902251409347
+    second: fx_frostbolt_flight_dir16_0
+  - first:
+      213: -649420021613037795
+    second: fx_frostbolt_flight_dir16_1
+  - first:
+      213: 2828595460103649595
+    second: fx_frostbolt_flight_dir16_2
+  - first:
+      213: 8722064093406171770
+    second: fx_frostbolt_flight_dir16_3
+  - first:
+      213: -2912515068327929
+    second: fx_frostbolt_flight_dir16_4
+  - first:
+      213: -6352993529843952353
+    second: fx_frostbolt_flight_dir16_5
+  - first:
+      213: -6389515474624170938
+    second: fx_frostbolt_flight_dir16_6
+  - first:
+      213: -3107842262381978951
+    second: fx_frostbolt_flight_dir16_7
+  - first:
+      213: -2474796094844391077
+    second: fx_frostbolt_flight_dir16_8
+  - first:
+      213: -3876834086998785786
+    second: fx_frostbolt_flight_dir16_9
+  - first:
+      213: 2133581926107033244
+    second: fx_frostbolt_flight_dir16_10
+  - first:
+      213: 4234729871887839436
+    second: fx_frostbolt_flight_dir16_11
+  - first:
+      213: -3617890656860269080
+    second: fx_frostbolt_flight_dir16_12
+  - first:
+      213: -4224196105367520247
+    second: fx_frostbolt_flight_dir16_13
+  - first:
+      213: 4467264413862927997
+    second: fx_frostbolt_flight_dir16_14
+  - first:
+      213: -2202480818261402610
+    second: fx_frostbolt_flight_dir16_15
+  - first:
+      213: -8307562252883866405
+    second: fx_frostbolt_flight_dir16_16
+  - first:
+      213: -4938380451223692837
+    second: fx_frostbolt_flight_dir16_17
+  - first:
+      213: 706786794697336858
+    second: fx_frostbolt_flight_dir16_18
+  - first:
+      213: -6778790833072099704
+    second: fx_frostbolt_flight_dir16_19
+  - first:
+      213: -240502867711140072
+    second: fx_frostbolt_flight_dir16_20
+  - first:
+      213: 636385181557804726
+    second: fx_frostbolt_flight_dir16_21
+  - first:
+      213: -2438929934548896956
+    second: fx_frostbolt_flight_dir16_22
+  - first:
+      213: -3619358162451387002
+    second: fx_frostbolt_flight_dir16_23
+  - first:
+      213: -1001180315422577241
+    second: fx_frostbolt_flight_dir16_24
+  - first:
+      213: 509250598328044659
+    second: fx_frostbolt_flight_dir16_25
+  - first:
+      213: 8156966106843032243
+    second: fx_frostbolt_flight_dir16_26
+  - first:
+      213: -839449406402299874
+    second: fx_frostbolt_flight_dir16_27
+  - first:
+      213: 3568064280197845528
+    second: fx_frostbolt_flight_dir16_28
+  - first:
+      213: 6623828039710061484
+    second: fx_frostbolt_flight_dir16_29
+  - first:
+      213: -4585314824775382032
+    second: fx_frostbolt_flight_dir16_30
+  - first:
+      213: 2477318110377580709
+    second: fx_frostbolt_flight_dir16_31
+  - first:
+      213: -5321604968156201316
+    second: fx_frostbolt_flight_dir16_32
+  - first:
+      213: 7328177108736560152
+    second: fx_frostbolt_flight_dir16_33
+  - first:
+      213: 3237758169515625903
+    second: fx_frostbolt_flight_dir16_34
+  - first:
+      213: -7382692364931826798
+    second: fx_frostbolt_flight_dir16_35
+  - first:
+      213: 5664875266462152259
+    second: fx_frostbolt_flight_dir16_36
+  - first:
+      213: 4714808688492094777
+    second: fx_frostbolt_flight_dir16_37
+  - first:
+      213: 8680406409343704649
+    second: fx_frostbolt_flight_dir16_38
+  - first:
+      213: 6799000933303070082
+    second: fx_frostbolt_flight_dir16_39
+  - first:
+      213: -3835022638318889088
+    second: fx_frostbolt_flight_dir16_40
+  - first:
+      213: 1302347688030446989
+    second: fx_frostbolt_flight_dir16_41
+  - first:
+      213: -8652760719900064888
+    second: fx_frostbolt_flight_dir16_42
+  - first:
+      213: -2448642614170376070
+    second: fx_frostbolt_flight_dir16_43
+  - first:
+      213: 945892764242755881
+    second: fx_frostbolt_flight_dir16_44
+  - first:
+      213: -3740786143823822281
+    second: fx_frostbolt_flight_dir16_45
+  - first:
+      213: -8386385901636654346
+    second: fx_frostbolt_flight_dir16_46
+  - first:
+      213: -9166656924997339803
+    second: fx_frostbolt_flight_dir16_47
+  - first:
+      213: -6638827507728614396
+    second: fx_frostbolt_flight_dir16_48
+  - first:
+      213: -2850846012250938588
+    second: fx_frostbolt_flight_dir16_49
+  - first:
+      213: 3308138203278094223
+    second: fx_frostbolt_flight_dir16_50
+  - first:
+      213: -4849841664801673892
+    second: fx_frostbolt_flight_dir16_51
+  - first:
+      213: -4553632918728916769
+    second: fx_frostbolt_flight_dir16_52
+  - first:
+      213: 5714843653185806434
+    second: fx_frostbolt_flight_dir16_53
+  - first:
+      213: -9148412194401876595
+    second: fx_frostbolt_flight_dir16_54
+  - first:
+      213: -4327562934069094289
+    second: fx_frostbolt_flight_dir16_55
+  - first:
+      213: -4503185631680550584
+    second: fx_frostbolt_flight_dir16_56
+  - first:
+      213: -5539968350385839518
+    second: fx_frostbolt_flight_dir16_57
+  - first:
+      213: -7309268590692604065
+    second: fx_frostbolt_flight_dir16_58
+  - first:
+      213: 3797711137283755753
+    second: fx_frostbolt_flight_dir16_59
+  - first:
+      213: -1750232865839837264
+    second: fx_frostbolt_flight_dir16_60
+  - first:
+      213: -1763160526150512364
+    second: fx_frostbolt_flight_dir16_61
+  - first:
+      213: -8468042818593895985
+    second: fx_frostbolt_flight_dir16_62
+  - first:
+      213: -4670549619642588930
+    second: fx_frostbolt_flight_dir16_63
+  - first:
+      213: -9067980077637574857
+    second: fx_frostbolt_flight_dir16_64
+  - first:
+      213: 642287626542083093
+    second: fx_frostbolt_flight_dir16_65
+  - first:
+      213: -2766149256412241537
+    second: fx_frostbolt_flight_dir16_66
+  - first:
+      213: 3024854098879486597
+    second: fx_frostbolt_flight_dir16_67
+  - first:
+      213: -151556560535952147
+    second: fx_frostbolt_flight_dir16_68
+  - first:
+      213: -1746518914317675358
+    second: fx_frostbolt_flight_dir16_69
+  - first:
+      213: -1630480388951134355
+    second: fx_frostbolt_flight_dir16_70
+  - first:
+      213: 700076733261985688
+    second: fx_frostbolt_flight_dir16_71
+  - first:
+      213: 7977325378170735669
+    second: fx_frostbolt_flight_dir16_72
+  - first:
+      213: 8711941450823302873
+    second: fx_frostbolt_flight_dir16_73
+  - first:
+      213: 7048833182325157610
+    second: fx_frostbolt_flight_dir16_74
+  - first:
+      213: -8947851874517156366
+    second: fx_frostbolt_flight_dir16_75
+  - first:
+      213: 3648271660608563736
+    second: fx_frostbolt_flight_dir16_76
+  - first:
+      213: 5482142893110119937
+    second: fx_frostbolt_flight_dir16_77
+  - first:
+      213: -2322683863386818336
+    second: fx_frostbolt_flight_dir16_78
+  - first:
+      213: -8247798246162780865
+    second: fx_frostbolt_flight_dir16_79
+  - first:
+      213: -1722791447674514314
+    second: fx_frostbolt_flight_dir16_80
+  - first:
+      213: -7488508796334658508
+    second: fx_frostbolt_flight_dir16_81
+  - first:
+      213: 5205374441506066664
+    second: fx_frostbolt_flight_dir16_82
+  - first:
+      213: -9037626654889090623
+    second: fx_frostbolt_flight_dir16_83
+  - first:
+      213: 6867231081109051424
+    second: fx_frostbolt_flight_dir16_84
+  - first:
+      213: -2310939798035827866
+    second: fx_frostbolt_flight_dir16_85
+  - first:
+      213: 2618305525464983335
+    second: fx_frostbolt_flight_dir16_86
+  - first:
+      213: -581414614786752485
+    second: fx_frostbolt_flight_dir16_87
+  - first:
+      213: -6003289776811645651
+    second: fx_frostbolt_flight_dir16_88
+  - first:
+      213: -2703721436431671291
+    second: fx_frostbolt_flight_dir16_89
+  - first:
+      213: 130832890049796514
+    second: fx_frostbolt_flight_dir16_90
+  - first:
+      213: 450127199810253529
+    second: fx_frostbolt_flight_dir16_91
+  - first:
+      213: -4769149524149218420
+    second: fx_frostbolt_flight_dir16_92
+  - first:
+      213: 7230233261097066274
+    second: fx_frostbolt_flight_dir16_93
+  - first:
+      213: -5431487014598426608
+    second: fx_frostbolt_flight_dir16_94
+  - first:
+      213: -8149701074508557529
+    second: fx_frostbolt_flight_dir16_95
+  - first:
+      213: 2602354027329667928
+    second: fx_frostbolt_flight_dir16_96
+  - first:
+      213: 1516739648544092459
+    second: fx_frostbolt_flight_dir16_97
+  - first:
+      213: -4573191948632607233
+    second: fx_frostbolt_flight_dir16_98
+  - first:
+      213: -4703237621936385923
+    second: fx_frostbolt_flight_dir16_99
+  - first:
+      213: -7227817657946674305
+    second: fx_frostbolt_flight_dir16_100
+  - first:
+      213: -1158001452661308765
+    second: fx_frostbolt_flight_dir16_101
+  - first:
+      213: 357293779135712348
+    second: fx_frostbolt_flight_dir16_102
+  - first:
+      213: 3124240598627853774
+    second: fx_frostbolt_flight_dir16_103
+  - first:
+      213: 5290161900853323576
+    second: fx_frostbolt_flight_dir16_104
+  - first:
+      213: 2045812088813359860
+    second: fx_frostbolt_flight_dir16_105
+  - first:
+      213: -5259035234081942290
+    second: fx_frostbolt_flight_dir16_106
+  - first:
+      213: -6731787622271416307
+    second: fx_frostbolt_flight_dir16_107
+  - first:
+      213: -7351502166544772172
+    second: fx_frostbolt_flight_dir16_108
+  - first:
+      213: 6678361805325419819
+    second: fx_frostbolt_flight_dir16_109
+  - first:
+      213: 2986083415606903188
+    second: fx_frostbolt_flight_dir16_110
+  - first:
+      213: -1517391678887923140
+    second: fx_frostbolt_flight_dir16_111
+  - first:
+      213: 3491481134070033925
+    second: fx_frostbolt_flight_dir16_112
+  - first:
+      213: 2601009986338533095
+    second: fx_frostbolt_flight_dir16_113
+  - first:
+      213: -3670181426887716185
+    second: fx_frostbolt_flight_dir16_114
+  - first:
+      213: 1844832327813596339
+    second: fx_frostbolt_flight_dir16_115
+  - first:
+      213: -6363472381813698475
+    second: fx_frostbolt_flight_dir16_116
+  - first:
+      213: 460500560532243272
+    second: fx_frostbolt_flight_dir16_117
+  - first:
+      213: 2136333430066529220
+    second: fx_frostbolt_flight_dir16_118
+  - first:
+      213: 5567667076543181298
+    second: fx_frostbolt_flight_dir16_119
+  - first:
+      213: 8702610594693580716
+    second: fx_frostbolt_flight_dir16_120
+  - first:
+      213: -5255579256249464156
+    second: fx_frostbolt_flight_dir16_121
+  - first:
+      213: 9013461766901255879
+    second: fx_frostbolt_flight_dir16_122
+  - first:
+      213: -8401676608602989275
+    second: fx_frostbolt_flight_dir16_123
+  - first:
+      213: -4410071159733078608
+    second: fx_frostbolt_flight_dir16_124
+  - first:
+      213: 1667696257979920362
+    second: fx_frostbolt_flight_dir16_125
+  - first:
+      213: -2877165900092320293
+    second: fx_frostbolt_flight_dir16_126
+  - first:
+      213: 3559922048635673471
+    second: fx_frostbolt_flight_dir16_127
+  - first:
+      213: -7903926567293031030
+    second: fx_frostbolt_flight_dir16_128
+  - first:
+      213: -2913375441209683300
+    second: fx_frostbolt_flight_dir16_129
+  - first:
+      213: -3910933153338518133
+    second: fx_frostbolt_flight_dir16_130
+  - first:
+      213: -5486954677475977748
+    second: fx_frostbolt_flight_dir16_131
+  - first:
+      213: -7066676092001535185
+    second: fx_frostbolt_flight_dir16_132
+  - first:
+      213: -459186255746085981
+    second: fx_frostbolt_flight_dir16_133
+  - first:
+      213: -9059513753212497054
+    second: fx_frostbolt_flight_dir16_134
+  - first:
+      213: 5225852954336114364
+    second: fx_frostbolt_flight_dir16_135
+  - first:
+      213: -5416769333068255614
+    second: fx_frostbolt_flight_dir16_136
+  - first:
+      213: -6656734664560128974
+    second: fx_frostbolt_flight_dir16_137
+  - first:
+      213: -3183014857765264
+    second: fx_frostbolt_flight_dir16_138
+  - first:
+      213: 6360168176019344205
+    second: fx_frostbolt_flight_dir16_139
+  - first:
+      213: 176322083963487264
+    second: fx_frostbolt_flight_dir16_140
+  - first:
+      213: 89075511155144896
+    second: fx_frostbolt_flight_dir16_141
+  - first:
+      213: -1327583685873908640
+    second: fx_frostbolt_flight_dir16_142
+  - first:
+      213: 7495488529249337462
+    second: fx_frostbolt_flight_dir16_143
+  - first:
+      213: 288297328274888857
+    second: fx_frostbolt_flight_dir16_144
+  - first:
+      213: 5685952180072965752
+    second: fx_frostbolt_flight_dir16_145
+  - first:
+      213: -6226562454905770496
+    second: fx_frostbolt_flight_dir16_146
+  - first:
+      213: 7411449255180342736
+    second: fx_frostbolt_flight_dir16_147
+  - first:
+      213: -4111101323639704745
+    second: fx_frostbolt_flight_dir16_148
+  - first:
+      213: 7321302819512619508
+    second: fx_frostbolt_flight_dir16_149
+  - first:
+      213: 4873465708172329281
+    second: fx_frostbolt_flight_dir16_150
+  - first:
+      213: 3217678101241523271
+    second: fx_frostbolt_flight_dir16_151
+  - first:
+      213: 7097250619106859073
+    second: fx_frostbolt_flight_dir16_152
+  - first:
+      213: 2910050633919012539
+    second: fx_frostbolt_flight_dir16_153
+  - first:
+      213: -6018684594962702053
+    second: fx_frostbolt_flight_dir16_154
+  - first:
+      213: 4161145109746373782
+    second: fx_frostbolt_flight_dir16_155
+  - first:
+      213: 1384999978361425255
+    second: fx_frostbolt_flight_dir16_156
+  - first:
+      213: 3784406660488163989
+    second: fx_frostbolt_flight_dir16_157
+  - first:
+      213: -6712115762326360098
+    second: fx_frostbolt_flight_dir16_158
+  - first:
+      213: 1561912433468065661
+    second: fx_frostbolt_flight_dir16_159
+  - first:
+      213: -249462947507865673
+    second: fx_frostbolt_flight_dir16_160
+  - first:
+      213: 3870988301898495673
+    second: fx_frostbolt_flight_dir16_161
+  - first:
+      213: -4315519358896840443
+    second: fx_frostbolt_flight_dir16_162
+  - first:
+      213: -8737895334903073853
+    second: fx_frostbolt_flight_dir16_163
+  - first:
+      213: 7942184951231279397
+    second: fx_frostbolt_flight_dir16_164
+  - first:
+      213: 3992461230742172803
+    second: fx_frostbolt_flight_dir16_165
+  - first:
+      213: -3053697606681783318
+    second: fx_frostbolt_flight_dir16_166
+  - first:
+      213: 1512313929427192821
+    second: fx_frostbolt_flight_dir16_167
+  - first:
+      213: 1106658170817395566
+    second: fx_frostbolt_flight_dir16_168
+  - first:
+      213: -5346297256101376606
+    second: fx_frostbolt_flight_dir16_169
+  - first:
+      213: -533675097148954988
+    second: fx_frostbolt_flight_dir16_170
+  - first:
+      213: -6412132953405775850
+    second: fx_frostbolt_flight_dir16_171
+  - first:
+      213: -5174825012091207951
+    second: fx_frostbolt_flight_dir16_172
+  - first:
+      213: 1998403243979023872
+    second: fx_frostbolt_flight_dir16_173
+  - first:
+      213: -1899069689163084664
+    second: fx_frostbolt_flight_dir16_174
+  - first:
+      213: 7409429491828662627
+    second: fx_frostbolt_flight_dir16_175
+  - first:
+      213: 6931192322654670414
+    second: fx_frostbolt_flight_dir16_176
+  - first:
+      213: 8955981522085881845
+    second: fx_frostbolt_flight_dir16_177
+  - first:
+      213: -455346135786987835
+    second: fx_frostbolt_flight_dir16_178
+  - first:
+      213: 1232421551181483113
+    second: fx_frostbolt_flight_dir16_179
+  - first:
+      213: -4581177110798462691
+    second: fx_frostbolt_flight_dir16_180
+  - first:
+      213: -5574038931684190491
+    second: fx_frostbolt_flight_dir16_181
+  - first:
+      213: -5403046683990456029
+    second: fx_frostbolt_flight_dir16_182
+  - first:
+      213: -7808837215083029428
+    second: fx_frostbolt_flight_dir16_183
+  - first:
+      213: 7987094747514986674
+    second: fx_frostbolt_flight_dir16_184
+  - first:
+      213: 140742736758068531
+    second: fx_frostbolt_flight_dir16_185
+  - first:
+      213: -4748777290617194613
+    second: fx_frostbolt_flight_dir16_186
+  - first:
+      213: 4862088376422186335
+    second: fx_frostbolt_flight_dir16_187
+  - first:
+      213: 3207516798437544321
+    second: fx_frostbolt_flight_dir16_188
+  - first:
+      213: -6533389807350886449
+    second: fx_frostbolt_flight_dir16_189
+  - first:
+      213: 777417634332379468
+    second: fx_frostbolt_flight_dir16_190
+  - first:
+      213: -5021563862966738515
+    second: fx_frostbolt_flight_dir16_191
+  - first:
+      213: -8068547090638269369
+    second: fx_frostbolt_flight_dir16_192
+  - first:
+      213: 2076744508362784195
+    second: fx_frostbolt_flight_dir16_193
+  - first:
+      213: -168705685679113332
+    second: fx_frostbolt_flight_dir16_194
+  - first:
+      213: -1878279172451360542
+    second: fx_frostbolt_flight_dir16_195
+  - first:
+      213: -6740955082781351788
+    second: fx_frostbolt_flight_dir16_196
+  - first:
+      213: 7462403531278698377
+    second: fx_frostbolt_flight_dir16_197
+  - first:
+      213: -5760678430253802876
+    second: fx_frostbolt_flight_dir16_198
+  - first:
+      213: -7799751695565976482
+    second: fx_frostbolt_flight_dir16_199
+  - first:
+      213: -736532089609580157
+    second: fx_frostbolt_flight_dir16_200
+  - first:
+      213: 2131260267769115451
+    second: fx_frostbolt_flight_dir16_201
+  - first:
+      213: -747829496705157064
+    second: fx_frostbolt_flight_dir16_202
+  - first:
+      213: -7367888290429783652
+    second: fx_frostbolt_flight_dir16_203
+  - first:
+      213: 3657939651445230499
+    second: fx_frostbolt_flight_dir16_204
+  - first:
+      213: 1221058781212132978
+    second: fx_frostbolt_flight_dir16_205
+  - first:
+      213: -7574593652664683961
+    second: fx_frostbolt_flight_dir16_206
+  - first:
+      213: -8591096120677333299
+    second: fx_frostbolt_flight_dir16_207
+  - first:
+      213: -5438381072218875833
+    second: fx_frostbolt_flight_dir16_208
+  - first:
+      213: 1572857246893097244
+    second: fx_frostbolt_flight_dir16_209
+  - first:
+      213: -7866545600735222696
+    second: fx_frostbolt_flight_dir16_210
+  - first:
+      213: 7584943752855588147
+    second: fx_frostbolt_flight_dir16_211
+  - first:
+      213: -3254781534310951018
+    second: fx_frostbolt_flight_dir16_212
+  - first:
+      213: 4542129633300668462
+    second: fx_frostbolt_flight_dir16_213
+  - first:
+      213: 9047695386990131788
+    second: fx_frostbolt_flight_dir16_214
+  - first:
+      213: 2336495073882619556
+    second: fx_frostbolt_flight_dir16_215
+  - first:
+      213: 8517690316961875269
+    second: fx_frostbolt_flight_dir16_216
+  - first:
+      213: 599596267089666105
+    second: fx_frostbolt_flight_dir16_217
+  - first:
+      213: 2488215402338033408
+    second: fx_frostbolt_flight_dir16_218
+  - first:
+      213: 137010155971787268
+    second: fx_frostbolt_flight_dir16_219
+  - first:
+      213: -4364394438850017302
+    second: fx_frostbolt_flight_dir16_220
+  - first:
+      213: -8874231457675507559
+    second: fx_frostbolt_flight_dir16_221
+  - first:
+      213: -2132908560929175847
+    second: fx_frostbolt_flight_dir16_222
+  - first:
+      213: 8926279259936918137
+    second: fx_frostbolt_flight_dir16_223
+  - first:
+      213: 5788221760014422220
+    second: fx_frostbolt_flight_dir16_224
+  - first:
+      213: 8825280191397812259
+    second: fx_frostbolt_flight_dir16_225
+  - first:
+      213: 8719092759309691700
+    second: fx_frostbolt_flight_dir16_226
+  - first:
+      213: 5259765480203684265
+    second: fx_frostbolt_flight_dir16_227
+  - first:
+      213: -717502620684315018
+    second: fx_frostbolt_flight_dir16_228
+  - first:
+      213: 4126548790069854750
+    second: fx_frostbolt_flight_dir16_229
+  - first:
+      213: 2633858788369329506
+    second: fx_frostbolt_flight_dir16_230
+  - first:
+      213: 2550018212004494442
+    second: fx_frostbolt_flight_dir16_231
+  - first:
+      213: -4627048804905963688
+    second: fx_frostbolt_flight_dir16_232
+  - first:
+      213: -1726583943458876072
+    second: fx_frostbolt_flight_dir16_233
+  - first:
+      213: 3688028553230496848
+    second: fx_frostbolt_flight_dir16_234
+  - first:
+      213: 2574187824658650010
+    second: fx_frostbolt_flight_dir16_235
+  - first:
+      213: -8384505058014666231
+    second: fx_frostbolt_flight_dir16_236
+  - first:
+      213: -544300524510419197
+    second: fx_frostbolt_flight_dir16_237
+  - first:
+      213: 2739314484940257606
+    second: fx_frostbolt_flight_dir16_238
+  - first:
+      213: 147078653301318985
+    second: fx_frostbolt_flight_dir16_239
+  - first:
+      213: 371473155799737314
+    second: fx_frostbolt_flight_dir16_240
+  - first:
+      213: 2068439732372024703
+    second: fx_frostbolt_flight_dir16_241
+  - first:
+      213: 7820509726534065208
+    second: fx_frostbolt_flight_dir16_242
+  - first:
+      213: -8159219790179320894
+    second: fx_frostbolt_flight_dir16_243
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1233
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cfe010a76b1ef170800000000000000
+      internalID: 8214032902251409347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 1233
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d177abd5eebccf6f0800000000000000
+      internalID: -649420021613037795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_2
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 1233
+        width: 42
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b39b2cc9590314720800000000000000
+      internalID: 2828595460103649595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_3
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 1233
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a721aabd41ffa0970800000000000000
+      internalID: 8722064093406171770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_4
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 1234
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70803fd3517a5fff0800000000000000
+      internalID: -2912515068327929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_5
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 1234
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f15db415b02a5d7a0800000000000000
+      internalID: -6352993529843952353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_6
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 1234
+        width: 23
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6443a286781e357a0800000000000000
+      internalID: -6389515474624170938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_7
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 1235
+        width: 45
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ba96ccade9bed4d0800000000000000
+      internalID: -3107842262381978951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_8
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 1233
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b51b6435012c7add0800000000000000
+      internalID: -2474796094844391077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_9
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 1233
+        width: 42
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 601cf4f20f7b23ac0800000000000000
+      internalID: -3876834086998785786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_10
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1233
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9eadc425710c9d10800000000000000
+      internalID: 2133581926107033244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_11
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 1233
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc03c95c168c4ca30800000000000000
+      internalID: 4234729871887839436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_12
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 1234
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e593a1bd9baacdc0800000000000000
+      internalID: -3617890656860269080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_13
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 1234
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90cfafdd504a065c0800000000000000
+      internalID: -4224196105367520247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_14
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 1234
+        width: 23
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7e1b0ad059eefd30800000000000000
+      internalID: 4467264413862927997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_15
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 1235
+        width: 41
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0cdae27d573f61e0800000000000000
+      internalID: -2202480818261402610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_16
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1156
+        width: 42
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdcc967752c95bc80800000000000000
+      internalID: -8307562252883866405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_17
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 1156
+        width: 42
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd9141fe429577bb0800000000000000
+      internalID: -4938380451223692837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_18
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 1166
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a182fd558d20fc900800000000000000
+      internalID: 706786794697336858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_19
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 1163
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88e201427a5ece1a0800000000000000
+      internalID: -6778790833072099704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_20
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 1156
+        width: 27
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81f5d928aef89acf0800000000000000
+      internalID: -240502867711140072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_21
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 1166
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6be431f63f4e4d800800000000000000
+      internalID: 636385181557804726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_22
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1156
+        width: 36
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4437523852e272ed0800000000000000
+      internalID: -2438929934548896956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_23
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 1167
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68dac2c6de475cdc0800000000000000
+      internalID: -3619358162451387002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_24
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 1156
+        width: 31
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7adaf1fbec71b12f0800000000000000
+      internalID: -1001180315422577241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_25
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 1156
+        width: 42
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37c8ff698b8311700800000000000000
+      internalID: 509250598328044659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_26
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 1156
+        width: 40
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3baa74be47d533170800000000000000
+      internalID: 8156966106843032243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_27
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 1166
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e187a74663da954f0800000000000000
+      internalID: -839449406402299874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_28
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 1163
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 812d3f4fe8f448130800000000000000
+      internalID: 3568064280197845528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_29
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 1156
+        width: 27
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca3b030f1809ceb50800000000000000
+      internalID: 6623828039710061484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_30
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 1166
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fb4eedf570bd50c0800000000000000
+      internalID: -4585314824775382032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_31
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 1156
+        width: 36
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a892bc22b3316220800000000000000
+      internalID: 2477318110377580709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_32
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 1167
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9e781ef97cd526b0800000000000000
+      internalID: -5321604968156201316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_33
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 1156
+        width: 31
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81c4469014ae2b560800000000000000
+      internalID: 7328177108736560152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_34
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1100
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fad099a96e3deec20800000000000000
+      internalID: 3237758169515625903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_35
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 1076
+        width: 33
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29bff36c8686b8990800000000000000
+      internalID: -7382692364931826798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_36
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 1076
+        width: 36
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3467f528a0ead9e40800000000000000
+      internalID: 5664875266462152259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_37
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 1076
+        width: 34
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9352f75a58d5e6140800000000000000
+      internalID: 4714808688492094777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_38
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1076
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94e94f673aff67870800000000000000
+      internalID: 8680406409343704649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_39
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 1095
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28d24118357ea5e50800000000000000
+      internalID: 6799000933303070082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_40
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 1091
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 087db61ba3347cac0800000000000000
+      internalID: -3835022638318889088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_41
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 1100
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d852b17725ed21210800000000000000
+      internalID: 1302347688030446989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_42
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 1076
+        width: 33
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88347e338f73be780800000000000000
+      internalID: -8652760719900064888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_43
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 1076
+        width: 34
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a78ad70148ca40ed0800000000000000
+      internalID: -2448642614170376070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_44
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 1076
+        width: 36
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9214d40257c702d00800000000000000
+      internalID: 945892764242755881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_45
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 1076
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7328dac52de061cc0800000000000000
+      internalID: -3740786143823822281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_46
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 1091
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fa6a9794729d9b80800000000000000
+      internalID: -8386385901636654346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_47
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 1095
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 565b8aff71e79c080800000000000000
+      internalID: -9166656924997339803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_48
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 1076
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40c7eb44e852ed3a0800000000000000
+      internalID: -6638827507728614396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_49
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 1076
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 423a17208a2cf68d0800000000000000
+      internalID: -2850846012250938588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_50
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 996
+        width: 25
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8f2a4a2b2ed8ed20800000000000000
+      internalID: 3308138203278094223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_51
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 996
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5d6b9093b6e1bcb0800000000000000
+      internalID: -4849841664801673892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_52
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 996
+        width: 23
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd043a19cfe3ec0c0800000000000000
+      internalID: -4553632918728916769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_53
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 1023
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 260290726043f4f40800000000000000
+      internalID: 5714843653185806434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_54
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 996
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8503dd549f4a0180800000000000000
+      internalID: -9148412194401876595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_55
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 996
+        width: 23
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f681aab907861f3c0800000000000000
+      internalID: -4327562934069094289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_56
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 996
+        width: 25
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 849a902e6887181c0800000000000000
+      internalID: -4503185631680550584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_57
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 996
+        width: 23
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 262685823241e13b0800000000000000
+      internalID: -5539968350385839518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_58
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 996
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f57e8d361f2409a90800000000000000
+      internalID: -7309268590692604065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_59
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 1023
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9eec751882e24b430800000000000000
+      internalID: 3797711137283755753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_60
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 996
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bf076d4b7ce5b7e0800000000000000
+      internalID: -1750232865839837264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_61
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 996
+        width: 22
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 411dec4d7def787e0800000000000000
+      internalID: -1763160526150512364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_62
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 916
+        width: 14
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc9c9ee0ce77b7a80800000000000000
+      internalID: -8468042818593895985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_63
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 916
+        width: 14
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef02e57dddfde2fb0800000000000000
+      internalID: -4670549619642588930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_64
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 916
+        width: 14
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73fd712e920182280800000000000000
+      internalID: -9067980077637574857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_65
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 944
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51c6baf713dd9e800800000000000000
+      internalID: 642287626542083093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_66
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 940
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7166df28e9ac99d0800000000000000
+      internalID: -2766149256412241537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_67
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 936
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58a981dc6c07af920800000000000000
+      internalID: 3024854098879486597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_68
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 916
+        width: 11
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de4efd57c1095edf0800000000000000
+      internalID: -151556560535952147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_69
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 916
+        width: 14
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a418960d4e13c7e0800000000000000
+      internalID: -1746518914317675358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_70
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 916
+        width: 14
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6fa35399be5f59e0800000000000000
+      internalID: -1630480388951134355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_71
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 916
+        width: 14
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 897b899641c27b900800000000000000
+      internalID: 700076733261985688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_72
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 944
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53c439f6a2725be60800000000000000
+      internalID: 7977325378170735669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_73
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 940
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9def258779807e870800000000000000
+      internalID: 8711941450823302873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_74
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 936
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aee2a79de6c72d160800000000000000
+      internalID: 7048833182325157610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_75
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 916
+        width: 11
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fd779cb028d2d380800000000000000
+      internalID: -8947851874517156366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_76
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 916
+        width: 12
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81aa2b6feb341a230800000000000000
+      internalID: 3648271660608563736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_77
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 916
+        width: 12
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10ec2c76aeb741c40800000000000000
+      internalID: 5482142893110119937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_78
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 836
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e8fb45155b24cfd0800000000000000
+      internalID: -2322683863386818336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_79
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 836
+        width: 25
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3da06e913fe98d80800000000000000
+      internalID: -8247798246162780865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_80
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 856
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 674974b5e4a6718e0800000000000000
+      internalID: -1722791447674514314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_81
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 867
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43ca511fce8731890800000000000000
+      internalID: -7488508796334658508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_82
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 863
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e0dddca9743d3840800000000000000
+      internalID: 5205374441506066664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_83
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 836
+        width: 19
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c1ebb6d076e39280800000000000000
+      internalID: -9037626654889090623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_84
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 862
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 028d60cb84e4d4f50800000000000000
+      internalID: 6867231081109051424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_85
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 836
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 663f2c06f74edefd0800000000000000
+      internalID: -2310939798035827866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_86
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 836
+        width: 24
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72768c6c007165420800000000000000
+      internalID: 2618305525464983335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_87
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 856
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b104a620d766ee7f0800000000000000
+      internalID: -581414614786752485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_88
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 867
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d25686931c700bca0800000000000000
+      internalID: -6003289776811645651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_89
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 863
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 500a1e1bda37a7ad0800000000000000
+      internalID: -2703721436431671291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_90
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 836
+        width: 19
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a91b5002dfc0d100800000000000000
+      internalID: 130832890049796514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_91
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 862
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d27e68ad4c2f3600800000000000000
+      internalID: 450127199810253529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_92
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 836
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c83dc5c96c390ddb0800000000000000
+      internalID: -4769149524149218420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_93
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 836
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22f97e2f7d2f65460800000000000000
+      internalID: 7230233261097066274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_94
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 836
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 010c6b4665b7f94b0800000000000000
+      internalID: -5431487014598426608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_95
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 836
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7235c4c3d0276ee80800000000000000
+      internalID: -8149701074508557529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_96
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 756
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 853cac2333b6d1420800000000000000
+      internalID: 2602354027329667928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_97
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 778
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b21b830acaa8c0510800000000000000
+      internalID: 1516739648544092459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_98
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 756
+        width: 37
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff5b31c0722c880c0800000000000000
+      internalID: -4573191948632607233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_99
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 756
+        width: 35
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d709a3a3d4ebabeb0800000000000000
+      internalID: -4703237621936385923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_100
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 756
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7beacc7222a1bb90800000000000000
+      internalID: -7227817657946674305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_101
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 770
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a28cbc60d3fdefe0800000000000000
+      internalID: -1158001452661308765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_102
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 778
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5c47d19ccc55f400800000000000000
+      internalID: 357293779135712348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_103
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 756
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec5211285488b5b20800000000000000
+      internalID: 3124240598627853774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_104
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 778
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 837eaa8683e6a6940800000000000000
+      internalID: 5290161900853323576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_105
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 756
+        width: 35
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f29bee614f246c10800000000000000
+      internalID: 2045812088813359860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_106
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 756
+        width: 37
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee4584371572407b0800000000000000
+      internalID: -5259035234081942290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_107
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 756
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d080427f2d2e392a0800000000000000
+      internalID: -6731787622271416307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_108
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 770
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b3959dbab73af990800000000000000
+      internalID: -7351502166544772172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_109
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 778
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2545ffadae4eac50800000000000000
+      internalID: 6678361805325419819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_110
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 756
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4914fe8ab03b07920800000000000000
+      internalID: 2986083415606903188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_111
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 756
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3270cabe4421fae0800000000000000
+      internalID: -1517391678887923140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_112
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 676
+        width: 42
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50ee830c79b347030800000000000000
+      internalID: 3491481134070033925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_113
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 676
+        width: 43
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eea3f44dc4a81420800000000000000
+      internalID: 2601009986338533095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_114
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 676
+        width: 42
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a21f1d0075e01dc0800000000000000
+      internalID: -3670181426887716185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_115
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 676
+        width: 30
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b48c715a392a9910800000000000000
+      internalID: 1844832327813596339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_116
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 683
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5505cf7759760b7a0800000000000000
+      internalID: -6363472381813698475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_117
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 676
+        width: 42
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8438469e1d6046600800000000000000
+      internalID: 460500560532243272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_118
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 676
+        width: 42
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c348e49fe7c5ad10800000000000000
+      internalID: 2136333430066529220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_119
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 676
+        width: 42
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f17ef415b3544d40800000000000000
+      internalID: 5567667076543181298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_120
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 676
+        width: 43
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca7034b3a32e5c870800000000000000
+      internalID: 8702610594693580716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_121
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 676
+        width: 30
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aac65ef28e6017b0800000000000000
+      internalID: -5255579256249464156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_122
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 683
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cec6bcb8bf361d70800000000000000
+      internalID: 9013461766901255879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_123
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 676
+        width: 39
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52d928273af376b80800000000000000
+      internalID: -8401676608602989275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_124
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 593
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b53ae155a74cc2c0800000000000000
+      internalID: -4410071159733078608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_125
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 593
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aef242a29e8d42710800000000000000
+      internalID: 1667696257979920362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_126
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 593
+        width: 42
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd551259bd04218d0800000000000000
+      internalID: -2877165900092320293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_127
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 594
+        width: 23
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7b9201fd32676130800000000000000
+      internalID: 3559922048635673471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_128
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 593
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8de9b1f9ac9f4290800000000000000
+      internalID: -7903926567293031030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_129
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 593
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c929951d87c9197d0800000000000000
+      internalID: -2913375441209683300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_130
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 593
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8595fe940399b9c0800000000000000
+      internalID: -3910933153338518133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_131
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 594
+        width: 45
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce5506ebacb6ad3b0800000000000000
+      internalID: -5486954677475977748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_132
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 593
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2bb081098f1eed90800000000000000
+      internalID: -7066676092001535185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_133
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 593
+        width: 42
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ab43848884a0a9f0800000000000000
+      internalID: -459186255746085981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_134
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 593
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 263d006ad34264280800000000000000
+      internalID: -9059513753212497054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_135
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 594
+        width: 23
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb631aff295f58840800000000000000
+      internalID: 5225852954336114364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_136
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 593
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28eac38adf4c3d4b0800000000000000
+      internalID: -5416769333068255614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_137
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 593
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23c4dda67178e93a0800000000000000
+      internalID: -6656734664560128974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_138
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 593
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07e861a9011b4fff0800000000000000
+      internalID: -3183014857765264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_139
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 594
+        width: 41
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4b806b224bd34850800000000000000
+      internalID: 6360168176019344205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_140
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 500
+        width: 42
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02443bc400c627200800000000000000
+      internalID: 176322083963487264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_141
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 499
+        width: 42
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c8b69894b57c3100800000000000000
+      internalID: 89075511155144896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_142
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 505
+        width: 27
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 064c1e9eba9739de0800000000000000
+      internalID: -1327583685873908640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_143
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 503
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6700ce3ca13550860800000000000000
+      internalID: 7495488529249337462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_144
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 500
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 998d48184ec300400800000000000000
+      internalID: 288297328274888857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_145
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 505
+        width: 31
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8766b1fd16f88ee40800000000000000
+      internalID: 5685952180072965752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_146
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 500
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00eae8fdf6ec699a0800000000000000
+      internalID: -6226562454905770496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_147
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 505
+        width: 31
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d59bdd74d1cad660800000000000000
+      internalID: 7411449255180342736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_148
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 502
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75331d0b02f62f6c0800000000000000
+      internalID: -4111101323639704745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_149
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 500
+        width: 42
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f19d1adf1e7a9560800000000000000
+      internalID: 7321302819512619508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_150
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 500
+        width: 40
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 141c8a8ad3702a340800000000000000
+      internalID: 4873465708172329281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_151
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 505
+        width: 27
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74ced026f2d77ac20800000000000000
+      internalID: 3217678101241523271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_152
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 503
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14819c1d5df7e7260800000000000000
+      internalID: 7097250619106859073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_153
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 499
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbe942922a3926820800000000000000
+      internalID: 2910050633919012539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_154
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 505
+        width: 31
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b11e12ecf36597ca0800000000000000
+      internalID: -6018684594962702053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_155
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 500
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 694594d3e6b5fb930800000000000000
+      internalID: 4161145109746373782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_156
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 505
+        width: 31
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76d082c6422883310800000000000000
+      internalID: 1384999978361425255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_157
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 502
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 592f40c9ec9e48430800000000000000
+      internalID: 3784406660488163989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_158
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 409
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edfac37c646c9d2a0800000000000000
+      internalID: -6712115762326360098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_159
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 407
+        width: 36
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d77412735170da510800000000000000
+      internalID: 1561912433468065661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_160
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 409
+        width: 34
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b7fb2d55cab98cf0800000000000000
+      internalID: -249462947507865673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_161
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 409
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b63a58e95388b530800000000000000
+      internalID: 3870988301898495673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_162
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 424
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 501e1a7f1023c14c0800000000000000
+      internalID: -4315519358896840443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_163
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 410
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c33f8efc72ccb680800000000000000
+      internalID: -8737895334903073853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_164
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 419
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 521f796322f483e60800000000000000
+      internalID: 7942184951231279397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_165
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 409
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 384f7ed1652186730800000000000000
+      internalID: 3992461230742172803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_166
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 409
+        width: 34
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae39546b4361f95d0800000000000000
+      internalID: -3053697606681783318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_167
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 407
+        width: 36
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fb02689181dcf410800000000000000
+      internalID: 1512313929427192821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_168
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 409
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6bba573eb3ab5f00800000000000000
+      internalID: 1106658170817395566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_169
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 424
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ad8e62b8f22ec5b0800000000000000
+      internalID: -5346297256101376606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_170
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 412
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 496e6f0a3510898f0800000000000000
+      internalID: -533675097148954988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_171
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 419
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6102ca34d078307a0800000000000000
+      internalID: -6412132953405775850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_172
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 322
+        width: 25
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fe3f73a1145f28b0800000000000000
+      internalID: -5174825012091207951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_173
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 321
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 006ab539921cbbb10800000000000000
+      internalID: 1998403243979023872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_174
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 322
+        width: 23
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88c09bded2625a5e0800000000000000
+      internalID: -1899069689163084664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_175
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 334
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36120c0bdd493d660800000000000000
+      internalID: 7409429491828662627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_176
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 322
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4e0fb5c1ba803060800000000000000
+      internalID: 6931192322654670414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_177
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 322
+        width: 23
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f724e65eb90a4c70800000000000000
+      internalID: 8955981522085881845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_178
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 322
+        width: 25
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ced19e1a194ea9f0800000000000000
+      internalID: -455346135786987835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_179
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 322
+        width: 23
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96c45b30fd07a1110800000000000000
+      internalID: 1232421551181483113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_180
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 321
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1115b990b36c60c0800000000000000
+      internalID: -4581177110798462691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_181
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 334
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e614c8cf1905a2b0800000000000000
+      internalID: -5574038931684190491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_182
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 322
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32985efdaa58405b0800000000000000
+      internalID: -5403046683990456029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_183
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 325
+        width: 22
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4c10260def61a390800000000000000
+      internalID: -7808837215083029428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_184
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 241
+        width: 14
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b0e40dfa5cd7de60800000000000000
+      internalID: 7987094747514986674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_185
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 240
+        width: 14
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3355e2df5c404f100800000000000000
+      internalID: 140742736758068531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_186
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 242
+        width: 14
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b87f15bd634f81eb0800000000000000
+      internalID: -4748777290617194613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_187
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 255
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5d333f2e9b997340800000000000000
+      internalID: 4862088376422186335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_188
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 261
+        width: 12
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 181d7f5b883638c20800000000000000
+      internalID: 3207516798437544321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_189
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 239
+        width: 11
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcf41b9e59cb455a0800000000000000
+      internalID: -6533389807350886449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_190
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 241
+        width: 14
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4981803831f9ca00800000000000000
+      internalID: 777417634332379468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_191
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 242
+        width: 14
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da1ede2a542df4ab0800000000000000
+      internalID: -5021563862966738515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_192
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 240
+        width: 14
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7449ef88b23c60090800000000000000
+      internalID: -8068547090638269369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_193
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 255
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cdf436902412dc10800000000000000
+      internalID: 2076744508362784195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_194
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 261
+        width: 12
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8bf18d9213a8adf0800000000000000
+      internalID: -168705685679113332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_195
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 243
+        width: 11
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e0a5015b030fe5e0800000000000000
+      internalID: -1878279172451360542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_196
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 251
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49024fb31115372a0800000000000000
+      internalID: -6740955082781351788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_197
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 241
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 987cc746978cf8760800000000000000
+      internalID: 7462403531278698377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_198
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 251
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48a97733d75fd00b0800000000000000
+      internalID: -5760678430253802876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_199
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 241
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5c0a816827b1c390800000000000000
+      internalID: -7799751695565976482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_200
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 162
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 381152187ff47c5f0800000000000000
+      internalID: -736532089609580157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_201
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 162
+        width: 25
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b333840fbe1c39d10800000000000000
+      internalID: 2131260267769115451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_202
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 169
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8387450f80d2f95f0800000000000000
+      internalID: -747829496705157064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_203
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 177
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c913c28f2a000c990800000000000000
+      internalID: -7367888290429783652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_204
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 168
+        width: 21
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ab853e7bbc93c230800000000000000
+      internalID: 3657939651445230499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_205
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 162
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2764508fd7212f010800000000000000
+      internalID: 1221058781212132978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_206
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 171
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7423efe6433a1e690800000000000000
+      internalID: -7574593652664683961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_207
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 162
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc68ac7889b46c880800000000000000
+      internalID: -8591096120677333299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_208
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 164
+        width: 24
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7489f258a3df684b0800000000000000
+      internalID: -5438381072218875833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_209
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 169
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c11467b2559e3d510800000000000000
+      internalID: 1572857246893097244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_210
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 177
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 854e3c2747a64d290800000000000000
+      internalID: -7866545600735222696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_211
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 168
+        width: 21
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33d864e0822234960800000000000000
+      internalID: 7584943752855588147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_212
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 165
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69715e96071b4d2d0800000000000000
+      internalID: -3254781534310951018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_213
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 171
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2069a416d2e80f30800000000000000
+      internalID: 4542129633300668462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_214
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 164
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4abc79840fdf8d70800000000000000
+      internalID: 9047695386990131788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_215
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 162
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ae3932f3e5ec6020800000000000000
+      internalID: 2336495073882619556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_216
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 162
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5450c41f63ae43670800000000000000
+      internalID: 8517690316961875269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_217
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 162
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 930a78cc0a1325800800000000000000
+      internalID: 599596267089666105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_218
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 88
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00f930da9bae78220800000000000000
+      internalID: 2488215402338033408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_219
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 88
+        width: 37
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40ab15dc202c6e100800000000000000
+      internalID: 137010155971787268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_220
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 90
+        width: 35
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae787a4a16e8e63c0800000000000000
+      internalID: -4364394438850017302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_221
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 88
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99887a6c18568d480800000000000000
+      internalID: -8874231457675507559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_222
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 97
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d64d67e6f26662e0800000000000000
+      internalID: -2132908560929175847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_223
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 103
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97a0a7681b380eb70800000000000000
+      internalID: 8926279259936918137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_224
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 88
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc098def505e35050800000000000000
+      internalID: 5788221760014422220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_225
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 90
+        width: 35
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 328de836391b97a70800000000000000
+      internalID: 8825280191397812259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_226
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 88
+        width: 37
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43ba55a3ba0700970800000000000000
+      internalID: 8719092759309691700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_227
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 88
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a9076936d07ef840800000000000000
+      internalID: 5259765480203684265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_228
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 97
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67613b00b2bea06f0800000000000000
+      internalID: -717502620684315018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_229
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 103
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e128e6cd242744930800000000000000
+      internalID: 4126548790069854750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_230
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 89
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26d6b4dfc985d8420800000000000000
+      internalID: 2633858788369329506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_231
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 94
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6cfd41ad0c736320800000000000000
+      internalID: 2550018212004494442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_232
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 19
+        width: 42
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85f2f2980ab69cfb0800000000000000
+      internalID: -4627048804905963688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_233
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 19
+        width: 43
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8559d3f1d01f908e0800000000000000
+      internalID: -1726583943458876072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_234
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 21
+        width: 42
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0543dccdd628e2330800000000000000
+      internalID: 3688028553230496848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_235
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 19
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a931ae9103a59b320800000000000000
+      internalID: 2574187824658650010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_236
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 26
+        width: 30
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 902e19f921144ab80800000000000000
+      internalID: -8384505058014666231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_237
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 21
+        width: 42
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3076f798e814278f0800000000000000
+      internalID: -544300524510419197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_238
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 19
+        width: 42
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64932f2b200040620800000000000000
+      internalID: 2739314484940257606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_239
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 21
+        width: 42
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 945611481478a0200800000000000000
+      internalID: 147078653301318985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_240
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 19
+        width: 43
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e36907fddcb72500800000000000000
+      internalID: 371473155799737314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_241
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 19
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7da65f3af294bc10800000000000000
+      internalID: 2068439732372024703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_242
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 26
+        width: 30
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83cdc845928088c60800000000000000
+      internalID: 7820509726534065208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_frostbolt_flight_dir16_243
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 22
+        width: 39
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cb360a84d0a4ce80800000000000000
+      internalID: -8159219790179320894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

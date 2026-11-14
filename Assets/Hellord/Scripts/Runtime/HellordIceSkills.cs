@@ -76,7 +76,7 @@ namespace Hellord
 
         void ClearIce()
         {
-            _iceOrbs.Clear(); _icePatches.Clear(); _iceNovas.Clear(); _iceBombs.Clear(); _iceStripOnce.Clear(); StopIceStorm(); _iceSrN = 0; IceHideSr(); IceFX3.Clear();
+            _iceOrbs.Clear(); _icePatches.Clear(); _iceNovas.Clear(); _iceBombs.Clear(); _iceStripOnce.Clear(); StopIceStorm(); _iceSrN = 0; IceHideSr(); IceFX3.Clear(); FrostboltFX1432.Clear();
         }
         void StopIceStorm() { _iceStorm = null; }
 
@@ -180,15 +180,15 @@ namespace Hellord
                 foreach (int ei in _iceQ)
                 {
                     var e = _en[ei]; if (!e.alive || o.hit.Contains(e.id) || (e.pos - o.p).magnitude > o.r + e.radius) continue;
-                    o.hit.Add(e.id); Hit(e, o.dmg, o.s, o.v.normalized * T.frostbKnock); IceChill(e, T.frostbChillS, T.frostbBuild); IceVfxOrbHit(o.p);
+                    o.hit.Add(e.id); Hit(e, o.dmg, o.s, o.v.normalized * T.frostbKnock); IceChill(e, T.frostbChillS, T.frostbBuild); if (FrostboltFX1432.HasHit) FrostboltFX1432.Hit(e.pos + Vector2.up * 1.0f, YSort(e.pos.y) + 40); else IceVfxOrbHit(o.p); // t1432: D2R hit puff at the enemy's chest
                 }
                 o.trailAcc += (o.p - prev).magnitude; if (o.trailAcc >= T.frostbTrailGapU && o.trailLife > 0.05f)
                 {
                     o.trailAcc = 0; if (_icePatches.Count >= T.frostbMaxPatches) _icePatches.RemoveAt(0);
                     _icePatches.Add(new IcePatch { p = o.p, r = T.frostbPatchU * Mathf.Sqrt(o.s.AreaMul), life = o.trailLife, life0 = o.trailLife, tick = 0.05f, s = o.s });
                 }
-                if (wall || o.life <= 0f) { IceOrbBurst(o); _iceOrbs.RemoveAt(i); continue; }
-                IceVfxOrb(o.p, o.v, o.age);
+                if (wall || o.life <= 0f) { IceOrbBurst(o); FrostboltFX1432.Release(o); _iceOrbs.RemoveAt(i); continue; }
+                IceVfxOrb(o, o.p, o.v, o.age);
             }
             // ---- chill ground
             for (int i = _icePatches.Count - 1; i >= 0; i--)
@@ -275,10 +275,11 @@ namespace Hellord
         void IceHideSr() { for (int i = _iceSrN; i < _iceSr.Count; i++) if (_iceSr[i] != null && _iceSr[i].gameObject.activeSelf) _iceSr[i].gameObject.SetActive(false); }
 
         /// <summary>ONCE per cast: small muzzle puff at the casting hand.</summary>
-        void IceVfxCast(Vector2 p) { HordeFX.CheapBurst(p, IceArt.Cyan, 4); }
+        void IceVfxCast(Vector2 p) { if (FrostboltFX1432.Cast(p, YSort(p.y) + 40)) return; HordeFX.CheapBurst(p, IceArt.Cyan, 4); }
         /// <summary>EVERY FRAME per orb in flight: crystal-cored cold bolt with a comet tail. Fallback (effect off): two small discs.</summary>
-        void IceVfxOrb(Vector2 p, Vector2 v, float age)
+        void IceVfxOrb(object key, Vector2 p, Vector2 v, float age)
         {
+            if (FrostboltFX1432.Ok) { FrostboltFX1432.Orb(key, p + Vector2.up * 0.08f, v, age, YSort(p.y) + 30); return; } // t1432: D2R Ice Bolt strips (toggle HellordTuning.frostbolt1432)
             if (IceFX3.Ok) { IceFX3.Orb(p + Vector2.up * 0.08f, v, age, YSort(p.y) + 30); return; }
             Vector2 at = p + Vector2.up * 0.1f; ZDisc(at, 0.3f, IceArt.Hex(0x0099db, 0.9f), 1f, 7); ZDisc(at, 0.15f, Color.white, 1f, 8);
         }
