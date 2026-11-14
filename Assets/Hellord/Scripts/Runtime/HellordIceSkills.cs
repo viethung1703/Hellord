@@ -122,7 +122,7 @@ namespace Hellord
             var T = HellordTuning.I; float rMax = HData.At(T.novaRadiusU, s.level, 3.2f) * s.AreaMul;
             Query(_heroPos, rMax * 1.15f, _iceQ); if (_iceQ.Count == 0 && !Aiming()) { s.cd = 0.15f; return false; } // pulse only when something is in reach
             int pulses = HData.At(T.novaPulses, s.level, 1);
-            for (int k = 0; k < pulses; k++) { float dd = dmg * (k == 0 ? 1f : T.novaPulse2Mul); var sk = s; int pk = k; After(k * T.novaPulseGapS, () => SpawnIceNova(sk, dd, rMax, pk)); }
+            for (int k = 0; k < pulses; k++) { float dd = dmg * (k == 0 ? 1f : T.novaPulse2Mul); var sk = s; int pk = k; After(k * (NovaFX1419.D2Active ? T.novaPulseGapD2S1426 : T.novaPulseGapS), () => SpawnIceNova(sk, dd, rMax, pk)); }
             if (!_echo738) s.cd *= HData.At(T.novaCdMul, s.level, 1f); return true;
         }
         void SpawnIceNova(SkillInst s, float dmg, float rMax, int pulse = 0)
