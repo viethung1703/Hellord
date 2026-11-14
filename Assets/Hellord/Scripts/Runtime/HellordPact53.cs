@@ -77,6 +77,7 @@ namespace Hellord
 
         public bool PactBanned53(SkillDef d)
         {
+            if (d.id == SkillId.FrostBomb && !HellordTuning.I.frostBombEnabled1412) return true; // t1412u: Frost Bomb dropped for now (flag)
             if (Has51(BoneWardenGone539, 9) && (d.tags & STag.Projectile) != 0 && (d.tags & STag.Minion) == 0) return true; // t561u: Skeleton Archers are minions
             if (Has51(PactPath.BloodReaver, 9) && d.id == SkillId.StormRing) return true;
             return false;

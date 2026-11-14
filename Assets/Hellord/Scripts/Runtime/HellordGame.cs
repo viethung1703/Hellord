@@ -885,7 +885,7 @@ namespace Hellord
             // v0.0.15: always moves to the NEXT skill the hero does not own (old version spent presses levelling owned skills and
             // silently swapped slot 3, so Bone Orbit / Curse Rune looked like they never arrived). Full loadout -> slot 3 is replaced.
             var defs = HData.Skills; SkillDef d = null;
-            for (int n = 0; n < defs.Length; n++) { var c = defs[_dbgSkill++ % defs.Length]; if (skills.FindIndex(s => s.def == c) < 0) { d = c; break; } }
+            for (int n = 0; n < defs.Length; n++) { var c = defs[_dbgSkill++ % defs.Length]; if (c.id == SkillId.FrostBomb && !HellordTuning.I.frostBombEnabled1412) continue; if (skills.FindIndex(s => s.def == c) < 0) { d = c; break; } }
             if (d == null) return;
             var inst = new SkillInst { def = d, level = 2 };
             if (skills.Count < HellordTuning.I.skillSlotsMax818) skills.Add(inst); else skills[skills.Count - 1] = inst;

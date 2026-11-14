@@ -142,6 +142,9 @@ namespace Hellord
         { if (!Ok) return; Add(new Inst { kind = 1, c = c, r = rPx, front = front, hmax = hmax, amp = amp, seed = seed, life = life, meltAfter = meltAfter, meltDur = meltDur, order = OrdSpike, pcs = MakePieces(count, rin, gap, hmax, front, seed, rPx) }); }
         /// <summary>Bomb pulse: a thin travelling band of dots + a few tiny spikes, reaching the rim in 9 frames.</summary>
         public static void Band(Vector2 c, float rPx, float seed) { if (!Ok) return; Add(new Inst { kind = 2, c = c, r = rPx, front = 9, life = 11, seed = seed, order = OrdSpike, pcs = MakePieces(14, 0.3f, 0.2f, 5f, 9f, seed, rPx) }); }
+        /// <summary>t1412u Ice Nova impulse: a crisp bright shockwave ring that pops out to rPx in `front` frames with a decaying wobble, a dotted echo ring, radial speed streaks and a small dithered flash at the centre. Drawn ABOVE the actors (thin, so demons stay visible). order must beat every actor in the ring.</summary>
+        public static void Shock(Vector2 c, float rPx, float front, int order, float seed) { if (!Ok) return; Add(new Inst { kind = 5, c = c, r = rPx, front = Mathf.Max(3f, front), life = Mathf.Max(3f, front) + 18f, seed = seed, order = order }); }
+
         /// <summary>Frostbolt burst: ring of crystal shards flying out then fading, + a brief light frost film.</summary>
         public static void ShardBurst(Vector2 c, float rPx, float seed) { if (!Ok) return; Add(new Inst { kind = 3, c = c, r = rPx, life = 14, seed = seed, order = OrdSpike }); }
         /// <summary>Frost Bomb blast: bright dithered flash + ring of spikes + flying crystal chunks. Reads clearly, ~0.6 s.</summary>
@@ -190,6 +193,7 @@ namespace Hellord
                 }
                 if (n.kind == 1 && a < n.front + 3f) DrawFront(cv, cx, cy, n.r * Ease(a / n.front), 1f - a / (n.front + 3f), (int)(a), (int)(n.seed * 5));
             }
+            if (n.kind == 5) DrawShock(cv, cx, cy, n);
             if (n.kind == 2)
             {
                 float rr = 4f + (n.r - 4f) * Mathf.Pow(Mathf.Clamp01(a / n.front), 0.8f); DrawFront(cv, cx, cy, rr, 1f - a / n.life, (int)a, (int)(n.seed * 5));
@@ -209,6 +213,51 @@ namespace Hellord
                     Shard(cv, cx + Mathf.Cos(th) * dist, cy + Mathf.Sin(th) * dist * SQ + z, Mathf.Cos(th), Mathf.Sin(th) * 0.7f, 4, fade);
                 }
                 if (a < 3f) for (int y = -2; y <= 2; y++) for (int x = -2; x <= 2; x++) if (x * x + y * y <= 5) cv.P(cx + x, cy + y + 3, a < 1.5f ? WHITE : PALE);
+            }
+        }
+        static void DrawShock(Cv cv, int cx, int cy, Inst n)
+        {
+            float a = n.age, k = Ease(a / n.front), rr = n.r * k; int sd = (int)(n.seed * 7); float fade = a <= n.front ? 1f : Mathf.Clamp01(1f - (a - n.front) / 16f);
+            // centre flash: small dithered cyan disc + bright core, first 5 frames (never fills the screen)
+            if (a < 5f)
+            {
+                int fr = Mathf.Min(14, Mathf.RoundToInt(n.r * 0.3f)); float f = 1f - a / 5f; int rad = Mathf.RoundToInt(fr * Mathf.Lerp(0.5f, 1f, a / 5f));
+                for (int y = -(int)(rad * SQ); y <= (int)(rad * SQ); y++) for (int x = -rad; x <= rad; x++)
+                {
+                    float d = Mathf.Sqrt(x * x + (y / SQ) * (y / SQ)); if (d > rad) continue; bool dith = ((x + y) & 1) == 0; if (d > rad - 1.5f) cv.P(cx + x, cy + y, a < 2f ? WHITE : PALE); else if (dith && H(x, y, (int)a) < 0.7f * f + 0.15f) cv.P(cx + x, cy + y, d < rad * 0.45f ? PALE : CYAN);
+                }
+            }
+            // radial speed streaks
+            if (a < n.front + 5f) for (int i = 0; i < 18; i++)
+            {
+                float th = (i + H(i, sd) * 0.6f) * 6.2832f / 18f, kk = Ease(Mathf.Clamp01((a - H(i, sd, 1) * 2f) / n.front)), hd = n.r * (0.15f + 0.8f * H(i, sd, 2)) * kk, len = 4f + 7f * H(i, sd, 3); float vis = a < n.front ? 1f : 1f - (a - n.front) / 5f; if (vis <= 0f) continue;
+                for (int l = 0; l < (int)len; l++)
+                {
+                    float rho = hd - l; if (rho < 3f) break; if (l > 2 && ((l + i) & 1) == 1 && l > len * 0.5f) continue; int x = cx + Mathf.RoundToInt(Mathf.Cos(th) * rho), y = cy + Mathf.RoundToInt(Mathf.Sin(th) * rho * SQ);
+                    if (H(l, i, (int)a) > vis + 0.2f) continue; cv.P(x, y, l == 0 ? WHITE : l < 3 ? PALE : l < len * 0.6f ? CYAN : BLUE);
+                }
+            }
+            if (rr < 3f) return;
+            // echo ring (dotted, trails the front, wobbles opposite)
+            float re = rr * 0.8f; int se = Mathf.Max(20, (int)(re * 2.2f));
+            for (int i = 0; i < se; i++)
+            {
+                if (H(i, sd, (int)(a / 2f)) > 0.5f * fade) continue; float th = i * 6.2832f / se; float rho = re * (1f - 0.05f * Mathf.Sin(th * 4f - a * 1.3f) * Mathf.Exp(-a / 7f));
+                cv.P(cx + Mathf.RoundToInt(Mathf.Cos(th) * rho), cy + Mathf.RoundToInt(Mathf.Sin(th) * rho * SQ), H(i, 3, sd) < 0.5f ? BLUE : NAVY);
+            }
+            // main ring: 3 px thick, white leading edge, wobble decays
+            float wob = 0.075f * Mathf.Exp(-a / 6f); int steps = Mathf.Max(32, (int)(rr * 6.2832f * 1.5f)); bool head = a < n.front * 0.8f;
+            for (int i = 0; i < steps; i++)
+            {
+                float th = i * 6.2832f / steps; if (!head && H(i / 2, sd, 5) > fade + 0.1f) continue;
+                float rho = rr * (1f + wob * Mathf.Sin(th * 6f + a * 1.1f)); float cth = Mathf.Cos(th), sth = Mathf.Sin(th);
+                for (int o = -2; o <= 3; o++)
+                {
+                    float rx = rho + o; int x = cx + Mathf.RoundToInt(cth * rx), y = cy + Mathf.RoundToInt(sth * rx * SQ);
+                    Color32 col = o == 3 || o == -2 ? INK : o == 2 ? (head ? WHITE : PALE) : o == 1 ? (head ? WHITE : PALE) : o == 0 ? (head ? CYAN : CYAN) : (head ? CYAN : BLUE);
+                    if (o == -1 && sth < -0.2f) col = NAVY; cv.P(x, y, col);
+                }
+                if (H(i, 8, sd) < 0.18f) { int x = cx + Mathf.RoundToInt(cth * (rho + 2)), y = cy + Mathf.RoundToInt(sth * (rho + 2) * SQ); cv.P(x, y, head ? WHITE : CYAN); }
             }
         }
         /// <summary>Sparse flat frost plates (jittered 10 px grid) inside an ellipse of radius `reach` px. A plate melts whole when `melt` passes its own threshold.</summary>
