@@ -55,28 +55,42 @@ namespace Hellord
         /// <summary>Horizontal strip of `count` equal frames, pivot = bottom-centre (x = floor(w/2), 1 px above the bottom): the art team's convention for stagger / death / corpse (= the enemy sheet pivot for the standing sprites).</summary>
         static Sprite[] Strip(string rel, int count, bool pl = false)
         {
-            var t = Load(rel); if (t == null) return null; int n = Mathf.Max(1, count), w = t.width / n; var r = new Sprite[n]; var piv = pl ? new Vector2(PlPivotX(rel, w) / w, 1f / t.height) : new Vector2(Mathf.Floor(w / 2f) / w, 1f / t.height);
+            var t = Load(rel); if (t == null) return null; int n = Mathf.Max(1, count), w = t.width / n; var r = new Sprite[n]; var piv = pl ? PlPivot(rel, w, t.height) : new Vector2(Mathf.Floor(w / 2f) / w, 1f / t.height);
             if (t.width % n != 0 || w < 2) return null;
             for (int i = 0; i < n; i++) r[i] = Sprite.Create(t, new Rect(i * w, 0, w, t.height), piv, HArt.PPU, 0, SpriteMeshType.FullRect);
             return r;
         }
         // t1446 PixelLab strips: pivot x = w/2 except the corpses whose trimmed images carry the death-strip pivot (art notes): brute E 21.5, N 22.5, W 24.5 (S = w/2)
+        static Vector2 PlPivot(string rel, int w, int h)
+        {   // t1454: batch 1 / 2 corpses carry a measured pivot; other strips: x = w/2, y = the sheet's ground row (1 px above the bottom, 5 for the 38x32 cells, 4 for the wheel)
+            int a = rel.LastIndexOf('/') + 1; string nm = rel.Substring(a); int ci = nm.IndexOf("_corpse_"); int si = nm.IndexOf("_death_") >= 0 ? nm.IndexOf("_death_") : nm.IndexOf("_hit_");
+            if (ci > 0 && D2Pl1454.TryCorpse(rel, out var cp)) return new Vector2(cp.x / w, (h - cp.y) / h);
+            string key = ci > 0 ? nm.Substring(0, ci) : si > 0 ? nm.Substring(0, si) : ""; return new Vector2(PlPivotX(rel, w) / w, D2Pl1454.GroundPx(key) / h);
+        }
         static float PlPivotX(string rel, int w) { if (rel.StartsWith("Enemies/brute_corpse_east")) return 21.5f; if (rel.StartsWith("Enemies/brute_corpse_north")) return 22.5f; if (rel.StartsWith("Enemies/brute_corpse_west")) return 24.5f; return w / 2f; }
         static Sprite[][] Dir4Pl(string sheet, string kind, int count)
         {
             string k = Key(sheet); var d = new Sprite[4][]; int any = -1;
             for (int i = 0; i < 4; i++) { d[i] = Strip("Enemies/" + k + "_" + kind + "_" + Dirs[i] + "_pl", count, true); if (d[i] != null && any < 0) any = i; }
-            if (any < 0) return null; for (int i = 0; i < 4; i++) if (d[i] == null) return null; return d;
+            if (any < 0) return null; if (d[1] != null) { if (d[0] == null) d[0] = d[1]; if (d[2] == null) d[2] = d[1]; } for (int i = 0; i < 4; i++) if (d[i] == null) return null; return d; // t1454: Fire Wheel ships E / W only (side view): S / N use E
         }
         static readonly Dictionary<string, Sprite[][]> _plHit = new Dictionary<string, Sprite[][]>(), _plDeath = new Dictionary<string, Sprite[][]>(), _plCorpse = new Dictionary<string, Sprite[][]>();
         /// <summary>t1446 PixelLab get-hit (4 frames) / death (7 frames, POP = frame 2) / corpse per facing: Enemies/&lt;key&gt;_{hit,death,corpse}_{south,east,north,west}_pl.png. Only imp_v2 + brute ship. null = none.</summary>
         public static Sprite[][] HitPl(string sheet) { if (_plHit.TryGetValue(sheet, out var r)) return r; r = Dir4Pl(sheet, "hit", 4); _plHit[sheet] = r; return r; }
         public static Sprite[][] DeathPl(string sheet) { if (_plDeath.TryGetValue(sheet, out var r)) return r; r = Dir4Pl(sheet, "death", 7); _plDeath[sheet] = r; return r; }
         public static Sprite[][] CorpsePl(string sheet) { if (_plCorpse.TryGetValue(sheet, out var r)) return r; r = Dir4Pl(sheet, "corpse", 1); _plCorpse[sheet] = r; return r; }
+        static readonly Dictionary<string, Sprite[][]> _bossDeath = new Dictionary<string, Sprite[][]>(), _bossCorpse = new Dictionary<string, Sprite[][]>();
+        static Sprite[][] BossStrips1457(string key, string kind, int count, Dictionary<string, Sprite[][]> cache)
+        {   // t1457 batch 3 boss art: [0] = Enemies/<key>_<kind>_south (Horse-Face: southeast) strip, [1] = ..._east strip (Qilin only, else null). null = no art.
+            if (cache.TryGetValue(key, out var r)) return r; var a = Strip("Enemies/" + key + "_" + kind + "_" + (key == "boss_horseface_pestle" ? "southeast" : "south") + "_pl", count, true);
+            r = a == null ? null : new[] { a, Strip("Enemies/" + key + "_" + kind + "_east_pl", count, true) }; cache[key] = r; return r;
+        }
+        public static Sprite[][] BossDeathPl(string key) => BossStrips1457(key, "death", 7, _bossDeath);
+        public static Sprite[][] BossCorpsePl(string key) => BossStrips1457(key, "corpse", 1, _bossCorpse);
         /// <summary>Give an already-spawned corpse object its body (PL: the pool/decal appears at the slam, the body when the death anim ends).</summary>
-        public static void SetBody(D2Corpse1434 c, Sprite sp, Vector3 pos, Vector3 scale, Color tint, int ysort)
+        public static void SetBody(D2Corpse1434 c, Sprite sp, Vector3 pos, Vector3 scale, Color tint, int ysort, bool flip = false)
         {
-            if (c == null || sp == null) return; c.sr.sprite = sp; c.sr.enabled = true; c.sr.color = tint; c.a0 = tint.a; c.sr.sortingOrder = OrdCorpse + ysort; c.sr.transform.position = pos; c.sr.transform.localScale = scale;
+            if (c == null || sp == null) return; c.sr.sprite = sp; c.sr.enabled = true; c.sr.color = tint; c.a0 = tint.a; c.sr.sortingOrder = OrdCorpse + ysort; c.sr.transform.position = pos; c.sr.transform.localScale = scale; c.sr.flipX = flip;
         }
         /// <summary>Per-facing set [S,E,N,W] of strips: Enemies/&lt;key&gt;_&lt;kind&gt;_{south,east,north,west}.png; falls back to one file Enemies/&lt;key&gt;_&lt;kind&gt;.png for all four. null = none.</summary>
         static Sprite[][] Dir4(string sheet, string kind, int count)
@@ -102,7 +116,7 @@ namespace Hellord
         public static Sprite Pool(string sheet, bool big)
         {
             string ck = sheet + (big ? "|m" : "|s"); if (_pool.TryGetValue(ck, out var s)) return s; s = null; string k = Key(sheet);
-            var t = Load("BloodFX/pool_" + k) ?? Load("Enemies/" + k + "_pool") ?? Load("BloodFX/blood_pool_" + (big ? "m" : "s"));
+            var t = (D2Pl1454.IsGhost(k) ? Load("BloodFX/ectoplasm_pool_s") : null) ?? Load("BloodFX/pool_" + k) ?? Load("Enemies/" + k + "_pool") ?? Load("BloodFX/blood_pool_" + (big ? "m" : "s"));
             if (t != null) s = Sprite.Create(t, new Rect(0, 0, t.width, t.height), new Vector2(0.5f, 0.5f), HArt.PPU, 0, SpriteMeshType.FullRect);
             _pool[ck] = s; return s;
         }
@@ -148,7 +162,7 @@ namespace Hellord
         }
 
         /// <summary>Corpse + ground decals. sp may be null (gib: decal only).</summary>
-        public static D2Corpse1434 Spawn(Sprite sp, Vector3 pos, Vector3 scale, Color tint, int ysort, Sprite pool, Sprite[] decal, float life, float fade, int cap)
+        public static D2Corpse1434 Spawn(Sprite sp, Vector3 pos, Vector3 scale, Color tint, int ysort, Sprite pool, Sprite[] decal, float life, float fade, int cap, bool flip = false)
         {
             if ((sp == null && pool == null && decal == null) || !Ready()) return null;
             if (float.IsInfinity(life))
@@ -161,7 +175,7 @@ namespace Hellord
             D2Corpse1434 c = _free.Count > 0 ? _free.Pop() : null;
             if (c == null) { var g = new GameObject("corpse"); g.transform.SetParent(_root, false); var pg = new GameObject("pool"); pg.transform.SetParent(g.transform, false); var dg = new GameObject("decal"); dg.transform.SetParent(g.transform, false); c = new D2Corpse1434 { sr = g.AddComponent<SpriteRenderer>(), pool = pg.AddComponent<SpriteRenderer>(), decal = dg.AddComponent<SpriteRenderer>() }; }
             c.t = 0; c.life = life; c.fade = Mathf.Min(fade, life); c.forced = false; c.a0 = tint.a; c.decalFr = decal; c.key = _curKey;
-            c.sr.sprite = sp; c.sr.enabled = sp != null; c.sr.color = tint; c.sr.flipX = false; c.sr.sortingOrder = OrdCorpse + ysort; c.sr.transform.position = pos; c.sr.transform.localScale = scale; c.sr.gameObject.SetActive(true);
+            c.sr.sprite = sp; c.sr.enabled = sp != null; c.sr.color = tint; c.sr.flipX = flip; c.sr.sortingOrder = OrdCorpse + ysort; c.sr.transform.position = pos; c.sr.transform.localScale = scale; c.sr.gameObject.SetActive(true);
             c.pool.transform.localPosition = new Vector3(0f, 3f / HArt.PPU, 0f); c.pool.transform.localScale = Vector3.one; // art note: pool centre ~3 px above the feet point
             if (pool != null) { c.pool.sprite = pool; c.pool.color = new Color(1, 1, 1, c.poolA0); c.pool.sortingOrder = OrdPool + ysort; c.pool.enabled = true; } else c.pool.enabled = false;
             c.decal.transform.localPosition = Vector3.zero; c.decal.transform.localScale = Vector3.one;
@@ -219,7 +233,34 @@ namespace Hellord
         void D2SetDir1434(Vector2 knock, SkillInst s) { _d2DirSet = knock.sqrMagnitude > 0.0004f; if (_d2DirSet) _d2Dir = knock.normalized; _d2Fire = s != null && s.def != null && (s.def.innate == Status.Burn || s.Has(SupportId.Burn)); }
         void D2Reset1434(Enemy e) { e.pop1434 = e.slam1434 = false; e.cp1434 = null; e.fxFr1434 = null; e.stag1434 = e.stagDur1434 = e.stagCd1434 = 0; e.kbDist1434 = 0; e.over1434 = false; e.frozenDeath1434 = false; e.d2scaled1434 = false; e.gib1434 = e.burn1434 = e.fx1434 = e.fxFrozen1434 = false; e.corpseLife1434 = 0; }
         Vector2 D2DirOf(Enemy e) { if (_d2DirSet) return _d2Dir; Vector2 d = e.pos - _heroPos; return d.sqrMagnitude > 1e-4f ? d.normalized : Vector2.right; }
-        static string D2Sheet(Enemy e) => EnemyArtMap.Map[e.type].sheet;
+        /// <summary>PixelLab art key of this enemy ("enemy_&lt;key&gt;" like the sheets): the own-sheet demons (Frost Caster, Fire Wheel, Mortar Bloater / Rice Ghost / Grinder Monk) and the Frost Brute have their own strips (t1454); everything else = its ETypes sheet.</summary>
+        static string D2Sheet(Enemy e)
+        {
+            if (e.m53 == 1) return "enemy_bloater"; if (e.m53 == 2) return "enemy_rice_ghost"; if (e.m53 == 3) return "enemy_grinder_monk";
+            if (e.variant == 3) return "enemy_frost_caster"; if (e.variant == 4) return "enemy_fire_wheel";
+            string v = null, fb = null;
+            switch (e.k49)
+            {   // t1457 batch 3: the range-kit recolours / Archer have their own strips, matching the colour of the standing sprite
+                case 1: v = "enemy_imp_v2_k1"; break; case 2: v = "enemy_imp_v2_k2"; break; case 3: v = "enemy_imp_v2_k3"; break; case 7: v = "enemy_imp_v2_k7"; break;
+                case 4: v = "enemy_wraith_v2_k4"; fb = "enemy_wraith_v2"; break; case 5: v = "enemy_wraith_v2_k5"; fb = "enemy_wraith_v2"; break; case 6: return "enemy_frost_brute"; case 8: v = "enemy_archer"; break;
+                default: v = VarSheet1457(e.type, e.variant); break;
+            }
+            if (v != null && D2Feel1434.DeathPl(v) != null) return v; return fb ?? EnemyArtMap.Map[e.type].sheet;
+        }
+        /// <summary>t1457: variant key lookup (e.variant 1 frost demon / 2 bomber): enemy_&lt;base&gt;_var1 / _var2 for the types the game recolours. null = base art.</summary>
+        static string VarSheet1457(EType t, int variant)
+        {
+            if (variant == 1) { switch (t) { case EType.Imp: return "enemy_imp_v2_var1"; case EType.Ghoul: return "enemy_shambler_v2_var1"; case EType.Brute: return "enemy_brute_var1"; case EType.Splitter: return "enemy_splitter_var1"; } }
+            else if (variant == 2) { switch (t) { case EType.Imp: return "enemy_imp_v2_var2"; case EType.Ghoul: return "enemy_shambler_v2_var2"; } }
+            return null;
+        }
+        static string D2SheetHA(Enemy e) => EnemyArtMap.Map[e.type].sheet; // the t1434 HA art lookups stay on the ETypes sheet
+        /// <summary>Facing 0 S / 1 E / 2 N / 3 W for the PixelLab strips. Frost Caster and Fire Wheel keep their own facing state.</summary>
+        static int D2Dir4(Enemy e)
+        {
+            if (e.variant == 3) return e.v44Face == 1 ? (e.v44West ? 3 : 1) : (e.v44Face & 3); if (e.variant == 4) return e.v44West ? 3 : 1;
+            return (e.walkRow >> 2) & 3;
+        }
 
         bool D2Impact1434()
         {
@@ -251,7 +292,7 @@ namespace Hellord
                 return; // the death FX (blood_death / gib) cover the killing blow
             }
             if (T.d2Hooks1434) D2BloodHit1434(e, at, dir);
-            if (!T.d2Stagger1434 || e.boss || e.nest || e.variant >= 3 || e.m53 > 0 || e.type == EType.HookThrower || e.type == EType.GossipImp || e.freezeT > 0 || e.stun53 > 0 || e.stagCd1434 > 0) return;
+            if (!T.d2Stagger1434 || e.boss || e.nest || ((e.variant >= 3 || e.m53 > 0 || e.type == EType.HookThrower || e.type == EType.GossipImp) && !(T.d2anim1446 && T.d2Hooks1434 && D2Feel1434.HitPl(D2Sheet(e)) != null)) || (e.variant == 4 && e.v44St != 0) || e.freezeT > 0 || e.stun53 > 0 || e.stagCd1434 > 0) return;
             float trig = e.maxHp / Mathf.Max(1f, T.d2StaggerDiv1434), ratio = dmg / Mathf.Max(0.01f, trig); if (ratio < 1f) return;
             float chance = ratio < 2f ? 0.5f : ratio < 4f ? 0.75f : 1f; if (e.elite) chance *= T.d2StaggerElite1434.x; if (Random.value >= chance) return;
             float dur = Random.Range(T.d2StaggerS1434.x, T.d2StaggerS1434.y) * (e.elite ? T.d2StaggerElite1434.y : 1f);
@@ -264,7 +305,7 @@ namespace Hellord
             }
             if (T.d2Hooks1434)
             {
-                { string ph = D2PainHook(e.type), p47 = "pain1447_" + ph.Substring(5); if (D2Sfx1447() && HellordAudio.Has(p47)) HellordAudio.Play(p47); else if (HellordAudio.Has("pain_imp")) HellordAudio.Play(ph); }
+                { string ph = D2PainHook(e.type), p47 = D2Sfx1447() ? D2Hook1457("pain1447_", D2Fam1447(e)) : null; if (p47 != null) HellordAudio.Play(p47); else if (HellordAudio.Has("pain_imp")) HellordAudio.Play(ph); }
                 var sparkFr = D2Feel1434.Fx("hit_spark");
                 if (sparkFr != null) D2Feel1434.OneShot(sparkFr, at, dir.x < 0, YSort(e.pos.y) + 4, D2Feel1434.FxFps); else if (T.d2Placeholders1434) HordeFX.CheapBurst(at, new Color(0.45f, 0.04f, 0.06f), 3);
             }
@@ -273,7 +314,7 @@ namespace Hellord
 
         void D2BloodHit1434(Enemy e, Vector3 at, Vector2 dir)
         {
-            var fr = D2Feel1434.BloodHit(); if (fr != null) D2Feel1434.OneShot(fr, at, dir.x < 0, YSort(e.pos.y) + 3, HellordTuning.I.d2BloodFps1434);
+            if (D2Pl1454.IsGhost(D2Feel1434.Key(D2Sheet(e))) && D2Feel1434.HitPl(D2Sheet(e)) != null) return; var fr = D2Feel1434.BloodHit(); if (fr != null) D2Feel1434.OneShot(fr, at, dir.x < 0, YSort(e.pos.y) + 3, HellordTuning.I.d2BloodFps1434);
         }
 
         void D2StagTick1434(Enemy e, float dt)
@@ -294,8 +335,8 @@ namespace Hellord
         {
             var T = HellordTuning.I; float prog = 1f - e.stag1434 / Mathf.Max(0.01f, e.stagDur1434);
             var hpl = T.d2anim1446 && T.d2Hooks1434 ? D2Feel1434.HitPl(D2Sheet(e)) : null;
-            if (hpl != null) { var ha = hpl[(e.walkRow >> 2) & 3]; e.sr.sprite = ha[Mathf.Min(ha.Length - 1, (int)((e.stagDur1434 - e.stag1434) * T.d2HitFps1446))]; return; } // t1446 PixelLab get-hit, 15 fps
-            var st = T.d2Hooks1434 ? D2Feel1434.Stagger(D2Sheet(e)) : null; var arr = st != null ? st[(e.walkRow >> 2) & 3] : null;
+            if (hpl != null) { var ha = hpl[D2Dir4(e)]; e.sr.flipX = false; e.sr.sprite = ha[Mathf.Min(ha.Length - 1, (int)((e.stagDur1434 - e.stag1434) * T.d2HitFps1446))]; return; } // t1446 PixelLab get-hit, 15 fps
+            var st = T.d2Hooks1434 ? D2Feel1434.Stagger(D2SheetHA(e)) : null; var arr = st != null ? st[D2Dir4(e)] : null;
             if (arr != null && arr.Length > 0) { e.sr.sprite = arr[Mathf.Min(arr.Length - 1, (int)(prog * arr.Length))]; return; }
             float k = (1f - prog); k *= k; float a = T.d2StaggerRecoil1434.y * k; e.tr.localScale = Vector3.one * EnemyArtMap.Map[e.type].scale * 1f; e.tr.localScale = new Vector3(EnemyArtMap.Map[e.type].scale * (1f + a), EnemyArtMap.Map[e.type].scale * (1f - a), 1f); e.d2scaled1434 = true;
         }
@@ -316,7 +357,7 @@ namespace Hellord
         /// <summary>t1446: PixelLab death art for this enemy (imp_v2, brute) = the POP sequence replaces the HA collapse.</summary>
         bool D2Pl1446(Enemy e)
         {
-            var T = HellordTuning.I; return T.d2feel1434 && T.d2anim1446 && T.d2Death1434 && T.d2Hooks1434 && !e.frozenDeath1434 && !e.boss && !e.nest && e.variant < 3 && e.m53 == 0 && D2Feel1434.DeathPl(D2Sheet(e)) != null;
+            var T = HellordTuning.I; return T.d2feel1434 && T.d2anim1446 && T.d2Death1434 && T.d2Hooks1434 && !e.frozenDeath1434 && !e.boss && !e.nest && D2Feel1434.DeathPl(D2Sheet(e)) != null; // t1454: also the own-sheet demons / Frost Brute (art key from D2Sheet)
         }
         // ================= t1447 D2 per-family voices (toggle d2sfx1447) =================
         /// <summary>Voice family of an enemy / boss (death_/attack_/aggro_ hook suffix).</summary>
@@ -325,26 +366,32 @@ namespace Hellord
             if (e.boss) { switch (BossKind44) { case 2: return "horseface"; case 3: return "icegorilla"; case 4: return "qilin"; default: return "oxhead"; } }
             if (e.m53 == 1) return "bloater"; if (e.m53 == 2) return "rice_ghost"; if (e.m53 == 3) return "grinder_monk";
             if (e.variant == 2) return "bloater"; if (e.variant == 3) return "frost_caster"; if (e.variant == 4) return "fire_wheel";
-            if (e.k49 == 2 || e.k49 == 5) return "frost_caster"; if (e.k49 == 6) return "brute";
-            switch (e.type) { case EType.Ghoul: case EType.Splitter: return "ghoul"; case EType.Brute: case EType.HookThrower: return "brute"; case EType.Elite: return "wraith"; default: return "imp"; }
+            if (e.k49 == 2 || e.k49 == 5) return "frost_caster"; if (e.k49 == 6) return "brute"; if (e.k49 == 8) return "archer"; if (e.k49 == 4) return "wraith";
+            switch (e.type) { case EType.Ghoul: return "shambler"; case EType.Splitter: case EType.SplitChild: return "splitter"; case EType.Brute: return "brute"; case EType.HookThrower: return "hook_thrower"; case EType.GossipImp: return "gossip_imp"; case EType.Elite: return "wraith"; default: return "imp"; } // t1457: phase-2 families map to their enemy types
         }
-        static string D2DeathFam1447(string fam)
+        /// <summary>Phase-1 family a phase-2 family falls back to when it has no clip of its own.</summary>
+        static string D2LegacyFam1447(string fam)
         {
-            switch (fam) { case "bloater": return "ghoul"; case "grinder_monk": return "brute"; case "rice_ghost": return "wraith"; case "frost_caster": case "fire_wheel": return "caster"; default: return fam; }
+            switch (fam) { case "bloater": case "shambler": case "splitter": return "ghoul"; case "grinder_monk": case "hook_thrower": return "brute"; case "rice_ghost": return "wraith"; case "frost_caster": case "fire_wheel": return "caster"; case "gossip_imp": case "archer": return "imp"; default: return fam; }
+        }
+        /// <summary>Hook name prefix + family, own clips first, else the legacy family; null = silent.</summary>
+        static string D2Hook1457(string prefix, string fam)
+        {
+            string h = prefix + fam; if (HellordAudio.Has(h)) return h; h = prefix + D2LegacyFam1447(fam); return HellordAudio.Has(h) ? h : null;
         }
         static bool D2Sfx1447() { var T = HellordTuning.I; return T.d2sfx1447 && T.sfxEnabled; }
         /// <summary>Death voice: per-family D2 clip (shared cap 4, overlap allowed) or the t1434 death_scream set when d2sfx1447 is off / the clip is missing.</summary>
         void D2DeathVoice1447(Enemy e)
         {
-            if (D2Sfx1447()) { string h = "death_" + D2DeathFam1447(D2Fam1447(e)); if (HellordAudio.Has(h)) { HellordAudio.Play(h); return; } }
+            if (D2Sfx1447()) { string h = D2Hook1457("death_", D2Fam1447(e)); if (h != null) { HellordAudio.Play(h); return; } }
             HellordAudio.Play("death_scream");
         }
         /// <summary>Attack voice at the start of an attack (tell / wind-up / contact hit). Brute-type voices play 65% of the time so a crowd does not roar on every swing.</summary>
         void D2Atk1447(Enemy e)
         {
             if (!D2Sfx1447() || e == null) return; string fam = D2Fam1447(e);
-            if ((fam == "brute" || fam == "grinder_monk") && Random.value > 0.65f) return;
-            string h = "attack_" + fam; if (HellordAudio.Has(h)) HellordAudio.Play(h);
+            if ((fam == "brute" || fam == "grinder_monk" || fam == "hook_thrower") && Random.value > 0.65f) return;
+            if (Time.time < e.atkV1457) return; string h = D2Hook1457("attack_", fam); if (h != null) { HellordAudio.Play(h); e.atkV1457 = Time.time + HellordTuning.I.d2AtkVoiceCd1457; } // t1457: per-unit cooldown (a brute swinging every 0.6 s barked every time)
         }
         /// <summary>Idle growl per unit at the per-family interval (Imp 4-6 s, most 6 s, Ghoul / Grinder Monk 12 s, Fire Wheel 8-12 s, bosses 18-28 s). Only enemies near the hero.</summary>
         void D2Aggro1447(Enemy e, float dist, float dt)
@@ -355,11 +402,11 @@ namespace Hellord
             if (Time.time < e.agT1447) return;
             e.agT1447 = Time.time + D2AggroGap1447(fam, e.boss);
             if (dist > (e.boss ? 40f : 16f) || e.freezeT > 0) return;
-            string h = "aggro_" + fam; if (HellordAudio.Has(h)) HellordAudio.Play(h);
+            string h = D2Hook1457("aggro_", fam); if (h != null) HellordAudio.Play(h);
         }
         static float D2AggroGap1447(string fam, bool boss)
         {
-            if (boss) return Random.Range(18f, 28f); switch (fam) { case "imp": return Random.Range(4f, 6f); case "ghoul": case "grinder_monk": return Random.Range(10f, 14f); case "fire_wheel": return Random.Range(8f, 12f); default: return Random.Range(5f, 7f); }
+            if (boss) return Random.Range(18f, 28f); switch (fam) { case "imp": return Random.Range(4f, 6f); case "ghoul": case "shambler": case "grinder_monk": return Random.Range(10f, 14f); case "fire_wheel": return Random.Range(8f, 12f); default: return Random.Range(5f, 7f); }
         }
         bool D2DeathSfx1434(Enemy e)
         {
@@ -380,7 +427,7 @@ namespace Hellord
             Vector2 dir = D2DirOf(e); e.deathDir1434 = dir; e.fxFlip1434 = dir.x < 0; Sprite[] fr = null; bool hold = false;
             if (e.gib1434) { fr = D2Feel1434.Fx("gib_burst"); hold = true; }
             else if (e.burn1434 && T.d2Burn1434) fr = D2Feel1434.Fx("burn_death");
-            if (fr == null && !e.gib1434) { fr = D2Feel1434.BloodDeath(); hold = true; }
+            if (fr == null && !e.gib1434 && !(D2Pl1446(e) && D2Pl1454.IsGhost(D2Feel1434.Key(D2Sheet(e))))) { fr = D2Feel1434.BloodDeath(); hold = true; } // t1454: ghosts do not bleed
             e.fxFr1434 = fr; e.fx1434 = fr != null; e.fxHold1434 = hold && fr != null;
             if (D2Feel1434.Verbose) Debug.Log($"[D2] death {e.type} gib {e.gib1434} burn {e.burn1434} over {e.over1434} fx {fr != null} pl {D2Pl1446(e)}");
             if (!D2Pl1446(e)) D2FireDeathFx1434(e); // PixelLab deaths fire it on the POP
@@ -402,7 +449,7 @@ namespace Hellord
             if (e.gib1434) { e.dying = false; e.sr.enabled = false; e.sr.gameObject.SetActive(false); if (e.type == EType.Splitter && !e.splitDone) D2Split1434(e); D2SpawnCorpse1434(e, -2, 0); return true; } // gib: body hidden at frame 0, decal only
             e.deathT += dt;
             if (e.kbDist1434 > 0) { D2Knock1434(e, dt); ClampToRoom(ref e.pos, 6); e.tr.position = new Vector3(Snap(e.pos.x), Snap(e.pos.y), 0); e.sr.sortingOrder = YSort(e.pos.y); }
-            string sheet = D2Sheet(e); var dart = T.d2Hooks1434 ? D2Feel1434.Death(sheet) : null; int dir = (e.walkRow >> 2) & 3;
+            string sheet = D2SheetHA(e); var dart = T.d2Hooks1434 ? D2Feel1434.Death(sheet) : null; int dir = (e.walkRow >> 2) & 3;
             if (dart != null)
             {   // art: collapse frames at d2DeathFps, last frame = corpse pose; the corpse sprite takes over seamlessly
                 var fr = dart[dir]; int k = (int)(e.deathT * T.d2DeathFps1434);
@@ -422,9 +469,9 @@ namespace Hellord
         }
         Sprite D2CorpseSprite1434(Enemy e, int ci, int dir, out bool art)
         {
-            var T = HellordTuning.I; string sheet = D2Sheet(e); art = false; if (ci == -2 || ci == -3) { art = true; return null; }
+            var T = HellordTuning.I; string sheet = D2SheetHA(e); art = false; if (ci == -2 || ci == -3) { art = true; return null; }
             Sprite sp = null;
-            if (T.d2Hooks1434 && D2Pl1446(e)) { var cp = D2Feel1434.CorpsePl(sheet); if (cp != null) sp = cp[dir][0]; }
+            if (T.d2Hooks1434 && D2Pl1446(e)) { var cp = D2Feel1434.CorpsePl(D2Sheet(e)); if (cp != null) sp = cp[dir][0]; }
             if (sp == null && T.d2Hooks1434) { var ca = D2Feel1434.Corpse(sheet); if (ca != null) sp = ca[dir]; }
             art = sp != null;
             if (sp == null && ci < 0) { var da = D2Feel1434.Death(sheet); if (da != null) { sp = da[dir][da[dir].Length - 1]; art = true; } }
@@ -438,23 +485,67 @@ namespace Hellord
             return tint;
         }
         /// <summary>ci &lt; 0 = art death just finished (corpse art, else the death strip's last frame); -2 = gib (decal only); -3 = PixelLab slam (pool/decal now, the body later via SetBody). Returns the corpse object.</summary>
-        D2Corpse1434 D2SpawnCorpse1434(Enemy e, int ci, int dir, float extraLife = 0f)
+        D2Corpse1434 D2SpawnCorpse1434(Enemy e, int ci, int dir, float extraLife = 0f, Sprite over = null, bool flip = false)
         {
-            var T = HellordTuning.I; string sheet = D2Sheet(e); Sprite sp = D2CorpseSprite1434(e, ci, dir, out bool art); Color tint = D2CorpseTint1434(e, art);
-            bool big = e.type == EType.Brute || e.type == EType.Splitter; bool hooks = T.d2Hooks1434 && e.type != EType.Elite; // the wraith gets no pool / decal (art brief)
-            Sprite[] decal = hooks && T.d2DecalMode1434 >= 1 ? D2Feel1434.Variant("blood_decal") : null;
+            var T = HellordTuning.I; bool pl = D2Pl1446(e); string sheet = pl ? D2Sheet(e) : D2SheetHA(e); Sprite sp = D2CorpseSprite1434(e, ci, dir, out bool art); if (over != null) { sp = over; art = true; } Color tint = D2CorpseTint1434(e, art);
+            bool ghost = pl && D2Pl1454.IsGhost(D2Feel1434.Key(sheet)); // t1454: wraith / rice ghost = ectoplasm pool, no blood decal
+            bool big = e.type == EType.Brute || e.type == EType.Splitter; bool hooks = T.d2Hooks1434 && (e.type != EType.Elite || ghost); // the HA wraith gets no pool / decal (art brief); the PixelLab wraith has the ectoplasm pool
+            Sprite[] decal = hooks && !ghost && T.d2DecalMode1434 >= 1 ? D2Feel1434.Variant("blood_decal") : null;
             Sprite pool = hooks && (T.d2DecalMode1434 != 1 || decal == null) ? D2Feel1434.PoolOrPlaceholder(sheet, big, T.d2Placeholders1434 && !art) : null;
             float life = D2Persist1447() ? float.PositiveInfinity : (e.corpseLife1434 > 0 ? e.corpseLife1434 : Random.Range(T.d2CorpseLifeS1434.x, T.d2CorpseLifeS1434.y)) + extraLife;
-            return D2Feel1434.Spawn(sp, e.tr.position, e.tr.localScale, tint, YSort(e.pos.y), pool, decal, life, T.d2CorpseFadeS1434, Mathf.Max(1, T.d2CorpseCap1434));
+            return D2Feel1434.Spawn(sp, e.tr.position, e.tr.localScale, tint, YSort(e.pos.y), pool, decal, life, T.d2CorpseFadeS1434, Mathf.Max(1, T.d2CorpseCap1434), flip);
+        }
+        // ================= t1457 boss PixelLab deaths + corpse hooks =================
+        int _bplSt; bool _bplWest, _bplPop, _bplSlam; float _bplT; D2Corpse1434 _bplCp; Sprite[][] _bplD, _bplC; string _bplKey; int _bplFace;
+        string BossPlKey1457() { switch (BossKind44) { case 2: return "boss_horseface_pestle"; case 3: return "boss_ice_gorilla"; case 4: return "boss_qilin_chariot"; default: return "boss_oxhead_clubjailer"; } }
+        /// <summary>Called once per boss-death frame BEFORE AnimateBoss. True = the PixelLab death (7 f @ d2DeathFps1446, POP f2, pool f4, permanent corpse) drives the body sprite.</summary>
+        bool D2BossPlBegin1457()
+        {
+            if (_bplSt != 0) return _bplSt == 1; var T = HellordTuning.I; _bplSt = 2; _bplCp = null; _bplPop = _bplSlam = false; _bplT = 0;
+            if (!(T.d2feel1434 && T.d2anim1446 && T.d2Death1434 && T.d2Hooks1434) || _bossBody == null) return false;
+            _bplKey = BossPlKey1457(); _bplD = D2Feel1434.BossDeathPl(_bplKey); _bplC = D2Feel1434.BossCorpsePl(_bplKey); if (_bplD == null || _bplC == null) return false;
+            _bplWest = _bossBody.flipX; _bplFace = _bplKey == "boss_qilin_chariot" && _qLastFace44 == 1 && _bplD[1] != null ? 1 : 0; _bplSt = 1; return true;
+        }
+        bool D2BossPlWest1457 => _bplWest;
+        /// <summary>t1457: boss death voice (phase-2 death_oxhead / horseface / icegorilla / qilin) when d2sfx1447 is on; silent otherwise (the sheet death has its own sound).</summary>
+        void D2BossDeathVoice1457(Enemy e) { if (!D2Sfx1447()) return; string h = D2Hook1457("death_", D2Fam1447(e)); if (h != null) HellordAudio.Play(h); }
+        /// <summary>After AnimateBoss: overrides the body sprite with the PixelLab strip; spawns the pool at the slam and the permanent corpse at the end.</summary>
+        void D2BossPlTick1457(Enemy e, float dt)
+        {
+            if (_bplSt != 1 || _bossBody == null) return; var T = HellordTuning.I; _bplT += dt; int k = (int)(_bplT * Mathf.Max(1f, T.d2DeathFps1446));
+            var fr = _bplD[_bplFace]; var cs = _bplC[_bplFace] != null ? _bplC[_bplFace] : _bplC[0]; var tr = _bossBody.transform; tr.localPosition = Vector3.zero;
+            bool flip = _bplKey == "boss_horseface_pestle" || _bplKey == "boss_oxhead_clubjailer" ? _bplWest : _bplKey == "boss_qilin_chariot" && _bplFace == 1 ? _bplWest : false; // Horse-Face SE and Ox-Head S flip for W; Qilin E flips for W; Gorilla one pose for every facing
+            int ys = YSort(e.pos.y); Vector3 sc = tr.lossyScale;
+            if (!_bplPop && k >= 2) { _bplPop = true; HordeFX.CheapBurst(e.pos + Vector2.up * e.hitY, new Color(0.55f, 0.06f, 0.08f), 14); }
+            if (!_bplSlam && k >= 4)
+            {
+                _bplSlam = true; bool persist = D2Persist1447(); Sprite pool = D2Feel1434.PoolOrPlaceholder("enemy_" + _bplKey, true, T.d2Placeholders1434); Sprite[] decal = T.d2DecalMode1434 >= 1 ? D2Feel1434.Variant("blood_decal") : null; if (decal != null && T.d2DecalMode1434 == 1) pool = null;
+                _bplCp = D2Feel1434.Spawn(null, tr.position, sc, Color.white, ys, pool, decal, persist ? float.PositiveInfinity : 20f, T.d2CorpseFadeS1434, Mathf.Max(1, T.d2CorpseCap1434));
+            }
+            if (k >= fr.Length) { Color tint = Color.Lerp(Color.white, T.d2CorpseTint1434, 0.35f); tint.a = 1f; if (_bplCp != null) D2Feel1434.SetBody(_bplCp, cs[0], tr.position, sc, tint, ys, flip); _bossBody.enabled = false; _bplSt = 3; return; }
+            _bossBody.sprite = fr[k]; _bossBody.flipX = flip; _bossBody.enabled = true;
+            if (k == 2) { HordeFX.Flash(_bossBody); _bossBody.color = Color.white; }
+        }
+        /// <summary>Boss death finished without PixelLab art: leave pool / decal and the last body frame as a corpse.</summary>
+        void D2BossCorpseFallback1457(Enemy e)
+        {
+            var T = HellordTuning.I; if (_bplSt == 3 || !(T.d2feel1434 && T.d2Death1434 && T.d2Hooks1434) || _bossBody == null) return; _bplSt = 3; int ys = YSort(e.pos.y);
+            Sprite pool = D2Feel1434.PoolOrPlaceholder("enemy_" + BossPlKey1457(), true, T.d2Placeholders1434); Sprite[] decal = T.d2DecalMode1434 >= 1 ? D2Feel1434.Variant("blood_decal") : null; if (decal != null && T.d2DecalMode1434 == 1) pool = null;
+            var c = D2Feel1434.Spawn(_bossBody.sprite, _bossBody.transform.position, _bossBody.transform.lossyScale, Color.Lerp(Color.white, T.d2CorpseTint1434, 0.35f), ys, pool, decal, D2Persist1447() ? float.PositiveInfinity : 20f, T.d2CorpseFadeS1434, Mathf.Max(1, T.d2CorpseCap1434), _bossBody.flipX);
+        }
+        /// <summary>t1457: Death44 (Frost Caster / Fire Wheel sheet death) and Death53 (Mortar demons) leave a corpse too: the last body frame + pool / decal.</summary>
+        void D2CorpseFromSprite1457(Enemy e, Sprite sp, bool flip)
+        {
+            var T = HellordTuning.I; if (!(T.d2feel1434 && T.d2Death1434 && T.d2Hooks1434) || e.frozenDeath1434 || sp == null) return; D2SpawnCorpse1434(e, -4, 0, 0f, sp, flip);
         }
         /// <summary>t1446 PixelLab death: 7 frames @ d2DeathFps1446. POP = frame 2: white silhouette flash, blood_death / gib / burn FX, death scream, gore_splat. Slam = frame 4: blood pool / decal appears. Frame 6 = corpse pose; the corpse art takes over when the anim ends. Gib: body hidden after the POP frame, decal at the POP, no corpse.</summary>
         bool D2DeathPl1446(Enemy e, float dt)
         {
-            var T = HellordTuning.I; var fr = D2Feel1434.DeathPl(D2Sheet(e))[(e.walkRow >> 2) & 3]; int dir = (e.walkRow >> 2) & 3;
+            var T = HellordTuning.I; var fr = D2Feel1434.DeathPl(D2Sheet(e))[D2Dir4(e)]; int dir = D2Dir4(e); if (e.variant == 4) e.tr.rotation = Quaternion.identity;
             e.deathT += dt;
             if (e.kbDist1434 > 0) { D2Knock1434(e, dt); ClampToRoom(ref e.pos, 6); e.tr.position = new Vector3(Snap(e.pos.x), Snap(e.pos.y), 0); e.sr.sortingOrder = YSort(e.pos.y); }
             int k = (int)(e.deathT * Mathf.Max(1f, T.d2DeathFps1446));
-            if (!e.pop1434 && k >= 2) { e.pop1434 = true; D2FireDeathFx1434(e); D2PopSfx1446(e); if (e.gib1434) { if (e.type == EType.Splitter && !e.splitDone) D2Split1434(e); D2SpawnCorpse1434(e, -2, dir); } }
+            if (!e.pop1434 && k >= 2) { e.pop1434 = true; D2FireDeathFx1434(e); D2PopSfx1446(e); if (e.type == EType.Splitter && !e.splitDone) D2Split1434(e); if (e.gib1434) D2SpawnCorpse1434(e, -2, dir); }
             if (e.gib1434 && k >= 3) { e.dying = false; e.sr.enabled = false; e.sr.gameObject.SetActive(false); return true; }
             if (!e.slam1434 && k >= 4 && !e.gib1434) { e.slam1434 = true; e.cp1434 = D2SpawnCorpse1434(e, -3, dir, (fr.Length - 4) / Mathf.Max(1f, T.d2DeathFps1446)); }
             if (k >= fr.Length || e.deathT > 2f)

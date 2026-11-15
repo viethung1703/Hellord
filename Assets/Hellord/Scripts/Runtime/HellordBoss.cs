@@ -338,7 +338,7 @@ namespace Hellord
         {
             Debug.Log($"[HB] boss killed {runTime - _bossSpawnT:0.0}s after spawn"); StopBossFx(); ClearBossArena1006(); _arenaOn = false; SetWalls(false); FloorBossKilled();
             if (HellordTuning.I.d2feel1434 && HellordTuning.I.d2NoHitShake1434 && HellordTuning.I.d2BossKillStopS1434 > 0) HitStop.Play(HellordTuning.I.d2BossKillStopS1434); // t1434 small boss-kill hitstop
-            e.dying = true; e.deathT = 0; Play("death", true); // plays the sheet death (10 frames), then hides the root
+            _bplSt = 0; D2BossDeathVoice1457(e); e.dying = true; e.deathT = 0; Play("death", true); // plays the sheet death (10 frames), then hides the root
         }
         void StopBossFx() { ClearV44(); Clear984(); HellordAudio.Stop("oxhead_horn_windup"); if (_lane != null) _lane.Stop(); StopTimed46(); StopH(ref _tellH); StopH(ref _speedH); StopH(ref _dustH); StopH(ref _stunH); StopH(ref _punishH); StopH(ref _rageH); if (_stunBar) _stunBar.End(true); _bs = BS.Off; }
         PixelFXPack.StunBarFX _stunBar;
@@ -372,8 +372,8 @@ namespace Hellord
         }
         void UpdateBossDeath(Enemy e, float dt)
         {
-            AnimateBoss(dt, _bossBody.flipX); UpdateGate(dt);
-            if (_animDone && Death44Done()) { e.dying = false; if (_bossRoot) _bossRoot.gameObject.SetActive(false); if (_gate) _gate.gameObject.SetActive(false); }
+            bool bpl = D2BossPlBegin1457(); AnimateBoss(dt, bpl ? D2BossPlWest1457 : _bossBody.flipX); if (bpl) D2BossPlTick1457(e, dt); UpdateGate(dt); // t1457: PixelLab boss death (POP, pool, permanent corpse)
+            if (_animDone && Death44Done()) { if (!bpl) D2BossCorpseFallback1457(e); e.dying = false; if (_bossRoot) _bossRoot.gameObject.SetActive(false); if (_gate) _gate.gameObject.SetActive(false); }
         }
         void UpdateGate(float dt)
         {

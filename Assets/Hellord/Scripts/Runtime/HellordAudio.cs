@@ -36,9 +36,9 @@ namespace Hellord
             Add("pain_brute", "hitdeath", 0.5f, 0.6f, 0.94f, 1.06f, 3, 0.1f); Add("pain_wraith", "hitdeath", 0.5f, 0.6f, 0.94f, 1.06f, 3, 0.1f);
             Add("death_scream", "hitdeath", 0.78f, 0.9f, 0.94f, 1.06f, 4, 0.05f);
             // t1447 (d2sfx1447): per-family D2 deaths (shared cap 4, overlap allowed), attacks (cap 6 per family, newest replaces the oldest, 300 ms retrigger), aggro growls (shared cap 3). Folder SFX/d2sfx1447.
-            foreach (var df in new[] { "imp", "ghoul", "brute", "wraith", "caster" }) Add("death_" + df, "d2sfx1447", 0.9f, 1f, 0.94f, 1.06f, 4, 0f, "d2death1447");
-            foreach (var pf in new[] { "imp", "ghoul", "brute" }) Add("pain1447_" + pf, "d2sfx1447", 0.75f, 0.85f, 0.94f, 1.06f, 3, 0.1f, "d2pain1447", false, "pain_" + pf); // t1449 recorded pain voices; played instead of the t1434 pain_* when d2sfx1447 is on
-            foreach (var af in new[] { "imp", "ghoul", "brute", "wraith", "frost_caster", "fire_wheel", "bloater", "rice_ghost", "grinder_monk", "oxhead", "horseface", "icegorilla", "qilin" })
+            foreach (var df in new[] { "imp", "ghoul", "brute", "wraith", "caster", "archer", "bloater", "fire_wheel", "gossip_imp", "grinder_monk", "hook_thrower", "rice_ghost", "shambler", "splitter", "oxhead", "horseface", "icegorilla", "qilin" }) Add("death_" + df, "d2sfx1447", 0.9f, 1f, 0.94f, 1.06f, 4, 0f, "d2death1447"); // t1457: phase-2 voices add the per-demon and boss deaths
+            foreach (var pf in new[] { "imp", "ghoul", "brute", "wraith", "frost_caster", "archer", "bloater", "fire_wheel", "gossip_imp", "grinder_monk", "hook_thrower", "rice_ghost", "shambler", "splitter" }) Add("pain1447_" + pf, "d2sfx1447", 0.75f, 0.85f, 0.94f, 1.06f, 3, 0.1f, "d2pain1447", false, "pain_" + pf); // t1449 / t1457 recorded pain voices; played instead of the t1434 pain_* when d2sfx1447 is on
+            foreach (var af in new[] { "imp", "ghoul", "brute", "wraith", "frost_caster", "fire_wheel", "bloater", "rice_ghost", "grinder_monk", "archer", "hook_thrower", "gossip_imp", "shambler", "splitter", "oxhead", "horseface", "icegorilla", "qilin" })
             { Add("attack_" + af, "d2sfx1447", 0.95f, 1f, 0.94f, 1.06f, 6, 0.3f, null, true); Add("aggro_" + af, "d2sfx1447", 0.55f, 0.65f, 0.95f, 1.05f, 3, 0.12f, "d2aggro1447"); }
             Add("gore_splat", "hitdeath", 0.62f, 0.76f, 0.92f, 1.1f, 3, 0.06f);
             Add("ice_shatter", "hitdeath", 0.72f, 0.85f, 0.95f, 1.05f, 3, 0.06f);

@@ -167,7 +167,7 @@ namespace Hellord
         {
             var k = (MortarKind49e)(e.m53 - 1); var f = MortarArt49e.Frames(k); if (f == null) return false;
             e.deathT += dt; int n = MortarArt49e.FrameCount(k, 11);
-            if (e.deathT * HArt.EnemyDeathFps >= n + 1 || e.deathT > 2f) { e.dying = false; e.sr.enabled = false; e.sr.gameObject.SetActive(false); return true; }
+            if (e.deathT * HArt.EnemyDeathFps >= n + 1 || e.deathT > 2f) { D2CorpseFromSprite1457(e, e.sr.sprite, e.sr.flipX); e.dying = false; e.sr.enabled = false; e.sr.gameObject.SetActive(false); return true; }
             e.sr.flipX = false; e.sr.sprite = f[MortarArt49e.Index(k, MortarAnim49e.Death, 0, e.deathT, HArt.EnemyDeathFps)]; return true;
         }
     }

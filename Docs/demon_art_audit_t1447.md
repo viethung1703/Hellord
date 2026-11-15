@@ -1,5 +1,8 @@
 # Demon / enemy art audit (t1447)
 
+> **t1454 / t1457 update:** PixelLab batches 1-3 (+ the batch 4 Ox-Head re-roll) now give hit / death / permanent corpse to Shambler, Wraith, Splitter, Split Child, Hook Thrower, Gossip Imp, Frost Caster, Fire Wheel, Bloater, Rice Ghost, Grinder Monk, Frost Brute, Archer, every frost / bomber / range-kit recolour, and the four bosses. Death44 / Death53 and the boss deaths now spawn corpses. See `d2feel_assets.md` (t1454 / t1457). Still open: attack / idle poses (batch 4 not integrated), code-drawn Hook Thrower / Gossip Imp sheets, unused sheets.
+
+
 Source of truth: code in `Assets/Hellord/Scripts/Runtime` (HArt.cs `EnemyArtMap` / `Sheets`, HellordGame.cs, HellordV37/V44/V49.cs, HellordTorture53.cs, HellordMortarArt49e.cs, HellordBoss*.cs, HellordD2Feel1434.cs), the sheets in `Resources/HellordArt`, and `Art/EXPORT_MANIFEST_2026-10-26.md`. Written for Hellord Art. Nothing here was changed in-game by this audit.
 
 ## Legend

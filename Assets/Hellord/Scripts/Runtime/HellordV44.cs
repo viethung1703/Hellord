@@ -367,7 +367,7 @@ namespace Hellord
             bool caster = e.variant == 3; if (caster ? !CasterSheetOn44 : !FireWheelSheetOn44) return false;
             var F = caster ? CasterFrames44() : WheelFrames44(); var ms = caster ? FcMsDeath : FwMsDeath;
             e.tr.rotation = Quaternion.identity; e.deathT += dt;
-            if (e.deathT >= ms.Sum44() / 1000f) { e.dying = false; e.sr.enabled = false; e.sr.gameObject.SetActive(false); return true; }
+            if (e.deathT >= ms.Sum44() / 1000f) { D2CorpseFromSprite1457(e, e.sr.sprite, e.sr.flipX); e.dying = false; e.sr.enabled = false; e.sr.gameObject.SetActive(false); return true; }
             e.sr.sprite = F[(caster ? 11 : 4) * 8 + MsCol44(ms, e.deathT, false)]; e.sr.flipX = caster ? false : e.v44West;
             return true;
         }
