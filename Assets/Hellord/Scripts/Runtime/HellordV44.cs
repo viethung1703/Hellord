@@ -254,7 +254,7 @@ namespace Hellord
                 {
                     if (dist < T.frostCasterMinU) v = -dir * sp; else if (dist > T.frostCasterMaxU) v = dir * sp; else v = new Vector2(-dir.y, dir.x) * sp * 0.35f * e.strafe;
                     if (!frozen) e.v44T -= dt;
-                    if (e.v44T <= 0 && dist < T.frostCasterMaxU + 3f) { e.v44St = 1; e.v44T = T.frostCasterTellS; HellordAudio.Play("curse_rune_arm", 1.5f); if (FX44) e.v44Fx = MinionFX.FrostCharge(e.pos + Vector2.up * 0.6f, dir, Mathf.Min(dist, T.frostBoltSpeed * T.frostBoltLifeS), T.frostCasterTellS); if (Random.value < 0.3f) e.strafe = -e.strafe; }
+                    if (e.v44T <= 0 && dist < T.frostCasterMaxU + 3f) { e.v44St = 1; e.v44T = T.frostCasterTellS; D2Atk1447(e); HellordAudio.Play("curse_rune_arm", 1.5f); if (FX44) e.v44Fx = MinionFX.FrostCharge(e.pos + Vector2.up * 0.6f, dir, Mathf.Min(dist, T.frostBoltSpeed * T.frostBoltLifeS), T.frostCasterTellS); if (Random.value < 0.3f) e.strafe = -e.strafe; }
                 }
                 else
                 {
@@ -276,7 +276,7 @@ namespace Hellord
             {
                 case 0:
                     e.tr.rotation = Quaternion.identity; e.v44T -= dt;
-                    if (e.v44T <= 0 && dist < T.fireWheelTriggerU && !frozen) { e.v44St = 1; e.v44T = T.fireWheelWindS; e.v44Dir = V49 ? LeadDir49(e.pos, T.fireWheelRollSpeed * FwMul49) : dir; HellordAudio.Play("oxhead_horn_windup", 1.6f); if (FX44) e.v44Fx = MinionFX.WheelSpin(e.pos, e.v44Dir, Mathf.Min(T.fireWheelRollMaxU, RayToBox44(e.pos, e.v44Dir)), T.fireWheelHalfWidthU, T.fireWheelWindS); }
+                    if (e.v44T <= 0 && dist < T.fireWheelTriggerU && !frozen) { e.v44St = 1; e.v44T = T.fireWheelWindS; D2Atk1447(e); e.v44Dir = V49 ? LeadDir49(e.pos, T.fireWheelRollSpeed * FwMul49) : dir; HellordAudio.Play("oxhead_horn_windup", 1.6f); if (FX44) e.v44Fx = MinionFX.WheelSpin(e.pos, e.v44Dir, Mathf.Min(T.fireWheelRollMaxU, RayToBox44(e.pos, e.v44Dir)), T.fireWheelHalfWidthU, T.fireWheelWindS); }
                     break;
                 case 1:
                 {
@@ -401,7 +401,7 @@ namespace Hellord
                 _enr44 = true; Toast(IsGorilla ? "THE GORILLA IS ENRAGED!" : "THE CHARIOT IS ENRAGED!"); HellordAudio.Play("oxhead_roar", 0.85f); ScreenShake.Add(2f, 0.25f);
                 if (IsGorilla) { var s = (T.gorillaCycleEnraged ?? "").ToUpperInvariant().Replace(" ", ""); if (s.Length > 0) { _cycle37 = s.ToCharArray(); _atk = 0; c = _cycle37[_atk++ % _cycle37.Length]; } }
             }
-            _atk44 = c; _ph44 = 0; _second44 = false; Vector2 to = _heroPos - e.pos; _dir44 = to.sqrMagnitude > 0.01f ? to.normalized : Vector2.down;
+            _atk44 = c; _ph44 = 0; _second44 = false; D2Atk1447(e); Vector2 to = _heroPos - e.pos; _dir44 = to.sqrMagnitude > 0.01f ? to.normalized : Vector2.down;
             if (IsGorilla)
             {
                 switch (c)

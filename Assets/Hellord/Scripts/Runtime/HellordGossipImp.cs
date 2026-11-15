@@ -86,7 +86,7 @@ namespace Hellord
                         if (d <= T.gossipShoutTriggerU && e.freezeT <= 0 && ShoutsInPlay() < Mathf.Max(1, T.gossipMaxShouts))
                         {
                             e.gossipC = e.pos; e.gossipH = GossipHookFX.Shout(e.pos, GossipR49 * HArt.PPU, GossipTell49);
-                            if (e.gossipH >= 0) { e.gossipSt = 2; gossipShouts++; HellordAudio.Play("gossip_shout_warning"); } else { e.gossipSt = 0; e.gossipCd = 1f; }
+                            if (e.gossipH >= 0) { e.gossipSt = 2; gossipShouts++; D2Atk1447(e); HellordAudio.Play("gossip_shout_warning"); } else { e.gossipSt = 0; e.gossipCd = 1f; }
                         }
                         else if (e.gossipT > T.gossipApproachMaxSeconds) { e.gossipSt = 0; e.gossipCd = T.gossipCooldown * 0.5f; }
                         break;

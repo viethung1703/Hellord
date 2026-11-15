@@ -179,7 +179,7 @@ namespace Hellord
         void EnterRoom(int idx, int exitDir)
         {
             if (curRoom >= 0) LeaveRoom(); PactRoomEnter53(); // v0.0.53 pact: Last Rites per room, room bones
-            curRoom = idx; var r = floor[idx]; Debug.Log($"[HB] EnterRoom {idx} {r.type} cleared {r.cleared} exitDir {exitDir} t {runTime:0.0} bossAlive {BossAlive}");
+            curRoom = idx; D2Feel1434.SetRoom(FloorIdx * 1000 + idx); /* t1447 corpses stay for the whole floor */ var r = floor[idx]; Debug.Log($"[HB] EnterRoom {idx} {r.type} cleared {r.cleared} exitDir {exitDir} t {runTime:0.0} bossAlive {BossAlive}");
             if (_room == null || _room.Name != r.art || r.type != RoomType.Boss) LoadRoom(r.art);
             int arrive = exitDir < 0 ? -1 : (exitDir + 2) % 4;
             AssignExits42(r, arrive); // v0.0.42 door choice

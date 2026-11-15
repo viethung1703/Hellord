@@ -7,7 +7,7 @@ namespace Hellord
 {
     public class HellordAudio : MonoBehaviour
     {
-        class Hook { public string folder; public float v0, v1, p0, p1, minGap; public int cap; public AudioClip[] clips; public int last = -1; public float lastT = -99; public bool ui; }
+        class Hook { public string folder; public float v0, v1, p0, p1, minGap; public int cap; public AudioClip[] clips; public int last = -1; public float lastT = -99; public bool ui; public string group; public bool replace; }
         static HellordAudio _i;
         public static HellordAudio I { get { if (_i == null) { var go = new GameObject("HellordAudio"); DontDestroyOnLoad(go); _i = go.AddComponent<HellordAudio>(); } return _i; } }
         readonly Dictionary<string, Hook> _h = new Dictionary<string, Hook>();
@@ -15,13 +15,14 @@ namespace Hellord
         AudioSource _heart; float _heartV; int _xpStep; float _xpLast = -99;
         const int PoolSize = 24;
 
-        void Add(string hook, string folder, float v0, float v1, float p0, float p1, int cap, float minGap = 0)
+        readonly Dictionary<AudioSource, float> _start = new Dictionary<AudioSource, float>(); // t1447: voice start time (replace-oldest)
+        void Add(string hook, string folder, float v0, float v1, float p0, float p1, int cap, float minGap = 0, string group = null, bool replace = false)
         {
             var list = new List<AudioClip>();
             for (int k = 1; k <= 9; k++) { var c = Resources.Load<AudioClip>($"Audio/SFX/{folder}/{hook}_{k:00}"); if (c == null) break; list.Add(c); }
             if (list.Count == 0) { var c1 = Resources.Load<AudioClip>($"Audio/SFX/{folder}/{hook}"); if (c1 != null) list.Add(c1); } // v0.0.34 single files without _NN
-            if (list.Count == 0) Debug.LogWarning("[HellordAudio] no clips for " + hook);
-            _h[hook] = new Hook { folder = folder, v0 = v0, v1 = v1, p0 = p0, p1 = p1, cap = cap, minGap = minGap, clips = list.ToArray() };
+            if (list.Count == 0 && folder != "d2sfx1447") Debug.LogWarning("[HellordAudio] no clips for " + hook); // d2sfx1447: clips arrive later, silent fallback
+            _h[hook] = new Hook { folder = folder, v0 = v0, v1 = v1, p0 = p0, p1 = p1, cap = cap, minGap = minGap, clips = list.ToArray(), group = group, replace = replace };
         }
         void Awake()
         {
@@ -34,6 +35,10 @@ namespace Hellord
             Add("pain_imp", "hitdeath", 0.5f, 0.6f, 0.94f, 1.06f, 3, 0.1f); Add("pain_ghoul", "hitdeath", 0.5f, 0.6f, 0.94f, 1.06f, 3, 0.1f);
             Add("pain_brute", "hitdeath", 0.5f, 0.6f, 0.94f, 1.06f, 3, 0.1f); Add("pain_wraith", "hitdeath", 0.5f, 0.6f, 0.94f, 1.06f, 3, 0.1f);
             Add("death_scream", "hitdeath", 0.78f, 0.9f, 0.94f, 1.06f, 4, 0.05f);
+            // t1447 (d2sfx1447): per-family D2 deaths (shared cap 4, overlap allowed), attacks (cap 6 per family, newest replaces the oldest, 300 ms retrigger), aggro growls (shared cap 3). Folder SFX/d2sfx1447.
+            foreach (var df in new[] { "imp", "ghoul", "brute", "wraith", "caster" }) Add("death_" + df, "d2sfx1447", 0.8f, 0.9f, 0.94f, 1.06f, 4, 0f, "d2death1447");
+            foreach (var af in new[] { "imp", "ghoul", "brute", "wraith", "frost_caster", "fire_wheel", "bloater", "rice_ghost", "grinder_monk", "oxhead", "horseface", "icegorilla", "qilin" })
+            { Add("attack_" + af, "d2sfx1447", 0.65f, 0.75f, 0.94f, 1.06f, 6, 0.3f, null, true); Add("aggro_" + af, "d2sfx1447", 0.45f, 0.55f, 0.95f, 1.05f, 3, 0.12f, "d2aggro1447"); }
             Add("gore_splat", "hitdeath", 0.62f, 0.76f, 0.92f, 1.1f, 3, 0.06f);
             Add("ice_shatter", "hitdeath", 0.72f, 0.85f, 0.95f, 1.05f, 3, 0.06f);
             Add("fireball_cast", "fireball", 0.6f, 0.75f, 0.93f, 1.07f, 3, 0.05f);
@@ -162,9 +167,10 @@ namespace Hellord
             if (!_h.TryGetValue(hook, out var h) || h.clips.Length == 0) { if (_dbg613.Add("miss:" + hook)) Debug.LogWarning("[HellordAudio] Play(" + hook + ") has no clips"); return; }
             if (h.ui && _dbg613.Add("ui:" + hook)) Debug.Log("[HellordAudio] first play " + hook + " vol=" + (h.v0 * (h.ui ? UiMaster : Master))); // v0.0.62 t613u
             float now = Time.unscaledTime; if (now - h.lastT < h.minGap) return;
-            int active = 0; AudioSource free = null;
-            foreach (var s in _pool) { if (s.isPlaying) { if (_owner.TryGetValue(s, out var o) && o == hook) active++; } else if (free == null) free = s; }
-            if (active >= h.cap || free == null) return;
+            int active = 0; AudioSource free = null, oldest = null; float oldT = float.MaxValue; string g = h.group ?? hook;
+            foreach (var s in _pool) { if (s.isPlaying) { if (_owner.TryGetValue(s, out var o) && _h.TryGetValue(o, out var oh) && (oh.group ?? o) == g) { active++; float st = _start.TryGetValue(s, out var sv) ? sv : 0f; if (st < oldT) { oldT = st; oldest = s; } } } else if (free == null) free = s; }
+            if (active >= h.cap || free == null) { if (h.replace && oldest != null) { oldest.Stop(); free = oldest; } else return; } // t1447: replace the oldest of the same family
+            _start[free] = now;
             int v = Random.Range(0, h.clips.Length); if (h.clips.Length > 1 && v == h.last) v = (v + 1 + Random.Range(0, h.clips.Length - 1)) % h.clips.Length;
             h.last = v; h.lastT = now; _owner[free] = hook;
             free.clip = h.clips[v]; free.volume = Mathf.Clamp01(Random.Range(h.v0, h.v1) * (h.ui ? UiMaster : Master));

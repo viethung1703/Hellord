@@ -13,7 +13,7 @@ namespace Hellord
         public int v44Fx = -1, v44Tr = -1; public byte m53; public int calc53, eqEl53 = -1, bst53; public bool calcB53; public float eqT53, bstore53, stun53, brit536; // t536u Brittle Mark expiry (runTime) // v0.0.53 pact node state (Calcify, Equilibrium, Hemorrhage). public byte m53: mortar demon kind+1 (0 = none) // v0.0.44 MinionFX handles (tell / fire trail), -1 = none
         public int id; public EType type; public bool alive, elite; public Vector2 pos, push; public float hp, maxHp, speed, radius, dmg, animT;
         public SpriteRenderer sr; public Transform tr; public Sprite[] frames; public int xp, cx, cy; public float hitT; public PixelFX fx; public int shockH = -1, bleedH = -1, burnH = -1, chillH = -1; public bool boss;
-        public float stag1434, stagDur1434, stagCd1434, kbT1434, kbDur1434, kbDist1434, kbDone1434; public Vector2 kbDir1434; public bool over1434, frozenDeath1434, d2scaled1434, gib1434, burn1434, fx1434, fxFrozen1434; public float corpseLife1434; public bool pop1434, slam1434; public D2Corpse1434 cp1434; public Sprite[] fxFr1434; public Vector2 deathDir1434; public bool fxHold1434, fxFlip1434; /* t1446 PixelLab death events */ /* t1434 D2 feel */ public float hitY, deathT; public bool dying, splitDone, nest; public int walkRow; // v0.6: hurt-circle height (units above feet), death anim, facing row
+        public float stag1434, stagDur1434, stagCd1434, kbT1434, kbDur1434, kbDist1434, kbDone1434; public Vector2 kbDir1434; public bool over1434, frozenDeath1434, d2scaled1434, gib1434, burn1434, fx1434, fxFrozen1434; public float corpseLife1434; public bool pop1434, slam1434; public D2Corpse1434 cp1434; public float agT1447; public Sprite[] fxFr1434; public Vector2 deathDir1434; public bool fxHold1434, fxFlip1434; /* t1446 PixelLab death events */ /* t1434 D2 feel */ public float hitY, deathT; public bool dying, splitDone, nest; public int walkRow; // v0.6: hurt-circle height (units above feet), death anim, facing row
         public float tint948Until, tint948Amt; public Color tint948Col; /* t948u brief status tint */ public float knock818; public int burnStk818; /* t818u sin #9 knock mark (runTime expiry) / #31 burn stacks */ public float slowT, slowAmt; /* v0.0.36 Grave Pool slow */ public float iceBuild; /* t1393u shared chill->freeze buildup */ public float shockAmp = 0.25f; public float burnT, burnDps, chillT, shockT, bleedT, bleedDps, curseT, freezeT, dotTick, orbitCd, auraCd; public int chillHits;
         public byte variant; public float fuseT = -1; /* v0.0.37: 1 frost, 2 exploding */ public float hookCd; public int hookWind = -1, hookH = -1, strafe = 1; public Vector2 hookPrevTip, hookAim; public bool hookTipOk; // v0.0.24 Hook Thrower
         public int v44St, v44Face; public float v44T, v44HurtT, v44CastT, v44AnimT; public byte k49; public int s49, n49; public float t49, cd49; public Vector2 a49, b49; /* v0.0.49 patterns */ public bool v44West; public Vector2 v44Dir, v44Prev; public bool v44Hit; /* v0.0.44 Frost Caster / Fire Wheel */ public float gossipCd, gossipT; public int gossipSt, gossipH = -1; public Vector2 gossipC; // v0.0.25 Gossip Imp (state 0 hover, 1 approach, 2 shouting, 3 recover)
@@ -358,7 +358,7 @@ namespace Hellord
         HellordRoom _room; public bool showKills, showDebug;
         void LoadRoom(string name)
         {
-            D2ClearCorpses1434();
+            if (!floorMode) D2ClearCorpses1434(); // t1447: in floor mode corpses are kept per room (D2Feel1434.SetRoom in EnterRoom)
             { var TR = HellordTuning.I; var rp = floorMode && TR.roomRecolor ? V37Recolor.RampFor(Theme) : null; HellordRoom.Ramp = rp; HellordRoom.RampKey = rp == null ? "" : "|f" + Theme; HellordRoom.RampGain = HData.At(TR.roomRecolorGain, Theme + 1, 1.5f); /* v0.0.42: palette = theme */ HellordRoom.PropGain = TR.propRecolorGain; } // v0.0.37
             HellordRoom.FrozenSeed = floorMode && Theme == 1 && HellordTuning.I.frozenTilesB && FrozenTilesB.Available ? Mathf.Abs(curRoom * 7919 + FloorIdx * 104729 + name.Length * 31 + 17) : -1;
             HellordRoom.LowWallsOn = HellordTuning.I.lowWallsV30 && LowWalls.Available(floorMode ? Theme : 0);
@@ -599,7 +599,7 @@ namespace Hellord
                 default: e.maxHp = TT.eliteHp; /* v0.0.28: was 600 */ e.speed = 1.7f; e.radius = 0.7f; e.hitY = 1.3f; e.dmg = 12; /* v0.0.16: was 20 */ e.xp = 25; break;
             }
             e.dmg *= TT.contactDamageMul * (1 + (TT.soften679 ? TT.enemyDmgGrowth679 : TT.floorEnemyDmgGrowth) * fl); e.speed *= TT.enemySpeedMul * (1 + TT.floorSpeedGrowth * fl); // v0.0.26 pressure
-            e.maxHp *= hpMul; e.hp = e.maxHp; e.alive = true; e.animT = Random.value * 4; e.dying = false; e.splitDone = false; e.nest = false; e.deathT = 0; e.walkRow = 0; e.variant = 0; e.m53 = 0; e.k49 = 0; e.s49 = 0; e.n49 = 0; e.t49 = 0; e.cd49 = 0.8f + Random.value * 1.5f; e.fuseT = -1; e.v44St = 0; e.v44T = 0; e.tr.rotation = Quaternion.identity;
+            e.maxHp *= hpMul; e.hp = e.maxHp; e.alive = true; e.agT1447 = 0f; e.animT = Random.value * 4; e.dying = false; e.splitDone = false; e.nest = false; e.deathT = 0; e.walkRow = 0; e.variant = 0; e.m53 = 0; e.k49 = 0; e.s49 = 0; e.n49 = 0; e.t49 = 0; e.cd49 = 0.8f + Random.value * 1.5f; e.fuseT = -1; e.v44St = 0; e.v44T = 0; e.tr.rotation = Quaternion.identity;
             e.burnT = e.chillT = e.shockT = e.bleedT = e.curseT = e.freezeT = e.orbitCd = e.auraCd = e.slowT = e.stun53 = e.brit536 = 0; e.chillHits = 0; e.iceBuild = 0; e.push = Vector2.zero; D2Reset1434(e);
             e.sr.sprite = e.frames[0]; e.sr.color = Color.white; e.sr.flipX = false; e.sr.enabled = true; e.sr.gameObject.SetActive(true); HordeFX.Prepare(e.sr);
             StopStatuses(e); e.tr.localScale = Vector3.one * EnemyArtMap.Map[t].scale; e.tr.position = e.pos; e.hitT = 0;
@@ -649,9 +649,9 @@ namespace Hellord
                 // DoTs tick every 0.5s
                 e.dotTick -= dt;
                 if (e.dotTick <= 0) { e.dotTick = 0.5f; float d = e.bleedT > 0 ? e.bleedDps : 0; /* v0.0.21: burn damage comes from BurnFX.OnTick */ if (d > 0) { Damage(e, d * 0.5f, false, true); if (!e.alive) continue; } }
-                if (e.boss) { e.hitT -= dt; UpdateBoss(e, dt); UpdateStatusFx(e); UpdateStatusHandles(e); continue; }
+                if (e.boss) { e.hitT -= dt; D2Aggro1447(e, 0f, dt); UpdateBoss(e, dt); UpdateStatusFx(e); UpdateStatusHandles(e); continue; }
                 if (e.nest) { UpdateNest(e, dt); continue; }
-                Vector2 to = _heroPos - e.pos; float dist = to.magnitude;
+                Vector2 to = _heroPos - e.pos; float dist = to.magnitude; D2Aggro1447(e, dist, dt);
                 float sp = e.freezeT > 0 || e.stun53 > 0 || e.stag1434 > 0 ? 0 : e.speed * (e.chillT > 0 ? 0.65f : 1f) * (e.slowT > 0 ? 1f - e.slowAmt : 1f);
                 Vector2 v = dist > 0.01f ? to / dist * sp : Vector2.zero;
                 if (_nmin536.Count > 0 && e.type != EType.HookThrower && e.type != EType.GossipImp) { Vector2 g = EnemyGoal584(e.pos, dist) - e.pos; if (g.sqrMagnitude > 0.0001f && g != to) v = g.normalized * sp; } // t584u: demons chase a closer minion
@@ -670,7 +670,7 @@ namespace Hellord
                 if (e.kbDist1434 > 0) D2Knock1434(e, dt); ClampToRoom(ref e.pos, 6); if (_bossArenaOn1006) ClampToArena(ref e.pos); // v0.7 walls; t1006u arena
                 // far away -> respawn closer (keeps density around the player)
                 if (dist > (floorMode ? 60 : 30) && !e.elite) { StopStatuses(e); DetachFx(e); e.alive = false; e.sr.gameObject.SetActive(false); SpawnEnemy(e.type); continue; }
-                if (e.stun53 <= 0 && e.stag1434 <= 0 && dist < e.radius + 0.4f * HeroHitK47) { int hh37 = heroHits; _hurtBy53 = e; HurtHero(e.dmg, e.type.ToString(), false, true); if (e.variant == 1 && heroHits != hh37) ApplyFrostSlow37(HellordTuning.I.frostSlowS); } // v0.0.37 frost demon
+                if (e.stun53 <= 0 && e.stag1434 <= 0 && dist < e.radius + 0.4f * HeroHitK47) { int hh37 = heroHits; _hurtBy53 = e; HurtHero(e.dmg, e.type.ToString(), false, true); if (heroHits != hh37) D2Atk1447(e); if (e.variant == 1 && heroHits != hh37) ApplyFrostSlow37(HellordTuning.I.frostSlowS); } // v0.0.37 frost demon
                 if (e.freezeT <= 0) e.animT += dt * (HArt.EnemyWalkFps * sp / Mathf.Max(0.5f, e.speed));
                 e.hitT -= dt;
                 if (v.sqrMagnitude > 0.01f) e.walkRow = HArt.WalkRow(v); // 4-direction walk rows (west is its own row, no flip)

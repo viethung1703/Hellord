@@ -104,7 +104,7 @@ namespace Hellord
                 if (!HookBusy(e) && e.hookH < 0 && e.hookCd <= 0 && e.freezeT <= 0 && _dragBy == null && HooksInPlay() < Mathf.Max(1, T.hookMaxActive)
                     && (HeroHurtCenter - HookAnchor(e)).magnitude <= T.hookThrowRangeU)
                 {
-                    e.hookWind = GossipHookFX.HookWindup(e.tr, _heroCenterT, T.hookWindupSeconds); if (e.hookWind >= 0) HellordAudio.Play("hook_windup_rattle"); // v0.0.34
+                    D2Atk1447(e); e.hookWind = GossipHookFX.HookWindup(e.tr, _heroCenterT, T.hookWindupSeconds); if (e.hookWind >= 0) HellordAudio.Play("hook_windup_rattle"); // v0.0.34
                     if (e.hookWind < 0) { e.hookAim = HeroHurtCenter; e.hookTipOk = false; e.hookH = HookChainFX.Throw(HookAnchor(e), HeroHurtCenter, -1, T.hookWindupSeconds + HookLaneTell49); if (e.hookH >= 0) { hookThrows++; HellordAudio.Play("hook_chain_throw"); } else e.hookCd = 1f; }
                 }
                 // flying hook: segment test (last tip -> tip) against the hero's hurt circle

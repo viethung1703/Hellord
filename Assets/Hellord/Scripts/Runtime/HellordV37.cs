@@ -340,7 +340,7 @@ namespace Hellord
         bool BomberThink37(Enemy e, ref Vector2 v, float dist, float dt, out Color tint)
         {
             var T = T37; tint = Color.white;
-            if (e.fuseT < 0) { if (dist < T.bomberTriggerU) { e.fuseT = 0; HellordAudio.Play("curse_rune_arm"); } return false; }
+            if (e.fuseT < 0) { if (dist < T.bomberTriggerU) { e.fuseT = 0; D2Atk1447(e); HellordAudio.Play("curse_rune_arm"); } return false; }
             if (e.freezeT <= 0) e.fuseT += dt; v *= T.bomberFuseMoveMul; float p = Mathf.Clamp01(e.fuseT / Mathf.Max(0.1f, T.bomberFuseS));
             bool on = Mathf.Sin(e.fuseT * (12f + 24f * p)) > 0; tint = on ? new Color(1f, 0.4f, 0.3f) : Color.white;
             ZDisc(e.pos, T.bomberRadiusU * p, E32(0xe43b44, 0.28f), 1f, 0); ZRing(e.pos, T.bomberRadiusU, on ? E32(0xfee761, 0.9f) : E32(0xf77622, 0.8f), 1f, 1);

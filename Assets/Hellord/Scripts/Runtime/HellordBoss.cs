@@ -80,7 +80,7 @@ namespace Hellord
             PostBanner("BOSS: " + BossName37(), BossSub44(), BannerKind.Danger, HellordTuning.I.bannerHold + 0.3f); _bossSpawnT = runTime; Debug.Log($"[HB] SpawnBoss ok room {_room.Name} hero {_heroPos} boss {e.pos} hp {e.hp:0} t {runTime:0.0}");
         }
 
-        void Go(BS s, float t) { if ((_bs == BS.Sweep || _bs == BS.IceTell) && s != _bs) HellordAudio.Stop("oxhead_horn_windup"); _bs = s; _bsT = t; }
+        void Go(BS s, float t) { if (s != _bs && (s == BS.ChargeTell || s == BS.Sweep || s == BS.Stomp || s == BS.LungeTell || s == BS.IceTell) && _boss != null) D2Atk1447(_boss); if ((_bs == BS.Sweep || _bs == BS.IceTell) && s != _bs) HellordAudio.Stop("oxhead_horn_windup"); _bs = s; _bsT = t; }
         Vector2 BossC => _boss.pos + Vector2.up * HornY;   // horn height (sweep origin)
 
         float _bossEntryT; // v0.0.18: entry beat - hero safe-area bottom margin yields so the boss head clears the bar

@@ -263,7 +263,7 @@ namespace Hellord
             float range = T.impLungeRangeU49 * (e.n49 == 1 ? 2f : 1f);
             switch (e.s49)
             {
-                case 0: if (e.cd49 <= 0 && dist < range) { e.s49 = 1; e.t49 = T.impLungeTellS49; e.a49 = LeadDir49(e.pos, spd); } break;
+                case 0: if (e.cd49 <= 0 && dist < range) { e.s49 = 1; e.t49 = T.impLungeTellS49; e.a49 = LeadDir49(e.pos, spd); D2Atk1447(e); } break;
                 case 1:
                 {
                     v = Vector2.zero; e.t49 -= dt; float p = 1f - Mathf.Clamp01(e.t49 / Mathf.Max(0.05f, T.impLungeTellS49));
@@ -278,7 +278,7 @@ namespace Hellord
         void ThinkGrab49(Enemy e, ref Vector2 v, float dist, float dt, ref Color tint)
         {
             var T = T49; float reach = (T.ghoulGrabReachU49 * EArea49);
-            if (e.s49 == 0) { if (e.cd49 <= 0 && dist < reach + 0.6f) { e.s49 = 1; e.t49 = T.ghoulGrabTellS49; } return; }
+            if (e.s49 == 0) { if (e.cd49 <= 0 && dist < reach + 0.6f) { e.s49 = 1; e.t49 = T.ghoulGrabTellS49; D2Atk1447(e); } return; }
             v *= 0.25f; e.t49 -= dt; float p = 1f - Mathf.Clamp01(e.t49 / Mathf.Max(0.05f, T.ghoulGrabTellS49));
             ZDisc(e.pos, reach, E32(0xa22633, 0.1f + 0.25f * p), 0.7f, 0); ZRing(e.pos, reach, E32(0xe43b44, 0.8f), 0.7f, 1); tint = Color.Lerp(Color.white, new Color(1f, 0.55f, 0.5f), p);
             if (e.t49 > 0) return;
@@ -291,7 +291,7 @@ namespace Hellord
             var T = T49; float stepSpd = T.bruteStepU49 / Mathf.Max(0.05f, T.bruteStepS49);
             switch (e.s49)
             {
-                case 0: if (e.cd49 <= 0 && dist < T.bruteRangeU49) { e.s49 = 1; e.t49 = T.bruteTellS49; e.a49 = LeadDir49(e.pos, stepSpd); e.b49 = e.pos + e.a49 * Mathf.Min(T.bruteStepU49, RayToBox44(e.pos, e.a49)); } break;
+                case 0: if (e.cd49 <= 0 && dist < T.bruteRangeU49) { e.s49 = 1; e.t49 = T.bruteTellS49; D2Atk1447(e); e.a49 = LeadDir49(e.pos, stepSpd); e.b49 = e.pos + e.a49 * Mathf.Min(T.bruteStepU49, RayToBox44(e.pos, e.a49)); } break;
                 case 1:
                 {
                     v = Vector2.zero; e.t49 -= dt; float p = 1f - Mathf.Clamp01(e.t49 / Mathf.Max(0.05f, T.bruteTellS49));
@@ -322,7 +322,7 @@ namespace Hellord
             switch (e.s49)
             {
                 case 0:
-                    if (e.cd49 <= 0 && dist < 12f) { e.s49 = 1; e.t49 = T.eliteBlinkTellS49; Vector2 b = _heroPos - _lastDir * T.eliteBehindU49; ClampToRoom(ref b, 10); e.b49 = b; HellordAudio.Play("curse_rune_arm", 0.8f); }
+                    if (e.cd49 <= 0 && dist < 12f) { e.s49 = 1; e.t49 = T.eliteBlinkTellS49; D2Atk1447(e); Vector2 b = _heroPos - _lastDir * T.eliteBehindU49; ClampToRoom(ref b, 10); e.b49 = b; HellordAudio.Play("curse_rune_arm", 0.8f); }
                     break;
                 case 1:
                 {
@@ -357,7 +357,7 @@ namespace Hellord
             var T = T49; float spd = T.fbDashU49 / Mathf.Max(0.05f, T.fbDashS49);
             switch (e.s49)
             {
-                case 0: if (e.cd49 <= 0 && dist < T.fbDashU49 + 2f) { e.s49 = 1; e.t49 = T.fbTellS49; e.a49 = LeadDir49(e.pos, spd); e.b49 = e.pos + e.a49 * Mathf.Max(0.5f, Mathf.Min(T.fbDashU49, RayToBox44(e.pos, e.a49) - 0.5f)); } break;
+                case 0: if (e.cd49 <= 0 && dist < T.fbDashU49 + 2f) { e.s49 = 1; e.t49 = T.fbTellS49; D2Atk1447(e); e.a49 = LeadDir49(e.pos, spd); e.b49 = e.pos + e.a49 * Mathf.Max(0.5f, Mathf.Min(T.fbDashU49, RayToBox44(e.pos, e.a49) - 0.5f)); } break;
                 case 1:
                 {
                     v = Vector2.zero; e.t49 -= dt; float p = 1f - Mathf.Clamp01(e.t49 / Mathf.Max(0.05f, T.fbTellS49));
@@ -388,6 +388,7 @@ namespace Hellord
             {
                 if (dist < T.rangeMinU49) v = -dir * sp; else if (dist > T.rangeMaxU49) v = dir * sp; else v = new Vector2(-dir.y, dir.x) * sp * 0.4f * e.strafe;
                 if (e.cd49 > 0 || dist > 13f) return;
+                D2Atk1447(e);
                 switch (k)
                 {
                     case 1: e.s49 = 1; e.t49 = T.gunTellS49; break;
