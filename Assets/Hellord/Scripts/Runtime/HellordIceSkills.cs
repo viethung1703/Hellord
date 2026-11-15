@@ -173,7 +173,7 @@ namespace Hellord
             var T = HellordTuning.I; _iceSrN = 0;
             // ---- Frostbolt orbs: pierce everything, drop chill ground, burst on wall / expiry
             for (int i = _iceOrbs.Count - 1; i >= 0; i--)
-            {
+            { if (i >= _iceOrbs.Count) continue; /* t1464: a kill inside this loop can ClearIce() */
                 var o = _iceOrbs[i]; o.age += dt; o.life -= dt; Vector2 prev = o.p; o.p += o.v * dt; bool wall = false;
                 if (_room != null) { _room.Walkable(6, out var lo, out var hi); if (o.p.x < lo.x || o.p.x > hi.x || o.p.y < lo.y || o.p.y > hi.y) wall = true; } // room bounds only (orbs fly over pits)
                 Query(o.p, o.r + 0.6f, _iceQ);
@@ -187,19 +187,19 @@ namespace Hellord
                     o.trailAcc = 0; if (_icePatches.Count >= T.frostbMaxPatches) _icePatches.RemoveAt(0);
                     _icePatches.Add(new IcePatch { p = o.p, r = T.frostbPatchU * Mathf.Sqrt(o.s.AreaMul), life = o.trailLife, life0 = o.trailLife, tick = 0.05f, s = o.s });
                 }
-                if (wall || o.life <= 0f) { IceOrbBurst(o); FrostboltFX1432.Release(o); _iceOrbs.RemoveAt(i); continue; }
+                if (wall || o.life <= 0f) { IceOrbBurst(o); FrostboltFX1432.Release(o); { if (i < _iceOrbs.Count) _iceOrbs.RemoveAt(i); } continue; }
                 IceVfxOrb(o, o.p, o.v, o.age);
             }
             // ---- chill ground
             for (int i = _icePatches.Count - 1; i >= 0; i--)
-            {
-                var p = _icePatches[i]; p.life -= dt; if (p.life <= 0f) { _icePatches.RemoveAt(i); continue; }
+            { if (i >= _icePatches.Count) continue; /* t1464: a kill inside this loop can ClearIce() */
+                var p = _icePatches[i]; p.life -= dt; if (p.life <= 0f) { { if (i < _icePatches.Count) _icePatches.RemoveAt(i); } continue; }
                 p.tick -= dt; if (p.tick <= 0f) { p.tick = T.frostbPatchTickS; Query(p.p, p.r, _iceQ); foreach (int ei in _iceQ) { var e = _en[ei]; if (e.alive && (e.pos - p.p).magnitude <= p.r + e.radius * 0.5f) IceChill(e, T.frostbPatchChillS, T.frostbPatchBuild); } }
                 IceVfxChillGround(p);
             }
             // ---- Ice Nova rings: hit each demon once as the ring passes it, knock-back falls off with distance
             for (int i = _iceNovas.Count - 1; i >= 0; i--)
-            {
+            { if (i >= _iceNovas.Count) continue; /* t1464: a kill inside this loop can ClearIce() */
                 var n = _iceNovas[i]; n.t += dt; float k = Mathf.Clamp01(n.t / n.dur); n.r = n.rMax * (n.vs >= 0 ? NovaFX1419.Front01(n.vs, n.t) : 1f - (1f - k) * (1f - k)); // ease-out; t1419: with the new burst the hit ring follows the visual front radius (same max radius)
                 Query(n.c, n.r + 0.8f, _iceQ);
                 foreach (int ei in _iceQ)
@@ -212,11 +212,11 @@ namespace Hellord
                     Vector2 dir = dist > 0.01f ? d / dist : Vector2.up; float kn = Mathf.Lerp(n.kClose, n.kFar, Mathf.Clamp01(dist / n.rMax));
                     Hit(e, n.dmg, n.s, dir * kn); IceChill(e, n.chillS, n.build);
                 }
-                IceVfxNova(n); if (k >= 1f) _iceNovas.RemoveAt(i);
+                IceVfxNova(n); if (k >= 1f) { if (i < _iceNovas.Count) _iceNovas.RemoveAt(i); }
             }
             // ---- Frost Bombs: pulse chill while ticking, then detonate
             for (int i = _iceBombs.Count - 1; i >= 0; i--)
-            {
+            { if (i >= _iceBombs.Count) continue; /* t1464: a kill inside this loop can ClearIce() */
                 var b = _iceBombs[i]; b.t += dt; b.pulseT -= dt;
                 // t1410u: the crystal sticks to its demon and rides with it (it used to stay where the cluster WAS and the demons walked out of the blast: 0 hit, 0 kills). If that demon dies it hops to the nearest one in reach.
                 if (b.tgt != null && (!b.tgt.alive || b.tgt.dying)) { int nx = Nearest(b.p, 2.5f, -1); b.tgt = nx >= 0 ? _en[nx] : null; }
@@ -236,7 +236,7 @@ namespace Hellord
                         var e = _en[ei]; if (!e.alive) continue; Vector2 d = e.pos - b.p; float dist = d.magnitude; if (dist > b.r + e.radius) continue;
                         float dm = b.dmg * (e.chillT > 0f || e.freezeT > 0f ? T.bombChilledBonus : 1f); Hit(e, dm, b.s, (dist > 0.01f ? d / dist : Vector2.up) * T.bombKnock); IceFreeze(e, T.bombFreezeS);
                     }
-                    IceVfxBombBurst(b.p, b.r, b.fx); HellordAudio.Play("fireball_impact", 0.85f); _iceBombs.RemoveAt(i); continue;
+                    IceVfxBombBurst(b.p, b.r, b.fx); HellordAudio.Play("fireball_impact", 0.85f); { if (i < _iceBombs.Count) _iceBombs.RemoveAt(i); } continue;
                 }
                 IceVfxBombCrystal(b.p, b.t / b.dur, b.t, b.dur, b.fx);
             }
@@ -358,7 +358,7 @@ namespace Hellord
         void IceStripOnce(IceArt.Strip st, Vector2 p) { _iceStripOnce.Add(new IceOnce { st = st, p = p }); }
         class IceOnce { public IceArt.Strip st; public Vector2 p; public float t; }
         readonly List<IceOnce> _iceStripOnce = new List<IceOnce>();
-        void UpdateIceStripOnce(float dt) { for (int i = _iceStripOnce.Count - 1; i >= 0; i--) { var o = _iceStripOnce[i]; o.t += dt; if (o.st.Done(o.t)) { _iceStripOnce.RemoveAt(i); continue; } IceSR(o.st.At(o.t), o.p, YSort(o.p.y) + 40, Color.white); } }
+        void UpdateIceStripOnce(float dt) { for (int i = _iceStripOnce.Count - 1; i >= 0; i--) { if (i >= _iceStripOnce.Count) continue; /* t1464: a kill inside this loop can ClearIce() */ var o = _iceStripOnce[i]; o.t += dt; if (o.st.Done(o.t)) { { if (i < _iceStripOnce.Count) _iceStripOnce.RemoveAt(i); } continue; } IceSR(o.st.At(o.t), o.p, YSort(o.p.y) + 40, Color.white); } }
 
         // ---------------------------------------------------------------- 24 px tile (skill bar / cards / support target pick)
         /// <summary>Draws the 24x24 tile for an ice skill at 1x (dw = 24) or 2x (dw = 48). False when the skill is not an ice skill.</summary>
