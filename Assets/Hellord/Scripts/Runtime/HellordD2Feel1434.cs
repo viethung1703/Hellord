@@ -31,12 +31,30 @@ namespace Hellord
 
         static Texture2D Load(string rel) { var t = Resources.Load<Texture2D>("HellordArt/" + rel); if (t != null) { t.filterMode = FilterMode.Point; t.wrapMode = TextureWrapMode.Clamp; } return t; }
         /// <summary>Horizontal strip of `count` equal frames, pivot = bottom-centre (x = floor(w/2), 1 px above the bottom): the art team's convention for stagger / death / corpse (= the enemy sheet pivot for the standing sprites).</summary>
-        static Sprite[] Strip(string rel, int count)
+        static Sprite[] Strip(string rel, int count, bool pl = false)
         {
-            var t = Load(rel); if (t == null) return null; int n = Mathf.Max(1, count), w = t.width / n; var r = new Sprite[n]; var piv = new Vector2(Mathf.Floor(w / 2f) / w, 1f / t.height);
+            var t = Load(rel); if (t == null) return null; int n = Mathf.Max(1, count), w = t.width / n; var r = new Sprite[n]; var piv = pl ? new Vector2(PlPivotX(rel, w) / w, 1f / t.height) : new Vector2(Mathf.Floor(w / 2f) / w, 1f / t.height);
             if (t.width % n != 0 || w < 2) return null;
             for (int i = 0; i < n; i++) r[i] = Sprite.Create(t, new Rect(i * w, 0, w, t.height), piv, HArt.PPU, 0, SpriteMeshType.FullRect);
             return r;
+        }
+        // t1446 PixelLab strips: pivot x = w/2 except the corpses whose trimmed images carry the death-strip pivot (art notes): brute E 21.5, N 22.5, W 24.5 (S = w/2)
+        static float PlPivotX(string rel, int w) { if (rel.StartsWith("Enemies/brute_corpse_east")) return 21.5f; if (rel.StartsWith("Enemies/brute_corpse_north")) return 22.5f; if (rel.StartsWith("Enemies/brute_corpse_west")) return 24.5f; return w / 2f; }
+        static Sprite[][] Dir4Pl(string sheet, string kind, int count)
+        {
+            string k = Key(sheet); var d = new Sprite[4][]; int any = -1;
+            for (int i = 0; i < 4; i++) { d[i] = Strip("Enemies/" + k + "_" + kind + "_" + Dirs[i] + "_pl", count, true); if (d[i] != null && any < 0) any = i; }
+            if (any < 0) return null; for (int i = 0; i < 4; i++) if (d[i] == null) return null; return d;
+        }
+        static readonly Dictionary<string, Sprite[][]> _plHit = new Dictionary<string, Sprite[][]>(), _plDeath = new Dictionary<string, Sprite[][]>(), _plCorpse = new Dictionary<string, Sprite[][]>();
+        /// <summary>t1446 PixelLab get-hit (4 frames) / death (7 frames, POP = frame 2) / corpse per facing: Enemies/&lt;key&gt;_{hit,death,corpse}_{south,east,north,west}_pl.png. Only imp_v2 + brute ship. null = none.</summary>
+        public static Sprite[][] HitPl(string sheet) { if (_plHit.TryGetValue(sheet, out var r)) return r; r = Dir4Pl(sheet, "hit", 4); _plHit[sheet] = r; return r; }
+        public static Sprite[][] DeathPl(string sheet) { if (_plDeath.TryGetValue(sheet, out var r)) return r; r = Dir4Pl(sheet, "death", 7); _plDeath[sheet] = r; return r; }
+        public static Sprite[][] CorpsePl(string sheet) { if (_plCorpse.TryGetValue(sheet, out var r)) return r; r = Dir4Pl(sheet, "corpse", 1); _plCorpse[sheet] = r; return r; }
+        /// <summary>Give an already-spawned corpse object its body (PL: the pool/decal appears at the slam, the body when the death anim ends).</summary>
+        public static void SetBody(D2Corpse1434 c, Sprite sp, Vector3 pos, Vector3 scale, Color tint, int ysort)
+        {
+            if (c == null || sp == null) return; c.sr.sprite = sp; c.sr.enabled = true; c.sr.color = tint; c.a0 = tint.a; c.sr.sortingOrder = OrdCorpse + ysort; c.sr.transform.position = pos; c.sr.transform.localScale = scale;
         }
         /// <summary>Per-facing set [S,E,N,W] of strips: Enemies/&lt;key&gt;_&lt;kind&gt;_{south,east,north,west}.png; falls back to one file Enemies/&lt;key&gt;_&lt;kind&gt;.png for all four. null = none.</summary>
         static Sprite[][] Dir4(string sheet, string kind, int count)
@@ -108,9 +126,9 @@ namespace Hellord
         }
 
         /// <summary>Corpse + ground decals. sp may be null (gib: decal only).</summary>
-        public static void Spawn(Sprite sp, Vector3 pos, Vector3 scale, Color tint, int ysort, Sprite pool, Sprite[] decal, float life, float fade, int cap)
+        public static D2Corpse1434 Spawn(Sprite sp, Vector3 pos, Vector3 scale, Color tint, int ysort, Sprite pool, Sprite[] decal, float life, float fade, int cap)
         {
-            if ((sp == null && pool == null && decal == null) || !Ready()) return;
+            if ((sp == null && pool == null && decal == null) || !Ready()) return null;
             if (_c.Count >= cap) { for (int i = 0; i < _c.Count; i++) if (!_c[i].forced) { var o = _c[i]; o.forced = true; o.life = o.t + 0.4f; o.fade = 0.4f; break; } } // oldest fades first
             if (_c.Count >= cap + 16) Release(0);
             D2Corpse1434 c = _free.Count > 0 ? _free.Pop() : null;
@@ -121,7 +139,7 @@ namespace Hellord
             if (pool != null) { c.pool.sprite = pool; c.pool.color = new Color(1, 1, 1, c.poolA0); c.pool.sortingOrder = OrdPool + ysort; c.pool.enabled = true; } else c.pool.enabled = false;
             c.decal.transform.localPosition = Vector3.zero; c.decal.transform.localScale = Vector3.one;
             if (decal != null) { c.decal.sprite = decal[0]; c.decal.color = Color.white; c.decal.sortingOrder = OrdPool + ysort - 1; c.decal.enabled = true; } else c.decal.enabled = false;
-            _c.Add(c); Spawned++;
+            _c.Add(c); Spawned++; return c;
         }
         public static Sprite PoolOrPlaceholder(string sheet, bool big, bool placeholders) => Pool(sheet, big) ?? (placeholders ? PlaceholderPool() : null);
         static void Release(int i) { var c = _c[i]; _c.RemoveAt(i); c.sr.gameObject.SetActive(false); _free.Push(c); Faded++; }
@@ -169,7 +187,7 @@ namespace Hellord
         }
         void D2ClearCorpses1434() { D2Feel1434.Clear(); }
         void D2SetDir1434(Vector2 knock, SkillInst s) { _d2DirSet = knock.sqrMagnitude > 0.0004f; if (_d2DirSet) _d2Dir = knock.normalized; _d2Fire = s != null && s.def != null && (s.def.innate == Status.Burn || s.Has(SupportId.Burn)); }
-        void D2Reset1434(Enemy e) { e.stag1434 = e.stagDur1434 = e.stagCd1434 = 0; e.kbDist1434 = 0; e.over1434 = false; e.frozenDeath1434 = false; e.d2scaled1434 = false; e.gib1434 = e.burn1434 = e.fx1434 = e.fxFrozen1434 = false; e.corpseLife1434 = 0; }
+        void D2Reset1434(Enemy e) { e.pop1434 = e.slam1434 = false; e.cp1434 = null; e.fxFr1434 = null; e.stag1434 = e.stagDur1434 = e.stagCd1434 = 0; e.kbDist1434 = 0; e.over1434 = false; e.frozenDeath1434 = false; e.d2scaled1434 = false; e.gib1434 = e.burn1434 = e.fx1434 = e.fxFrozen1434 = false; e.corpseLife1434 = 0; }
         Vector2 D2DirOf(Enemy e) { if (_d2DirSet) return _d2Dir; Vector2 d = e.pos - _heroPos; return d.sqrMagnitude > 1e-4f ? d.normalized : Vector2.right; }
         static string D2Sheet(Enemy e) => EnemyArtMap.Map[e.type].sheet;
 
@@ -207,6 +225,7 @@ namespace Hellord
             float trig = e.maxHp / Mathf.Max(1f, T.d2StaggerDiv1434), ratio = dmg / Mathf.Max(0.01f, trig); if (ratio < 1f) return;
             float chance = ratio < 2f ? 0.5f : ratio < 4f ? 0.75f : 1f; if (e.elite) chance *= T.d2StaggerElite1434.x; if (Random.value >= chance) return;
             float dur = Random.Range(T.d2StaggerS1434.x, T.d2StaggerS1434.y) * (e.elite ? T.d2StaggerElite1434.y : 1f);
+            if (T.d2anim1446 && T.d2Hooks1434 && D2Feel1434.HitPl(D2Sheet(e)) != null) dur = Mathf.Max(dur, 4f / Mathf.Max(1f, T.d2HitFps1446)); // t1446: let the 4-frame PixelLab hit play out
             e.stag1434 = e.stagDur1434 = dur; e.stagCd1434 = dur + T.d2StaggerCdS1434; e.kbDir1434 = dir; D2Stagger1434Count++;
             if (T.d2Knock1434)
             {
@@ -244,6 +263,8 @@ namespace Hellord
         void D2StagVisual1434(Enemy e)
         {
             var T = HellordTuning.I; float prog = 1f - e.stag1434 / Mathf.Max(0.01f, e.stagDur1434);
+            var hpl = T.d2anim1446 && T.d2Hooks1434 ? D2Feel1434.HitPl(D2Sheet(e)) : null;
+            if (hpl != null) { var ha = hpl[(e.walkRow >> 2) & 3]; e.sr.sprite = ha[Mathf.Min(ha.Length - 1, (int)((e.stagDur1434 - e.stag1434) * T.d2HitFps1446))]; return; } // t1446 PixelLab get-hit, 15 fps
             var st = T.d2Hooks1434 ? D2Feel1434.Stagger(D2Sheet(e)) : null; var arr = st != null ? st[(e.walkRow >> 2) & 3] : null;
             if (arr != null && arr.Length > 0) { e.sr.sprite = arr[Mathf.Min(arr.Length - 1, (int)(prog * arr.Length))]; return; }
             float k = (1f - prog); k *= k; float a = T.d2StaggerRecoil1434.y * k; e.tr.localScale = Vector3.one * EnemyArtMap.Map[e.type].scale * 1f; e.tr.localScale = new Vector3(EnemyArtMap.Map[e.type].scale * (1f + a), EnemyArtMap.Map[e.type].scale * (1f - a), 1f); e.d2scaled1434 = true;
@@ -262,23 +283,40 @@ namespace Hellord
             var fx = T.d2Hooks1434 ? D2Feel1434.Fx("frozen_shatter2") : null; e.fxFrozen1434 = fx != null; if (fx != null) D2Feel1434.OneShot(fx, e.pos + Vector2.up * e.hitY, false, YSort(e.pos.y) + 4, D2Feel1434.FxFps); // flash 0-1, statue 2-5, hide enemy at 6, shards to 20
             return true;
         }
+        /// <summary>t1446: PixelLab death art for this enemy (imp_v2, brute) = the POP sequence replaces the HA collapse.</summary>
+        bool D2Pl1446(Enemy e)
+        {
+            var T = HellordTuning.I; return T.d2feel1434 && T.d2anim1446 && T.d2Death1434 && T.d2Hooks1434 && !e.frozenDeath1434 && !e.boss && !e.nest && e.variant < 3 && e.m53 == 0 && D2Feel1434.DeathPl(D2Sheet(e)) != null;
+        }
         bool D2DeathSfx1434(Enemy e)
         {
             var T = HellordTuning.I; if (!(T.d2feel1434 && T.d2Hooks1434) || !HellordAudio.Has("death_scream")) return false;
+            if (D2Pl1446(e)) return true; // played on the POP instead (D2PopSfx1446); the old enemy_death is replaced
             if (!e.boss) { if (!e.frozenDeath1434) HellordAudio.Play("death_scream"); if (e.over1434 && HellordAudio.Has("gore_splat")) HellordAudio.Play("gore_splat"); }
             return !e.boss;
+        }
+        void D2PopSfx1446(Enemy e)
+        {
+            if (!HellordAudio.Has("death_scream")) return; HellordAudio.Play("death_scream"); if (e.over1434 && HellordAudio.Has("gore_splat")) HellordAudio.Play("gore_splat");
         }
         void D2DeathStart1434(Enemy e)
         {
             var T = HellordTuning.I; D2EndStag1434(e); if (e.over1434) D2OverkillCount++; e.fx1434 = false; e.corpseLife1434 = Random.Range(T.d2CorpseLifeS1434.x, T.d2CorpseLifeS1434.y);
+            e.pop1434 = e.slam1434 = false; e.cp1434 = null; e.fxFr1434 = null; e.fxHold1434 = false;
             if (!T.d2Hooks1434) return;
-            Vector2 dir = D2DirOf(e); bool flip = dir.x < 0; Vector3 chest = e.pos + Vector2.up * e.hitY; int ys = YSort(e.pos.y); float hold = e.corpseLife1434 + 0.3f; int ground = -15050 + ys; float fps = T.d2BloodFps1434;
-            Sprite[] fr = null;
-            if (e.gib1434) { fr = D2Feel1434.Fx("gib_burst"); if (fr != null) D2Feel1434.OneShot(fr, chest, flip, ys + 4, D2Feel1434.FxFps, hold, ground); }
-            else if (e.burn1434 && T.d2Burn1434) { fr = D2Feel1434.Fx("burn_death"); if (fr != null) D2Feel1434.OneShot(fr, chest, false, ys + 4, D2Feel1434.FxFps); }
-            if (fr == null && !e.gib1434) { fr = D2Feel1434.BloodDeath(); if (fr != null) D2Feel1434.OneShot(fr, chest, flip, ys + 3, fps, hold, ground); }
-            e.fx1434 = fr != null;
-            if (D2Feel1434.Verbose) Debug.Log($"[D2] death {e.type} gib {e.gib1434} burn {e.burn1434} over {e.over1434} fx {fr != null}");
+            Vector2 dir = D2DirOf(e); e.deathDir1434 = dir; e.fxFlip1434 = dir.x < 0; Sprite[] fr = null; bool hold = false;
+            if (e.gib1434) { fr = D2Feel1434.Fx("gib_burst"); hold = true; }
+            else if (e.burn1434 && T.d2Burn1434) fr = D2Feel1434.Fx("burn_death");
+            if (fr == null && !e.gib1434) { fr = D2Feel1434.BloodDeath(); hold = true; }
+            e.fxFr1434 = fr; e.fx1434 = fr != null; e.fxHold1434 = hold && fr != null;
+            if (D2Feel1434.Verbose) Debug.Log($"[D2] death {e.type} gib {e.gib1434} burn {e.burn1434} over {e.over1434} fx {fr != null} pl {D2Pl1446(e)}");
+            if (!D2Pl1446(e)) D2FireDeathFx1434(e); // PixelLab deaths fire it on the POP
+        }
+        void D2FireDeathFx1434(Enemy e)
+        {
+            if (e.fxFr1434 == null) return; var T = HellordTuning.I; Vector3 chest = e.pos + Vector2.up * e.hitY; int ys = YSort(e.pos.y);
+            if (e.fxHold1434) D2Feel1434.OneShot(e.fxFr1434, chest, e.fxFlip1434, ys + (e.gib1434 ? 4 : 3), e.gib1434 ? D2Feel1434.FxFps : T.d2BloodFps1434, e.corpseLife1434 + 0.3f, -15050 + ys);
+            else D2Feel1434.OneShot(e.fxFr1434, chest, false, ys + 4, D2Feel1434.FxFps);
         }
         int D2CorpseFrame1434(Enemy e) => e.type == EType.Splitter ? -1 : HArt.EnemyDeathN - 3; // fallback (no art): last solid frame of the old ember death
 
@@ -287,6 +325,7 @@ namespace Hellord
         {
             var T = HellordTuning.I; if (!(T.d2feel1434 && T.d2Death1434)) return false;
             if (e.frozenDeath1434) return D2FrozenDeath1434(e, dt);
+            if (D2Pl1446(e)) return D2DeathPl1446(e, dt);
             if (e.gib1434) { e.dying = false; e.sr.enabled = false; e.sr.gameObject.SetActive(false); if (e.type == EType.Splitter && !e.splitDone) D2Split1434(e); D2SpawnCorpse1434(e, -2, 0); return true; } // gib: body hidden at frame 0, decal only
             e.deathT += dt;
             if (e.kbDist1434 > 0) { D2Knock1434(e, dt); ClampToRoom(ref e.pos, 6); e.tr.position = new Vector3(Snap(e.pos.x), Snap(e.pos.y), 0); e.sr.sortingOrder = YSort(e.pos.y); }
@@ -308,23 +347,53 @@ namespace Hellord
             e.splitDone = true;
             for (int s = -1; s <= 1; s += 2) { var c = SpawnEnemyAt(EType.SplitChild, e.pos + new Vector2(s * 13f / HArt.PPU, 0)); if (c != null) c.push = new Vector2(s * 1.5f, 0); }
         }
-        /// <summary>ci &lt; 0 = art death just finished (use the corpse art; if only the death strip exists use its last frame).</summary>
-        void D2SpawnCorpse1434(Enemy e, int ci, int dir)
+        Sprite D2CorpseSprite1434(Enemy e, int ci, int dir, out bool art)
         {
-            var T = HellordTuning.I; string sheet = D2Sheet(e); var ca = T.d2Hooks1434 ? D2Feel1434.Corpse(sheet) : null; Sprite sp = ca != null ? ca[dir] : null; bool art = sp != null;
-            if (ci == -2) { sp = null; art = true; } // gib: no body
-            else
-            {
-                if (sp == null && ci < 0) { var da = D2Feel1434.Death(sheet); if (da != null) { sp = da[dir][da[dir].Length - 1]; art = true; } }
-                if (sp == null) sp = e.frames[HArt.EnemyDeath0 + Mathf.Max(0, ci)];
-            }
-            Color tint = art ? Color.Lerp(Color.white, T.d2CorpseTint1434, 0.35f) : T.d2CorpseTint1434; tint.a = 1f;
+            var T = HellordTuning.I; string sheet = D2Sheet(e); art = false; if (ci == -2 || ci == -3) { art = true; return null; }
+            Sprite sp = null;
+            if (T.d2Hooks1434 && D2Pl1446(e)) { var cp = D2Feel1434.CorpsePl(sheet); if (cp != null) sp = cp[dir][0]; }
+            if (sp == null && T.d2Hooks1434) { var ca = D2Feel1434.Corpse(sheet); if (ca != null) sp = ca[dir]; }
+            art = sp != null;
+            if (sp == null && ci < 0) { var da = D2Feel1434.Death(sheet); if (da != null) { sp = da[dir][da[dir].Length - 1]; art = true; } }
+            if (sp == null) sp = e.frames[HArt.EnemyDeath0 + Mathf.Max(0, ci)];
+            return sp;
+        }
+        Color D2CorpseTint1434(Enemy e, bool art)
+        {
+            var T = HellordTuning.I; Color tint = art ? Color.Lerp(Color.white, T.d2CorpseTint1434, 0.35f) : T.d2CorpseTint1434; tint.a = 1f;
             if (e.burn1434 && T.d2Burn1434) tint = Color.Lerp(tint, new Color(0.15f, 0.17f, 0.27f, 1f), 0.55f); // charred
+            return tint;
+        }
+        /// <summary>ci &lt; 0 = art death just finished (corpse art, else the death strip's last frame); -2 = gib (decal only); -3 = PixelLab slam (pool/decal now, the body later via SetBody). Returns the corpse object.</summary>
+        D2Corpse1434 D2SpawnCorpse1434(Enemy e, int ci, int dir, float extraLife = 0f)
+        {
+            var T = HellordTuning.I; string sheet = D2Sheet(e); Sprite sp = D2CorpseSprite1434(e, ci, dir, out bool art); Color tint = D2CorpseTint1434(e, art);
             bool big = e.type == EType.Brute || e.type == EType.Splitter; bool hooks = T.d2Hooks1434 && e.type != EType.Elite; // the wraith gets no pool / decal (art brief)
             Sprite[] decal = hooks && T.d2DecalMode1434 >= 1 ? D2Feel1434.Variant("blood_decal") : null;
             Sprite pool = hooks && (T.d2DecalMode1434 != 1 || decal == null) ? D2Feel1434.PoolOrPlaceholder(sheet, big, T.d2Placeholders1434 && !art) : null;
-            float life = e.corpseLife1434 > 0 ? e.corpseLife1434 : Random.Range(T.d2CorpseLifeS1434.x, T.d2CorpseLifeS1434.y);
-            D2Feel1434.Spawn(sp, e.tr.position, e.tr.localScale, tint, YSort(e.pos.y), pool, decal, life, T.d2CorpseFadeS1434, Mathf.Max(1, T.d2CorpseCap1434));
+            float life = (e.corpseLife1434 > 0 ? e.corpseLife1434 : Random.Range(T.d2CorpseLifeS1434.x, T.d2CorpseLifeS1434.y)) + extraLife;
+            return D2Feel1434.Spawn(sp, e.tr.position, e.tr.localScale, tint, YSort(e.pos.y), pool, decal, life, T.d2CorpseFadeS1434, Mathf.Max(1, T.d2CorpseCap1434));
+        }
+        /// <summary>t1446 PixelLab death: 7 frames @ d2DeathFps1446. POP = frame 2: white silhouette flash, blood_death / gib / burn FX, death scream, gore_splat. Slam = frame 4: blood pool / decal appears. Frame 6 = corpse pose; the corpse art takes over when the anim ends. Gib: body hidden after the POP frame, decal at the POP, no corpse.</summary>
+        bool D2DeathPl1446(Enemy e, float dt)
+        {
+            var T = HellordTuning.I; var fr = D2Feel1434.DeathPl(D2Sheet(e))[(e.walkRow >> 2) & 3]; int dir = (e.walkRow >> 2) & 3;
+            e.deathT += dt;
+            if (e.kbDist1434 > 0) { D2Knock1434(e, dt); ClampToRoom(ref e.pos, 6); e.tr.position = new Vector3(Snap(e.pos.x), Snap(e.pos.y), 0); e.sr.sortingOrder = YSort(e.pos.y); }
+            int k = (int)(e.deathT * Mathf.Max(1f, T.d2DeathFps1446));
+            if (!e.pop1434 && k >= 2) { e.pop1434 = true; D2FireDeathFx1434(e); D2PopSfx1446(e); if (e.gib1434) { if (e.type == EType.Splitter && !e.splitDone) D2Split1434(e); D2SpawnCorpse1434(e, -2, dir); } }
+            if (e.gib1434 && k >= 3) { e.dying = false; e.sr.enabled = false; e.sr.gameObject.SetActive(false); return true; }
+            if (!e.slam1434 && k >= 4 && !e.gib1434) { e.slam1434 = true; e.cp1434 = D2SpawnCorpse1434(e, -3, dir, (fr.Length - 4) / Mathf.Max(1f, T.d2DeathFps1446)); }
+            if (k >= fr.Length || e.deathT > 2f)
+            {
+                e.dying = false; e.sr.enabled = false; e.sr.gameObject.SetActive(false);
+                if (e.cp1434 != null) { var sp = D2CorpseSprite1434(e, 0, dir, out bool art); D2Feel1434.SetBody(e.cp1434, sp, e.tr.position, e.tr.localScale, D2CorpseTint1434(e, art), YSort(e.pos.y)); }
+                else D2SpawnCorpse1434(e, 0, dir);
+                return true;
+            }
+            e.sr.sprite = fr[k]; e.sr.flipX = false;
+            if (k == 2) { HordeFX.Flash(e.sr); e.sr.color = Color.white; } // POP: white silhouette of the frame (Flash material swap, re-armed every update of the 50 ms frame)
+            return true;
         }
         bool D2FrozenDeath1434(Enemy e, float dt)
         {
