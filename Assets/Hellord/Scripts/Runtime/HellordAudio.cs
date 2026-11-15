@@ -29,6 +29,13 @@ namespace Hellord
             Add("enemy_hit", "enemy", 0.55f, 0.7f, 0.92f, 1.08f, 4, 0.04f);
             Add("enemy_death", "enemy", 0.7f, 0.85f, 0.9f, 1.1f, 6, 0.05f);   // ~20/s, cap 6
             Add("elite_death", "enemy", 1f, 1f, 0.95f, 1.05f, 2);
+            // t1434 D2 hit/death feel (Resources/Audio/SFX/hitdeath, sound pack d2feel_t1434). Voice caps per hook; pain voices are per type.
+            Add("impact_flesh", "hitdeath", 0.62f, 0.78f, 0.92f, 1.08f, 6, 0.035f);
+            Add("pain_imp", "hitdeath", 0.5f, 0.6f, 0.94f, 1.06f, 3, 0.1f); Add("pain_ghoul", "hitdeath", 0.5f, 0.6f, 0.94f, 1.06f, 3, 0.1f);
+            Add("pain_brute", "hitdeath", 0.5f, 0.6f, 0.94f, 1.06f, 3, 0.1f); Add("pain_wraith", "hitdeath", 0.5f, 0.6f, 0.94f, 1.06f, 3, 0.1f);
+            Add("death_scream", "hitdeath", 0.78f, 0.9f, 0.94f, 1.06f, 4, 0.05f);
+            Add("gore_splat", "hitdeath", 0.62f, 0.76f, 0.92f, 1.1f, 3, 0.06f);
+            Add("ice_shatter", "hitdeath", 0.72f, 0.85f, 0.95f, 1.05f, 3, 0.06f);
             Add("fireball_cast", "fireball", 0.6f, 0.75f, 0.93f, 1.07f, 3, 0.05f);
             Add("fireball_impact", "fireball", 0.7f, 0.85f, 0.9f, 1.1f, 4, 0.03f);
             Add("frost_cleave", "skills", 0.6f, 0.75f, 0.95f, 1.05f, 3);
@@ -138,6 +145,8 @@ namespace Hellord
         /// <summary>v0.0.62 t613u: UI/menu hooks use their own gain (not scaled by sfxVolume 0.35, which made -24 dBFS hover clips ~-41 dBFS = inaudible).</summary>
         static float UiMaster => HellordTuning.I.sfxEnabled ? HellordTuning.I.uiSfxGain612 : 0f;
 
+        /// <summary>t1434: true when the hook has at least one clip (lets callers keep the old sound as a fallback).</summary>
+        public static bool Has(string hook) => I._h.TryGetValue(hook, out var h) && h.clips.Length > 0;
         public static void Play(string hook, float pitchOverride = -1) { if (HellordTuning.I.sfxEnabled) I.PlayI(hook, pitchOverride); }
         /// <summary>v0.0.34: stop every voice currently playing a hook (e.g. horn wind-up cut short).</summary>
         public static void Stop(string hook) { if (_i == null) return; foreach (var s in _i._pool) if (s.isPlaying && _i._owner.TryGetValue(s, out var o) && o == hook) s.Stop(); }

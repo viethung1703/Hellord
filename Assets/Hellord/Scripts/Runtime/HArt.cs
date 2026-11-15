@@ -157,6 +157,8 @@ namespace Hellord
         }
 
         static readonly Dictionary<string, Sprite[]> _cache = new Dictionary<string, Sprite[]>();
+        /// <summary>t1434: cell size + pivot (px from top-left) of a known enemy sheet, so optional stagger strips can be cut with the same grid.</summary>
+        public static bool CellInfo(string sheet, out int w, out int h, out Vector2 pivotPx) { if (Sheets.TryGetValue(sheet, out var d)) { w = d.w; h = d.h; pivotPx = d.pivotPx; return true; } w = h = 0; pivotPx = Vector2.zero; return false; }
         public static bool Missing(string name) => Resources.Load<Texture2D>("HellordArt/" + name) == null;
         public static Sprite[] Strip(string name, int frames, int w, int h, Vector2 pivotPxFromTop)
         {

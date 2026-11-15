@@ -325,7 +325,7 @@ namespace Hellord
             Vector2 d = e.pos - _heroPos; d = d.sqrMagnitude > 1e-4f ? d.normalized : Vector2.right;
             if (e.elite) TellFX.BossHit(e.tr, d, e.pos + Vector2.up * e.hitY - d * e.radius * 0.7f, crit);
             if (e.boss && _hpFlashT <= 0) { _hpFlashT = 0.08f; _hpFlashF = 1; } // HP bar "hit" state frame
-            if ((dmg >= 60f || (crit && dmg > 40f)) && Time.unscaledTime > _bigHitT)
+            if (!(HellordTuning.I.d2feel1434 && HellordTuning.I.d2NoHitShake1434) && (dmg >= 60f || (crit && dmg > 40f)) && Time.unscaledTime > _bigHitT) // t1434: no shake / hitstop on normal hits
             {
                 _bigHitT = Time.unscaledTime + 0.15f;
                 if (ScreenShake.Main) ScreenShake.Main.Kick(d * 1.5f * ProjectileFX.ShakeScale);
@@ -337,6 +337,7 @@ namespace Hellord
         void OnBossKilled(Enemy e)
         {
             Debug.Log($"[HB] boss killed {runTime - _bossSpawnT:0.0}s after spawn"); StopBossFx(); ClearBossArena1006(); _arenaOn = false; SetWalls(false); FloorBossKilled();
+            if (HellordTuning.I.d2feel1434 && HellordTuning.I.d2NoHitShake1434 && HellordTuning.I.d2BossKillStopS1434 > 0) HitStop.Play(HellordTuning.I.d2BossKillStopS1434); // t1434 small boss-kill hitstop
             e.dying = true; e.deathT = 0; Play("death", true); // plays the sheet death (10 frames), then hides the root
         }
         void StopBossFx() { ClearV44(); Clear984(); HellordAudio.Stop("oxhead_horn_windup"); if (_lane != null) _lane.Stop(); StopTimed46(); StopH(ref _tellH); StopH(ref _speedH); StopH(ref _dustH); StopH(ref _stunH); StopH(ref _punishH); StopH(ref _rageH); if (_stunBar) _stunBar.End(true); _bs = BS.Off; }

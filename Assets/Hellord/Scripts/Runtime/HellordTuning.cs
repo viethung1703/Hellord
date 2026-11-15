@@ -1379,6 +1379,28 @@ namespace Hellord
     [Tooltip("t1426: gap (s) before the Ice Nova 2nd pulse while the d2spec look is on (the visual lasts 0.53 s; the old 0.45 s gap chained the two rings back-to-back into a flicker)")] public float novaPulseGapD2S1426 = 0.75f;
     [Tooltip("t1432: Frostbolt = HFX D2R Ice Bolt strips (16 directions, no rotation) + hit puff + low-key pale glow. Off = the old t1410 IceFX3 orb. Speed / damage / pierce unchanged.")] public bool frostbolt1432 = true;
     [Tooltip("t1432: also play the 10-frame cast flash at the casting hand (weak; turn off if it reads as noise)")] public bool frostbolt1432Cast = true;
+    // ---- t1434: Diablo 2 hit / death feel (research: Art/reference/t1433_d2_hitdeath/notes.md). Master + per-feature toggles; all off = the old behaviour. Asset names: Docs/d2feel_assets.md ----
+    [Header("t1434 D2 hit/death feel")]
+    [Tooltip("t1434 MASTER: Diablo 2 style stagger, knockback, 33 ms flash, fast death + corpses, overkill slide, frozen-kill statue, asset hooks. Off = everything below is ignored.")] public bool d2feel1434 = true;
+    [Tooltip("1: heavy hits stagger. Trigger = damage >= maxHP / divisor; chance 50% at 1-2x, 75% at 2-4x, 100% at 4x+ (D2 hit recovery). Not when frozen, on the killing blow, on DoT, bosses, nests, special variants.")] public bool d2Stagger1434 = true;
+    [Tooltip("Stagger trigger divisor (D2 = 16)")] public float d2StaggerDiv1434 = 16f;
+    [Tooltip("Stagger duration range, seconds (no move / attack / contact damage)")] public Vector2 d2StaggerS1434 = new Vector2(0.2f, 0.24f);
+    [Tooltip("Pause after a stagger ends before the same enemy can stagger again (stops stun-lock under rapid fire; 0 = D2 raw)")] public float d2StaggerCdS1434 = 0.2f;
+    [Tooltip("Elites: stagger chance x, duration x")] public Vector2 d2StaggerElite1434 = new Vector2(0.5f, 0.7f);
+    [Tooltip("Recoil offset (px, eased back) and squash amount (0.15 = 15%) while the enemy has no stagger art")] public Vector2 d2StaggerRecoil1434 = new Vector2(3f, 0.14f);
+    [Tooltip("2: knockback tied to the stagger, px range scaled by hit size (ease-out), over seconds. Added on top of the old push.")] public bool d2Knock1434 = true;
+    public Vector2 d2KnockPx1434 = new Vector2(8f, 16f); public float d2KnockS1434 = 0.18f;
+    [Tooltip("Elite knockback multiplier (bosses never stagger)")] public float d2KnockElite1434 = 0.35f;
+    [Tooltip("3: hit flash length (s), global to HordeFX (old 0.07). Does not cover enemies drawn through PixelFX (e.fx).")] public bool d2Flash1434 = true; public float d2FlashS1434 = 0.033f;
+    [Tooltip("4: fast death (total seconds for the trimmed death frames), then a corpse that stays and fades. Enemies with special death paths (variant 3+, mortar, bosses) are unchanged and leave no corpse.")] public bool d2Death1434 = true; public float d2DeathS1434 = 0.3f, d2DeathFps1434 = 12f; // d2DeathS = old 8-frame death trimmed to this (no art); d2DeathFps = the 3-frame art collapse
+    [Tooltip("Corpse life range (s), fade-out (s), max alive corpses (oldest fades first), tint")] public Vector2 d2CorpseLifeS1434 = new Vector2(3f, 5f); public float d2CorpseFadeS1434 = 1f; public int d2CorpseCap1434 = 60; public Color d2CorpseTint1434 = new Color(0.72f, 0.62f, 0.62f, 1f);
+    [Tooltip("5: overkill (damage >= mul x remaining HP, or a crit kill) slides the body px range back from the attacker over seconds")] public bool d2Overkill1434 = true;
+    public float d2OverkillMul1434 = 2f; public bool d2OverkillCrit1434 = true; public Vector2 d2OverkillPx1434 = new Vector2(24f, 40f); public float d2OverkillS1434 = 0.26f;
+    [Tooltip("6: killing a frozen enemy = 2-frame white flash, 4-frame frozen statue (cold tint), then the shatter shards. No death anim, no corpse. Frame = game frame (25 fps = 40 ms).")] public bool d2Frozen1434 = true; public float d2FrameS1434 = 0.04f;
+    [Tooltip("No screen shake / big-hit hitstop on normal hits; elite kills keep a tiny hitstop (s), boss kills get one (s). 0 = none.")] public bool d2NoHitShake1434 = true; public float d2EliteKillStopS1434 = 0.05f, d2BossKillStopS1434 = 0.06f;
+    [Tooltip("7: asset hooks (BloodFX strips, per-enemy stagger / corpse / pool art, HitDeath sounds). Missing assets fall back to the old visuals/sounds or a small code placeholder.")] public bool d2Hooks1434 = true;
+    [Tooltip("Code placeholders while art is missing: small dark-red blood pixels on a staggering hit, simple dark pool under a corpse with no art")] public bool d2Placeholders1434 = true;
+    [Tooltip("Blood strip playback speed (fps)")] public float d2BloodFps1434 = 24f;
     [Tooltip("Shared CHILL -> FREEZE: build points a demon needs to freeze (each ice hit adds its skill's 'build'), seconds frozen, and extra build needed after a freeze before it can freeze again. Bosses freeze 40% as long")] public float iceFreezeAt = 3f, iceFreezeSeconds = 0.9f, iceFreezeGraceBuild = 2f;
     [Tooltip("Frostbolt by skill level: orbs per cast, orb speed (units/s), burst radius (units), chill-ground seconds, cooldown multiplier (applied on top of the 1.25s base)")] public int[] frostbOrbs = { 1, 1, 2, 2, 3 }; public float[] frostbSpeedU = { 5.5f, 5.5f, 6f, 6f, 6.5f }, frostbBurstU = { 1.1f, 1.2f, 1.3f, 1.4f, 1.6f }, frostbTrailSeconds = { 1.5f, 1.8f, 2f, 2.3f, 2.6f }, frostbCdMul = { 1f, 0.9f, 0.9f, 0.8f, 0.75f };
     [Tooltip("Frostbolt: target search range (units), fan angle between orbs (deg), orb hit radius (units), orb life (s), knock-back per hit, burst damage vs the orb hit (x)")] public float frostbRangeU = 10f, frostbSpreadDeg = 16f, frostbRadiusU = 0.55f, frostbLifeS = 2.4f, frostbKnock = 0.4f, frostbBurstMul = 0.6f;
