@@ -264,7 +264,7 @@ namespace Hellord
             }
             if (T.d2Hooks1434)
             {
-                if (HellordAudio.Has("pain_imp")) HellordAudio.Play(D2PainHook(e.type));
+                { string ph = D2PainHook(e.type), p47 = "pain1447_" + ph.Substring(5); if (D2Sfx1447() && HellordAudio.Has(p47)) HellordAudio.Play(p47); else if (HellordAudio.Has("pain_imp")) HellordAudio.Play(ph); }
                 var sparkFr = D2Feel1434.Fx("hit_spark");
                 if (sparkFr != null) D2Feel1434.OneShot(sparkFr, at, dir.x < 0, YSort(e.pos.y) + 4, D2Feel1434.FxFps); else if (T.d2Placeholders1434) HordeFX.CheapBurst(at, new Color(0.45f, 0.04f, 0.06f), 3);
             }
