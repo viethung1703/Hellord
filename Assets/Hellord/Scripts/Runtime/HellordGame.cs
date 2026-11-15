@@ -13,7 +13,7 @@ namespace Hellord
         public int v44Fx = -1, v44Tr = -1; public byte m53; public int calc53, eqEl53 = -1, bst53; public bool calcB53; public float eqT53, bstore53, stun53, brit536; // t536u Brittle Mark expiry (runTime) // v0.0.53 pact node state (Calcify, Equilibrium, Hemorrhage). public byte m53: mortar demon kind+1 (0 = none) // v0.0.44 MinionFX handles (tell / fire trail), -1 = none
         public int id; public EType type; public bool alive, elite; public Vector2 pos, push; public float hp, maxHp, speed, radius, dmg, animT;
         public SpriteRenderer sr; public Transform tr; public Sprite[] frames; public int xp, cx, cy; public float hitT; public PixelFX fx; public int shockH = -1, bleedH = -1, burnH = -1, chillH = -1; public bool boss;
-        public float stag1434, stagDur1434, stagCd1434, kbT1434, kbDur1434, kbDist1434, kbDone1434; public Vector2 kbDir1434; public bool over1434, frozenDeath1434, d2scaled1434; /* t1434 D2 feel */ public float hitY, deathT; public bool dying, splitDone, nest; public int walkRow; // v0.6: hurt-circle height (units above feet), death anim, facing row
+        public float stag1434, stagDur1434, stagCd1434, kbT1434, kbDur1434, kbDist1434, kbDone1434; public Vector2 kbDir1434; public bool over1434, frozenDeath1434, d2scaled1434, gib1434, burn1434, fx1434, fxFrozen1434; public float corpseLife1434; /* t1434 D2 feel */ public float hitY, deathT; public bool dying, splitDone, nest; public int walkRow; // v0.6: hurt-circle height (units above feet), death anim, facing row
         public float tint948Until, tint948Amt; public Color tint948Col; /* t948u brief status tint */ public float knock818; public int burnStk818; /* t818u sin #9 knock mark (runTime expiry) / #31 burn stacks */ public float slowT, slowAmt; /* v0.0.36 Grave Pool slow */ public float iceBuild; /* t1393u shared chill->freeze buildup */ public float shockAmp = 0.25f; public float burnT, burnDps, chillT, shockT, bleedT, bleedDps, curseT, freezeT, dotTick, orbitCd, auraCd; public int chillHits;
         public byte variant; public float fuseT = -1; /* v0.0.37: 1 frost, 2 exploding */ public float hookCd; public int hookWind = -1, hookH = -1, strafe = 1; public Vector2 hookPrevTip, hookAim; public bool hookTipOk; // v0.0.24 Hook Thrower
         public int v44St, v44Face; public float v44T, v44HurtT, v44CastT, v44AnimT; public byte k49; public int s49, n49; public float t49, cd49; public Vector2 a49, b49; /* v0.0.49 patterns */ public bool v44West; public Vector2 v44Dir, v44Prev; public bool v44Hit; /* v0.0.44 Frost Caster / Fire Wheel */ public float gossipCd, gossipT; public int gossipSt, gossipH = -1; public Vector2 gossipC; // v0.0.25 Gossip Imp (state 0 hover, 1 approach, 2 shouting, 3 recover)
@@ -709,7 +709,7 @@ namespace Hellord
                 _blasts.Add(new Blast { pos = e.pos + Vector2.up * 0.5f, r = 1.8f, dmg = dmg * 2.5f + 10, kind = 1, skip = -1 });
             }
             if (!e.elite) e.push += knock;
-            D2SetDir1434(knock); Damage(e, dmg, !tick, tick); _d2DirSet = false; PactPostHit53(e, dmg, s, tick); SinPostHit818(e, dmg, s, tick); // t818u sins // v0.0.53 pact
+            D2SetDir1434(knock, s); Damage(e, dmg, !tick, tick); _d2DirSet = false; _d2Fire = false; PactPostHit53(e, dmg, s, tick); SinPostHit818(e, dmg, s, tick); // t818u sins // v0.0.53 pact
             if (!e.alive) OnSkillKill(e, s); // v0.0.36 Soul Harvest / Explode on Kill
         }
         static SupportId SupportIdFor(Status st) => st == Status.Burn ? SupportId.Burn : st == Status.Chill ? SupportId.Chill : st == Status.Shock ? SupportId.Shock : st == Status.Bleed ? SupportId.Bleed : SupportId.AddedDamage;
@@ -766,7 +766,7 @@ namespace Hellord
         }
         void KillEnemy(Enemy e)
         {
-            e.alive = false; if (e.type == EType.HookThrower || e.type == EType.GossipImp) HookCleanup(e);
+            e.alive = false; e.burn1434 = e.burnT > 0 || _d2Fire; if (e.type == EType.HookThrower || e.type == EType.GossipImp) HookCleanup(e);
             EndMinionFx44(e); // v0.0.44
             if (e.nest) { OnNestKilled(e); return; }
             PactKill53(e); // v0.0.53 pact (reads statuses before they stop)
@@ -790,7 +790,7 @@ namespace Hellord
             if (e.frozenDeath1434) { HordeFX.AddNumberObstacle(e.pos, 4f); D2EndStag1434(e); HordeFX.Prepare(e.sr); e.dying = true; e.deathT = 0; e.splitDone = false; return; } // t1434: statue sequence runs in UpdateDeath, sprite stays
             D2DeathStart1434(e);
             // v0.6: play the sheet's 8-frame death (12fps), then hide (last frame is empty). Same burst + number obstacle as HordeFX.Kill.
-            if (HellordTuning.I.fxDeathBurst934) DeathBurst934(e.pos + Vector2.up * e.hitY); else HordeFX.CheapBurst(e.pos + Vector2.up * e.hitY, new Color(0.55f, 0.06f, 0.08f), 5); HordeFX.AddNumberObstacle(e.pos, 4f);
+            if (e.fx1434) { } else if (HellordTuning.I.fxDeathBurst934) DeathBurst934(e.pos + Vector2.up * e.hitY); else HordeFX.CheapBurst(e.pos + Vector2.up * e.hitY, new Color(0.55f, 0.06f, 0.08f), 5); HordeFX.AddNumberObstacle(e.pos, 4f);
             HordeFX.Prepare(e.sr); e.sr.color = EnemyArtMap.Map[e.type].tint; e.dying = true; e.deathT = 0; e.splitDone = false;
             e.sr.sprite = e.frames[HArt.EnemyDeath0];
         }

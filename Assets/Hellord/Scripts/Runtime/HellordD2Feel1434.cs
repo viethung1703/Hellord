@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Hellord
 {
-    public sealed class D2Corpse1434 { public SpriteRenderer sr, pool; public float t, life, fade; public bool forced; public float a0 = 1f, poolA0 = 0.85f; }
+    public sealed class D2Corpse1434 { public SpriteRenderer sr, pool, decal; public Sprite[] decalFr; public float t, life, fade; public bool forced; public float a0 = 1f, poolA0 = 0.85f; }
 
     public static class D2Feel1434
     {
@@ -16,14 +16,14 @@ namespace Hellord
         static Transform _root;
         static readonly List<D2Corpse1434> _c = new List<D2Corpse1434>(80);
         static readonly Stack<D2Corpse1434> _free = new Stack<D2Corpse1434>();
-        sealed class Shot { public SpriteRenderer sr; public Sprite[] fr; public float t, fps; }
+        sealed class Shot { public SpriteRenderer sr; public Sprite[] fr; public float t, fps, hold, fade; public int holdOrder; public bool held; }
         static readonly List<Shot> _shots = new List<Shot>(32); static readonly Stack<Shot> _shotFree = new Stack<Shot>();
         static readonly Dictionary<string, Sprite[][]> _stag = new Dictionary<string, Sprite[][]>();
         static readonly Dictionary<string, Sprite[]> _corpse = new Dictionary<string, Sprite[]>(); static readonly Dictionary<string, Sprite[][]> _death = new Dictionary<string, Sprite[][]>(); static readonly Dictionary<string, Sprite> _pool = new Dictionary<string, Sprite>();
         static readonly Dictionary<string, Sprite[]> _blood = new Dictionary<string, Sprite[]>();
         static Sprite _phPool;
         public static int CorpseCount => _c.Count;
-        public static int Spawned, Faded, ShotsPlayed; // play-check counters
+        public static bool Verbose; public static int Spawned, Faded, ShotsPlayed; // play-check counters
 
         public static string Key(string sheet) => sheet.Replace("PLACEHOLDER_", "").Replace("enemy_", "");
 
@@ -76,40 +76,51 @@ namespace Hellord
             }
             t.Apply(); return _phPool = Sprite.Create(t, new Rect(0, 0, W, H), new Vector2(0.5f, 0.5f), HArt.PPU, 0, SpriteMeshType.FullRect);
         }
-        /// <summary>Blood strip (BloodFX/&lt;name&gt;.png, square cells = image height, centre pivot). First alias that exists wins.</summary>
-        public static Sprite[] BloodStrip(params string[] names)
+        // ---- Hellord FX t1435 strips (Resources/HellordArt/BloodFX/<name>_strip.png): frame w, h, count, pivot px from top-left (chest pivots; feet = pivot y + 18) ----
+        static readonly Dictionary<string, int[]> FxDefs = new Dictionary<string, int[]>
         {
-            string ck = names[0]; if (_blood.TryGetValue(ck, out var r)) return r; r = null;
-            foreach (var n in names)
-            {
-                var t = Load("BloodFX/" + n); if (t == null) continue; int c = t.height, cnt = Mathf.Max(1, t.width / c); r = new Sprite[cnt];
-                for (int i = 0; i < cnt; i++) r[i] = Sprite.Create(t, new Rect(i * c, 0, c, c), new Vector2(0.5f, 0.5f), HArt.PPU, 0, SpriteMeshType.FullRect);
-                break;
-            }
-            _blood[ck] = r; return r;
+            { "blood_hit_v1", new[] { 24, 20, 8, 6, 10 } }, { "blood_hit_v2", new[] { 24, 20, 8, 6, 10 } }, { "blood_hit_v3", new[] { 24, 20, 8, 6, 10 } },
+            { "hit_spark", new[] { 22, 22, 6, 6, 11 } },
+            { "blood_death_v1", new[] { 56, 44, 12, 20, 18 } }, { "blood_death_v2", new[] { 56, 44, 12, 20, 18 } }, { "blood_death_v3", new[] { 56, 44, 12, 20, 18 } },
+            { "blood_decal_v1", new[] { 40, 20, 6, 20, 10 } }, { "blood_decal_v2", new[] { 40, 20, 6, 20, 10 } }, { "blood_decal_v3", new[] { 40, 20, 6, 20, 10 } },
+            { "frozen_shatter2", new[] { 72, 72, 21, 36, 36 } }, { "gib_burst", new[] { 72, 56, 14, 36, 26 } }, { "burn_death", new[] { 48, 56, 16, 24, 36 } },
+        };
+        public const float FxFps = 30f;
+        public static Sprite[] Fx(string name)
+        {
+            if (_blood.TryGetValue(name, out var r)) return r; r = null;
+            if (FxDefs.TryGetValue(name, out var d)) { var t = Load("BloodFX/" + name + "_strip"); if (t != null && t.width == d[0] * d[2] && t.height == d[1]) { r = new Sprite[d[2]]; var piv = new Vector2(d[3] / (float)d[0], (d[1] - d[4]) / (float)d[1]); for (int i = 0; i < d[2]; i++) r[i] = Sprite.Create(t, new Rect(i * d[0], 0, d[0], d[1]), piv, HArt.PPU, 0, SpriteMeshType.FullRect); } else if (t != null) Debug.LogWarning("[D2Feel1434] " + name + " has an unexpected size " + t.width + "x" + t.height); }
+            _blood[name] = r; return r;
         }
-        public static Sprite[] BloodHit() => BloodStrip("blood_hit", "blood_spurt");
-        public static Sprite[] BloodDeath() => BloodStrip("blood_death", "blood_splatter");
+        public static Sprite[] Variant(string baseName) => Fx(baseName + "_v" + Random.Range(1, 4)) ?? Fx(baseName + "_v1");
+        public static Sprite[] BloodHit() => Variant("blood_hit");
+        public static Sprite[] BloodDeath() => Variant("blood_death");
+        public static bool HasFx(string name) => Fx(name) != null;
 
-        public static void OneShot(Sprite[] fr, Vector3 pos, bool flipX, int order, float fps)
+        /// <summary>One-shot sprite animation. hold &gt; 0 = keep the last frame on the ground (holdOrder) for that many seconds, fading over `fade`. flipX mirrors about the pivot (base art points east).</summary>
+        public static void OneShot(Sprite[] fr, Vector3 pos, bool flipX, int order, float fps, float hold = 0f, int holdOrder = 0, float fade = 1f)
         {
-            if (fr == null || fr.Length == 0 || !Ready()) return; if (_shots.Count >= 28) return; // cap
+            if (fr == null || fr.Length == 0 || !Ready()) return; int act = 0, held = 0; for (int i = 0; i < _shots.Count; i++) if (_shots[i].hold > 0) held++; else act++;
+            if (hold > 0 ? held >= 90 : act >= 40) return; // caps
             Shot s = _shotFree.Count > 0 ? _shotFree.Pop() : null;
-            if (s == null) { var go = new GameObject("blood"); go.transform.SetParent(_root, false); s = new Shot { sr = go.AddComponent<SpriteRenderer>() }; }
-            s.fr = fr; s.t = 0; s.fps = Mathf.Max(1f, fps); s.sr.sprite = fr[0]; s.sr.flipX = flipX; s.sr.sortingOrder = order; s.sr.color = Color.white; s.sr.transform.position = pos; s.sr.gameObject.SetActive(true); _shots.Add(s); ShotsPlayed++;
+            if (s == null) { var go = new GameObject("fx"); go.transform.SetParent(_root, false); s = new Shot { sr = go.AddComponent<SpriteRenderer>() }; }
+            s.fr = fr; s.t = 0; s.fps = Mathf.Max(1f, fps); s.hold = hold; s.holdOrder = holdOrder; s.fade = fade; s.held = false; s.sr.sprite = fr[0]; s.sr.flipX = flipX; s.sr.sortingOrder = order; s.sr.color = Color.white; s.sr.transform.position = pos; s.sr.transform.localScale = Vector3.one; s.sr.gameObject.SetActive(true); _shots.Add(s); ShotsPlayed++;
         }
 
-        public static void Spawn(Sprite sp, Vector3 pos, Vector3 scale, Color tint, int ysort, Sprite pool, float life, float fade, int cap)
+        /// <summary>Corpse + ground decals. sp may be null (gib: decal only).</summary>
+        public static void Spawn(Sprite sp, Vector3 pos, Vector3 scale, Color tint, int ysort, Sprite pool, Sprite[] decal, float life, float fade, int cap)
         {
-            if (sp == null || !Ready()) return;
+            if ((sp == null && pool == null && decal == null) || !Ready()) return;
             if (_c.Count >= cap) { for (int i = 0; i < _c.Count; i++) if (!_c[i].forced) { var o = _c[i]; o.forced = true; o.life = o.t + 0.4f; o.fade = 0.4f; break; } } // oldest fades first
             if (_c.Count >= cap + 16) Release(0);
             D2Corpse1434 c = _free.Count > 0 ? _free.Pop() : null;
-            if (c == null) { var g = new GameObject("corpse"); g.transform.SetParent(_root, false); var pg = new GameObject("pool"); pg.transform.SetParent(g.transform, false); c = new D2Corpse1434 { sr = g.AddComponent<SpriteRenderer>(), pool = pg.AddComponent<SpriteRenderer>() }; }
-            c.t = 0; c.life = life; c.fade = Mathf.Min(fade, life); c.forced = false; c.a0 = tint.a;
-            c.sr.sprite = sp; c.sr.color = tint; c.sr.flipX = false; c.sr.sortingOrder = OrdCorpse + ysort; c.sr.transform.position = pos; c.sr.transform.localScale = scale; c.sr.gameObject.SetActive(true);
-            c.pool.transform.localPosition = new Vector3(0f, 3f / HArt.PPU, 0f); // art note: centre ~3 px above the feet point c.pool.transform.localScale = Vector3.one;
+            if (c == null) { var g = new GameObject("corpse"); g.transform.SetParent(_root, false); var pg = new GameObject("pool"); pg.transform.SetParent(g.transform, false); var dg = new GameObject("decal"); dg.transform.SetParent(g.transform, false); c = new D2Corpse1434 { sr = g.AddComponent<SpriteRenderer>(), pool = pg.AddComponent<SpriteRenderer>(), decal = dg.AddComponent<SpriteRenderer>() }; }
+            c.t = 0; c.life = life; c.fade = Mathf.Min(fade, life); c.forced = false; c.a0 = tint.a; c.decalFr = decal;
+            c.sr.sprite = sp; c.sr.enabled = sp != null; c.sr.color = tint; c.sr.flipX = false; c.sr.sortingOrder = OrdCorpse + ysort; c.sr.transform.position = pos; c.sr.transform.localScale = scale; c.sr.gameObject.SetActive(true);
+            c.pool.transform.localPosition = new Vector3(0f, 3f / HArt.PPU, 0f); c.pool.transform.localScale = Vector3.one; // art note: pool centre ~3 px above the feet point
             if (pool != null) { c.pool.sprite = pool; c.pool.color = new Color(1, 1, 1, c.poolA0); c.pool.sortingOrder = OrdPool + ysort; c.pool.enabled = true; } else c.pool.enabled = false;
+            c.decal.transform.localPosition = Vector3.zero; c.decal.transform.localScale = Vector3.one;
+            if (decal != null) { c.decal.sprite = decal[0]; c.decal.color = Color.white; c.decal.sortingOrder = OrdPool + ysort - 1; c.decal.enabled = true; } else c.decal.enabled = false;
             _c.Add(c); Spawned++;
         }
         public static Sprite PoolOrPlaceholder(string sheet, bool big, bool placeholders) => Pool(sheet, big) ?? (placeholders ? PlaceholderPool() : null);
@@ -121,11 +132,20 @@ namespace Hellord
             for (int i = _c.Count - 1; i >= 0; i--)
             {
                 var c = _c[i]; c.t += dt; float rem = c.life - c.t; if (rem <= 0) { Release(i); continue; }
-                if (rem < c.fade) { float a = rem / c.fade; var col = c.sr.color; col.a = c.a0 * a; c.sr.color = col; var pc = c.pool.color; pc.a = c.poolA0 * a; c.pool.color = pc; }
+                bool fading = rem < c.fade; float a = fading ? rem / c.fade : 1f;
+                if (fading) { var col = c.sr.color; col.a = c.a0 * a; c.sr.color = col; var pc = c.pool.color; pc.a = c.poolA0 * a; c.pool.color = pc; }
+                if (c.decalFr != null)
+                {   // decal stages (art note): 0 fresh -> 1 dried after 1.5 s -> when the corpse fades 2,3,4,5 in equal steps (0.25 s at the normal 1 s fade), no loop
+                    int st = fading ? Mathf.Min(5, 2 + (int)((c.fade - rem) / (c.fade * 0.25f))) : c.t > 1.5f ? 1 : 0; var sp = c.decalFr[Mathf.Min(st, c.decalFr.Length - 1)]; if (c.decal.sprite != sp) c.decal.sprite = sp;
+                }
             }
             for (int i = _shots.Count - 1; i >= 0; i--)
             {
-                var s = _shots[i]; s.t += dt; int k = (int)(s.t * s.fps); if (k >= s.fr.Length) { s.sr.gameObject.SetActive(false); _shots.RemoveAt(i); _shotFree.Push(s); continue; } s.sr.sprite = s.fr[k];
+                var s = _shots[i]; s.t += dt; float total = s.fr.Length / s.fps; int k = (int)(s.t * s.fps);
+                if (k < s.fr.Length) { s.sr.sprite = s.fr[k]; continue; }
+                if (s.hold <= 0 || s.t >= total + s.hold) { s.sr.gameObject.SetActive(false); _shots.RemoveAt(i); _shotFree.Push(s); continue; }
+                if (!s.held) { s.held = true; s.sr.sprite = s.fr[s.fr.Length - 1]; s.sr.sortingOrder = s.holdOrder; }
+                float rem = total + s.hold - s.t; if (rem < s.fade) { var col = s.sr.color; col.a = rem / s.fade; s.sr.color = col; }
             }
         }
         public static void Clear()
@@ -138,7 +158,7 @@ namespace Hellord
 
     public partial class HellordGame
     {
-        float _d2flash0 = -1; Vector2 _d2Dir; bool _d2DirSet;
+        float _d2flash0 = -1; Vector2 _d2Dir; bool _d2DirSet, _d2Fire;
         static readonly Color D2Statue = new Color(0.62f, 0.86f, 1f, 1f);
 
         void D2Tick1434(float dt)
@@ -148,8 +168,8 @@ namespace Hellord
             D2Feel1434.Tick(dt);
         }
         void D2ClearCorpses1434() { D2Feel1434.Clear(); }
-        void D2SetDir1434(Vector2 knock) { _d2DirSet = knock.sqrMagnitude > 0.0004f; if (_d2DirSet) _d2Dir = knock.normalized; }
-        void D2Reset1434(Enemy e) { e.stag1434 = e.stagDur1434 = e.stagCd1434 = 0; e.kbDist1434 = 0; e.over1434 = false; e.frozenDeath1434 = false; e.d2scaled1434 = false; }
+        void D2SetDir1434(Vector2 knock, SkillInst s) { _d2DirSet = knock.sqrMagnitude > 0.0004f; if (_d2DirSet) _d2Dir = knock.normalized; _d2Fire = s != null && s.def != null && (s.def.innate == Status.Burn || s.Has(SupportId.Burn)); }
+        void D2Reset1434(Enemy e) { e.stag1434 = e.stagDur1434 = e.stagCd1434 = 0; e.kbDist1434 = 0; e.over1434 = false; e.frozenDeath1434 = false; e.d2scaled1434 = false; e.gib1434 = e.burn1434 = e.fx1434 = e.fxFrozen1434 = false; e.corpseLife1434 = 0; }
         Vector2 D2DirOf(Enemy e) { if (_d2DirSet) return _d2Dir; Vector2 d = e.pos - _heroPos; return d.sqrMagnitude > 1e-4f ? d.normalized : Vector2.right; }
         static string D2Sheet(Enemy e) => EnemyArtMap.Map[e.type].sheet;
 
@@ -176,11 +196,11 @@ namespace Hellord
                     if (over)
                     {
                         float u = Mathf.Clamp01(Mathf.InverseLerp(T.d2OverkillMul1434, T.d2OverkillMul1434 * 3f, r)); float px = Mathf.Lerp(T.d2OverkillPx1434.x, T.d2OverkillPx1434.y, u) * (e.elite ? T.d2KnockElite1434 + 0.4f : 1f);
+                        if (T.d2Gib1434 && T.d2Death1434 && T.d2Hooks1434 && !e.elite && r >= T.d2GibMul1434 && D2Feel1434.HasFx("gib_burst")) e.gib1434 = true;
                         e.over1434 = true; e.kbDir1434 = dir; e.kbDist1434 = px / HArt.PPU; e.kbDur1434 = Mathf.Max(0.05f, T.d2OverkillS1434); e.kbT1434 = 0; e.kbDone1434 = 0;
                     }
                 }
-                if (T.d2Hooks1434) D2BloodHit1434(e, at, dir);
-                return;
+                return; // the death FX (blood_death / gib) cover the killing blow
             }
             if (T.d2Hooks1434) D2BloodHit1434(e, at, dir);
             if (!T.d2Stagger1434 || e.boss || e.nest || e.variant >= 3 || e.m53 > 0 || e.type == EType.HookThrower || e.type == EType.GossipImp || e.freezeT > 0 || e.stun53 > 0 || e.stagCd1434 > 0) return;
@@ -196,14 +216,15 @@ namespace Hellord
             if (T.d2Hooks1434)
             {
                 if (HellordAudio.Has("pain_imp")) HellordAudio.Play(D2PainHook(e.type));
-                if (D2Feel1434.BloodHit() == null && T.d2Placeholders1434) HordeFX.CheapBurst(at, new Color(0.45f, 0.04f, 0.06f), 3);
+                var sparkFr = D2Feel1434.Fx("hit_spark");
+                if (sparkFr != null) D2Feel1434.OneShot(sparkFr, at, dir.x < 0, YSort(e.pos.y) + 4, D2Feel1434.FxFps); else if (T.d2Placeholders1434) HordeFX.CheapBurst(at, new Color(0.45f, 0.04f, 0.06f), 3);
             }
         }
         public static int D2Stagger1434Count, D2OverkillCount, D2FrozenCount, D2KnockCount;
 
         void D2BloodHit1434(Enemy e, Vector3 at, Vector2 dir)
         {
-            var fr = D2Feel1434.BloodHit(); if (fr != null) D2Feel1434.OneShot(fr, at, dir.x < 0, YSort(e.pos.y) + 2, HellordTuning.I.d2BloodFps1434);
+            var fr = D2Feel1434.BloodHit(); if (fr != null) D2Feel1434.OneShot(fr, at, dir.x < 0, YSort(e.pos.y) + 3, HellordTuning.I.d2BloodFps1434);
         }
 
         void D2StagTick1434(Enemy e, float dt)
@@ -237,7 +258,9 @@ namespace Hellord
         bool D2FrozenBegin1434(Enemy e)
         {
             var T = HellordTuning.I; if (!(T.d2feel1434 && T.d2Frozen1434) || e.boss || e.nest || e.variant >= 3 || e.m53 > 0) return false;
-            e.frozenDeath1434 = true; e.kbDist1434 = 0; e.over1434 = false; D2FrozenCount++; return true;
+            e.frozenDeath1434 = true; e.kbDist1434 = 0; e.over1434 = false; D2FrozenCount++;
+            var fx = T.d2Hooks1434 ? D2Feel1434.Fx("frozen_shatter2") : null; e.fxFrozen1434 = fx != null; if (fx != null) D2Feel1434.OneShot(fx, e.pos + Vector2.up * e.hitY, false, YSort(e.pos.y) + 4, D2Feel1434.FxFps); // flash 0-1, statue 2-5, hide enemy at 6, shards to 20
+            return true;
         }
         bool D2DeathSfx1434(Enemy e)
         {
@@ -247,8 +270,15 @@ namespace Hellord
         }
         void D2DeathStart1434(Enemy e)
         {
-            var T = HellordTuning.I; D2EndStag1434(e); if (e.over1434) D2OverkillCount++;
-            if (T.d2Hooks1434) { var fr = D2Feel1434.BloodDeath(); if (fr != null) D2Feel1434.OneShot(fr, e.pos, false, -15050 + YSort(e.pos.y), T.d2BloodFps1434); }
+            var T = HellordTuning.I; D2EndStag1434(e); if (e.over1434) D2OverkillCount++; e.fx1434 = false; e.corpseLife1434 = Random.Range(T.d2CorpseLifeS1434.x, T.d2CorpseLifeS1434.y);
+            if (!T.d2Hooks1434) return;
+            Vector2 dir = D2DirOf(e); bool flip = dir.x < 0; Vector3 chest = e.pos + Vector2.up * e.hitY; int ys = YSort(e.pos.y); float hold = e.corpseLife1434 + 0.3f; int ground = -15050 + ys; float fps = T.d2BloodFps1434;
+            Sprite[] fr = null;
+            if (e.gib1434) { fr = D2Feel1434.Fx("gib_burst"); if (fr != null) D2Feel1434.OneShot(fr, chest, flip, ys + 4, D2Feel1434.FxFps, hold, ground); }
+            else if (e.burn1434 && T.d2Burn1434) { fr = D2Feel1434.Fx("burn_death"); if (fr != null) D2Feel1434.OneShot(fr, chest, false, ys + 4, D2Feel1434.FxFps); }
+            if (fr == null && !e.gib1434) { fr = D2Feel1434.BloodDeath(); if (fr != null) D2Feel1434.OneShot(fr, chest, flip, ys + 3, fps, hold, ground); }
+            e.fx1434 = fr != null;
+            if (D2Feel1434.Verbose) Debug.Log($"[D2] death {e.type} gib {e.gib1434} burn {e.burn1434} over {e.over1434} fx {fr != null}");
         }
         int D2CorpseFrame1434(Enemy e) => e.type == EType.Splitter ? -1 : HArt.EnemyDeathN - 3; // fallback (no art): last solid frame of the old ember death
 
@@ -257,6 +287,7 @@ namespace Hellord
         {
             var T = HellordTuning.I; if (!(T.d2feel1434 && T.d2Death1434)) return false;
             if (e.frozenDeath1434) return D2FrozenDeath1434(e, dt);
+            if (e.gib1434) { e.dying = false; e.sr.enabled = false; e.sr.gameObject.SetActive(false); if (e.type == EType.Splitter && !e.splitDone) D2Split1434(e); D2SpawnCorpse1434(e, -2, 0); return true; } // gib: body hidden at frame 0, decal only
             e.deathT += dt;
             if (e.kbDist1434 > 0) { D2Knock1434(e, dt); ClampToRoom(ref e.pos, 6); e.tr.position = new Vector3(Snap(e.pos.x), Snap(e.pos.y), 0); e.sr.sortingOrder = YSort(e.pos.y); }
             string sheet = D2Sheet(e); var dart = T.d2Hooks1434 ? D2Feel1434.Death(sheet) : null; int dir = (e.walkRow >> 2) & 3;
@@ -281,19 +312,26 @@ namespace Hellord
         void D2SpawnCorpse1434(Enemy e, int ci, int dir)
         {
             var T = HellordTuning.I; string sheet = D2Sheet(e); var ca = T.d2Hooks1434 ? D2Feel1434.Corpse(sheet) : null; Sprite sp = ca != null ? ca[dir] : null; bool art = sp != null;
-            if (sp == null && ci < 0) { var da = D2Feel1434.Death(sheet); if (da != null) { sp = da[dir][da[dir].Length - 1]; art = true; } }
-            if (sp == null) sp = e.frames[HArt.EnemyDeath0 + Mathf.Max(0, ci)];
+            if (ci == -2) { sp = null; art = true; } // gib: no body
+            else
+            {
+                if (sp == null && ci < 0) { var da = D2Feel1434.Death(sheet); if (da != null) { sp = da[dir][da[dir].Length - 1]; art = true; } }
+                if (sp == null) sp = e.frames[HArt.EnemyDeath0 + Mathf.Max(0, ci)];
+            }
             Color tint = art ? Color.Lerp(Color.white, T.d2CorpseTint1434, 0.35f) : T.d2CorpseTint1434; tint.a = 1f;
-            bool big = e.type == EType.Brute || e.type == EType.Splitter; bool hooks = T.d2Hooks1434;
-            Sprite pool = hooks && e.type != EType.Elite ? D2Feel1434.PoolOrPlaceholder(sheet, big, T.d2Placeholders1434 && !art) : null; // the wraith gets no pool (art brief)
-            D2Feel1434.Spawn(sp, e.tr.position, e.tr.localScale, tint, YSort(e.pos.y), pool, Random.Range(T.d2CorpseLifeS1434.x, T.d2CorpseLifeS1434.y), T.d2CorpseFadeS1434, Mathf.Max(1, T.d2CorpseCap1434));
+            if (e.burn1434 && T.d2Burn1434) tint = Color.Lerp(tint, new Color(0.15f, 0.17f, 0.27f, 1f), 0.55f); // charred
+            bool big = e.type == EType.Brute || e.type == EType.Splitter; bool hooks = T.d2Hooks1434 && e.type != EType.Elite; // the wraith gets no pool / decal (art brief)
+            Sprite[] decal = hooks && T.d2DecalMode1434 >= 1 ? D2Feel1434.Variant("blood_decal") : null;
+            Sprite pool = hooks && (T.d2DecalMode1434 != 1 || decal == null) ? D2Feel1434.PoolOrPlaceholder(sheet, big, T.d2Placeholders1434 && !art) : null;
+            float life = e.corpseLife1434 > 0 ? e.corpseLife1434 : Random.Range(T.d2CorpseLifeS1434.x, T.d2CorpseLifeS1434.y);
+            D2Feel1434.Spawn(sp, e.tr.position, e.tr.localScale, tint, YSort(e.pos.y), pool, decal, life, T.d2CorpseFadeS1434, Mathf.Max(1, T.d2CorpseCap1434));
         }
         bool D2FrozenDeath1434(Enemy e, float dt)
         {
-            var T = HellordTuning.I; float f = Mathf.Max(0.01f, T.d2FrameS1434); e.deathT += dt; int k = (int)(e.deathT / f);
+            var T = HellordTuning.I; bool fx = e.fxFrozen1434; float f = fx ? 1f / D2Feel1434.FxFps : Mathf.Max(0.01f, T.d2FrameS1434); e.deathT += dt; int k = (int)(e.deathT / f);
             if (k < 2) { HordeFX.Flash(e.sr); e.sr.color = Color.white; return true; } // 2 frames: white flash
-            if (k < 6) { e.sr.color = D2Statue; return true; } // 4 frames: frozen statue (last pose, cold tint)
-            Vector2 c = e.pos + Vector2.up * e.hitY; HFX.Shatter(c);
+            if (k < 6) { e.sr.color = fx ? Color.Lerp(Color.white, new Color(0.753f, 0.796f, 0.863f, 1f), 0.6f) : D2Statue; return true; } // 4 frames: frozen statue (pose tinted 60% toward c0cbdc)
+            Vector2 c = e.pos + Vector2.up * e.hitY; if (!fx) HFX.Shatter(c); // the strip carries the shatter (mist + shards) when present
             if (T.d2Hooks1434 && HellordAudio.Has("ice_shatter")) HellordAudio.Play("ice_shatter");
             if (e.type == EType.Splitter && !e.splitDone) D2Split1434(e);
             e.dying = false; e.sr.enabled = false; e.sr.gameObject.SetActive(false); return true;
