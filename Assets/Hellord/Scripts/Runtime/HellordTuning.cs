@@ -1419,35 +1419,36 @@ namespace Hellord
     [Tooltip("Frost Bomb: how far from the hero a bomb may land (units), cluster samples, blast damage (x skill dmg), pulse damage (x), pulse radius (x blast radius), pulse interval (s), chill seconds + build per pulse, bonus vs chilled/frozen (x), knock-back, freeze seconds on detonation")] public float bombRangeU = 9f, bombBlastMul = 1f, bombPulseDmgMul = 0.08f, bombPulseRadiusMul = 1.1f, bombPulseS = 0.5f, bombChillS = 1.2f, bombPulseBuild = 0.8f, bombChilledBonus = 1.3f, bombKnock = 3f, bombFreezeS = 1f; public int bombSamples = 6;
     [Tooltip("Hurricane by skill level: radius (units), seconds, cooldown multiplier (on top of the 9.0s base)")] public float[] hurrRadiusU = { 2.4f, 2.6f, 2.8f, 3f, 3.4f }, hurrSeconds = { 4f, 4.5f, 5f, 5.5f, 6f }, hurrCdMul = { 1f, 1f, 0.92f, 0.85f, 0.8f };
     [Tooltip("Hurricane: start range (units), tick (s), chill seconds + build per tick")] public float hurrRangeU = 6f, hurrTickS = 0.4f, hurrChillS = 1.2f, hurrBuild = 0.35f;
-    // ================= t1481: FIRE BASIC MAIN ATTACKS (Gungeon-style: player aims with the cursor, LEFT MOUSE fires, hold = keep firing) =================
+    // ================= t1481: FIRE BASIC MAIN ATTACKS (Gungeon-style: player aims with the cursor, LEFT MOUSE fires, hold = keep firing). Visuals = HFX strips (HellordFireBasicsFX1481.cs); px values are HFX NOTES.txt (16 px = 1 m) =================
     [Header("t1481: fire basic main attacks (Magma Throw, Rolling Magma Rock, Fire Pillar)")]
-    [Tooltip("t1481: fire rate = skill cooldown multiplier (SkillDef cooldown is 1.0 s), order Magma Throw, Rolling Magma Rock, Fire Pillar. Magma Throw slow, Rock slower, Pillar medium.")] public float[] fbCd1481 = { 0.85f, 1.2f, 0.55f };
+    [Tooltip("t1481: fire rate = skill cooldown multiplier (SkillDef cooldown is 1.0 s), order Magma Throw, Rolling Magma Rock, Fire Pillar. HFX hold-fire cadences 0.4 / 0.5 / 0.6 s.")] public float[] fbCd1481 = { 0.4f, 0.5f, 0.6f };
     [Tooltip("t1481: damage multiplier on top of the skill base damage + level, same order")] public float[] fbDmgMul1481 = { 1f, 1.1f, 1f };
     [Tooltip("t1481: LMB held = cast (repeat while held) even when Manual control is OFF. The three skills never auto-fire.")] public bool fbLmbFire1481 = true;
+    [Tooltip("t1481: soft additive bloom from the HFX glow masks (FrostGlow shader, tint ff963c) and its strength. Off / shader missing = sprites only.")] public bool fbGlow1481 = true; public float fbGlowAdd1481 = 0.3f; public float fbGlowSmallGain1481 = 0.5f;
     [Header("t1481: Magma Throw")]
-    [Tooltip("Max lob range from the hero (m) - the cursor point is clamped to this")] public float mtRangeU1481 = 8f;
-    [Tooltip("Lob speed along the ground (m/s) and the shortest flight time (s)")] public float mtSpeedU1481 = 9f, mtMinFlightS1481 = 0.3f;
-    [Tooltip("Arc peak height of the lob (m, visual)")] public float mtArcH1481 = 1.8f;
+    [Tooltip("Max lob range from the hero (m) - the cursor point is clamped to this; globs in flight at once (HFX cap 3)")] public float mtRangeU1481 = 8f; public int mtMaxGlobs1481 = 3;
+    [Tooltip("HFX flight: frames = clamp(distance px / mtPxPerFrame, min, max) at 30 fps; start height (px), arc peak = base + perPx x distance (px)")] public float mtPxPerFrame1481 = 5.5f, mtFlightMinF1481 = 14f, mtFlightMaxF1481 = 24f, mtStartZPx1481 = 13f, mtArcBasePx1481 = 8f, mtArcPerPx1481 = 0.16f;
     [Tooltip("Landing burst radius per skill level (m), x Bigger Area")] public float[] mtLandR1481 = { 0.9f, 0.95f, 1f, 1.05f, 1.15f };
-    [Tooltip("Small magma blobs thrown out by the landing, per skill level")] public int[] mtBlobs1481 = { 4, 4, 5, 6, 7 };
-    [Tooltip("Blob scatter distance from the landing point, min / max (m), and blob flight time (s)")] public float mtBlobMinU1481 = 0.9f, mtBlobMaxU1481 = 2.1f, mtBlobFlightS1481 = 0.28f;
-    [Tooltip("Blob arc height (m, visual) and blob burst radius (m)")] public float mtBlobArcH1481 = 0.6f, mtBlobR1481 = 0.55f;
+    [Tooltip("Small magma blobs per landing, per skill level (HFX: 5, cap 5; the fan / range tables below have 5 entries)")] public int[] mtBlobs1481 = { 5, 5, 5, 5, 5 };
+    [Tooltip("Blob fan: +/- degrees around the throw direction; range from the landing (px), flight (frames) and delay (frames after the burst) - HFX tables")] public float mtBlobFanDeg1481 = 20f, mtBlobDelayF1481 = 2f, mtBlobArcPx1481 = 12f; public float[] mtBlobRangePx1481 = { 30f, 42f, 26f, 36f, 44f }, mtBlobFlightF1481 = { 16f, 14f, 18f, 15f, 17f };
+    [Tooltip("Blob burst radius (m)")] public float mtBlobR1481 = 0.55f;
     [Tooltip("Damage of the landing burst / of each blob burst, x skill damage")] public float mtLandMul1481 = 1f, mtBlobMul1481 = 0.35f;
-    [Tooltip("Burning magma left by each blob: seconds, tick (s), tick damage x skill damage, radius (m)")] public float mtPatchS1481 = 2f, mtPatchTickS1481 = 0.4f, mtPatchTickMul1481 = 0.1f, mtPatchR1481 = 0.5f;
+    [Tooltip("Burning magma: big pool under the landing (seconds, radius m) and small pools under blobs 1 and 3 (seconds, radius m); tick (s) and tick damage x skill damage. HFX: big pool burns 1.0 s, small 0.6 s.")] public float mtPoolBurnS1481 = 1f, mtPoolR1481 = 0.9f, mtPatchS1481 = 0.6f, mtPatchR1481 = 0.5f, mtPatchTickS1481 = 0.4f, mtPatchTickMul1481 = 0.1f;
     [Tooltip("Knock-back of the landing burst (m/s impulse)")] public float mtKnock1481 = 2.5f;
     [Tooltip("Extra globs (Multi Projectiles) land this far around the cursor point (m)")] public float mtMultiScatterU1481 = 1.4f;
     [Header("t1481: Rolling Magma Rock")]
-    [Tooltip("Roll speed (m/s) and max range (m)")] public float rrSpeedU1481 = 5f, rrRangeU1481 = 9f;
-    [Tooltip("Boulder hit radius (m) and spawn offset in front of the hero (m)")] public float rrRadiusU1481 = 0.6f, rrStartU1481 = 0.6f;
+    [Tooltip("Roll speed (m/s; HFX 96 px/s = 6, the 10-frame loop is one revolution at this speed and scales with it), rocks alive at once (HFX cap 3)")] public float rrSpeedU1481 = 6f; public int rrMaxRocks1481 = 3;
+    [Tooltip("HFX range (px) = clamp(distance to the cursor + extra, min, max)")] public float rrRangeMinPx1481 = 70f, rrRangeMaxPx1481 = 150f, rrRangeExtraPx1481 = 20f;
+    [Tooltip("Boulder hit radius (m) and spawn offset in front of the hero (m; HFX 12 px)")] public float rrRadiusU1481 = 0.45f, rrStartU1481 = 0.75f;
     [Tooltip("Knock-back of each demon the boulder rolls through")] public float rrKnock1481 = 2.5f;
-    [Tooltip("Ember trail: one patch every this many metres, seconds it burns, tick (s), tick damage x skill damage, radius (m), max patches alive")] public float rrTrailGapU1481 = 0.7f, rrTrailS1481 = 1.2f, rrTrailTickS1481 = 0.35f, rrTrailTickMul1481 = 0.12f, rrTrailR1481 = 0.45f; public int rrTrailMax1481 = 24;
+    [Tooltip("Ember trail: one tuft every this many metres (HFX 16 px), seconds the embers hurt, tick (s), tick damage x skill damage, radius (m), max patches alive")] public float rrTrailGapU1481 = 1f, rrTrailS1481 = 0.5f, rrTrailTickS1481 = 0.35f, rrTrailTickMul1481 = 0.12f, rrTrailR1481 = 0.45f; public int rrTrailMax1481 = 24;
     [Tooltip("Crumble burst when it hits a wall or the end of its range: radius (m), damage x skill damage")] public float rrCrumbleR1481 = 1f, rrCrumbleMul1481 = 0.5f;
     [Tooltip("Extra rocks (Multi Projectiles) are fanned by this many degrees")] public float rrSpreadDeg1481 = 14f;
     [Tooltip("Roll loop volume min / max per rock (loop is -13 dBFS, keep it quiet) and pitch spread, fade-out on stop min / max (s)")] public float rrLoopVolMin1481 = 0.40f, rrLoopVolMax1481 = 0.55f, rrLoopPitchSpread1481 = 0.02f, rrLoopFadeMin1481 = 0.08f, rrLoopFadeMax1481 = 0.12f;
-    [Tooltip("Magma Throw: random +/- seconds on each blob's flight time so the splats do not all land on one frame")] public float mtBlobJitterS1481 = 0.08f;
     [Header("t1481: Fire Pillar")]
-    [Tooltip("Max range from the hero (m) - the cursor point is clamped to this")] public float fpRangeU1481 = 7f;
-    [Tooltip("Telegraph seconds before the pillar erupts (keep = pillarTellSeconds so the tell art lines up)")] public float fpTellS1481 = 0.5f;
+    [Tooltip("Max range from the hero (m) - the cursor point is clamped to this; pillars pending / erupting at once (HFX cap 3)")] public float fpRangeU1481 = 7f; public int fpMax1481 = 3;
+    [Tooltip("Telegraph seconds before the pillar erupts. HFX telegraph = 12 frames = 0.4 s; the strip is re-timed to this value, so changing it stays consistent.")] public float fpTellS1481 = 0.4f;
+    [Tooltip("The eruption damages at this frame (30 fps) of the 18-frame eruption (HFX hit-test window f3-f12)")] public float fpHitF1481 = 3f;
     [Tooltip("Pillar radius per skill level (m), x Bigger Area")] public float[] fpRadiusU1481 = { 1.1f, 1.2f, 1.3f, 1.4f, 1.5f };
     [Tooltip("Eruption damage x skill damage and knock-back")] public float fpDmgMul1481 = 1.5f, fpKnock1481 = 1f;
 }
