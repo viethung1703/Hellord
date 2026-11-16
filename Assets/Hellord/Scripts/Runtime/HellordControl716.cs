@@ -75,7 +75,7 @@ namespace Hellord
         {
             if (_pickCool716 > 0) return false;
             int i = SlotOf716(s); if (i < 0) return false; string b = Bind716((Act716)i); bool overUi = MouseOverBelt716();
-            if (b == "LMB" && MouseMove716) return _lmbCast716;
+            if (b == "LMB" && MouseMove716) return _lmbCast716 || (IsFb1481(s.def.id) && HInput.LmbHeld716() && !overUi); // t1481: an LMB basic attack fires while LMB is held
             if ((b == "LMB" || b == "RMB" || b == "MMB") && overUi) return false;
             bool chan = s.def.id == SkillId.BloodWhip && HellordTuning.I.whipChannel716;
             if (HInput.BindDown(b)) _pressT716[i] = Time.time;
@@ -123,7 +123,7 @@ namespace Hellord
             if (lmb && !MouseOverBelt716())
             {
                 if (HInput.Shift()) { _lmbCast716 = hasLmbSkill; _moving716 = false; }              // Shift+LMB: cast in place
-                else if (_lmbAttack716) { _lmbCast716 = true; _moving716 = false; }               // LMB on an enemy: use the LMB skill
+                else if (_lmbAttack716 || FbLmbSkill1481()) { _lmbCast716 = true; _moving716 = false; } // t1481: LMB basic attack = fire, never click-to-walk               // LMB on an enemy: use the LMB skill
                 else { _moveTgt716 = MouseWorld(); if (!_moving716) _stuck716 = 0; _moving716 = true; } // LMB on the ground: walk, hold = follow the cursor
             }
             if (kb.sqrMagnitude > 0.01f) { _moving716 = false; return Vector2.ClampMagnitude(kb, 1); }
@@ -275,7 +275,7 @@ namespace Hellord
                 if (k != null)
                 {
                     int ic = _icons44 ? (int)k.def.id : BarTile(k.def.id);
-                    if (IceArt.IsIce(k.def.id)) { GUI.color = Color.white; IceIconBlit(k.def.id, ix, iy, 24); }
+                    if (IceArt.IsIce(k.def.id) || IsFb1481(k.def.id)) { GUI.color = Color.white; if (!IceIconBlit(k.def.id, ix, iy, 24) && _tSkill24 != null) Blit(_tSkill24, 0, 0, 24, 24, ix, iy); }
                     else if (_tSkill24 != null) { var pt = _icons44 ? Color.white : PhTint(k.def.id); GUI.color = pt; Blit(_tSkill24, ic * 28, 0, 24, 24, ix, iy); }
                     float full = Mathf.Max(0.05f, k.def.cooldown * k.CdMul); bool cont = k.def.id == SkillId.BoneOrbit || HData.Summon561(k.def);
                     float cdf = cont ? 0 : Mathf.Clamp01(k.cd / full);

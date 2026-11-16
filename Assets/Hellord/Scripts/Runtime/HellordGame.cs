@@ -228,7 +228,7 @@ namespace Hellord
             if (HInput.Down(HKey.F3)) { _tf = (_tf + 1) % 4; SetHeroLayers(); Toast(_tf == 0 ? "Transformation: none" : "Transformation (debug): " + TfSheets[_tf]); }
             float dt = Mathf.Min(Time.deltaTime, 1f / 20f); if (dt <= 0) { UpdateCamera(); return; }
             runTime += dt; if (hp > maxHp) hp = maxHp; // v0.0.14 safety clamp
-            Z37Begin(); UpdateHero(dt); if (floorMode) UpdateFloor(dt); else { UpdateSpawner(dt); UpdateBossSpawn(); } RebuildGrid(); UpdateEnemies(dt); UpdateSkills(dt); PactTick53(dt); UpdateProjectiles(dt); UpdateIce(dt); UpdateOrbLight667(); UpdateBBullets(dt); Update49(dt); UpdateTongueTraps(dt); UpdateHooks(dt); UpdateGossip(dt); ProcessBlasts(); UpdatePickups(dt);
+            Z37Begin(); UpdateHero(dt); if (floorMode) UpdateFloor(dt); else { UpdateSpawner(dt); UpdateBossSpawn(); } RebuildGrid(); UpdateEnemies(dt); UpdateSkills(dt); PactTick53(dt); UpdateProjectiles(dt); UpdateIce(dt); UpdateFireBasics1481(dt); UpdateOrbLight667(); UpdateBBullets(dt); Update49(dt); UpdateTongueTraps(dt); UpdateHooks(dt); UpdateGossip(dt); ProcessBlasts(); UpdatePickups(dt);
             if (_room != null) _room.Tick(dt); if (_lane != null) _lane.Tick(dt); Z37End();
             UpdateCamera();
             if (pendingLevels > 0 && mode == Mode.Play) OpenLevelUp();

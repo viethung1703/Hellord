@@ -28,7 +28,7 @@ namespace Hellord
             if (s == null || s.def == null) return Color.clear;
             switch (s.def.id)
             {
-                case SkillId.Fireball: case SkillId.HellfirePillar: return new Color(1f, 0.55f, 0.2f, 1);   // fire warm
+                case SkillId.Fireball: case SkillId.HellfirePillar: case SkillId.MagmaThrow: case SkillId.RollingMagmaRock: case SkillId.FirePillar: return new Color(1f, 0.55f, 0.2f, 1);   // fire warm
                 case SkillId.FrostCleave: return new Color(0.5f, 0.8f, 1f, 1);                                  // ice cool
                 case SkillId.StormRing: case SkillId.ChainLightning: return new Color(0.7f, 0.82f, 1f, 1);       // lightning cool blue-white
                 case SkillId.BoneOrbit: return new Color(1f, 0.92f, 0.75f, 1);                                   // bone

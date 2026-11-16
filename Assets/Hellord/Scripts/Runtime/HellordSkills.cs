@@ -17,7 +17,7 @@ namespace Hellord
                 if (s.def.id == SkillId.BoneOrbit) { hasOrbit = true; UpdateOrbit(s, dt); continue; }
                 if (HData.Summon561(s.def)) { s.cd = 0; continue; } // t561u: summons are passive (minion tick)
                 if (s.def.id == SkillId.StormRing) hasRing = true;
-                s.cd -= dt; bool want716 = !Manual716 || Want716(s); if (Manual716 && s.cd < 0) s.cd = 0; // t716u: Manual = cast on key
+                s.cd -= dt; bool want716 = !Manual716 || Want716(s); if (Manual716 && s.cd < 0) s.cd = 0; if (IsFb1481(s.def.id)) { want716 = FbWant1481(s); if (s.cd < 0) s.cd = 0; } /* t1481: player-fired (LMB) */ // t716u: Manual = cast on key
                 if (s.cd <= 0 && want716 && PactCanCast53(s)) { s.cd = s.def.cooldown * s.CdMul * PactCd53(s); float lc53 = _lastCast[(int)s.def.id]; Cast(s, 1f); if (_lastCast[(int)s.def.id] != lc53) PactAfterCast53(s); s.cd *= SinEchoCd818(s); if (s.Has(SupportId.Echo) && !SinNoEcho818(s)) { s.echoLeft = HData.At(HellordTuning.I.supEchoCount, s.Lvl(SupportId.Echo)); if (s.def.id == SkillId.CurseRune) s.echoLeft = Mathf.Min(s.echoLeft, HellordTuning.I.curseEchoMax738); s.echoT = s.echoLeft > 0 ? 0.3f : -1; } /* t738u */ }
                 if (s.echoT > 0) { s.echoT -= dt; if (s.echoT <= 0) { _echo738 = true; Cast(s, HData.At(HellordTuning.I.supEchoDmg, s.Lvl(SupportId.Echo), 0.5f) * SinEchoDmg818()); _echo738 = false; if (--s.echoLeft > 0) s.echoT = 0.3f; else s.echoT = -1; } } // v0.0.27: Echo repeats grow with its level
             }
@@ -26,7 +26,7 @@ namespace Hellord
         }
 
         // v0.0.10 FX self-check (Shift+9 overlay): last cast time per skill
-        readonly float[] _lastCast = new float[16]; // v0.0.36 (t561u: +2 summons): one slot per SkillId
+        readonly float[] _lastCast = new float[24]; // v0.0.36 (t561u: +2 summons): one slot per SkillId
         void Cast(SkillInst s, float mul)
         {
             float dmg = SkillDamage(s) * mul; // v0.0.13: _lastCast is stamped only after a real cast (early 'no target' returns no longer count -> no false FX WARN)
@@ -109,6 +109,9 @@ namespace Hellord
                 case SkillId.IceNova: if (!CastIceNova(s, dmg)) return; break;
                 case SkillId.FrostBomb: if (!CastFrostBomb(s, dmg)) return; break;
                 case SkillId.Hurricane: if (!CastHurricane(s, dmg)) return; break;
+                case SkillId.MagmaThrow: if (!CastMagmaThrow1481(s, dmg)) return; break; // t1481 fire basic main attacks (HellordFireBasics1481.cs)
+                case SkillId.RollingMagmaRock: if (!CastRollingRock1481(s, dmg)) return; break;
+                case SkillId.FirePillar: if (!CastFirePillar1481(s, dmg)) return; break;
             }
             _lastCast[(int)s.def.id] = Time.time;
         }

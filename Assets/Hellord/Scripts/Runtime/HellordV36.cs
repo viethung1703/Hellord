@@ -29,7 +29,7 @@ namespace Hellord
         {
             _sched.Clear(); _leechHealed = 0; _tp = null; _poolEver = false;
         }
-        static float NewSkillDmgMul(int ix) { if (ix >= (int)SkillId.Frostbolt) { var ia = HellordTuning.I.iceDmgMul; int ik = ix - (int)SkillId.Frostbolt; return ia != null && ik < ia.Length ? ia[ik] : 1f; } /* t1393u ice skills */ var a = HellordTuning.I.newSkillDmgMul; int k = ix - 5; return a != null && k >= 0 && k < a.Length ? a[k] : 1f; }
+        static float NewSkillDmgMul(int ix) { if (ix >= (int)SkillId.MagmaThrow) return FbDmgMul1481(ix); /* t1481 */ if (ix >= (int)SkillId.Frostbolt) { var ia = HellordTuning.I.iceDmgMul; int ik = ix - (int)SkillId.Frostbolt; return ia != null && ik < ia.Length ? ia[ik] : 1f; } /* t1393u ice skills */ var a = HellordTuning.I.newSkillDmgMul; int k = ix - 5; return a != null && k >= 0 && k < a.Length ? a[k] : 1f; }
 
         // ================= support hooks (called from Hit) =================
         float SupportsBeforeHit(Enemy e, float dmg, SkillInst s, ref Vector2 knock, bool tick)
@@ -219,8 +219,8 @@ namespace Hellord
         // ================= placeholder icons for the new skills =================
         /// <summary>24px skill-bar tile: SkillId order matches the approved sheet for the first five; new skills borrow a tile.</summary>
         static int BarTile(SkillId id) { switch (id) { case SkillId.ChainLightning: return (int)SkillId.StormRing; case SkillId.HellfirePillar: return (int)SkillId.Fireball; case SkillId.BloodWhip: return (int)SkillId.BoneOrbit; case SkillId.SoulSpears: return (int)SkillId.FrostCleave; case SkillId.GravePool: return (int)SkillId.CurseRune; default: return (int)id; } }
-        static Color PhTint(SkillId id) { switch (id) { case SkillId.ChainLightning: return new Color(1f, 0.95f, 0.5f); case SkillId.HellfirePillar: return new Color(1f, 0.45f, 0.25f); case SkillId.BloodWhip: return new Color(1f, 0.4f, 0.45f); case SkillId.SoulSpears: return new Color(0.75f, 1f, 0.9f); case SkillId.GravePool: return new Color(0.55f, 1f, 0.55f); default: return Color.white; } }
-        static string PhTag(SkillId id) { switch (id) { case SkillId.ChainLightning: return "CL"; case SkillId.HellfirePillar: return "HP"; case SkillId.BloodWhip: return "BW"; case SkillId.SoulSpears: return "SS"; case SkillId.GravePool: return "GP"; default: return null; } }
+        static Color PhTint(SkillId id) { switch (id) { case SkillId.ChainLightning: return new Color(1f, 0.95f, 0.5f); case SkillId.HellfirePillar: return new Color(1f, 0.45f, 0.25f); case SkillId.BloodWhip: return new Color(1f, 0.4f, 0.45f); case SkillId.SoulSpears: return new Color(0.75f, 1f, 0.9f); case SkillId.GravePool: return new Color(0.55f, 1f, 0.55f); case SkillId.MagmaThrow: case SkillId.RollingMagmaRock: case SkillId.FirePillar: return new Color(1f, 0.7f, 0.45f); default: return Color.white; } }
+        static string PhTag(SkillId id) { switch (id) { case SkillId.ChainLightning: return "CL"; case SkillId.HellfirePillar: return "HP"; case SkillId.BloodWhip: return "BW"; case SkillId.SoulSpears: return "SS"; case SkillId.GravePool: return "GP"; case SkillId.MagmaThrow: return "MT"; case SkillId.RollingMagmaRock: return "RR"; case SkillId.FirePillar: return "FP"; default: return null; } }
 
         // ================= which skill gets the support (second pick) =================
         class TargetPick { public SupportDef sd; public List<int> targets; public bool swap; public System.Action<int> onPick; }

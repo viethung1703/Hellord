@@ -364,7 +364,7 @@ namespace Hellord
         /// <summary>Draws the 24x24 tile for an ice skill at 1x (dw = 24) or 2x (dw = 48). False when the skill is not an ice skill.</summary>
         bool IceIconBlit(SkillId id, float x, float y, float dw)
         {
-            if (!IceArt.IsIce(id)) return false; var t = IceArt.Icon24(id); if (t == null) return true; // missing art: draw nothing (never garbage)
+            if (IsFb1481(id)) { var ft = FbIcon1481(id); if (ft == null) return false; if (dw <= 24.5f) Blit(ft, 0, 0, 24, 24, x, y); else BlitInset(ft, 0, 0, 24, 24, x, y, dw, dw); return true; } /* t1481 fire basics: own 24 px icons */ if (!IceArt.IsIce(id)) return false; var t = IceArt.Icon24(id); if (t == null) return true; // missing art: draw nothing (never garbage)
             if (dw <= 24.5f) Blit(t, 0, 0, 24, 24, x, y); else BlitInset(t, 0, 0, 24, 24, x, y, dw, dw); return true;
         }
     }

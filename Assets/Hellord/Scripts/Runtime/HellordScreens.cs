@@ -10,7 +10,7 @@ namespace Hellord
         static readonly Color CDim = new Color32(0x8b, 0x9b, 0xb4, 255), CBody = new Color32(0xc0, 0xcb, 0xdc, 255), CRed = new Color32(0xe4, 0x3b, 0x44, 255), CGold = new Color32(0xfe, 0xe7, 0x61, 255);
         const int CardW = 116, CardH = 164;
 
-        static int SkillIcon(SkillId id) { switch (id) { case SkillId.Fireball: return 0; case SkillId.FrostCleave: return 11; case SkillId.StormRing: return 10; case SkillId.BoneOrbit: return 4; case SkillId.ChainLightning: return 10; case SkillId.HellfirePillar: return 0; case SkillId.BloodWhip: return 4; case SkillId.SoulSpears: return 11; default: return 8; } } // v0.0.36: new skills reuse a base icon (tinted + tagged, see PhTint/PhTag)
+        static int SkillIcon(SkillId id) { switch (id) { case SkillId.Fireball: return 0; case SkillId.FrostCleave: return 11; case SkillId.StormRing: return 10; case SkillId.BoneOrbit: return 4; case SkillId.ChainLightning: return 10; case SkillId.HellfirePillar: return 0; case SkillId.BloodWhip: return 4; case SkillId.SoulSpears: return 11; case SkillId.MagmaThrow: case SkillId.RollingMagmaRock: case SkillId.FirePillar: return 0; default: return 8; } } // v0.0.36: new skills reuse a base icon (tinted + tagged, see PhTint/PhTag)
         /// <summary>v0.0.9: distinct existing skill-strip icons for some supports/stats (Burn no longer shares the Shock glyph,
         /// Swiftness no longer shares Hide's). -1 = no art yet (room-icon stand-in; missing art).</summary>
         static int SupportIcon(SupportId id) { switch (id) { case SupportId.Burn: return 5; case SupportId.Bleed: return 2; case SupportId.MultipleProjectiles: return 1; default: return -1; } }
@@ -60,7 +60,7 @@ namespace Hellord
                 if (icon < 0) icon = c.kind == CardKind.Support ? SupportIcon(c.support.id) : StatIcon(c.stat.id);
                 bool newSup = c.kind == CardKind.Support && icon < 0; SkillBarTex(); // v0.0.36: supports without a 16px icon use the approved 20px support sheet at 2x
                 SkillId? nsk = c.kind == CardKind.NewSkill ? c.skill.id : c.kind == CardKind.SkillLevel ? skills[c.skillIndex].def.id : (SkillId?)null;
-                if (nsk.HasValue && IceArt.IsIce(nsk.Value)) { GUI.color = new Color(1, 1, 1, ra); IceIconBlit(nsk.Value, x + 34, y + 19, 48); }
+                if (nsk.HasValue && (IceArt.IsIce(nsk.Value) || IsFb1481(nsk.Value))) { GUI.color = new Color(1, 1, 1, ra); IceIconBlit(nsk.Value, x + 34, y + 19, 48); }
                 else if (_icons44 && nsk.HasValue && nsk.Value >= SkillId.ChainLightning && _tSkill24 != null) { GUI.color = new Color(1, 1, 1, ra); BlitInset(_tSkill24, (int)nsk.Value * 28, 0, 24, 24, x + 34, y + 19, 48, 48); }
                 else if (icon >= 0 && !newSup)
                 {

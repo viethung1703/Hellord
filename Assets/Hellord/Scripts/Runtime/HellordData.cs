@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Hellord
 {
     [Flags] public enum STag { None = 0, Projectile = 1, Area = 2, Orbital = 4, Hit = 8, Melee = 16, Aura = 32, Zone = 64, Minion = 128, Chain = 256, Duration = 512, Curse = 1024, Strike = 2048, Physical = 4096, Fire = 8192, Cold = 16384, Lightning = 32768, Blood = 65536, Bone = 131072, Soul = 262144, Any = 1 << 20 } // t626u: approved tag design v0.1 // t536u Minion: summoned units' hits (never a player skill)
-    public enum SkillId { Fireball, FrostCleave, StormRing, BoneOrbit, CurseRune, ChainLightning, HellfirePillar, BloodWhip, SoulSpears, GravePool, SkeletonWarriors, SkeletonArchers, Frostbolt, IceNova, FrostBomb, Hurricane } // t1393u: ids 12-15 are the ice skills; v0.0.36: last 5 are new (placeholder icons)
+    public enum SkillId { Fireball, FrostCleave, StormRing, BoneOrbit, CurseRune, ChainLightning, HellfirePillar, BloodWhip, SoulSpears, GravePool, SkeletonWarriors, SkeletonArchers, Frostbolt, IceNova, FrostBomb, Hurricane, MagmaThrow, RollingMagmaRock, FirePillar } // t1481: ids 16-18 fire basic main attacks (LMB); t1393u: ids 12-15 are the ice skills; v0.0.36: last 5 are new (placeholder icons)
     public enum SupportId { MultipleProjectiles, Pierce, Fork, Bounce, Homing, BiggerArea, Echo, MoreOrbitals, Burn, Chill, Shock, Bleed, AddedDamage, FasterCasting, Executioner, LifeLeech, Knockback, SoulHarvest, ExplodeOnKill } // v0.0.36: last 5 are new
     public enum StatId { MaxHP, Speed, Pickup, Armor, Crit, Slot }
     public enum Status { None, Burn, Chill, Shock, Bleed, Curse }
@@ -44,6 +44,10 @@ namespace Hellord
             new SkillDef { id = SkillId.IceNova,   name = "Ice Nova",   tags = STag.Area | STag.Hit | STag.Cold,                      baseDmg = 16, cooldown = 3.0f,  aimable = false, innate = Status.None, desc = "A ring of frost pulses out from you. Chills, and shoves close demons hardest. Bigger and faster per level." },
             new SkillDef { id = SkillId.FrostBomb, name = "Frost Bomb", tags = STag.Area | STag.Zone | STag.Hit | STag.Cold | STag.Duration, baseDmg = 20, cooldown = 4.5f, aimable = false, innate = Status.None, desc = "Drops an ice crystal on a demon cluster. It pulses chill for 2s, then detonates for heavy cold damage." },
             new SkillDef { id = SkillId.Hurricane, name = "Hurricane",  tags = STag.Aura | STag.Area | STag.Hit | STag.Cold | STag.Duration, baseDmg = 4, cooldown = 9.0f, aimable = false, innate = Status.None, desc = "A cold storm circles you for several seconds, ticking damage and chilling. Lasts longer and wider per level." },
+            // t1481 fire basic main attacks: player-aimed (cursor), LEFT MOUSE, hold = keep firing. SkillDef cooldown is 1.0; the real fire rate is HellordTuning.fbCd1481 (via SkillInst.CdMul).
+            new SkillDef { id = SkillId.MagmaThrow, name = "Magma Throw", tags = STag.Projectile | STag.Area | STag.Hit | STag.Fire, baseDmg = 10, cooldown = 1f, aimable = true, innate = Status.Burn, desc = "Lobs a magma glob to the cursor. It bursts into small blobs that scatter and burn. Slow rate. Hold to keep firing." },
+            new SkillDef { id = SkillId.RollingMagmaRock, name = "Rolling Magma Rock", tags = STag.Projectile | STag.Hit | STag.Fire, baseDmg = 12, cooldown = 1f, aimable = true, innate = Status.Burn, desc = "Rolls a burning boulder toward the cursor. It pierces demons, leaves embers and crumbles on walls. Slow rate. Hold to keep firing." },
+            new SkillDef { id = SkillId.FirePillar, name = "Fire Pillar", tags = STag.Area | STag.Hit | STag.Fire, baseDmg = 8, cooldown = 1f, aimable = true, innate = Status.Burn, desc = "Marks the cursor, then a pillar of fire erupts there. Medium rate. Hold to keep firing." },
         };
         public static readonly SupportDef[] Supports =
         {
@@ -180,7 +184,7 @@ namespace Hellord
             if (Has(SupportId.MultipleProjectiles)) m *= T.multiProjDmgMul;
             return m;
         }
-        public float CdMul => HellordGame.SinSkCdAt818(def.id) * (Has(SupportId.FasterCasting) ? HData.At(HellordTuning.I.supFasterCd, Lvl(SupportId.FasterCasting), 0.9f) : 1f) * HellordGame.PCd49 * ((def.tags & (STag.Zone | STag.Orbital)) != 0 ? HellordGame.SlothCd53 : 1f) * HellordGame.PactCdS53 * HellordGame.SinCd737; // v0.0.49 Intensity; v0.0.53 Sloth Throne / Price of Wrath
+        public float CdMul => HellordGame.SinSkCdAt818(def.id) * HellordGame.FbCd1481(def.id) * (Has(SupportId.FasterCasting) ? HData.At(HellordTuning.I.supFasterCd, Lvl(SupportId.FasterCasting), 0.9f) : 1f) * HellordGame.PCd49 * ((def.tags & (STag.Zone | STag.Orbital)) != 0 ? HellordGame.SlothCd53 : 1f) * HellordGame.PactCdS53 * HellordGame.SinCd737; // v0.0.49 Intensity; v0.0.53 Sloth Throne / Price of Wrath
         public float AreaMul => HellordGame.SinSkAreaAt818(def.id) * (Has(SupportId.BiggerArea) ? HData.At(HellordTuning.I.supAreaMul, Lvl(SupportId.BiggerArea), 1.25f) : 1f) * HellordGame.PArea49 * ((def.tags & (STag.Zone | STag.Orbital)) != 0 ? HellordGame.SlothArea53 : 1f) * HellordGame.BoneArea536(def) * HellordGame.SinArea737; // t536u Grave Reach / Grave Colossus // v0.0.49 aggression x Intensity
     }
 }
