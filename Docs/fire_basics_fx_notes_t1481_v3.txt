@@ -1,0 +1,145 @@
+HELLORD  Molten Spit + Infernal Boulder  v3   (t1481, redo from the t1496/t1497/t1498 reference set)
+Generated 2026-11-16 (Asia/Saigon). Everything here is a MOCKUP / proposal: untested in Unity. Reference footage is INTERNAL only.
+Generator: fb3_gen.py (deterministic: hand-keyed tables + fixed analytic patterns, R2 low-discrepancy dither, no rng, no AI art).
+Mock-up renderer: render3.py (python3 render3.py spit|boulder). Contact sheets: contact3.py.  Fire Pillar is unchanged and NOT part of v3.
+
+=====================================================================================================
+0. SCALE: THE HERO (measured first)
+=====================================================================================================
+Source: /workspace/Hellord/captures/t1481_fire_basics/t1481_infernal_boulder_v2FX_real_game.mp4 (960x540 real game capture, 3 capture px = 1 art px, CRT).
+Hellord hero (red demon, horns to feet, incl. ear-tips): 70 capture px tall (red blob bbox x456-535, y250-321; body alone ~57 px, 73-80 px wide with tail/fringe)
+  => H = 70 / 3 = 23.3 art px = 1.46 Unity units at 16 PPU.
+  (hero_base.png content is only ~17 px tall; in game the hero is drawn ~1.37x. v2 FX were authored against 17.5 px, so they were ~25% too SMALL relative to the real hero.)
+Imp = 36 art px (~2.7-3x of the capture px). Camera: 320x180 art px shown at 3x (960x540).
+Every size below is in art px on that camera ("px"), with H multiples and Unity units (u = px / 16).
+All reference characters were scaled so character = hero: PoE2 char ~125-130 capture px -> scale 0.55; D2R char ~75 px -> scale 0.933 (D2R ball 55 px -> 0.73 H, matches brief 0.7-0.8). Reference character heights are +-15-20 % by eye.
+
+=====================================================================================================
+1. EXACT NUMBERS (art px on the game camera; px/s at 30 fps; u at 16 PPU)
+=====================================================================================================
+MOLTEN SPIT (PoE2 Molten Blast)
+  rock sprite            : 10.6 px dia (r 5.3) = 0.45 H = 0.66 u  | with 40 px streak tail (tail 1.7 H)
+  throw                  : FLAT (z 11 px = hand height, not a lob; the reference rock flies straight with a streak). Shadow = 16x6 sprite on the ground under it.
+  wind-up (gouge)        : 16 f = 0.53 s: ground cracks/sparks at the caster, rock lifted in the hand 9 px forward of the pivot
+  projectile speed       : 160 px/s = 5.33 px/f = 6.9 H/s = 10.0 u/s
+  range                  : 55-130 px typical (2.4-5.6 H = 3.4-8.1 u). Flight time = range / 160: 55 px = 10 f (0.34 s), 128 px = 24 f (0.8 s). Max flight 0.8 s (cap range at 130 px, 8 u)
+  impact fireball        : round, white-yellow core, thin shell; radius table [9,18,22,22.5,21,15] px over 6 f (0.2 s, ref ~5 f); PEAK DIAMETER 45 px = 1.93 H = 2.8 u (brief 1.6-2.5 H)
+  suggested hit radius   : 22 px = 1.4 u (= fireball radius at peak). Damage on frame 2-3 of the impact only.
+  strands                : 8, spawned at impact+3 f (odd ones +1 f), cone +-35 deg about the throw direction (angles -35,-25,-15,-5,5,15,25,35), FORWARD only
+                           reach 74,96,112,86,104,92,116,80 px (3.2-5.0 H = 4.6-7.3 u), eased flight 10 f (0.33 s) (1-(1-t)^1.7), then 8 f fade (strip frames 6-13). Ground squash: y *0.75, lifted 6 px.
+                           strand = 40 px long wavy rope (2.5-3 px thick head, tapering), dark red tail (RD/B73) with AM/OR body and a WH/YL/AM head
+  star flashes           : 6 f (0.2 s) 24x24 star at each strand tip, from strand frame 9 (landing)
+  everything bright gone : impact+21 f = 0.7 s (strands end at impact+3+10+8)
+  heat-glow patch        : textured mottled sprite 80x44 (ellipse ~58 x 27 px = 2.5 H x 1.2 H = 3.6 x 1.7 u), starts impact+1, 30 f (1 s) fade; plus a noise-modulated glow mask (NOT a flat disc)
+  ember patches          : impact patch (ember_patch_v1) from impact+4, every second strand leaves v2/v3 at its landing point; each 28x24, life 75 f = 2.5 s (ignite 6 f, loop 12 f, die 12-18 f)
+
+INFERNAL BOULDER (D2R Molten Boulder)
+  ball                   : 18 px dia (r 9) = 0.77 H = 1.125 u. Near-black plates (INK/N3E), bright orange-yellow crack net, thin orange rim light, INK outline, 1 revolution per 32 f, rolls FORWARD
+  shadow                 : 28x10 sprite under the ball (ground contact is pivot y + 7)
+  cast / launch          : cast ring 24 f = 0.8 s (spinning yellow-orange ring ~0.9 H wide around the caster, 40x48, pivot = feet), ball + band start at f24 at the caster's feet (12 px forward)
+  roll speed             : 53 px/s = 1.77 px/f = 2.94 ball diameters/s = 2.3 H/s = 3.3 u/s
+  max duration / range   : 60 f = 2.0 s, 106 px = 5.9 D = 4.5 H = 6.6 u   (BRIEF wins; README by-eye implies 6-8 char which would need ~3.5 H/s)
+  band (fire trail)      : tile 36x44 (pivot = ground point on the path), 24 px wide tile laid every 6 px (4x overlap), 8 ground rows = 8 px thick (0.34 H = 0.5 u); dense flame body ~10 px above it, ragged tongues up to 17 px above the band (0.45-0.73 H), sparks to 31 px
+                           yellow-white core, orange edges, 3 sparks per tile
+  per-segment lifetime   : 60 f = 2.0 s (ignite 6 f, loop 12 f, die 18 f of strip). Oldest tile dies first; whole band is gone ~2 s after the end blast
+  end blast flash        : radius table [8,15,20.5,22,20,17,13.5,10,7,4,1.5] px over 11 f; peak diameter 44 px = 1.89 H = 2.75 u; WH core only first 4 f
+  rock chunks            : 8 dark chunks (INK/N3E, 4x4 px = 0.17 H, one glowing crack pixel while airborne), arcs up to ~4 H, land and lie until f27 (0.9 s). 12 thin spark streaks.
+  end fire patch         : ellipse radius 46 x 17 px (2.0 H x 0.73 H ground; 2.9 u x 1.1 u) = "2-3 heroes radius" horizontally (ground perspective squash 0.37), tongues to ~21 px, starts blast+2, life 75 f = 2.5 s
+  glow (all)             : see section 4
+
+=====================================================================================================
+2. STRIPS (all 30 fps, alpha 0/255 only, no frame touches its border, glow masks = white on transparent, alpha 0/40/80/130/190/255)
+=====================================================================================================
+name (strip png / glow strip png)         frame size  frames  rows   pivot (px from frame TOP-LEFT)                 notes
+infernal_boulder_roll_dir16               48x48       32      16     (24,24) = ball centre (ground contact = +7 y)   row r = r*22.5 deg, row0 = east, clockwise on screen (y down). Game row = round(atan2(-v.y, v.x)/22.5) mod 16. Play 32 f per revolution (1 f per 1.77 px of travel*)
+infernal_boulder_shadow                   28x10       1       1      (14,5)                                          draw at ball ground contact (+3 below the centre pivot minus the 7 offset: world y = ball_y + 7 - 4)
+infernal_boulder_band                     36x44       36      1      (18,37) = ground point on the path              0-5 ignite, 6-17 LOOP (12), 18-35 die (tongues shorten, break up)
+infernal_boulder_cast_ring                40x48       24      1      (20,40) = caster feet
+infernal_boulder_end_blast                160x112     30      1      (80,80) = ball ground contact; flash centre 7 px above
+infernal_boulder_fire_patch               112x72      36      1      (56,52) = patch centre on the ground            0-5 ignite, 6-17 LOOP, 18-35 die
+molten_spit_rock_dir16                    88x88       6       16     (44,44) = rock centre                           tail points away from travel; loop 6 f
+molten_spit_gouge                         56x56       16      1      (28,44) = caster feet                           drawn for an EAST cast: rock 9 px east of the pivot; flip X for WEST
+molten_spit_impact                        112x100     10      1      (56,58) = impact ground point (fireball centre 8 px above)   fireball f0-5, tearing streaks from f4
+molten_spit_strand_dir16                  88x88       14      16     (44,44) = strand HEAD                           f0-5 FLY loop, f6-13 FADE; row from the strand direction
+molten_spit_star                          24x24       6       1      (12,12)
+molten_spit_ember_patch_v1..v3            28x24       30      1      (14,19) = patch ground point                    0-5 ignite, 6-17 LOOP, 18-29 die
+molten_spit_heat                          80x44       30      1      (40,24) = patch centre                          textured heat sprite; 30 f fade
+molten_spit_shadow                        16x6        1       1      (8,3)
+(*) roll frame = floor(distance travelled / (pi * 18 / 32)) mod 32  -> the surface slips 0 against the ground.
+Files: <name>_strip.png (rows stacked top-down for 16-dir strips: row r at y = r*frame_h) and <name>_glow_strip.png.
+
+=====================================================================================================
+3. RULES FOR CODE (spawn / sort / move)
+=====================================================================================================
+MOLTEN SPIT
+  1. t0 cast: caster plays gouge (16 f, flip X for west). Rock is spawned at the hand (pivot + 9 px toward the target, x; z lift 11 px) at t0+16 f.
+  2. Move FLAT in a straight line at 160 px/s (10 u/s), smoothstep NOT used in game (linear); z constant 11 px (screen y = ground y - 11). Row = DirRow(v) with the screen-space velocity. Shadow decal on the ground at the rock's ground x,y.
+  3. SORT: rock sortKey = ground y + 30 (it must NEVER hide behind imps; v2 sorted by y only). Impact sortKey = y + 40. Strands y + 20, stars y + 40. Heat/ember patches are DECALS under all actors.
+  4. Arrival (or first enemy within 22 px / 1.4 u): play impact (10 f; fireball visible f0-5), apply damage in the 22 px radius.
+  5. impact+3: spawn 8 strands (+1 f stagger on odd), directions = throw dir +-35 deg in 10 deg steps, reach 74-116 px, movement ease-out (1-(1-t)^1.7) over 10 f, then play the fade frames 6-13 at the tip. A star plays at each tip from strand frame 9. Strands are cosmetic (no damage) unless design wants a small shard hit: use a 6 px radius.
+  6. impact+1: heat sprite decal for 30 f. impact+4: ember_patch_v1 (75 f life). At strand landing: every second strand spawns ember_patch_v2/v3 (75 f). Patch strips: play ignite 0-5 once, LOOP 6-17 until life-18 f, then die frames.
+  7. Spam: each cast is independent; cap ember patches at ~24 alive (oldest dies early) so the floor never washes out.
+INFERNAL BOULDER
+  1. t0 cast: cast ring on the caster (24 f). At t0+24 the ball is spawned 12 px forward of the caster (pivot y + 5 toward the aim); 4 band tiles are laid behind it at once (offsets -24..-6 px), so the band starts ~1.3 D long.
+  2. Move at 53 px/s (3.3 u/s) in a straight line for 60 f max (106 px / 6.6 u). Do NOT use lerp from start to end in 0.4 s like v2 did. Rotation frame from distance (see above). Row = DirRow(move dir).
+  3. Every 6 px of travel lay a band tile at the ball's ground point. Tile i plays ignite 6 f, loop, then die; life 60 f (2.0 s); oldest dies first because they were laid first. Tiles are DECAL-layer (sortKey = -999), the ball sortKey = ground y + 14 (always above flames and above imps' feet), the end blast = y + 40.
+  4. Any enemy overlapped by the ball is pushed along the roll direction (+ a small recoil table 0,3,4,3,2,1,1,0 px over 8 f); no reference footage for hit/knock-back exists, so this is a design guess.
+  5. At t_end (60 f or a wall) the ball disappears, play end_blast at the ball ground point (30 f), fire_patch at blast+2 (75 f life). Damage in a 46 px / 2.9 u radius (patch) while it burns, in a 22 px radius for the blast itself.
+  6. Limit simultaneous bands: v2 spam turned bands into a wall; v3 keeps tile life 2 s and spawns at most 1 tile / 6 px. If many boulders are alive, scale tile alpha not size.
+
+=====================================================================================================
+4. GLOW MASKS (shader Hellord/FrostGlow1430, tint ff963c, _Gain 1.6, _Add 0.3 in the existing game code)
+=====================================================================================================
+Per strip (gaussian sigma in art px used to bake the mask, mask gain): roll (2.6, 0.9, hole r 9.5 over the ball so the dark ball is NOT lit up), band (3.2, 1.0), cast_ring (2.4, 1.0), end_blast (3.6, 1.1), fire_patch (4.0, 1.0),
+rock (2.6, 1.0), gouge (2.4, 1.0), impact (4.2, 1.2), strand (2.0, 1.1), star (2.0, 1.2), ember_patch (2.6, 0.9), heat (noise-field mask, sigma 3.0, NOT a flat disc).
+Suggested game values: _Add 0.30 (boulder, tint ff963c as now) and _Add 0.34 with tint ff6028 for Molten Spit (red-orange; the existing ff963c tint is what made v2 look gold). Draw the heat mask with 4x alpha (gg 4.0 in the mock-up) so it reads as a red glow patch. Boulder fire patch glow at 0.6x.
+Mock-up glow = gaussian(mask, 2.2 px) x gain x tint, additive. It is a SIMULATION, not the real shader.
+
+=====================================================================================================
+5. COLOUR
+=====================================================================================================
+All sprites use only the Endesga-32 fire ramp 3e2731 / 733e39 / be4a2f / d77643 / f77622 / feae34 / fee761, plus ffffff for tiny cores (impact first 4 f, blast first 4 f, band base specks, strand head pixel) and the near-black 181425 for the boulder/chunk outline. No off-ramp colour was needed.
+Spit is red-orange (RD/OR bodies, B73 tails); yellow only at the strand heads / impact core. No gold wash: the in-game glow tint for spit must be the red-orange one above.
+
+=====================================================================================================
+6. WHAT THE IN-GAME v2 CODE / ART DID WRONG (HellordFireBasics1481.cs, HellordFireBasicsFX1481.cs, HellordTuning.cs)
+=====================================================================================================
+ - Scale: authored for a 17.5 px hero; the real hero is 23.3 px. Everything was ~25 % too small relative to the hero.
+ - Boulder speed 75 px/s with a 12.6 px ball = 4.2 ball diameters/s (reference 2.5-3), and it covered the arena in 0.4-0.6 s. rrRange 70-150 px; rrCrumbleR = 1 m (16 px) far too small for a 2-3 H fire patch. Ball 12.6 px, low contrast.
+ - Trail was one smooth ribbon (rounded top, no tongues, no sparks) instead of a band of 6 px tiles with tongues, each burning 1.4-3 s.
+ - Spit glob lobbed along an arc instead of flying flat; 6-8 px orange sparkle, no dark rock; sort by y only so imps hid it.
+ - Burst = pale-gold comb of straight hairlines (wider than +-40 deg) instead of ~8 dark-red wavy ropes with bright heads; no round fireball, no star flashes, no heat patch, no ember patches, scorch = purple scar lines.
+ - One shared glow setting with the gold tint (ff963c) for everything, glow also lit the dark ball; draw was 1x unrotated; no cast ring / wind-up pose / launch.
+ - Spam: overlapping bands/blasts every ~0.5 s -> wall. v3 adds the 2.0 s tile life, the ember cap, and clear sort rules.
+
+=====================================================================================================
+7. README (t1496) DIFFERENCE LIST -> HOW EACH IS ADDRESSED
+=====================================================================================================
+MOLTEN SPIT
+ S1 no readable rock          : molten_spit_rock_dir16 = dark cracked rock (10.6 px, 0.45 H) with glowing cracks, 16 dirs, 40 px (1.7 H) red-orange streak tail; gouge/wind-up strip (rock in hand, ground cracks); sort +30 so imps never hide it; flat throw.
+ S2 no round fireball         : molten_spit_impact = round fireball, WH/YL core, AM/OR body, thin shell with dropped pixels, 45 px = 1.93 H, 6 f; tearing streaks from f4 are the roots of the strands.
+ S3 shrapnel shape + colour   : molten_spit_strand_dir16 = 8 ragged rope strands, RD/B73 wavy 40 px tails, AM/OR body, WH/YL head, fly 10 f, cone +-35 deg, 3.2-5 H; no straight hairlines.
+ S4 colour grading            : Endesga ramp, red-orange body, yellow-white only at cores; red-orange glow tint ff6028 recommended; mock-up on the real blue floor; sprites no gold fan.
+ S5 duration / timing         : fireball 6 f, strands 10 f fly + 8 f fade, everything gone at impact+21 f (0.7 s), only heat + ember patches remain.
+ S6 ground effect             : molten_spit_heat (textured heat sprite + noise glow mask, 1 s) and ember patches v1-v3 (2.5 s, 75 f), not a flat disc.
+ S7 no secondary hit flashes  : molten_spit_star (24x24, 6 f) at every strand tip when it lands.
+ S8 scale vs hero             : everything sized against H = 23.3 px (imp irrelevant): rock 0.45 H, fireball 1.93 H, strands 3.2-5.0 H, cone +-35, throw range up to 5.6 H.
+INFERNAL BOULDER
+ B1 boulder small / weak      : 18 px = 0.77 H, near-black plates with a bright YL/AM/OR crack net, rim light, rotating 32 f, shadow strip; sortKey above the band and imps (y + 14); glow mask has a hole so the ball stays dark.
+ B2 trail = soft flat band    : infernal_boulder_band tile with yellow-white base specks, orange edges, ragged tongues up to 17 px (0.73 H), sparks, tile flicker loop; solid 8 px band.
+ B3 length / growth / fade    : starts 1.3 D (4 tiles) long, tile laid every 6 px, 60 f life, dies oldest-first with tongues shortening and breaking up.
+ B4 no cast ring / launch     : infernal_boulder_cast_ring 24 f (0.8 s) before the ball appears at the caster's feet.
+ B5 speed                     : 53 px/s = 2.94 D/s, 2 s max, range 106 px (brief wins over the README by-eye 6-8 char).
+ B6 end blast                 : infernal_boulder_end_blast = white-yellow flash 44 px (1.89 H), 8 dark rock chunks (4x4 px) + 12 sparks, then infernal_boulder_fire_patch radius 46 px (2 H) lasting 2.5 s, merges with the band.
+ B7 hit / knockback           : cannot be verified (no monster footage in the reference set); recoil table in the rules is a design guess, flagged as such.
+ B8 context / spam            : sort + life + cap rules (section 3); mock-up shows a single clear roll first, then end blast. Spam not simulated.
+
+=====================================================================================================
+8. HONEST GAPS / CAVEATS
+=====================================================================================================
+ - UNTESTED IN UNITY. Mock-up glow is simulated (gaussian x tint), not the real FrostGlow shader; tune _Add/tint in game.
+ - Reference character heights are +-15-20 % by eye (PoE2 tutorial camera is closer than Karzel); the reference panel scale was chosen as 0.55 (PoE2) and 0.933 (D2R).
+ - The boulder range/duration are the brief's (2 s, 106 px); the README implies 6-8 characters. The D2R ball in the reference is shown at 0.73 H.
+ - No verified hit/knock-back reference for either skill.
+ - Look gaps I see vs the reference: (1) the D2R band is brighter, wider and fiercer than ours (ours is a calmer tiled band: more white-yellow core and taller flame bodies might be wanted in game with additive glow); (2) the reference blast chunks fly farther and are larger/darker against a green dirt floor, ours are 4 px chunks on blue ice; (3) PoE2 strands are many tiny sparks along the rope; ours are cleaner ropes; (4) ours has no ground-light cone on the hero/imps; (5) the mock-up hero is a cut-out of the real capture (a little fringe), imps are real sprites.
+ - Imp hit reactions in the mock-up are only a nudge, not the game's real behaviour.

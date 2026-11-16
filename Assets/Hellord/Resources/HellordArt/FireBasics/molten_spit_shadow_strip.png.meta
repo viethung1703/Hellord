@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 55272e22bb704389bdb106502547a37c
+guid: 7ee6f3d6d51a4f77906dae4d45ad7b37
 TextureImporter:
   serializedVersion: 13
   mipmaps:
@@ -18,7 +18,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     textureCompression: 0
   userData: 
   assetBundleName: 
