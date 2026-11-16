@@ -45,10 +45,10 @@ namespace Hellord
 
         // ---------------------------------------------------------------- entities
         class FbGlob { public Vector2 a, b; public float t, dur, arcH, dmg, r, patchDmg; public int blobs; public bool blob; public SkillInst s; }
-        class FbRock { public Vector2 p, dir; public float dist, range, dmg, trailAcc, age, r, trailDmg; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
+        class FbRock { public object loop; public Vector2 p, dir; public float dist, range, dmg, trailAcc, age, r, trailDmg; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
         class FbPatch { public Vector2 p; public float r, life, life0, tick, dmg; public SkillInst s; }
         readonly List<FbGlob> _fbGlobs = new List<FbGlob>(); readonly List<FbRock> _fbRocks = new List<FbRock>(); readonly List<FbPatch> _fbPatches = new List<FbPatch>(); readonly List<int> _fbQ = new List<int>(64);
-        void ClearFb1481() { _fbGlobs.Clear(); _fbRocks.Clear(); _fbPatches.Clear(); }
+        void ClearFb1481() { foreach (var r in _fbRocks) HellordAudio.LoopStop(r.loop, 0.1f); _fbGlobs.Clear(); _fbRocks.Clear(); _fbPatches.Clear(); }
 
         // ---------------------------------------------------------------- aim
         Vector2 FbAimPoint1481(float range)
@@ -75,7 +75,7 @@ namespace Hellord
                 float dur = Mathf.Max(T.mtMinFlightS1481, (b - _heroPos).magnitude / Mathf.Max(0.5f, T.mtSpeedU1481));
                 _fbGlobs.Add(new FbGlob { a = _heroPos, b = b, dur = dur, arcH = T.mtArcH1481, dmg = dmg, r = landR, blobs = blobs, s = s, t = -(i * 0.06f) });
             }
-            HellordAudio.Play(HellordAudio.Has("fb_mt_throw") ? "fb_mt_throw" : "fireball_cast", 0.8f); HordeFX.CheapBurst(hand, FbOrange1481, 4); return true;
+            HellordAudio.Play("magma_throw_cast"); HordeFX.CheapBurst(hand, FbOrange1481, 4); return true;
         }
         static readonly Color FbOrange1481 = new Color(1f, 0.48f, 0.1f), FbYellow1481 = new Color(1f, 0.85f, 0.3f), FbCrust1481 = new Color(0.28f, 0.15f, 0.1f);
         void FbGlobLand1481(FbGlob g)
@@ -83,18 +83,18 @@ namespace Hellord
             var T = HellordTuning.I; Vector2 at = g.b;
             if (g.blob)
             {
-                FbArea1481(at, g.r, g.dmg, g.s, T.mtKnock1481 * 0.4f); HordeFX.CheapBurst(at + Vector2.up * 0.1f, FbOrange1481, 4);
+                FbArea1481(at, g.r, g.dmg, g.s, T.mtKnock1481 * 0.4f); HordeFX.CheapBurst(at + Vector2.up * 0.1f, FbOrange1481, 4); HellordAudio.Play("magma_throw_splat");
                 if (_fbPatches.Count < 64) _fbPatches.Add(new FbPatch { p = at, r = T.mtPatchR1481 * Mathf.Sqrt(g.s.AreaMul), life = T.mtPatchS1481 * SinDuration737, life0 = T.mtPatchS1481 * SinDuration737, tick = T.mtPatchTickS1481 * 0.5f, dmg = g.patchDmg, s = g.s });
                 return;
             }
             FbArea1481(at, g.r, g.dmg * T.mtLandMul1481, g.s, T.mtKnock1481); ProjectileFX.Impact(at + Vector2.up * 0.2f, ProjElement.Fire, Vector2.zero); HordeFX.CheapBurst(at + Vector2.up * 0.2f, FbOrange1481, 8); ScreenShake.Add(2, 0.1f);
-            HellordAudio.Play(HellordAudio.Has("fb_mt_land") ? "fb_mt_land" : "fireball_impact", 1.1f);
+            HellordAudio.Play("magma_throw_land");
             float a0 = Random.value * 360f;
             for (int i = 0; i < g.blobs; i++)
             {
                 float ang = (a0 + i * 360f / g.blobs + Random.Range(-18f, 18f)) * Mathf.Deg2Rad; float dist = Random.Range(T.mtBlobMinU1481, T.mtBlobMaxU1481);
                 Vector2 b = at + new Vector2(Mathf.Cos(ang), Mathf.Sin(ang)) * dist; ClampToRoom(ref b, 4);
-                _fbGlobs.Add(new FbGlob { a = at, b = b, blob = true, dur = T.mtBlobFlightS1481, arcH = T.mtBlobArcH1481, dmg = g.dmg * T.mtBlobMul1481, patchDmg = g.dmg * T.mtPatchTickMul1481, r = T.mtBlobR1481 * Mathf.Sqrt(g.s.AreaMul), s = g.s });
+                _fbGlobs.Add(new FbGlob { a = at, b = b, blob = true, dur = Mathf.Max(0.1f, T.mtBlobFlightS1481 + Random.Range(-T.mtBlobJitterS1481, T.mtBlobJitterS1481)), arcH = T.mtBlobArcH1481, dmg = g.dmg * T.mtBlobMul1481, patchDmg = g.dmg * T.mtPatchTickMul1481, r = T.mtBlobR1481 * Mathf.Sqrt(g.s.AreaMul), s = g.s });
             }
         }
 
@@ -106,9 +106,10 @@ namespace Hellord
             for (int i = 0; i < n; i++)
             {
                 Vector2 d = (Vector2)(Quaternion.Euler(0, 0, (i - (n - 1) * 0.5f) * spread) * dir);
-                _fbRocks.Add(new FbRock { p = _heroPos + d * T.rrStartU1481, dir = d, range = T.rrRangeU1481 * PRange49, dmg = dmg, trailDmg = dmg * T.rrTrailTickMul1481, r = T.rrRadiusU1481, s = s });
+                _fbRocks.Add(new FbRock { p = _heroPos + d * T.rrStartU1481, dir = d, range = T.rrRangeU1481 * PRange49, dmg = dmg, trailDmg = dmg * T.rrTrailTickMul1481, r = T.rrRadiusU1481, s = s,
+                    loop = HellordAudio.LoopStart("Audio/SFX/firebasics1481/magma_rock_roll_loop", Random.Range(T.rrLoopVolMin1481, T.rrLoopVolMax1481), 1f + Random.Range(-T.rrLoopPitchSpread1481, T.rrLoopPitchSpread1481)) }); // one roll voice per rock
             }
-            HellordAudio.Play(HellordAudio.Has("fb_rr_launch") ? "fb_rr_launch" : "fireball_cast", 0.6f); return true;
+            HellordAudio.Play("magma_rock_launch"); return true;
         }
         bool FbWall1481(Vector2 p)
         {
@@ -121,11 +122,11 @@ namespace Hellord
             if (mode == Mode.StartPick) return false; var T = HellordTuning.I; EnsureFX44();
             Vector2 at = FbAimPoint1481(T.fpRangeU1481); float r = HData.At(T.fpRadiusU1481, s.level, 1.2f) * s.AreaMul; float dd = dmg * T.fpDmgMul1481; var sk = s;
             PillarTell934(at, r); HeroSkillFX.PillarCast(at, r, 0f); // the old Hellfire Pillar telegraph + eruption art, now at the cursor
-            HellordAudio.Play(HellordAudio.Has("fb_fp_tell") ? "fb_fp_tell" : "pool_cast", 1.2f);
+            HellordAudio.Play("fire_pillar_telegraph");
             After(T.fpTellS1481, () =>
             {
                 if (mode == Mode.StartPick) return; PillarImpact934(at, r); dd *= PactTrailEmp53(at);
-                FbArea1481(at, r, dd, sk, T.fpKnock1481); HellordAudio.Play(HellordAudio.Has("fb_fp_erupt") ? "fb_fp_erupt" : "fireball_impact", 0.85f); ScreenShake.Add(2, 0.12f);
+                FbArea1481(at, r, dd, sk, T.fpKnock1481); HellordAudio.Play("fire_pillar_erupt"); ScreenShake.Add(2, 0.12f);
             });
             return true;
         }
@@ -150,7 +151,7 @@ namespace Hellord
                 foreach (int ei in _fbQ)
                 {
                     var e = _en[ei]; if (!e.alive || o.hit.Contains(e.id) || (e.pos - o.p).magnitude > o.r + e.radius) continue;
-                    o.hit.Add(e.id); Hit(e, o.dmg, o.s, o.dir * T.rrKnock1481); HordeFX.CheapBurst(e.pos + Vector2.up * 0.6f, FbOrange1481, 4);
+                    o.hit.Add(e.id); Hit(e, o.dmg, o.s, o.dir * T.rrKnock1481); HordeFX.CheapBurst(e.pos + Vector2.up * 0.6f, FbOrange1481, 4); HellordAudio.Play("magma_rock_hit");
                 }
                 o.trailAcc += (o.p - prev).magnitude;
                 if (o.trailAcc >= T.rrTrailGapU1481)
@@ -162,9 +163,9 @@ namespace Hellord
                 {   // crumbles: small burst + a few embers
                     Vector2 at = o.p; ClampToRoom(ref at, 5); FbArea1481(at, T.rrCrumbleR1481 * Mathf.Sqrt(o.s.AreaMul), o.dmg * T.rrCrumbleMul1481, o.s, T.rrKnock1481 * 0.5f);
                     ProjectileFX.Impact(at + Vector2.up * 0.2f, ProjElement.Fire, Vector2.zero); HordeFX.CheapBurst(at + Vector2.up * 0.2f, FbCrust1481, 6); HordeFX.CheapBurst(at + Vector2.up * 0.3f, FbOrange1481, 5);
-                    HellordAudio.Play(HellordAudio.Has("fb_rr_crumble") ? "fb_rr_crumble" : "fireball_impact", 0.7f); if (i < _fbRocks.Count) _fbRocks.RemoveAt(i); continue;
+                    float fade = Random.Range(T.rrLoopFadeMin1481, T.rrLoopFadeMax1481); HellordAudio.LoopStop(o.loop, fade); HellordAudio.PlayDelayed("magma_rock_stop", fade); if (i < _fbRocks.Count) _fbRocks.RemoveAt(i); continue; // fade the roll out, then the crumble
                 }
-                Vector2 rp = o.p + Vector2.up * 0.35f; float spin = o.age * 7f;
+                HellordAudio.LoopBeat(o.loop); Vector2 rp = o.p + Vector2.up * 0.35f; float spin = o.age * 7f;
                 ZDisc(o.p, o.r * 0.9f, new Color(0, 0, 0, 0.35f), 0.5f, 5); ZDisc(rp, o.r, FbCrust1481, 1f, 7);
                 ZDisc(rp + new Vector2(Mathf.Cos(spin), Mathf.Sin(spin)) * o.r * 0.4f, o.r * 0.38f, FbOrange1481, 1f, 8); ZDisc(rp - new Vector2(Mathf.Sin(spin * 1.3f), Mathf.Cos(spin * 1.3f)) * o.r * 0.35f, o.r * 0.22f, FbYellow1481, 1f, 8);
             }

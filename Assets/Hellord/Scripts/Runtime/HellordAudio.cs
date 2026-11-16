@@ -45,6 +45,10 @@ namespace Hellord
             Add("fireball_cast", "fireball", 0.6f, 0.75f, 0.93f, 1.07f, 3, 0.05f);
             Add("fireball_impact", "fireball", 0.7f, 0.85f, 0.9f, 1.1f, 4, 0.03f);
             Add("frost_cleave", "skills", 0.6f, 0.75f, 0.95f, 1.05f, 3);
+            // t1481 fire basic main attacks (HSound pack fire_basics_t1481, folder SFX/firebasics1481). Caps/gaps/pitch per FILES.md; a full cap replaces the oldest voice of the SAME hook.
+            Add("magma_throw_cast", "firebasics1481", 0.55f, 0.70f, 0.94f, 1.06f, 3, 0.10f, null, true); Add("magma_throw_land", "firebasics1481", 0.70f, 0.85f, 0.94f, 1.06f, 4, 0.08f, null, true); Add("magma_throw_splat", "firebasics1481", 0.55f, 0.70f, 0.93f, 1.07f, 4, 0.07f, null, true);
+            Add("magma_rock_launch", "firebasics1481", 0.70f, 0.85f, 0.95f, 1.05f, 3, 0.15f, null, true); Add("magma_rock_hit", "firebasics1481", 0.75f, 0.90f, 0.94f, 1.06f, 4, 0.08f, null, true); Add("magma_rock_stop", "firebasics1481", 0.70f, 0.85f, 0.95f, 1.05f, 3, 0f, null, true);
+            Add("fire_pillar_telegraph", "firebasics1481", 0.55f, 0.70f, 0.96f, 1.04f, 3, 0f, null, true); Add("fire_pillar_erupt", "firebasics1481", 0.80f, 0.95f, 0.95f, 1.05f, 4, 0.20f, null, true);
             Add("storm_ring", "skills", 0.5f, 0.65f, 0.9f, 1.1f, 2, 0.1f);      // once per ring pulse
             Add("bone_orbit_hit", "skills", 0.5f, 0.65f, 0.9f, 1.1f, 3, 1f / 12f); // ~12/s
             Add("curse_rune_arm", "skills", 0.7f, 0.7f, 0.97f, 1.03f, 3);
@@ -136,8 +140,46 @@ namespace Hellord
             _scream.panStereo = Random.Range(-T.screamPanMax50, T.screamPanMax50); _screamFade = -1f; _scream.Play();
             _screamReadyT = Time.unscaledTime + Random.Range(T.screamCooldownMin50, Mathf.Max(T.screamCooldownMin50, T.screamCooldownMax50));
         }
+        // ---- t1481: looping per-owner voices (Rolling Magma Rock rumble). One AudioSource per owner, caller heartbeats it every frame it is alive (a paused game stops the beat -> the loop pauses).
+        class LoopV { public AudioSource src; public float vol, beat, fadeTot, fadeLeft, fadeFrom; public bool stopping; public string id; }
+        readonly List<LoopV> _loops = new List<LoopV>();
+#if HELLORD_AUTOTEST
+        public static System.Action<string, string, float, float> LoopLog; // autotest sfx log: (kind start|stop, clip, volume|fade, pitch)
+#endif
+        /// <summary>Starts a looping voice from Resources. Returns a handle for LoopBeat / LoopStop (null when the clip is missing or sfx are off).</summary>
+        public static object LoopStart(string resPath, float vol, float pitch)
+        {
+            if (!HellordTuning.I.sfxEnabled) return null; var a = I; var c = Resources.Load<AudioClip>(resPath); if (c == null) { Debug.LogWarning("[HellordAudio] loop clip missing " + resPath); return null; }
+            var s = a.gameObject.AddComponent<AudioSource>(); s.playOnAwake = false; s.spatialBlend = 0; s.loop = true; s.clip = c; s.pitch = pitch; s.volume = vol * Master; s.Play();
+            var l = new LoopV { src = s, vol = vol, beat = Time.unscaledTime }; a._loops.Add(l);
+#if HELLORD_AUTOTEST
+            l.id = c.name + "_" + s.GetInstanceID(); LoopLog?.Invoke("loopstart", l.id, vol * Master, pitch);
+#endif
+            return l;
+        }
+        public static void LoopBeat(object h) { var l = h as LoopV; if (l != null) l.beat = Time.unscaledTime; }
+        /// <summary>Fades the loop out over fadeS then removes it.</summary>
+        public static void LoopStop(object h, float fadeS) { var l = h as LoopV; if (l == null || l.stopping) return; l.stopping = true; l.fadeTot = l.fadeLeft = Mathf.Max(0.02f, fadeS); l.fadeFrom = l.src != null ? l.src.volume : 0f; if (l.src != null && !l.src.isPlaying) l.src.UnPause();
+#if HELLORD_AUTOTEST
+            if (l.src != null) LoopLog?.Invoke("loopstop", l.id, l.fadeTot, 1f);
+#endif
+        }
+        void UpdateLoops1481()
+        {
+            float now = Time.unscaledTime;
+            for (int i = _loops.Count - 1; i >= 0; i--)
+            {
+                var l = _loops[i]; if (l.src == null) { _loops.RemoveAt(i); continue; }
+                if (l.stopping) { l.fadeLeft -= Time.unscaledDeltaTime; l.src.volume = l.fadeFrom * Mathf.Clamp01(l.fadeLeft / l.fadeTot); }
+                bool stale = now - l.beat > 0.2f;
+                if (!l.stopping && stale && l.src.isPlaying) l.src.Pause(); else if (!l.stopping && !stale && !l.src.isPlaying) l.src.UnPause();
+                if (!l.stopping && now - l.beat > 10f) { l.stopping = true; l.fadeTot = l.fadeLeft = 0.05f; l.fadeFrom = l.src.volume; } // owner gone without a stop: drop it
+                if (l.stopping && l.fadeLeft <= 0f) { l.src.Stop(); Destroy(l.src); _loops.RemoveAt(i); }
+            }
+        }
         void Update()
         {
+            if (_loops.Count > 0) UpdateLoops1481();
             if (_scream == null || !_scream.isPlaying) return;
             var T = HellordTuning.I;
             if ((BossTrack >= 0 && T.screamMuteInBoss50) || !T.sfxEnabled)

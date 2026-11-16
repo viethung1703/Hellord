@@ -1443,6 +1443,8 @@ namespace Hellord
     [Tooltip("Ember trail: one patch every this many metres, seconds it burns, tick (s), tick damage x skill damage, radius (m), max patches alive")] public float rrTrailGapU1481 = 0.7f, rrTrailS1481 = 1.2f, rrTrailTickS1481 = 0.35f, rrTrailTickMul1481 = 0.12f, rrTrailR1481 = 0.45f; public int rrTrailMax1481 = 24;
     [Tooltip("Crumble burst when it hits a wall or the end of its range: radius (m), damage x skill damage")] public float rrCrumbleR1481 = 1f, rrCrumbleMul1481 = 0.5f;
     [Tooltip("Extra rocks (Multi Projectiles) are fanned by this many degrees")] public float rrSpreadDeg1481 = 14f;
+    [Tooltip("Roll loop volume min / max per rock (loop is -13 dBFS, keep it quiet) and pitch spread, fade-out on stop min / max (s)")] public float rrLoopVolMin1481 = 0.40f, rrLoopVolMax1481 = 0.55f, rrLoopPitchSpread1481 = 0.02f, rrLoopFadeMin1481 = 0.08f, rrLoopFadeMax1481 = 0.12f;
+    [Tooltip("Magma Throw: random +/- seconds on each blob's flight time so the splats do not all land on one frame")] public float mtBlobJitterS1481 = 0.08f;
     [Header("t1481: Fire Pillar")]
     [Tooltip("Max range from the hero (m) - the cursor point is clamped to this")] public float fpRangeU1481 = 7f;
     [Tooltip("Telegraph seconds before the pillar erupts (keep = pillarTellSeconds so the tell art lines up)")] public float fpTellS1481 = 0.5f;
