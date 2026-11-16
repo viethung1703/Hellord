@@ -1,0 +1,87 @@
+Hellord t1481 FX v2 - MOLTEN SPIT (was Magma Throw) + INFERNAL BOULDER (was Rolling Magma Rock). Fire Pillar unchanged (v1 strips copied as-is: fire_pillar_*).
+MOCKUP previews only. Untested in Unity. Generator: fb2_gen.py (deterministic, no rng, needs ../firebasics_gen.py). Preview/mock-up renderer: render2.py, contact2.py.
+Everything: 30 fps, alpha 0/255 in sprites (glow masks have 6 graded alpha levels 0/40/80/130/190/255, white), Endesga fire ramp 3e2731/733e39/be4a2f/d77643/f77622/feae34/fee761, white ffffff only as tiny cores.
+Strip layout: frames side by side (x). "16 dirs" strips stack 16 rows (y), row r = r*22.5 deg, row 0 = EAST, clockwise on screen (y down) = the game's DirRow(v) = atan2(-v.y, v.x). Pivots are in sprite px from top-left.
+
+==== 0. WHAT THE v2 CHANGES (scale policy) ====
+Sizes now MATCH THE REFERENCE in character heights, no shrinking for readability (hero 17.5 px). Boulder r=6.3 (12.6 px = 0.72 hero = the D2R 0.65 human), flame wall 13-14 px, tail 34 px (2.7 D), end blast 38 px (3 D),
+shrapnel head 6 px / tail 38 px, burst 1.8 hero wide, scorch 50 px (2.8 hero, as the PoE2 ground). Tune later (the sizes are baked, so use the in-engine scale if it must shrink).
+
+==== 1. WHAT WAS WRONG IN THE REAL GAME CLIPS (FINAL_FX v1; frames in reference/INTERNAL_old_ingame_*.jpg) ====
+Look/readability (the main reason):
+ * The camera shows 320x180 art px at 3x with scanlines + bloom + fringe. v1 was judged on a clean 1x 640x360 mock-up, which hid how muddy it gets.
+ * Rolling rock: the ball is a low-contrast brown ball, 11 px, with almost no vein contrast: it reads as a blob; the tail is a flat horizontal yellow bar (no tongues, no height, no flicker: it looks like a laser, not fire).
+   Successive rocks (0.5 s hold-fire = 48 px apart at 96 px/s) have tails of 28 px + glow + CRT blur, so they merge into one yellow smear. The rock is drawn behind imps (sort by y only), so it vanishes inside the horde.
+   No visible tumble (rock too small for the vein pattern to show). The trail is a sparse tuft every 16 px (cap 3 alive): it never forms the continuous burning ground line that D2R has. Crumble is a small orange puff next to big white imp-hit flashes.
+ * Magma throw: the glob (about 10 px) is a blurry orange puff (crust lost to glow + CRT); no tail, no direction; the burst is a diffuse cloud next to large white imp-hit flashes; the 5 children are tiny dots with no tails and no direction rows; the pools are fuzzy smudges
+   (no veins), so the ground never reads as burning.
+Code (HellordFireBasicsFX1481.cs / HellordFireBasics1481.cs, as read):
+ * Strips are drawn at 1x, unrotated and the same for every direction except the rock's DirRow: blob/glob/shard need direction rows (they are baked here) chosen from the SCREEN velocity incl. the arc height, not from the ground direction.
+ * Small-frame glow: the same big-frame glow material (_Gain 1.6, _Add 0.3) is used for 10-16 px frames: it swamps them. v2 gives every strip its own mask with a sigma matched to its size (see section 6).
+ * Draw order: rock/glob/burst sort by their own y, so imps in front hide them. Add a sort bias (see section 5).
+ * Spawn density: one trail tuft per 16 px with cap 3 alive; no cap on the crumble; fixed timing not tied to speed (see section 4).
+ * Speed: rrSpeedU1481 = 6 m/s = 96 px/s is about 4.5x the D2R boulder speed relative to its size (21 px/s). It still reads (the trail makes it), but the roll animation must be tied to the travel (section 4).
+
+==== 2. REFERENCE NUMBERS (details + ids in reference/notes.md; INTERNAL, not published) ====
+D2R Molten Boulder: ball 0.65 human = 11.4-12.6 px; speed 150 px/s = 1.8 D/s; trail 1.6 D -> 4.4 D, flames about 1.1 D tall, linger 2.5-3 s oldest-first; end flash 2.2-3.7 D, about 10 chunks 0.1-0.2 D flying 1.5-2 D, flames fade 2.5 s.
+PoE2 shrapnel: head 0.2-0.25 char, tail 1.5-2.3 char, reach 3.3 char in 0.4-0.5 s, landing starburst 0.8 char, glowing scribble line along each path + ground scribble network about 2.8 char wide.
+Conversion: D2R x7.14 (1 human = 125-130 px = 17.5 px; one NPC measured, about +/-15 %), PoE2 x3.26 (character about 57 px, about +/-20 %).
+
+==== 3. ASSETS (all in this folder as <name>_strip.png, glow = <name>_glow_strip.png) ====
+INFERNAL BOULDER
+ infernal_boulder_roll_dir16   96x104, 16 f x 16 rows (1536x1664), pivot (48,56) = ROCK CENTRE; the ground contact is pivot+5 px down. 16 f = one full revolution (loop).
+                               Cracked-lava ball r 6.3 rolling in the travel direction (veins roll forward) + flame tail 34 px long pointing BACK. The tail's flames rise straight UP the screen in every direction (D2R). Glow: tail only, the rock crust is a hole (r 6.6) so the ball stays dark.
+ infernal_boulder_trail        28x32, 28 f, pivot (14,26) = ground point. f0-5 ignite, f6-17 LOOP (12 f), f18-27 die. A 12 px wide flame tile, 12 px tall, with 3 rising embers. Glow.
+ infernal_boulder_scorch_v1/v2 24x10, 6 stages, pivot (12,5). Dark ground burn with live embers: 0 fresh (6 embers) 18 f, 1 orange 18 f, 2 red 24 f, 3 cold crust 36 f, 4 dither 50 % 24 f, 5 2 specks 16 f (about 4.6 s).
+ infernal_boulder_hit          48x44, 8 f, pivot (24,30) = contact point. Not rotated: flame puff rising up the screen + a yellow cross flash on f0-1 + 7 sparks fanned to the EAST + 3 rock chips. Flip horizontally when the rock moves west. Glow (sigma 2.2).
+ infernal_boulder_crumble      88x88, 24 f (0.8 s), once, pivot (44,60) = rock centre (ground = +5). f0-2 the rock shakes and its veins blaze, f3-14 ragged fireball (R up to 19 = 38 px), 16 spark streaks, 10 rock chunks that fly out and land, f7-23 ground flames, embers. Glow.
+INFERNAL BOULDER, spawn/movement rules
+ * Roll: move at v px/s; play the roll strip at frame = floor(travelled px / 2.47) % 16 (1 revolution = 15.5 px). At 75 px/s that is 30 fps 1:1; at 96 px/s play at 1.28x. Row from DirRow(velocity). Place the pivot at (ground point - 5 px y).
+ * Trail: one infernal_boulder_trail tile every 8 px of travel at the ground point (draw BELOW everything, oldest first); lifetime 36 f (1.2 s) at game speed [ref: 2.5-3 s at 21 px/s; to keep the trail about 4.4 D long use lifetime = 55 px / speed]: ignite 6 f, loop (random start phase), die 10 f. A scorch decal every 16 px, spawned 4 f late.
+   Cap about 40 tiles per rock; no cap on distinct rocks (they overlap in the same ground fire, that is the intended D2R look).
+ * Rock draw order: sort key = y + 12 so the ball and its tail draw in front of imps standing on the line; the hit sprite sort key y + 40.
+ * Pierce: when the ball overlaps an imp the first time, spawn infernal_boulder_hit at (rock x + 6 px forward, ground y), flip with the direction; imp recoil 3 px along the roll (curve 0,3,4,3,2,1,1,0 f), the rock keeps going.
+ * End (range reached or the max-range timer): remove the roll sprite, spawn infernal_boulder_crumble at the rock pivot + 3 trail tiles at x-10/0/+10 (lifetime 36 f).
+
+MOLTEN SPIT
+ molten_spit_glob_dir16        56x56, 8 f x 16 rows (448x896), pivot (28,28) = glob centre. Molten rock r 5 (10 px, hot veins) + 17 px comet tail behind it. Glow with the rock excluded (hole r 3.5).
+ molten_spit_shadow / ember / marker  unchanged v1 art (16x8 4 f, 8x8 6 f, 24x14 8 f, pivots (8,4)/(4,1)/(12,7)): the shadow stage 0-3 by height (z>20, >12, >6, else), ember every 3rd frame, marker for the last 14 f.
+ molten_spit_burst             104x76, 18 f (0.6 s), once, pivot (52,58) = impact ground point. f0-3 flash star (22 px rays), ragged fireball R 14 (28 px, white-yellow core), broken crown of ground flames (6 tongues), 20 spark streaks, 8 molten droplets that hop out, embers. Glow.
+ molten_spit_shard_dir16       80x80, 6 f x 16 rows (480x1280), pivot (40,40) = HEAD. Shrapnel comet: fat oval head 6 px, yellow-white core, 38 px tail tapering to red. 6 f loop. Glow (no hole).
+ molten_spit_shard_land        48x32, 10 f, pivot (24,22) = landing point: starburst (9 px), 8 sparks, low flames, embers. Glow.
+ molten_spit_shard_scar_dir16  18x18, 5 stages x 16 rows (90x288), pivot (9,9) = segment centre. A short glowing scribble line along the shard path; stage durations 6,10,14,16,10 f (about 1.9 s).
+ molten_spit_scorch_v1..3      64x30 (50 px wide ellipse used), 8 stages, pivot (32,15). Dark burn + dense thin glowing scribble veins (46-50 curves): 0 YL/AM (14 f), 1 AM/OR (14), 2 OR/RD (16), 3 RD (16), 4 RD/brown (14), 5 55 % crust (10), 6 22 % (8), 7 3 specks (6) = about 98 f (3.3 s).
+ molten_spit_scorch_small_v1/2 26x14, 6 stages, pivot (13,7): 8,8,10,12,10,8 f.
+MOLTEN SPIT, spawn/movement rules (the same as v1 except where marked NEW)
+ * Lob: frames N = clamp(distance / 5.5, 14, 24), start at the hand (10 px toward the cursor, 4 px in y, 13 px above the feet), arc height 8 + 0.16 d, z = HAND(1-t) + arc*4t(1-t). Glob row (NEW) = DirRow of the SCREEN velocity incl. z (pos(a+1) - pos(a)). Glob frame = a % 8.
+ * Landing = burst at the target ground point (sort key y + 40) + scorch v(1..3) from f2 (draws below) + imp recoil within 30 px (curve above, scaled by 1 - d/40).
+ * Shards (NEW design): 8 shards from the impact point from burst f2 on, angles = throw direction + [-55,-39,-23,-8,8,23,39,55] deg, ground reach [46,58,52,62,50,56,60,48] px, ground y scaled 0.6, flight [11,12,12,13,12,12,11,13] f, ease-out (1-(1-t)^2), arc 7*4t(1-t) + 3(1-t) px above the ground, row from the screen velocity, frame = age % 6.
+   Every frame of flight spawn a molten_spit_shard_scar_dir16 on the GROUND position (no arc) with the shard's ground-direction row. On landing: shard_land at the landing point; for every second shard a scorch_small decal from sb 2 on; imp recoil if within 12x8 px.
+ * Hold-fire 0.4 s stacks a lot of fire at once; it is as loud as the reference. Tune later with the in-engine scale (the sprites are baked 1:1).
+
+==== 4. THINGS CODE MUST DO DIFFERENTLY (summary) ====
+1. Direction rows for glob, shard, rock from the screen velocity; no rotating the flame tails (the flames always rise up the screen).
+2. Rock: roll animation tied to travel (2.47 px / frame), sort above imps, trail tile every 8 px (not 16), tile lifetime = 55 px / speed, no cap 3.
+3. Glow per strip (below), never one shared material setting. 4. Crumble/burst once, no reuse of the same pooled object while still playing.
+5. Chunks and the crumble/burst are sprite frames: do not scale them in code (scaling breaks the pixel grid); use the 30 fps frame index only.
+
+==== 5. DRAW ORDER (sort keys, y = ground y) ====
+ decals (scorch, shard scar, marker, shadow) < trail tiles < imps/hero (y) < rock/glob/shard (y + 12 / 30 / 20) < burst/crumble/hit (y + 40). Glow = separate additive pass over everything.
+
+==== 6. GLOW MASKS (white, graded alpha; same frame size and pivot as the sprite) ====
+ Shader as in the game: Hellord/FrostGlow1430, tint ff963c, _Gain 1.6, _Add 0.3 ( the mock-up uses gaussian(mask, 2.2 art px) x 0.45 x ff963c additive).
+ Suggested _Add (mask sigma baked): roll tail 0.30 (sigma 3.0, gain 0.9, rock excluded), trail 0.30 (2.8, 0.8), crumble 0.40 (3.4, 1.15), hit 0.30 (2.2, 1.0), glob 0.30 (2.8, 1.0, rock core excluded), shard 0.35 (2.4, 1.1), shard_land 0.30 (2.0, 1.1), burst 0.40 (3.6, 1.1).
+ Rock crust and decals have no glow. If the scene gets too hazy lower _Add to 0.2, do not lower the sprite size.
+
+==== 7. MOCK-UPS (all MOCKUP, hero + imps are placeholders) ====
+ molten_spit_v2_vs_ref_MOCKUP.mp4, infernal_boulder_v2_vs_ref_MOCKUP.mp4: LEFT = INTERNAL reference (never publish), RIGHT = ours at matched scale (hero 17.5 px = reference character), time-synced on the explosion/burst, under 1 MB.
+   Boulder is simulated at the REFERENCE speed (21 px/s) so the look matches; the Spit comparison uses a ring of 8 (the ref is a Nova) while the game uses the cone.
+ molten_spit_v2_game_scale_CRT_MOCKUP.mp4, infernal_boulder_v2_game_scale_CRT_MOCKUP.mp4: 320x180 art px x3 (960x540) with the real camera's blue floor, scanlines, bloom and fringe, hold-fire 0.4 s (spit) / 0.5 s (boulder, 75 px/s), 6 placeholder imps.
+ contact_boulder_ref_vs_old_vs_v2_MOCKUP.png, contact_spit_ref_vs_old_vs_v2_MOCKUP.png: reference / old in-game v1 / v2 matched / v2 real camera.
+
+==== 8. CAVEATS ====
+ * Untested in Unity: pivots, glow, sorting and timings are simulated in Python only.
+ * Molten Spit's thrown projectile and impact explosion have no clean PoE2 footage (see reference/notes.md); they follow the wiki + the D2R boulder look. Shrapnel, landing and ground are measured.
+ * Reference scale from one D2R figure (about +/-15 %) and an estimated PoE2 character height (about +/-20 %).
+ * The Hellord boulder speed (96 px/s) is 4.5x the D2R boulder relative to its size; the animation and trail rules above compensate. Tell me if the speed should drop.
+ * Sizes follow the reference on purpose and are large (spit burst 28 px, crumble 38 px, scorch 50 px); tune down later in the engine.
