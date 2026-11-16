@@ -46,9 +46,9 @@ namespace Hellord
             Add("fireball_impact", "fireball", 0.7f, 0.85f, 0.9f, 1.1f, 4, 0.03f);
             Add("frost_cleave", "skills", 0.6f, 0.75f, 0.95f, 1.05f, 3);
             // t1481 fire basic main attacks (HSound pack fire_basics_t1481, folder SFX/firebasics1481). Caps/gaps/pitch per FILES.md; a full cap replaces the oldest voice of the SAME hook.
-            Add("magma_throw_cast", "firebasics1481", 0.55f, 0.70f, 0.94f, 1.06f, 3, 0.10f, null, true); Add("magma_throw_land", "firebasics1481", 0.70f, 0.85f, 0.94f, 1.06f, 4, 0.08f, null, true); Add("magma_throw_splat", "firebasics1481", 0.55f, 0.70f, 0.93f, 1.07f, 4, 0.07f, null, true);
-            Add("magma_rock_launch", "firebasics1481", 0.70f, 0.85f, 0.95f, 1.05f, 3, 0.15f, null, true); Add("magma_rock_hit", "firebasics1481", 0.75f, 0.90f, 0.94f, 1.06f, 4, 0.08f, null, true); Add("magma_rock_stop", "firebasics1481", 0.70f, 0.85f, 0.95f, 1.05f, 3, 0f, null, true);
-            Add("fire_pillar_telegraph", "firebasics1481", 0.55f, 0.70f, 0.96f, 1.04f, 3, 0f, null, true); Add("fire_pillar_erupt", "firebasics1481", 0.80f, 0.95f, 0.95f, 1.05f, 4, 0.20f, null, true);
+            Add("magma_throw_cast", "firebasics1481", 0.50f, 0.65f, 0.94f, 1.06f, 3, 0.10f, null, true); Add("magma_throw_land", "firebasics1481", 0.60f, 0.75f, 0.94f, 1.06f, 4, 0.08f, null, true); Add("magma_throw_splat", "firebasics1481", 0.45f, 0.60f, 0.93f, 1.07f, 5, 0.07f, null, true);
+            Add("magma_rock_launch", "firebasics1481", 0.55f, 0.70f, 0.95f, 1.05f, 3, 0.15f, null, true); Add("magma_rock_hit", "firebasics1481", 0.55f, 0.70f, 0.94f, 1.06f, 4, 0.08f, null, true); Add("magma_rock_stop", "firebasics1481", 0.55f, 0.70f, 0.95f, 1.05f, 3, 0f, null, true);
+            Add("fire_pillar_telegraph", "firebasics1481", 0.45f, 0.60f, 0.96f, 1.04f, 4, 0f, null, true); Add("fire_pillar_erupt", "firebasics1481", 0.55f, 0.70f, 0.95f, 1.05f, 3, 0.20f, null, true); // t1481 HSound v2 gains/caps
             Add("storm_ring", "skills", 0.5f, 0.65f, 0.9f, 1.1f, 2, 0.1f);      // once per ring pulse
             Add("bone_orbit_hit", "skills", 0.5f, 0.65f, 0.9f, 1.1f, 3, 1f / 12f); // ~12/s
             Add("curse_rune_arm", "skills", 0.7f, 0.7f, 0.97f, 1.03f, 3);

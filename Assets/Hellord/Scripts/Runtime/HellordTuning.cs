@@ -1444,7 +1444,7 @@ namespace Hellord
     [Tooltip("Ember trail: one tuft every this many metres (HFX 16 px), seconds the embers hurt, tick (s), tick damage x skill damage, radius (m), max patches alive")] public float rrTrailGapU1481 = 1f, rrTrailS1481 = 0.5f, rrTrailTickS1481 = 0.35f, rrTrailTickMul1481 = 0.12f, rrTrailR1481 = 0.45f; public int rrTrailMax1481 = 24;
     [Tooltip("Crumble burst when it hits a wall or the end of its range: radius (m), damage x skill damage")] public float rrCrumbleR1481 = 1f, rrCrumbleMul1481 = 0.5f;
     [Tooltip("Extra rocks (Multi Projectiles) are fanned by this many degrees")] public float rrSpreadDeg1481 = 14f;
-    [Tooltip("Roll loop volume min / max per rock (loop is -13 dBFS, keep it quiet) and pitch spread, fade-out on stop min / max (s)")] public float rrLoopVolMin1481 = 0.40f, rrLoopVolMax1481 = 0.55f, rrLoopPitchSpread1481 = 0.02f, rrLoopFadeMin1481 = 0.08f, rrLoopFadeMax1481 = 0.12f;
+    [Tooltip("Roll loop volume min / max per rock (v2 loop is -16 dBFS, several rocks can roll at once) and pitch spread, fade-out on stop min / max (s)")] public float rrLoopVolMin1481 = 0.30f, rrLoopVolMax1481 = 0.45f, rrLoopPitchSpread1481 = 0.02f, rrLoopFadeMin1481 = 0.08f, rrLoopFadeMax1481 = 0.12f;
     [Header("t1481: Fire Pillar")]
     [Tooltip("Max range from the hero (m) - the cursor point is clamped to this; pillars pending / erupting at once (HFX cap 3)")] public float fpRangeU1481 = 7f; public int fpMax1481 = 3;
     [Tooltip("Telegraph seconds before the pillar erupts. HFX telegraph = 12 frames = 0.4 s; the strip is re-timed to this value, so changing it stays consistent.")] public float fpTellS1481 = 0.4f;
