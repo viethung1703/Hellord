@@ -555,8 +555,8 @@ namespace Hellord
                 else D2SpawnCorpse1434(e, 0, dir);
                 return true;
             }
-            e.sr.sprite = fr[k]; e.sr.flipX = false;
-            if (k == 2) { HordeFX.Flash(e.sr); e.sr.color = Color.white; } // POP: white silhouette of the frame (Flash material swap, re-armed every update of the 50 ms frame)
+            e.sr.sprite = fr[k == 2 && e.fbKill1481 && fr.Length > 3 ? 3 : k]; e.sr.flipX = false; // t1511b: fire-basic kills skip the white POP frame baked into the PixelLab death art (frame 2)
+            if (k == 2 && !e.fbKill1481) { HordeFX.Flash(e.sr); e.sr.color = Color.white; } // t1511b: not on fire-basic kills (their own burst / burn FX plays) // POP: white silhouette of the frame (Flash material swap, re-armed every update of the 50 ms frame)
             return true;
         }
         bool D2FrozenDeath1434(Enemy e, float dt)

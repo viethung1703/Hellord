@@ -218,6 +218,9 @@ namespace Hellord
             h.last = v; h.lastT = now; _owner[free] = hook;
             free.clip = h.clips[v]; free.volume = Mathf.Clamp01(Random.Range(h.v0, h.v1) * (h.ui ? UiMaster : Master));
             free.pitch = pitchOverride > 0 ? pitchOverride : Random.Range(h.p0, h.p1); free.Play();
+#if HELLORD_AUTOTEST
+            LoopLog?.Invoke("play", hook + "|" + free.clip.name, free.volume, free.pitch); // t1511b: one-shots in the autotest sfx log too
+#endif
         }
         /// <summary>XP combo: +1 semitone per pickup within 0.5 s (cap +12), pitch = 2^(step/12) * rand(0.97..1.03).</summary>
         public static void XpPickup()

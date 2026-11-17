@@ -127,12 +127,50 @@ namespace Hellord
             DecalI x = null; foreach (var d in a._dec) if (!d.p.live) { x = d; break; } if (x == null) { x = new DecalI { p = a.NewPair() }; a._dec.Add(x); }
             x.p.live = true; x.s = s; x.kind = kind; x.f = -delayF; x.pos = pos; x.order = order; x.row = row; x.stage = -9; Hide(x.p);
         }
-        public static void Clear() { if (_i == null) return; foreach (var o in _i._once) { o.p.live = false; Hide(o.p); } foreach (var d in _i._dec) { d.p.live = false; Hide(d.p); } foreach (var p in _i._im) Hide(p); _i._imN = 0; }
+        // ------------------------------------------------------------------ t1511b floor darkening (code-drawn soft dark ellipse, alpha-black; swappable for HFX art via DarkOverride)
+        /// <summary>Set this to draw an art version instead (pos, rx px, ry px, peak alpha, hold s, order); the code ellipse is skipped while it is set.</summary>
+        public static System.Action<Vector2, float, float, float, float, int> DarkOverride;
+        sealed class DarkI { public SpriteRenderer sr; public float age, hold, a0; public bool live; }
+        readonly List<DarkI> _dark = new List<DarkI>(); static readonly Dictionary<long, Sprite> _darkSpr = new Dictionary<long, Sprite>();
+        static readonly int[] Bayer4 = { 0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5 };
+        static Sprite DarkSprite(int rx, int ry, int levels, float falloff)
+        {
+            long key = ((long)rx << 32) | ((long)ry << 12) | ((long)levels << 4); if (_darkSpr.TryGetValue(key, out var sp)) return sp;
+            int w = rx * 2 + 2, h = ry * 2 + 2; var t = new Texture2D(w, h, TextureFormat.RGBA32, false) { filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp }; var px = new Color32[w * h];
+            for (int y = 0; y < h; y++) for (int x = 0; x < w; x++)
+            {   // soft ellipse alpha (1-d^2)^falloff, quantized to `levels` steps with a 4x4 ordered dither: 1 texel = 1 art px, so it stays pixel-art
+                float dx = (x + 0.5f - w * 0.5f) / rx, dy = (y + 0.5f - h * 0.5f) / ry, d2 = dx * dx + dy * dy; float v = d2 >= 1f ? 0f : Mathf.Pow(1f - d2, falloff);
+                int lv = Mathf.Clamp(Mathf.FloorToInt(v * levels + Bayer4[(y & 3) * 4 + (x & 3)] / 16f), 0, levels); px[y * w + x] = new Color32(255, 255, 255, (byte)(255 * lv / Mathf.Max(1, levels)));
+            }
+            t.SetPixels32(px); t.Apply(false, true); sp = Sprite.Create(t, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), PPU, 0, SpriteMeshType.FullRect); return _darkSpr[key] = sp;
+        }
+        /// <summary>Brief floor darkening: fades in over fbDarkInF frames, holds holdS, fades out over fbDarkOutS. rx / ry in art px.</summary>
+        public static void Dark(Vector2 pos, float rxPx, float ryPx, float alpha, float holdS, int order)
+        {
+            var T = HellordTuning.I; if (T == null || !T.fbDark1481 || alpha <= 0f) return;
+            if (DarkOverride != null) { DarkOverride(pos, rxPx, ryPx, alpha, holdS, order); return; }
+            if (!Ok) return; var a = _i; DarkI x = null; foreach (var d in a._dark) if (!d.live) { x = d; break; }
+            if (x == null) { x = new DarkI { sr = a.NewSR("fbdark") }; a._dark.Add(x); }
+            x.live = true; x.age = 0f; x.hold = holdS; x.a0 = alpha; x.sr.enabled = true; x.sr.sprite = DarkSprite(Mathf.Max(2, Mathf.RoundToInt(rxPx)), Mathf.Max(1, Mathf.RoundToInt(ryPx)), Mathf.Max(1, T.fbDarkLevels1481), T.fbDarkFalloff1481);
+            x.sr.transform.position = new Vector3(Snap(pos.x), Snap(pos.y), 0f); x.sr.transform.localScale = Vector3.one; x.sr.transform.rotation = Quaternion.identity; x.sr.sortingOrder = order; x.sr.flipX = false;
+            var c = T.fbDarkTint1481; c.a = 0f; x.sr.color = c;
+        }
+        void UpdateDark(float dt)
+        {
+            var T = HellordTuning.I; if (T == null) return; float inS = Mathf.Max(0.001f, T.fbDarkInF1481 / FPS), outS = Mathf.Max(0.001f, T.fbDarkOutS1481);
+            foreach (var d in _dark)
+            {
+                if (!d.live) continue; d.age += dt; float k = d.age < inS ? d.age / inS : d.age < inS + d.hold ? 1f : 1f - (d.age - inS - d.hold) / outS;
+                if (k <= 0f && d.age > inS) { d.live = false; d.sr.enabled = false; continue; }
+                var c = T.fbDarkTint1481; c.a = d.a0 * Mathf.Clamp01(k); d.sr.color = c;
+            }
+        }
+        public static void Clear() { if (_i == null) return; foreach (var d in _i._dark) { d.live = false; d.sr.enabled = false; } foreach (var o in _i._once) { o.p.live = false; Hide(o.p); } foreach (var d in _i._dec) { d.p.live = false; Hide(d.p); } foreach (var p in _i._im) Hide(p); _i._imN = 0; }
         /// <summary>Clears one-shots / immediates only; floor decals keep fading (used on a room reset is Clear()).</summary>
         void LateUpdate()
         {
             if (_called) { for (int i = _imN; i < _im.Count; i++) Hide(_im[i]); _imN = 0; _called = false; }
-            float dt = Time.deltaTime;
+            float dt = Time.deltaTime; UpdateDark(dt);
             foreach (var o in _once)
             {
                 if (!o.p.live) continue; o.age += dt * o.speed; if (o.age < 0f) { Hide(o.p); continue; } int fi = o.life > 0f ? TileFrame(o) : (int)(o.age * FPS); if (fi < 0 || fi >= o.s.n) { o.p.live = false; Hide(o.p); continue; } Put(o.p, o.s, 0, fi, o.pos, o.order, o.rot, o.flip);

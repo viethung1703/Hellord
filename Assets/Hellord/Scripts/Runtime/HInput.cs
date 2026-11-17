@@ -115,7 +115,8 @@ namespace Hellord
         public static bool Esc716() { var kb = Keyboard.current; return kb != null && kb.escapeKey.wasPressedThisFrame; }
         public static Vector2 Arrows716() { var v = Vector2.zero; var kb = Keyboard.current; if (kb == null) return v; if (kb.leftArrowKey.isPressed) v.x -= 1; if (kb.rightArrowKey.isPressed) v.x += 1; if (kb.downArrowKey.isPressed) v.y -= 1; if (kb.upArrowKey.isPressed) v.y += 1; return v; }
         public static bool LmbDown716() { var m = Mouse.current; return m != null && m.leftButton.wasPressedThisFrame; }
-        public static bool LmbHeld716() { var m = Mouse.current; return m != null && m.leftButton.isPressed; }
+        public static bool AtLmb; // autotest: scripted held left mouse (t1511b)
+        public static bool LmbHeld716() { var m = Mouse.current; return AtLmb || (m != null && m.leftButton.isPressed); }
 #else
         static KeyCode Map(HKey k)
         {
@@ -169,7 +170,8 @@ namespace Hellord
         public static bool Esc716() => Input.GetKeyDown(KeyCode.Escape);
         public static Vector2 Arrows716() { var v = Vector2.zero; if (Input.GetKey(KeyCode.LeftArrow)) v.x -= 1; if (Input.GetKey(KeyCode.RightArrow)) v.x += 1; if (Input.GetKey(KeyCode.DownArrow)) v.y -= 1; if (Input.GetKey(KeyCode.UpArrow)) v.y += 1; return v; }
         public static bool LmbDown716() => Input.GetMouseButtonDown(0);
-        public static bool LmbHeld716() => Input.GetMouseButton(0);
+        public static bool AtLmb; // autotest: scripted held left mouse (t1511b)
+        public static bool LmbHeld716() => AtLmb || Input.GetMouseButton(0);
 #endif
     }
 }

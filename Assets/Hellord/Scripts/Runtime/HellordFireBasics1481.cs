@@ -62,10 +62,16 @@ namespace Hellord
             Vector2 at = MouseWorld(); if ((at - _heroPos).magnitude > range) at = _heroPos + (at - _heroPos).normalized * range; ClampToRoom(ref at, 4); return at;
         }
         Vector2 FbAimDir1481() { Vector2 d = MouseWorld() - _heroPos; return d.sqrMagnitude > 0.01f ? d.normalized : (_lastDir.sqrMagnitude > 0.01f ? _lastDir.normalized : Vector2.right); }
-        bool FbArea1481(Vector2 at, float r, float dmg, SkillInst s, float knock)
+        // t1511b declutter: 0 = not a fire-basic hit, 1 = primary (number, no white shards), 2 = secondary (no number, no white shards)
+        int _fbHitMode1481;
+        bool FbNoNumber1481() => _fbHitMode1481 == 2 && HellordTuning.I.fbDeclutter1481;
+        bool FbNoBlob1481() => _fbHitMode1481 != 0 && HellordTuning.I.fbNoHitBlob1481;
+        void FbHit1481(Enemy e, float dmg, SkillInst s, Vector2 knock, int mode, bool tick = false) { int o = _fbHitMode1481; _fbHitMode1481 = mode; try { Hit(e, dmg, s, knock, tick); } finally { _fbHitMode1481 = o; } }
+        int FbDarkOrd1481(float y) => FbGround - 700 + YSort(y); // floor darkening: above the floor (-29xxx), under the fire decals and corpses
+        bool FbArea1481(Vector2 at, float r, float dmg, SkillInst s, float knock, int mode = 1)
         {
             Query(at, r, _fbQ); SkillArea53(at, r, dmg, (int)s.def.id); bool any = false;
-            foreach (int ei in _fbQ) { var e = _en[ei]; if (!e.alive) continue; Vector2 d = e.pos - at; float dist = d.magnitude; if (dist > r + e.radius) continue; any = true; Hit(e, dmg, s, (dist > 0.01f ? d / dist : Vector2.up) * knock); }
+            foreach (int ei in _fbQ) { var e = _en[ei]; if (!e.alive) continue; Vector2 d = e.pos - at; float dist = d.magnitude; if (dist > r + e.radius) continue; any = true; FbHit1481(e, dmg, s, (dist > 0.01f ? d / dist : Vector2.up) * knock, mode); }
             return any;
         }
         /// <summary>Burning ground (damage only; the picture is an HFX strip). Ellipse rx / ry (m), life + delay (s), tick (s), tick damage.</summary>
@@ -97,7 +103,7 @@ namespace Hellord
         void FbSpitImpact1481(FbRock r)
         {
             var T = HellordTuning.I; Vector2 at = r.p; ClampToRoom(ref at, 4); int ord = YSort(at.y); var s = r.s; float dmg = r.dmg;
-            FireBasicsFX1481.Once("molten_spit_impact", at, ord + 40); ScreenShake.Add(2, 0.1f); HellordAudio.Play("magma_throw_land");
+            FireBasicsFX1481.Once("molten_spit_impact", at, ord + 40); FireBasicsFX1481.Dark(at + r.dir * (T.msDarkFwdPx1481 / FbPx), T.msDarkRxPx1481, T.msDarkRyPx1481, T.msDarkAlpha1481, T.msDarkHoldS1481, FbDarkOrd1481(at.y)); /* t1511b */ ScreenShake.Add(2, 0.1f); HellordAudio.Play("magma_throw_land");
             After(T.msImpactDelayF1481 / FbFps, () => { if (mode != Mode.StartPick) FbArea1481(at, T.msHitRU1481 * Mathf.Sqrt(s.AreaMul), dmg * T.msImpactMul1481, s, T.msKnock1481); }); // damage only on impact frame 2-3
             float area = Mathf.Sqrt(s.AreaMul);
             FireBasicsFX1481.Once("molten_spit_heat", at, FbGround + ord, 0f, 1f, 0, false, T.msHeatDelayF1481);                                       // heat-glow patch, 30 f
@@ -144,13 +150,14 @@ namespace Hellord
         void FbBandTile1481(FbBall b, Vector2 at)
         {
             var T = HellordTuning.I; int oy = YSort(at.y); FireBasicsFX1481.Tile("infernal_boulder_band", at, FbTrail + oy, T.rrBandS1481 * SinDuration737, 0f, T.rrBandMax1481);
+            if (T.rrDarkBandEvery1481 > 0 && b.tiles % T.rrDarkBandEvery1481 == 0) FireBasicsFX1481.Dark(at, T.rrDarkBandRxPx1481, T.rrDarkBandRyPx1481, T.rrDarkBandAlpha1481, Mathf.Max(0f, T.rrBandS1481 * SinDuration737 - T.fbDarkOutS1481), FbDarkOrd1481(at.y)); // t1511b darkening along the band
             if ((b.tiles++ & 1) == 0) FbPatch1481(at, T.rrBandRU1481 * Mathf.Sqrt(b.s.AreaMul), T.rrBandRU1481 * Mathf.Sqrt(b.s.AreaMul), T.rrBandS1481, 0f, T.rrBandTickS1481, b.dmg * T.rrBandTickMul1481, b.s);
         }
         void FbBallEnd1481(FbBall b)
         {
             var T = HellordTuning.I; Vector2 at = b.p; ClampToRoom(ref at, 5); int ord = YSort(at.y); float area = Mathf.Sqrt(b.s.AreaMul);
             FbArea1481(at, T.rrBlastRU1481 * area, b.dmg * T.rrBlastMul1481, b.s, 0f); ScreenShake.Add(2, 0.12f);
-            FireBasicsFX1481.Once("infernal_boulder_end_blast", at, ord + 40);                                                                         // flash, chunks, sparks (30 f)
+            FireBasicsFX1481.Once("infernal_boulder_end_blast", at, ord + 40); FireBasicsFX1481.Dark(at, T.rrDarkRxPx1481, T.rrDarkRyPx1481, T.rrDarkAlpha1481, T.rrDarkHoldS1481, FbDarkOrd1481(at.y)); // t1511b                                                                         // flash, chunks, sparks (30 f)
             FireBasicsFX1481.Tile("infernal_boulder_fire_patch", at, FbGround + ord, T.rrPatchS1481 * SinDuration737, T.rrPatchDelayF1481);              // fire patch from blast + 2 f, 75 f
             FbPatch1481(at, T.rrPatchRxU1481 * area, T.rrPatchRyU1481 * area, T.rrPatchS1481, T.rrPatchDelayF1481 / FbFps, T.rrPatchTickS1481, b.dmg * T.rrPatchTickMul1481, b.s);
             float fade = Random.Range(T.rrLoopFadeMin1481, T.rrLoopFadeMax1481); HellordAudio.LoopStop(b.loop, fade); HellordAudio.PlayDelayed("magma_rock_stop", fade); // fade the roll out, then the stop
@@ -220,7 +227,7 @@ namespace Hellord
                     float k = st.t / flight; Vector2 g = Vector2.Lerp(st.a, st.b, 1f - Mathf.Pow(1f - k, T.msStrandEase1481)); int ord = YSort(g.y);
                     FireBasicsFX1481.Show("molten_spit_strand_dir16", g + lift, (int)(st.t * FbFps) % 6, ord + 20, st.row);
                     Query(g, T.msStrandRU1481 + 0.6f, _fbQ);
-                    foreach (int ei in _fbQ) { var e = _en[ei]; if (e.alive && !st.hit.Contains(e.id) && (e.pos - g).magnitude <= T.msStrandRU1481 + e.radius * 0.5f) { st.hit.Add(e.id); Hit(e, st.dmg, st.s, Vector2.zero); } }
+                    foreach (int ei in _fbQ) { var e = _en[ei]; if (e.alive && !st.hit.Contains(e.id) && (e.pos - g).magnitude <= T.msStrandRU1481 + e.radius * 0.5f) { st.hit.Add(e.id); FbHit1481(e, st.dmg, st.s, Vector2.zero, 2); } }
                     continue;
                 }
                 if (!st.landed) FbStrandLand1481(st);
@@ -240,7 +247,7 @@ namespace Hellord
                 foreach (int ei in _fbQ)
                 {
                     var e = _en[ei]; if (!e.alive || o.hit.Contains(e.id) || (e.pos - o.p).magnitude > hitR + e.radius) continue;
-                    o.hit.Add(e.id); Hit(e, o.dmg, o.s, Vector2.zero); HellordAudio.Play("magma_rock_hit"); _fbRecoils.Add(new FbRecoil { e = e, dir = o.dir }); // knock-back = the HFX recoil table along the roll direction
+                    o.hit.Add(e.id); FbHit1481(e, o.dmg, o.s, Vector2.zero, 1); HellordAudio.Play("magma_rock_hit"); _fbRecoils.Add(new FbRecoil { e = e, dir = o.dir }); // knock-back = the HFX recoil table along the roll direction
                 }
                 if (o.z <= 0.5f) { o.trailAcc += (o.p - prev).magnitude; float gap = T.rrBandGapPx1481 / FbPx; while (o.trailAcc >= gap) { o.trailAcc -= gap; FbBandTile1481(o, o.p); } } // the band only burns where the ball touches the ground
                 if (wall || o.age >= T.rrMaxS1481 || o.dist >= o.range - 0.001f) { _fbBalls.RemoveAt(i); FbBallEnd1481(o); continue; }
@@ -264,7 +271,7 @@ namespace Hellord
                 if (p.tick <= 0f)
                 {
                     p.tick = p.tickS; Query(p.p, p.rx + 0.6f, _fbQ);
-                    foreach (int ei in _fbQ) { var e = _en[ei]; if (!e.alive) continue; Vector2 d = e.pos - p.p; float nx = d.x / (p.rx + e.radius * 0.5f), ny = d.y / (p.ry + e.radius * 0.5f); if (nx * nx + ny * ny <= 1f) Hit(e, p.dmg, p.s, Vector2.zero, true); }
+                    foreach (int ei in _fbQ) { var e = _en[ei]; if (!e.alive) continue; Vector2 d = e.pos - p.p; float nx = d.x / (p.rx + e.radius * 0.5f), ny = d.y / (p.ry + e.radius * 0.5f); if (nx * nx + ny * ny <= 1f) FbHit1481(e, p.dmg, p.s, Vector2.zero, 2, true); }
                 }
             }
         }

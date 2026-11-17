@@ -13,7 +13,7 @@ namespace Hellord
         public int v44Fx = -1, v44Tr = -1; public byte m53; public int calc53, eqEl53 = -1, bst53; public bool calcB53; public float eqT53, bstore53, stun53, brit536; // t536u Brittle Mark expiry (runTime) // v0.0.53 pact node state (Calcify, Equilibrium, Hemorrhage). public byte m53: mortar demon kind+1 (0 = none) // v0.0.44 MinionFX handles (tell / fire trail), -1 = none
         public int id; public EType type; public bool alive, elite; public Vector2 pos, push; public float hp, maxHp, speed, radius, dmg, animT;
         public SpriteRenderer sr; public Transform tr; public Sprite[] frames; public int xp, cx, cy; public float hitT; public PixelFX fx; public int shockH = -1, bleedH = -1, burnH = -1, chillH = -1; public bool boss;
-        public float stag1434, stagDur1434, stagCd1434, kbT1434, kbDur1434, kbDist1434, kbDone1434; public Vector2 kbDir1434; public bool over1434, frozenDeath1434, d2scaled1434, gib1434, burn1434, fx1434, fxFrozen1434; public float corpseLife1434; public bool pop1434, slam1434; public D2Corpse1434 cp1434; public float agT1447, atkV1457; public Sprite[] fxFr1434; public Vector2 deathDir1434; public bool fxHold1434, fxFlip1434; /* t1446 PixelLab death events */ /* t1434 D2 feel */ public float hitY, deathT; public bool dying, splitDone, nest; public int walkRow; // v0.6: hurt-circle height (units above feet), death anim, facing row
+        public float stag1434, stagDur1434, stagCd1434, kbT1434, kbDur1434, kbDist1434, kbDone1434; public Vector2 kbDir1434; public bool fbKill1481; public bool over1434, frozenDeath1434, d2scaled1434, gib1434, burn1434, fx1434, fxFrozen1434; public float corpseLife1434; public bool pop1434, slam1434; public D2Corpse1434 cp1434; public float agT1447, atkV1457; public Sprite[] fxFr1434; public Vector2 deathDir1434; public bool fxHold1434, fxFlip1434; /* t1446 PixelLab death events */ /* t1434 D2 feel */ public float hitY, deathT; public bool dying, splitDone, nest; public int walkRow; // v0.6: hurt-circle height (units above feet), death anim, facing row
         public float tint948Until, tint948Amt; public Color tint948Col; /* t948u brief status tint */ public float knock818; public int burnStk818; /* t818u sin #9 knock mark (runTime expiry) / #31 burn stacks */ public float slowT, slowAmt; /* v0.0.36 Grave Pool slow */ public float iceBuild; /* t1393u shared chill->freeze buildup */ public float shockAmp = 0.25f; public float burnT, burnDps, chillT, shockT, bleedT, bleedDps, curseT, freezeT, dotTick, orbitCd, auraCd; public int chillHits;
         public byte variant; public float fuseT = -1; /* v0.0.37: 1 frost, 2 exploding */ public float hookCd; public int hookWind = -1, hookH = -1, strafe = 1; public Vector2 hookPrevTip, hookAim; public bool hookTipOk; // v0.0.24 Hook Thrower
         public int v44St, v44Face; public float v44T, v44HurtT, v44CastT, v44AnimT; public byte k49; public int s49, n49; public float t49, cd49; public Vector2 a49, b49; /* v0.0.49 patterns */ public bool v44West; public Vector2 v44Dir, v44Prev; public bool v44Hit; /* v0.0.44 Frost Caster / Fire Wheel */ public float gossipCd, gossipT; public int gossipSt, gossipH = -1; public Vector2 gossipC; // v0.0.25 Gossip Imp (state 0 hover, 1 approach, 2 shouting, 3 recover)
@@ -746,13 +746,13 @@ namespace Hellord
             if (e.boss && BossStunned) dmg *= 2f; // punish window
             bool c = canCrit && Random.value < crit; if (c) dmg *= 2f;
             float d2hp = e.hp; e.hp -= dmg;
-            if (!dot) e.hitT = 0.08f;
+            if (!dot && !FbNoBlob1481()) e.hitT = 0.08f; // t1511b: no white sprite flash on fire-basic hits (their own impact FX plays)
             int shown = Mathf.Max(1, Mathf.RoundToInt(dmg));
             // v0.5: every hit shows a number; HordeFX (pack v1.8.4) merges hits per target into one rising total, keeps them apart and on a plate.
-            if (noNumber) { } // v0.0.21: BurnFX draws its own tick number
-            else if (e.fx != null) HordeFX.Number(e.pos + Vector2.up * (e.boss ? BossHeadY : e.hitY * 1.8f), shown, c, e.sr.GetInstanceID()); // Uber material: flash via PixelFX
+            if (noNumber || FbNoNumber1481()) { } // v0.0.21: BurnFX draws its own tick number // t1511b: fire-basic secondary hits (strands, burning ground) show no number
+            else if (e.fx != null || FbNoBlob1481()) HordeFX.Number(e.pos + Vector2.up * (e.boss ? BossHeadY : e.hitY * 1.8f), shown, c, e.sr.GetInstanceID()); // Uber material: flash via PixelFX
             else HordeFX.Hit(e.sr, shown, c, true);
-            if (!dot) HitShards934(e.pos + Vector2.up * e.hitY, c); // t934u mode 19
+            if (!dot && !FbNoBlob1481()) HitShards934(e.pos + Vector2.up * e.hitY, c); // t934u mode 19 // t1511b: not on fire-basic hits (own impact FX)
             if (!dot) { HitJuice(e, dmg, c); if (!D2Impact1434()) HellordAudio.Play("enemy_hit"); D2Hit1434(e, dmg, d2hp, c); } // v0.0.29 (rate-limited 0.04 s, cap 4)
             if (e.hp <= 0) KillEnemy(e);
         }
@@ -766,7 +766,7 @@ namespace Hellord
         }
         void KillEnemy(Enemy e)
         {
-            e.alive = false; e.burn1434 = e.burnT > 0 || _d2Fire; if (e.type == EType.HookThrower || e.type == EType.GossipImp) HookCleanup(e);
+            e.alive = false; e.burn1434 = e.burnT > 0 || _d2Fire; e.fbKill1481 = FbNoBlob1481(); /* t1511b */ if (e.type == EType.HookThrower || e.type == EType.GossipImp) HookCleanup(e);
             EndMinionFx44(e); // v0.0.44
             if (e.nest) { OnNestKilled(e); return; }
             PactKill53(e); // v0.0.53 pact (reads statuses before they stop)

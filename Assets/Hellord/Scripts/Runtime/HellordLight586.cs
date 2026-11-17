@@ -41,7 +41,7 @@ namespace Hellord
         }
         void HitLight661(Enemy e, SkillInst s, bool tick)
         {
-            if (tick) return; var c = ElemCol661(s); if (c.a <= 0) return; Vector2 hp = e.pos + Vector2.up * e.hitY; if (s.def.id == SkillId.HellfirePillar || s.def.id == SkillId.StormRing) c.a = HellordTuning.I.aoeFlashMul677; Flash661(hp, c); // t677u: c.a = flash weight
+            if (tick || FbNoBlob1481()) return; var c = ElemCol661(s); if (c.a <= 0) return; Vector2 hp = e.pos + Vector2.up * e.hitY; if (s.def.id == SkillId.HellfirePillar || s.def.id == SkillId.StormRing) c.a = HellordTuning.I.aoeFlashMul677; Flash661(hp, c); // t677u: c.a = flash weight // t1511b: no generic impact light on fire basics (own glow)
             if (Time.frameCount != _ihFrame667) { _ihFrame667 = Time.frameCount; _ihN667 = 0; }
             if (_ihN667++ < 24) { string h = ImpactHook667(s); if (h != null) SL667(h, hp); } // t667u: Hellord FX pixel light (cap 24 / frame)
         }
