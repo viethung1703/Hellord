@@ -33,6 +33,7 @@ namespace Hellord
               foreach (var o in new[] { HellordTuning.PactNameFrame.Plate, HellordTuning.PactNameFrame.Banner, HellordTuning.PactNameFrame.Tag, HellordTuning.PactNameFrame.Lacquer })
               { T.pactNameFrame5 = o; _altarView51 = 3; _slide97 = 0; yield return AtWait(0.4f); yield return AtShot("pact1544_frame" + (int)o + "_xingtian"); _altarView51 = 2; _slide97 = 0; yield return AtWait(0.3f); yield return AtShot("pact1544_frame" + (int)o + "_leizu"); _altarView51 = 1; _slide97 = 0; yield return AtWait(0.3f); yield return AtShot("pact1544_frame" + (int)o + "_zhongkui"); }
               T.pactNameFrame5 = was; _pactSealed51 = sw; }
+            { var T = HellordTuning.I; bool mw = T.pactV7MatchAvatar; bool sw = _pactSealed51; _pactSealed51 = false; T.pactV7MatchAvatar = false; _altarView51 = 2; _slide97 = 0; yield return AtWait(0.4f); yield return AtShot("pact1544_v7_off_leizu"); T.pactV7MatchAvatar = mw; _pactSealed51 = sw; }
             HellordUITheme.Requested = HellordUITheme.Theme.Stone1246; _altarView51 = 3; _slide97 = 0; yield return AtWait(0.6f); yield return AtShot("pact1544_stone");
             HellordUITheme.Requested = HellordUITheme.Theme.MenuTheme; yield return AtWait(0.3f);
             ARes("pact1544", amOk, $"menuTheme altar active {AmActive()} broken {_amBroken} paths {NP97} frames {_r1544} arrowClicks {clicks}/{NP97} names {string.Join("|", PactData.PathShort)}");

@@ -20,7 +20,7 @@ namespace Hellord
         bool V3 => PT.pactCardsV3;
         bool V4 => PT.pactCardsV3 && PT.pactCardsV4;
         static readonly int[] V4CardN = { 410, 0, 130, 123 }, V4CardL = { 410, 125, 130, 123 };   // t1544 v4: side cards without plate and avatar frame
-        int V4Hx => Mathf.Max(0, V5 ? PT.pactV5HeaderExtra : PT.pactV4HeaderExtra);   // t1544 v5: the framed block needs a taller header
+        int V4Hx => V7 ? PT.pactV7CentreTop + 35 + PT.pactV7Gap - V2C_AvY : Mathf.Max(0, V5 ? PT.pactV5HeaderExtra : PT.pactV4HeaderExtra);   // t1544 v5: the framed block needs a taller header
         static readonly int[] V2AvC = { 152, 0, 70, 70 }, V2AvN = { 152, 72, 70, 70 }, V2AvL = { 152, 144, 70, 70 }, V2PlateC = { 152, 216, 120, 15 };
         // mockup geometry (1x, relative to the card's top-left)
         const int V2C_AvY = 23, V2C_HdrY = 9, V2C_GapPlate = 4, V2C_NameDy = 4, V2C_TitleDy = 18;      // centre card (mock card 245,135)
@@ -67,7 +67,7 @@ namespace Hellord
             if (locked) AmSpr("lock", fx + F - 18, fy + F - 18);
             if (V4) // t1544 v4 (VH "bring the title up there too"): name + title in the (grown) header, nothing under the avatar
             {
-                if (V5) { AmNameBlock5(X + W / 2, Y + (V6 ? PT.pactV6CentreTop : 8), v, true); if (sealed_) AmSpr("chip", X + 4, Y + 4); return; } // t1544 v5: framed name + title
+                if (V5) { AmNameBlock5(X + W / 2, Y + (V7 ? PT.pactV7CentreTop : V6 ? PT.pactV6CentreTop : 8), v, true, V7 ? F : 0); if (sealed_) AmSpr("chip", X + 4, Y + 4); return; } // t1544 v5: framed name + title
                 int ny = Y + 8 + (V4Hx - 9) / 2; AmTxIn(PactData.PathShort[v], X, 0, W, 0, "BONE", ny);
                 AmTxIn(PactData.PathTitle[v], X, 0, W, 0, "CLAY", ny + 7 + PT.pactV4TitleGap);
                 if (sealed_) AmSpr("chip", X + 4, Y + 4);

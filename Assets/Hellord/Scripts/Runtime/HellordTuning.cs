@@ -876,6 +876,8 @@ namespace Hellord
     [Tooltip("t1544 v6: Lacquer block top on the side cards (HA: y+4; v5 pactV5SideBlockY 5).")] public int pactV6SideTop = 4;
     [Tooltip("t1544 v6: side avatar frame top with the 35-row Lacquer block (HA: 41; v5 34).")] public int pactV6SideFrameY = 41;
     [Tooltip("t1544 v6: Lacquer name / title rows below the frame top (HA: 9 / 19, 3px leading; v5: 4 / 13 inside the plate).")] public int pactV6NameDy = 9, pactV6TitleDy = 19;
+    [Tooltip("t1544 v7: the centre card's Lacquer frame is as wide as the 2x avatar frame (134, same left/right edges) instead of 129 centred. Off = 618e4b4 (129 wide).")] public bool pactV7MatchAvatar = true;
+    [Tooltip("t1544 v7: centre Lacquer frame top below the card top (v6 4) and the rows between it and the avatar frame (v6 2). Card side margin is 12; 6/4 keeps the spacing even. The card grows by 4 rows (186 -> 190).")] public int pactV7CentreTop = 6, pactV7Gap = 4;
     [Tooltip("t511: clicking the main-menu Pact seal opens the Sacrifice Altar (same as the SACRIFICE ALTAR row). Off = old placeholder Pact panel.")] public bool mm69SealOpensAltar = true;
     [Header("t503u Main Menu v69 (VH-locked art)")]
     [Tooltip("Use the VH-locked v69 main menu art (v49 title, skull-stair bg, text rows + skull/blood select, Damnation Pact seal). Off = old v0.0.51 hex-button menu.")] public bool mainMenu69 = true;
