@@ -76,11 +76,11 @@ namespace Hellord
         readonly List<Pair> _im = new List<Pair>(); int _imN; bool _called;
         Pair NewPair() { return new Pair { sp = NewSR("fb"), gl = NewSR("fbg") }; }
         SpriteRenderer NewSR(string n) { var go = new GameObject(n); go.transform.SetParent(transform, false); var sr = go.AddComponent<SpriteRenderer>(); sr.enabled = false; return sr; }
-        static void Put(Pair p, Strip s, int row, int frame, Vector2 pos, int order, float rot, bool flip, float scale = 1f, float alpha = 1f)
+        static void Put(Pair p, Strip s, int row, int frame, Vector2 pos, int order, float rot, bool flip, float scale = 1f, float alpha = 1f, float sy = -1f)
         {
             frame = Mathf.Clamp(frame, 0, s.n - 1); row = Mathf.Clamp(row, 0, s.rows - 1); var tp = new Vector3(Snap(pos.x), Snap(pos.y), 0f);
-            p.sp.enabled = true; p.sp.sprite = s.f[row, frame]; p.sp.transform.position = tp; p.sp.transform.rotation = Quaternion.Euler(0, 0, rot); p.sp.sortingOrder = order; p.sp.flipX = flip; p.sp.color = new Color(1f, 1f, 1f, alpha); p.sp.transform.localScale = new Vector3(scale, scale, 1f);
-            if (_glowOk && s.g != null && s.mat != null) { p.gl.enabled = true; p.gl.sharedMaterial = s.mat; p.gl.sprite = s.g[row, frame]; p.gl.transform.position = tp; p.gl.transform.rotation = Quaternion.Euler(0, 0, rot); p.gl.sortingOrder = order + 1; p.gl.flipX = flip; p.gl.color = new Color(1f, 1f, 1f, alpha); p.gl.transform.localScale = new Vector3(scale, scale, 1f); } else p.gl.enabled = false;
+            p.sp.enabled = true; p.sp.sprite = s.f[row, frame]; p.sp.transform.position = tp; p.sp.transform.rotation = Quaternion.Euler(0, 0, rot); p.sp.sortingOrder = order; p.sp.flipX = flip; p.sp.color = new Color(1f, 1f, 1f, alpha); p.sp.transform.localScale = new Vector3(scale, sy < 0f ? scale : sy, 1f);
+            if (_glowOk && s.g != null && s.mat != null) { p.gl.enabled = true; p.gl.sharedMaterial = s.mat; p.gl.sprite = s.g[row, frame]; p.gl.transform.position = tp; p.gl.transform.rotation = Quaternion.Euler(0, 0, rot); p.gl.sortingOrder = order + 1; p.gl.flipX = flip; p.gl.color = new Color(1f, 1f, 1f, alpha); p.gl.transform.localScale = new Vector3(scale, sy < 0f ? scale : sy, 1f); } else p.gl.enabled = false;
         }
         static void Hide(Pair p) { p.sp.enabled = false; p.gl.enabled = false; }
 
@@ -93,15 +93,16 @@ namespace Hellord
         }
 
         // ------------------------------------------------------------------ one-shots
-        sealed class OnceI { public Pair p; public Strip s; public float age, speed, rot, life; public int phase, ign = 6; public Vector2 pos; public int order; public bool flip; public string key; }
+        sealed class OnceI { public Pair p; public Strip s; public float age, speed, rot, life, sx = 1f, sy = 1f; public int phase, ign = 6; public Vector2 pos; public int order; public bool flip; public string key; }
         readonly List<OnceI> _once = new List<OnceI>();
         /// <summary>ONE-SHOT strip. speed 1 = 30 fps. cap > 0: ignored while that many of the same key are alive (HFX spam guard).</summary>
-        public static bool Once(string key, Vector2 pos, int order, float rot = 0f, float speed = 1f, int cap = 0, bool flip = false, float delayF = 0f)
+        /// <remarks>t1514: sx / sy = x / y scale (non-uniform allowed: flattened blast, shrunken pops).</remarks>
+        public static bool Once(string key, Vector2 pos, int order, float rot = 0f, float speed = 1f, int cap = 0, bool flip = false, float delayF = 0f, float sx = 1f, float sy = 1f)
         {
             if (!Ok || !_s.TryGetValue(key, out var s)) return false; var a = _i;
             if (cap > 0) { int c = 0; foreach (var o in a._once) if (o.p.live && o.key == key) c++; if (c >= cap) return false; }
             OnceI x = null; foreach (var o in a._once) if (!o.p.live) { x = o; break; } if (x == null) { x = new OnceI { p = a.NewPair() }; a._once.Add(x); }
-            x.p.live = true; x.s = s; x.age = -delayF / FPS; x.life = 0f; x.phase = 0; x.speed = Mathf.Max(0.05f, speed); x.pos = pos; x.order = order; x.rot = rot; x.flip = flip; x.key = key; if (delayF > 0f) Hide(x.p); else Put(x.p, s, 0, 0, pos, order, rot, flip); return true;
+            x.p.live = true; x.s = s; x.age = -delayF / FPS; x.life = 0f; x.phase = 0; x.sx = sx; x.sy = sy; x.speed = Mathf.Max(0.05f, speed); x.pos = pos; x.order = order; x.rot = rot; x.flip = flip; x.key = key; if (delayF > 0f) Hide(x.p); else Put(x.p, s, 0, 0, pos, order, rot, flip, sx, 1f, sy); return true;
         }
 
         /// <summary>Burning tile of any HFX band / patch strip: ignite f0-5, 12-frame loop f6-17 with a random start phase, then the die frames (f18..n-1) over the last n-18 frames of its lifetime (lifeS seconds, from the end of delayF). cap > 0: when that many of the same key are alive the oldest starts dying now.</summary>
@@ -110,7 +111,7 @@ namespace Hellord
             if (!Ok || !_s.TryGetValue(key, out var s) || s.n < ign + 12 + 4) return; var a = _i; int dieN = s.n - ign - 12;
             if (cap > 0) { int c = 0; OnceI old = null; foreach (var o in a._once) if (o.p.live && o.key == key && o.life > 0f) { c++; if (o.age * FPS + dieN < o.life && (old == null || o.age > old.age)) old = o; } if (c >= cap && old != null) old.life = old.age * FPS + dieN; }
             OnceI x = null; foreach (var o in a._once) if (!o.p.live) { x = o; break; } if (x == null) { x = new OnceI { p = a.NewPair() }; a._once.Add(x); }
-            x.p.live = true; x.s = s; x.age = -delayF / FPS; x.speed = 1f; x.pos = pos; x.order = order; x.rot = 0; x.flip = false; x.key = key; x.life = Mathf.Max(ign + dieN, lifeS * FPS); x.ign = ign; x.phase = phase >= 0 ? phase % 12 : Random.Range(0, 12); if (delayF > 0f) Hide(x.p); else Put(x.p, s, 0, 0, pos, order, 0f, false);
+            x.p.live = true; x.s = s; x.age = -delayF / FPS; x.sx = 1f; x.sy = 1f; x.speed = 1f; x.pos = pos; x.order = order; x.rot = 0; x.flip = false; x.key = key; x.life = Mathf.Max(ign + dieN, lifeS * FPS); x.ign = ign; x.phase = phase >= 0 ? phase % 12 : Random.Range(0, 12); if (delayF > 0f) Hide(x.p); else Put(x.p, s, 0, 0, pos, order, 0f, false);
         }
         static int TileFrame(OnceI o) { float f = o.age * FPS; int g = o.ign, dieN = o.s.n - g - 12; if (f >= o.life) return -1; if (f < g) return (int)f; if (f >= o.life - dieN) return g + 12 + Mathf.Clamp((int)(f - (o.life - dieN)), 0, dieN - 1); return g + (((int)f - g + o.phase) % 12); } // HFX v4 life_idx(age, T, ign, loop 12, n)
 
@@ -176,7 +177,7 @@ namespace Hellord
             float dt = Time.deltaTime; UpdateDark(dt);
             foreach (var o in _once)
             {
-                if (!o.p.live) continue; o.age += dt * o.speed; if (o.age < 0f) { Hide(o.p); continue; } int fi = o.life > 0f ? TileFrame(o) : (int)(o.age * FPS); if (fi < 0 || fi >= o.s.n) { o.p.live = false; Hide(o.p); continue; } Put(o.p, o.s, 0, fi, o.pos, o.order, o.rot, o.flip);
+                if (!o.p.live) continue; o.age += dt * o.speed; if (o.age < 0f) { Hide(o.p); continue; } int fi = o.life > 0f ? TileFrame(o) : (int)(o.age * FPS); if (fi < 0 || fi >= o.s.n) { o.p.live = false; Hide(o.p); continue; } Put(o.p, o.s, 0, fi, o.pos, o.order, o.rot, o.flip, o.sx, 1f, o.sy);
             }
             foreach (var d in _dec)
             {
