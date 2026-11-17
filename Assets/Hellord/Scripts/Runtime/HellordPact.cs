@@ -16,8 +16,21 @@ namespace Hellord
 
     public static class PactData
     {
-        public static readonly string[] PathName = { "PYROMANCER OF THE PIT", "NECROMANCER THE GRAVECALLER", "STORMCALLER", "BLOOD REAVER" };
-        public static readonly string[] PathShort = { "PYROMANCER", "NECROMANCER", "STORMCALLER", "BLOOD REAVER" };
+        static readonly string[] PathName0 = { "PYROMANCER OF THE PIT", "NECROMANCER THE GRAVECALLER", "STORMCALLER", "BLOOD REAVER" };
+        static readonly string[] PathShort0 = { "PYROMANCER", "NECROMANCER", "STORMCALLER", "BLOOD REAVER" };
+        // t1544 (VH "good, apply"): the 4 Paths are shown as gods; names, titles and avatars only (mechanics, ids, saves unchanged).
+        // Pyromancer (fire) = Zhurong, Necromancer (soul/death) = Zhong Kui, Stormcaller (lightning) = Leizu, Blood Reaver (blood) = Xingtian.
+        // Gonggong (BREAKER OF HEAVEN, frost/water) has no Path: art is imported (god_gonggong*) but unused.
+        public static readonly string[] GodName = { "ZHURONG", "ZHONG KUI", "LEIZU", "XINGTIAN" };
+        public static readonly string[] GodTitle = { "GOD OF FIRE", "DEMON QUELLER", "LORD OF THUNDER", "THE HEADLESS WAR GOD" };
+        public static readonly string[] GodKey = { "zhurong", "zhongkui", "leizu", "xingtian" };
+        static readonly string[] PathTitle0 = { "OF THE PIT", "THE GRAVECALLER", "", "" };
+        static readonly string[] PathName1 = { "ZHURONG GOD OF FIRE", "ZHONG KUI DEMON QUELLER", "LEIZU LORD OF THUNDER", "XINGTIAN THE HEADLESS WAR GOD" };
+        static bool Gods => HellordTuning.I.pactGods1544;
+        public static string[] PathName => Gods ? PathName1 : PathName0;
+        public static string[] PathShort => Gods ? GodName : PathShort0;
+        /// <summary>second card line: the god's title (t1544) or the old epithet ("OF THE PIT" etc.).</summary>
+        public static string[] PathTitle => Gods ? GodTitle : PathTitle0;
         public static readonly Color[] PathCol = { new Color32(0xf7, 0x76, 0x22, 255), new Color32(0x5a, 0xc5, 0x4f, 255), new Color32(0x3c, 0x9c, 0xff, 255), new Color32(0xe4, 0x3b, 0x44, 255) };
         public static readonly string[] PathPassive = { "+INC DAMAGE PER NODE", "SUMMON + BONE SKILLS", "+MOVE SPEED PER NODE", "+MAX HP PER NODE" };
         public static readonly string[] CrestText = { "CREST: BURN SPREADS ON DEATH", "CREST: MINIONS +15% DMG/LIFE, BONE SKILLS +15% DMG", "CREST: EVERY 4TH TRIGGER FREE, SEEKS SHOCKED", "CREST: MELEE RECASTS AT LOW HP, 30% SHIELD" };
@@ -334,7 +347,7 @@ namespace Hellord
                 bool act = _pactPath51 == p && _pactSel51 != 0, locked = anyU == 0, ov = Over51(cx, cy, 96, 40);
                 R53(cx, cy, 96, 40, U_INK); Ol53(cx, cy, 96, 40, act || ov ? Color.white : locked ? U_SLATE : PactData.PathCol[p], act || ov ? 2 : 1);
                 Icon51(p, cx + 4, cy + 4, 24, locked);
-                string nm = PactData.PathName[p]; int sp = nm.IndexOf(' '); string l1 = sp > 0 ? nm.Substring(0, sp) : nm, l2 = sp > 0 ? nm.Substring(sp + 1) : ""; if (l2.Length > 12 && l2.StartsWith("THE ")) l2 = l2.Substring(4); // t1178: GRAVECALLER fits the card
+                string nm = PactData.PathName[p]; int sp = nm.IndexOf(' '); string l1 = sp > 0 ? nm.Substring(0, sp) : nm, l2 = sp > 0 ? nm.Substring(sp + 1) : ""; if (PT.pactGods1544) { l1 = PactData.PathShort[p]; l2 = PactData.PathTitle[p]; } // t1544: god name / title (ZHONG KUI has a space) if (l2.Length > 12 && l2.StartsWith("THE ")) l2 = l2.Substring(4); // t1178: GRAVECALLER fits the card
                 Tx53(l1, cx + 32, cy + 6, locked ? U_GREY : U_SAND); Tx53(l2, cx + 32, cy + 15, locked ? U_SLATE : U_GREY);
                 { float ps = nn > 8 ? 3 : 5, pw = nn > 8 ? 2 : 3; int k2 = 0; for (int k = 0; k < pn.Length; k++) { if (pn[k].keystone) continue; R53(cx + 4 + k2 * ps, cy + 32, pw, 4, act && (_pactSel51 & Bit(k)) != 0 ? U_YEL : Unlocked51(p, k) ? PactData.PathCol[p] : new Color32(60, 52, 70, 255)); k2++; } }
                 if (act) { R53(cx + 48, cy + 29, 45, 9, U_YEL); TxC53(SelCount51() + " IN PACT", cx + 70.5f, cy + 31, U_INK); }

@@ -150,7 +150,7 @@ namespace Hellord
             { string sg = "SIGILS " + _sigils51; AmTxAt(sg, AltarMenuData.SigilIx - 4 - MtW(Sanitize(sg), false), 11, "PINK"); }
             // ---- hanging top tab: path name + NODES + sockets (taken = Sins cell + the Pacts INSIDE 20px icon) + count + crest status
             {
-                var tb = AltarMenuData.Tab[v]; AmSpr("tab_" + v, tb[0], tb[1]);
+                var tb = AltarMenuData.Tab[v]; AmSpr("tab_" + v, tb[0], tb[1]); if (PT.pactGods1544) AmTabName1544(v, tb[0]);
                 int ns = AltarMenuData.TabSockets[v], mx = MaxSel51(v);
                 for (int k = 0; k < ns; k++)
                 {
@@ -165,8 +165,9 @@ namespace Hellord
             else AmSpr("card_neu", AltarMenuData.CardX, AltarMenuData.CardPlateY);
             AmBlitN(T97(Av97(v, locked, true)), 256, 102, 2);                                                                         // 64px game frame at exact 2x, nearest
             if (locked) AmSpr("lock", 253 + 134 - 18, 99 + 134 - 18);
-            if (sealed_) AmSpr("chip", AltarMenuData.CardX + 7, AltarMenuData.CardY + 7);
-            AmTxIn(PactData.PathShort[v], 249, 82, 141, 15, locked ? "DIM" : "BONE");
+            if (PT.pactGods1544) AmGodPlate(yours ? (sealed_ ? "card_sel_se" : "card_sel_un") : "card_neu", 249, PT.pactPlateTopC1544, 141, PactData.PathShort[v], PactData.PathTitle[v], locked ? "DIM" : "BONE", locked ? "DIM" : "CLAY"); // t1544
+            else AmTxIn(PactData.PathShort[v], 249, 82, 141, 15, locked ? "DIM" : "BONE");
+            if (sealed_) AmSpr("chip", AltarMenuData.CardX + 7, AltarMenuData.CardY + 7); // t1544: after the (taller) plate
             // ---- SEAL / UNSEAL (UNLOCK on a locked Path) straddling the card's bottom frame; always drawn
             if (_amSealPend >= 0 && _confirm97 < 0 && Time.frameCount > _amSealPendFrame) _amSealPend = -1;
             if (AmBtn("amseal", locked ? "seal_ul" : sealed_ ? "seal_se" : "seal_un", AltarMenuData.SealX, AltarMenuData.SealY, 89, 15, free, false, locked && !AmCanUnlock(v) ? 0.5f : 1f)) AmSealToggle();
@@ -175,11 +176,12 @@ namespace Hellord
             {
                 int cx = AltarMenuData.SideCx[sd], p = sd == 0 ? l : r, sy0 = AltarMenuData.SideY + 10, sx0 = cx - 35; bool lk = PathLocked97(p), mine = _pactPath51 == p;
                 string sid = "amside" + sd; int cx0 = cx - AltarMenuData.SideW / 2; bool sov = free && MtOver(sid, cx0, AltarMenuData.SideY, AltarMenuData.SideW, AltarMenuData.SideH), spr_ = MtPressed(sid, sov); int slv = AmLevel(sid, sov, spr_);
-                AmBlitN(T97(Av97(p, lk, false)), sx0 + 3, sy0 + 3, 1, Mathf.Min(1f, 0.65f + 0.12f * Mathf.Max(0, slv)));
+                AmBlitN(T97(Av97(p, lk, PT.pactGods1544 && PT.pactGodSideIdle1544)), sx0 + 3, sy0 + 3, 1, Mathf.Min(1f, 0.65f + 0.12f * Mathf.Max(0, slv)));
                 if (sov || slv > 0) MtBrackets(cx0 - slv, AltarMenuData.SideY - slv, AltarMenuData.SideW + 2 * slv, AltarMenuData.SideH + 2 * slv);
                 if (lk) AmSpr("lock", sx0 + 52, sy0 + 52);
                 int px = cx - AltarMenuData.SideW / 2 + (AltarMenuData.SideW - 89) / 2;
-                AmTxIn(PactData.PathShort[p], px, AltarMenuData.SideY - 7, 89, 15, lk ? "DIM" : "BONE");
+                if (PT.pactGods1544) { int pw = AmSidePlateW(p); AmGodPlate("card_neu", px - (pw - 89) / 2, PT.pactPlateTopS1544, pw, PactData.PathShort[p], PactData.PathTitle[p], lk ? "DIM" : "BONE", lk ? "DIM" : "TERRA"); } // t1544
+                else AmTxIn(PactData.PathShort[p], px, AltarMenuData.SideY - 7, 89, 15, lk ? "DIM" : "BONE");
                 string l1, l2 = null, c1 = "DIM", c2 = "DIM";
                 if (lk) l1 = "LOCKED";
                 else if (mine) { l1 = "YOUR PATH"; c1 = "AMBER"; int c = 0; for (int i = 0; i < PactData.Nodes[p].Length; i++) if (Taken97(p, i)) c++; l2 = c + "/" + MaxSel51(p) + " IN PACT"; }
@@ -192,7 +194,7 @@ namespace Hellord
             // ---- path faces: 24x24 1:1 head crops of the 64px game avatars in 26px frames (viewed = amber, others dimmed, locked = lock avatar)
             for (int p = 0; p < NP; p++)
             {
-                int x0 = 250 + p * 38, y0 = AltarMenuData.FaceY; bool cur = p == v, lk = PathLocked97(p); var fc = AltarMenuData.FaceCrop[p];
+                int x0 = 250 + p * 38, y0 = AltarMenuData.FaceY; bool cur = p == v, lk = PathLocked97(p); var fc = AmFaceCrop1544(p);
                 MtFill(x0, y0, 26, 26, MtC(cur ? "AMBER" : "P2")); MtFill(x0 + 1, y0 + 1, 24, 24, MT_INK);
                 var av = T97(Av97(p, lk, false)); if (av != null) MtBlit(av, fc[0] - 12, fc[1] - 12, 24, 24, x0 + 1, y0 + 1, cur ? 1f : lk ? 0.4f : 0.6f);
                 bool ov = free && !cur && MtOver("amface" + p, x0, y0, 26, 26); if (ov) MtBrackets(x0, y0, 26, 26);

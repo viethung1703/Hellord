@@ -833,6 +833,16 @@ namespace Hellord
     [Tooltip("Boot into the Main Menu (Descend / Sacrifice Altar / Quit). Off = old behaviour (straight to the starting-skill pick). Autotest/botstate runs always skip the menu.")] public bool pactMainMenu51 = true; // v0.0.51 damnation pact
     [Tooltip("t511: Sacrifice Altar uses the VH-approved v97 art (Path carousel + PixelLab node tree). Off = v0.0.53 placeholder altar.")] public bool altar97 = true;
     [Tooltip("t526/t527: Altar Path portrait idle loop (all 4 Paths), ms per frame. Plays only on the focused, unlocked Path card. 0 = static base bust.")] public float boneIdleFrameMs97 = 180f;
+    [Header("t1544: pact gods (Altar cards: name + title + t1540 avatars)")]
+    [Tooltip("t1544: the 4 Paths show as gods (Pyromancer = ZHURONG / GOD OF FIRE, Necromancer = ZHONG KUI / DEMON QUELLER, Stormcaller = LEIZU / LORD OF THUNDER, Blood Reaver = XINGTIAN / THE HEADLESS WAR GOD) with the t1540 64px avatars (god_*.png, 8-frame idle). Names/titles/avatars only, Path mechanics unchanged. Off = old names (PYROMANCER, NECROMANCER, STORMCALLER, BLOOD REAVER) and old avatar_* art.")] public bool pactGods1544 = true;
+    [Tooltip("t1544: god avatar idle loop, ms per frame (t1540 art: 8 frames at 180). 0 = static. Old avatars used boneIdleFrameMs97 (180, 6 or 8 frames).")] public float pactGodFrameMs1544 = 180f;
+    [Tooltip("t1544: side cards also play the idle loop (1x). Off = old behaviour: only the focused centre card animates.")] public bool pactGodSideIdle1544 = true;
+    [Tooltip("t1544: menu-theme Altar name plates grow to two lines (name, then title). Centre plate top y (old plate 82..96, 15 rows; the avatar starts at 102).")] public int pactPlateTopC1544 = 79;
+    [Tooltip("t1544: side card name plate top y (old plate SideY-7 = 104..118, 15 rows). The plate keeps its old bottom row (118) and grows upward.")] public int pactPlateTopS1544 = 96;
+    [Tooltip("t1544: two-line plate height in rows (old 15). Name at top+3, title at top+3+7+pactTitleGap1544.")] public int pactPlateH1544 = 23;
+    [Tooltip("t1544: rows between the name (7px SMALL glyphs) and the title.")] public int pactTitleGap1544 = 2;
+    [Tooltip("t1544: side plate minimum width (old 89) and the clear space each side of the widest line (border + inner line + pad). THE HEADLESS WAR GOD (113px) widens its side plate to 125.")] public int pactSidePlateMinW1544 = 89, pactSidePlatePad1544 = 6;
+    [Tooltip("t1544: path-face 24x24 crop centres (x,y in the 64px god avatar) per Path 0..3. Old AltarMenuData.FaceCrop = 38,19 / 28,25 / 37,31 / 30,29.")] public int[] pactGodFaceCrop1544 = { 25, 28, 31, 29, 30, 29, 34, 34 };
     [Tooltip("t511: clicking the main-menu Pact seal opens the Sacrifice Altar (same as the SACRIFICE ALTAR row). Off = old placeholder Pact panel.")] public bool mm69SealOpensAltar = true;
     [Header("t503u Main Menu v69 (VH-locked art)")]
     [Tooltip("Use the VH-locked v69 main menu art (v49 title, skull-stair bg, text rows + skull/blood select, Damnation Pact seal). Off = old v0.0.51 hex-button menu.")] public bool mainMenu69 = true;

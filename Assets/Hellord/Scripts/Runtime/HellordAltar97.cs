@@ -17,7 +17,7 @@ namespace Hellord
             new[] { 0,1, 1,0, 1,1, 1,2, 2,1, 2,0, 2,2, 3,0, 4,0, 4,2 }, // Stormcaller: Elemental Equilibrium <- Static Fork via lane
             new[] { 0,1, 1,0, 1,2, 2,2, 1,1, 2,1, 3,2, 3,1, 4,2, 4,0 }, // Blood Reaver
         };
-        static readonly string[] Sub97 = { "OF THE PIT", "", "", "" };
+        static readonly string[] Sub97 = { "OF THE PIT", "", "", "" }; // t1544: Card97 uses PactData.PathTitle when pactGods1544 is on
         static readonly Color A_LEATH = new Color32(46, 30, 34, 255), A_STONE = new Color32(34, 30, 44, 255), A_EDGE = new Color32(0x73, 0x3e, 0x39, 255), A_DEEP = new Color32(20, 16, 28, 255);
         int _grp97; // t536u: visible node group on 18-node Paths (0 SUMMON, 1 BONE SKILLS)
         static bool Big97(int p) => PactData.Nodes[p].Length > 10;
@@ -116,6 +116,12 @@ namespace Hellord
         // t526: Bone Warden v107 whole-bust portrait. Focused + unlocked = PixelLab idle loop (jaw locked shut); otherwise static base. Other Paths unchanged.
         string Av97(int p, bool locked, bool focused)
         {
+            if (PT.pactGods1544 && p >= 0 && p < PactData.GodKey.Length) // t1544: t1540 god avatars, 8-frame idle on every unlocked card that asks for it
+            {
+                string g = "god_" + PactData.GodKey[p]; if (locked) return g + "_lock";
+                if (focused && PT.pactGodFrameMs1544 > 0) return g + "_idle" + ((int)(Time.unscaledTime * 1000f / PT.pactGodFrameMs1544) % 8);
+                return g;
+            }
             if (locked) return "avatar_" + p + "_lock";
             int nf = p == (int)PactPath.Necromancer ? 8 : 6; // t539u: Necromancer uses the v107 bone bust (8 frames, slot 1 art); Pyro/Storm/Blood v103 = 6
             if (focused && nf > 0 && PT.boneIdleFrameMs97 > 0) return "avatar_" + p + "_idle" + ((int)(Time.unscaledTime * 1000f / PT.boneIdleFrameMs97) % nf);
@@ -134,7 +140,7 @@ namespace Hellord
             if (centre)
             {
                 Frame97(x + 10, ny, w - 20, 18, A_DEEP, A_EDGE, 1); TxC97(PactData.PathShort[p], x + w / 2, ny + 5, locked ? U_GREY : U_SAND);
-                if (Sub97[p] != "") TxC97(Sub97[p], x + w / 2, ny + 22, U_GREY);
+                { string sub = PT.pactGods1544 ? PactData.PathTitle[p] : Sub97[p]; if (sub != "") TxC97(sub, x + w / 2, ny + 22, U_GREY); }
                 float dy = ny + 34; int nN = PactData.Nodes[p].Length; float dsp = nN > 10 ? 5.6f : 10; for (int i = 0; i < nN; i++) { float bx = x + w / 2 - dsp * nN / 2 + i * dsp + (PactData.Nodes[p][i].keystone ? 2 : 0) + (nN > 10 && i >= 9 ? 3 : 0); bool t = Taken97(p, i), u = Unlocked51(p, i); R53(bx, dy, 7, 7, t ? U_AMB : u ? A_EDGE : U_SLATE); R53(bx + 2, dy + 2, 3, 3, t ? U_YEL : u ? (Color)pc : A_DEEP); }
                 TxC97(yours ? SelCount51() + "/" + MaxSel51() + " IN PACT" : locked ? "LOCKED" : Owned97(p) + "/" + PactData.Nodes[p].Length + " OWNED", x + w / 2, dy + 12, yours ? U_AMB : U_GREY);
             }
