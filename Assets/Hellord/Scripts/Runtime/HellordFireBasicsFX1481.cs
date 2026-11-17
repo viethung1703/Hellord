@@ -4,8 +4,8 @@ using UnityEngine;
 namespace Hellord
 {
     // =====================================================================================================================
-    //  t1481: HFX strips for Molten Spit / Infernal Boulder (v3) and Fire Pillar (Resources/HellordArt/FireBasics/<key>_strip.png + <key>_glow_strip.png).
-    //  30 fps, 16 PPU, point filtered, alpha 0/255, drawn unrotated at integer 1x. Pivots are HFX v3 NOTES.txt values (px from the top-left of a frame).
+    //  t1481: HFX strips for Molten Spit (v5) / Infernal Boulder (v4) and Fire Pillar (Resources/HellordArt/FireBasics/<key>_strip.png + <key>_glow_strip.png).
+    //  30 fps, 16 PPU, point filtered, alpha 0/255, drawn unrotated at integer 1x. Pivots are HFX NOTES values (Spit v5, Boulder v4) (px from the top-left of a frame).
     //  Kinds of drawing:  Show()  = immediate, every frame (flying rock, strands, rolling ball, shadows)
     //                     Once()  = one-shot strip that plays itself, optional start delay (impact, star, heat, gouge, cast ring, end blast, fire pillar)
     //                     Tile()  = burning tile of any strip with 6 ignite / 12 loop / (n-18) die frames: lives lifeS seconds, loop starts at a random phase (band, fire patch, ember patch)
@@ -20,12 +20,13 @@ namespace Hellord
         const uint Orange = 0xff963c, Red = 0xff6028, Or4 = 0xf77622, Ye4 = 0xfeae34, Lt4 = 0xfee761; const float G = 1.6f;
         static readonly object[][] Spec =
         {
-            // Molten Spit (HFX v4, NOTES section 2 + 4): tint f77622 (impact / star warmer), gain = G x (HFX suggested gain / 0.45) so the rock keeps the v3 standard gain
-            new object[] { "molten_spit_gouge", 64, 48, 30, 24, 40, 1, 0.34f, Or4, G * 0.55f / 0.45f }, new object[] { "molten_spit_rock_dir16", 64, 64, 8, 32, 32, 16, 0.34f, Or4, G },
-            new object[] { "molten_spit_shadow", 16, 6, 3, 8, 3, 1, 0f, Or4, G }, new object[] { "molten_spit_impact", 96, 80, 5, 48, 56, 1, 0.34f, Ye4, G * 0.75f / 0.45f },
-            new object[] { "molten_spit_darken", 96, 48, 10, 48, 24, 1, 0f, Or4, G }, new object[] { "molten_spit_strand_dir16", 64, 64, 16, 32, 32, 16, 0.34f, Or4, G * 0.42f / 0.45f },
-            new object[] { "molten_spit_star", 16, 16, 4, 8, 8, 1, 0.34f, Lt4, G * 0.5f / 0.45f }, new object[] { "molten_spit_scorch", 64, 30, 8, 32, 15, 1, 0f, Or4, G },
-            new object[] { "molten_spit_ember_patch_v1", 60, 30, 60, 30, 17, 1, 0.34f, Or4, G * 0.32f / 0.45f }, new object[] { "molten_spit_ember_patch_v2", 32, 18, 60, 16, 11, 1, 0.34f, Or4, G * 0.32f / 0.45f }, new object[] { "molten_spit_ember_patch_v3", 32, 18, 60, 16, 11, 1, 0.34f, Or4, G * 0.32f / 0.45f },
+            // Molten Spit (HFX v5 NOTES / spec_v5.json): native sizes, gain = G x (HFX gain / 0.45). Unused v4 keys (star, ember_patch_v3, heat) are not loaded.
+            new object[] { "molten_spit_gouge", 44, 38, 30, 6, 29, 1, 0.34f, Or4, G * 0.55f / 0.45f }, new object[] { "molten_spit_rock_dir16", 63, 63, 8, 31, 31, 16, 0.34f, Or4, G },
+            new object[] { "molten_spit_shadow", 16, 6, 3, 8, 3, 1, 0f, Or4, G }, new object[] { "molten_spit_impact", 71, 44, 7, 34, 27, 1, 0.34f, Ye4, G * 0.70f / 0.45f },
+            new object[] { "molten_spit_burst_med", 37, 26, 6, 19, 16, 1, 0.34f, Ye4, G * 0.55f / 0.45f }, new object[] { "molten_spit_pop_v1", 11, 9, 3, 5, 4, 1, 0.34f, Lt4, G }, new object[] { "molten_spit_pop_v2", 10, 9, 3, 5, 4, 1, 0.34f, Lt4, G },
+            new object[] { "molten_spit_darken", 43, 20, 6, 20, 10, 1, 0f, Or4, G }, new object[] { "molten_spit_strand_dir16", 35, 35, 24, 17, 17, 16, 0.34f, Or4, G * 0.30f / 0.45f },
+            new object[] { "molten_spit_scorch", 21, 11, 6, 12, 6, 1, 0f, Or4, G },
+            new object[] { "molten_spit_ember_patch_v1", 12, 11, 30, 6, 7, 1, 0.34f, Or4, G * 0.25f / 0.45f }, new object[] { "molten_spit_ember_patch_v2", 11, 11, 30, 5, 7, 1, 0.34f, Or4, G * 0.25f / 0.45f },
             // Infernal Boulder (HFX v4)
             new object[] { "infernal_boulder_roll_dir16", 56, 56, 32, 28, 28, 16, 0.30f, Or4, G * 0.40f / 0.45f }, new object[] { "infernal_boulder_shadow", 40, 12, 1, 20, 6, 1, 0f, Or4, G },
             new object[] { "infernal_boulder_band", 32, 40, 40, 16, 33, 1, 0.30f, Ye4, G * 0.36f / 0.45f }, new object[] { "infernal_boulder_band_b", 32, 40, 40, 16, 33, 1, 0.30f, Ye4, G * 0.36f / 0.45f },
@@ -119,7 +120,7 @@ namespace Hellord
         public enum DecalKind { PillarScorch, SpitScorch }
         sealed class DecalI { public Pair p; public Strip s; public DecalKind kind; public float f; public Vector2 pos; public int order, row; public int stage = -9; }
         readonly List<DecalI> _dec = new List<DecalI>();
-        static readonly float[][] Ends = { new float[] { 30, 46, 58, 70, 78 }, new float[] { 9, 18, 27, 36, 45, 54, 63, 72 } };   // Fire Pillar scorch stages (v1 art, unchanged); HFX v4 Spit scorch: stage = f div 9, 8 stages
+        static readonly float[][] Ends = { new float[] { 30, 46, 58, 70, 78 }, new float[] { 6, 12, 18, 24, 30, 36 } };   // Fire Pillar scorch stages (v1 art, unchanged); HFX v5 Spit scorch: stage = f div 6, 6 stages (gone at b38)
         static readonly int[] Cap = { 12, 8 }, DissolveStage = { 3, 6 };
         static int Stage(DecalKind k, float f) { var e = Ends[(int)k]; for (int i = 0; i < e.Length; i++) if (f < e[i]) return i; return -2; }
         /// <summary>Staged floor decal. delayF = frames before it starts. row = direction row of a dir16 strip (shard scar). Over the HFX cap the oldest jumps to its dissolve stage.</summary>
