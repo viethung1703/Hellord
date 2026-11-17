@@ -855,6 +855,12 @@ namespace Hellord
     [Tooltip("t1544 v3 (VH: no YOUR PATH, name in the header, seal is enough, show SEALED not UNSEAL): card headers show the god's NAME (no YOUR PATH / NOT CHOSEN), the name plate under the avatar is gone and the title sits there; a sealed Pact's button reads SEALED (click still unseals, without the PACT UNSEALED toast). Off = the 3ec6d74 v2 cards (needs pactCardsV2).")] public bool pactCardsV3 = true;
     [Tooltip("t1544 v3: rows between the centre avatar frame and its title (v2: 4 + 15px plate + 3 = title 22 rows below the frame).")] public int pactV3CentreTitleGap = 6;
     [Tooltip("t1544 v3: side card title y inside the 130x123 card (v2: name 97 on the plate, title 111). 100 = centred between the avatar frame (ends 87) and the bottom frame.")] public int pactV3SideTitleY = 100;
+    [Tooltip("t1544 v4 (VH: bring the title up there too): the title moves into the card header under the god's name (centre: the red header bar grows to two lines); nothing under the avatar. Off = the a36e4b3 v3 cards (title below the avatar).")] public bool pactCardsV4 = true;
+    [Tooltip("t1544 v4: rows added to the centre header bar for the second line (mock bar 15 rows incl. outline; v3 = 0). The avatar frame moves down by the same amount.")] public int pactV4HeaderExtra = 9;
+    [Tooltip("t1544 v4: rows between the name and the title (both 7px SMALL glyphs).")] public int pactV4TitleGap = 2;
+    [Tooltip("t1544 v4: rows between the centre avatar frame and the card's bottom frame (v3: 6 + 7px title + 8 = 21).")] public int pactV4CentrePadB = 8;
+    [Tooltip("t1544 v4: side card name y (v3 header 5); the title follows 7 + pactV4TitleGap rows lower.")] public int pactV4SideNameY = 6;
+    [Tooltip("t1544 v4: side avatar frame top y inside the card (v3 18). The 130x123 side card must still cover the old frame baked into the scene (y 104..224), so the space under the frame can't shrink.")] public int pactV4SideFrameY = 30;
     [Tooltip("t511: clicking the main-menu Pact seal opens the Sacrifice Altar (same as the SACRIFICE ALTAR row). Off = old placeholder Pact panel.")] public bool mm69SealOpensAltar = true;
     [Header("t503u Main Menu v69 (VH-locked art)")]
     [Tooltip("Use the VH-locked v69 main menu art (v49 title, skull-stair bg, text rows + skull/blood select, Damnation Pact seal). Off = old v0.0.51 hex-button menu.")] public bool mainMenu69 = true;

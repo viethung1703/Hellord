@@ -18,6 +18,9 @@ namespace Hellord
         /// <summary>t1544 v3: SEALED button sprites (the altar's UNSEAL sprites with the label repainted, in pact_cards_v2.png); AmSpr routes "seal_sd_*" here.</summary>
         bool AmSprV3(string n, int x, int y, float a) { int[] r; if (!V3Sealed.TryGetValue(n, out r)) return false; AmAtlas(V2Tex, r, x, y, a); return true; }
         bool V3 => PT.pactCardsV3;
+        bool V4 => PT.pactCardsV3 && PT.pactCardsV4;
+        static readonly int[] V4CardN = { 410, 0, 130, 123 }, V4CardL = { 410, 125, 130, 123 };   // t1544 v4: side cards without plate and avatar frame
+        int V4Hx => Mathf.Max(0, PT.pactV4HeaderExtra);
         static readonly int[] V2AvC = { 152, 0, 70, 70 }, V2AvN = { 152, 72, 70, 70 }, V2AvL = { 152, 144, 70, 70 }, V2PlateC = { 152, 216, 120, 15 };
         // mockup geometry (1x, relative to the card's top-left)
         const int V2C_AvY = 23, V2C_HdrY = 9, V2C_GapPlate = 4, V2C_NameDy = 4, V2C_TitleDy = 18;      // centre card (mock card 245,135)
@@ -37,7 +40,7 @@ namespace Hellord
         int V2Scale => Mathf.Clamp(PT.pactV2CentreScale, 1, 3);
         int V2F => 64 * V2Scale + 6;                                                                          // avatar frame (3px bevel each side)
         int V2CW => Mathf.Max(PT.pactV2CentreW, V2F + 16);
-        int V2CH => V3 ? V2C_AvY + V2F + PT.pactV3CentreTitleGap + 7 + PT.pactV2CentrePadB + 3 : V2C_AvY + V2F + V2C_GapPlate + 15 + 3 + 7 + PT.pactV2CentrePadB + 3;
+        int V2CH => V4 ? V2C_AvY + V4Hx + V2F + PT.pactV4CentrePadB + 3 : V3 ? V2C_AvY + V2F + PT.pactV3CentreTitleGap + 7 + PT.pactV2CentrePadB + 3 : V2C_AvY + V2F + V2C_GapPlate + 15 + 3 + 7 + PT.pactV2CentrePadB + 3;
         int V2CX => 320 - V2CW / 2;
         int V2CY => PT.pactV2CentreY;
         int AmV2SealY() => V2CY + V2CH - 1 + PT.pactV2SealDy;
@@ -48,14 +51,26 @@ namespace Hellord
         void AmCardsV2Centre(int v, bool locked, bool yours, bool sealed_)
         {
             var t = V2Tex; int X = V2CX, Y = V2CY, W = V2CW, Hh = V2CH, F = V2F, s = V2Scale;
-            int fx = X + (W - F) / 2, fy = Y + V2C_AvY;
-            if (yours && !locked) { AmNine(t, V2CardC, 25, 24, 20, 10, 25, 21, X, Y, W, Hh); AmNine(t, V2AvC, 4, 4, 4, 4, 35, 35, fx, fy, F, F); }
+            int fx = X + (W - F) / 2, fy = Y + V2C_AvY + (V4 ? V4Hx : 0);
+            if (yours && !locked)
+            {
+                AmNine(t, V2CardC, 25, 24, 20, 10, 25, 21, X, Y, W, Hh);
+                if (V4) AmNine(t, new[] { V2CardC[0] + 4, V2CardC[1] + 4, 142, 15 }, 4, 4, 3, 3, 70, 7, X + 4, Y + 4, W - 8, 15 + V4Hx); // t1544 v4: header bar grown to two lines
+                AmNine(t, V2AvC, 4, 4, 4, 4, 35, 35, fx, fy, F, F);
+            }
             else
             {
                 AmNine(t, locked ? V2CardL : V2CardN, 10, 10, 16, 14, 65, 16, X, Y, W, Hh); AmNine(t, locked ? V2AvL : V2AvN, 4, 4, 4, 4, 35, 35, fx, fy, F, F);
             }
             AmBlitN(T97(Av97(v, locked, true)), fx + 3, fy + 3, s);
             if (locked) AmSpr("lock", fx + F - 18, fy + F - 18);
+            if (V4) // t1544 v4 (VH "bring the title up there too"): name + title in the (grown) header, nothing under the avatar
+            {
+                int ny = Y + 8 + (V4Hx - 9) / 2; AmTxIn(PactData.PathShort[v], X, 0, W, 0, "BONE", ny);
+                AmTxIn(PactData.PathTitle[v], X, 0, W, 0, "CLAY", ny + 7 + PT.pactV4TitleGap);
+                if (sealed_) AmSpr("chip", X + 4, Y + 4);
+                return;
+            }
             if (V3) // t1544 v3: the god's NAME in the header (red bar on your Path), title below the avatar, no plate, no path/choice labels
             {
                 AmTxIn(PactData.PathShort[v], X, 0, W, 0, "BONE", Y + (yours && !locked ? V2C_HdrY : V2S_HdrY));
@@ -78,10 +93,13 @@ namespace Hellord
             {
                 int p = sd == 0 ? l : r, x = V2SideX(sd), y = PT.pactV2SideY; bool lk = PathLocked97(p), mine = _pactPath51 == p;
                 string sid = "amside" + sd; bool sov = free && MtOver(sid, x, y, 130, 123), spr_ = MtPressed(sid, sov); int slv = AmLevel(sid, sov, spr_);
-                AmAtlas(t, V3 ? (lk ? V3CardL : V3CardN) : (lk ? V2CardL : V2CardN), x, y);
-                AmBlitN(T97(Av97(p, lk, PT.pactGods1544 && PT.pactGodSideIdle1544)), x + V2S_AvX + 3, y + V2S_AvY + 3, 1);
-                if (lk) AmSpr("lock", x + V2S_AvX + 3 + 49, y + V2S_AvY + 3 + 49);
-                if (V3) { AmTxIn(PactData.PathShort[p], x, 0, 130, 0, "BONE", y + V2S_HdrY); AmTxIn(PactData.PathTitle[p], x, 0, 130, 0, "TERRA", y + PT.pactV3SideTitleY); } // t1544 v3
+                int avy = V4 ? PT.pactV4SideFrameY : V2S_AvY;
+                AmAtlas(t, V4 ? (lk ? V4CardL : V4CardN) : V3 ? (lk ? V3CardL : V3CardN) : (lk ? V2CardL : V2CardN), x, y);
+                if (V4) AmAtlas(t, lk ? V2AvL : V2AvN, x + V2S_AvX, y + avy);
+                AmBlitN(T97(Av97(p, lk, PT.pactGods1544 && PT.pactGodSideIdle1544)), x + V2S_AvX + 3, y + avy + 3, 1);
+                if (lk) AmSpr("lock", x + V2S_AvX + 3 + 49, y + avy + 3 + 49);
+                if (V4) { AmTxIn(PactData.PathShort[p], x, 0, 130, 0, "BONE", y + PT.pactV4SideNameY); AmTxIn(PactData.PathTitle[p], x, 0, 130, 0, "TERRA", y + PT.pactV4SideNameY + 7 + PT.pactV4TitleGap); } // t1544 v4
+                else if (V3) { AmTxIn(PactData.PathShort[p], x, 0, 130, 0, "BONE", y + V2S_HdrY); AmTxIn(PactData.PathTitle[p], x, 0, 130, 0, "TERRA", y + PT.pactV3SideTitleY); } // t1544 v3
                 else
                 {
                     if (!lk) AmTxIn(mine ? "YOUR PATH" : "NOT CHOSEN", x, 0, 130, 0, mine ? "AMBER" : "DIM", y + V2S_HdrY);
