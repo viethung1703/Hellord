@@ -29,6 +29,10 @@ namespace Hellord
             _unlock51[3] = (1 << PactData.Nodes[3].Length) - 1; _pactSealed51 = true; _altarView51 = 2; _slide97 = 0; yield return AtWait(0.4f); yield return AtShot("pact1544_sealed");
             bool amOk = AmActive() && !_amBroken; _pactSealed51 = false;
             { var T = HellordTuning.I; bool was = T.pactCardsV4; T.pactCardsV4 = !was; _altarView51 = 2; _slide97 = 0; yield return AtWait(0.4f); yield return AtShot("pact1544_toggle_v4_" + (!was ? "on" : "off")); T.pactCardsV4 = was; }
+            { var T = HellordTuning.I; var was = T.pactNameFrame5; bool sw = _pactSealed51; _pactSealed51 = false; // t1544 v5: one still per name frame option, centre = the longest title, then the longest name
+              foreach (var o in new[] { HellordTuning.PactNameFrame.Plate, HellordTuning.PactNameFrame.Banner, HellordTuning.PactNameFrame.Tag })
+              { T.pactNameFrame5 = o; _altarView51 = 3; _slide97 = 0; yield return AtWait(0.4f); yield return AtShot("pact1544_frame" + (int)o + "_xingtian"); _altarView51 = 2; _slide97 = 0; yield return AtWait(0.3f); yield return AtShot("pact1544_frame" + (int)o + "_leizu"); _altarView51 = 1; _slide97 = 0; yield return AtWait(0.3f); yield return AtShot("pact1544_frame" + (int)o + "_zhongkui"); }
+              T.pactNameFrame5 = was; _pactSealed51 = sw; }
             HellordUITheme.Requested = HellordUITheme.Theme.Stone1246; _altarView51 = 3; _slide97 = 0; yield return AtWait(0.6f); yield return AtShot("pact1544_stone");
             HellordUITheme.Requested = HellordUITheme.Theme.MenuTheme; yield return AtWait(0.3f);
             ARes("pact1544", amOk, $"menuTheme altar active {AmActive()} broken {_amBroken} paths {NP97} frames {_r1544} arrowClicks {clicks}/{NP97} names {string.Join("|", PactData.PathShort)}");
