@@ -17,17 +17,20 @@ namespace Hellord
         const string Dir = "HellordArt/FireBasics/"; const float FPS = 30f, PPU = 16f;
         sealed class Strip { public Sprite[,] f, g; public int n, rows; public float add, gain; public uint tint; public Material mat; }
         // key, frame w, h, frames, pivot x, y (px from the top-left), rows, glow _Add (0 = no mask, <0 = fbGlowAdd1481), tint rrggbb, gain (_Gain; 1.6 = standard)
-        const uint Orange = 0xff963c, Red = 0xff6028; const float G = 1.6f;
+        const uint Orange = 0xff963c, Red = 0xff6028, Or4 = 0xf77622, Ye4 = 0xfeae34, Lt4 = 0xfee761; const float G = 1.6f;
         static readonly object[][] Spec =
         {
-            // Molten Spit (HFX v3): red-orange glow, ember patches ~0.9 gain, heat mask drawn with 4x alpha
-            new object[] { "molten_spit_rock_dir16", 88, 88, 6, 44, 44, 16, 0.34f, Red, G }, new object[] { "molten_spit_gouge", 56, 56, 16, 28, 44, 1, 0.34f, Red, G }, new object[] { "molten_spit_impact", 112, 100, 10, 56, 58, 1, 0.34f, Red, G },
-            new object[] { "molten_spit_strand_dir16", 88, 88, 14, 44, 44, 16, 0.34f, Red, G }, new object[] { "molten_spit_star", 24, 24, 6, 12, 12, 1, 0.34f, Red, G }, new object[] { "molten_spit_heat", 80, 44, 30, 40, 24, 1, 0.34f, Red, G * 4f },
-            new object[] { "molten_spit_ember_patch_v1", 28, 24, 30, 14, 19, 1, 0.34f, Red, G * 0.9f }, new object[] { "molten_spit_ember_patch_v2", 28, 24, 30, 14, 19, 1, 0.34f, Red, G * 0.9f }, new object[] { "molten_spit_ember_patch_v3", 28, 24, 30, 14, 19, 1, 0.34f, Red, G * 0.9f },
-            new object[] { "molten_spit_shadow", 16, 6, 1, 8, 3, 1, 0f, Red, G },
-            // Infernal Boulder (HFX v3): ff963c, _Add 0.30, fire patch glow 0.6x
-            new object[] { "infernal_boulder_roll_dir16", 48, 48, 32, 24, 24, 16, 0.30f, Orange, G }, new object[] { "infernal_boulder_shadow", 28, 10, 1, 14, 5, 1, 0f, Orange, G }, new object[] { "infernal_boulder_band", 36, 44, 36, 18, 37, 1, 0.30f, Orange, G },
-            new object[] { "infernal_boulder_cast_ring", 40, 48, 24, 20, 40, 1, 0.30f, Orange, G }, new object[] { "infernal_boulder_end_blast", 160, 112, 30, 80, 80, 1, 0.30f, Orange, G }, new object[] { "infernal_boulder_fire_patch", 112, 72, 36, 56, 52, 1, 0.18f, Orange, G },
+            // Molten Spit (HFX v4, NOTES section 2 + 4): tint f77622 (impact / star warmer), gain = G x (HFX suggested gain / 0.45) so the rock keeps the v3 standard gain
+            new object[] { "molten_spit_gouge", 64, 48, 30, 24, 40, 1, 0.34f, Or4, G * 0.55f / 0.45f }, new object[] { "molten_spit_rock_dir16", 64, 64, 8, 32, 32, 16, 0.34f, Or4, G },
+            new object[] { "molten_spit_shadow", 16, 6, 3, 8, 3, 1, 0f, Or4, G }, new object[] { "molten_spit_impact", 96, 80, 5, 48, 56, 1, 0.34f, Ye4, G * 0.75f / 0.45f },
+            new object[] { "molten_spit_darken", 96, 48, 10, 48, 24, 1, 0f, Or4, G }, new object[] { "molten_spit_strand_dir16", 64, 64, 16, 32, 32, 16, 0.34f, Or4, G * 0.42f / 0.45f },
+            new object[] { "molten_spit_star", 16, 16, 4, 8, 8, 1, 0.34f, Lt4, G * 0.5f / 0.45f }, new object[] { "molten_spit_scorch", 64, 30, 8, 32, 15, 1, 0f, Or4, G },
+            new object[] { "molten_spit_ember_patch_v1", 60, 30, 60, 30, 17, 1, 0.34f, Or4, G * 0.32f / 0.45f }, new object[] { "molten_spit_ember_patch_v2", 32, 18, 60, 16, 11, 1, 0.34f, Or4, G * 0.32f / 0.45f }, new object[] { "molten_spit_ember_patch_v3", 32, 18, 60, 16, 11, 1, 0.34f, Or4, G * 0.32f / 0.45f },
+            // Infernal Boulder (HFX v4)
+            new object[] { "infernal_boulder_roll_dir16", 56, 56, 32, 28, 28, 16, 0.30f, Or4, G * 0.40f / 0.45f }, new object[] { "infernal_boulder_shadow", 40, 12, 1, 20, 6, 1, 0f, Or4, G },
+            new object[] { "infernal_boulder_band", 32, 40, 40, 16, 33, 1, 0.30f, Ye4, G * 0.36f / 0.45f }, new object[] { "infernal_boulder_band_b", 32, 40, 40, 16, 33, 1, 0.30f, Ye4, G * 0.36f / 0.45f },
+            new object[] { "infernal_boulder_cast_ring", 40, 48, 24, 20, 40, 1, 0.30f, Ye4, G * 0.30f / 0.45f }, new object[] { "infernal_boulder_end_blast", 176, 128, 30, 88, 92, 1, 0.30f, Ye4, G * 0.60f / 0.45f },
+            new object[] { "infernal_boulder_fire_patch", 120, 72, 40, 60, 56, 1, 0.18f, Ye4, G * 0.32f / 0.45f },
             // Fire Pillar (unchanged, v1 art)
             new object[] { "fire_pillar_telegraph", 40, 20, 12, 20, 10, 1, 0f, Orange, G }, new object[] { "fire_pillar_erupt", 56, 76, 18, 28, 66, 1, -1f, Orange, G }, new object[] { "fire_pillar_scorch_v1", 36, 16, 5, 18, 8, 1, 0f, Orange, G }, new object[] { "fire_pillar_scorch_v2", 36, 16, 5, 18, 8, 1, 0f, Orange, G },
         };
@@ -90,7 +93,7 @@ namespace Hellord
         }
 
         // ------------------------------------------------------------------ one-shots
-        sealed class OnceI { public Pair p; public Strip s; public float age, speed, rot, life; public int phase; public Vector2 pos; public int order; public bool flip; public string key; }
+        sealed class OnceI { public Pair p; public Strip s; public float age, speed, rot, life; public int phase, ign = 6; public Vector2 pos; public int order; public bool flip; public string key; }
         readonly List<OnceI> _once = new List<OnceI>();
         /// <summary>ONE-SHOT strip. speed 1 = 30 fps. cap > 0: ignored while that many of the same key are alive (HFX spam guard).</summary>
         public static bool Once(string key, Vector2 pos, int order, float rot = 0f, float speed = 1f, int cap = 0, bool flip = false, float delayF = 0f)
@@ -102,21 +105,21 @@ namespace Hellord
         }
 
         /// <summary>Burning tile of any HFX band / patch strip: ignite f0-5, 12-frame loop f6-17 with a random start phase, then the die frames (f18..n-1) over the last n-18 frames of its lifetime (lifeS seconds, from the end of delayF). cap > 0: when that many of the same key are alive the oldest starts dying now.</summary>
-        public static void Tile(string key, Vector2 pos, int order, float lifeS, float delayF = 0f, int cap = 0)
+        public static void Tile(string key, Vector2 pos, int order, float lifeS, float delayF = 0f, int cap = 0, int ign = 6, int phase = -1)
         {
-            if (!Ok || !_s.TryGetValue(key, out var s) || s.n < 24) return; var a = _i; int dieN = s.n - 18;
+            if (!Ok || !_s.TryGetValue(key, out var s) || s.n < ign + 12 + 4) return; var a = _i; int dieN = s.n - ign - 12;
             if (cap > 0) { int c = 0; OnceI old = null; foreach (var o in a._once) if (o.p.live && o.key == key && o.life > 0f) { c++; if (o.age * FPS + dieN < o.life && (old == null || o.age > old.age)) old = o; } if (c >= cap && old != null) old.life = old.age * FPS + dieN; }
             OnceI x = null; foreach (var o in a._once) if (!o.p.live) { x = o; break; } if (x == null) { x = new OnceI { p = a.NewPair() }; a._once.Add(x); }
-            x.p.live = true; x.s = s; x.age = -delayF / FPS; x.speed = 1f; x.pos = pos; x.order = order; x.rot = 0; x.flip = false; x.key = key; x.life = Mathf.Max(6f + dieN, lifeS * FPS); x.phase = Random.Range(0, 12); if (delayF > 0f) Hide(x.p); else Put(x.p, s, 0, 0, pos, order, 0f, false);
+            x.p.live = true; x.s = s; x.age = -delayF / FPS; x.speed = 1f; x.pos = pos; x.order = order; x.rot = 0; x.flip = false; x.key = key; x.life = Mathf.Max(ign + dieN, lifeS * FPS); x.ign = ign; x.phase = phase >= 0 ? phase % 12 : Random.Range(0, 12); if (delayF > 0f) Hide(x.p); else Put(x.p, s, 0, 0, pos, order, 0f, false);
         }
-        static int TileFrame(OnceI o) { float f = o.age * FPS; int dieN = o.s.n - 18; if (f >= o.life) return -1; if (f < 6f) return (int)f; if (f >= o.life - dieN) return 18 + Mathf.Clamp((int)(f - (o.life - dieN)), 0, dieN - 1); return 6 + (((int)f - 6 + o.phase) % 12); }
+        static int TileFrame(OnceI o) { float f = o.age * FPS; int g = o.ign, dieN = o.s.n - g - 12; if (f >= o.life) return -1; if (f < g) return (int)f; if (f >= o.life - dieN) return g + 12 + Mathf.Clamp((int)(f - (o.life - dieN)), 0, dieN - 1); return g + (((int)f - g + o.phase) % 12); } // HFX v4 life_idx(age, T, ign, loop 12, n)
 
         // ------------------------------------------------------------------ staged floor decals
-        public enum DecalKind { PillarScorch }
+        public enum DecalKind { PillarScorch, SpitScorch }
         sealed class DecalI { public Pair p; public Strip s; public DecalKind kind; public float f; public Vector2 pos; public int order, row; public int stage = -9; }
         readonly List<DecalI> _dec = new List<DecalI>();
-        static readonly float[][] Ends = { new float[] { 30, 46, 58, 70, 78 } };   // Fire Pillar scorch stages (v1 art, unchanged)
-        static readonly int[] Cap = { 12 }, DissolveStage = { 3 };
+        static readonly float[][] Ends = { new float[] { 30, 46, 58, 70, 78 }, new float[] { 9, 18, 27, 36, 45, 54, 63, 72 } };   // Fire Pillar scorch stages (v1 art, unchanged); HFX v4 Spit scorch: stage = f div 9, 8 stages
+        static readonly int[] Cap = { 12, 8 }, DissolveStage = { 3, 6 };
         static int Stage(DecalKind k, float f) { var e = Ends[(int)k]; for (int i = 0; i < e.Length; i++) if (f < e[i]) return i; return -2; }
         /// <summary>Staged floor decal. delayF = frames before it starts. row = direction row of a dir16 strip (shard scar). Over the HFX cap the oldest jumps to its dissolve stage.</summary>
         public static void Decal(string key, DecalKind kind, Vector2 pos, int order, float delayF = 0f, int row = 0)

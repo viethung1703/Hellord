@@ -47,7 +47,7 @@ namespace Hellord
         class FbPend { public int kind; public float t, distU; public Vector2 dir; public float dmg; public bool west; public SkillInst s; }                       // wind-up (spit gouge) / cast ring (boulder) before the projectile appears
         class FbRock { public Vector2 p, a, b, dir; public float t, dur, age, dmg; public SkillInst s; }                                               // Molten Spit rock (t1511 scripted lob: linear ground point + preset height arch)
         class FbStrand { public Vector2 a, b, dir; public float t, dmg, pdmg; public int idx, row; public bool landed; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
-        class FbBall { public object loop; public Vector2 p, dir; public float dist, range, age, dmg, trailAcc, z; public int tiles, row; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
+        class FbBall { public object loop; public Vector2 p, dir; public float dist, range, age, dmg, trailAcc, z; public int tiles, row, seg; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
         class FbRecoil { public Enemy e; public Vector2 dir; public float f; public int next; }
         class FbPatch { public Vector2 p; public float rx, ry, life, tick, tickS, dmg, delay; public SkillInst s; }
         readonly List<FbPend> _fbPend = new List<FbPend>(); readonly List<FbRock> _fbRocks = new List<FbRock>(); readonly List<FbStrand> _fbStrands = new List<FbStrand>(); readonly List<FbBall> _fbBalls = new List<FbBall>();
@@ -98,32 +98,36 @@ namespace Hellord
         {
             var T = HellordTuning.I; float side = p.west ? -1f : 1f; Vector2 hand = _heroPos + new Vector2(side * T.msHandXPx1481 / FbPx, 0f); // hand = pivot + 9 px toward the target, lifted 11 px (drawn)
             Vector2 target = _heroPos + p.dir * p.distU; ClampToRoom(ref target, 4); // lands exactly here (the aimed point, from the hero's feet at release)
-            _fbRocks.Add(new FbRock { p = hand, a = hand, b = target, dir = p.dir, dur = Mathf.Max(2f, T.msFlightF1481) / FbFps, dmg = p.dmg, s = p.s }); HellordAudio.Play("magma_throw_cast"); // ONE cast sound per throw, at the release
+            float nF = T.msFlightPxPerF1481 > 0f ? Mathf.Clamp(Mathf.Round((target - hand).magnitude * FbPx / T.msFlightPxPerF1481), T.msFlightMinF1481, T.msFlightMaxF1481) : T.msFlightF1481; // HFX v4: N = clamp(round(dist / 4.75), 14, 26)
+            _fbRocks.Add(new FbRock { p = hand, a = hand, b = target, dir = p.dir, dur = Mathf.Max(2f, nF) / FbFps, dmg = p.dmg, s = p.s }); HellordAudio.Play("magma_throw_cast"); // ONE cast sound per throw, at the release
         }
         void FbSpitImpact1481(FbRock r)
         {
             var T = HellordTuning.I; Vector2 at = r.p; ClampToRoom(ref at, 4); int ord = YSort(at.y); var s = r.s; float dmg = r.dmg;
-            FireBasicsFX1481.Once("molten_spit_impact", at, ord + 40); FireBasicsFX1481.Dark(at + r.dir * (T.msDarkFwdPx1481 / FbPx), T.msDarkRxPx1481, T.msDarkRyPx1481, T.msDarkAlpha1481, T.msDarkHoldS1481, FbDarkOrd1481(at.y)); /* t1511b */ ScreenShake.Add(2, 0.1f); HellordAudio.Play("magma_throw_land");
+            FireBasicsFX1481.Once("molten_spit_impact", at, ord + 40);
+            if (T.fbDark1481 && T.msDarkArt1481 && FireBasicsFX1481.Frames("molten_spit_darken") > 0) FireBasicsFX1481.Once("molten_spit_darken", at, FbDarkOrd1481(at.y), 0f, 1f, 0, false, T.msDarkArtDelayF1481); // HFX v4 dark under-burst decal b0-b9
+            else FireBasicsFX1481.Dark(at + r.dir * (T.msDarkFwdPx1481 / FbPx), T.msDarkRxPx1481, T.msDarkRyPx1481, T.msDarkAlpha1481, T.msDarkHoldS1481, FbDarkOrd1481(at.y));
+            /* t1511b */ ScreenShake.Add(2, 0.1f); HellordAudio.Play("magma_throw_land");
             After(T.msImpactDelayF1481 / FbFps, () => { if (mode != Mode.StartPick) FbArea1481(at, T.msHitRU1481 * Mathf.Sqrt(s.AreaMul), dmg * T.msImpactMul1481, s, T.msKnock1481); }); // damage only on impact frame 2-3
             float area = Mathf.Sqrt(s.AreaMul);
-            FireBasicsFX1481.Once("molten_spit_heat", at, FbGround + ord, 0f, 1f, 0, false, T.msHeatDelayF1481);                                       // heat-glow patch, 30 f
-            FbPatch1481(at, T.msHeatRxU1481 * area, T.msHeatRyU1481 * area, T.msHeatS1481, T.msHeatDelayF1481 / FbFps, T.msPatchTickS1481, dmg * T.msPatchTickMul1481, s);
-            FireBasicsFX1481.Tile("molten_spit_ember_patch_v1", at, FbGround + ord + 4, T.msEmberS1481 * SinDuration737, T.msEmberDelayF1481, T.msEmberMax1481);   // impact ember patch (75 f)
+            if (T.msHeatS1481 > 0f) FbPatch1481(at, T.msHeatRxU1481 * area, T.msHeatRyU1481 * area, T.msHeatS1481, T.msHeatDelayF1481 / FbFps, T.msPatchTickS1481, dmg * T.msPatchTickMul1481, s); // HFX v4 dropped the heat haze (msHeatS 0 = off)
+            FireBasicsFX1481.Decal("molten_spit_scorch", FireBasicsFX1481.DecalKind.SpitScorch, at, FbGround + ord, T.msScorchDelayF1481);                    // HFX v4 scorch: 8 stages x 9 f from b2
+            FireBasicsFX1481.Once("molten_spit_ember_patch_v1", at, FbGround + ord + 4, 0f, 1f, T.msEmberMax1481, false, T.msEmberDelayF1481);               // HFX v4 impact embers: one-shot 60 f from b3
             FbPatch1481(at, T.msEmberRU1481 * area, T.msEmberRU1481 * area, T.msEmberS1481, T.msEmberDelayF1481 / FbFps, T.msPatchTickS1481, dmg * T.msPatchTickMul1481, s);
             int n = Mathf.Min(T.msStrands1481, Mathf.Min(T.msStrandAngle1481.Length, T.msStrandReachPx1481.Length));
             for (int i = 0; i < n; i++)
             {   // 8 strands: throw direction +-35 deg, ground reach table, ground y x0.75, spawn impact + 3 f (odd ones + 1 f)
-                Vector2 d = FbUnit(T.msStrandAngle1481[i], r.dir); Vector2 b = at + new Vector2(d.x, d.y * T.msStrandYScale1481) * (T.msStrandReachPx1481[i] / FbPx); ClampToRoom(ref b, 4);
-                Vector2 sd = b - at; _fbStrands.Add(new FbStrand { a = at, b = b, dir = sd, idx = i, row = FireBasicsFX1481.DirRow(sd), dmg = dmg * T.msStrandMul1481, pdmg = dmg * T.msPatchTickMul1481, s = s, t = -(T.msStrandStartF1481 + (i & 1) * T.msStrandOddF1481) / FbFps });
+                Vector2 d = FbUnit(T.msStrandAngle1481[i], r.dir); Vector2 gd = new Vector2(d.x, d.y * T.msStrandYScale1481); Vector2 b = at + gd * (T.msStrandReachPx1481[i] / FbPx); ClampToRoom(ref b, 4);
+                Vector2 a0 = at + gd * (T.msStrandStartPx1481 / FbPx); Vector2 sd = b - at; _fbStrands.Add(new FbStrand { a = a0, b = b, dir = sd, idx = i, row = FireBasicsFX1481.DirRow(sd), dmg = dmg * T.msStrandMul1481, pdmg = dmg * T.msPatchTickMul1481, s = s, t = -(T.msStrandStartF1481 + (i & 1) * T.msStrandOddF1481) / FbFps });
             }
         }
         void FbStrandLand1481(FbStrand st)
         {
             var T = HellordTuning.I; st.landed = true; Vector2 b = st.b; int ord = YSort(b.y); HellordAudio.Play("magma_throw_splat");
-            FireBasicsFX1481.Once("molten_spit_star", b + Vector2.up * (T.msStrandLiftPx1481 / FbPx), ord + 40, 0f, 1f, 0, false, T.msStrandStarF1481);
-            if ((st.idx & 1) == 0)
-            {   // every second strand leaves an ember patch v2 / v3 at its landing point (75 f)
-                FireBasicsFX1481.Tile("molten_spit_ember_patch_v" + (2 + (st.idx >> 1) % 2), b, FbGround + ord + 4, T.msEmberS1481 * SinDuration737, 0f, T.msEmberMax1481);
+            FireBasicsFX1481.Once("molten_spit_star", b, ord + 40, 0f, 1f, 0, false, T.msStrandStarF1481);                                   // HFX v4: star at the head on landing (lift is 0 there)
+            if ((st.idx & 1) == 1)
+            {   // HFX v4: every odd shard leaves an ember patch v2 / v3 (alternating) at its landing point, one-shot 60 f
+                FireBasicsFX1481.Once("molten_spit_ember_patch_v" + (2 + (st.idx >> 1) % 2), b, FbGround + ord + 4, 0f, 1f, T.msEmberMax1481);
                 FbPatch1481(b, T.msEmberRU1481 * Mathf.Sqrt(st.s.AreaMul), T.msEmberRU1481 * Mathf.Sqrt(st.s.AreaMul), T.msEmberS1481, 0f, T.msPatchTickS1481, st.pdmg, st.s);
             }
         }
@@ -145,11 +149,12 @@ namespace Hellord
             var b = new FbBall { p = at, dir = dir, range = T.rrRangePx1481 / FbPx * PRange49, z = T.rrDropPx1481, dmg = p.dmg, s = p.s, row = FireBasicsFX1481.DirRow(dir),
                 loop = HellordAudio.LoopStart("Audio/SFX/firebasics1481/magma_rock_roll_loop", Random.Range(T.rrLoopVolMin1481, T.rrLoopVolMax1481), 1f + Random.Range(-T.rrLoopPitchSpread1481, T.rrLoopPitchSpread1481)) }; // one roll voice per ball
             _fbBalls.Add(b); HellordAudio.Play("magma_rock_launch");
-            for (int i = T.rrBandPre1481; i >= 1; i--) FbBandTile1481(b, at - dir * (i * T.rrBandGapPx1481 / FbPx)); // 4 tiles behind at -24..-6 px: the band starts ~1.3 balls long
+            for (int i = T.rrBandPre1481; i >= 1; i--) FbBandTile1481(b, at - dir * ((i * T.rrBandGapPx1481 + T.rrBandBehindPx1481) / FbPx), -i); // HFX v4: segments -2, -1 laid at launch behind the spawn // 4 tiles behind at -24..-6 px: the band starts ~1.3 balls long
         }
-        void FbBandTile1481(FbBall b, Vector2 at)
-        {
-            var T = HellordTuning.I; int oy = YSort(at.y); FireBasicsFX1481.Tile("infernal_boulder_band", at, FbTrail + oy, T.rrBandS1481 * SinDuration737, 0f, T.rrBandMax1481);
+        void FbBandTile1481(FbBall b, Vector2 at, int seg)
+        {   // HFX v4: band / band_b alternate by segment parity, life_idx(age, 60, ign 4, loop 12) with phase = seg x 5 mod 12, y-sorted with units
+            var T = HellordTuning.I; int oy = YSort(at.y); string key = (seg & 1) == 0 || FireBasicsFX1481.Frames("infernal_boulder_band_b") == 0 ? "infernal_boulder_band" : "infernal_boulder_band_b";
+            FireBasicsFX1481.Tile(key, at, oy + T.rrBandSort1481, T.rrBandS1481 * SinDuration737, 0f, T.rrBandMax1481, T.rrBandIgnF1481, ((seg * T.rrBandPhaseStep1481) % 12 + 12) % 12);
             if (T.rrDarkBandEvery1481 > 0 && b.tiles % T.rrDarkBandEvery1481 == 0) FireBasicsFX1481.Dark(at, T.rrDarkBandRxPx1481, T.rrDarkBandRyPx1481, T.rrDarkBandAlpha1481, Mathf.Max(0f, T.rrBandS1481 * SinDuration737 - T.fbDarkOutS1481), FbDarkOrd1481(at.y)); // t1511b darkening along the band
             if ((b.tiles++ & 1) == 0) FbPatch1481(at, T.rrBandRU1481 * Mathf.Sqrt(b.s.AreaMul), T.rrBandRU1481 * Mathf.Sqrt(b.s.AreaMul), T.rrBandS1481, 0f, T.rrBandTickS1481, b.dmg * T.rrBandTickMul1481, b.s);
         }
@@ -158,7 +163,7 @@ namespace Hellord
             var T = HellordTuning.I; Vector2 at = b.p; ClampToRoom(ref at, 5); int ord = YSort(at.y); float area = Mathf.Sqrt(b.s.AreaMul);
             FbArea1481(at, T.rrBlastRU1481 * area, b.dmg * T.rrBlastMul1481, b.s, 0f); ScreenShake.Add(2, 0.12f);
             FireBasicsFX1481.Once("infernal_boulder_end_blast", at, ord + 40); FireBasicsFX1481.Dark(at, T.rrDarkRxPx1481, T.rrDarkRyPx1481, T.rrDarkAlpha1481, T.rrDarkHoldS1481, FbDarkOrd1481(at.y)); // t1511b                                                                         // flash, chunks, sparks (30 f)
-            FireBasicsFX1481.Tile("infernal_boulder_fire_patch", at, FbGround + ord, T.rrPatchS1481 * SinDuration737, T.rrPatchDelayF1481);              // fire patch from blast + 2 f, 75 f
+            FireBasicsFX1481.Tile("infernal_boulder_fire_patch", at, FbGround + ord, T.rrPatchS1481 * SinDuration737, T.rrPatchDelayF1481, 0, T.rrPatchIgnF1481);              // fire patch from blast + 2 f, 75 f
             FbPatch1481(at, T.rrPatchRxU1481 * area, T.rrPatchRyU1481 * area, T.rrPatchS1481, T.rrPatchDelayF1481 / FbFps, T.rrPatchTickS1481, b.dmg * T.rrPatchTickMul1481, b.s);
             float fade = Random.Range(T.rrLoopFadeMin1481, T.rrLoopFadeMax1481); HellordAudio.LoopStop(b.loop, fade); HellordAudio.PlayDelayed("magma_rock_stop", fade); // fade the roll out, then the stop
         }
@@ -197,7 +202,7 @@ namespace Hellord
                 if (p.kind == 0)
                 {
                     if (fr >= T.msWindupF1481) { _fbPend.RemoveAt(i); FbRockRelease1481(p); continue; }
-                    FireBasicsFX1481.Show("molten_spit_gouge", _heroPos, (int)(fr * FireBasicsFX1481.Frames("molten_spit_gouge") / Mathf.Max(1f, T.msWindupF1481)), ho + 20, 0, p.west); // strip stretched over the wind-up
+                    FireBasicsFX1481.Show("molten_spit_gouge", _heroPos, Mathf.Min(FireBasicsFX1481.Frames("molten_spit_gouge") - 1, (int)(fr * FireBasicsFX1481.Frames("molten_spit_gouge") / Mathf.Max(1f, T.msWindupF1481))), ho + 20, 0, p.west); // strip stretched over the wind-up
                 }
                 else
                 {
@@ -215,8 +220,9 @@ namespace Hellord
                 float dk = (1f / FbFps) / r.dur, k2 = Mathf.Min(1f, k + dk), k1 = k2 - dk; // screen velocity incl. the height -> direction row (the tail trails the arc)
                 Vector2 v = (Vector2.Lerp(r.a, r.b, k2) + Vector2.up * (FbLobZ1481(k2, T) / FbPx)) - (Vector2.Lerp(r.a, r.b, k1) + Vector2.up * (FbLobZ1481(k1, T) / FbPx));
                 int ord = YSort(r.p.y); float zMax = Mathf.Max(1f, T.msRockZPx1481 + T.msArcPeakPx1481), hz = Mathf.Clamp01(z / zMax);
-                FireBasicsFX1481.Show("molten_spit_rock_dir16", r.p + Vector2.up * (z / FbPx), (int)(r.age * FbFps) % 6, ord + 30 + (int)(z * T.msRockSortZ1481), FireBasicsFX1481.DirRow(v));   // sort = ground y + 30 + height: an airborne rock is never hidden by imps
-                FireBasicsFX1481.Show("molten_spit_shadow", r.p, 0, FbTrail + ord + 3, 0, false, Mathf.Lerp(1f, T.msShadowPeakScale1481, hz), Mathf.Lerp(1f, T.msShadowPeakAlpha1481, hz)); // shadow stays on the ground, smaller / fainter when high
+                FireBasicsFX1481.Show("molten_spit_rock_dir16", r.p + Vector2.up * (z / FbPx), (int)(r.age * FbFps) % Mathf.Max(1, FireBasicsFX1481.Frames("molten_spit_rock_dir16")), ord + 30 + (int)(z * T.msRockSortZ1481), FireBasicsFX1481.DirRow(v));   // sort = ground y + 30 + height: an airborne rock is never hidden by imps
+                int shF = T.msShadowZ1481 != null && T.msShadowZ1481.Length >= 2 ? (z < T.msShadowZ1481[0] ? 0 : z < T.msShadowZ1481[1] ? 1 : 2) : 0; // HFX v4 shadow frame by height
+                FireBasicsFX1481.Show("molten_spit_shadow", r.p, Mathf.Min(shF, FireBasicsFX1481.Frames("molten_spit_shadow") - 1), FbTrail + ord + 3, 0, false, Mathf.Lerp(1f, T.msShadowPeakScale1481, hz), Mathf.Lerp(1f, T.msShadowPeakAlpha1481, hz)); // shadow stays on the ground, smaller / fainter when high
             }
             // ---- strands: eased 10 f flight (ground y x0.75, lifted 6 px), then 8 fade frames at the tip; a 6 px hit along the flight
             for (int i = _fbStrands.Count - 1; i >= 0; i--)
@@ -224,15 +230,15 @@ namespace Hellord
                 if (i >= _fbStrands.Count) continue; var st = _fbStrands[i]; st.t += dt; if (st.t < 0f) continue; float flight = T.msStrandFlightF1481 / FbFps; Vector2 lift = Vector2.up * (T.msStrandLiftPx1481 / FbPx);
                 if (st.t < flight)
                 {
-                    float k = st.t / flight; Vector2 g = Vector2.Lerp(st.a, st.b, 1f - Mathf.Pow(1f - k, T.msStrandEase1481)); int ord = YSort(g.y);
-                    FireBasicsFX1481.Show("molten_spit_strand_dir16", g + lift, (int)(st.t * FbFps) % 6, ord + 20, st.row);
+                    float k = st.t / flight, ee = 1f - Mathf.Pow(1f - k, T.msStrandEase1481); Vector2 g = Vector2.Lerp(st.a, st.b, ee); int ord = YSort(g.y); // HFX v4: head = start + reach x (1-(1-t/8)^1.8), lifted 5 x (1-e) px
+                    FireBasicsFX1481.Show("molten_spit_strand_dir16", g + lift * (1f - ee), Mathf.Min(7, (int)(st.t * FbFps)), ord + T.msStrandSortAir1481, st.row);
                     Query(g, T.msStrandRU1481 + 0.6f, _fbQ);
                     foreach (int ei in _fbQ) { var e = _en[ei]; if (e.alive && !st.hit.Contains(e.id) && (e.pos - g).magnitude <= T.msStrandRU1481 + e.radius * 0.5f) { st.hit.Add(e.id); FbHit1481(e, st.dmg, st.s, Vector2.zero, 2); } }
                     continue;
                 }
                 if (!st.landed) FbStrandLand1481(st);
                 int fa = (int)((st.t - flight) * FbFps); if (fa > 7) { _fbStrands.RemoveAt(i); continue; }
-                FireBasicsFX1481.Show("molten_spit_strand_dir16", st.b + lift, 6 + fa, YSort(st.b.y) + 20, st.row);   // fade frames 6-13 at the tip
+                FireBasicsFX1481.Show("molten_spit_strand_dir16", st.b, 8 + fa, YSort(st.b.y) + T.msStrandSortLand1481, st.row);   // HFX v4 landed frames 8-15 at the end point
             }
             // ---- Infernal Boulder balls: scripted launch drop + tiny bounce, then a roll at the D2R pace with an ease-out over the last part of the range
             for (int i = _fbBalls.Count - 1; i >= 0; i--)
@@ -249,7 +255,7 @@ namespace Hellord
                     var e = _en[ei]; if (!e.alive || o.hit.Contains(e.id) || (e.pos - o.p).magnitude > hitR + e.radius) continue;
                     o.hit.Add(e.id); FbHit1481(e, o.dmg, o.s, Vector2.zero, 1); HellordAudio.Play("magma_rock_hit"); _fbRecoils.Add(new FbRecoil { e = e, dir = o.dir }); // knock-back = the HFX recoil table along the roll direction
                 }
-                if (o.z <= 0.5f) { o.trailAcc += (o.p - prev).magnitude; float gap = T.rrBandGapPx1481 / FbPx; while (o.trailAcc >= gap) { o.trailAcc -= gap; FbBandTile1481(o, o.p); } } // the band only burns where the ball touches the ground
+                if (o.z <= 0.5f) { o.trailAcc += (o.p - prev).magnitude; float gap = T.rrBandGapPx1481 / FbPx; while (o.trailAcc >= gap) { o.trailAcc -= gap; FbBandTile1481(o, o.p - o.dir * (T.rrBandBehindPx1481 / FbPx), o.seg++); } } // the band only burns where the ball touches the ground
                 if (wall || o.age >= T.rrMaxS1481 || o.dist >= o.range - 0.001f) { _fbBalls.RemoveAt(i); FbBallEnd1481(o); continue; }
                 HellordAudio.LoopBeat(o.loop); int ro = YSort(o.p.y);
                 FireBasicsFX1481.Show("infernal_boulder_roll_dir16", o.p + Vector2.up * ((T.rrCentrePx1481 * sc + o.z) / FbPx), ((int)(o.dist * FbPx / (T.rrRollPxPerFrame1481 * sc))) % 32, ro + 14, o.row, false, sc);  // roll tied to travel (bigger ball turns slower)
