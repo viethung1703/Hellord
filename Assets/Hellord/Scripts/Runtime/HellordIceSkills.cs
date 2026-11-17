@@ -105,12 +105,12 @@ namespace Hellord
         {
             var T = HellordTuning.I;
             if (Nearest(_heroPos, T.frostbRangeU, -1) < 0 && !Aiming()) { s.cd = 0.1f; return false; } // hold fire when nothing is near
-            EnsureFX44(); Vector2 dir = AimDir(); Vector2 c = HeroCenter + new Vector2(dir.x >= 0f ? 0.45f : -0.45f, 0.45f); // t1410u: leaves the hero's casting hand (on the facing side), not the body centre
+            EnsureFX44(); Vector2 dir = AimDir(); Vector2 c = HeroCenter + new Vector2(dir.x >= 0f ? 0.45f : -0.45f, 0.45f); bool tail1528 = _basicAim1517 && HellordTuning.I.castFromTail1528; c = CastOrigin1528(c, ref dir); /* t1528: tail tip */ // t1410u: leaves the hero's casting hand (on the facing side), not the body centre
             int n = HData.At(T.frostbOrbs, s.level, 1) + PCount49; float spread = n > 1 ? Mathf.Min(T.frostbSpreadDeg, 120f / (n - 1)) : 0f;
             float burstR = HData.At(T.frostbBurstU, s.level, 1.2f) * s.AreaMul, trail = HData.At(T.frostbTrailSeconds, s.level, 1.5f) * SinDuration737;
             for (int i = 0; i < n; i++)
             {
-                Vector2 d = (Vector2)(Quaternion.Euler(0, 0, (i - (n - 1) * 0.5f) * spread) * dir); Vector2 p0 = c + d * 0.25f;
+                Vector2 d = (Vector2)(Quaternion.Euler(0, 0, (i - (n - 1) * 0.5f) * spread) * dir); Vector2 p0 = tail1528 ? c : c + d * 0.25f;
                 var o = new IceOrb { p = p0, v = d * HData.At(T.frostbSpeedU, s.level, 5.5f), life = T.frostbLifeS, dmg = dmg, r = T.frostbRadiusU, burstR = burstR, trailLife = trail, s = s };
                 _iceOrbs.Add(o);
             }

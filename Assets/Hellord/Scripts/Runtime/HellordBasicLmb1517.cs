@@ -34,6 +34,7 @@ namespace Hellord
             bool lmb = HInput.LmbHeld716(), down = lmb && !_lmbPrev1517; _lmbPrev1517 = lmb;
             var b = _basic1517 ?? FbLmbBasic1517(); if (b == null) return;
             if (lmb && LmbFree1517()) _atkFaceT1517 = Mathf.Max(_atkFaceT1517, T.lmbFaceHoldS1517);
+            PreWind1528(b, lmb && LmbFree1517()); // t1528 tail-cast wind-up while held
             if (down && LmbFree1517() && b.cd > T.lmbNotReadyMinS1517 && _notReadyT1517 <= 0f) { _notReadyT1517 = T.lmbNotReadyGapS1517; HellordAudio.Play("basic_not_ready"); }
             float cdNow = b.cd - dt; // the skill loop subtracts dt after this tick; with LMB held the basic re-fires that same frame, so judge the pop on cd - dt
             _basicCdPrev1517 = Mathf.Max(_basicCdPrev1517, b.cd); // peak of the running cooldown
@@ -48,43 +49,95 @@ namespace Hellord
         {
             float lc = _lastCast[(int)s.def.id]; _basicAim1517 = true;
             try { Cast(s, mul); } finally { _basicAim1517 = false; }
-            if (_lastCast[(int)s.def.id] != lc) { Vector2 d = MouseWorld() - HeroCenter; HeroAttackPose(IsMeleeBasic1517(s.def.id) ? AttackPoseKind1517.Swing : AttackPoseKind1517.Cast, d.sqrMagnitude > 0.01f ? d.normalized : _lastDir); }
+            if (_lastCast[(int)s.def.id] != lc) { Vector2 d = MouseWorld() - HeroCenter; HeroAttackPose(AttackPoseKind1517.Cast, /* t1528: melee uses the same tail cast (t1519) */ d.sqrMagnitude > 0.01f ? d.normalized : _lastDir, CastFrost1528(s.def.id)); }
         }
 
-        // ---------------------------------------------------------------- hero attack pose hook (t1517 point 4)
-        AttackPoseKind1517 _poseKind1517; Vector2 _poseDir1517 = Vector2.right; float _poseT1517 = 99f; Sprite[] _poseCast1517, _poseSwing1517, _poseCastOl1517, _poseSwingOl1517; bool _poseTried1517; int _poseCalls1517;
-        /// <summary>Attack override on the hero at fire time. Plays HA's strips Resources/HellordArt/Hero36/hero_cast_east_pl.png (spell / projectile basics)
-        /// or hero_melee_east_pl.png (melee basics): 7 frames of 36x36 in one row, pivot (18,35), authored facing east (flipX when the cursor is west),
-        /// release at index 3. The pose starts at heroPoseStartIdx (2) on the fire frame so the shot stays instant. Recoil plays only without the strips.</summary>
-        public void HeroAttackPose(AttackPoseKind1517 kind, Vector2 dir)
+        // ---------------------------------------------------------------- hero attack pose (t1517 hook; t1528: VH's cast variant B "TAIL cast")
+        // Body hero_castB_tail_body_36 (5 frames 36x36, pivot 18,35, east, flipX west), blink hero_castB_tail_blink_36 (the release frame lit,
+        // first 60 ms of f2), aura fx_castB_aura_<el>_44 (4 frames 44x44 BEHIND the body, pivot 22,39, frames f0-f3), spark fx_cast_spark_<el>_13
+        // (3 frames 13x13 on f2-f4 at the tail tip, above the projectile). Holds 70/90/100/80/70 ms, release f2 at +160 ms.
+        // Click-to-fire stays instant: the shot fires on the click frame and the pose JUMPS to the release frame (f2). While LMB is held and
+        // the next shot is <160 ms away, f0-f1 (lift + squash/curl) pre-play so the release lands on the fire frame (castPreWind1528).
+        // Every left-click basic uses it (melee too, t1519). The PixelLab strips hero_cast/melee_east_pl.png are no longer loaded.
+        AttackPoseKind1517 _poseKind1517; Vector2 _poseDir1517 = Vector2.right; float _poseT1517 = 99f; bool _poseTried1517, _preWind1528, _poseFrost1528; int _poseCalls1517;
+        Sprite[] _castBody1528, _castBodyOl1528, _castBlink1528, _auraFire1528, _auraFrost1528, _sparkFire1528, _sparkFrost1528; SpriteRenderer _aura1528, _spark1528;
+        float CastReleaseS1528 { get { var h = HellordTuning.I.castHoldMs1528; int r = HellordTuning.I.castReleaseIdx1528; float t = 0; for (int i = 0; i < r && i < h.Length; i++) t += h[i]; return t / 1000f; } }
+        float CastTotalS1528 { get { float t = 0; foreach (var x in HellordTuning.I.castHoldMs1528) t += x; return t / 1000f; } }
+        bool CastFrost1528(SkillId id) { var a = HellordTuning.I.castFrostIds1528; return a != null && System.Array.IndexOf(a, id) >= 0; }
+        /// <summary>Starts the cast on the fire frame (jumps to / snaps to the release frame so the shot stays instant).</summary>
+        public void HeroAttackPose(AttackPoseKind1517 kind, Vector2 dir) => HeroAttackPose(kind, dir, _poseFrost1528);
+        public void HeroAttackPose(AttackPoseKind1517 kind, Vector2 dir, bool frost)
         {
-            _poseCalls1517++; if (!HellordTuning.I.heroPose1517) return; _poseKind1517 = kind; _poseDir1517 = dir.sqrMagnitude > 0.0001f ? dir.normalized : Vector2.right; _poseT1517 = 0f; _atkFaceT1517 = Mathf.Max(_atkFaceT1517, HellordTuning.I.lmbFaceHoldS1517);
-            // show the first pose frame this frame (UpdateHero already ran before the skills), so the pose lands on the fire frame
-            int pi = HeroPose1517(out var pf, out var po); if (pi < 0 || _heroBase == null) return; bool flip = HeroFaceCursor1517() ?? _heroBase.flipX;
-            _heroBase.sprite = pf[pi]; _heroBase.flipX = flip; if (_heroOutline != null && po != null) { _heroOutline.sprite = po[pi]; _heroOutline.flipX = flip; }
+            _poseCalls1517++; var T = HellordTuning.I; if (!T.heroPose1517) return; _poseKind1517 = kind; _poseFrost1528 = frost; _poseDir1517 = dir.sqrMagnitude > 0.0001f ? dir.normalized : Vector2.right;
+            _poseT1517 = CastReleaseS1528; _preWind1528 = false; _atkFaceT1517 = Mathf.Max(_atkFaceT1517, T.lmbFaceHoldS1517);
+            // show the release frame this frame (UpdateHero already ran before the skills), so it lands on the fire frame
+            var ps = HeroPose1517(out var po); if (ps == null || _heroBase == null) return; bool flip = HeroFaceCursor1517() ?? _heroBase.flipX;
+            _heroBase.sprite = ps; _heroBase.flipX = flip; if (_heroOutline != null && po != null) { _heroOutline.sprite = po; _heroOutline.flipX = flip; }
             foreach (var l in _heroLayers) { if (l.f != null && l.f.Length > 0) l.sr.sprite = l.f[0]; l.sr.flipX = flip; }
+            UpdateCastFx1528(flip, _heroBase.sortingOrder);
+        }
+        /// <summary>BasicTick: while LMB is held and the basic's next shot is under the release lead, pre-play f0-f1 so f2 meets the shot.</summary>
+        void PreWind1528(SkillInst b, bool lmbFree)
+        {
+            var T = HellordTuning.I; float rel = CastReleaseS1528;
+            if (_preWind1528 && !lmbFree) { _preWind1528 = false; _poseT1517 = 99f; return; } // released during the wind-up: drop it
+            if (!T.castPreWind1528 || !T.heroPose1517 || !lmbFree || b != _basic1517 || _preWind1528 || _poseT1517 < CastTotalS1528) return;
+            if (b.cd > 0.0001f && b.cd <= rel) { _preWind1528 = true; _poseFrost1528 = CastFrost1528(b.def.id); _poseKind1517 = AttackPoseKind1517.Cast; _poseT1517 = Mathf.Max(0f, rel - b.cd); }
         }
         void PoseLoad1517()
         {
-            if (_poseTried1517) return; _poseTried1517 = true; var T = HellordTuning.I; int n = Mathf.Max(1, T.heroPoseFrames1517), c = T.hero36CellPx; var pv = T.hero36PivotPx;
-            string cs = Art47 + T.heroPoseCastSheet1517, ms = Art47 + T.heroPoseMeleeSheet1517;
-            if (!HArt.Missing(cs)) { _poseCast1517 = HArt.Strip(cs, n, c, c, pv); _poseCastOl1517 = HArt.HeroOutline(cs, c, c, pv.x, pv.y, n); }
-            if (!HArt.Missing(ms)) { _poseSwing1517 = HArt.Strip(ms, n, c, c, pv); _poseSwingOl1517 = HArt.HeroOutline(ms, c, c, pv.x, pv.y, n); }
+            if (_poseTried1517) return; _poseTried1517 = true; var T = HellordTuning.I; int c = T.hero36CellPx; var pv = T.hero36PivotPx;
+            string body = Art47 + T.castBodySheet1528, blink = Art47 + T.castBlinkSheet1528; int n = Mathf.Max(1, T.castHoldMs1528.Length);
+            if (!HArt.Missing(body)) { _castBody1528 = HArt.Strip(body, n, c, c, pv); _castBodyOl1528 = HArt.HeroOutline(body, c, c, pv.x, pv.y, n); }
+            if (!HArt.Missing(blink)) _castBlink1528 = HArt.Strip(blink, 1, c, c, pv);
+            Sprite[] L(string nm, int fr, int px, Vector2 piv) => HArt.Missing(Art47 + nm) ? null : HArt.Strip(Art47 + nm, fr, px, px, piv);
+            _auraFire1528 = L(T.castAuraFireSheet1528, 4, 44, T.castAuraPivotPx1528); _auraFrost1528 = L(T.castAuraFrostSheet1528, 4, 44, T.castAuraPivotPx1528);
+            _sparkFire1528 = L(T.castSparkFireSheet1528, 3, 13, new Vector2(6.5f, 6.5f)); _sparkFrost1528 = L(T.castSparkFrostSheet1528, 3, 13, new Vector2(6.5f, 6.5f));
         }
-        bool PoseSheets1517 { get { PoseLoad1517(); return (_poseKind1517 == AttackPoseKind1517.Swing ? _poseSwing1517 : _poseCast1517) != null; } }
-        /// <summary>Recoil offset for the hero transform this frame (px table at 30 fps, away from the attack), only while no pose strip exists (or heroRecoilWithStrips).</summary>
+        bool PoseSheets1517 { get { PoseLoad1517(); return _castBody1528 != null; } }
+        /// <summary>Recoil offset (px table at 30 fps, away from the attack); only when the cast strip is missing (or heroRecoilWithStrips).</summary>
         Vector3 HeroRecoil1517()
         {
-            var T = HellordTuning.I; var tab = T.heroRecoilPx1517; int fi = (int)(_poseT1517 * 30f); if (!T.heroPose1517 || tab == null || fi < 0 || fi >= tab.Length) return Vector3.zero;
+            var T = HellordTuning.I; var tab = T.heroRecoilPx1517; int fi = (int)((_poseT1517 - CastReleaseS1528) * 30f); if (!T.heroPose1517 || _preWind1528 || tab == null || fi < 0 || fi >= tab.Length) return Vector3.zero;
             if (Hero47On && PoseSheets1517 && !T.heroRecoilWithStrips1517) return Vector3.zero;
             Vector2 o = -_poseDir1517 * tab[fi]; return new Vector3(Mathf.Round(o.x), Mathf.Round(o.y), 0f) / HArt.PPU;
         }
-        /// <summary>The pose frame index this frame (-1 = no pose: none running, no strip, 32 px hero or a transformation), with its frames and outline.</summary>
-        int HeroPose1517(out Sprite[] frames, out Sprite[] outline)
+        /// <summary>Cast frame index now (-1 = none). A pre-wind that reached the release without a shot (e.g. Boulder's one-ball cap) holds f1, then drops.</summary>
+        int CastIdx1528()
         {
-            frames = outline = null; var T = HellordTuning.I; if (!T.heroPose1517 || !Hero47On || _poseT1517 > 5f) return -1; PoseLoad1517();
-            bool sw = _poseKind1517 == AttackPoseKind1517.Swing; frames = sw ? _poseSwing1517 : _poseCast1517; outline = sw ? _poseSwingOl1517 : _poseCastOl1517; if (frames == null || frames.Length == 0) return -1;
-            int i = Mathf.Clamp(T.heroPoseStartIdx1517, 0, frames.Length - 1) + (int)(_poseT1517 * T.heroPoseFps1517); return i < frames.Length ? i : -1;
+            var T = HellordTuning.I; if (!T.heroPose1517 || !Hero47On || _poseT1517 > 5f) return -1; var h = T.castHoldMs1528; float rel = CastReleaseS1528;
+            if (_preWind1528 && _poseT1517 >= rel) { if (_poseT1517 > rel + T.castPreWindMaxHoldS1528) { _preWind1528 = false; _poseT1517 = 99f; return -1; } return Mathf.Max(0, T.castReleaseIdx1528 - 1); }
+            float t = _poseT1517 * 1000f; for (int i = 0; i < h.Length; i++) { if (t < h[i]) return i; t -= h[i]; } return -1;
+        }
+        /// <summary>The cast sprite replacing the hero base this frame (null = none), with its outline.</summary>
+        Sprite HeroPose1517(out Sprite outline)
+        {
+            outline = null; int i = CastIdx1528(); if (i < 0) return null; PoseLoad1517(); if (_castBody1528 == null || i >= _castBody1528.Length) return null;
+            var T = HellordTuning.I; outline = _castBodyOl1528 != null && i < _castBodyOl1528.Length ? _castBodyOl1528[i] : null;
+            if (i == T.castReleaseIdx1528 && !_preWind1528 && _castBlink1528 != null && _poseT1517 - CastReleaseS1528 < T.castBlinkMs1528 / 1000f) return _castBlink1528[0];
+            return _castBody1528[i];
+        }
+        /// <summary>Aura (behind the body, f0-f3) and spark (tail tip, f2-f4, above the projectiles), element-tinted. Called from UpdateHero.</summary>
+        void UpdateCastFx1528(bool flip, int ord)
+        {
+            if (_hero == null) return; var T = HellordTuning.I; int i = CastIdx1528(); PoseLoad1517();
+            if (_aura1528 == null && _auraFire1528 != null) { _aura1528 = new GameObject("castAura1528").AddComponent<SpriteRenderer>(); _aura1528.transform.SetParent(_hero, false); }
+            if (_spark1528 == null && _sparkFire1528 != null) { _spark1528 = new GameObject("castSpark1528").AddComponent<SpriteRenderer>(); _spark1528.transform.SetParent(_hero, false); }
+            var au = _poseFrost1528 ? _auraFrost1528 : _auraFire1528; var sp = _poseFrost1528 ? _sparkFrost1528 : _sparkFire1528;
+            if (_aura1528 != null) { bool on = T.castAura1528 && au != null && i >= 0 && i < au.Length; _aura1528.enabled = on; if (on) { _aura1528.sprite = au[i]; _aura1528.flipX = flip; _aura1528.sortingOrder = ord - 3; } }
+            if (_spark1528 != null)
+            {
+                int si = i - T.castReleaseIdx1528; bool on = T.castSpark1528 && sp != null && !_preWind1528 && si >= 0 && si < sp.Length; _spark1528.enabled = on;
+                if (on) { _spark1528.sprite = sp[si]; _spark1528.flipX = flip; _spark1528.sortingOrder = T.castSparkSort1528; var o = T.castTipPx1528; _spark1528.transform.localPosition = new Vector3((flip ? -o.x : o.x) / HArt.PPU, -o.y / HArt.PPU, 0f); }
+            }
+        }
+        /// <summary>World position of the tail tip for the current facing (pivot + castTipPx, y px down, mirrored on flipX).</summary>
+        Vector2 TailTip1528(bool west) { var o = HellordTuning.I.castTipPx1528; return new Vector2(Snap(_heroPos.x), Snap(_heroPos.y)) + new Vector2((west ? -o.x : o.x) / HArt.PPU, -o.y / HArt.PPU); }
+        /// <summary>Projectile origin for a left-click basic: the tail tip, and dir re-aimed from the tip to the cursor. Other casts keep 'fallback'.</summary>
+        Vector2 CastOrigin1528(Vector2 fallback, ref Vector2 dir)
+        {
+            var T = HellordTuning.I; if (!_basicAim1517 || !T.castFromTail1528 || !T.heroPose1517 || !Hero47On) return fallback;
+            Vector2 m = MouseWorld(); bool west = m.x < _heroPos.x; Vector2 tip = TailTip1528(west), d = m - tip; if (d.magnitude > T.castReaimMinU1528) dir = d.normalized; return tip;
         }
         /// <summary>Facing override: true / false = face left / right (the cursor side) while attacking; null = the normal facing.</summary>
         bool? HeroFaceCursor1517() => _atkFaceT1517 > 0f ? MouseWorld().x < _heroPos.x : (bool?)null;

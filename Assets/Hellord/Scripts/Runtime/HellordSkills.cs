@@ -38,7 +38,7 @@ namespace Hellord
                     if (PactMeteor53(s, dmg)) break; // v0.0.53 Meteor Pact
                     if (SinOn818(38) && !(Nearest(_heroPos, 11, -1) < 0 && !Aiming())) { SinSun818(s, dmg, c); break; } // t818u #38 Divine Sunstrike
                     if (Nearest(_heroPos, 11, -1) < 0 && !BrkNear53(_heroPos, 11) && !Aiming()) { s.cd = 0.1f; return; } // hold fire when nothing to shoot
-                    var T = HellordTuning.I; Vector2 dir = AimDir();
+                    var T = HellordTuning.I; Vector2 dir = AimDir(); Vector2 o1528 = CastOrigin1528(c + dir * 0.4f, ref dir); // t1528: the basic leaves the tail tip
                     int n = HData.At(T.fbProjectiles, s.level) + HellordGame.PCount49 + (s.Has(SupportId.MultipleProjectiles) ? HData.At(T.supMultiExtra, s.Lvl(SupportId.MultipleProjectiles)) : 0); // v0.0.27: projectiles grow with skill level + Multi level
                     float spread = n > 1 ? Mathf.Min(T.fbSpreadDeg, 150f / (n - 1)) : 0f;
                     int pierce = s.Has(SupportId.Pierce) ? HData.At(T.supPierce, s.Lvl(SupportId.Pierce)) : 0, bounce = s.Has(SupportId.Bounce) ? HData.At(T.supBounce, s.Lvl(SupportId.Bounce)) : 0;
@@ -47,9 +47,9 @@ namespace Hellord
                     {
                         float a = (i - (n - 1) * 0.5f) * spread;
                         var d = (Vector2)(Quaternion.Euler(0, 0, a) * dir);
-                        SpawnProj(s, c + dir * 0.4f, d * 11f, dmg, pierce, s.Has(SupportId.Fork), bounce, expl);
+                        SpawnProj(s, o1528, d * 11f, dmg, pierce, s.Has(SupportId.Fork), bounce, expl);
                     }
-                    ProjectileFX.CastFlash(c + dir * 0.5f, dir, ProjElement.Fire); Flash661(c + dir * 0.5f, ElemCol661(s)); /* t661u muzzle */ SL667(SkillLightHooks.FireballMuzzle, c + dir * 0.5f, dir); /* t667u */ HellordAudio.Play("fireball_cast");
+                    Vector2 mz1528 = o1528 + dir * 0.1f; ProjectileFX.CastFlash(mz1528, dir, ProjElement.Fire); Flash661(mz1528, ElemCol661(s)); /* t661u muzzle */ SL667(SkillLightHooks.FireballMuzzle, mz1528, dir); /* t667u */ HellordAudio.Play("fireball_cast");
                     break;
                 }
                 case SkillId.FrostCleave:

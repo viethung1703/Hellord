@@ -178,14 +178,14 @@ namespace Hellord
         bool CastSoulSpears(SkillInst s, float dmg)
         {
             if (Nearest(_heroPos, 11, -1) < 0 && !BrkNear53(_heroPos, 11) && !Aiming()) { s.cd = 0.1f; return false; }
-            var T = HellordTuning.I; Vector2 dir = AimDir(); Vector2 c = HeroCenter;
+            var T = HellordTuning.I; Vector2 dir = AimDir(); Vector2 c = HeroCenter; Vector2 o1528 = CastOrigin1528(c + dir * 0.4f, ref dir); // t1528: the basic leaves the tail tip
             int n = HData.At(T.spearCount, s.level, 1) + HellordGame.PCount49 + (s.Has(SupportId.MultipleProjectiles) ? HData.At(T.supMultiExtra, s.Lvl(SupportId.MultipleProjectiles)) : 0);
             int pierce = SinSpearPierce818() + HData.At(T.spearPierce, s.level, 1) + (s.Has(SupportId.Pierce) ? HData.At(T.supPierce, s.Lvl(SupportId.Pierce)) : 0), bounce = s.Has(SupportId.Bounce) ? HData.At(T.supBounce, s.Lvl(SupportId.Bounce)) : 0;
             float spread = n > 1 ? Mathf.Min(T.spearFanDeg, 150f / (n - 1)) : 0f;
             for (int i = 0; i < n; i++)
             {
                 float a = (i - (n - 1) * 0.5f) * spread; var d = (Vector2)(Quaternion.Euler(0, 0, a) * dir);
-                SpawnProj(s, c + dir * 0.4f, d * T.spearSpeed * SinSpearSpeed818(), dmg, pierce, s.Has(SupportId.Fork), bounce, 0f);
+                SpawnProj(s, o1528, d * T.spearSpeed * SinSpearSpeed818(), dmg, pierce, s.Has(SupportId.Fork), bounce, 0f);
             }
             if (!T44.fxV44Pack) ProjectileFX.CastFlash(c + dir * 0.5f, dir, ProjElement.Soul); Flash661(c + dir * 0.5f, ElemCol661(s)); SL667(SkillLightHooks.SoulSpearsMuzzle, c + dir * 0.5f, dir); // t661u/t667u muzzle light
             HellordAudio.Play("spear_cast", T.spearSfxPitch); // v0.0.38: quiet reused fireball-cast clip, pitched up
