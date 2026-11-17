@@ -91,7 +91,7 @@ namespace Hellord
         {
             switch (i)
             {
-                case 0: Descend51(); break;
+                case 0: if (DfWanted1555()) DfOpen1555(); else Descend51(); break; // t1555: pact pick -> basic pick -> run (menu theme)
                 case 1: OpenAltar53(); break;
                 case 2: SinOpen737(); break; // t770u: Codex row opens the Infernal Sins collection
                 case 3: Msg51("SETTINGS: COMING SOON"); break;

@@ -198,6 +198,7 @@ namespace Hellord
                 if (se != _soulsEarned51 || ge != _sigilsEarned51) { _souls51 += se - _soulsEarned51; _sigils51 += ge - _sigilsEarned51; _soulsEarned51 = se; _sigilsEarned51 = ge; PactSave51(); }
             }
             if (_tmOpen) { } // pt480u: F1 test menu open on the menu: no descend keys
+            else if (mode == Mode.MainMenu && _df1555 > 0) DfTick1555(); // t1555 descend flow
             else if (mode == Mode.MainMenu && PT.mainMenu69) MenuTick69(); // t503u
             else if (mode == Mode.MainMenu) { if (HInput.Down(HKey.Space)) Descend51(); }
             else if (mode == Mode.Altar && Altar97On && _altarScr53 != 2) AltarTick97(); // t511 (t1179: default again; -pactline = v0.0.53 line altar)
@@ -254,7 +255,7 @@ namespace Hellord
         {
             PactLoad51(); DimScreen(U_INK);
             _base53 = GUI.matrix; GUI.matrix = _base53 * Matrix4x4.Scale(new Vector3(K53, K53, 1));
-            if (mode == Mode.MainMenu && PT.mainMenu69) { GUI.matrix = _base53 * Matrix4x4.Scale(new Vector3(K69, K69, 1)); DrawMainMenu69(); } else if (mode == Mode.MainMenu) DrawMainMenu51(); else if (Altar97On && _altarScr53 != 2) { GUI.matrix = _base53 * Matrix4x4.Scale(new Vector3(K69, K69, 1)); DrawAltar97(); } else if(_altarScr53==2&&!LineUI1176){GUI.matrix=_base53*Matrix4x4.Scale(new Vector3(K69,K69,1));DrawYourPact91();}else DrawAltar51(); // t511 altar art // t503u v69 menu
+            if (mode == Mode.MainMenu && _df1555 > 0) DrawDescendFlow1555(); /* t1555 */ else if (mode == Mode.MainMenu && PT.mainMenu69) { GUI.matrix = _base53 * Matrix4x4.Scale(new Vector3(K69, K69, 1)); DrawMainMenu69(); } else if (mode == Mode.MainMenu) DrawMainMenu51(); else if (Altar97On && _altarScr53 != 2) { GUI.matrix = _base53 * Matrix4x4.Scale(new Vector3(K69, K69, 1)); DrawAltar97(); } else if(_altarScr53==2&&!LineUI1176){GUI.matrix=_base53*Matrix4x4.Scale(new Vector3(K69,K69,1));DrawYourPact91();}else DrawAltar51(); // t511 altar art // t503u v69 menu
             GUI.matrix = _base53; GUI.color = Color.white;
         }
 
