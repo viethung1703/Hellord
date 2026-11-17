@@ -90,6 +90,7 @@ namespace Hellord
             Add("ui_confirm", "ui", T.uiConfirmVol611, T.uiConfirmVol611, 1f, 1f, 1, 0.05f);
             Add("ui_back", "ui", T.uiBackVol611, T.uiBackVol611, 1f, 1f, 1, 0.05f);
             Add("ui_denied", "ui", T.uiDeniedVol611, T.uiDeniedVol611, 1f, 1f, 1, 0.15f);
+            Add("basic_not_ready", "ui", T.lmbNotReadyVol1517, T.lmbNotReadyVol1517, 0.97f, 1.03f, 1, T.lmbNotReadyGapS1517); // t1517 PLACEHOLDER code-synth click (Audio/tools/gen_basic_not_ready_1517.py)
             Add("seal_press", "ui", T.sealPressVol611, T.sealPressVol611, 1f, 1f, 1);
             Add("altar_carousel", "ui", T.altarCarouselVol611, T.altarCarouselVol611, 0.98f, 1.02f, 2, 0.06f);
             Add("pact_unlock", "ui", T.pactUnlockVol611, T.pactUnlockVol611, 1f, 1f, 1);

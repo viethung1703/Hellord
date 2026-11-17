@@ -126,13 +126,13 @@ namespace Hellord
         // v0.6 hero readability: 1px warm cream outline (#FFDB9E) at 0.6 strength, generated from the layer's own pixels (needs Read/Write,
         // set by HellordArtImporter for hero_*). Returns null when the texture is not readable (outline is then skipped).
         public static readonly Color32 OutlineCol = new Color32(0xFF, 0xDB, 0x9E, 255), OutlineInk = new Color32(0x18, 0x14, 0x25, 230); // v0.0.9: full-strength cream + dark outer ring (was cream @0.6)
-        public static Sprite[] HeroOutline(string layer, int W = 32, int H = 32, float pivX = 16, float pivY = 30)
+        public static Sprite[] HeroOutline(string layer, int W = 32, int H = 32, float pivX = 16, float pivY = 30, int frames = 16) // t1517: frames (pose strips have 7)
         {
             string key = layer + "__outline"; if (_cache.TryGetValue(key, out var c)) return c;
             var src = Resources.Load<Texture2D>("HellordArt/" + layer); Sprite[] res = null;
-            if (src != null && src.isReadable && src.width >= W * 16 && src.height >= H)
+            if (src != null && src.isReadable && src.width >= W * frames && src.height >= H)
             {
-                const int N = 16; var px = src.GetPixels32(); int tw = src.width, oy = src.height - H;
+                int N = frames; var px = src.GetPixels32(); int tw = src.width, oy = src.height - H;
                 var o = new Color32[W * N * H];
                 for (int f = 0; f < N; f++) for (int y = 0; y < H; y++) for (int x = 0; x < W; x++)
                 {

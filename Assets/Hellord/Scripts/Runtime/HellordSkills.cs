@@ -10,15 +10,15 @@ namespace Hellord
 
         void UpdateSkills(float dt)
         {
-            TickV36(dt); SinTick818(dt); // t818u sins // v0.0.36: scheduler + Life Leech window
+            TickV36(dt); SinTick818(dt); BasicTick1517(dt); /* t1517 LMB basic */ // t818u sins // v0.0.36: scheduler + Life Leech window
             bool hasOrbit = false, hasRing = false;
             foreach (var s in skills)
             {
                 if (s.def.id == SkillId.BoneOrbit) { hasOrbit = true; UpdateOrbit(s, dt); continue; }
                 if (HData.Summon561(s.def)) { s.cd = 0; continue; } // t561u: summons are passive (minion tick)
                 if (s.def.id == SkillId.StormRing) hasRing = true;
-                s.cd -= dt; bool want716 = !Manual716 || Want716(s); if (Manual716 && s.cd < 0) s.cd = 0; if (IsFb1481(s.def.id)) { want716 = FbWant1481(s); if (s.cd < 0) s.cd = 0; } /* t1481: player-fired (LMB) */ // t716u: Manual = cast on key
-                if (s.cd <= 0 && want716 && PactCanCast53(s)) { s.cd = s.def.cooldown * s.CdMul * PactCd53(s); float lc53 = _lastCast[(int)s.def.id]; Cast(s, 1f); if (_lastCast[(int)s.def.id] != lc53) PactAfterCast53(s); s.cd *= SinEchoCd818(s); if (s.Has(SupportId.Echo) && !SinNoEcho818(s)) { s.echoLeft = HData.At(HellordTuning.I.supEchoCount, s.Lvl(SupportId.Echo)); if (s.def.id == SkillId.CurseRune) s.echoLeft = Mathf.Min(s.echoLeft, HellordTuning.I.curseEchoMax738); s.echoT = s.echoLeft > 0 ? 0.3f : -1; } /* t738u */ }
+                s.cd -= dt; bool want716 = !Manual716 || Want716(s); if (Manual716 && s.cd < 0) s.cd = 0; if (IsFb1481(s.def.id)) { want716 = FbWant1481(s); if (s.cd < 0) s.cd = 0; } /* t1481: player-fired (LMB) */ bool basic1517 = s == _basic1517; if (basic1517) { want716 = BasicWant1517(); if (s.cd < 0) s.cd = 0; } /* t1517: the basic main attack fires only while LMB is held */ // t716u: Manual = cast on key
+                if (s.cd <= 0 && want716 && PactCanCast53(s)) { s.cd = s.def.cooldown * s.CdMul * PactCd53(s); float lc53 = _lastCast[(int)s.def.id]; if (basic1517 || IsFb1481(s.def.id) && s == FbLmbBasic1517()) BasicCast1517(s, 1f); else Cast(s, 1f); if (_lastCast[(int)s.def.id] != lc53) PactAfterCast53(s); s.cd *= SinEchoCd818(s); if (s.Has(SupportId.Echo) && !SinNoEcho818(s)) { s.echoLeft = HData.At(HellordTuning.I.supEchoCount, s.Lvl(SupportId.Echo)); if (s.def.id == SkillId.CurseRune) s.echoLeft = Mathf.Min(s.echoLeft, HellordTuning.I.curseEchoMax738); s.echoT = s.echoLeft > 0 ? 0.3f : -1; } /* t738u */ }
                 if (s.echoT > 0) { s.echoT -= dt; if (s.echoT <= 0) { _echo738 = true; Cast(s, HData.At(HellordTuning.I.supEchoDmg, s.Lvl(SupportId.Echo), 0.5f) * SinEchoDmg818()); _echo738 = false; if (--s.echoLeft > 0) s.echoT = 0.3f; else s.echoT = -1; } } // v0.0.27: Echo repeats grow with its level
             }
             if (!hasOrbit && (_orbs.Count > 0 || _orbitJobs != null)) { foreach (var o in _orbs) Destroy(o.gameObject); _orbs.Clear(); KillOrbit(); }

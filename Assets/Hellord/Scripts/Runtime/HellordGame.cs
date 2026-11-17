@@ -392,23 +392,24 @@ namespace Hellord
             Vector2 heroP0 = _heroPos; Dash49(mv, dt); _heroPos += HeroVel37(mv, baseSpeed * speedMul * HookMoveMul() * HeroSlowMul37() * HeroChillMul44() * HoldMul49(), dt) * dt; // v0.0.24: slowed while a hook drags you; v0.0.37: ice + frost slow
             if (mv.sqrMagnitude > 0.01f) _lastDir = mv.normalized;
             ClampToRoom(ref _heroPos, HeroMarginPx); ClampToArena(ref _heroPos); BlockShrineStatue(ref _heroPos); BlockSpikes46(ref _heroPos); HeroVelClamp37(heroP0, dt);
-            _hero.position = new Vector3(Snap(_heroPos.x), Snap(_heroPos.y), 0);
+            _hero.position = new Vector3(Snap(_heroPos.x), Snap(_heroPos.y), 0) + HeroRecoil1517(); // t1517: attack recoil (1-2 px)
             bool moving = mv.sqrMagnitude > 0.01f; _heroAnim += dt;
             int f = moving ? HArt.HeroWalk0 + (int)(_heroAnim * HArt.HeroWalkFps) % HArt.HeroWalkN : HArt.HeroIdle0 + (int)(_heroAnim * HArt.HeroIdleFps) % HArt.HeroIdleN;
             if ((crit >= baseCrit + 0.1f) != _glassOn || Hero47On != _layers47) { _layers47 = Hero47On; SetHeroLayers(); }
             if (HoldFrame47) f = 0;
             Sprite[] baseF = _tf > 0 ? HArt.Hero(TfSheets[_tf]) : Hero47On ? Hero36Frames() : _heroBaseF; // v0.0.15: no frost-blue skin swap when Frost Cleave is owned (hero stays the red final2 demon)
-            _heroBase.sprite = baseF[f];
-            bool flip = AimDir(false).x < 0;
+            _heroBase.sprite = baseF[f]; int pi1517 = HeroPose1517(out var pf1517, out var po1517); if (pi1517 >= 0) _heroBase.sprite = pf1517[pi1517]; // t1517 attack pose (HA strips)
+            bool flip = HeroFaceCursor1517() ?? AimDir(false).x < 0; // t1517: face the cursor while attacking
             int ord = HeroSort;
             _heroBase.flipX = flip; _heroBase.sortingOrder = ord;
             var ol = Hero47On ? HArt.HeroOutline(Art47 + "hero_36_base", T47.hero36CellPx, T47.hero36CellPx, T47.hero36PivotPx.x, T47.hero36PivotPx.y) : HArt.HeroOutline(_tf > 0 ? TfSheets[_tf] : baseF == _heroFrostF ? "hero_skin_frost" : "hero_base");
-            _heroOutline.enabled = ol != null; if (ol != null) { _heroOutline.sprite = ol[f]; _heroOutline.flipX = flip; _heroOutline.sortingOrder = ord - 2; }
-            foreach (var l in _heroLayers) { l.sr.sprite = l.f[f]; l.sr.flipX = flip; l.sr.sortingOrder = ord + LayerSort47(l.sr.name); }
+            if (pi1517 >= 0) ol = po1517; int of1517 = pi1517 >= 0 ? pi1517 : f, lf1517 = pi1517 >= 0 ? 0 : f; bool hide1517 = HellordTuning.I.heroPoseHideOverlays1517; // t1517: pose outline; overlays hold frame 0 (or hide) while attacking
+            _heroOutline.enabled = ol != null; if (ol != null) { _heroOutline.sprite = ol[of1517]; _heroOutline.flipX = flip; _heroOutline.sortingOrder = ord - 2; }
+            foreach (var l in _heroLayers) { l.sr.sprite = l.f[lf1517]; if (hide1517) l.sr.enabled = pi1517 < 0; l.sr.flipX = flip; l.sr.sortingOrder = ord + LayerSort47(l.sr.name); }
             if (_room != null) { _room.SortAgainstHero(_heroPos, HeroSort, HellordTuning.I.heroBehindProps); UpdateRoomGrade(); }
             _iframe -= dt; _hurtT -= dt;
             _heroBase.color = _hurtT > 0 && !HellordTuning.I.fxHeroHurt ? new Color(1, 0.4f, 0.4f) : _heroSlowT > 0 ? new Color(0.62f, 0.85f, 1f) : Color.white; // v0.0.26: HurtFX replaces the whole-sprite red tint
-            UpdateChill47(dt, f, flip, ord); UpdateIFrameFX969(); Bs950Frame();
+            UpdateChill47(dt, lf1517, flip, ord); UpdateIFrameFX969(); Bs950Frame();
             var m = HInput.MouseScreen(); if ((m - _lastMouse).sqrMagnitude > 4) { _mouseT = Time.unscaledTime; _lastMouse = m; }
         }
 
@@ -416,7 +417,8 @@ namespace Hellord
         Vector2 AimDir(bool preferEnemy = true) { var d = AimDirRaw(preferEnemy); return preferEnemy ? ScrambleAim(d) : d; } // v0.0.25: Gossip Imp scramble bends attack aim only (not hero facing)
         Vector2 AimDirRaw(bool preferEnemy)
         {
-            if (CurAim720 && mode == Mode.Play) { var dm = MouseWorld() - HeroCenter; return dm.sqrMagnitude > 0.01f ? dm.normalized : _lastDir; } // t716u: Manual = always the cursor
+            if ((CurAim720 || _basicAim1517) && mode == Mode.Play) { var dm = MouseWorld() - HeroCenter; // t1517: the LMB basic always aims at the cursor
+ return dm.sqrMagnitude > 0.01f ? dm.normalized : _lastDir; } // t716u: Manual = always the cursor
             if (!autoAim)
             {
                 var st = HInput.AimStick(); if (st.sqrMagnitude > 0.09f) return st.normalized;
@@ -425,7 +427,7 @@ namespace Hellord
             if (preferEnemy) { int n = Nearest(_heroPos, 9f, -1); if (n >= 0) return (_en[n].pos + Vector2.up * 0.5f - _heroPos - Vector2.up * 0.8f).normalized; }
             return _lastDir;
         }
-        bool Aiming() => CurAim720 || !autoAim && (HInput.AimStick().sqrMagnitude > 0.09f || Time.unscaledTime - _mouseT < 1.5f || HInput.MouseHeld());
+        bool Aiming() => CurAim720 || _basicAim1517 || !autoAim && (HInput.AimStick().sqrMagnitude > 0.09f || Time.unscaledTime - _mouseT < 1.5f || HInput.MouseHeld());
         internal Vector2? atMouse986; // t979u autotest: fake cursor (world)
         Vector2 MouseWorld() { if (atMouse986.HasValue) return atMouse986.Value; var m = HInput.MouseScreen(); var w = _cam.ViewportToWorldPoint(new Vector3(m.x / ViewPxW, m.y / ViewPxH, 10)); return w; }
         // ---- v0.0.15 perf: render the world at 1 texel per art pixel (Screen/zoom) and point-upscale it in OnGUI.

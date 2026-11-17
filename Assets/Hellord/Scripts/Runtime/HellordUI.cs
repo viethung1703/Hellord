@@ -36,6 +36,7 @@ namespace Hellord
             HudBegin();
             if (mode == Mode.MainMenu || mode == Mode.Altar) { if (!_tmOpen || Event.current.type == EventType.Repaint) DrawPact51(); TestMenuGui(); return; } // pt480u: F1 PACT test tab on menu/altar, no click-through // v0.0.51
             if (mode != Mode.StartPick) { DrawHudB(); if (floorMode) DrawFloorWorldUI(); if (mode == Mode.Play || mode == Mode.Transition || mode == Mode.Won) { if (HellordTuning.I.skillBelt720) DrawBelt716(); else DrawSkillBarB(); } }
+            if (mode == Mode.Play) DrawCursorRing1517(); // t1517 basic cooldown ring around the cursor
             if (mode == Mode.Play) DrawCtrl716(); // t716u: Controls page + slot pick
             if (mode == Mode.Play && _tp != null) DrawTargetPickB(); // v0.0.36: shop second pick
             if (mode == Mode.Play) DrawFX26ResumeDim(); // v0.0.26 LevelUpFX: dim fades out after the pick

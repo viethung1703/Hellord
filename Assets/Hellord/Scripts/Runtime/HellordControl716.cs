@@ -279,7 +279,8 @@ namespace Hellord
                     else if (_tSkill24 != null) { var pt = _icons44 ? Color.white : PhTint(k.def.id); GUI.color = pt; Blit(_tSkill24, ic * 28, 0, 24, 24, ix, iy); }
                     float full = Mathf.Max(0.05f, k.def.cooldown * k.CdMul); bool cont = k.def.id == SkillId.BoneOrbit || HData.Summon561(k.def);
                     float cdf = cont ? 0 : Mathf.Clamp01(k.cd / full);
-                    if (cdf > 0.02f && k.cd > 0.15f && _tCdMask != null) { int nf = _tCdMask.Length - 1; int fr = Mathf.Clamp(Mathf.FloorToInt((1 - cdf) * nf), 0, nf); GUI.color = Color.white; GUI.DrawTexture(new Rect(ix, iy, 24, 24), _tCdMask[fr]); if (full >= 1.5f) CdNumber(Mathf.CeilToInt(k.cd), ix, iy, true); }
+                    if ((cdf > 0.02f && k.cd > 0.15f || BeltSweep1517(k)) && _tCdMask != null) { int nf = _tCdMask.Length - 1; int fr = Mathf.Clamp(Mathf.FloorToInt((1 - cdf) * nf), 0, nf); GUI.color = Color.white; GUI.DrawTexture(new Rect(ix, iy, 24, 24), _tCdMask[fr]); if (full >= 1.5f) CdNumber(Mathf.CeilToInt(k.cd), ix, iy, true); }
+                    float rdy1517 = BeltReady1517(k); if (rdy1517 > 0f) { Frame716(ix - 1, iy - 1, 26, 26, C716(0xfee761, rdy1517)); Frame716(ix - 2, iy - 2, 28, 28, C716(0xfeae34, rdy1517 * 0.6f)); } // t1517 ready pop on the basic
                     if (cont) { GUI.color = Color.white; Text("AUTO", ix, iy + 25, C716(0x8b9bb4)); }
                     float gx0 = ix + 24 + 4, gy0 = iy + 1;
                     for (int p = 0; p < 4; p++)

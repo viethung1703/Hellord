@@ -221,7 +221,7 @@ namespace Hellord
                 else
                 {
                     if (fr >= T.rrLaunchF1481) { _fbPend.RemoveAt(i); if (p.kind == 1) FbBallLaunch1481(p); else FbBallLaunch1481(p); continue; }
-                    if (p.kind == 1) { FireBasicsFX1481.Show("infernal_boulder_cast_ring", _heroPos, (int)fr, ho + 16); }
+                    if (p.kind == 1) { FireBasicsFX1481.Show("infernal_boulder_cast_ring", _heroPos, (int)(fr * FireBasicsFX1481.Frames("infernal_boulder_cast_ring") / Mathf.Max(1f, T.rrLaunchF1481)), ho + 16); } // t1517: the 24 f ring compressed into the quick launch flash
                 }
             }
             // ---- Molten Spit rocks: scripted lob. Ground point linear hand -> target, height = hand height (1-k) + 4 peak k(1-k); lands exactly on the target or bursts early on an enemy when low
