@@ -843,6 +843,15 @@ namespace Hellord
     [Tooltip("t1544: rows between the name (7px SMALL glyphs) and the title.")] public int pactTitleGap1544 = 2;
     [Tooltip("t1544: side plate minimum width (old 89) and the clear space each side of the widest line (border + inner line + pad). THE HEADLESS WAR GOD (113px) widens its side plate to 125.")] public int pactSidePlateMinW1544 = 89, pactSidePlatePad1544 = 6;
     [Tooltip("t1544: path-face 24x24 crop centres (x,y in the 64px god avatar) per Path 0..3. Old AltarMenuData.FaceCrop = 38,19 / 28,25 / 37,31 / 30,29.")] public int[] pactGodFaceCrop1544 = { 25, 28, 31, 29, 30, 29, 34, 34 };
+    [Header("t1544 v2: pact cards in HA's t1540 v2 mockup layout (frames cut from the mockup, name plate below the avatar, title under it)")]
+    [Tooltip("t1544 v2: Altar pact cards use the mockup framing (header YOUR PATH / NOT CHOSEN, bevelled avatar frame, name plate BELOW the avatar, title under the plate; SMALL font). Off = the 836660d layout (two-line plate on top of the old card).")] public bool pactCardsV2 = true;
+    [Tooltip("t1544 v2: centre avatar scale (live 2 = 128px; the mockup draws it at 1). The card and its avatar frame grow with it.")] public int pactV2CentreScale = 2;
+    [Tooltip("t1544 v2: centre card width (mockup 150 at 1x with a 70px avatar frame; at 2x the frame is 134 so 158 keeps 12px each side and fits the 120px name plate).")] public int pactV2CentreW = 158;
+    [Tooltip("t1544 v2: centre card top y (the hanging tab ends at 75). Old 836660d centre card top = 89 (plate 79).")] public int pactV2CentreY = 78;
+    [Tooltip("t1544 v2: rows between the title and the card's bottom frame (mockup 12; 8 so the 2x card plus the straddling SEAL button still clear OPEN TREE / BACK at 290).")] public int pactV2CentrePadB = 8;
+    [Tooltip("t1544 v2: SEAL button top relative to the centre card's last row (old: SealY 236 over the old card bottom 245 = -9).")] public int pactV2SealDy = -6;
+    [Tooltip("t1544 v2: gap between the centre card and the side cards (mockup 11).")] public int pactV2SideGap = 11;
+    [Tooltip("t1544 v2: side card top y (130x123, 1:1 mockup art). 104 so the card covers the old side frame + plate baked into the altar scene (y 104..224).")] public int pactV2SideY = 104;
     [Tooltip("t511: clicking the main-menu Pact seal opens the Sacrifice Altar (same as the SACRIFICE ALTAR row). Off = old placeholder Pact panel.")] public bool mm69SealOpensAltar = true;
     [Header("t503u Main Menu v69 (VH-locked art)")]
     [Tooltip("Use the VH-locked v69 main menu art (v49 title, skull-stair bg, text rows + skull/blood select, Damnation Pact seal). Off = old v0.0.51 hex-button menu.")] public bool mainMenu69 = true;

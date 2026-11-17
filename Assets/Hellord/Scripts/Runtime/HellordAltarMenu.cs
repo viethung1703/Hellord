@@ -161,6 +161,7 @@ namespace Hellord
                 bool crest = yours && n >= PT.pactCrestAt51; AmSpr(crest ? "crest_on" : "crest_off", tb[6], 50); AmTxAt("CREST " + PT.pactCrestAt51 + "+", tb[6] + 11, 50, crest ? "AMBER" : "DIM");
             }
             // ---- centre card (frame + avatar frame + name plate straddling the top frame; chosen = amber bevel + glow, sealed = brighter amber + chip)
+            if (PT.pactCardsV2) AmCardsV2Centre(v, locked, yours, sealed_); else { // t1544 v2: mockup cards (HellordPactCardsV2.cs)
             if (yours) { AmSpr(sealed_ ? "glow_se" : "glow_un", AltarMenuData.CardX - 2, AltarMenuData.CardY - 2); AmSpr(sealed_ ? "card_sel_se" : "card_sel_un", AltarMenuData.CardX, AltarMenuData.CardPlateY); }
             else AmSpr("card_neu", AltarMenuData.CardX, AltarMenuData.CardPlateY);
             AmBlitN(T97(Av97(v, locked, true)), 256, 102, 2);                                                                         // 64px game frame at exact 2x, nearest
@@ -168,10 +169,12 @@ namespace Hellord
             if (PT.pactGods1544) AmGodPlate(yours ? (sealed_ ? "card_sel_se" : "card_sel_un") : "card_neu", 249, PT.pactPlateTopC1544, 141, PactData.PathShort[v], PactData.PathTitle[v], locked ? "DIM" : "BONE", locked ? "DIM" : "CLAY"); // t1544
             else AmTxIn(PactData.PathShort[v], 249, 82, 141, 15, locked ? "DIM" : "BONE");
             if (sealed_) AmSpr("chip", AltarMenuData.CardX + 7, AltarMenuData.CardY + 7); // t1544: after the (taller) plate
+            }
             // ---- SEAL / UNSEAL (UNLOCK on a locked Path) straddling the card's bottom frame; always drawn
             if (_amSealPend >= 0 && _confirm97 < 0 && Time.frameCount > _amSealPendFrame) _amSealPend = -1;
-            if (AmBtn("amseal", locked ? "seal_ul" : sealed_ ? "seal_se" : "seal_un", AltarMenuData.SealX, AltarMenuData.SealY, 89, 15, free, false, locked && !AmCanUnlock(v) ? 0.5f : 1f)) AmSealToggle();
+            if (AmBtn("amseal", locked ? "seal_ul" : sealed_ ? "seal_se" : "seal_un", AltarMenuData.SealX, PT.pactCardsV2 ? AmV2SealY() : AltarMenuData.SealY, 89, 15, free, false, locked && !AmCanUnlock(v) ? 0.5f : 1f)) AmSealToggle();
             // ---- side cards (frames + plate boxes are in the scene): 1x avatar dimmed, plate name, status lines
+            if (PT.pactCardsV2) AmCardsV2Sides(l, r, free); else
             for (int sd = 0; sd < 2; sd++)
             {
                 int cx = AltarMenuData.SideCx[sd], p = sd == 0 ? l : r, sy0 = AltarMenuData.SideY + 10, sx0 = cx - 35; bool lk = PathLocked97(p), mine = _pactPath51 == p;
@@ -192,6 +195,7 @@ namespace Hellord
             // ---- arrows
             for (int sd = 0; sd < 2; sd++) if (AmBtn("amarr" + sd, sd == 0 ? "arr_l" : "arr_r", sd == 0 ? AltarMenuData.ArrL : AltarMenuData.ArrR, AltarMenuData.ArrY, 17, 23, free, true)) Scroll97(sd == 0 ? -1 : 1);
             // ---- path faces: 24x24 1:1 head crops of the 64px game avatars in 26px frames (viewed = amber, others dimmed, locked = lock avatar)
+            if (!PT.pactCardsV2 || AmV2FacesFit()) // t1544 v2: the 2x mockup card + SEAL take the faces row (the mockup has no faces row)
             for (int p = 0; p < NP; p++)
             {
                 int x0 = 250 + p * 38, y0 = AltarMenuData.FaceY; bool cur = p == v, lk = PathLocked97(p); var fc = AmFaceCrop1544(p);
