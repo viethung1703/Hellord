@@ -73,20 +73,20 @@ namespace Hellord
         readonly List<Pair> _im = new List<Pair>(); int _imN; bool _called;
         Pair NewPair() { return new Pair { sp = NewSR("fb"), gl = NewSR("fbg") }; }
         SpriteRenderer NewSR(string n) { var go = new GameObject(n); go.transform.SetParent(transform, false); var sr = go.AddComponent<SpriteRenderer>(); sr.enabled = false; return sr; }
-        static void Put(Pair p, Strip s, int row, int frame, Vector2 pos, int order, float rot, bool flip)
+        static void Put(Pair p, Strip s, int row, int frame, Vector2 pos, int order, float rot, bool flip, float scale = 1f, float alpha = 1f)
         {
             frame = Mathf.Clamp(frame, 0, s.n - 1); row = Mathf.Clamp(row, 0, s.rows - 1); var tp = new Vector3(Snap(pos.x), Snap(pos.y), 0f);
-            p.sp.enabled = true; p.sp.sprite = s.f[row, frame]; p.sp.transform.position = tp; p.sp.transform.rotation = Quaternion.Euler(0, 0, rot); p.sp.sortingOrder = order; p.sp.flipX = flip; p.sp.color = Color.white;
-            if (_glowOk && s.g != null && s.mat != null) { p.gl.enabled = true; p.gl.sharedMaterial = s.mat; p.gl.sprite = s.g[row, frame]; p.gl.transform.position = tp; p.gl.transform.rotation = Quaternion.Euler(0, 0, rot); p.gl.sortingOrder = order + 1; p.gl.flipX = flip; p.gl.color = Color.white; } else p.gl.enabled = false;
+            p.sp.enabled = true; p.sp.sprite = s.f[row, frame]; p.sp.transform.position = tp; p.sp.transform.rotation = Quaternion.Euler(0, 0, rot); p.sp.sortingOrder = order; p.sp.flipX = flip; p.sp.color = new Color(1f, 1f, 1f, alpha); p.sp.transform.localScale = new Vector3(scale, scale, 1f);
+            if (_glowOk && s.g != null && s.mat != null) { p.gl.enabled = true; p.gl.sharedMaterial = s.mat; p.gl.sprite = s.g[row, frame]; p.gl.transform.position = tp; p.gl.transform.rotation = Quaternion.Euler(0, 0, rot); p.gl.sortingOrder = order + 1; p.gl.flipX = flip; p.gl.color = new Color(1f, 1f, 1f, alpha); p.gl.transform.localScale = new Vector3(scale, scale, 1f); } else p.gl.enabled = false;
         }
         static void Hide(Pair p) { p.sp.enabled = false; p.gl.enabled = false; }
 
         /// <summary>Call once per game frame BEFORE any Show(): marks the frame as driven (a paused game keeps the last frame on screen).</summary>
         public static void Frame() { if (Ok) _i._called = true; }
         /// <summary>IMMEDIATE: draw frame `frame` (and `row` of a dir16 strip) this frame only.</summary>
-        public static void Show(string key, Vector2 pos, int frame, int order, int row = 0, bool flip = false)
+        public static void Show(string key, Vector2 pos, int frame, int order, int row = 0, bool flip = false, float scale = 1f, float alpha = 1f)
         {
-            if (!Ok || !_s.TryGetValue(key, out var s)) return; var a = _i; if (a._imN >= a._im.Count) a._im.Add(a.NewPair()); Put(a._im[a._imN++], s, row, frame, pos, order, 0f, flip);
+            if (!Ok || !_s.TryGetValue(key, out var s)) return; var a = _i; if (a._imN >= a._im.Count) a._im.Add(a.NewPair()); Put(a._im[a._imN++], s, row, frame, pos, order, 0f, flip, scale, alpha);
         }
 
         // ------------------------------------------------------------------ one-shots
