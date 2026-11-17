@@ -60,6 +60,7 @@ namespace Hellord
         // the next shot is <160 ms away, f0-f1 (lift + squash/curl) pre-play so the release lands on the fire frame (castPreWind1528).
         // Every left-click basic uses it (melee too, t1519). The PixelLab strips hero_cast/melee_east_pl.png are no longer loaded.
         AttackPoseKind1517 _poseKind1517; Vector2 _poseDir1517 = Vector2.right; float _poseT1517 = 99f; bool _poseTried1517, _preWind1528, _poseFrost1528; int _poseCalls1517;
+        int _walkF1528 = -1; Sprite[] _castWalk1528, _castWalkOl1528; // t1528 v2: walk-based cast frames (tools/gen_castB_walk_1528.py)
         Sprite[] _castBody1528, _castBodyOl1528, _castBlink1528, _auraFire1528, _auraFrost1528, _sparkFire1528, _sparkFrost1528; SpriteRenderer _aura1528, _spark1528;
         float CastReleaseS1528 { get { var h = HellordTuning.I.castHoldMs1528; int r = HellordTuning.I.castReleaseIdx1528; float t = 0; for (int i = 0; i < r && i < h.Length; i++) t += h[i]; return t / 1000f; } }
         float CastTotalS1528 { get { float t = 0; foreach (var x in HellordTuning.I.castHoldMs1528) t += x; return t / 1000f; } }
@@ -73,7 +74,7 @@ namespace Hellord
             // show the release frame this frame (UpdateHero already ran before the skills), so it lands on the fire frame
             var ps = HeroPose1517(out var po); if (ps == null || _heroBase == null) return; bool flip = HeroFaceCursor1517() ?? _heroBase.flipX;
             _heroBase.sprite = ps; _heroBase.flipX = flip; if (_heroOutline != null && po != null) { _heroOutline.sprite = po; _heroOutline.flipX = flip; }
-            foreach (var l in _heroLayers) { if (l.f != null && l.f.Length > 0) l.sr.sprite = l.f[0]; l.sr.flipX = flip; }
+            int lf = _walkF1528 >= 0 && _castWalk1528 != null ? HArt.HeroWalk0 + _walkF1528 : 0; foreach (var l in _heroLayers) { if (l.f != null && l.f.Length > lf) l.sr.sprite = l.f[lf]; l.sr.flipX = flip; }
             UpdateCastFx1528(flip, _heroBase.sortingOrder);
         }
         /// <summary>BasicTick: while LMB is held and the basic's next shot is under the release lead, pre-play f0-f1 so f2 meets the shot.</summary>
@@ -90,6 +91,7 @@ namespace Hellord
             string body = Art47 + T.castBodySheet1528, blink = Art47 + T.castBlinkSheet1528; int n = Mathf.Max(1, T.castHoldMs1528.Length);
             if (!HArt.Missing(body)) { _castBody1528 = HArt.Strip(body, n, c, c, pv); _castBodyOl1528 = HArt.HeroOutline(body, c, c, pv.x, pv.y, n); }
             if (!HArt.Missing(blink)) _castBlink1528 = HArt.Strip(blink, 1, c, c, pv);
+            string walk = Art47 + T.castWalkSheet1528; int wn = 8 * (n + 1); if (T.castWalk1528 && !HArt.Missing(walk)) { _castWalk1528 = HArt.Strip(walk, wn, c, c, pv); _castWalkOl1528 = HArt.HeroOutline(walk, c, c, pv.x, pv.y, wn); }
             Sprite[] L(string nm, int fr, int px, Vector2 piv) => HArt.Missing(Art47 + nm) ? null : HArt.Strip(Art47 + nm, fr, px, px, piv);
             _auraFire1528 = L(T.castAuraFireSheet1528, 4, 44, T.castAuraPivotPx1528); _auraFrost1528 = L(T.castAuraFrostSheet1528, 4, 44, T.castAuraPivotPx1528);
             _sparkFire1528 = L(T.castSparkFireSheet1528, 3, 13, new Vector2(6.5f, 6.5f)); _sparkFrost1528 = L(T.castSparkFrostSheet1528, 3, 13, new Vector2(6.5f, 6.5f));
@@ -113,8 +115,11 @@ namespace Hellord
         Sprite HeroPose1517(out Sprite outline)
         {
             outline = null; int i = CastIdx1528(); if (i < 0) return null; PoseLoad1517(); if (_castBody1528 == null || i >= _castBody1528.Length) return null;
-            var T = HellordTuning.I; outline = _castBodyOl1528 != null && i < _castBodyOl1528.Length ? _castBodyOl1528[i] : null;
-            if (i == T.castReleaseIdx1528 && !_preWind1528 && _castBlink1528 != null && _poseT1517 - CastReleaseS1528 < T.castBlinkMs1528 / 1000f) return _castBlink1528[0];
+            var T = HellordTuning.I; bool blink = i == T.castReleaseIdx1528 && !_preWind1528 && _poseT1517 - CastReleaseS1528 < T.castBlinkMs1528 / 1000f;
+            int per = _castBody1528.Length + 1; // t1528 v2: walking -> the walk frame's legs + bob with the cast tail / squash / blink (w * 6 + k, k 5 = blink)
+            if (_walkF1528 >= 0 && _castWalk1528 != null) { int wi = _walkF1528 * per + (blink ? per - 1 : i); if (wi < _castWalk1528.Length) { outline = _castWalkOl1528 != null && wi < _castWalkOl1528.Length ? _castWalkOl1528[wi] : null; return _castWalk1528[wi]; } }
+            outline = _castBodyOl1528 != null && i < _castBodyOl1528.Length ? _castBodyOl1528[i] : null;
+            if (blink && _castBlink1528 != null) return _castBlink1528[0];
             return _castBody1528[i];
         }
         /// <summary>Aura (behind the body, f0-f3) and spark (tail tip, f2-f4, above the projectiles), element-tinted. Called from UpdateHero.</summary>

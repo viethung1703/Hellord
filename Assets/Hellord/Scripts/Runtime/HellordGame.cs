@@ -398,12 +398,12 @@ namespace Hellord
             if ((crit >= baseCrit + 0.1f) != _glassOn || Hero47On != _layers47) { _layers47 = Hero47On; SetHeroLayers(); }
             if (HoldFrame47) f = 0;
             Sprite[] baseF = _tf > 0 ? HArt.Hero(TfSheets[_tf]) : Hero47On ? Hero36Frames() : _heroBaseF; // v0.0.15: no frost-blue skin swap when Frost Cleave is owned (hero stays the red final2 demon)
-            _heroBase.sprite = baseF[f]; var ps1517 = HeroPose1517(out var po1517); bool pose1517 = ps1517 != null; if (pose1517) _heroBase.sprite = ps1517; // t1517/t1528 attack pose (tail cast B)
+            _heroBase.sprite = baseF[f]; _walkF1528 = moving && f >= HArt.HeroWalk0 && f < HArt.HeroWalk0 + HArt.HeroWalkN ? f - HArt.HeroWalk0 : -1; var ps1517 = HeroPose1517(out var po1517); bool pose1517 = ps1517 != null; if (pose1517) _heroBase.sprite = ps1517; // t1517/t1528 attack pose (tail cast B)
             bool flip = HeroFaceCursor1517() ?? AimDir(false).x < 0; // t1517: face the cursor while attacking
             int ord = HeroSort;
             _heroBase.flipX = flip; _heroBase.sortingOrder = ord;
             var ol = Hero47On ? HArt.HeroOutline(Art47 + "hero_36_base", T47.hero36CellPx, T47.hero36CellPx, T47.hero36PivotPx.x, T47.hero36PivotPx.y) : HArt.HeroOutline(_tf > 0 ? TfSheets[_tf] : baseF == _heroFrostF ? "hero_skin_frost" : "hero_base");
-            int lf1517 = pose1517 ? 0 : f; bool hide1517 = HellordTuning.I.heroPoseHideOverlays1517; // t1517: overlays hold frame 0 (or hide) while attacking
+            int lf1517 = pose1517 && !(_walkF1528 >= 0 && _castWalk1528 != null) ? 0 : f; /* t1528 v2: walking casts keep the walk frame for overlays */ bool hide1517 = HellordTuning.I.heroPoseHideOverlays1517; // t1517: overlays hold frame 0 (or hide) while attacking
             if (pose1517) { _heroOutline.enabled = po1517 != null; if (po1517 != null) { _heroOutline.sprite = po1517; _heroOutline.flipX = flip; _heroOutline.sortingOrder = ord - 2; } } else // t1528: the cast strip's own outline
             { _heroOutline.enabled = ol != null; if (ol != null) { _heroOutline.sprite = ol[f]; _heroOutline.flipX = flip; _heroOutline.sortingOrder = ord - 2; } }
             UpdateCastFx1528(flip, ord); // t1528 aura + spark

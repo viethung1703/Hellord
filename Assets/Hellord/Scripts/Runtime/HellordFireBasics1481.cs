@@ -48,7 +48,7 @@ namespace Hellord
         class FbRock { public Vector2 p, a, b, dir; public float t, dur, age, dmg; public SkillInst s; }                                               // Molten Spit rock (t1511 scripted lob: linear ground point + preset height arch)
         class FbCast { public readonly HashSet<int> shardHit = new HashSet<int>(); public int embers, pops; }                                          // t1514: one Spit cast (shrapnel hit-once set, ember / pop caps)
         class FbStrand { public Vector2 a, b, dir; public float t, dmg, pdmg, speedU, flyS; public int idx, row; public bool landed; public FbCast cast; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
-        class FbBall { public object loop; public Vector2 p, dir; public float dist, range, age, dmg, trailAcc, z; public int tiles, row, seg; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
+        class FbBall { public object loop; public Vector2 p, dir; public float dist, range, age, dmg, trailAcc, z, bandAt; public bool touched; public int tiles, row, seg; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
         class FbRecoil { public Enemy e; public Vector2 dir; public float f; public int next; }
         class FbPatch { public Vector2 p; public float rx, ry, life, tick, tickS, dmg, delay; public SkillInst s; }
         readonly List<FbPend> _fbPend = new List<FbPend>(); readonly List<FbRock> _fbRocks = new List<FbRock>(); readonly List<FbStrand> _fbStrands = new List<FbStrand>(); readonly List<FbBall> _fbBalls = new List<FbBall>();
@@ -163,7 +163,7 @@ namespace Hellord
             var b = new FbBall { p = at, dir = dir, range = T.rrRangePx1481 / FbPx * PRange49, z = T.rrDropPx1481, dmg = p.dmg, s = p.s, row = FireBasicsFX1481.DirRow(dir),
                 loop = HellordAudio.LoopStart("Audio/SFX/firebasics1481/magma_rock_roll_loop", Random.Range(T.rrLoopVolMin1481, T.rrLoopVolMax1481), 1f + Random.Range(-T.rrLoopPitchSpread1481, T.rrLoopPitchSpread1481)) }; // one roll voice per ball
             _fbBalls.Add(b); HellordAudio.Play("magma_rock_launch");
-            for (int i = T.rrBandPre1481; i >= 1; i--) FbBandTile1481(b, at - dir * ((i * T.rrBandGapPx1481 + T.rrBandBehindPx1481) / FbPx), -i); // HFX v4: segments -2, -1 laid at launch behind the spawn // 4 tiles behind at -24..-6 px: the band starts ~1.3 balls long
+            if (!T.rrBandFromTouch1528) for (int i = T.rrBandPre1481; i >= 1; i--) FbBandTile1481(b, at - dir * ((i * T.rrBandGapPx1481 + T.rrBandBehindPx1481) / FbPx), -i); // HFX v4: segments -2, -1 laid at launch behind the spawn // 4 tiles behind at -24..-6 px: the band starts ~1.3 balls long
         }
         void FbBandTile1481(FbBall b, Vector2 at, int seg)
         {   // HFX v4: band / band_b alternate by segment parity, life_idx(age, 60, ign 4, loop 12) with phase = seg x 5 mod 12, y-sorted with units
@@ -274,7 +274,12 @@ namespace Hellord
                     var e = _en[ei]; if (!e.alive || o.hit.Contains(e.id) || (e.pos - o.p).magnitude > hitR + e.radius) continue;
                     o.hit.Add(e.id); FbHit1481(e, o.dmg, o.s, Vector2.zero, 1); HellordAudio.Play("magma_rock_hit"); _fbRecoils.Add(new FbRecoil { e = e, dir = o.dir }); // knock-back = the HFX recoil table along the roll direction
                 }
-                if (o.z <= 0.5f) { o.trailAcc += (o.p - prev).magnitude; float gap = T.rrBandGapPx1481 / FbPx; while (o.trailAcc >= gap) { o.trailAcc -= gap; FbBandTile1481(o, o.p - o.dir * (T.rrBandBehindPx1481 / FbPx), o.seg++); } } // the band only burns where the ball touches the ground
+                if (T.rrBandFromTouch1528)
+                {   // t1528 v2: no fire under the caster; the band starts where the ball first touches down and runs unbroken behind it (bounce included)
+                    if (!o.touched && fA >= dropF) { o.touched = true; o.bandAt = o.dist; }
+                    if (o.touched) { float gap = Mathf.Max(0.05f, T.rrBandGapPx1481 / FbPx), lim = Mathf.Max(o.bandAt == o.dist ? o.dist : 0f, o.dist - T.rrBandBehindPx1481 / FbPx); int guard = 0; while (o.bandAt <= lim + 0.0001f && guard++ < 64) { FbBandTile1481(o, o.p - o.dir * (o.dist - o.bandAt), o.seg++); o.bandAt += gap; } }
+                }
+                else if (o.z <= 0.5f) { o.trailAcc += (o.p - prev).magnitude; float gap = T.rrBandGapPx1481 / FbPx; while (o.trailAcc >= gap) { o.trailAcc -= gap; FbBandTile1481(o, o.p - o.dir * (T.rrBandBehindPx1481 / FbPx), o.seg++); } } // the band only burns where the ball touches the ground
                 if (wall || o.age >= T.rrMaxS1481 || o.dist >= o.range - 0.001f) { _fbBalls.RemoveAt(i); FbBallEnd1481(o); continue; }
                 HellordAudio.LoopBeat(o.loop); int ro = YSort(o.p.y);
                 FireBasicsFX1481.Show("infernal_boulder_roll_dir16", o.p + Vector2.up * ((T.rrCentrePx1481 * sc + o.z) / FbPx), ((int)(o.dist * FbPx / (T.rrRollPxPerFrame1481 * sc))) % 32, ro + 14, o.row, false, sc);  // roll tied to travel (bigger ball turns slower)
