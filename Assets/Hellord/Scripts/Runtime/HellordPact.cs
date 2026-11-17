@@ -116,7 +116,7 @@ namespace Hellord
         bool PactMenuOn51 => PT.pactMainMenu51 && !ArgPresent51("-hellordAutotest") && (!ArgPresent51("-botstate") || ArgPresent51("-botmenu")); // t508u: -botmenu keeps the menu for recorded bot runs
         void PactBoot51() { PactLoad51(); PactRunReset51(); if (PactMenuOn51) mode = Mode.MainMenu; }
         void PactAfterReset51() { PactRunReset51(); if (PactMenuOn51) mode = Mode.MainMenu; else PactApply51(); }
-        void PactRunReset51() { SinRunReset737(); PactReset53(); _pactPaid51 = false; _lastRitesUsed51 = false; _pactBossKills51 = 0; _soulsEarned51 = 0; _sigilsEarned51 = 0; _pactActive51 = false; }
+        void PactRunReset51() { _dfRunPick1559 = -1; /* t1559 */ SinRunReset737(); PactReset53(); _pactPaid51 = false; _lastRitesUsed51 = false; _pactBossKills51 = 0; _soulsEarned51 = 0; _sigilsEarned51 = 0; _pactActive51 = false; }
 
         // ---- queries ----
         static int Bit(int i) => 1 << i;

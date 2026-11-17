@@ -14,6 +14,7 @@ namespace Hellord
 
         void BuildStartCards()
         {
+            if (DfStartCards1559()) return; // t1559: descend flow - only the run pact's basics
             cards.Clear(); var pool = new List<SkillDef>(HData.Skills); pool.RemoveAll(PactBanned53); Shuffle(pool);
             for (int i = 0; i < Mathf.Min(5, pool.Count); i++) cards.Add(new Card { kind = CardKind.NewSkill, skill = pool[i] });
             warning = null;

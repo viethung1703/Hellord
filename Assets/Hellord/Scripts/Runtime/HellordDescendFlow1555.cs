@@ -52,6 +52,7 @@ namespace Hellord
             if (_df1555 == 1)
             {
                 if (!DfPickable1555(_dfSel1555)) { HellordAudio.Play("ui_denied"); return; }
+                if (!PT.descendSkillScreen1555) { DfStartRun1559(_dfSel1555); return; }   // t1559: the run starts, the old start pick filters to this pact
                 _df1555 = 2; _dfOpenF1555 = Time.frameCount; var l = DfBasics1555(_dfSel1555, true); _dfSk1555 = 0; while (_dfSk1555 < l.Count - 1 && DfHold1555(l[_dfSk1555])) _dfSk1555++; HellordAudio.Play("ui_confirm"); return;
             }
             var ls = DfBasics1555(_dfSel1555, true); if (_dfSk1555 < 0 || _dfSk1555 >= ls.Count || DfHold1555(ls[_dfSk1555])) { HellordAudio.Play("ui_denied"); return; }
@@ -67,6 +68,29 @@ namespace Hellord
             if (skills.Count > 0) { skills.Clear(); SetHeroLayers(); }
             Choose(new Card { kind = CardKind.NewSkill, skill = HData.Skill(id) });
             Debug.Log("[Hellord] t1555 descend: pact " + PactData.PathShort[p] + " basic " + id + " pactNodes " + (_pactActive51 ? SelCount51() : 0));
+        }
+        /// <summary>t1559: the pact picker starts the run; the old start pick (BuildStartCards / DrawCardsB 'CHOOSE YOUR STARTING SKILL') then offers only this pact's basics.
+        /// Nodes: the chosen god = your altar Path -> its tree picks apply (even unsealed, descendApplyChosenNodes1559; the saved seal is restored at once, never saved);
+        /// another god has no stored picks -> no nodes. A Path with 0 picks -> no nodes (PactApply51 needs picks).</summary>
+        int _dfRunPick1559 = -1; public int DescendInGamePick1559 => _dfRunPick1559;
+        void DfStartRun1559(int p)
+        {
+            _df1555 = 0; DescendRunPact1555 = p; _dfRunPick1559 = p;
+            HellordAudio.Play("pact_seal_descend"); mode = Mode.StartPick;
+            if (p == _pactPath51) { bool s = _pactSealed51; if (PT.descendApplyChosenNodes1559) _pactSealed51 = true; PactApply51(); _pactSealed51 = s; }
+            else { SinRecalc737(); PactLoad51(); _pactActive51 = false; }
+            if (skills.Count > 0) { skills.Clear(); SetHeroLayers(); }
+            BuildStartCards();
+            Debug.Log("[Hellord] t1559 descend: pact " + PactData.PathShort[p] + " pactNodes " + (_pactActive51 ? SelCount51() : 0) + " startCards " + cards.Count);
+        }
+        /// <summary>t1559: the old start cards, filtered to the run pact's basics (mapping order). Empty after a pact ban -> the unfiltered basics (never an empty pick).</summary>
+        bool DfStartCards1559()
+        {
+            if (_dfRunPick1559 < 0 || !PT.descendFlow1555 || PT.descendSkillScreen1555) return false;
+            cards.Clear(); var l = DfBasics1555(_dfRunPick1559, false);
+            foreach (var id in l) { var d = HData.Skill(id); if (!PactBanned53(d)) cards.Add(new Card { kind = CardKind.NewSkill, skill = d }); }
+            if (cards.Count == 0) foreach (var id in l) cards.Add(new Card { kind = CardKind.NewSkill, skill = HData.Skill(id) });
+            warning = null; return cards.Count > 0;
         }
         void DfMove1555(int d)
         {
@@ -184,9 +208,11 @@ namespace Hellord
                 AmAtlas(V2Tex, lk ? V2AvL : V2AvN, ax, ay); AmBlitN(T97(Av97(p, lk, PT.pactGods1544 && sel && can)), ax + 3, ay + 3, 1, can ? 1f : 0.55f);
                 if (lk) AmSpr("lock", ax + 3 + 49, ay + 3 + 49); if (seal) AmSpr("chip", x + 4, y + 4);
                 int n = DfBasics1555(p, false).Count; string st, sc;
-                if (seal) { st = "SEALED " + (_pactPath51 == p ? SelCount51() : 0) + "/" + MaxSel51(p) + " NODES"; sc = "AMBER"; }
+                if (seal) { st = "SEALED " + SelCount51() + "/" + MaxSel51(p) + " NODES"; sc = "AMBER"; }
                 else if (lk) { st = "LOCKED"; sc = "DIM"; }
                 else if (PathLocked97(p) && none) { st = "NO PACT NODES"; sc = "TERRA"; }
+                else if (!PT.descendSkillScreen1555 && PT.descendApplyChosenNodes1559 && _pactPath51 == p) { st = "PACT " + SelCount51() + "/" + MaxSel51(p) + " NODES"; sc = SelCount51() > 0 ? "AMBER" : "TERRA"; }   // t1559: your altar Path's picks apply
+                else if (!PT.descendSkillScreen1555) { st = "NO NODES PICKED"; sc = "TERRA"; }
                 else { st = "UNSEALED: NO NODES"; sc = "TERRA"; }
                 string bl = n == 0 ? "NO BASIC ATTACK YET" : n == 1 ? "1 BASIC ATTACK" : n + " BASIC ATTACKS";
                 int ty = ay + 70 + P; AmTxIn(st, x, 0, W, 0, sc, ty); AmTxIn(bl, x, 0, W, 0, n == 0 ? "DIM" : can ? "BONE" : "DIM", ty + 7 + PT.descendLead1555);
