@@ -35,7 +35,7 @@ namespace Hellord
             int l, r; AmBb(s, out l, out r); int bw = r - l + 1; MtDrawTex(MtTextTex(s, false, new[] { MtC(col) }, false, col), rx + (rw - bw) / 2 - l, y);
         }
 
-        void AmSpr(string n, int x, int y, float a = 1f) { int[] r; if (_amAtlas == null || !AltarMenuData.Atlas.TryGetValue(n, out r)) return; MtBlit(_amAtlas, r[0], r[1], r[2], r[3], x, y, a); }
+        void AmSpr(string n, int x, int y, float a = 1f) { if (n.StartsWith("seal_sd") && AmSprV3(n, x, y, a)) return; int[] r; if (_amAtlas == null || !AltarMenuData.Atlas.TryGetValue(n, out r)) return; MtBlit(_amAtlas, r[0], r[1], r[2], r[3], x, y, a); }
         /// <summary>integer-scaled (nearest) blit of a whole texture at (x,y) in the 640x360 grid.</summary>
         void AmBlitN(Texture2D t, int x, int y, int n, float a = 1f)
         {
@@ -81,7 +81,7 @@ namespace Hellord
         {
             int v = _altarView51;
             if (PathLocked97(v)) { AmUnlockPath(v); return; }
-            if (_pactSealed51 && _pactPath51 == v) { _pactSealed51 = false; PactSave51(); Msg51("PACT UNSEALED"); HellordAudio.Play("ui_back"); return; }
+            if (_pactSealed51 && _pactPath51 == v) { _pactSealed51 = false; PactSave51(); if (!(PT.pactCardsV2 && PT.pactCardsV3)) Msg51("PACT UNSEALED"); /* t1544 v3: no unsealed wording */ HellordAudio.Play("ui_back"); return; }
             if (_pactPath51 != v)
             {
                 if (_pactPath51 >= 0 && SelCount51() > 0) { _confirm97 = v; _confirmChoose97 = true; _amSealPend = v; _amSealPendFrame = Time.frameCount; return; }   // same confirm as CHOOSE PATH; ConfirmYes97 seals
@@ -172,7 +172,7 @@ namespace Hellord
             }
             // ---- SEAL / UNSEAL (UNLOCK on a locked Path) straddling the card's bottom frame; always drawn
             if (_amSealPend >= 0 && _confirm97 < 0 && Time.frameCount > _amSealPendFrame) _amSealPend = -1;
-            if (AmBtn("amseal", locked ? "seal_ul" : sealed_ ? "seal_se" : "seal_un", AltarMenuData.SealX, PT.pactCardsV2 ? AmV2SealY() : AltarMenuData.SealY, 89, 15, free, false, locked && !AmCanUnlock(v) ? 0.5f : 1f)) AmSealToggle();
+            if (AmBtn("amseal", locked ? "seal_ul" : sealed_ ? (PT.pactCardsV2 && PT.pactCardsV3 ? "seal_sd" /* t1544 v3: SEALED, not UNSEAL */ : "seal_se") : "seal_un", AltarMenuData.SealX, PT.pactCardsV2 ? AmV2SealY() : AltarMenuData.SealY, 89, 15, free, false, locked && !AmCanUnlock(v) ? 0.5f : 1f)) AmSealToggle();
             // ---- side cards (frames + plate boxes are in the scene): 1x avatar dimmed, plate name, status lines
             if (PT.pactCardsV2) AmCardsV2Sides(l, r, free); else
             for (int sd = 0; sd < 2; sd++)

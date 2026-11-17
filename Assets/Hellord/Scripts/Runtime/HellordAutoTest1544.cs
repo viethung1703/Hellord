@@ -28,7 +28,7 @@ namespace Hellord
             _altarView51 = 2; _slide97 = 0; yield return AtWait(0.4f); yield return AtShot("pact1544_locked_side");
             _unlock51[3] = (1 << PactData.Nodes[3].Length) - 1; _pactSealed51 = true; _altarView51 = 2; _slide97 = 0; yield return AtWait(0.4f); yield return AtShot("pact1544_sealed");
             bool amOk = AmActive() && !_amBroken; _pactSealed51 = false;
-            { var T = HellordTuning.I; bool was = T.pactCardsV2; T.pactCardsV2 = !was; _altarView51 = 2; _slide97 = 0; yield return AtWait(0.4f); yield return AtShot("pact1544_toggle_v2_" + (!was ? "on" : "off")); T.pactCardsV2 = was; }
+            { var T = HellordTuning.I; bool was = T.pactCardsV3; T.pactCardsV3 = !was; _altarView51 = 2; _slide97 = 0; yield return AtWait(0.4f); yield return AtShot("pact1544_toggle_v3_" + (!was ? "on" : "off")); T.pactCardsV3 = was; }
             HellordUITheme.Requested = HellordUITheme.Theme.Stone1246; _altarView51 = 3; _slide97 = 0; yield return AtWait(0.6f); yield return AtShot("pact1544_stone");
             HellordUITheme.Requested = HellordUITheme.Theme.MenuTheme; yield return AtWait(0.3f);
             ARes("pact1544", amOk, $"menuTheme altar active {AmActive()} broken {_amBroken} paths {NP97} frames {_r1544} arrowClicks {clicks}/{NP97} names {string.Join("|", PactData.PathShort)}");

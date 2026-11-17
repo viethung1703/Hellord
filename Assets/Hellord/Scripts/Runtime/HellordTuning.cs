@@ -852,6 +852,9 @@ namespace Hellord
     [Tooltip("t1544 v2: SEAL button top relative to the centre card's last row (old: SealY 236 over the old card bottom 245 = -9).")] public int pactV2SealDy = -6;
     [Tooltip("t1544 v2: gap between the centre card and the side cards (mockup 11).")] public int pactV2SideGap = 11;
     [Tooltip("t1544 v2: side card top y (130x123, 1:1 mockup art). 104 so the card covers the old side frame + plate baked into the altar scene (y 104..224).")] public int pactV2SideY = 104;
+    [Tooltip("t1544 v3 (VH: no YOUR PATH, name in the header, seal is enough, show SEALED not UNSEAL): card headers show the god's NAME (no YOUR PATH / NOT CHOSEN), the name plate under the avatar is gone and the title sits there; a sealed Pact's button reads SEALED (click still unseals, without the PACT UNSEALED toast). Off = the 3ec6d74 v2 cards (needs pactCardsV2).")] public bool pactCardsV3 = true;
+    [Tooltip("t1544 v3: rows between the centre avatar frame and its title (v2: 4 + 15px plate + 3 = title 22 rows below the frame).")] public int pactV3CentreTitleGap = 6;
+    [Tooltip("t1544 v3: side card title y inside the 130x123 card (v2: name 97 on the plate, title 111). 100 = centred between the avatar frame (ends 87) and the bottom frame.")] public int pactV3SideTitleY = 100;
     [Tooltip("t511: clicking the main-menu Pact seal opens the Sacrifice Altar (same as the SACRIFICE ALTAR row). Off = old placeholder Pact panel.")] public bool mm69SealOpensAltar = true;
     [Header("t503u Main Menu v69 (VH-locked art)")]
     [Tooltip("Use the VH-locked v69 main menu art (v49 title, skull-stair bg, text rows + skull/blood select, Damnation Pact seal). Off = old v0.0.51 hex-button menu.")] public bool mainMenu69 = true;
