@@ -143,7 +143,14 @@ namespace Hellord
             if (_mtRep)
             {
                 GUI.color = MT_INK; GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Texture2D.whiteTexture); GUI.color = Color.white;
-                PmBackdrop(t); MtBlit(_amScene, 0, 0, 640, 360, 0, 0);
+                PmBackdrop(t);
+                if (AmHideSceneFrames()) // t1544 v8: the scene without its old side frames (x108..211 / 428..531, y104..223); the 140-alpha veil is stretched from (60,150) over them
+                {
+                    MtBlit(_amScene, 0, 0, 640, 104, 0, 0); MtBlit(_amScene, 0, 224, 640, 136, 0, 224);
+                    MtBlit(_amScene, 0, 104, 108, 120, 0, 104); MtBlit(_amScene, 212, 104, 216, 120, 212, 104); MtBlit(_amScene, 532, 104, 108, 120, 532, 104);
+                    AmBlitS(_amScene, 60, 150, 1, 1, 108, 104, 104, 120); AmBlitS(_amScene, 60, 150, 1, 1, 428, 104, 104, 120);
+                }
+                else MtBlit(_amScene, 0, 0, 640, 360, 0, 0);
             }
             // ---- currencies (icons are in the scene)
             AmTxAt("SOULS " + _souls51, 144, 11, "YELLOW");
@@ -193,7 +200,7 @@ namespace Hellord
                 if (MtClick("amside" + sd, cx - AltarMenuData.SideW / 2, AltarMenuData.SideY, AltarMenuData.SideW, AltarMenuData.SideH, free)) Scroll97(sd == 0 ? -1 : 1);
             }
             // ---- arrows
-            for (int sd = 0; sd < 2; sd++) if (AmBtn("amarr" + sd, sd == 0 ? "arr_l" : "arr_r", sd == 0 ? AltarMenuData.ArrL : AltarMenuData.ArrR, AltarMenuData.ArrY, 17, 23, free, true)) Scroll97(sd == 0 ? -1 : 1);
+            for (int sd = 0; sd < 2; sd++) if (AmBtn("amarr" + sd, sd == 0 ? "arr_l" : "arr_r", sd == 0 ? AltarMenuData.ArrL : AltarMenuData.ArrR, PT.pactCardsV2 ? AmArrY() : AltarMenuData.ArrY, 17, 23, free, true)) Scroll97(sd == 0 ? -1 : 1);
             // ---- path faces: 24x24 1:1 head crops of the 64px game avatars in 26px frames (viewed = amber, others dimmed, locked = lock avatar)
             if (!PT.pactCardsV2 || AmV2FacesFit()) // t1544 v2: the 2x mockup card + SEAL take the faces row (the mockup has no faces row)
             for (int p = 0; p < NP; p++)

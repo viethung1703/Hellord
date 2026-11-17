@@ -21,7 +21,7 @@ namespace Hellord
             for (int step = 0; step <= NP97; step++)
             {
                 float t = 0; while (t < hold) { yield return null; AtFrameChecks(); t += Time.deltaTime; AtAudioLog1481.Frame = _r1544; AtRecFrame("pact1544", ref _r1544); }
-                if (step < NP97) { int was = _altarView51; _mtFakeUsed = false; MenuThemeFake = new Vector2(AltarMenuData.ArrR + 8, AltarMenuData.ArrY + 11); float w = 0; while (MenuThemeFake.HasValue && !_mtFakeUsed && w < 1f) { yield return null; w += Time.unscaledDeltaTime; AtAudioLog1481.Frame = _r1544; AtRecFrame("pact1544", ref _r1544); } MenuThemeFake = null; if (_altarView51 != was) clicks++; else Scroll97(1); }
+                if (step < NP97) { int was = _altarView51; _mtFakeUsed = false; MenuThemeFake = new Vector2(AltarMenuData.ArrR + 8, AmArrY() + 11); float w = 0; while (MenuThemeFake.HasValue && !_mtFakeUsed && w < 1f) { yield return null; w += Time.unscaledDeltaTime; AtAudioLog1481.Frame = _r1544; AtRecFrame("pact1544", ref _r1544); } MenuThemeFake = null; if (_altarView51 != was) clicks++; else Scroll97(1); }
             }
             HellordAudio.LoopLog = null; AtAudioLog1481.Frame = -1; if (_atRecFps > 0) System.IO.File.WriteAllText(System.IO.Path.Combine(_atOut, "rec_pact1544", "audio_events.txt"), AtAudioLog1481.Sb.ToString());
             _unlock51[3] = 0; _altarView51 = 3; _slide97 = 0; yield return AtWait(0.4f); yield return AtShot("pact1544_locked");
@@ -34,6 +34,7 @@ namespace Hellord
               { T.pactNameFrame5 = o; _altarView51 = 3; _slide97 = 0; yield return AtWait(0.4f); yield return AtShot("pact1544_frame" + (int)o + "_xingtian"); _altarView51 = 2; _slide97 = 0; yield return AtWait(0.3f); yield return AtShot("pact1544_frame" + (int)o + "_leizu"); _altarView51 = 1; _slide97 = 0; yield return AtWait(0.3f); yield return AtShot("pact1544_frame" + (int)o + "_zhongkui"); }
               T.pactNameFrame5 = was; _pactSealed51 = sw; }
             { var T = HellordTuning.I; bool mw = T.pactV7MatchAvatar; bool sw = _pactSealed51; _pactSealed51 = false; T.pactV7MatchAvatar = false; _altarView51 = 2; _slide97 = 0; yield return AtWait(0.4f); yield return AtShot("pact1544_v7_off_leizu"); T.pactV7MatchAvatar = mw; _pactSealed51 = sw; }
+            { var T = HellordTuning.I; bool ev = T.pactV8Even; bool sw = _pactSealed51; _pactSealed51 = false; T.pactV8Even = false; _altarView51 = 2; _slide97 = 0; yield return AtWait(0.4f); yield return AtShot("pact1544_v8_off_leizu"); T.pactV8Even = ev; _pactSealed51 = sw; } // t1544 v8: before/after
             HellordUITheme.Requested = HellordUITheme.Theme.Stone1246; _altarView51 = 3; _slide97 = 0; yield return AtWait(0.6f); yield return AtShot("pact1544_stone");
             HellordUITheme.Requested = HellordUITheme.Theme.MenuTheme; yield return AtWait(0.3f);
             ARes("pact1544", amOk, $"menuTheme altar active {AmActive()} broken {_amBroken} paths {NP97} frames {_r1544} arrowClicks {clicks}/{NP97} names {string.Join("|", PactData.PathShort)}");

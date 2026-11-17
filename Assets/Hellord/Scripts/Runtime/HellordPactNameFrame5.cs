@@ -14,6 +14,10 @@ namespace Hellord
         bool V6NoBar => V6 && PT.pactV6NoRedBar;
         /// <summary>t1544 v7 (VH: the selected card's name frame is narrower than its 2x avatar): the centre Lacquer frame is 9-sliced to the avatar frame's outer width (64*scale+6) and shares its left/right edges.</summary>
         bool V7 => V6 && PT.pactV7MatchAvatar;
+        /// <summary>t1544 v8 (VH): even padding in every card (frame wider than the avatar frame), equal gaps above/below the centre card, side cards centred on it.</summary>
+        bool V8 => V6 && PT.pactV8Even;
+        int V8P => Mathf.Max(2, PT.pactV8Pad);
+        int V8SP => Mathf.Max(2, PT.pactV8SidePad);
         static readonly int[] V6Frame = { 0, 0, 129, 35 }, V6CardC = { 542, 0, 150, 137 };   // pact_frame_lacquer.png; card_c5 (YOUR PATH card without the red bar) in pact_cards_v2.png
         const int V5ZoneH = 25;                                    // tallest block (Banner 21-row body + 4-row tails); Plate 24, Tag 22, centred in the zone
         static readonly Color32 F5_INK = new Color32(0x0e, 0x0a, 0x14, 255), F5_NAVY = new Color32(0x18, 0x14, 0x25, 255), F5_P1 = new Color32(0x3e, 0x27, 0x31, 255),
