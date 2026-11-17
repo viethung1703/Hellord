@@ -9,6 +9,10 @@ namespace Hellord
     public partial class HellordGame
     {
         bool V5 => V4 && PT.pactNameFrame5 != HellordTuning.PactNameFrame.None;
+        /// <summary>t1544 v6: HA's t1552 frame 2, lacquer cloud-scroll (VH's pick), 129x35, 9-slice L25 R25 T15 B5, stretch col 64 / row 22.</summary>
+        bool V6 => V5 && PT.pactNameFrame5 == HellordTuning.PactNameFrame.Lacquer;
+        bool V6NoBar => V6 && PT.pactV6NoRedBar;
+        static readonly int[] V6Frame = { 0, 0, 129, 35 }, V6CardC = { 542, 0, 150, 137 };   // pact_frame_lacquer.png; card_c5 (YOUR PATH card without the red bar) in pact_cards_v2.png
         const int V5ZoneH = 25;                                    // tallest block (Banner 21-row body + 4-row tails); Plate 24, Tag 22, centred in the zone
         static readonly Color32 F5_INK = new Color32(0x0e, 0x0a, 0x14, 255), F5_NAVY = new Color32(0x18, 0x14, 0x25, 255), F5_P1 = new Color32(0x3e, 0x27, 0x31, 255),
             F5_WINE = new Color32(0x6e, 0x1c, 0x2a, 255), F5_RED = new Color32(0xa2, 0x26, 0x33, 255), F5_BORDER = new Color32(0x8f, 0x4f, 0x43, 255),
@@ -17,7 +21,7 @@ namespace Hellord
         int V5FrameW()
         {
             int w = 0; for (int p = 0; p < NP97; p++) w = Mathf.Max(w, Mathf.Max(AmBbW(PactData.PathShort[p]), AmBbW(PactData.PathTitle[p])));
-            w += 2 * PT.pactV5FramePad; if ((w & 1) == 0) w++; return w;                  // odd: centres on the odd-width glyph runs
+            w += 2 * (V6 ? PT.pactV6FramePad : PT.pactV5FramePad); if ((w & 1) == 0) w++; return w;                  // odd: centres on the odd-width glyph runs
         }
         /// <summary>side card width in v5: wide enough for the frame (+ banner tails) inside the card border; never under the mockup's 130.</summary>
         int V5SideW() { int w = Mathf.Max(130, V5FrameW() + 2 * PT.pactV5SideMargin); if ((w & 1) != 0) w++; return w; }
@@ -48,6 +52,12 @@ namespace Hellord
                     int[] sx = { x0, x0 + w - 2 }, sy = { y0, y0 + th - 2 };                                // corner studs on the border corners
                     foreach (int a in sx) foreach (int b in sy) { MtFill(a - 1, b - 1, 4, 4, F5_INK); MtFill(a, b, 2, 2, F5_TERRA); MtFill(a, b, 1, 1, F5_CLAY); } // 2x2 studs, ink rim, lit top-left
                     ny = y0 + 3; break;
+                }
+                case HellordTuning.PactNameFrame.Lacquer:                                                  // t1544 v6: HA's lacquer cloud-scroll, name +9 / title +19 (3px leading)
+                {
+                    AmNine(T97("pact_frame_lacquer"), V6Frame, 25, 25, 15, 5, 64, 22, x0, top, w, 35);
+                    AmTxIn(nm, x0, 0, w, 0, "BONE", top + PT.pactV6NameDy); AmTxIn(tl, x0, 0, w, 0, tc, top + PT.pactV6TitleDy);
+                    return;
                 }
                 default:                                                                                   // Plate: the mockup plate, 9-sliced to two lines
                 {

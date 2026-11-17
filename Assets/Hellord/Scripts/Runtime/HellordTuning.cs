@@ -861,8 +861,8 @@ namespace Hellord
     [Tooltip("t1544 v4: rows between the centre avatar frame and the card's bottom frame (v3: 6 + 7px title + 8 = 21).")] public int pactV4CentrePadB = 8;
     [Tooltip("t1544 v4: side card name y (v3 header 5); the title follows 7 + pactV4TitleGap rows lower.")] public int pactV4SideNameY = 6;
     [Tooltip("t1544 v4: side avatar frame top y inside the card (v3 18). The 130x123 side card must still cover the old frame baked into the scene (y 104..224), so the space under the frame can't shrink.")] public int pactV4SideFrameY = 30;
-    public enum PactNameFrame { None = 0, Plate = 1, Banner = 2, Tag = 3 }
-    [Tooltip("t1544 v5 (VH: the name should have a frame; name AND title in one framed block): 1 Plate = HA's mockup bevelled name plate, 9-sliced to two lines; 2 Banner = dark crimson ribbon with folded, notched tails; 3 Tag = thin card-border box with corner studs. None = the a80f467 v4 header (name + title, no frame).")] public PactNameFrame pactNameFrame5 = PactNameFrame.Plate;
+    public enum PactNameFrame { None = 0, Plate = 1, Banner = 2, Tag = 3, Lacquer = 4 }
+    [Tooltip("t1544 v5 (VH: the name should have a frame; name AND title in one framed block): 1 Plate = HA's mockup bevelled name plate, 9-sliced to two lines; 2 Banner = dark crimson ribbon with folded, notched tails; 3 Tag = thin card-border box with corner studs; 4 Lacquer (t1552 frame 2, VH pick, default; was Plate) = HA's red lacquer cloud-scroll frame. None = the a80f467 v4 header (name + title, no frame).")] public PactNameFrame pactNameFrame5 = PactNameFrame.Lacquer;
     [Tooltip("t1544 v5: centre header bar rows added for the framed block (v4 9). 18 = 25-row frame zone + 2 rows padding each side.")] public int pactV5HeaderExtra = 18;
     [Tooltip("t1544 v5: clear columns between the widest line (THE HEADLESS WAR GOD, 113px) and the frame edge (frame 123 wide).")] public int pactV5FramePad = 5;
     [Tooltip("t1544 v5: side card margin each side of the frame (side card 130 in v2-v4; 136 with the 123px frame).")] public int pactV5SideMargin = 6;
@@ -870,6 +870,12 @@ namespace Hellord
     [Tooltip("t1544 v5: Banner body inset each side from the shared frame width (123 -> 117) so the tails stay inside the side card.")] public int pactV5BannerInset = 3;
     [Tooltip("t1544 v5: side card framed block top y (v4 name y 6).")] public int pactV5SideBlockY = 5;
     [Tooltip("t1544 v5: side avatar frame top y (v4 30); 25-row block + 4.")] public int pactV5SideFrameY = 34;
+    [Tooltip("t1544 v6: Lacquer frame: no big red header bar behind the name block on your Path's card, only the red lacquer frame on the dark card (VH). Off = keep the red bar (HA mockup 2).")] public bool pactV6NoRedBar = true;
+    [Tooltip("t1544 v6: Lacquer frame padding = 4 face + 4 band (HA t1552: 129px frame = 113 + 2x8; Plate/Banner/Tag keep pactV5FramePad 5). Side cards become 142.")] public int pactV6FramePad = 8;
+    [Tooltip("t1544 v6: Lacquer block top on the centre card (HA t1552: y82 = card top + 4; v5 blocks: +8). The avatar frame stays at card top + 41.")] public int pactV6CentreTop = 4;
+    [Tooltip("t1544 v6: Lacquer block top on the side cards (HA: y+4; v5 pactV5SideBlockY 5).")] public int pactV6SideTop = 4;
+    [Tooltip("t1544 v6: side avatar frame top with the 35-row Lacquer block (HA: 41; v5 34).")] public int pactV6SideFrameY = 41;
+    [Tooltip("t1544 v6: Lacquer name / title rows below the frame top (HA: 9 / 19, 3px leading; v5: 4 / 13 inside the plate).")] public int pactV6NameDy = 9, pactV6TitleDy = 19;
     [Tooltip("t511: clicking the main-menu Pact seal opens the Sacrifice Altar (same as the SACRIFICE ALTAR row). Off = old placeholder Pact panel.")] public bool mm69SealOpensAltar = true;
     [Header("t503u Main Menu v69 (VH-locked art)")]
     [Tooltip("Use the VH-locked v69 main menu art (v49 title, skull-stair bg, text rows + skull/blood select, Damnation Pact seal). Off = old v0.0.51 hex-button menu.")] public bool mainMenu69 = true;

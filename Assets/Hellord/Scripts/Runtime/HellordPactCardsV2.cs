@@ -55,8 +55,8 @@ namespace Hellord
             int fx = X + (W - F) / 2, fy = Y + V2C_AvY + (V4 ? V4Hx : 0);
             if (yours && !locked)
             {
-                AmNine(t, V2CardC, 25, 24, 20, 10, 25, 21, X, Y, W, Hh);
-                if (V4) AmNine(t, new[] { V2CardC[0] + 4, V2CardC[1] + 4, 142, 15 }, 4, 4, 3, 3, 70, 7, X + 4, Y + 4, W - 8, 15 + V4Hx); // t1544 v4: header bar grown to two lines
+                AmNine(t, V6NoBar ? V6CardC : V2CardC, 25, 24, 20, 10, 25, 21, X, Y, W, Hh); // t1544 v6: lacquer frame = no red header bar
+                if (V4 && !V6NoBar) AmNine(t, new[] { V2CardC[0] + 4, V2CardC[1] + 4, 142, 15 }, 4, 4, 3, 3, 70, 7, X + 4, Y + 4, W - 8, 15 + V4Hx); // t1544 v4: header bar grown to two lines
                 AmNine(t, V2AvC, 4, 4, 4, 4, 35, 35, fx, fy, F, F);
             }
             else
@@ -67,7 +67,7 @@ namespace Hellord
             if (locked) AmSpr("lock", fx + F - 18, fy + F - 18);
             if (V4) // t1544 v4 (VH "bring the title up there too"): name + title in the (grown) header, nothing under the avatar
             {
-                if (V5) { AmNameBlock5(X + W / 2, Y + 8, v, true); if (sealed_) AmSpr("chip", X + 4, Y + 4); return; } // t1544 v5: framed name + title
+                if (V5) { AmNameBlock5(X + W / 2, Y + (V6 ? PT.pactV6CentreTop : 8), v, true); if (sealed_) AmSpr("chip", X + 4, Y + 4); return; } // t1544 v5: framed name + title
                 int ny = Y + 8 + (V4Hx - 9) / 2; AmTxIn(PactData.PathShort[v], X, 0, W, 0, "BONE", ny);
                 AmTxIn(PactData.PathTitle[v], X, 0, W, 0, "CLAY", ny + 7 + PT.pactV4TitleGap);
                 if (sealed_) AmSpr("chip", X + 4, Y + 4);
@@ -96,13 +96,13 @@ namespace Hellord
                 int p = sd == 0 ? l : r, x = V2SideX(sd), y = PT.pactV2SideY; bool lk = PathLocked97(p), mine = _pactPath51 == p;
                 int sw = V2SideW, avx = V5 ? (sw - 70) / 2 : V2S_AvX;
                 string sid = "amside" + sd; bool sov = free && MtOver(sid, x, y, sw, 123), spr_ = MtPressed(sid, sov); int slv = AmLevel(sid, sov, spr_);
-                int avy = V5 ? PT.pactV5SideFrameY : V4 ? PT.pactV4SideFrameY : V2S_AvY;
+                int avy = V6 ? PT.pactV6SideFrameY : V5 ? PT.pactV5SideFrameY : V4 ? PT.pactV4SideFrameY : V2S_AvY;
                 if (V5) AmNine(t, lk ? V4CardL : V4CardN, 10, 10, 16, 14, 65, 16, x, y, sw, 123); // t1544 v5: plain mockup card, widened for the framed block
                 else AmAtlas(t, V4 ? (lk ? V4CardL : V4CardN) : V3 ? (lk ? V3CardL : V3CardN) : (lk ? V2CardL : V2CardN), x, y);
                 if (V4) AmAtlas(t, lk ? V2AvL : V2AvN, x + avx, y + avy);
                 AmBlitN(T97(Av97(p, lk, PT.pactGods1544 && PT.pactGodSideIdle1544)), x + avx + 3, y + avy + 3, 1);
                 if (lk) AmSpr("lock", x + avx + 3 + 49, y + avy + 3 + 49);
-                if (V5) AmNameBlock5(x + sw / 2, y + PT.pactV5SideBlockY, p, false); // t1544 v5
+                if (V5) AmNameBlock5(x + sw / 2, y + (V6 ? PT.pactV6SideTop : PT.pactV5SideBlockY), p, false); // t1544 v5
                 else if (V4) { AmTxIn(PactData.PathShort[p], x, 0, 130, 0, "BONE", y + PT.pactV4SideNameY); AmTxIn(PactData.PathTitle[p], x, 0, 130, 0, "TERRA", y + PT.pactV4SideNameY + 7 + PT.pactV4TitleGap); } // t1544 v4
                 else if (V3) { AmTxIn(PactData.PathShort[p], x, 0, 130, 0, "BONE", y + V2S_HdrY); AmTxIn(PactData.PathTitle[p], x, 0, 130, 0, "TERRA", y + PT.pactV3SideTitleY); } // t1544 v3
                 else
