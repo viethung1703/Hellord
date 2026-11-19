@@ -1,0 +1,809 @@
+{
+ "skill": "thunder_javelin",
+ "task": "t1567",
+ "version": "v2",
+ "status": "MOCKUP / internal only",
+ "title": "Thunder Javelin (Leizu LMB, refs D2 Lightning Fury + PoE2 Lightning Spear, chain: PoE2 Arc)",
+ "hero_px": 23.3,
+ "ppu": 16,
+ "camera": "640x360 (MOCKUP renders 320x180 art px x3)",
+ "palette": "Endesga 32 (sprites alpha 0/255); masks white-on-transparent, 6 alpha levels",
+ "mechanics": "v2b: javelin 10 px/frame (300 px/s) straight to the first target chest (v1). On the first hit the impact set plays, then the bolt chains from enemy to enemy (VH). MOCKUP stand-in: nearest not-yet-hit enemy within 104 px, one jump every 3 f starting 2 f after impact, 4 jumps.",
+ "spawn": [
+  "Flight: flight_dir16 (loop) at the javelin pivot, row = throw direction; flight_ground (same row, loop) on the floor below it.",
+  "First hit: impact + impact_flash + impact_heat at the hit point; impact_ground and impact_scorch (1 f later) at the target feet.",
+  "Each chain jump source -> target: d = chest distance; L = the variant (32/48/64/80/96) nearest d; row = round(angle / 22.5) mod 16 (0 = east, clockwise). Spawn chain_L*_dir16 with its pivot on the SOURCE chest.",
+  "chain_hit + chain_hit_flash on the TARGET chest and chain_hit_ground at the target feet, starting 1 frame after the chain strip (= its strike frame).",
+  "Sort: chain strip key = max(source feet y, target feet y) + 45 so it draws over both enemies."
+ ],
+ "changes_v2b": [
+  "v2b (VH mechanic change, 2026-11-19): after the first hit the javelin chains enemy to enemy like Chain Lightning.",
+  "NEW `thunder_javelin_chain_L32/L48/L64/L80/L96_dir16` (+ glow): jagged branching chain bolt, pivot = SOURCE enemy chest, end = L px along the row; 8 f x 40 ms (leader, strike, 3 flicker re-jags, thin, broken, flecks). Fork styling reused (same ramp/nodes), thicker strike and 3-5 branches.",
+  "NEW `thunder_javelin_chain_hit` (+ glow), `thunder_javelin_chain_hit_flash`, `thunder_javelin_chain_hit_ground`: per-jump impact on the struck enemy.",
+  "Unchanged: flight, impact set (impact, flash, ground, heat, scorch). Fork strips kept (unused by the chain mechanic)."
+ ],
+ "draw_order": [
+  "floor",
+  "decal",
+  "ground",
+  "base (y-sorted with actors)",
+  "heat (distortion)",
+  "glow inner",
+  "glow outer",
+  "flash",
+  "CRT post"
+ ],
+ "layer_rules": {
+  "base": {
+   "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+   "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+   "sort": "y-sorted with actors: key = ground y + offset given per strip",
+   "curve": "frames as baked (no extra fade; fades are dissolves in the art)"
+  },
+  "glow": {
+   "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+   "blend": "One One",
+   "sort": "same sort key as its base strip + 1 (draws right after it)",
+   "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+  },
+  "ground": {
+   "material": "additive (One One) on the FLOOR sorting layer, below actors and decals-on-top",
+   "blend": "One One",
+   "sort": "floor layer, above floor decals, below every actor",
+   "curve": "baked per frame; loops: x(0.8-1.2) flicker"
+  },
+  "flash": {
+   "material": "additive (One One), unlit, drawn on the top FX layer above actors; optional full-screen add = mean(mask) x screen gain",
+   "blend": "One One",
+   "sort": "top FX layer (above actors and other FX)",
+   "curve": "baked per frame (impact frame first); screen flash 1 frame peak then 0"
+  },
+  "heat": {
+   "material": "screen-space distortion (grab pass / opaque texture): uv += (noise2D(uv*k + t) - 0.5) * mask * amp_px / screen_px; never drawn",
+   "blend": "n/a (UV offset)",
+   "sort": "after transparent FX, before the CRT post",
+   "curve": "baked per frame; scroll noise at ~6 Hz"
+  },
+  "decal": {
+   "material": "alpha-blend cutout on the FLOOR sorting layer (opaque dark pixels, dissolves by frame)",
+   "blend": "SrcAlpha OneMinusSrcAlpha (alpha clip)",
+   "sort": "floor layer, below the ground light and actors",
+   "curve": "frames as baked, hold the last frame 0 ms (strip ends empty-ish)"
+  }
+ },
+ "strips": {
+  "thunder_javelin_flight_dir16": {
+   "file": "thunder_javelin_flight_dir16_strip.png",
+   "kind": "base",
+   "w": 61,
+   "h": 61,
+   "n": 4,
+   "rows": 16,
+   "piv": [
+    30,
+    30
+   ],
+   "glow_file": "thunder_javelin_flight_dir16_glow_strip.png",
+   "bake": [
+    1.8,
+    1.25
+   ],
+   "ms": 50,
+   "loop": "loop",
+   "dirs": "dir16",
+   "note": "lightning javelin: spear head 13 px ahead of the pivot, crackle tail ~27 px behind",
+   "total_ms": 200,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "thunder_javelin_flight_dir16_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.45,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.8,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "thunder_javelin_flight_ground": {
+   "file": "thunder_javelin_flight_ground_strip.png",
+   "kind": "ground",
+   "w": 50,
+   "h": 33,
+   "n": 4,
+   "rows": 16,
+   "piv": [
+    25,
+    16
+   ],
+   "ms": 50,
+   "loop": "loop",
+   "dirs": "dir16",
+   "note": "floor light stretched along the flight (pivot = javelin position projected to the floor)",
+   "total_ms": 200,
+   "shader": {
+    "material": "additive (One One) on the FLOOR sorting layer, below actors and decals-on-top",
+    "blend": "One One",
+    "sort": "floor layer, above floor decals, below every actor",
+    "curve": "baked per frame; loops: x(0.8-1.2) flicker",
+    "sigma": 1.6,
+    "gain": 0.7,
+    "tint": "4a78e8"
+   }
+  },
+  "thunder_javelin_impact": {
+   "file": "thunder_javelin_impact_strip.png",
+   "kind": "base",
+   "w": 54,
+   "h": 57,
+   "n": 10,
+   "rows": 1,
+   "piv": [
+    25,
+    20
+   ],
+   "glow_file": "thunder_javelin_impact_glow_strip.png",
+   "bake": [
+    2.4,
+    1.4
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "first-hit burst at the enemy chest",
+   "total_ms": 400,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "thunder_javelin_impact_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.517,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.92,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "thunder_javelin_impact_flash": {
+   "file": "thunder_javelin_impact_flash_strip.png",
+   "kind": "flash",
+   "w": 47,
+   "h": 48,
+   "n": 3,
+   "rows": 1,
+   "piv": [
+    23,
+    24
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "start": 0,
+   "note": "impact-frame bloom (3 f) - also drives the optional screen flash",
+   "total_ms": 120,
+   "shader": {
+    "material": "additive (One One), unlit, drawn on the top FX layer above actors; optional full-screen add = mean(mask) x screen gain",
+    "blend": "One One",
+    "sort": "top FX layer (above actors and other FX)",
+    "curve": "baked per frame (impact frame first); screen flash 1 frame peak then 0",
+    "sigma": 2.4,
+    "gain": 0.95,
+    "tint": "c0cbdc",
+    "screen_gain": 0.1,
+    "screen_tint": "8b9bb4"
+   }
+  },
+  "thunder_javelin_impact_ground": {
+   "file": "thunder_javelin_impact_ground_strip.png",
+   "kind": "ground",
+   "w": 46,
+   "h": 20,
+   "n": 9,
+   "rows": 1,
+   "piv": [
+    23,
+    9
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "floor light under the burst (pivot = enemy feet)",
+   "total_ms": 360,
+   "shader": {
+    "material": "additive (One One) on the FLOOR sorting layer, below actors and decals-on-top",
+    "blend": "One One",
+    "sort": "floor layer, above floor decals, below every actor",
+    "curve": "baked per frame; loops: x(0.8-1.2) flicker",
+    "sigma": 1.6,
+    "gain": 0.7,
+    "tint": "4a78e8"
+   }
+  },
+  "thunder_javelin_impact_heat": {
+   "file": "thunder_javelin_impact_heat_strip.png",
+   "kind": "heat",
+   "w": 50,
+   "h": 45,
+   "n": 6,
+   "rows": 1,
+   "piv": [
+    24,
+    22
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "start": 0,
+   "note": "optional shock distortion (expanding)",
+   "total_ms": 240,
+   "shader": {
+    "material": "screen-space distortion (grab pass / opaque texture): uv += (noise2D(uv*k + t) - 0.5) * mask * amp_px / screen_px; never drawn",
+    "blend": "n/a (UV offset)",
+    "sort": "after transparent FX, before the CRT post",
+    "curve": "baked per frame; scroll noise at ~6 Hz",
+    "amp_px": 1.6,
+    "noise_scale": 0.9
+   }
+  },
+  "thunder_javelin_impact_scorch": {
+   "file": "thunder_javelin_impact_scorch_strip.png",
+   "kind": "decal",
+   "w": 26,
+   "h": 18,
+   "n": 8,
+   "rows": 1,
+   "piv": [
+    11,
+    9
+   ],
+   "glow_file": null,
+   "bake": null,
+   "ms": 150,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "scorch on the floor under the burst (pivot = enemy feet)",
+   "total_ms": 1200,
+   "shader": {
+    "material": "alpha-blend cutout on the FLOOR sorting layer (opaque dark pixels, dissolves by frame)",
+    "blend": "SrcAlpha OneMinusSrcAlpha (alpha clip)",
+    "sort": "floor layer, below the ground light and actors",
+    "curve": "frames as baked, hold the last frame 0 ms (strip ends empty-ish)"
+   }
+  },
+  "thunder_javelin_fork_L32_dir16": {
+   "file": "thunder_javelin_fork_L32_dir16_strip.png",
+   "kind": "base",
+   "w": 77,
+   "h": 77,
+   "n": 6,
+   "rows": 16,
+   "piv": [
+    38,
+    38
+   ],
+   "glow_file": "thunder_javelin_fork_L32_dir16_glow_strip.png",
+   "bake": [
+    1.6,
+    1.2
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "dir16",
+   "note": "forked bolt from the hit point (pivot) L px along the row: leader, strike, re-jag, thin, broken, flecks",
+   "total_ms": 240,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "thunder_javelin_fork_L32_dir16_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.585,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 1.04,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "thunder_javelin_fork_L48_dir16": {
+   "file": "thunder_javelin_fork_L48_dir16_strip.png",
+   "kind": "base",
+   "w": 108,
+   "h": 109,
+   "n": 6,
+   "rows": 16,
+   "piv": [
+    54,
+    54
+   ],
+   "glow_file": "thunder_javelin_fork_L48_dir16_glow_strip.png",
+   "bake": [
+    1.6,
+    1.2
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "dir16",
+   "note": "forked bolt from the hit point (pivot) L px along the row: leader, strike, re-jag, thin, broken, flecks",
+   "total_ms": 240,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "thunder_javelin_fork_L48_dir16_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.585,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 1.04,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "thunder_javelin_bolt_hit": {
+   "file": "thunder_javelin_bolt_hit_strip.png",
+   "kind": "base",
+   "w": 29,
+   "h": 25,
+   "n": 6,
+   "rows": 1,
+   "piv": [
+    14,
+    11
+   ],
+   "glow_file": "thunder_javelin_bolt_hit_glow_strip.png",
+   "bake": [
+    1.8,
+    1.25
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "where a fork reaches an enemy",
+   "total_ms": 240,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "thunder_javelin_bolt_hit_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.45,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.8,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "thunder_javelin_bolt_hit_flash": {
+   "file": "thunder_javelin_bolt_hit_flash_strip.png",
+   "kind": "flash",
+   "w": 25,
+   "h": 26,
+   "n": 2,
+   "rows": 1,
+   "piv": [
+    13,
+    13
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "start": 0,
+   "note": "struck-enemy flash, starts with bolt_hit frame 0",
+   "total_ms": 80,
+   "shader": {
+    "material": "additive (One One), unlit, drawn on the top FX layer above actors; optional full-screen add = mean(mask) x screen gain",
+    "blend": "One One",
+    "sort": "top FX layer (above actors and other FX)",
+    "curve": "baked per frame (impact frame first); screen flash 1 frame peak then 0",
+    "sigma": 2.4,
+    "gain": 0.95,
+    "tint": "c0cbdc",
+    "screen_gain": 0.1,
+    "screen_tint": "8b9bb4"
+   }
+  },
+  "thunder_javelin_chain_L32_dir16": {
+   "file": "thunder_javelin_chain_L32_dir16_strip.png",
+   "kind": "base",
+   "w": 78,
+   "h": 79,
+   "n": 8,
+   "rows": 16,
+   "piv": [
+    38,
+    39
+   ],
+   "glow_file": "thunder_javelin_chain_L32_dir16_glow_strip.png",
+   "bake": [
+    1.6,
+    1.25
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "dir16",
+   "note": "chain jump from the source enemy chest (pivot) L px along the row: leader, strike, 3 flicker re-jags, thin, broken, flecks",
+   "total_ms": 320,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "thunder_javelin_chain_L32_dir16_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.45,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.8,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "thunder_javelin_chain_L48_dir16": {
+   "file": "thunder_javelin_chain_L48_dir16_strip.png",
+   "kind": "base",
+   "w": 111,
+   "h": 111,
+   "n": 8,
+   "rows": 16,
+   "piv": [
+    55,
+    55
+   ],
+   "glow_file": "thunder_javelin_chain_L48_dir16_glow_strip.png",
+   "bake": [
+    1.6,
+    1.25
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "dir16",
+   "note": "chain jump from the source enemy chest (pivot) L px along the row: leader, strike, 3 flicker re-jags, thin, broken, flecks",
+   "total_ms": 320,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "thunder_javelin_chain_L48_dir16_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.45,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.8,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "thunder_javelin_chain_L64_dir16": {
+   "file": "thunder_javelin_chain_L64_dir16_strip.png",
+   "kind": "base",
+   "w": 142,
+   "h": 143,
+   "n": 8,
+   "rows": 16,
+   "piv": [
+    71,
+    71
+   ],
+   "glow_file": "thunder_javelin_chain_L64_dir16_glow_strip.png",
+   "bake": [
+    1.6,
+    1.25
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "dir16",
+   "note": "chain jump from the source enemy chest (pivot) L px along the row: leader, strike, 3 flicker re-jags, thin, broken, flecks",
+   "total_ms": 320,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "thunder_javelin_chain_L64_dir16_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.45,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.8,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "thunder_javelin_chain_L80_dir16": {
+   "file": "thunder_javelin_chain_L80_dir16_strip.png",
+   "kind": "base",
+   "w": 174,
+   "h": 174,
+   "n": 8,
+   "rows": 16,
+   "piv": [
+    87,
+    86
+   ],
+   "glow_file": "thunder_javelin_chain_L80_dir16_glow_strip.png",
+   "bake": [
+    1.6,
+    1.25
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "dir16",
+   "note": "chain jump from the source enemy chest (pivot) L px along the row: leader, strike, 3 flicker re-jags, thin, broken, flecks",
+   "total_ms": 320,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "thunder_javelin_chain_L80_dir16_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.45,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.8,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "thunder_javelin_chain_L96_dir16": {
+   "file": "thunder_javelin_chain_L96_dir16_strip.png",
+   "kind": "base",
+   "w": 207,
+   "h": 207,
+   "n": 8,
+   "rows": 16,
+   "piv": [
+    103,
+    103
+   ],
+   "glow_file": "thunder_javelin_chain_L96_dir16_glow_strip.png",
+   "bake": [
+    1.6,
+    1.25
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "dir16",
+   "note": "chain jump from the source enemy chest (pivot) L px along the row: leader, strike, 3 flicker re-jags, thin, broken, flecks",
+   "total_ms": 320,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "thunder_javelin_chain_L96_dir16_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.45,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.8,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "thunder_javelin_chain_hit": {
+   "file": "thunder_javelin_chain_hit_strip.png",
+   "kind": "base",
+   "w": 23,
+   "h": 28,
+   "n": 6,
+   "rows": 1,
+   "piv": [
+    11,
+    13
+   ],
+   "glow_file": "thunder_javelin_chain_hit_glow_strip.png",
+   "bake": [
+    1.8,
+    1.25
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "per-jump impact at the struck enemy chest, start with chain frame 1 (strike)",
+   "total_ms": 240,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "thunder_javelin_chain_hit_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.45,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.8,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "thunder_javelin_chain_hit_flash": {
+   "file": "thunder_javelin_chain_hit_flash_strip.png",
+   "kind": "flash",
+   "w": 24,
+   "h": 25,
+   "n": 2,
+   "rows": 1,
+   "piv": [
+    11,
+    12
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "start": 0,
+   "note": "per-jump flash, starts with chain_hit frame 0",
+   "total_ms": 80,
+   "shader": {
+    "material": "additive (One One), unlit, drawn on the top FX layer above actors; optional full-screen add = mean(mask) x screen gain",
+    "blend": "One One",
+    "sort": "top FX layer (above actors and other FX)",
+    "curve": "baked per frame (impact frame first); screen flash 1 frame peak then 0",
+    "sigma": 2.4,
+    "gain": 0.95,
+    "tint": "c0cbdc",
+    "screen_gain": 0.1,
+    "screen_tint": "8b9bb4"
+   }
+  },
+  "thunder_javelin_chain_hit_ground": {
+   "file": "thunder_javelin_chain_hit_ground_strip.png",
+   "kind": "ground",
+   "w": 30,
+   "h": 13,
+   "n": 6,
+   "rows": 1,
+   "piv": [
+    15,
+    6
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "floor light under each struck enemy (pivot = enemy feet)",
+   "total_ms": 240,
+   "shader": {
+    "material": "additive (One One) on the FLOOR sorting layer, below actors and decals-on-top",
+    "blend": "One One",
+    "sort": "floor layer, above floor decals, below every actor",
+    "curve": "baked per frame; loops: x(0.8-1.2) flicker",
+    "sigma": 1.6,
+    "gain": 0.7,
+    "tint": "4a78e8"
+   }
+  }
+ }
+}

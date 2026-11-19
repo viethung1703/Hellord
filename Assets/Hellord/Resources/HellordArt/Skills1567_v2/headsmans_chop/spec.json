@@ -1,0 +1,316 @@
+{
+ "strips": {
+  "headsmans_chop_arc_dir16": {
+   "w": 134,
+   "h": 104,
+   "n": 8,
+   "rows": 16,
+   "piv": [
+    67,
+    58
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "base_top",
+   "glowset": [
+    0.45,
+    1.8,
+    "c0cbdc"
+   ]
+  },
+  "headsmans_chop_flash_dir16": {
+   "w": 138,
+   "h": 101,
+   "n": 4,
+   "rows": 16,
+   "piv": [
+    69,
+    58
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "flash",
+   "glowset": [
+    0.8,
+    2.2,
+    "fee761"
+   ]
+  },
+  "headsmans_chop_sparks_dir16": {
+   "w": 172,
+   "h": 128,
+   "n": 10,
+   "rows": 16,
+   "piv": [
+    86,
+    66
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "sparks",
+   "glowset": [
+    0.5,
+    1.2,
+    "feae34"
+   ]
+  },
+  "headsmans_chop_scrape_decal_dir16": {
+   "w": 123,
+   "h": 89,
+   "n": 18,
+   "rows": 16,
+   "piv": [
+    61,
+    44
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 50,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "decal",
+   "glowset": [
+    0.4,
+    1.2,
+    "f77622"
+   ]
+  },
+  "headsmans_chop_shock_mask_dir16": {
+   "w": 158,
+   "h": 114,
+   "n": 10,
+   "rows": 16,
+   "piv": [
+    79,
+    65
+   ],
+   "glow_mask": false,
+   "kind": "mask",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "distortion"
+  },
+  "headsmans_chop_hit_dir16": {
+   "w": 68,
+   "h": 68,
+   "n": 8,
+   "rows": 16,
+   "piv": [
+    34,
+    34
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "sparks",
+   "glowset": [
+    0.5,
+    1.3,
+    "fee761"
+   ]
+  },
+  "headsmans_chop_debris_dir16": {
+   "w": 127,
+   "h": 94,
+   "n": 20,
+   "rows": 16,
+   "piv": [
+    63,
+    47
+   ],
+   "glow_mask": false,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "base"
+  },
+  "headsmans_chop_debris_shadow_dir16": {
+   "w": 127,
+   "h": 92,
+   "n": 20,
+   "rows": 16,
+   "piv": [
+    63,
+    45
+   ],
+   "glow_mask": false,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "decal"
+  },
+  "headsmans_chop_dust_dir16": {
+   "w": 126,
+   "h": 96,
+   "n": 18,
+   "rows": 16,
+   "piv": [
+    63,
+    49
+   ],
+   "glow_mask": false,
+   "kind": "sprite",
+   "ms": 50,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "smoke"
+  },
+  "headsmans_chop_skid_dust": {
+   "w": 26,
+   "h": 18,
+   "n": 12,
+   "rows": 1,
+   "piv": [
+    19,
+    9
+   ],
+   "glow_mask": false,
+   "kind": "sprite",
+   "ms": 40,
+   "loop": "once",
+   "dirs": "flipX (drawn for a knockback to the right)",
+   "layer": "smoke"
+  }
+ },
+ "skill": "headsmans_chop",
+ "version": "v2",
+ "status": "MOCKUP art, internal only - not wired into the game",
+ "units": {
+  "ppu": 16,
+  "fps": 30,
+  "ground_squash_y": 0.7
+ },
+ "direction": {
+  "mode": "dir16 (baked)",
+  "row_angle_deg": "22.5 * row, row 0 = east, clockwise on screen",
+  "pick_row": "row = round(atan2(aim_y, aim_x) / 22.5deg) mod 16 from the screen vector hero -> cursor",
+  "placement": "all dir16 strips spawn at the hero FEET (the swing plane is baked 8 px up, at the waist); hit_dir16 at each hit enemy's body centre (feet - 11 px), row = knockback direction; skid_dust at the enemy feet (flipX when pushed left)"
+ },
+ "visual_size": {
+  "v1": "arc outer radius 25 ground px, +-80 deg (1.6 u)",
+  "v2": "arc outer radius 56 ground px (3.5 u) = 2.24x, inner edge 16 px, +-85 deg around the aim; the cleave flash sits on the 56-61 px rim; sparks fly to ~75 px",
+  "hitbox_note": "Visual only. Suggested hitbox: a 170 deg sector, radius 56 px (3.5 u), checked on arc frame 2. HM sets the real hitbox."
+ },
+ "layers": [
+  {
+   "strip": "headsmans_chop_arc_dir16",
+   "role": "base smear: one solid crescent (thick bright head, thinning tail), white-hot leading edge and outer rim on f0-3, darker speed streaks inside, blood on the inner tail, a few flung blood drops; f0 wind-up sliver, f1 sweep, f2 full = DAMAGE frame, f3-7 erode from the tail and drift outward",
+   "material": "alpha-clip + additive glow",
+   "glow": {
+    "gain": 0.45,
+    "sigma_px": 1.8,
+    "tint": "#c0cbdc"
+   },
+   "intensity_curve": "baked (white only f0-3)",
+   "sort": "ABOVE actors (+15) so it is not hidden by the enemies it hits"
+  },
+  {
+   "strip": "headsmans_chop_flash_dir16",
+   "role": "flash: thin white/yellow crescent along the rim, 4 frames from arc f1",
+   "material": "alpha-clip + additive glow",
+   "glow": {
+    "gain": 0.8,
+    "sigma_px": 2.2,
+    "tint": "#fee761"
+   },
+   "intensity_curve": "f0-1 full, f2 70 % dither, f3 40 %",
+   "sort": "top (+30)"
+  },
+  {
+   "strip": "headsmans_chop_sparks_dir16",
+   "role": "steel sparks thrown tangentially off the rim (22), 10 frames from arc f1",
+   "material": "alpha-clip + additive glow",
+   "glow": {
+    "gain": 0.5,
+    "sigma_px": 1.2,
+    "tint": "#feae34"
+   },
+   "intensity_curve": "baked",
+   "sort": "+20"
+  },
+  {
+   "strip": "headsmans_chop_scrape_decal_dir16",
+   "role": "ground decal: the axe tip gouges the floor along the last 85 % of the arc (hot orange for 3 frames, cooling), 5 short scratches, fades by dither from frame 9",
+   "material": "alpha-clip decal + additive glow (hot pixels only)",
+   "glow": {
+    "gain": 0.4,
+    "sigma_px": 1.2,
+    "tint": "#f77622"
+   },
+   "intensity_curve": "baked",
+   "sort": "ground decal layer (-100)",
+   "ms": 50
+  },
+  {
+   "strip": "headsmans_chop_shock_mask_dir16",
+   "role": "optional distortion: crescent pressure wave rolling out from r=30 to r=70 px over 9 frames",
+   "material": "screen-space distortion; uv offset = normalize(grad(blur(mask,1.5))) * mask * 2.5 art px",
+   "intensity_curve": "baked .6 -> 1 -> 0 by f9",
+   "sort": "after all FX, before CRT"
+  },
+  {
+   "strip": "headsmans_chop_hit_dir16",
+   "role": "per hit enemy: white star + 8 steel sparks + 5 blood flecks along the knockback",
+   "material": "alpha-clip + additive glow",
+   "glow": {
+    "gain": 0.5,
+    "sigma_px": 1.3,
+    "tint": "#fee761"
+   },
+   "intensity_curve": "baked",
+   "sort": "+20"
+  },
+  {
+   "strip": "headsmans_chop_debris_dir16",
+   "role": "restrained debris: 6 small chunks (four 1 px, one 1.6, one 2.2) chipped out where the tip scrapes, short low hops, one small bounce, gone by f17",
+   "material": "alpha-clip",
+   "sort": "Y-sorted with actors (key = hero feet + 30)"
+  },
+  {
+   "strip": "headsmans_chop_debris_shadow_dir16",
+   "role": "ground shadow per chunk (#262b44)",
+   "material": "alpha-clip decal",
+   "sort": "ground decal layer"
+  },
+  {
+   "strip": "headsmans_chop_dust_dir16",
+   "role": "restrained dust: 3 small lumpy puffs (radius up to 3.4-4.4 px) at the scrape, v2c shading (banded, lit top-left, clump + ordered-dither break-up)",
+   "material": "alpha-clip",
+   "sort": "smoke (+10)",
+   "ms": 50
+  },
+  {
+   "strip": "headsmans_chop_skid_dust",
+   "role": "knockback skid: 2 tiny lumpy clouds trailing behind an enemy pushed right (flipX for left), replaces the v1 flat puff",
+   "material": "alpha-clip",
+   "sort": "smoke (+10)",
+   "ms": 40
+  }
+ ],
+ "glow_runtime": "glow_rgb = blur(glow_mask.a / 255, sigma) * tint * gain, additive (One One), same frame + row as its sprite",
+ "timeline_frames_30fps": {
+  "-5..-1": "hero wind-up (t1517 melee strip); arc f0 one frame before the strike pose",
+  "0": "arc f0 (wind-up sliver)",
+  "1": "arc f1 sweep + flash f0 + sparks f0 + shock f0",
+  "2": "arc f2 FULL = DAMAGE: hit_dir16 f0 on every enemy hit, knockback starts (12 px over 6 f, ease-out), scrape decal f0",
+  "2 (+2 hold)": "hit-stop: hold everything on arc f2 for 2 extra frames (67 ms)",
+  "3-7": "arc erodes; skid dust from hit+1 (40 ms frames)",
+  "debris/dust": "debris index = arc index, dust index = floor(t_ms/50) from arc f0",
+  "end": "scrape decal gone at ~0.9 s after the hit"
+ },
+ "v1_blood_wave": "v1 headsmans_chop_blood_wave (bleeding enemies) is still valid and unchanged; not redone in v2"
+}

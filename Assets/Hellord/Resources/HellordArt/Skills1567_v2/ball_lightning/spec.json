@@ -1,0 +1,704 @@
+{
+ "skill": "ball_lightning",
+ "task": "t1567",
+ "version": "v2",
+ "status": "MOCKUP / internal only",
+ "title": "Ball Lightning (Leizu LMB, ref PoE2 Ball Lightning)",
+ "hero_px": 23.3,
+ "ppu": 16,
+ "camera": "640x360 (MOCKUP renders 320x180 art px x3)",
+ "palette": "Endesga 32 (sprites alpha 0/255); masks white-on-transparent, 6 alpha levels",
+ "mechanics": "Unchanged from v1: orb drifts 1.8 px/frame (54 px/s) to the cursor, floats 9 px above its ground point, passes through enemies, every 6 f zaps up to 2 enemies within 44 px; fades at the cursor.",
+ "spawn": [
+  "Spawn (first 7 x 40 ms): ball_lightning_spawn at the orb centre; spawn_flash from spawn frame 2. Then orb_loop (loop) + orb_heat (optional) at the orb centre.",
+  "orb_ground (loop) at the orb ground point (centre + 9 px down) for the whole flight; it replaces the v1 shadow.",
+  "orb_trail: one every 3 f at the orb centre, once.",
+  "Each zap tick: pick L in {16,24,32,40,48} nearest to the target distance, row = direction to the enemy chest; zap_Lxx_dir16 pivot at the orb centre; zap_hit + zap_hit_flash at the arc end (pivot + L along the row direction).",
+  "End: ball_lightning_fade at the orb centre, fade_flash from fade frame 2, fade_ground at the ground point."
+ ],
+ "draw_order": [
+  "floor",
+  "decal",
+  "ground",
+  "base (y-sorted with actors)",
+  "heat (distortion)",
+  "glow inner",
+  "glow outer",
+  "flash",
+  "CRT post"
+ ],
+ "layer_rules": {
+  "base": {
+   "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+   "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+   "sort": "y-sorted with actors: key = ground y + offset given per strip",
+   "curve": "frames as baked (no extra fade; fades are dissolves in the art)"
+  },
+  "glow": {
+   "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+   "blend": "One One",
+   "sort": "same sort key as its base strip + 1 (draws right after it)",
+   "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+  },
+  "ground": {
+   "material": "additive (One One) on the FLOOR sorting layer, below actors and decals-on-top",
+   "blend": "One One",
+   "sort": "floor layer, above floor decals, below every actor",
+   "curve": "baked per frame; loops: x(0.8-1.2) flicker"
+  },
+  "flash": {
+   "material": "additive (One One), unlit, drawn on the top FX layer above actors; optional full-screen add = mean(mask) x screen gain",
+   "blend": "One One",
+   "sort": "top FX layer (above actors and other FX)",
+   "curve": "baked per frame (impact frame first); screen flash 1 frame peak then 0"
+  },
+  "heat": {
+   "material": "screen-space distortion (grab pass / opaque texture): uv += (noise2D(uv*k + t) - 0.5) * mask * amp_px / screen_px; never drawn",
+   "blend": "n/a (UV offset)",
+   "sort": "after transparent FX, before the CRT post",
+   "curve": "baked per frame; scroll noise at ~6 Hz"
+  },
+  "decal": {
+   "material": "alpha-blend cutout on the FLOOR sorting layer (opaque dark pixels, dissolves by frame)",
+   "blend": "SrcAlpha OneMinusSrcAlpha (alpha clip)",
+   "sort": "floor layer, below the ground light and actors",
+   "curve": "frames as baked, hold the last frame 0 ms (strip ends empty-ish)"
+  }
+ },
+ "strips": {
+  "ball_lightning_orb_loop": {
+   "file": "ball_lightning_orb_loop_strip.png",
+   "kind": "base",
+   "w": 29,
+   "h": 29,
+   "n": 12,
+   "rows": 1,
+   "piv": [
+    15,
+    15
+   ],
+   "glow_file": "ball_lightning_orb_loop_glow_strip.png",
+   "bake": [
+    2.2,
+    1.35
+   ],
+   "ms": 50,
+   "loop": "loop",
+   "dirs": "omni",
+   "note": "orb (pivot = orb centre, 9 px above its ground point)",
+   "total_ms": 600,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "ball_lightning_orb_loop_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.72,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 1.28,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "ball_lightning_orb_ground": {
+   "file": "ball_lightning_orb_ground_strip.png",
+   "kind": "ground",
+   "w": 32,
+   "h": 15,
+   "n": 12,
+   "rows": 1,
+   "piv": [
+    15,
+    7
+   ],
+   "ms": 50,
+   "loop": "loop",
+   "dirs": "omni",
+   "note": "lit floor under the orb (pivot = orb ground point); replaces the v1 shadow",
+   "total_ms": 600,
+   "shader": {
+    "material": "additive (One One) on the FLOOR sorting layer, below actors and decals-on-top",
+    "blend": "One One",
+    "sort": "floor layer, above floor decals, below every actor",
+    "curve": "baked per frame; loops: x(0.8-1.2) flicker",
+    "sigma": 1.6,
+    "gain": 0.7,
+    "tint": "4a78e8"
+   }
+  },
+  "ball_lightning_orb_heat": {
+   "file": "ball_lightning_orb_heat_strip.png",
+   "kind": "heat",
+   "w": 20,
+   "h": 19,
+   "n": 4,
+   "rows": 1,
+   "piv": [
+    9,
+    9
+   ],
+   "ms": 100,
+   "loop": "loop",
+   "dirs": "omni",
+   "note": "optional air shimmer around the orb (distortion strength)",
+   "total_ms": 400,
+   "shader": {
+    "material": "screen-space distortion (grab pass / opaque texture): uv += (noise2D(uv*k + t) - 0.5) * mask * amp_px / screen_px; never drawn",
+    "blend": "n/a (UV offset)",
+    "sort": "after transparent FX, before the CRT post",
+    "curve": "baked per frame; scroll noise at ~6 Hz",
+    "amp_px": 1.6,
+    "noise_scale": 0.9
+   }
+  },
+  "ball_lightning_orb_trail": {
+   "file": "ball_lightning_orb_trail_strip.png",
+   "kind": "base",
+   "w": 11,
+   "h": 14,
+   "n": 5,
+   "rows": 1,
+   "piv": [
+    5,
+    5
+   ],
+   "glow_file": "ball_lightning_orb_trail_glow_strip.png",
+   "bake": [
+    1.1,
+    0.8
+   ],
+   "ms": 50,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "sparkle flecks, drop one every 3 f at the orb centre",
+   "total_ms": 250,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "ball_lightning_orb_trail_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.27,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.48,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "ball_lightning_spawn": {
+   "file": "ball_lightning_spawn_strip.png",
+   "kind": "base",
+   "w": 32,
+   "h": 38,
+   "n": 7,
+   "rows": 1,
+   "piv": [
+    16,
+    19
+   ],
+   "glow_file": "ball_lightning_spawn_glow_strip.png",
+   "bake": [
+    2.2,
+    1.35
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "frame 6 == orb_loop frame 0",
+   "total_ms": 280,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "ball_lightning_spawn_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.63,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 1.12,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "ball_lightning_spawn_flash": {
+   "file": "ball_lightning_spawn_flash_strip.png",
+   "kind": "flash",
+   "w": 26,
+   "h": 28,
+   "n": 2,
+   "rows": 1,
+   "piv": [
+    12,
+    13
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "start": 2,
+   "note": "pop flash, starts with spawn frame 2",
+   "total_ms": 80,
+   "shader": {
+    "material": "additive (One One), unlit, drawn on the top FX layer above actors; optional full-screen add = mean(mask) x screen gain",
+    "blend": "One One",
+    "sort": "top FX layer (above actors and other FX)",
+    "curve": "baked per frame (impact frame first); screen flash 1 frame peak then 0",
+    "sigma": 2.4,
+    "gain": 0.95,
+    "tint": "c0cbdc",
+    "screen_gain": 0.1,
+    "screen_tint": "8b9bb4"
+   }
+  },
+  "ball_lightning_fade": {
+   "file": "ball_lightning_fade_strip.png",
+   "kind": "base",
+   "w": 36,
+   "h": 40,
+   "n": 9,
+   "rows": 1,
+   "piv": [
+    16,
+    20
+   ],
+   "glow_file": "ball_lightning_fade_glow_strip.png",
+   "bake": [
+    2.2,
+    1.3
+   ],
+   "ms": 50,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "destabilise, pop, sparks and smoke",
+   "total_ms": 450,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "ball_lightning_fade_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.63,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 1.12,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "ball_lightning_fade_flash": {
+   "file": "ball_lightning_fade_flash_strip.png",
+   "kind": "flash",
+   "w": 31,
+   "h": 30,
+   "n": 2,
+   "rows": 1,
+   "piv": [
+    14,
+    13
+   ],
+   "ms": 50,
+   "loop": "once",
+   "dirs": "omni",
+   "start": 2,
+   "note": "pop flash, starts with fade frame 2",
+   "total_ms": 100,
+   "shader": {
+    "material": "additive (One One), unlit, drawn on the top FX layer above actors; optional full-screen add = mean(mask) x screen gain",
+    "blend": "One One",
+    "sort": "top FX layer (above actors and other FX)",
+    "curve": "baked per frame (impact frame first); screen flash 1 frame peak then 0",
+    "sigma": 2.4,
+    "gain": 0.95,
+    "tint": "c0cbdc",
+    "screen_gain": 0.1,
+    "screen_tint": "8b9bb4"
+   }
+  },
+  "ball_lightning_fade_ground": {
+   "file": "ball_lightning_fade_ground_strip.png",
+   "kind": "ground",
+   "w": 37,
+   "h": 16,
+   "n": 9,
+   "rows": 1,
+   "piv": [
+    18,
+    7
+   ],
+   "ms": 50,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "floor light during the fade (pivot = orb ground point)",
+   "total_ms": 450,
+   "shader": {
+    "material": "additive (One One) on the FLOOR sorting layer, below actors and decals-on-top",
+    "blend": "One One",
+    "sort": "floor layer, above floor decals, below every actor",
+    "curve": "baked per frame; loops: x(0.8-1.2) flicker",
+    "sigma": 1.6,
+    "gain": 0.7,
+    "tint": "4a78e8"
+   }
+  },
+  "ball_lightning_zap_L16_dir16": {
+   "file": "ball_lightning_zap_L16_dir16_strip.png",
+   "kind": "base",
+   "w": 44,
+   "h": 45,
+   "n": 5,
+   "rows": 16,
+   "piv": [
+    21,
+    22
+   ],
+   "glow_file": "ball_lightning_zap_L16_dir16_glow_strip.png",
+   "bake": [
+    1.5,
+    1.2
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "dir16",
+   "note": "arc from the orb centre (pivot) L px along the row direction",
+   "total_ms": 200,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "ball_lightning_zap_L16_dir16_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.608,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 1.08,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "ball_lightning_zap_L24_dir16": {
+   "file": "ball_lightning_zap_L24_dir16_strip.png",
+   "kind": "base",
+   "w": 60,
+   "h": 61,
+   "n": 5,
+   "rows": 16,
+   "piv": [
+    29,
+    30
+   ],
+   "glow_file": "ball_lightning_zap_L24_dir16_glow_strip.png",
+   "bake": [
+    1.5,
+    1.2
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "dir16",
+   "note": "arc from the orb centre (pivot) L px along the row direction",
+   "total_ms": 200,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "ball_lightning_zap_L24_dir16_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.608,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 1.08,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "ball_lightning_zap_L32_dir16": {
+   "file": "ball_lightning_zap_L32_dir16_strip.png",
+   "kind": "base",
+   "w": 76,
+   "h": 77,
+   "n": 5,
+   "rows": 16,
+   "piv": [
+    37,
+    38
+   ],
+   "glow_file": "ball_lightning_zap_L32_dir16_glow_strip.png",
+   "bake": [
+    1.5,
+    1.2
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "dir16",
+   "note": "arc from the orb centre (pivot) L px along the row direction",
+   "total_ms": 200,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "ball_lightning_zap_L32_dir16_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.608,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 1.08,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "ball_lightning_zap_L40_dir16": {
+   "file": "ball_lightning_zap_L40_dir16_strip.png",
+   "kind": "base",
+   "w": 92,
+   "h": 92,
+   "n": 5,
+   "rows": 16,
+   "piv": [
+    46,
+    46
+   ],
+   "glow_file": "ball_lightning_zap_L40_dir16_glow_strip.png",
+   "bake": [
+    1.5,
+    1.2
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "dir16",
+   "note": "arc from the orb centre (pivot) L px along the row direction",
+   "total_ms": 200,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "ball_lightning_zap_L40_dir16_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.608,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 1.08,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "ball_lightning_zap_L48_dir16": {
+   "file": "ball_lightning_zap_L48_dir16_strip.png",
+   "kind": "base",
+   "w": 109,
+   "h": 109,
+   "n": 5,
+   "rows": 16,
+   "piv": [
+    54,
+    54
+   ],
+   "glow_file": "ball_lightning_zap_L48_dir16_glow_strip.png",
+   "bake": [
+    1.5,
+    1.2
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "dir16",
+   "note": "arc from the orb centre (pivot) L px along the row direction",
+   "total_ms": 200,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "ball_lightning_zap_L48_dir16_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.608,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 1.08,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "ball_lightning_zap_hit": {
+   "file": "ball_lightning_zap_hit_strip.png",
+   "kind": "base",
+   "w": 27,
+   "h": 21,
+   "n": 6,
+   "rows": 1,
+   "piv": [
+    13,
+    10
+   ],
+   "glow_file": "ball_lightning_zap_hit_glow_strip.png",
+   "bake": [
+    1.6,
+    1.2
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "at the arc end (enemy chest)",
+   "total_ms": 240,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "ball_lightning_zap_hit_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.45,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.8,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "ball_lightning_zap_hit_flash": {
+   "file": "ball_lightning_zap_hit_flash_strip.png",
+   "kind": "flash",
+   "w": 20,
+   "h": 22,
+   "n": 2,
+   "rows": 1,
+   "piv": [
+    9,
+    11
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "start": 0,
+   "note": "struck-enemy flash, starts with zap_hit frame 0",
+   "total_ms": 80,
+   "shader": {
+    "material": "additive (One One), unlit, drawn on the top FX layer above actors; optional full-screen add = mean(mask) x screen gain",
+    "blend": "One One",
+    "sort": "top FX layer (above actors and other FX)",
+    "curve": "baked per frame (impact frame first); screen flash 1 frame peak then 0",
+    "sigma": 2.4,
+    "gain": 0.95,
+    "tint": "c0cbdc",
+    "screen_gain": 0.1,
+    "screen_tint": "8b9bb4"
+   }
+  }
+ }
+}

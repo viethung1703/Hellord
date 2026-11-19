@@ -22,6 +22,26 @@ namespace Hellord
             var T = HellordTuning.I; if (_pbEvMap1567 == null) { _pbEvMap1567 = new Dictionary<string, string>(); if (T != null && T.pbFxEvents1567 != null) foreach (var s in T.pbFxEvents1567) { int i = s.IndexOf('='); if (i > 0) _pbEvMap1567[s.Substring(0, i).Trim()] = s.Substring(i + 1).Trim(); } }
             if (_pbEvMap1567.TryGetValue(ev, out var k)) return k == "none" ? "" : k; return def;
         }
+        static string PbArtPath1567(string file) => file.StartsWith("/") ? file.Substring(1) : PbFolderRoot1567(file) + "/" + file; // "/x/y" = under HellordArt directly
+        /// <summary>t1578: per-folder art root (pbArtFolderRoot1567 "folder=root", e.g. spark_spray=Skills1567_v2), else pbArtRoot1567</summary>
+        static string PbFolderRoot1567(string file)
+        {
+            var T = HellordTuning.I; int sl = file.IndexOf('/'); if (T == null || T.pbArtFolderRoot1567 == null || sl <= 0) return PbArtRoot1567; string fo = file.Substring(0, sl);
+            foreach (var m in T.pbArtFolderRoot1567) { int i = m.IndexOf('='); if (i > 0 && m.Substring(0, i).Trim() == fo) return m.Substring(i + 1).Trim(); }
+            return PbArtRoot1567;
+        }
+        /// <summary>t1578: the {...} body of "stem": { ... } with nested braces skipped; only the top level is returned (nested blocks blanked)</summary>
+        static string PbSpecBlock1567(string txt, string stem)
+        {
+            var m = Regex.Match(txt, "\"" + Regex.Escape(stem) + "\"\\s*:\\s*\\{"); if (!m.Success) return null; int i0 = m.Index + m.Length, d = 1; var sb = new System.Text.StringBuilder(); bool str = false;
+            for (int i = i0; i < txt.Length; i++)
+            {
+                char c = txt[i]; if (c == '"' && txt[i - 1] != '\\') str = !str;
+                if (!str) { if (c == '{') d++; else if (c == '}') { d--; if (d == 0) return sb.ToString(); } }
+                if (d == 1 && !(c == '}' && !str)) sb.Append(c);
+            }
+            return null;
+        }
         static string PbArtRoot1567 { get { var T = HellordTuning.I; return T != null && !string.IsNullOrEmpty(T.pbArtRoot1567) ? T.pbArtRoot1567 : "Skills1567"; } }
         static int _pbSpecOv1567;
         /// <summary>key -> file remap + spec.json override (HFX format) for one spec row</summary>
@@ -30,8 +50,8 @@ namespace Hellord
             var T = HellordTuning.I; if (T == null) return;
             if (T.pbArtFileMap1567 != null) foreach (var m in T.pbArtFileMap1567) { int i = m.IndexOf('='); if (i > 0 && m.Substring(0, i).Trim() == key) file = m.Substring(i + 1).Trim(); }
             if (!T.pbArtSpecJson1567) return; int sl = file.LastIndexOf('/'); string folder = sl > 0 ? file.Substring(0, sl) : "", stem = sl >= 0 ? file.Substring(sl + 1) : file;
-            var ta = Resources.Load<TextAsset>("HellordArt/" + PbArtRoot1567 + "/" + (folder.Length > 0 ? folder + "/" : "") + "spec"); if (ta == null) return;
-            var mb = Regex.Match(ta.text, "\"" + Regex.Escape(stem) + "\"\\s*:\\s*\\{([^{}]*)\\}"); if (!mb.Success) return; string b = mb.Groups[1].Value;
+            var ta = Resources.Load<TextAsset>("HellordArt/" + PbArtPath1567((folder.Length > 0 ? folder + "/" : "") + "spec")); if (ta == null) return;
+            string b = PbSpecBlock1567(ta.text, stem); if (b == null) return; // t1578: brace-matched (v2 Leizu blocks nest "shader": {..})
             int I(string f, int d) { var x = Regex.Match(b, "\"" + f + "\"\\s*:\\s*(\\d+)"); return x.Success ? int.Parse(x.Groups[1].Value) : d; }
             fw = I("w", fw); fh = I("h", fh); n = I("n", n); rows = I("rows", rows);
             var pv = Regex.Match(b, "\"piv\"\\s*:\\s*\\[\\s*([\\d.]+)\\s*,\\s*([\\d.]+)"); if (pv.Success) { px = float.Parse(pv.Groups[1].Value, System.Globalization.CultureInfo.InvariantCulture); py = float.Parse(pv.Groups[2].Value, System.Globalization.CultureInfo.InvariantCulture); }
@@ -121,12 +141,13 @@ namespace Hellord
         // The axe hits slamAheadU ahead; a fissure front runs from slamLineStartU to slamLineLenU along the aim at slamLineSpeedU, slamLineWU wide,
         // hitting each demon once as it passes (knock-back sideways + forward). Every slamSegU it leaves a crack segment (slows, erupts after
         // eruptDelayS; each demon is hit by the eruption once per fissure). At most crackCap1567 fissures: a new slam removes the oldest.
-        class PbFis { public Vector2 a, dir; public float len, w, t, front, dmg; public int id, segs; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(), eruptHit = new HashSet<int>(); }
+        class PbFis { public bool v2, stopDone; public int row; public float frontPx, sq; public Vector2 a, dir; public float len, w, t, front, dmg; public int id, segs; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(), eruptHit = new HashSet<int>(); }
         readonly List<PbFis> _pbFis = new List<PbFis>(); int _pbFisId1567;
         public int SlamLineHits1567; public float SlamLineMaxAlong1567, SlamLineLen1567;
         bool CastSlamLine1567(SkillInst s, float dmg)
         {
-            var T = HellordTuning.I; Vector2 dir = PbAim1567(); Vector2 hero0 = _heroPos; float area = Mathf.Sqrt(s.AreaMul); Vector2 at = _heroPos + dir * T.slamAheadU1567;
+            var T = HellordTuning.I; if (SlamV2On1567) return CastSlamV2_1567(s, dmg); // t1576 HFX v2 (approved)
+            Vector2 dir = PbAim1567(); Vector2 hero0 = _heroPos; float area = Mathf.Sqrt(s.AreaMul); Vector2 at = _heroPos + dir * T.slamAheadU1567;
             Vector2 a = _heroPos + dir * T.slamLineStartU1567; float len = T.slamLineLenU1567 * (T.slamLineAreaLen1567 ? area : 1f), w = T.slamLineWU1567 * area;
             for (float d = 0f; d <= len; d += 0.25f) { Vector2 p = a + dir * d, q = p; ClampToRoom(ref q, 4); if ((q - p).sqrMagnitude > 0.01f) { len = Mathf.Max(0.5f, d); break; } } // stops at walls
             while (_pbFis.Count >= Mathf.Max(1, T.crackCap1567)) { var old = _pbFis[0]; _pbFis.RemoveAt(0); _pbCracks.RemoveAll(k => k.fis == old); }
@@ -142,7 +163,7 @@ namespace Hellord
             var T = HellordTuning.I;
             for (int i = _pbFis.Count - 1; i >= 0; i--)
             {
-                var f = _pbFis[i]; f.t += dt; f.front = Mathf.Min(f.len, f.t * T.slamLineSpeedU1567); float hw = f.w * 0.5f;
+                var f = _pbFis[i]; f.t += dt; if (f.v2) { UpdateSlamV2_1567(f, i); continue; } f.front = Mathf.Min(f.len, f.t * T.slamLineSpeedU1567); float hw = f.w * 0.5f;
                 if (f.front > 0f || f.t == 0f)
                 {
                     Vector2 mid = f.a + f.dir * (f.front * 0.5f); Query(mid, f.front * 0.5f + hw + 1f, _pbQ); Vector2 nrm = new Vector2(-f.dir.y, f.dir.x);
@@ -173,11 +194,138 @@ namespace Hellord
             var T = HellordTuning.I;
             foreach (var f in _pbFis)
             {
+                if (f.v2) { DrawSlamV2_1567(f); continue; }
                 if (f.front <= 0f || f.t > T.crackLifeS1567) continue; Vector2 nrm = new Vector2(-f.dir.y, f.dir.x); int ord = FbGround + YSort(f.a.y) + 3; float a = Mathf.Clamp01((T.crackLifeS1567 - f.t) / 0.5f);
                 if (PbEv1567("slam.seam", "").Length > 0) continue; // v2 seam strip owns it
                 int n = Mathf.Max(2, Mathf.RoundToInt(f.front * HArt.PPU / 3f)); Vector2 prev = f.a;
                 for (int q = 1; q <= n; q++) { float d = f.front * q / n; Vector2 p = f.a + f.dir * d + nrm * ((((q * 7 + f.id) % 5) - 2) * 0.06f); PbLine1567(prev, p, new Color(PbCrackCol.r, PbCrackCol.g, PbCrackCol.b, 0.9f * a), ord, 2); prev = p; }
             }
+        }
+    }
+}
+
+namespace Hellord
+{
+    // t1576 Earth-Splitting Slam v2 (HFX skills_t1567_v2/earth_splitting_slam, VH approved except the dust layer): one baked dir16 fissure per slam.
+    // All strips spawn at P = feet + aim x 9 px (axe bite). Hitbox = the tearing crack: a band along the row direction, front = 8 px + 10 px/f
+    // (to 112 ground px, ~0.35 s), width 28 ground px, both through the art's ground squash (screen y = ground y x 0.7) so the band lies on the drawn
+    // crack; plus an r = 10 px circle at P on impact. Hit-stop 100 ms on frame 1. Cracks slow until the fade; the aftershock is optional (off).
+    public partial class HellordGame
+    {
+        Material _pbShockMat1567; public int SlamHitStops1567, SlamV2Casts1567, SlamV2ImpactHits1567; public bool SlamV2Last1567; public float SlamV2L1567, SlamV2W1567;
+        bool SlamV2On1567 { get { var T = HellordTuning.I; return T.slamV2Art1567 && PbA1567(PbEv1567("slam.v2.decal", "xs2_decal")) != null && (T.slamV2b1567 ? PbA1567(PbEv1567("slam.v2b.rocks", "xs2b_rocks")) : PbA1567(PbEv1567("slam.v2.rocks", "xs2_rocks"))) != null; } } // t1584: only the rocks strip that plays is loaded
+        static Vector2 PbRowDir1567(int row) { float a = row * 22.5f * Mathf.Deg2Rad; return new Vector2(Mathf.Cos(a), -Mathf.Sin(a)); } // row 0 = east, clockwise on screen
+        /// <summary>screen length of 1 ground px along screen direction d (art ground squash: screen y = ground y x sq)</summary>
+        static float PbSq1567(Vector2 d, float sq) { if (sq <= 0f || sq >= 1f) return 1f; return 1f / Mathf.Sqrt(d.x * d.x + (d.y / sq) * (d.y / sq)); }
+        bool CastSlamV2_1567(SkillInst s, float dmg)
+        {
+            var T = HellordTuning.I; Vector2 aim = PbAim1567(); Vector2 hero0 = _heroPos; float area = Mathf.Sqrt(s.AreaMul); int row = PbRow16(aim); Vector2 rd = PbRowDir1567(row), nrm = new Vector2(-rd.y, rd.x);
+            float sq = T.slamV2Squash1567 ? T.slamV2GroundSquash1567 : 1f, kL = PbSq1567(rd, sq), kW = PbSq1567(nrm, sq);
+            Vector2 P = _heroPos + aim * (T.slamV2BitePx1567 / HArt.PPU);
+            float L = T.slamV2LenPx1567 * kL / HArt.PPU * (T.slamLineAreaLen1567 ? area : 1f), W = T.slamV2WPx1567 * kW / HArt.PPU * area;
+            float len = L; for (float d = 0f; d <= L; d += 0.25f) { Vector2 p = P + rd * d, q = p; ClampToRoom(ref q, 4); if ((q - p).sqrMagnitude > 0.01f) { len = Mathf.Max(0.5f, d); break; } } // hitbox stops at walls (the baked art does not)
+            while (_pbFis.Count >= Mathf.Max(1, T.crackCap1567)) { var old = _pbFis[0]; _pbFis.RemoveAt(0); _pbCracks.RemoveAll(k => k.fis == old); }
+            var f = new PbFis { v2 = true, row = row, sq = kL, a = P, dir = rd, len = len, w = W, dmg = dmg, s = s, id = _pbFisId1567++ }; _pbFis.Add(f);
+            SlamImpacts1567++; SlamV2Casts1567++; SlamV2Last1567 = true; SlamV2L1567 = len; SlamV2W1567 = W; SlamCracks1567 = _pbFis.Count; SlamCracksPeak1567 = Mathf.Max(SlamCracksPeak1567, _pbFis.Count);
+            SlamLastAt1567 = P; SlamLastHeroMove1567 = (_heroPos - hero0).magnitude; SlamLineLen1567 = len;
+            // impact circle (r = 10 px at P)
+            float ir = T.slamV2ImpactRPx1567 / HArt.PPU * area; Query(P, ir + 1f, _pbQ);
+            foreach (int ei in _pbQ) { var e = _en[ei]; if (!PbOk(e) || f.hit.Contains(ei)) continue; Vector2 v = e.pos - P; float m = v.magnitude; if (m > ir + e.radius * 0.5f) continue; f.hit.Add(ei); PbHit1567(e, dmg, s, (m > 0.05f ? v / m : rd) * T.slamKnock1567); SlamV2ImpactHits1567++; }
+            if (T.pbShake1567 && T.slamV2ShakePx1567 > 0f) { PbShakes1567++; ScreenShake.Add(T.slamV2ShakePx1567, T.slamV2ShakeS1567); }
+            PbFlash1567(4, P); UpdateSlamV2_1567(f, _pbFis.Count - 1); PbCasts1567[4]++; HellordAudio.Play("oxhead_stomp_strike", PbPitch1567(4)); return true;
+        }
+        void UpdateSlamV2_1567(PbFis f, int idx)
+        {
+            var T = HellordTuning.I; float hw = f.w * 0.5f;
+            if (!f.stopDone && f.t > 0f) { f.stopDone = true; if (T.slamV2HitStopS1567 > 0f) { HitStop.Play(T.slamV2HitStopS1567); SlamHitStops1567++; } } // hold frame 1 (hero + enemies + FX) for 3 frames
+            f.frontPx = Mathf.Min(T.slamV2LenPx1567, T.slamV2FrontStartPx1567 + T.slamV2FrontPxF1567 * 30f * f.t); f.front = Mathf.Min(f.len, f.frontPx * f.sq / HArt.PPU);
+            Vector2 nrm = new Vector2(-f.dir.y, f.dir.x); Query(f.a + f.dir * (f.front * 0.5f), f.front * 0.5f + hw + 1f, _pbQ);
+            foreach (int ei in _pbQ)
+            {
+                var e = _en[ei]; if (!PbOk(e) || f.hit.Contains(ei)) continue; Vector2 v = e.pos - f.a; float al = Vector2.Dot(v, f.dir), pp = Vector2.Dot(v, nrm);
+                if (al < -T.slamLineBackU1567 || al > f.front + e.radius * 0.5f || Mathf.Abs(pp) > hw + e.radius * 0.5f) continue; f.hit.Add(ei);
+                PbHit1567(e, f.dmg, f.s, nrm * (Mathf.Sign(pp == 0f ? 1f : pp) * T.slamLineKnockSide1567) + f.dir * T.slamLineKnockFwd1567); SlamLineHits1567++; SlamLineMaxAlong1567 = Mathf.Max(SlamLineMaxAlong1567, al);
+            }
+            float seg = Mathf.Max(0.25f, T.slamSegU1567);
+            while (f.segs * seg <= f.front + 0.001f && f.segs * seg <= f.len)
+            {   // invisible slow segments under the baked decal (aftershock = optional delayed damage)
+                Vector2 c = f.a + f.dir * Mathf.Min(f.len, f.segs * seg + seg * 0.5f);
+                _pbCracks.Add(new PbCrack { p = c, life = T.slamV2LifeS1567 - f.t, dmg = f.dmg * T.eruptMul1567, s = f.s, seed = f.id * 31 + f.segs, fis = f, r = Mathf.Max(hw, seg * 0.6f), erupted = !T.slamV2Aftershock1567, eruptAt = Mathf.Max(0.01f, T.slamV2AftershockS1567 - f.t) });
+                f.segs++;
+            }
+            if (f.t >= T.slamV2LifeS1567 && !_pbCracks.Exists(k => k.fis == f)) _pbFis.RemoveAt(idx);
+        }
+        // banded rocks (Y-sort split): [row, frame, band] sub-sprites + the band's bottom (px below the pivot)
+        class PbBands1567 { public Sprite[,,] B, G; public float[,] bot; public int bands; } readonly Dictionary<PbArtS, PbBands1567> _xsBands1567 = new Dictionary<PbArtS, PbBands1567>(); // t1578: per strip (v2 rocks, v2b rocks, v2b debris)
+        PbBands1567 SlamV2Bands1567(PbArtS a, int bands)
+        {
+            if (_xsBands1567.TryGetValue(a, out var c0) && c0.bands == bands) return c0; var bc = new PbBands1567 { bands = bands, B = new Sprite[a.rows, a.n, bands], G = a.g != null ? new Sprite[a.rows, a.n, bands] : null, bot = new float[a.rows, bands] }; _xsBands1567[a] = bc;
+            for (int r = 0; r < a.rows; r++) for (int c = 0; c < a.n; c++) for (int b = 0; b < bands; b++)
+            {
+                var sp = a.f[r, c]; Rect R = sp.rect; float h = R.height, y0 = Mathf.Floor(h * b / bands), y1 = Mathf.Floor(h * (b + 1) / bands); // from the top
+                var sub = new Rect(R.x, R.y + h - y1, R.width, y1 - y0); var pv = new Vector2(sp.pivot.x / R.width, (sp.pivot.y - (h - y1)) / (y1 - y0));
+                bc.B[r, c, b] = Sprite.Create(sp.texture, sub, pv, HArt.PPU, 0, SpriteMeshType.FullRect); bc.bot[r, b] = sp.pivot.y - (h - y1);
+                if (bc.G != null) { var g = a.g[r, c]; bc.G[r, c, b] = Sprite.Create(g.texture, new Rect(g.rect.x, g.rect.y + h - y1, g.rect.width, y1 - y0), pv, HArt.PPU, 0, SpriteMeshType.FullRect); }
+            }
+            return bc;
+        }
+        void DrawSlamV2_1567(PbFis f)
+        {
+            var T = HellordTuning.I; float t = f.t; int F = Mathf.FloorToInt(t * 30f + 0.0001f), row = f.row; Vector2 P = f.a; int top = YSort(P.y - T.slamV2TopU1567);
+            bool after = T.slamV2Aftershock1567; float aS = T.slamV2AftershockS1567; int aF = Mathf.RoundToInt(aS * 30f); var st = T.slamV2StageF1567;
+            // ground decal: decal_dir16 f0-23 (crack tears + cools), then code-stepped stages; aftershock: tell 1/2, replay decal f12-23 x0.8
+            string dk = PbEv1567("slam.v2.decal", "xs2_decal"), sk = PbEv1567("slam.v2.stages", "xs2_stages"); int gO = FbGround + YSort(P.y) - 100;
+            if (F < 24) PbArtPut1567(dk, row, t, false, P, gO);
+            else if (after && F >= aF && F < aF + 12) { _pbGlowMul1567 = T.slamV2AfterGlow1567; PbArtPutF1567(dk, row, 12 + (F - aF), P, gO); _pbGlowMul1567 = 1f; }
+            else
+            {
+                int stg = after && F >= aF - 9 && F < aF ? 1 + ((F - (aF - 9)) / Mathf.Max(1, T.crackBlinkF1567)) % 2 : F < PbAt1567(st, 0, 54) ? 0 : F < PbAt1567(st, 1, 114) ? 3 : F < PbAt1567(st, 2, 129) ? 4 : F < PbAt1567(st, 3, 144) ? 5 : -1;
+                if (stg >= 0) PbArtPutF1567(sk, row, stg, P, gO);
+            }
+            // one-shot layers at impact (and again at the optional aftershock, glow x0.8)
+            for (int pass = 0; pass < (after ? 2 : 1); pass++)
+            {
+                float lt = pass == 0 ? t : t - aS; if (lt < 0f) continue; _pbGlowMul1567 = pass == 0 ? 1f : T.slamV2AfterGlow1567;
+                if (T.slamV2b1567)
+                {   // t1578 rocks_v2b (Y-sorted, glow) -> debris just after (rocks key + 2, glow) -> debris shadow on the ground (after the decal, under actors) -> dust smoke +10
+                    // particle set slamV2DirtSet1567: "v2c" (default, VH reviewing) or "v2b" (VH: too much)
+                    bool c = T.slamV2DirtSet1567 != "v2b";
+                    SlamV2Rocks1567(f, lt, row, P, PbEv1567("slam.v2b.rocks", "xs2b_rocks"), 0);
+                    SlamV2Rocks1567(f, lt, row, P, c ? PbEv1567("slam.v2c.debris", "xs2c_debris") : PbEv1567("slam.v2b.debris", "xs2b_debris"), 2);
+                    if (T.slamV2bShadow1567) PbArtPut1567(c ? PbEv1567("slam.v2c.shadow", "xs2c_dshadow") : PbEv1567("slam.v2b.shadow", "xs2b_dshadow"), row, lt, false, P, gO + 5);
+                    if (T.slamV2bDust1567) PbArtPut1567(c ? PbEv1567("slam.v2c.dust", "xs2c_dust") : PbEv1567("slam.v2b.dust", "xs2b_dust"), row, lt, false, P, top + 10);
+                }
+                else
+                {   // v2 (VH: dust looked fake) - kept behind slamV2b1567 = false
+                    SlamV2Rocks1567(f, lt, row, P, PbEv1567("slam.v2.rocks", "xs2_rocks"), 0);
+                    if (T.slamV2Dust1567) PbArtPut1567(PbEv1567("slam.v2.dust", "xs2_dust"), row, lt, false, P, top + 10);
+                }
+                PbArtPut1567(PbEv1567("slam.v2.sparks", "xs2_sparks"), row, lt, false, P, top + 20);
+                if (pass == 0) PbArtPut1567(PbEv1567("slam.v2.flash", "xs2_flash"), 0, lt, false, P, top + 30);
+                if (T.pbHeatWave1567 && T.slamV2Shock1567) SlamV2Shock1567(row, lt, P, top + 40);
+                _pbGlowMul1567 = 1f;
+            }
+        }
+        void SlamV2Rocks1567(PbFis f, float lt, int row, Vector2 P, string rk, int dO)
+        {
+            var T = HellordTuning.I; var a = string.IsNullOrEmpty(rk) ? null : PbA1567(rk); if (a == null) return; int fi = PbAF1567(a, lt, false); if (fi < 0) return; row = Mathf.Clamp(row, 0, a.rows - 1);
+            bool vert = (row >= 2 && row <= 6) || (row >= 10 && row <= 14); int bands = vert ? Mathf.Max(1, T.slamV2RockBands1567) : 1;
+            if (bands <= 1)
+            {   // spec sort key: P.y + 40 px (toward the camera) for rows 2-6, else P.y
+                int o = YSort(P.y - (row >= 2 && row <= 6 ? T.slamV2RockKeyPx1567 / HArt.PPU : 0f)) + dO; PbPut1567(a.f[row, fi], P, 0f, 1f, 1f, Color.white, o);
+                if (a.g != null && a.mat != null) PbPut1567(a.g[row, fi], P, 0f, 1f, 1f, new Color(1, 1, 1, _pbGlowMul1567), o + 1, false, a.mat); return;
+            }
+            var bc = SlamV2Bands1567(a, bands);
+            for (int b = 0; b < bands; b++)
+            {   // each horizontal band Y-sorts at its own bottom edge, so a demon standing inside the fissure goes in front of the far slabs and behind the near ones
+                int o = YSort(P.y - bc.bot[row, b] / HArt.PPU) + dO; PbPut1567(bc.B[row, fi, b], P, 0f, 1f, 1f, Color.white, o);
+                if (bc.G != null && a.mat != null) PbPut1567(bc.G[row, fi, b], P, 0f, 1f, 1f, new Color(1, 1, 1, _pbGlowMul1567), o + 1, false, a.mat);
+            }
+        }
+        void SlamV2Shock1567(int row, float lt, Vector2 P, int order)
+        {   // optional distortion: the shock mask through HeatWave1567 in gradient mode (uv offset = normalize(grad(mask)) x mask x strength)
+            var a = PbA1567(PbEv1567("slam.v2.shock", "xs2_shock")); var hm = PbHeatMat1567(); if (a == null || hm == null) return; if (_pbShockMat1567 == null) _pbShockMat1567 = new Material(hm) { name = "pbShock1567" }; var m = _pbShockMat1567; m.SetFloat("_UseSortingLayerTex", HellordTuning.I.pbHeatSortingTex1567 ? 1f : 0f); int fi = PbAF1567(a, lt, false); if (fi < 0) return;
+            m.SetFloat("_Mode", 1f); m.SetFloat("_Strength", HellordTuning.I.slamV2ShockPx1567); PbPut1567(a.f[Mathf.Clamp(row, 0, a.rows - 1), fi], P, 0f, 1f, 1f, Color.white, order, false, m); PbHeats1567++;
         }
     }
 }

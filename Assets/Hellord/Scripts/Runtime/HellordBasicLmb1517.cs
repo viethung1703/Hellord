@@ -97,7 +97,7 @@ namespace Hellord
             Sprite[] L(string nm, int fr, int px, Vector2 piv) => HArt.Missing(Art47 + nm) ? null : HArt.Strip(Art47 + nm, fr, px, px, piv);
             _auraFire1528 = L(T.castAuraFireSheet1528, 4, 44, T.castAuraPivotPx1528); _auraFrost1528 = L(T.castAuraFrostSheet1528, 4, 44, T.castAuraPivotPx1528);
             _sparkFire1528 = L(T.castSparkFireSheet1528, 3, 13, new Vector2(6.5f, 6.5f)); _sparkFrost1528 = L(T.castSparkFrostSheet1528, 3, 13, new Vector2(6.5f, 6.5f));
-            _sparkLight1567 = L(T.castSparkLightningSheet1567, 3, 13, new Vector2(6.5f, 6.5f)); _auraLight1567 = L(T.castAuraLightningSheet1567, 4, 44, T.castAuraPivotPx1528); // t1567 HFX / HA lightning
+            _sparkLight1567 = L(T.castSparkLightningV2_1567 && !HArt.Missing(Art47 + "fx_cast_spark_lightning_13_v2") ? "fx_cast_spark_lightning_13_v2" : T.castSparkLightningSheet1567, 3, 13, new Vector2(6.5f, 6.5f)); _auraLight1567 = L(T.castAuraLightningSheet1567, 4, 44, T.castAuraPivotPx1528); // t1567 HFX / HA lightning
         }
         bool PoseSheets1517 { get { PoseLoad1517(); return _castBody1528 != null; } }
         /// <summary>Recoil offset (px table at 30 fps, away from the attack); only when the cast strip is missing (or heroRecoilWithStrips).</summary>

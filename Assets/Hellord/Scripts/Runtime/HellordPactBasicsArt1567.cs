@@ -10,7 +10,7 @@ namespace Hellord
     public partial class HellordGame
     {
         sealed class PbArtS { public Sprite[,] f, g; public int n, rows; public float[] ms; public Material mat; }
-        const uint PbCy = 0x2ce8f5, PbSt = 0xc0cbdc, PbRd = 0xe43b44, PbYl = 0xfee761, PbPk = 0xf6757a;
+        const uint PbCy = 0x2ce8f5, PbSt = 0xc0cbdc, PbRd = 0xe43b44, PbYl = 0xfee761, PbPk = 0xf6757a, PbOr = 0xf77622, PbAm = 0xfeae34;
         // key, file (under Skills1567/), frame w, h, frames, rows, pivot x, y (px from top-left), ms per frame (float or float[]), glow gain (0 = none), glow tint
         static readonly object[][] PbArtSpec1567 =
         {
@@ -35,7 +35,7 @@ namespace Hellord
             new object[] { "tj_fork48", "thunder_javelin/thunder_javelin_fork_L48_dir16", 104, 105, 5, 16, 52, 52, 40f, 0.45f, PbSt },
             // Xingtian set (HFX 2:50 PM)
             new object[] { "xc_arc",    "headsmans_chop/headsmans_chop_arc_dir16", 78, 58, 6, 16, 39, 27, 33f, 0.35f, PbSt },
-            new object[] { "xc_wave",   "headsmans_chop/headsmans_chop_blood_wave", 56, 44, 16, 1, 27, 24, 33f, 0.30f, PbRd },
+            new object[] { "xc_wave",   "/Skills1567/headsmans_chop/headsmans_chop_blood_wave", 56, 44, 16, 1, 27, 24, 33f, 0.30f, PbRd },
             new object[] { "xc_spark",  "headsmans_chop/headsmans_chop_hit_spark_dir16", 42, 43, 7, 16, 21, 21, 33f, 0.45f, PbYl },
             new object[] { "xc_skid",   "headsmans_chop/headsmans_chop_skid_dust", 23, 7, 11, 1, 15, 5, 40f, 0f, PbSt },
             new object[] { "xs_impact", "earth_splitting_slam/earth_splitting_slam_impact", 43, 34, 14, 1, 21, 20, 33f, 0.45f, PbYl },
@@ -50,18 +50,74 @@ namespace Hellord
             new object[] { "xa_catch",  "twin_axe_throw/twin_axe_throw_catch_flash", 25, 25, 6, 1, 12, 12, 33f, 0.40f, PbYl },
             new object[] { "xp_chop",   "phantom_axes/phantom_axes_chop_dir16", 53, 44, 16, 16, 27, 34, 33f, 0.40f, PbPk },
             new object[] { "xp_flash",  "phantom_axes/phantom_axes_hit_flash", 29, 26, 6, 1, 13, 12, 33f, 0.45f, PbPk },
+            // t1576 Earth-Splitting Slam v2 (VH approved, HFX skills_t1567_v2; "/..." = path under HellordArt, outside pbArtRoot1567). spec.json overrides these.
+            new object[] { "xs2_decal",  "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_decal_dir16", 238, 170, 24, 16, 119, 85, 33f, 0.55f, PbOr },
+            new object[] { "xs2_stages", "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_decal_stages_dir16", 238, 170, 6, 16, 119, 85, 1000f, 0.45f, PbOr },
+            new object[] { "xs2_rocks",  "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_rocks_dir16", 248, 201, 28, 16, 122, 110, 33f, 0.35f, PbOr },
+            new object[] { "xs2_dust",   "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_dust_dir16", 265, 191, 30, 16, 132, 106, 50f, 0f, PbSt },
+            new object[] { "xs2_sparks", "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_sparks_dir16", 242, 187, 18, 16, 121, 100, 33f, 0.50f, PbAm },
+            new object[] { "xs2_flash",  "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_flash", 67, 55, 6, 1, 33, 29, 33f, 0.85f, PbYl },
+            // t1578 / t1579 HFX Leizu v2 (NOT approved; folder root via pbArtFolderRoot1567). Same-name v1 keys (ss_trail/hit/fizzle, tj_flight/impact/bolthit/fork*) pick v2 up from the folder root.
+            new object[] { "ss2_spark",  "spark_spray/spark_spray_spark_dir16", 28, 28, 8, 16, 14, 13, 50f, 0.55f, PbCy },
+            new object[] { "ss2_bounce", "spark_spray/spark_spray_bounce", 20, 17, 5, 1, 11, 7, 40f, 0.55f, PbCy },
+            new object[] { "ss2_bounceflash", "spark_spray/spark_spray_bounce_flash", 20, 20, 2, 1, 10, 10, 40f, 0f, PbSt },
+            new object[] { "ss2_ground", "spark_spray/spark_spray_spark_ground", 24, 11, 8, 1, 11, 5, 50f, 0f, PbCy },
+            new object[] { "ss2_hitflash", "spark_spray/spark_spray_hit_flash", 32, 27, 2, 1, 15, 12, 40f, 0f, PbSt },
+            new object[] { "ss2_hitground", "spark_spray/spark_spray_hit_ground", 27, 13, 6, 1, 13, 6, 40f, 0f, PbSt },
+            new object[] { "ss2_scorch", "spark_spray/spark_spray_fizzle_scorch", 10, 5, 8, 1, 4, 2, 100f, 0f, PbSt },
+            new object[] { "bl2_ground", "ball_lightning/ball_lightning_orb_ground", 32, 15, 12, 1, 15, 7, 50f, 0f, PbCy },
+            new object[] { "bl2_trail",  "ball_lightning/ball_lightning_orb_trail", 11, 14, 5, 1, 5, 5, 50f, 0.45f, PbCy },
+            new object[] { "bl2_spawnflash", "ball_lightning/ball_lightning_spawn_flash", 26, 28, 2, 1, 12, 13, 40f, 0f, PbSt },
+            new object[] { "bl2_fadeflash", "ball_lightning/ball_lightning_fade_flash", 31, 30, 2, 1, 14, 13, 50f, 0f, PbSt },
+            new object[] { "bl2_fadeground", "ball_lightning/ball_lightning_fade_ground", 37, 16, 9, 1, 18, 7, 50f, 0f, PbCy },
+            new object[] { "bl2_zapflash", "ball_lightning/ball_lightning_zap_hit_flash", 20, 22, 2, 1, 9, 11, 40f, 0f, PbSt },
+            // t1586 HFX Headsman's Chop v2 / Twin Axe Throw v2 (folder root via pbArtFolderRoot1567; same-name keys xc_arc / xc_skid / xa_spin / xa_smear / xa_trail / xa_catch pick v2 up). Blood wave stays v1 (HFX: unchanged).
+            new object[] { "xc2_flash",  "headsmans_chop/headsmans_chop_flash_dir16", 138, 101, 4, 16, 69, 58, 33f, 0.80f, PbYl },
+            new object[] { "xc2_sparks", "headsmans_chop/headsmans_chop_sparks_dir16", 172, 128, 10, 16, 86, 66, 33f, 0.50f, PbAm },
+            new object[] { "xc2_scrape", "headsmans_chop/headsmans_chop_scrape_decal_dir16", 123, 89, 18, 16, 61, 44, 50f, 0.40f, PbOr },
+            new object[] { "xc2_hit",    "headsmans_chop/headsmans_chop_hit_dir16", 68, 68, 8, 16, 34, 34, 33f, 0.50f, PbYl },
+            new object[] { "xc2_debris", "headsmans_chop/headsmans_chop_debris_dir16", 127, 94, 20, 16, 63, 47, 33f, 0f, PbSt },
+            new object[] { "xc2_dshadow","headsmans_chop/headsmans_chop_debris_shadow_dir16", 127, 92, 20, 16, 63, 45, 33f, 0f, PbSt },
+            new object[] { "xc2_dust",   "headsmans_chop/headsmans_chop_dust_dir16", 126, 96, 18, 16, 63, 49, 50f, 0f, PbSt },
+            new object[] { "xa2_hit",    "twin_axe_throw/twin_axe_throw_hit_dir16", 68, 68, 8, 16, 34, 34, 33f, 0.50f, PbYl },
+            new object[] { "xa2_shadow", "twin_axe_throw/twin_axe_throw_shadow", 22, 16, 2, 1, 10, 8, 1000f, 0f, PbSt },
+            new object[] { "tj2_ground", "thunder_javelin/thunder_javelin_flight_ground", 50, 33, 4, 16, 25, 16, 50f, 0f, PbCy },
+            new object[] { "tj2_impflash", "thunder_javelin/thunder_javelin_impact_flash", 47, 48, 3, 1, 23, 24, 40f, 0f, PbSt },
+            new object[] { "tj2_impground", "thunder_javelin/thunder_javelin_impact_ground", 46, 20, 9, 1, 23, 9, 40f, 0f, PbSt },
+            new object[] { "tj2_scorch", "thunder_javelin/thunder_javelin_impact_scorch", 26, 18, 8, 1, 11, 9, 150f, 0f, PbSt },
+            new object[] { "tj2_chain32", "thunder_javelin/thunder_javelin_chain_L32_dir16", 78, 79, 8, 16, 38, 39, 40f, 0.55f, PbSt },
+            new object[] { "tj2_chain48", "thunder_javelin/thunder_javelin_chain_L48_dir16", 111, 111, 8, 16, 55, 55, 40f, 0.55f, PbSt },
+            new object[] { "tj2_chain64", "thunder_javelin/thunder_javelin_chain_L64_dir16", 142, 143, 8, 16, 71, 71, 40f, 0.55f, PbSt },
+            new object[] { "tj2_chain80", "thunder_javelin/thunder_javelin_chain_L80_dir16", 174, 174, 8, 16, 87, 86, 40f, 0.55f, PbSt },
+            new object[] { "tj2_chain96", "thunder_javelin/thunder_javelin_chain_L96_dir16", 207, 207, 8, 16, 103, 103, 40f, 0.55f, PbSt },
+            new object[] { "tj2_chainhit", "thunder_javelin/thunder_javelin_chain_hit", 23, 28, 6, 1, 11, 13, 40f, 0.55f, PbSt },
+            new object[] { "tj2_chainhitflash", "thunder_javelin/thunder_javelin_chain_hit_flash", 24, 25, 2, 1, 11, 12, 40f, 0f, PbSt },
+            new object[] { "tj2_chainhitground", "thunder_javelin/thunder_javelin_chain_hit_ground", 30, 13, 6, 1, 15, 6, 40f, 0f, PbSt },
+            new object[] { "tj2_boltflash", "thunder_javelin/thunder_javelin_bolt_hit_flash", 25, 26, 2, 1, 13, 13, 40f, 0f, PbSt },
+            // t1578 slam v2b (HFX dirt redo, VH reviewing): replaces v2 rocks + dust when slamV2b1567
+            new object[] { "xs2b_rocks",  "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_rocks_v2b_dir16", 244, 197, 28, 16, 122, 110, 33f, 0.35f, PbOr },
+            new object[] { "xs2b_debris", "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_debris_v2b_dir16", 255, 197, 28, 16, 127, 112, 33f, 0.40f, PbOr },
+            new object[] { "xs2b_dshadow","/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_debris_shadow_v2b_dir16", 255, 181, 28, 16, 127, 90, 33f, 0f, PbSt },
+            new object[] { "xs2b_dust",   "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_dust_v2b_dir16", 260, 195, 30, 16, 131, 103, 50f, 0f, PbSt },
+            // t1578 slam v2c (VH: v2b dirt too much; v2c = rocks_v2b + these three)
+            new object[] { "xs2c_debris", "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_debris_v2c_dir16", 225, 166, 28, 16, 112, 85, 33f, 0.40f, PbOr },
+            new object[] { "xs2c_dshadow","/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_debris_shadow_v2c_dir16", 227, 161, 28, 16, 113, 80, 33f, 0f, PbSt },
+            new object[] { "xs2c_dust",   "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_dust_v2c_dir16", 220, 160, 30, 16, 110, 81, 50f, 0f, PbSt },
+            new object[] { "xs2_shock",  "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_shock_mask_dir16", 248, 178, 14, 16, 124, 89, 33f, 0f, PbSt },
         };
-        static readonly Dictionary<string, PbArtS> _pbArt1567 = new Dictionary<string, PbArtS>(); static bool _pbArtTried1567; static Shader _pbGlowSh1567;
+        static readonly Dictionary<string, PbArtS> _pbArt1567 = new Dictionary<string, PbArtS>(); static bool _pbArtTried1567; static int _pbArtGot1567, _pbArtGlow1567; static Shader _pbGlowSh1567;
         public static string PbArtStatus1567 = "";
         static PbArtS PbA1567(string key)
         {
             var T = HellordTuning.I; if (T == null || !T.pbArt1567) return null;
-            if (!_pbArtTried1567)
-            {
-                _pbArtTried1567 = true; int got = 0, glow = 0; _pbGlowSh1567 = Resources.Load<Shader>("HellordShaders/HellordFrostGlow"); if (_pbGlowSh1567 == null) _pbGlowSh1567 = Shader.Find("Hellord/FrostGlow1430");
-                bool glowOk = T.pbGlow1567 && _pbGlowSh1567 != null && _pbGlowSh1567.isSupported;
+            if (string.IsNullOrEmpty(key)) return null;
+            if (_pbArt1567.TryGetValue(key, out var hit)) return hit;
+            if (!_pbArtTried1567) { _pbArtTried1567 = true; _pbGlowSh1567 = Resources.Load<Shader>("HellordShaders/HellordFrostGlow"); if (_pbGlowSh1567 == null) _pbGlowSh1567 = Shader.Find("Hellord/FrostGlow1430"); }
+            {   // t1576: lazy, one key at a time (the v2 slam strips are big: only load what is drawn)
+                bool glowOk = T.pbGlow1567 && _pbGlowSh1567 != null && _pbGlowSh1567.isSupported; int got = 0, glow = 0;
                 foreach (var sp in PbArtSpec1567)
                 {
+                    if ((string)sp[0] != key) continue;
                     string k = (string)sp[0], file = (string)sp[1]; int fw = (int)sp[2], fh = (int)sp[3], n = (int)sp[4], rows = (int)sp[5]; float px = (int)sp[6], py = (int)sp[7]; float gain = (float)sp[9]; uint tint = (uint)sp[10]; object ms = sp[8];
                     PbSpecOv1567(k, ref file, ref fw, ref fh, ref n, ref rows, ref px, ref py, ref ms, ref gain, ref tint); // t1572: remap + spec.json (v2 drop-in)
                     var t = PbTex1567(file + "_strip"); if (t == null || t.width < fw * n || t.height < fh * rows) continue;
@@ -73,11 +129,13 @@ namespace Hellord
                         glow++; } }
                     _pbArt1567[k] = a;
                 }
-                PbArtStatus1567 = "pbArt1567: " + got + "/" + PbArtSpec1567.Length + " strips from " + PbArtRoot1567 + ", spec.json overrides " + _pbSpecOv1567 + ", glow " + (glowOk ? glow + " masks (mode " + T.pbGlowMode1567 + ")" : "OFF"); Debug.Log("[Hellord] " + PbArtStatus1567);
+                _pbArtGot1567 += got; _pbArtGlow1567 += glow; if (got == 0) _pbArt1567[key] = null; // remember misses too
+                PbArtStatus1567 = "pbArt1567: " + _pbArtGot1567 + "/" + PbArtSpec1567.Length + " strips loaded (lazy) from " + PbArtRoot1567 + ", spec.json overrides " + _pbSpecOv1567 + ", glow " + (glowOk ? _pbArtGlow1567 + " masks (mode " + T.pbGlowMode1567 + ")" : "OFF");
+                if (got > 0) Debug.Log("[Hellord] pbArt1567 loaded " + key);
             }
             return _pbArt1567.TryGetValue(key, out var r) ? r : null;
         }
-        static Texture2D PbTex1567(string f) { var t = Resources.Load<Texture2D>("HellordArt/" + PbArtRoot1567 + "/" + f); if (t != null) { t.filterMode = FilterMode.Point; t.wrapMode = TextureWrapMode.Clamp; } return t; }
+        static Texture2D PbTex1567(string f) { var t = Resources.Load<Texture2D>("HellordArt/" + PbArtPath1567(f)); if (t != null) { t.filterMode = FilterMode.Point; t.wrapMode = TextureWrapMode.Clamp; } return t; }
         static Sprite[,] PbGrid1567(Texture2D t, int fw, int fh, int cols, int rows, float px, float py)
         {
             var g = new Sprite[rows, cols]; for (int r = 0; r < rows; r++) for (int c = 0; c < cols; c++) g[r, c] = Sprite.Create(t, new Rect(c * fw, t.height - (r + 1) * fh, fw, fh), new Vector2(px / fw, 1f - py / fh), HArt.PPU, 0, SpriteMeshType.FullRect); return g;
@@ -95,21 +153,22 @@ namespace Hellord
         bool PbArtPut1567(string key, int row, float age, bool loop, Vector2 p, int order, bool flip = false, float sc = 1f)
         {
             var a = PbA1567(key); if (a == null) return false; int fi = PbAF1567(a, age, loop); if (fi < 0) return true; row = Mathf.Clamp(row, 0, a.rows - 1);
-            PbPut1567(a.f[row, fi], p, 0f, sc, sc, Color.white, order, flip);
-            if (a.g != null && a.mat != null) PbPut1567(a.g[row, fi], p, 0f, sc, sc, Color.white, order + 1, flip, a.mat);
+            PbPut1567(a.f[row, fi], p, 0f, sc, sc, Color.white, order, flip, PbBaseMat1567(key));
+            if (a.g != null && a.mat != null) PbPut1567(a.g[row, fi], p, 0f, sc, sc, new Color(1f, 1f, 1f, _pbGlowMul1567), order + 1, flip, a.mat);
             return true;
         }
         /// <summary>puts a given frame index (code-stepped strips: crack stages, axe spin) with an alpha</summary>
         bool PbArtPutF1567(string key, int row, int fi, Vector2 p, int order, bool flip = false, float alpha = 1f, float sc = 1f)
         {
             var a = string.IsNullOrEmpty(key) ? null : PbA1567(key); if (a == null) return false; row = Mathf.Clamp(row, 0, a.rows - 1); fi = ((fi % a.n) + a.n) % a.n; var c = new Color(1f, 1f, 1f, alpha);
-            PbPut1567(a.f[row, fi], p, 0f, sc, sc, c, order, flip); if (a.g != null && a.mat != null) PbPut1567(a.g[row, fi], p, 0f, sc, sc, c, order + 1, flip, a.mat);
+            PbPut1567(a.f[row, fi], p, 0f, sc, sc, c, order, flip, PbBaseMat1567(key)); if (a.g != null && a.mat != null) PbPut1567(a.g[row, fi], p, 0f, sc, sc, c, order + 1, flip, a.mat);
             return true;
         }
+        float _pbGlowMul1567 = 1f; // glow intensity for the next put (FrostGlow / AddGlow scale by vertex alpha); v2 aftershock = 0.8
         static float PbArtLen1567(string key) { var a = PbA1567(key); if (a == null) return 0f; float t = 0f; for (int i = 0; i < a.n; i++) t += a.ms[Mathf.Min(i, a.ms.Length - 1)]; return t / 1000f; }
 
         // one-shot strips (hits, fizzles, zaps, forks, trails...)
-        class PbFx { public string key; public int row, order; public Vector2 p; public float t, sc = 1f; public bool flip; }
+        class PbFx { public string key; public int row, order; public Vector2 p; public float t, sc = 1f, glowMul = 1f; public bool flip; }
         readonly List<PbFx> _pbFx = new List<PbFx>();
         bool PbFxOnce1567(string key, Vector2 p, int order, int row = 0, float delayS = 0f, bool flip = false, float sc = 1f)
         {
@@ -123,8 +182,16 @@ namespace Hellord
                 if (draw && x.t >= 0f) PbArtPut1567(x.key, x.row, x.t, false, x.p, x.order, x.flip, x.sc);
             }
         }
+        /// <summary>t1578: HFX v2 "One One" layers (ground light / flash) draw with the additive material (pbAddKeys1567); null = normal alpha sprite</summary>
+        static Material _pbBaseAdd1567; static HashSet<string> _pbAddSet1567;
+        static Material PbBaseMat1567(string key)
+        {
+            var T = HellordTuning.I; if (T == null || T.pbAddKeys1567 == null) return null; if (_pbAddSet1567 == null) _pbAddSet1567 = new HashSet<string>(T.pbAddKeys1567);
+            if (!_pbAddSet1567.Contains(key)) return null; if (_pbBaseAdd1567 == null) _pbBaseAdd1567 = PbAddMat1567(Color.white, T.pbAddKeyGain1567, 0f); return _pbBaseAdd1567;
+        }
+        public static bool PbArtLoaded1567(string k) => _pbArt1567.TryGetValue(k, out var a) && a != null;
         /// <summary>which art keys are loaded (for the report / test log)</summary>
-        public static string PbArtKeys1567() { var sb = new System.Text.StringBuilder(); foreach (var sp in PbArtSpec1567) sb.Append((string)sp[0]).Append(PbA1567((string)sp[0]) != null ? "=ART " : "=missing "); return sb.ToString(); }
+        public static string PbArtKeys1567() { var sb = new System.Text.StringBuilder(); foreach (var sp in PbArtSpec1567) { string k = (string)sp[0]; sb.Append(k).Append(!_pbArt1567.ContainsKey(k) ? "=notLoaded " : _pbArt1567[k] != null ? "=ART " : "=missing "); } return sb.ToString(); }
     }
 }
 namespace Hellord
@@ -148,7 +215,7 @@ namespace Hellord
             var T = HellordTuning.I; if (!T.pbHeroPoses1567) return null;
             switch (id)
             {
-                case SkillId.ThunderJavelin: return PoseSet1567Load("jav", HArt.Missing(Art47 + T.poseJavBody1567) ? T.castBodySheet1528 : T.poseJavBody1567, HArt.Missing(Art47 + T.poseJavBlink1567) ? T.castBlinkSheet1528 : T.poseJavBlink1567, T.castWalk1528 ? T.castWalkSheet1528 : null, T.castAuraLightningSheet1567, T.castSparkLightningSheet1567, T.poseJavHolds1567, T.poseJavRelease1567, false);
+                case SkillId.ThunderJavelin: return PoseSet1567Load("jav", HArt.Missing(Art47 + T.poseJavBody1567) ? T.castBodySheet1528 : T.poseJavBody1567, HArt.Missing(Art47 + T.poseJavBlink1567) ? T.castBlinkSheet1528 : T.poseJavBlink1567, T.castWalk1528 ? T.castWalkSheet1528 : null, T.castAuraLightningSheet1567, T.castSparkLightningV2_1567 && !HArt.Missing(Art47 + "fx_cast_spark_lightning_13_v2") ? "fx_cast_spark_lightning_13_v2" : T.castSparkLightningSheet1567, T.poseJavHolds1567, T.poseJavRelease1567, false);
                 case SkillId.HeadsmansChop: return PoseSet1567Load("chop", "hero_chop_body_36", "hero_chop_blink_36", "hero_chop_walk_36", "fx_chop_aura_blood_44", null, T.poseChopHolds1567, T.poseChopRelease1567, false);
                 case SkillId.EarthSplittingSlam: return PoseSet1567Load("slam", "hero_slam_body_36", "hero_slam_blink_36", null, "fx_slam_aura_blood_44", null, T.poseSlamHolds1567, T.poseSlamRelease1567, true);
                 case SkillId.TwinAxeThrow: return catchPose ? PoseSet1567Load("catch", "hero_throwcatch_body_36", "hero_throwcatch_blink_36", "hero_throwcatch_walk_36", "fx_throwcatch_aura_blood_44", null, T.poseCatchHolds1567, T.poseCatchRelease1567, false)

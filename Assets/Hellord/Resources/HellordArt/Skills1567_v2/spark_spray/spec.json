@@ -1,0 +1,446 @@
+{
+ "skill": "spark_spray",
+ "task": "t1567",
+ "version": "v2",
+ "status": "MOCKUP / internal only",
+ "title": "Spark Spray (Leizu LMB, refs D2 Charged Bolt + PoE2 Spark)",
+ "hero_px": 23.3,
+ "ppu": 16,
+ "camera": "640x360 (MOCKUP renders 320x180 art px x3)",
+ "palette": "Endesga 32 (sprites alpha 0/255); masks white-on-transparent, 6 alpha levels",
+ "mechanics": "v2b: 3-5 sparks leave the tail tip in a fan (+-30/40 deg), 3.3 px/frame (100 px/s), life 34-40 f. Chaotic motion (VH): zigzag heading kicks every few frames, crawl along the ground, reflect off walls. MOCKUP stand-in: kick +-35..75 deg alternating side every 3-5 f with 30 % pull back to the aim, 1 px hop jitter, velocity reflected at wall faces. Hit box |dx|<9, |dy|<6 (v1).",
+ "spawn": [
+  "Per spark each frame: spark_dir16 at (x, y-4) (crawl: optional 1 px hop), row = rowof(vx, vy) of the CURRENT velocity, loop frame = (age / 50 ms + spark index x 3) mod 8 regardless of row; spark_ground at (x, y), same frame index.",
+  "Trail: spark_trail at the positions 1, 3 and 5 frames back, once.",
+  "Wall bounce: spark_spray_bounce + spark_spray_bounce_flash at the contact point on the wall face (x, wall ground y - 4), frame 0 on the bounce frame. Omni, no rotation needed.",
+  "Hit: spark_hit + spark_hit_flash at (x, enemy chest y = feet-16); spark_hit_ground at (x, enemy feet).",
+  "No hit at end of life: spark_fizzle at (x, y-4); spark_fizzle_scorch at (x, y) starting 1 frame later."
+ ],
+ "changes_v2b": [
+  "v2b (VH mechanic change, 2026-11-19): sparks move chaotically - zigzag, crawl on the ground, bounce off walls; code orients the art per frame along the CURRENT velocity.",
+  "`spark_spray_spark_dir16` REPLACED: head ~11 px (crackle ball, flickering core 1.5/1.9 px) + 2-3 crackly omni filaments re-seeded every frame + a SHORT 7-11 px streak (was 18-24 px). Head and filaments are identical in all 16 rows for a given frame index, only the streak turns, so the row swap at each heading change / bounce never pops. Still dir16 (pick the row from velocity every frame; keep the loop frame counter running across row swaps). Frame 28 x 28 (was 52 x 53), pivot (14, 13) = head centre.",
+  "NEW `spark_spray_bounce` (+ glow) and `spark_spray_bounce_flash`: wall-bounce pop at the contact point.",
+  "Trail drops reduced to k = 1, 3, 5 frames behind (shorter streak, jittery path). Other spark strips unchanged."
+ ],
+ "draw_order": [
+  "floor",
+  "decal",
+  "ground",
+  "base (y-sorted with actors)",
+  "heat (distortion)",
+  "glow inner",
+  "glow outer",
+  "flash",
+  "CRT post"
+ ],
+ "layer_rules": {
+  "base": {
+   "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+   "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+   "sort": "y-sorted with actors: key = ground y + offset given per strip",
+   "curve": "frames as baked (no extra fade; fades are dissolves in the art)"
+  },
+  "glow": {
+   "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+   "blend": "One One",
+   "sort": "same sort key as its base strip + 1 (draws right after it)",
+   "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+  },
+  "ground": {
+   "material": "additive (One One) on the FLOOR sorting layer, below actors and decals-on-top",
+   "blend": "One One",
+   "sort": "floor layer, above floor decals, below every actor",
+   "curve": "baked per frame; loops: x(0.8-1.2) flicker"
+  },
+  "flash": {
+   "material": "additive (One One), unlit, drawn on the top FX layer above actors; optional full-screen add = mean(mask) x screen gain",
+   "blend": "One One",
+   "sort": "top FX layer (above actors and other FX)",
+   "curve": "baked per frame (impact frame first); screen flash 1 frame peak then 0"
+  },
+  "heat": {
+   "material": "screen-space distortion (grab pass / opaque texture): uv += (noise2D(uv*k + t) - 0.5) * mask * amp_px / screen_px; never drawn",
+   "blend": "n/a (UV offset)",
+   "sort": "after transparent FX, before the CRT post",
+   "curve": "baked per frame; scroll noise at ~6 Hz"
+  },
+  "decal": {
+   "material": "alpha-blend cutout on the FLOOR sorting layer (opaque dark pixels, dissolves by frame)",
+   "blend": "SrcAlpha OneMinusSrcAlpha (alpha clip)",
+   "sort": "floor layer, below the ground light and actors",
+   "curve": "frames as baked, hold the last frame 0 ms (strip ends empty-ish)"
+  }
+ },
+ "strips": {
+  "spark_spray_spark_dir16": {
+   "file": "spark_spray_spark_dir16_strip.png",
+   "kind": "base",
+   "w": 28,
+   "h": 28,
+   "n": 8,
+   "rows": 16,
+   "piv": [
+    14,
+    13
+   ],
+   "glow_file": "spark_spray_spark_dir16_glow_strip.png",
+   "bake": [
+    1.6,
+    1.25
+   ],
+   "ms": 50,
+   "loop": "loop",
+   "dirs": "dir16",
+   "note": "v2b chaotic-motion spark: rotation-safe head (same in every row) + short crackly streak opposite to the CURRENT velocity; pick row = rowof(vx, vy) every frame, keep the loop frame index running across row swaps",
+   "total_ms": 400,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "spark_spray_spark_dir16_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.45,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.8,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "spark_spray_spark_ground": {
+   "file": "spark_spray_spark_ground_strip.png",
+   "kind": "ground",
+   "w": 24,
+   "h": 11,
+   "n": 8,
+   "rows": 1,
+   "piv": [
+    11,
+    5
+   ],
+   "ms": 50,
+   "loop": "loop",
+   "dirs": "omni",
+   "note": "light pool on the floor under each spark (pivot = spark ground point)",
+   "total_ms": 400,
+   "shader": {
+    "material": "additive (One One) on the FLOOR sorting layer, below actors and decals-on-top",
+    "blend": "One One",
+    "sort": "floor layer, above floor decals, below every actor",
+    "curve": "baked per frame; loops: x(0.8-1.2) flicker",
+    "sigma": 1.6,
+    "gain": 0.7,
+    "tint": "4a78e8"
+   }
+  },
+  "spark_spray_trail": {
+   "file": "spark_spray_trail_strip.png",
+   "kind": "base",
+   "w": 11,
+   "h": 9,
+   "n": 4,
+   "rows": 1,
+   "piv": [
+    5,
+    4
+   ],
+   "glow_file": "spark_spray_trail_glow_strip.png",
+   "bake": [
+    1.2,
+    0.9
+   ],
+   "ms": 50,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "after-crackle dropped every 2 f behind a spark",
+   "total_ms": 200,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "spark_spray_trail_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.315,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.56,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "spark_spray_hit": {
+   "file": "spark_spray_hit_strip.png",
+   "kind": "base",
+   "w": 32,
+   "h": 27,
+   "n": 7,
+   "rows": 1,
+   "piv": [
+    16,
+    11
+   ],
+   "glow_file": "spark_spray_hit_glow_strip.png",
+   "bake": [
+    1.9,
+    1.3
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "hit burst at the enemy chest",
+   "total_ms": 280,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "spark_spray_hit_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.45,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.8,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "spark_spray_hit_flash": {
+   "file": "spark_spray_hit_flash_strip.png",
+   "kind": "flash",
+   "w": 32,
+   "h": 27,
+   "n": 2,
+   "rows": 1,
+   "piv": [
+    15,
+    12
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "start": 0,
+   "note": "impact-frame bloom, starts with hit frame 0",
+   "total_ms": 80,
+   "shader": {
+    "material": "additive (One One), unlit, drawn on the top FX layer above actors; optional full-screen add = mean(mask) x screen gain",
+    "blend": "One One",
+    "sort": "top FX layer (above actors and other FX)",
+    "curve": "baked per frame (impact frame first); screen flash 1 frame peak then 0",
+    "sigma": 2.4,
+    "gain": 0.95,
+    "tint": "c0cbdc",
+    "screen_gain": 0.1,
+    "screen_tint": "8b9bb4"
+   }
+  },
+  "spark_spray_hit_ground": {
+   "file": "spark_spray_hit_ground_strip.png",
+   "kind": "ground",
+   "w": 27,
+   "h": 13,
+   "n": 6,
+   "rows": 1,
+   "piv": [
+    13,
+    6
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "floor light under the struck enemy (pivot = enemy feet)",
+   "total_ms": 240,
+   "shader": {
+    "material": "additive (One One) on the FLOOR sorting layer, below actors and decals-on-top",
+    "blend": "One One",
+    "sort": "floor layer, above floor decals, below every actor",
+    "curve": "baked per frame; loops: x(0.8-1.2) flicker",
+    "sigma": 1.6,
+    "gain": 0.7,
+    "tint": "4a78e8"
+   }
+  },
+  "spark_spray_fizzle": {
+   "file": "spark_spray_fizzle_strip.png",
+   "kind": "base",
+   "w": 22,
+   "h": 22,
+   "n": 6,
+   "rows": 1,
+   "piv": [
+    11,
+    11
+   ],
+   "glow_file": "spark_spray_fizzle_glow_strip.png",
+   "bake": [
+    1.5,
+    1.1
+   ],
+   "ms": 50,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "end of life without a hit",
+   "total_ms": 300,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "spark_spray_fizzle_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.45,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.8,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "spark_spray_fizzle_scorch": {
+   "file": "spark_spray_fizzle_scorch_strip.png",
+   "kind": "decal",
+   "w": 10,
+   "h": 5,
+   "n": 8,
+   "rows": 1,
+   "piv": [
+    4,
+    2
+   ],
+   "glow_file": null,
+   "bake": null,
+   "ms": 100,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "tiny scorch on the floor where a spark fizzled",
+   "total_ms": 800,
+   "shader": {
+    "material": "alpha-blend cutout on the FLOOR sorting layer (opaque dark pixels, dissolves by frame)",
+    "blend": "SrcAlpha OneMinusSrcAlpha (alpha clip)",
+    "sort": "floor layer, below the ground light and actors",
+    "curve": "frames as baked, hold the last frame 0 ms (strip ends empty-ish)"
+   }
+  },
+  "spark_spray_bounce": {
+   "file": "spark_spray_bounce_strip.png",
+   "kind": "base",
+   "w": 20,
+   "h": 17,
+   "n": 5,
+   "rows": 1,
+   "piv": [
+    11,
+    7
+   ],
+   "glow_file": "spark_spray_bounce_glow_strip.png",
+   "bake": [
+    1.6,
+    1.25
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "note": "wall-bounce flash at the contact point (wall face, spark height)",
+   "total_ms": 200,
+   "shader": {
+    "material": "alpha-blend cutout (alpha 0/255), point filter, unlit",
+    "blend": "SrcAlpha OneMinusSrcAlpha (or alpha clip 0.5)",
+    "sort": "y-sorted with actors: key = ground y + offset given per strip",
+    "curve": "frames as baked (no extra fade; fades are dissolves in the art)",
+    "glow": {
+     "file": "spark_spray_bounce_glow_strip.png",
+     "rule": {
+      "material": "additive (One One), unlit, mask alpha x tint x gain, two passes: inner (small blur, near-white) + outer (wide blur, blue)",
+      "blend": "One One",
+      "sort": "same sort key as its base strip + 1 (draws right after it)",
+      "curve": "frame-matched to the base; loops: x(0.85-1.15) per-frame flicker"
+     },
+     "inner": {
+      "sigma": 1.0,
+      "gain": 0.45,
+      "tint": "e8f0ff"
+     },
+     "outer": {
+      "sigma": 3.2,
+      "gain": 0.8,
+      "tint": "3f6fe0"
+     }
+    }
+   }
+  },
+  "spark_spray_bounce_flash": {
+   "file": "spark_spray_bounce_flash_strip.png",
+   "kind": "flash",
+   "w": 20,
+   "h": 20,
+   "n": 2,
+   "rows": 1,
+   "piv": [
+    10,
+    10
+   ],
+   "ms": 40,
+   "loop": "once",
+   "dirs": "omni",
+   "start": 0,
+   "note": "bounce bloom, starts with bounce frame 0",
+   "total_ms": 80,
+   "shader": {
+    "material": "additive (One One), unlit, drawn on the top FX layer above actors; optional full-screen add = mean(mask) x screen gain",
+    "blend": "One One",
+    "sort": "top FX layer (above actors and other FX)",
+    "curve": "baked per frame (impact frame first); screen flash 1 frame peak then 0",
+    "sigma": 2.4,
+    "gain": 0.95,
+    "tint": "c0cbdc",
+    "screen_gain": 0.1,
+    "screen_tint": "8b9bb4"
+   }
+  }
+ }
+}

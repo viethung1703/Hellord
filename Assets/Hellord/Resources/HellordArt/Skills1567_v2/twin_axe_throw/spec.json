@@ -1,0 +1,240 @@
+{
+ "strips": {
+  "twin_axe_throw_axe_spin": {
+   "w": 38,
+   "h": 38,
+   "n": 16,
+   "rows": 1,
+   "piv": [
+    19,
+    19
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "loop",
+   "dirs": "spin (flipX when thrown left)",
+   "layer": "projectile",
+   "glowset": [
+    0.3,
+    1.2,
+    "c0cbdc"
+   ]
+  },
+  "twin_axe_throw_spin_smear": {
+   "w": 42,
+   "h": 42,
+   "n": 16,
+   "rows": 1,
+   "piv": [
+    21,
+    21
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "loop",
+   "dirs": "spin (same index/flip as axe_spin)",
+   "layer": "projectile",
+   "glowset": [
+    0.25,
+    1.2,
+    "c0cbdc"
+   ]
+  },
+  "twin_axe_throw_trail_dir16": {
+   "w": 81,
+   "h": 83,
+   "n": 4,
+   "rows": 16,
+   "piv": [
+    42,
+    42
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 50,
+   "loop": "loop",
+   "dirs": "dir16 (travel direction)",
+   "layer": "projectile",
+   "glowset": [
+    0.35,
+    1.5,
+    "c0cbdc"
+   ]
+  },
+  "twin_axe_throw_shadow": {
+   "w": 22,
+   "h": 16,
+   "n": 2,
+   "rows": 1,
+   "piv": [
+    10,
+    8
+   ],
+   "glow_mask": false,
+   "kind": "sprite",
+   "ms": "static",
+   "loop": "pick",
+   "dirs": "none",
+   "layer": "decal"
+  },
+  "twin_axe_throw_hit_dir16": {
+   "w": 68,
+   "h": 68,
+   "n": 8,
+   "rows": 16,
+   "piv": [
+    34,
+    34
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "sparks",
+   "glowset": [
+    0.5,
+    1.3,
+    "fee761"
+   ]
+  },
+  "twin_axe_throw_catch_flash": {
+   "w": 34,
+   "h": 34,
+   "n": 7,
+   "rows": 1,
+   "piv": [
+    17,
+    13
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "none",
+   "layer": "flash",
+   "glowset": [
+    0.6,
+    1.6,
+    "fee761"
+   ]
+  },
+  "twin_axe_throw_ring_mask": {
+   "w": 54,
+   "h": 46,
+   "n": 6,
+   "rows": 1,
+   "piv": [
+    27,
+    23
+   ],
+   "glow_mask": false,
+   "kind": "mask",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "none",
+   "layer": "distortion"
+  }
+ },
+ "skill": "twin_axe_throw",
+ "version": "v2",
+ "status": "MOCKUP art, internal only - not wired into the game",
+ "units": {
+  "ppu": 16,
+  "fps": 30,
+  "ground_squash_y": 0.7
+ },
+ "motion": "D2-style scripted (no physics): axe flies out 6 px/f (180 px/s) to min(150 px, cursor), piercing; then returns to the hand easing 2 -> 7 px/f, piercing again; one axe at a time, hands alternate. The axe flies at hand height (hero feet - 12 px); its ground shadow stays on the floor under it.",
+ "direction": {
+  "axe_spin / spin_smear": "16-frame spin loop, index += 2 per game frame (45 deg/f); flipX when travelling left",
+  "trail_dir16": "row = screen velocity direction (row + 8 on the way back), 4-frame wobble loop at 50 ms",
+  "hit_dir16": "row = axe velocity at contact",
+  "placement": "axe_spin / spin_smear / trail pivots = axe centre; shadow under the axe at the ground point; hit at enemy body centre (feet - 12); catch_flash + ring_mask at the hand"
+ },
+ "visual_size": {
+  "axe": "about 22 px long (v1 17 px, x1.2 for readability at range)",
+  "trail": "one ribbon up to 36 px behind the axe, max 7.5 px wide at the axe, tapering to a dithered tail (v1: 4 parallel streak lines = the 'comb')",
+  "range": "unchanged: 150 px max",
+  "hitbox_note": "Visual only. HM sets the projectile hit radius (suggest 8 px around the axe centre)."
+ },
+ "layers": [
+  {
+   "strip": "twin_axe_throw_axe_spin",
+   "role": "base: the flying axe (steel blade with a blood band, wood haft, back spike so the spin reads)",
+   "material": "alpha-clip + additive glow (edge)",
+   "glow": {
+    "gain": 0.3,
+    "sigma_px": 1.2,
+    "tint": "#c0cbdc"
+   },
+   "sort": "Y-sorted at the axe's ground point (+1)"
+  },
+  {
+   "strip": "twin_axe_throw_spin_smear",
+   "role": "solid gradient band swept 210 deg behind the blade (bright at the blade, dithering out), same index / flip as axe_spin",
+   "material": "alpha-clip + additive glow",
+   "glow": {
+    "gain": 0.25,
+    "sigma_px": 1.2,
+    "tint": "#c0cbdc"
+   },
+   "sort": "just under the axe (key - 0.5)"
+  },
+  {
+   "strip": "twin_axe_throw_trail_dir16",
+   "role": "ONE continuous tapered ribbon (white-hot core -> steel -> dark edge) wobbling with the spin, 2 blood flecks; replaces the v1 comb of parallel streaks",
+   "material": "alpha-clip + additive glow (core)",
+   "glow": {
+    "gain": 0.35,
+    "sigma_px": 1.5,
+    "tint": "#c0cbdc"
+   },
+   "sort": "under the smear (key - 1)"
+  },
+  {
+   "strip": "twin_axe_throw_shadow",
+   "role": "ground shadow under the flying axe: ragged, dithered blob (frame 0 ~11x4, frame 1 ~9x3), not a clean disc",
+   "material": "alpha-clip decal (or 60 % multiply)",
+   "sort": "ground decal layer"
+  },
+  {
+   "strip": "twin_axe_throw_hit_dir16",
+   "role": "each pierce (out and back, once per enemy per pass): white star + 7 steel sparks + 5 blood flecks along the axe velocity",
+   "material": "alpha-clip + additive glow",
+   "glow": {
+    "gain": 0.5,
+    "sigma_px": 1.3,
+    "tint": "#fee761"
+   },
+   "sort": "+20"
+  },
+  {
+   "strip": "twin_axe_throw_catch_flash",
+   "role": "flash when the axe returns to the hand: white cross star + 8 steel shards flung out (no drawn ring); also usable at release",
+   "material": "alpha-clip + additive glow",
+   "glow": {
+    "gain": 0.6,
+    "sigma_px": 1.6,
+    "tint": "#fee761"
+   },
+   "sort": "top (+30)"
+  },
+  {
+   "strip": "twin_axe_throw_ring_mask",
+   "role": "optional distortion ring at the catch (and release) - a mask for the distortion pass only, never drawn",
+   "material": "screen-space distortion, uv offset = normalize(grad(blur(mask,1.5))) * mask * 2 art px",
+   "sort": "after all FX, before CRT"
+  }
+ ],
+ "glow_runtime": "glow_rgb = blur(glow_mask.a / 255, sigma) * tint * gain, additive (One One), same frame (+row) as its sprite",
+ "timeline_frames_30fps": {
+  "-6..-1": "hero throw wind-up (t1517 melee strip poses 0-2)",
+  "0": "release at the hand (+ optional catch_flash f2-6 small + ring_mask); axe_spin index 0, trail starts",
+  "1..n": "out at 6 px/f; hit_dir16 on each enemy crossed",
+  "turn": "at max range the axe hangs 2 f (spin continues), trail row flips",
+  "back": "returns easing 2 -> 7 px/f; hits again",
+  "catch": "catch_flash f0-6 + ring_mask f0-5 at the hand; hide the axe; next throw uses the other hand"
+ }
+}

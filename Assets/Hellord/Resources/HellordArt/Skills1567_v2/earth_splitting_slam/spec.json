@@ -1,0 +1,480 @@
+{
+ "strips": {
+  "earth_splitting_slam_decal_dir16": {
+   "w": 238,
+   "h": 170,
+   "n": 24,
+   "rows": 16,
+   "piv": [
+    119,
+    85
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "decal",
+   "glowset": [
+    0.55,
+    1.6,
+    "f77622"
+   ]
+  },
+  "earth_splitting_slam_decal_stages_dir16": {
+   "w": 238,
+   "h": 170,
+   "n": 6,
+   "rows": 16,
+   "piv": [
+    119,
+    85
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": "code-stepped",
+   "loop": "stages",
+   "dirs": "dir16",
+   "layer": "decal",
+   "glowset": [
+    0.45,
+    1.6,
+    "f77622"
+   ]
+  },
+  "earth_splitting_slam_rocks_dir16": {
+   "w": 248,
+   "h": 201,
+   "n": 28,
+   "rows": 16,
+   "piv": [
+    122,
+    110
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "base",
+   "glowset": [
+    0.35,
+    1.3,
+    "f77622"
+   ]
+  },
+  "earth_splitting_slam_dust_dir16": {
+   "w": 265,
+   "h": 191,
+   "n": 30,
+   "rows": 16,
+   "piv": [
+    132,
+    106
+   ],
+   "glow_mask": false,
+   "kind": "sprite",
+   "ms": 50,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "smoke"
+  },
+  "earth_splitting_slam_sparks_dir16": {
+   "w": 242,
+   "h": 187,
+   "n": 18,
+   "rows": 16,
+   "piv": [
+    121,
+    100
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "sparks",
+   "glowset": [
+    0.5,
+    1.2,
+    "feae34"
+   ]
+  },
+  "earth_splitting_slam_flash": {
+   "w": 67,
+   "h": 55,
+   "n": 6,
+   "rows": 1,
+   "piv": [
+    33,
+    29
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "none",
+   "layer": "flash",
+   "glowset": [
+    0.85,
+    2.4,
+    "fee761"
+   ]
+  },
+  "earth_splitting_slam_shock_mask_dir16": {
+   "w": 248,
+   "h": 178,
+   "n": 14,
+   "rows": 16,
+   "piv": [
+    124,
+    89
+   ],
+   "glow_mask": false,
+   "kind": "mask",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "distortion"
+  },
+  "earth_splitting_slam_rocks_v2b_dir16": {
+   "w": 244,
+   "h": 197,
+   "n": 28,
+   "rows": 16,
+   "piv": [
+    122,
+    110
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "base",
+   "glowset": [
+    0.35,
+    1.3,
+    "f77622"
+   ]
+  },
+  "earth_splitting_slam_debris_v2b_dir16": {
+   "w": 255,
+   "h": 197,
+   "n": 28,
+   "rows": 16,
+   "piv": [
+    127,
+    112
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "base",
+   "glowset": [
+    0.4,
+    1.0,
+    "f77622"
+   ]
+  },
+  "earth_splitting_slam_debris_shadow_v2b_dir16": {
+   "w": 255,
+   "h": 181,
+   "n": 28,
+   "rows": 16,
+   "piv": [
+    127,
+    90
+   ],
+   "glow_mask": false,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "decal"
+  },
+  "earth_splitting_slam_dust_v2b_dir16": {
+   "w": 260,
+   "h": 195,
+   "n": 30,
+   "rows": 16,
+   "piv": [
+    131,
+    103
+   ],
+   "glow_mask": false,
+   "kind": "sprite",
+   "ms": 50,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "smoke"
+  },
+  "earth_splitting_slam_debris_v2c_dir16": {
+   "w": 225,
+   "h": 166,
+   "n": 28,
+   "rows": 16,
+   "piv": [
+    112,
+    85
+   ],
+   "glow_mask": true,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "base",
+   "glowset": [
+    0.4,
+    1.0,
+    "f77622"
+   ]
+  },
+  "earth_splitting_slam_debris_shadow_v2c_dir16": {
+   "w": 227,
+   "h": 161,
+   "n": 28,
+   "rows": 16,
+   "piv": [
+    113,
+    80
+   ],
+   "glow_mask": false,
+   "kind": "sprite",
+   "ms": 33,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "decal"
+  },
+  "earth_splitting_slam_dust_v2c_dir16": {
+   "w": 220,
+   "h": 160,
+   "n": 30,
+   "rows": 16,
+   "piv": [
+    110,
+    81
+   ],
+   "glow_mask": false,
+   "kind": "sprite",
+   "ms": 50,
+   "loop": "once",
+   "dirs": "dir16",
+   "layer": "smoke"
+  }
+ },
+ "skill": "earth_splitting_slam",
+ "version": "v2 (forward slam)",
+ "status": "MOCKUP art, internal only - not wired into the game",
+ "units": {
+  "ppu": 16,
+  "fps": 30,
+  "ground_squash_y": 0.7,
+  "note": "all px are art px; lengths along the ground are in ground px (screen y = ground y * 0.7)"
+ },
+ "direction": {
+  "mode": "dir16",
+  "row_angle_deg": "22.5 * row, row 0 = east (+x), clockwise on screen (row 4 = straight down)",
+  "pick_row": "row = round(atan2(aim_screen_y, aim_screen_x) / 22.5deg) mod 16, aim from the hero to the cursor/target in screen space",
+  "placement": "spawn every dir16 strip at P = hero_feet + aim_unit_screen * 9 px (the axe bite); the flash is non-directional at the same P",
+  "why_dir16_not_segments": "one baked fissure keeps a single continuous crack, branch and rubble shape with exact propagation timing and no seams/overlaps; segments would tile visibly at 16x24 px. Cost: ~1.6 MB of PNG for 16 rows."
+ },
+ "visual_size": {
+  "fissure_length_px": 112,
+  "fissure_length_u": 7.0,
+  "rubble_band_width_px": "27 median / 30 max across the aim (ground px) = 1.7-1.9 u",
+  "hot_crack_core_width_px": "11 median, side branches to 24",
+  "crater_radius_px": 8.5,
+  "dust_extent": "to 114 px ahead, 31 px wide, rises ~18 px",
+  "front_speed": "10 px/frame (300 px/s, 18.75 u/s): reaches the full 112 px ~10.4 f (0.35 s) after impact",
+  "v1_for_comparison": "v1 was a circle round the hero: crack radius ~21-32 px, rock eruption radius ~16 px (reach 1-2 u). v2 reach 7 u (3.5x the v1 crack radius, 7x the eruption radius); eruption area ~2800 px^2 vs ~800 px^2 (3.5x)",
+  "hitbox_note": "Visual sizes only. The matching hitbox (suggest a 112 x 28 px oriented box starting at P, damage sweeping with the front at 10 px/f, plus a r=10 px circle at P on impact) is HM's to set in gameplay code."
+ },
+ "layers": [
+  {
+   "strip": "earth_splitting_slam_flash",
+   "role": "impact flash: white-hot burst at the axe bite (frames 0-1 are the hit-stop frames)",
+   "material": "alpha-clipped sprite + additive glow",
+   "glow": {
+    "strip": "earth_splitting_slam_flash_glow",
+    "gain": 0.85,
+    "sigma_px": 2.4,
+    "tint": "#fee761"
+   },
+   "intensity_curve": "baked in frames: solid white-yellow burst f0-1, dithered and shrinking f2-3, ember ring only f4-5",
+   "sort": "top: sortingOrder +30 above actors",
+   "hit_stop": "hold frame 1 for 3 extra frames (100 ms) together with the hero and enemies"
+  },
+  {
+   "strip": "earth_splitting_slam_decal_dir16",
+   "role": "ground decal: crater + glowing crack that tears forward with the front, then cools from white/yellow to dark red",
+   "material": "alpha-clipped decal (ground layer, never Y-sorted) + additive glow",
+   "glow": {
+    "strip": "earth_splitting_slam_decal_dir16_glow",
+    "gain": 0.55,
+    "sigma_px": 1.6,
+    "tint": "#f77622"
+   },
+   "intensity_curve": "baked: each crack pixel is brightest when the front passes, decays over ~22 f; multiply by 1.0 (first sweep) / 0.8 (aftershock)",
+   "sort": "ground decal layer, below every actor (sortingOrder -100)"
+  },
+  {
+   "strip": "earth_splitting_slam_decal_stages_dir16",
+   "role": "long-lived crack states stepped by code: 0 = cooling crack hold, 1/2 = aftershock tell (alternate every 3 f), 3 = spent / lingering cracked ground, 4/5 = fade",
+   "material": "alpha-clipped decal + additive glow",
+   "glow": {
+    "strip": "earth_splitting_slam_decal_stages_dir16_glow",
+    "gain": 0.45,
+    "sigma_px": 1.6,
+    "tint": "#f77622"
+   },
+   "intensity_curve": "constant per stage (stage 1 pulses by alternating with 2)",
+   "sort": "ground decal layer (sortingOrder -100), replaces decal_dir16 after its 24 frames"
+  },
+  {
+   "strip": "earth_splitting_slam_rocks_dir16",
+   "role": "base: heaved rock slabs erupting along the crack behind the front, chunk debris, terminal heave at the tip, then settling",
+   "material": "alpha-clipped sprite + additive glow (hot undersides)",
+   "glow": {
+    "strip": "earth_splitting_slam_rocks_dir16_glow",
+    "gain": 0.35,
+    "sigma_px": 1.3,
+    "tint": "#f77622"
+   },
+   "intensity_curve": "baked; x0.8 on the aftershock replay",
+   "sort": "Y-sorted with actors; sort key = P.y + 40 px for rows 2-6 (fissure runs toward the camera), = P.y otherwise. Known limit: a single 112 px sprite can't Y-sort perfectly against an enemy standing inside it"
+  },
+  {
+   "strip": "earth_splitting_slam_dust_dir16",
+   "role": "smoke/dust: brown dust billowing up along the fissure, drifting and thinning",
+   "material": "alpha-clipped sprite (dithered), no glow",
+   "intensity_curve": "baked (coverage falls from ~70% to 0 over 1.5 s)",
+   "sort": "above actors, sortingOrder +10",
+   "ms": 50
+  },
+  {
+   "strip": "earth_splitting_slam_sparks_dir16",
+   "role": "sparks/embers + small grit flying off the front and the crater",
+   "material": "alpha-clipped sprite + additive glow",
+   "glow": {
+    "strip": "earth_splitting_slam_sparks_dir16_glow",
+    "gain": 0.5,
+    "sigma_px": 1.2,
+    "tint": "#feae34"
+   },
+   "intensity_curve": "baked; x0.8 on the aftershock",
+   "sort": "above dust, sortingOrder +20"
+  },
+  {
+   "strip": "earth_splitting_slam_shock_mask_dir16",
+   "role": "optional distortion: origin ring + bow wave riding the crack front",
+   "material": "screen-space distortion (grab pass / post): mask alpha = strength 0..1",
+   "intensity_curve": "baked: origin ring 1.0 -> 0 over 5 f, front wave 0.9 fading to 0 by f16",
+   "drive": "uv offset = normalize(grad(blur(mask, 1.5 px))) * mask * 2.5 art px; skip on low settings",
+   "sort": "applied after all FX layers, before the CRT pass"
+  }
+ ],
+ "glow_runtime": "glow_rgb = blur(glow_mask.a / 255, sigma_px) * tint * gain, added (One One) over the composited frame; same frame index and row as its sprite strip",
+ "timeline_frames_30fps": {
+  "-6..-1": "hero wind-up (hero melee anim; impact on its pose 3)",
+  "0": "IMPACT: flash f0, decal f0, rocks f0, sparks f0, shock f0, dust f0 (dust runs at 50 ms/frame); suggest camera shake 2 px, 6 f decay",
+  "1 (+3 hold)": "hit-stop: everything holds frame 1 for 3 extra frames (100 ms), then continues; frames below are after the hold",
+  "0..10": "front tears forward 10 px/f from 8 px to 112 px; rocks heave behind it, tip heave at ~f11",
+  "0..23": "decal_dir16 plays (crack cools); then decal_stages stage 0 holds",
+  "21..29": "aftershock tell: stages 1/2 alternate every 3 f",
+  "30": "AFTERSHOCK (optional): replay rocks, sparks, shock and dust at glow x0.8, decal_dir16 f12-23",
+  "54..113": "stage 3 lingering cracked ground (60 f; length is design-driven)",
+  "114..143": "stages 4 then 5 (15 f each), then remove (~4.8 s total)",
+  "no_aftershock_variant": "skip 21-53: after decal_dir16 f23 go stage 0 -> 3 -> 4 -> 5"
+ },
+ "reference_timing": "measured from the PoE 2 official Volcanic Fissure / Sunder / Earthshatter tutorial clips; see ../research/earth_splitting_slam_references.md (internal only)",
+ "v2b": {
+  "what": "v2b replaces ONLY the dirt/dust/debris. Use the v2b set = v2 decal_dir16, decal_stages_dir16, sparks_dir16, flash, shock_mask_dir16 (unchanged, byte-identical) + rocks_v2b_dir16 + debris_v2b_dir16 + debris_shadow_v2b_dir16 + dust_v2b_dir16. Do NOT also play v2 rocks_dir16 / dust_dir16.",
+  "generator": "_gen_v2/gen_slam_v2b.py (imports the v2 geometry from gen_slam.py; writes only *_v2b_* files and merges spec.json)",
+  "layers": [
+   {
+    "strip": "earth_splitting_slam_rocks_v2b_dir16",
+    "role": "base: the same heaved slabs as v2 rocks_dir16 (identical plate code), with the old baked debris pixels removed",
+    "material": "alpha-clip + additive glow",
+    "glow": {
+     "strip": "earth_splitting_slam_rocks_v2b_dir16_glow",
+     "gain": 0.35,
+     "sigma_px": 1.3,
+     "tint": "#f77622"
+    },
+    "intensity_curve": "baked; x0.8 on the aftershock",
+    "sort": "Y-sorted with actors, key = P.y + 40 for rows 2-6, else P.y (as v2 rocks)",
+    "timing": "28 f x 33 ms, starts at impact (and again at the aftershock)"
+   },
+   {
+    "strip": "earth_splitting_slam_debris_v2b_dir16",
+    "role": "debris: 66 tumbling rock chunks (1, 1.6, 2.3-2.8, 3-3.6 px) - 40 thrown sideways out of the crack as the front passes, 16 from the terminal heave, 10 from the axe bite. Lit top-left facets (#e4a672/#ead4aa), mid #b86f50, dark underside #733e39 + #181425 underside outline; facets rotate with the tumble. Ballistic arc (gravity .42 px/f^2), bounce 1 at 36 % and bounce 2 at 30 % of the fall speed with 55 % ground drag, settle, sink and vanish f20-27 (staggered). Fresh chunks (< 4 f) keep a glowing #f77622 underside",
+    "material": "alpha-clip + additive glow (hot undersides only)",
+    "glow": {
+     "strip": "earth_splitting_slam_debris_v2b_dir16_glow",
+     "gain": 0.4,
+     "sigma_px": 1.0,
+     "tint": "#f77622"
+    },
+    "intensity_curve": "baked; x0.8 on the aftershock",
+    "sort": "same sort key as rocks_v2b + 0.01 (draws right after the slabs)",
+    "timing": "28 f x 33 ms, same index as rocks_v2b"
+   },
+   {
+    "strip": "earth_splitting_slam_debris_shadow_v2b_dir16",
+    "role": "ground shadow under every chunk (#262b44 ellipse at the chunk's ground point, shrinks with height, offset +0.6 px down-right)",
+    "material": "alpha-clip decal (could be drawn at ~60 % multiply if HM prefers soft shadows)",
+    "intensity_curve": "none",
+    "sort": "ground decal layer, right after the crack decal, below actors",
+    "timing": "28 f x 33 ms, same index as debris_v2b"
+   },
+   {
+    "strip": "earth_splitting_slam_dust_v2b_dir16",
+    "role": "dust: 23 clouds - 17 rolling along the line, kicked up 2.5-4 f behind the crack front (irregular sides and sizes), 3 in the terminal plume and 3 in the axe-bite puff. Each cloud = 5-7 sphere lumps in one shared depth buffer, lit from the top-left: #e4a672 rim (young clouds) / #c28569 lit / #b86f50 mid / #733e39 shade / #3e2731 underside + creases where a lump tucks under its up-left neighbour. Clouds expand (ease-out), drift outward, rise and roll (lumps orbit the cloud centre), then break up from 36 % of life: low-frequency clump field + 4x4 ordered dither, rims first, lone pixels removed (no speckle)",
+    "material": "alpha-clip sprite, no glow",
+    "intensity_curve": "baked (coverage; fully gone by frame 27)",
+    "sort": "smoke layer above actors (+10), as v2 dust",
+    "timing": "30 f x 50 ms = 1.5 s, index = floor(t_ms / 50) from impact (and again at the aftershock)"
+   }
+  ],
+  "reference": "PoE 2 official tutorials Sunder (low dark dust bank rolling along the band, breaking up by ~1.5 s) and Earthshatter (rock chunks thrown up, falling back, plume) - see ../research/earth_splitting_slam_references.md (v2b section)"
+ },
+ "v2c": {
+  "what": "CURRENT SET. v2c = v2 decal_dir16, decal_stages_dir16, sparks_dir16, flash, shock_mask_dir16 (byte-identical to v2) + rocks_v2b_dir16 (unchanged) + debris_v2c_dir16 + debris_shadow_v2c_dir16 + dust_v2c_dir16. Do not also play v2 rocks/dust or the v2b debris/dust.",
+  "generator": "_gen_v2/gen_slam_v2c.py (same renderers and shading as v2b, smaller particle tables; writes only *_v2c_* files and merges spec.json)",
+  "layers": [
+   {
+    "strip": "earth_splitting_slam_debris_v2c_dir16",
+    "role": "debris accent only: 12 chunks (8 x 1 px, 2 x 1.6 px, 2 x 2.3 px) - 10 tossed a little to the side as the crack front passes, 2 off the axe bite. Short low arcs (vz 1.3-2.0 px/f, gravity .42, peak ~2-5 px), ONE small bounce (25 % rebound, 45 % drag), settle, vanish f15-22. Same lit-top / dark-underside tumbling chunk shading as v2b; fresh chunks keep a glowing underside",
+    "material": "alpha-clip + additive glow (hot undersides only)",
+    "glow": {
+     "strip": "earth_splitting_slam_debris_v2c_dir16_glow",
+     "gain": 0.4,
+     "sigma_px": 1.0,
+     "tint": "#f77622"
+    },
+    "intensity_curve": "baked; x0.8 on the aftershock",
+    "sort": "rocks_v2b sort key + 0.01",
+    "timing": "28 f x 33 ms, same index as rocks_v2b"
+   },
+   {
+    "strip": "earth_splitting_slam_debris_shadow_v2c_dir16",
+    "role": "ground shadow per chunk (#262b44), shrinks with height",
+    "material": "alpha-clip decal",
+    "intensity_curve": "none",
+    "sort": "ground decal layer after the crack decal, below actors",
+    "timing": "28 f x 33 ms, same index as debris_v2c"
+   },
+   {
+    "strip": "earth_splitting_slam_dust_v2c_dir16",
+    "role": "dust accent only: 6 small puffs along the crack (radius 1.5 -> 3.6-4.8 px, rise 2.5-3.5 px) where the bigger slabs heave, + 1 small puff at the axe bite; no tip plume. Same banded lumpy-sphere shading (#c28569 / #b86f50 / #733e39 / #3e2731, #e4a672 rim while young) and clump + ordered-dither break-up from 36 % of life, no lone pixels",
+    "material": "alpha-clip sprite, no glow",
+    "intensity_curve": "baked (each puff lives 22-26 f, all gone by ~1.2 s)",
+    "sort": "smoke layer above actors (+10)",
+    "timing": "30 f x 50 ms, index = floor(t_ms / 50) from impact (and again at the aftershock)"
+   }
+  ]
+ }
+}
