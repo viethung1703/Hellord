@@ -53,8 +53,6 @@ namespace Hellord
             // t1576 Earth-Splitting Slam v2 (VH approved, HFX skills_t1567_v2; "/..." = path under HellordArt, outside pbArtRoot1567). spec.json overrides these.
             new object[] { "xs2_decal",  "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_decal_dir16", 238, 170, 24, 16, 119, 85, 33f, 0.55f, PbOr },
             new object[] { "xs2_stages", "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_decal_stages_dir16", 238, 170, 6, 16, 119, 85, 1000f, 0.45f, PbOr },
-            new object[] { "xs2_rocks",  "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_rocks_dir16", 248, 201, 28, 16, 122, 110, 33f, 0.35f, PbOr },
-            new object[] { "xs2_dust",   "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_dust_dir16", 265, 191, 30, 16, 132, 106, 50f, 0f, PbSt },
             new object[] { "xs2_sparks", "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_sparks_dir16", 242, 187, 18, 16, 121, 100, 33f, 0.50f, PbAm },
             new object[] { "xs2_flash",  "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_flash", 67, 55, 6, 1, 33, 29, 33f, 0.85f, PbYl },
             // t1578 / t1579 HFX Leizu v2 (NOT approved; folder root via pbArtFolderRoot1567). Same-name v1 keys (ss_trail/hit/fizzle, tj_flight/impact/bolthit/fork*) pick v2 up from the folder root.
@@ -94,11 +92,8 @@ namespace Hellord
             new object[] { "tj2_chainhitflash", "thunder_javelin/thunder_javelin_chain_hit_flash", 24, 25, 2, 1, 11, 12, 40f, 0f, PbSt },
             new object[] { "tj2_chainhitground", "thunder_javelin/thunder_javelin_chain_hit_ground", 30, 13, 6, 1, 15, 6, 40f, 0f, PbSt },
             new object[] { "tj2_boltflash", "thunder_javelin/thunder_javelin_bolt_hit_flash", 25, 26, 2, 1, 13, 13, 40f, 0f, PbSt },
-            // t1578 slam v2b (HFX dirt redo, VH reviewing): replaces v2 rocks + dust when slamV2b1567
+            // t1578 slam rocks_v2b (used by the v2c dirt set; t1591: rejected v2 / v2b dirt strips deleted)
             new object[] { "xs2b_rocks",  "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_rocks_v2b_dir16", 244, 197, 28, 16, 122, 110, 33f, 0.35f, PbOr },
-            new object[] { "xs2b_debris", "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_debris_v2b_dir16", 255, 197, 28, 16, 127, 112, 33f, 0.40f, PbOr },
-            new object[] { "xs2b_dshadow","/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_debris_shadow_v2b_dir16", 255, 181, 28, 16, 127, 90, 33f, 0f, PbSt },
-            new object[] { "xs2b_dust",   "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_dust_v2b_dir16", 260, 195, 30, 16, 131, 103, 50f, 0f, PbSt },
             // t1578 slam v2c (VH: v2b dirt too much; v2c = rocks_v2b + these three)
             new object[] { "xs2c_debris", "/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_debris_v2c_dir16", 225, 166, 28, 16, 112, 85, 33f, 0.40f, PbOr },
             new object[] { "xs2c_dshadow","/Skills1567_v2/earth_splitting_slam/earth_splitting_slam_debris_shadow_v2c_dir16", 227, 161, 28, 16, 113, 80, 33f, 0f, PbSt },

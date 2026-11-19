@@ -42,43 +42,6 @@
     "f77622"
    ]
   },
-  "earth_splitting_slam_rocks_dir16": {
-   "w": 248,
-   "h": 201,
-   "n": 28,
-   "rows": 16,
-   "piv": [
-    122,
-    110
-   ],
-   "glow_mask": true,
-   "kind": "sprite",
-   "ms": 33,
-   "loop": "once",
-   "dirs": "dir16",
-   "layer": "base",
-   "glowset": [
-    0.35,
-    1.3,
-    "f77622"
-   ]
-  },
-  "earth_splitting_slam_dust_dir16": {
-   "w": 265,
-   "h": 191,
-   "n": 30,
-   "rows": 16,
-   "piv": [
-    132,
-    106
-   ],
-   "glow_mask": false,
-   "kind": "sprite",
-   "ms": 50,
-   "loop": "once",
-   "dirs": "dir16",
-   "layer": "smoke"
-  },
   "earth_splitting_slam_sparks_dir16": {
    "w": 242,
    "h": 187,
@@ -157,59 +120,6 @@
     1.3,
     "f77622"
    ]
-  },
-  "earth_splitting_slam_debris_v2b_dir16": {
-   "w": 255,
-   "h": 197,
-   "n": 28,
-   "rows": 16,
-   "piv": [
-    127,
-    112
-   ],
-   "glow_mask": true,
-   "kind": "sprite",
-   "ms": 33,
-   "loop": "once",
-   "dirs": "dir16",
-   "layer": "base",
-   "glowset": [
-    0.4,
-    1.0,
-    "f77622"
-   ]
-  },
-  "earth_splitting_slam_debris_shadow_v2b_dir16": {
-   "w": 255,
-   "h": 181,
-   "n": 28,
-   "rows": 16,
-   "piv": [
-    127,
-    90
-   ],
-   "glow_mask": false,
-   "kind": "sprite",
-   "ms": 33,
-   "loop": "once",
-   "dirs": "dir16",
-   "layer": "decal"
-  },
-  "earth_splitting_slam_dust_v2b_dir16": {
-   "w": 260,
-   "h": 195,
-   "n": 30,
-   "rows": 16,
-   "piv": [
-    131,
-    103
-   ],
-   "glow_mask": false,
-   "kind": "sprite",
-   "ms": 50,
-   "loop": "once",
-   "dirs": "dir16",
-   "layer": "smoke"
   },
   "earth_splitting_slam_debris_v2c_dir16": {
    "w": 225,
@@ -334,27 +244,6 @@
    "sort": "ground decal layer (sortingOrder -100), replaces decal_dir16 after its 24 frames"
   },
   {
-   "strip": "earth_splitting_slam_rocks_dir16",
-   "role": "base: heaved rock slabs erupting along the crack behind the front, chunk debris, terminal heave at the tip, then settling",
-   "material": "alpha-clipped sprite + additive glow (hot undersides)",
-   "glow": {
-    "strip": "earth_splitting_slam_rocks_dir16_glow",
-    "gain": 0.35,
-    "sigma_px": 1.3,
-    "tint": "#f77622"
-   },
-   "intensity_curve": "baked; x0.8 on the aftershock replay",
-   "sort": "Y-sorted with actors; sort key = P.y + 40 px for rows 2-6 (fissure runs toward the camera), = P.y otherwise. Known limit: a single 112 px sprite can't Y-sort perfectly against an enemy standing inside it"
-  },
-  {
-   "strip": "earth_splitting_slam_dust_dir16",
-   "role": "smoke/dust: brown dust billowing up along the fissure, drifting and thinning",
-   "material": "alpha-clipped sprite (dithered), no glow",
-   "intensity_curve": "baked (coverage falls from ~70% to 0 over 1.5 s)",
-   "sort": "above actors, sortingOrder +10",
-   "ms": 50
-  },
-  {
    "strip": "earth_splitting_slam_sparks_dir16",
    "role": "sparks/embers + small grit flying off the front and the crater",
    "material": "alpha-clipped sprite + additive glow",
@@ -407,36 +296,6 @@
     "intensity_curve": "baked; x0.8 on the aftershock",
     "sort": "Y-sorted with actors, key = P.y + 40 for rows 2-6, else P.y (as v2 rocks)",
     "timing": "28 f x 33 ms, starts at impact (and again at the aftershock)"
-   },
-   {
-    "strip": "earth_splitting_slam_debris_v2b_dir16",
-    "role": "debris: 66 tumbling rock chunks (1, 1.6, 2.3-2.8, 3-3.6 px) - 40 thrown sideways out of the crack as the front passes, 16 from the terminal heave, 10 from the axe bite. Lit top-left facets (#e4a672/#ead4aa), mid #b86f50, dark underside #733e39 + #181425 underside outline; facets rotate with the tumble. Ballistic arc (gravity .42 px/f^2), bounce 1 at 36 % and bounce 2 at 30 % of the fall speed with 55 % ground drag, settle, sink and vanish f20-27 (staggered). Fresh chunks (< 4 f) keep a glowing #f77622 underside",
-    "material": "alpha-clip + additive glow (hot undersides only)",
-    "glow": {
-     "strip": "earth_splitting_slam_debris_v2b_dir16_glow",
-     "gain": 0.4,
-     "sigma_px": 1.0,
-     "tint": "#f77622"
-    },
-    "intensity_curve": "baked; x0.8 on the aftershock",
-    "sort": "same sort key as rocks_v2b + 0.01 (draws right after the slabs)",
-    "timing": "28 f x 33 ms, same index as rocks_v2b"
-   },
-   {
-    "strip": "earth_splitting_slam_debris_shadow_v2b_dir16",
-    "role": "ground shadow under every chunk (#262b44 ellipse at the chunk's ground point, shrinks with height, offset +0.6 px down-right)",
-    "material": "alpha-clip decal (could be drawn at ~60 % multiply if HM prefers soft shadows)",
-    "intensity_curve": "none",
-    "sort": "ground decal layer, right after the crack decal, below actors",
-    "timing": "28 f x 33 ms, same index as debris_v2b"
-   },
-   {
-    "strip": "earth_splitting_slam_dust_v2b_dir16",
-    "role": "dust: 23 clouds - 17 rolling along the line, kicked up 2.5-4 f behind the crack front (irregular sides and sizes), 3 in the terminal plume and 3 in the axe-bite puff. Each cloud = 5-7 sphere lumps in one shared depth buffer, lit from the top-left: #e4a672 rim (young clouds) / #c28569 lit / #b86f50 mid / #733e39 shade / #3e2731 underside + creases where a lump tucks under its up-left neighbour. Clouds expand (ease-out), drift outward, rise and roll (lumps orbit the cloud centre), then break up from 36 % of life: low-frequency clump field + 4x4 ordered dither, rims first, lone pixels removed (no speckle)",
-    "material": "alpha-clip sprite, no glow",
-    "intensity_curve": "baked (coverage; fully gone by frame 27)",
-    "sort": "smoke layer above actors (+10), as v2 dust",
-    "timing": "30 f x 50 ms = 1.5 s, index = floor(t_ms / 50) from impact (and again at the aftershock)"
    }
   ],
   "reference": "PoE 2 official tutorials Sunder (low dark dust bank rolling along the band, breaking up by ~1.5 s) and Earthshatter (rock chunks thrown up, falling back, plume) - see ../research/earth_splitting_slam_references.md (v2b section)"

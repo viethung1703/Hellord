@@ -213,7 +213,7 @@ namespace Hellord
     public partial class HellordGame
     {
         Material _pbShockMat1567; public int SlamHitStops1567, SlamV2Casts1567, SlamV2ImpactHits1567; public bool SlamV2Last1567; public float SlamV2L1567, SlamV2W1567;
-        bool SlamV2On1567 { get { var T = HellordTuning.I; return T.slamV2Art1567 && PbA1567(PbEv1567("slam.v2.decal", "xs2_decal")) != null && (T.slamV2b1567 ? PbA1567(PbEv1567("slam.v2b.rocks", "xs2b_rocks")) : PbA1567(PbEv1567("slam.v2.rocks", "xs2_rocks"))) != null; } } // t1584: only the rocks strip that plays is loaded
+        bool SlamV2On1567 { get { var T = HellordTuning.I; return T.slamV2Art1567 && PbA1567(PbEv1567("slam.v2.decal", "xs2_decal")) != null && PbA1567(PbEv1567("slam.v2b.rocks", "xs2b_rocks")) != null; } } // t1591: rocks_v2b only (v2 rocks deleted)
         static Vector2 PbRowDir1567(int row) { float a = row * 22.5f * Mathf.Deg2Rad; return new Vector2(Mathf.Cos(a), -Mathf.Sin(a)); } // row 0 = east, clockwise on screen
         /// <summary>screen length of 1 ground px along screen direction d (art ground squash: screen y = ground y x sq)</summary>
         static float PbSq1567(Vector2 d, float sq) { if (sq <= 0f || sq >= 1f) return 1f; return 1f / Mathf.Sqrt(d.x * d.x + (d.y / sq) * (d.y / sq)); }
@@ -286,19 +286,12 @@ namespace Hellord
             for (int pass = 0; pass < (after ? 2 : 1); pass++)
             {
                 float lt = pass == 0 ? t : t - aS; if (lt < 0f) continue; _pbGlowMul1567 = pass == 0 ? 1f : T.slamV2AfterGlow1567;
-                if (T.slamV2b1567)
-                {   // t1578 rocks_v2b (Y-sorted, glow) -> debris just after (rocks key + 2, glow) -> debris shadow on the ground (after the decal, under actors) -> dust smoke +10
-                    // particle set slamV2DirtSet1567: "v2c" (default, VH reviewing) or "v2b" (VH: too much)
-                    bool c = T.slamV2DirtSet1567 != "v2b";
+                {   // t1578 rocks_v2b (Y-sorted, glow) -> v2c debris just after (rocks key + 2, glow) -> v2c debris shadow on the ground (after the decal, under actors) -> v2c dust smoke +10
+                    // t1591: the rejected v2 rocks / dust and v2b debris / dust strips are deleted; always the v2c dirt set
                     SlamV2Rocks1567(f, lt, row, P, PbEv1567("slam.v2b.rocks", "xs2b_rocks"), 0);
-                    SlamV2Rocks1567(f, lt, row, P, c ? PbEv1567("slam.v2c.debris", "xs2c_debris") : PbEv1567("slam.v2b.debris", "xs2b_debris"), 2);
-                    if (T.slamV2bShadow1567) PbArtPut1567(c ? PbEv1567("slam.v2c.shadow", "xs2c_dshadow") : PbEv1567("slam.v2b.shadow", "xs2b_dshadow"), row, lt, false, P, gO + 5);
-                    if (T.slamV2bDust1567) PbArtPut1567(c ? PbEv1567("slam.v2c.dust", "xs2c_dust") : PbEv1567("slam.v2b.dust", "xs2b_dust"), row, lt, false, P, top + 10);
-                }
-                else
-                {   // v2 (VH: dust looked fake) - kept behind slamV2b1567 = false
-                    SlamV2Rocks1567(f, lt, row, P, PbEv1567("slam.v2.rocks", "xs2_rocks"), 0);
-                    if (T.slamV2Dust1567) PbArtPut1567(PbEv1567("slam.v2.dust", "xs2_dust"), row, lt, false, P, top + 10);
+                    SlamV2Rocks1567(f, lt, row, P, PbEv1567("slam.v2c.debris", "xs2c_debris"), 2);
+                    if (T.slamV2bShadow1567) PbArtPut1567(PbEv1567("slam.v2c.shadow", "xs2c_dshadow"), row, lt, false, P, gO + 5);
+                    if (T.slamV2bDust1567) PbArtPut1567(PbEv1567("slam.v2c.dust", "xs2c_dust"), row, lt, false, P, top + 10);
                 }
                 PbArtPut1567(PbEv1567("slam.v2.sparks", "xs2_sparks"), row, lt, false, P, top + 20);
                 if (pass == 0) PbArtPut1567(PbEv1567("slam.v2.flash", "xs2_flash"), 0, lt, false, P, top + 30);
