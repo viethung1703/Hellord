@@ -22,6 +22,7 @@ namespace Hellord
             new object[] { "bl_orb",    "ball_lightning/ball_lightning_orb_loop", 32, 31, 12, 1, 15, 15, 50f, 0.60f, PbCy },
             new object[] { "bl_fade",   "ball_lightning/ball_lightning_fade", 36, 36, 8, 1, 17, 17, 50f, 0.55f, PbCy },
             new object[] { "bl_shadow", "ball_lightning/ball_lightning_shadow", 9, 5, 1, 1, 4, 2, 1000f, 0f, PbCy },
+            new object[] { "bl_shadow1597", "/Skills1567/ball_lightning/ball_lightning_shadow", 9, 5, 1, 1, 4, 2, 1000f, 0f, PbCy }, // t1597: the v1 dark orb shadow, always from Skills1567 (v2 folder has none)
             new object[] { "bl_zaphit", "ball_lightning/ball_lightning_zap_hit", 33, 29, 6, 1, 17, 13, 40f, 0.50f, PbSt },
             new object[] { "bl_zap16",  "ball_lightning/ball_lightning_zap_L16_dir16", 41, 40, 4, 16, 20, 19, 40f, 0.45f, PbSt },
             new object[] { "bl_zap24",  "ball_lightning/ball_lightning_zap_L24_dir16", 57, 56, 4, 16, 28, 27, 40f, 0.45f, PbSt },
@@ -106,6 +107,7 @@ namespace Hellord
         {
             var T = HellordTuning.I; if (T == null || !T.pbArt1567) return null;
             if (string.IsNullOrEmpty(key)) return null;
+            if (LtGroundOff1597(key)) return null; // t1597 VH: lightning ground glow off = never loaded / drawn
             if (_pbArt1567.TryGetValue(key, out var hit)) return hit;
             if (!_pbArtTried1567) { _pbArtTried1567 = true; _pbGlowSh1567 = Resources.Load<Shader>("HellordShaders/HellordFrostGlow"); if (_pbGlowSh1567 == null) _pbGlowSh1567 = Shader.Find("Hellord/FrostGlow1430"); }
             {   // t1576: lazy, one key at a time (the v2 slam strips are big: only load what is drawn)

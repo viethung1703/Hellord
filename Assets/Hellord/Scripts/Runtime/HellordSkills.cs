@@ -245,7 +245,7 @@ namespace Hellord
                 p.sr.transform.position = p.pos; p.sr.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(p.vel.y, p.vel.x) * Mathf.Rad2Deg);
                 if (p.fx44 >= 0) HeroSkillFX.SpearMove(p.fx44, p.pos); if (p.lg667 >= 0) SkillLightFX.GlowMove(p.lg667, p.pos);
                 if (TortureProjHit52(p)) { HellordAudio.Play("fireball_impact"); KillProj(p); continue; } // v0.0.52 ice blocks
-                Query(p.pos, 0.3f, _sq);
+                if (BodyOn1595) QueryBody1595(p.pos - p.vel * dt, p.pos, HellordTuning.I.projBodyRU1595, _sq); else Query(p.pos, 0.3f, _sq); // t1595: drawn bolt (swept this frame) vs body boxes; off = old chest-point circle
                 int hit = -1; foreach (int i in _sq) if (i != p.lastHit) { hit = i; break; }
                 if (hit < 0) continue;
                 var e = _en[hit];

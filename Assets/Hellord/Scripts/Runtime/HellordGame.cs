@@ -230,7 +230,7 @@ namespace Hellord
             float dt = Mathf.Min(Time.deltaTime, 1f / 20f); if (dt <= 0) { UpdateCamera(); return; }
             runTime += dt; if (hp > maxHp) hp = maxHp; // v0.0.14 safety clamp
             Z37Begin(); UpdateHero(dt); if (floorMode) UpdateFloor(dt); else { UpdateSpawner(dt); UpdateBossSpawn(); } RebuildGrid(); UpdateEnemies(dt); UpdateSkills(dt); PactTick53(dt); UpdateProjectiles(dt); UpdateIce(dt); UpdateFireBasics1481(dt); UpdatePb1567(dt); /* t1567 */ UpdateOrbLight667(); UpdateBBullets(dt); Update49(dt); UpdateTongueTraps(dt); UpdateHooks(dt); UpdateGossip(dt); ProcessBlasts(); UpdatePickups(dt);
-            if (_room != null) _room.Tick(dt); if (_lane != null) _lane.Tick(dt); Z37End();
+            if (_room != null) _room.Tick(dt); if (_lane != null) _lane.Tick(dt); BodyDebug1595(); Z37End(); // t1595 debug overlay
             UpdateCamera();
             if (pendingLevels > 0 && mode == Mode.Play) OpenLevelUp();
         }

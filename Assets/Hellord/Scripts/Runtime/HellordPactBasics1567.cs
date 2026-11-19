@@ -248,8 +248,14 @@ namespace Hellord
             for (int i = _pbJavs.Count - 1; i >= 0; i--)
             {
                 var j = _pbJavs[i]; j.t += dt; Vector2 p0 = j.p; j.dist = Mathf.Min(j.range, j.dist + T.javSpeedU1567 * dt); Vector2 p1 = j.a + j.dir * j.dist; j.p = p1;
-                Vector2 mid = (p0 + p1) * 0.5f; Query(mid, (p1 - p0).magnitude * 0.5f + T.javHitRU1567 + 1f, _pbQ); int best = -1; float bAlong = 1e9f;
-                foreach (int ei in _pbQ) { var e = _en[ei]; if (!PbOk(e)) continue; if (PbSegDist(e.pos, p0, p1) > T.javHitRU1567 + e.radius * 0.5f) continue; float al = Vector2.Dot(e.pos - p0, j.dir); if (al < bAlong) { bAlong = al; best = ei; } }
+                Vector2 mid = (p0 + p1) * 0.5f; int best = -1; float bAlong = 1e9f;
+                if (BodyOn1595)
+                {   // t1595: the DRAWN javelin (javHeightU above its ground point) vs each demon's body box
+                    Vector2 hj = Vector2.up * T.javHeightU1567, d0 = p0 + hj; QueryBody1595(d0, p1 + hj, T.javBodyRU1595, _pbQ);
+                    foreach (int ei in _pbQ) { var e = _en[ei]; if (!PbOk(e)) continue; float al = Vector2.Dot(BodyCentre1595(e) - d0, j.dir); if (al < bAlong) { bAlong = al; best = ei; } }
+                }
+                else { Query(mid, (p1 - p0).magnitude * 0.5f + T.javHitRU1567 + 1f, _pbQ);
+                foreach (int ei in _pbQ) { var e = _en[ei]; if (!PbOk(e)) continue; if (PbSegDist(e.pos, p0, p1) > T.javHitRU1567 + e.radius * 0.5f) continue; float al = Vector2.Dot(e.pos - p0, j.dir); if (al < bAlong) { bAlong = al; best = ei; } } }
                 bool wall = false; { Vector2 c = p1; ClampToRoom(ref c, 4); wall = (c - p1).sqrMagnitude > 0.0004f; }
                 if (best >= 0) { JavBurst1567(j, _en[best], best); _pbJavs.RemoveAt(i); continue; }
                 if (j.dist >= j.range || wall) { JavFizzles1567++; Vector2 fp = p1 + Vector2.up * T.javHeightU1567; if (!PbFxOnce1567("tj_bolthit", fp, YSort(p1.y) + 46)) PbPop1567(fp, T.javFizzleS1567, PbCyan, 4, 0.3f); _pbJavs.RemoveAt(i); }
@@ -415,8 +421,21 @@ namespace Hellord
         {
             var T = HellordTuning.I; if (_pbAxe != null) { s.cd = Mathf.Max(s.cd, 0.05f); AxeRefused1567++; return false; }
             Vector2 dir = PbAim1567(); Vector2 o = CastOrigin1528(HeroCenter + dir * 0.4f, ref dir); dir.Normalize();
-            Vector2 g = o - Vector2.up * T.axeHeightU1567; if (T.axeFromHand1567) { g = _heroPos + new Vector2((dir.x < 0f ? -1f : 1f) * T.axeHandPx1567.x / HArt.PPU, T.axeHandPx1567.y / HArt.PPU - T.axeHeightU1567); } /* HA: leaves the hand */ Vector2 b = PbCursor1567(T.axeRangeMaxU1567, T.axeRangeMinU1567); Vector2 d2 = b - _heroPos; if (d2.sqrMagnitude > 0.0001f) b = g + d2.normalized * Mathf.Clamp(d2.magnitude, T.axeRangeMinU1567, T.axeRangeMaxU1567); ClampToRoom(ref b, 4);
+            Vector2 g = o - Vector2.up * T.axeHeightU1567; if (T.axeFromHand1567) { g = _heroPos + new Vector2((dir.x < 0f ? -1f : 1f) * T.axeHandPx1567.x / HArt.PPU, T.axeHandPx1567.y / HArt.PPU - T.axeHeightU1567); } /* HA: leaves the hand */ Vector2 b = PbCursor1567(T.axeRangeMaxU1567, T.axeRangeMinU1567); Vector2 d2 = b - _heroPos; if (d2.sqrMagnitude > 0.0001f) b = g + d2.normalized * Mathf.Clamp(d2.magnitude, T.axeRangeMinU1567, T.axeRangeMaxU1567);
+            if (T.axeThroughCursor1595)
+            {   // t1595: the DRAWN axe (hand height) flies exactly through the cursor; direction from the hand, reach clamped axeRangeMin..Max from the hand
+                Vector2 hu = Vector2.up * T.axeHeightU1567, hand = g + hu, cur = _basicAim1517 ? MouseWorld() : hand + dir * (T.axeRangeMaxU1567 * 0.6f); Vector2 dv = cur - hand; float m = dv.magnitude;
+                Vector2 dd = m > 0.0001f ? dv / m : dir; b = hand + dd * Mathf.Clamp(m, T.axeRangeMinU1567, T.axeRangeMaxU1567) - hu; AxeLastDir1595 = dd;
+            }
+            ClampToRoom(ref b, 4);
             _pbAxe = new PbAxe { a = g, b = b, p = g, dmg = dmg, s = s }; AxeThrows1567++; PbCasts1567[5]++; PbShake1567(5); HellordAudio.Play("hook_chain_throw", PbPitch1567(5)); return true;
+        }
+        public static Vector2 AxeLastDir1595, AxeLastFlash1595; public static Enemy AxeLastHitE1595;
+        /// <summary>t1595 debug overlay: the axe / javelin hit circles at their drawn positions</summary>
+        void BodyDbgProj1595(Color c)
+        {
+            var T = HellordTuning.I; if (_pbAxe != null) BodyDbgCircle1595(_pbAxe.p + Vector2.up * T.axeHeightU1567, T.axeHitRU1567, c);
+            foreach (var j in _pbJavs) BodyDbgCircle1595(j.p + Vector2.up * T.javHeightU1567, BodyOn1595 ? T.javBodyRU1595 : T.javHitRU1567, c);
         }
         void UpdateAxe1567(float dt)
         {
@@ -427,13 +446,17 @@ namespace Hellord
                 if (v.magnitude <= Mathf.Max(st, T.axeCatchU1567)) { _pbAxe = null; AxeCatches1567++; HellordAudio.Play("whip_cast", PbPitch1567(5) * T.axeCatchPitchMul1567); PbFxOnce1567(PbEv1567("axe.catch", "xa_catch"), _heroPos + Vector2.up * T.axeHeightU1567, YSort(_heroPos.y) + 40); HeroCatchPose1567(x.s); PbFlash1567(5, _heroPos, T.axeCatchFlashMul1567); return; } x.p += v.normalized * st; }
             x.vel = x.p - p0;
             if (x.life > T.axeMaxLifeS1567) { _pbAxe = null; return; } // safety
-            var set = x.phase == 2 ? x.hitBack : x.hitOut; Vector2 mid = (p0 + x.p) * 0.5f; Query(mid, (x.p - p0).magnitude * 0.5f + T.axeHitRU1567 + 1f, _pbQ);
+            var set = x.phase == 2 ? x.hitBack : x.hitOut; Vector2 mid = (p0 + x.p) * 0.5f; bool body = BodyOn1595; Vector2 hu = Vector2.up * T.axeHeightU1567, a0 = p0 + hu, a1 = x.p + hu;
+            if (body) QueryBody1595(a0, a1, T.axeHitRU1567, _pbQ); /* t1595: the DRAWN axe vs body boxes */ else Query(mid, (x.p - p0).magnitude * 0.5f + T.axeHitRU1567 + 1f, _pbQ);
             Vector2 md = x.p - p0; Vector2 kd = md.sqrMagnitude > 1e-6f ? md.normalized : Vector2.zero;
             foreach (int ei in _pbQ)
             {
-                var e = _en[ei]; if (!PbOk(e) || set.Contains(ei)) continue; if (PbSegDist(e.pos, p0, x.p) > T.axeHitRU1567 + e.radius * 0.5f) continue; set.Add(ei);
-                if (!PbFxOnce1567(PbEv1567("axe.v2.hit", "xa2_hit"), e.pos + Vector2.up * (11f / HArt.PPU), YSort(e.pos.y) + 40, PbRow16(kd))) // t1586 v2 pierce burst (no-op without v2)
-                PbFxOnce1567(PbEv1567("axe.hit", "xa_spark"), e.pos + Vector2.up * (12f / HArt.PPU), YSort(e.pos.y) + 40, PbRow16(kd)); // HFX: each pierce, row = axe velocity
+                var e = _en[ei]; if (!PbOk(e) || set.Contains(ei)) continue; if (!body && PbSegDist(e.pos, p0, x.p) > T.axeHitRU1567 + e.radius * 0.5f) continue; set.Add(ei);
+                Vector2 f11 = e.pos + Vector2.up * (11f / HArt.PPU), f12 = e.pos + Vector2.up * (12f / HArt.PPU);
+                if (T.axeFlashDrawn1595) { Vector2 bc = BodyCentre1595(e), ab = a1 - a0; float l2 = ab.sqrMagnitude, k = l2 < 1e-8f ? 1f : Mathf.Clamp01(Vector2.Dot(bc - a0, ab) / l2); f11 = f12 = a0 + ab * k; AxeLastFlash1595 = f11; } // t1595: where the drawn axe touched
+                AxeLastHitE1595 = e;
+                if (!PbFxOnce1567(PbEv1567("axe.v2.hit", "xa2_hit"), f11, YSort(e.pos.y) + 40, PbRow16(kd))) // t1586 v2 pierce burst (no-op without v2)
+                PbFxOnce1567(PbEv1567("axe.hit", "xa_spark"), f12, YSort(e.pos.y) + 40, PbRow16(kd)); // HFX: each pierce, row = axe velocity
                 if (x.phase == 2) { PbHit1567(e, x.dmg * T.axeReturnMul1567, x.s, kd * T.axeKnock1567); AxeBackHits1567++; } else { PbHit1567(e, x.dmg, x.s, kd * T.axeKnock1567); AxeOutHits1567++; }
             }
             // one axe out: hold the basic's cooldown at the time it needs to come back
@@ -557,10 +580,13 @@ namespace Hellord
                 if (PbA1567("bl_orb") != null)
                 {   // HFX: spawn 6 x 40 ms, then the 12-frame loop; fade 8 x 50 ms when it ends or is popped; 1-frame shadow on the ground point
                     _pbSr1567[_pbN1567 - 1].enabled = false; int o2 = YSort(b.p.y) + 30; float sl = PbArtLen1567("bl_spawn"); int gO2 = FbGround + YSort(b.p.y) + 12;
-                    if (PbA1567("bl2_ground") != null)
+                    if (PbA1567("bl2_spawnflash") != null)
                     {   // t1584 HFX v2: orb_ground light replaces the shadow; spawn / fade flash from frame 2; fade_ground at the ground point
+                        // t1597 VH: ground glow off (lightningGroundGlow1597) = bl2_ground / bl2_fadeground return null (not loaded), the dark bl_shadow comes back
+                        bool gl = PbA1567("bl2_ground") != null;
                         if (b.die >= 0f) { PbArtPut1567("bl2_fadeground", 0, b.die, false, b.p, gO2); PbArtPut1567("bl2_fadeflash", 0, b.die - 0.1f, false, p, PbTop1567(b.p)); }
                         else { PbArtPut1567("bl2_ground", 0, b.t, true, b.p, gO2); if (b.t >= 0.08f) PbArtPut1567("bl2_spawnflash", 0, b.t - 0.08f, false, p, PbTop1567(b.p)); }
+                        if (!gl && !PbArtPut1567("bl_shadow", 0, 0f, true, b.p, FbGround + YSort(b.p.y) + 10)) PbArtPut1567("bl_shadow1597", 0, 0f, true, b.p, FbGround + YSort(b.p.y) + 10);
                     }
                     else PbArtPut1567("bl_shadow", 0, 0f, true, b.p, FbGround + YSort(b.p.y) + 10);
                     if (b.die >= 0f) PbArtPut1567("bl_fade", 0, b.die, false, p, o2); else if (b.t < sl) PbArtPut1567("bl_spawn", 0, b.t, false, p, o2); else PbArtPut1567("bl_orb", 0, b.t - sl, true, p, o2);

@@ -24,6 +24,13 @@ namespace Hellord
         int ChainAimTarget1563(Vector2 o, Vector2 dir, float reach)
         {
             var T = HellordTuning.I; int best = -1; float bAlong = 1e9f; float hw = T.chainLmbHitHalfWU1563;
+            if (BodyOn1595)
+            {   // t1595: the drawn bolt line (cast origin -> reach) vs each demon's body box; nearest along the aim wins
+                Vector2 e1 = o + dir * reach; float bw = T.chainBodyHalfWU1595;
+                for (int i = 0; i < maxEnemies; i++) { var e = _en[i]; if (!e.alive || e.dying) continue; if (!BodyHit1595(e, o, e1, bw)) continue; float al = Vector2.Dot(BodyCentre1595(e) - o, dir); if (al < bAlong) { bAlong = al; best = i; } }
+                if (best >= 0 || T.chainLmbConeDeg1563 <= 0f) return best;
+            }
+            else
             for (int i = 0; i < maxEnemies; i++)
             {
                 var e = _en[i]; if (!e.alive || e.dying) continue; Vector2 v = e.pos + Vector2.up * e.hitY - o; float along = Vector2.Dot(v, dir); if (along < 0f || along > reach) continue;

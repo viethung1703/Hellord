@@ -176,10 +176,10 @@ namespace Hellord
             { if (i >= _iceOrbs.Count) continue; /* t1464: a kill inside this loop can ClearIce() */
                 var o = _iceOrbs[i]; o.age += dt; o.life -= dt; Vector2 prev = o.p; o.p += o.v * dt; bool wall = false;
                 if (_room != null) { _room.Walkable(6, out var lo, out var hi); if (o.p.x < lo.x || o.p.x > hi.x || o.p.y < lo.y || o.p.y > hi.y) wall = true; } // room bounds only (orbs fly over pits)
-                Query(o.p, o.r + 0.6f, _iceQ);
+                bool bodyF = BodyOn1595; if (bodyF) QueryBody1595(prev + Vector2.up * 0.08f, o.p + Vector2.up * 0.08f, T.frostbBodyRU1595, _iceQ); else Query(o.p, o.r + 0.6f, _iceQ); // t1595: the drawn orb (0.08 u up) vs body boxes
                 foreach (int ei in _iceQ)
                 {
-                    var e = _en[ei]; if (!e.alive || o.hit.Contains(e.id) || (e.pos - o.p).magnitude > o.r + e.radius) continue;
+                    var e = _en[ei]; if (!e.alive || o.hit.Contains(e.id) || (!bodyF && (e.pos - o.p).magnitude > o.r + e.radius)) continue;
                     o.hit.Add(e.id); Hit(e, o.dmg, o.s, o.v.normalized * T.frostbKnock); IceChill(e, T.frostbChillS, T.frostbBuild); if (FrostboltFX1432.HasHit) FrostboltFX1432.Hit(e.pos + Vector2.up * 1.0f, YSort(e.pos.y) + 40); else IceVfxOrbHit(o.p); // t1432: D2R hit puff at the enemy's chest
                 }
                 o.trailAcc += (o.p - prev).magnitude; if (o.trailAcc >= T.frostbTrailGapU && o.trailLife > 0.05f)
