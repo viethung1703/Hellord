@@ -35,6 +35,7 @@ namespace Hellord
         IEnumerator AtDescend1555()
         {
             yield return AtBegin("descend1555"); HellordUITheme.Requested = HellordUITheme.Theme.MenuTheme; PactLoad51(); var T = HellordTuning.I;
+            bool af1561 = T.altarFlow1561, gg1561 = T.pactGonggong1561; T.altarFlow1561 = false; T.pactGonggong1561 = false;   // t1561: this scenario checks the 8c2cd2a picker flow (now behind altarFlow1561 = off, 4 pacts)
             int so = _souls51, si = _sigils51, pp = _pactPath51, ps = _pactSel51; bool sd = _pactSealed51; var un = (int[])_unlock51.Clone();
             for (int p = 0; p < NP97; p++) _unlock51[p] = (1 << PactData.Nodes[p].Length) - 1; _unlock51[3] = 0;
             _souls51 = 1700; _sigils51 = 15; _pactPath51 = 0; _pactSel51 = 0x7; _pactSealed51 = false; PactSave51();   // altar Path = Zhurong, 3 picks, NOT sealed
@@ -97,7 +98,7 @@ namespace Hellord
                 $"leizuNoBasic {leizuNo} xingtianLocked {xingLocked} noMenuSkillScreen {noStep2} keyMoves {skipR}/{skipR2} backToMenu {back0} zhongKuiCards [{idsZk}] otherGodNoNodes+saveKept {zkNoNodes} zkRun {zk} xingtianCards [{idsXt}] xtRun {xt} sealedNodes {sealedNodes} zeroPicksNoNodes {zeroPicks} filterClearedOnReset {cleared} skillScreenToggle {oldScreen} freshSave {fresh} flowOffOld5Cards {old}");
             ALog("gaps " + gP); ALog("oldpick zhurong " + gZ); ALog("oldpick zhongkui " + gZk); ALog("oldpick xingtian " + gXt);
             ARes("descend1555:gaps", gP.Contains("gapX 13 frameL 13 frameR 13") && gP.Contains("top 39 mid 39 bottom 39") && gZ.Contains("left 138 gap 8 right 138") && gZk.Contains("left 262") && gZk.Contains("right 262"), gP + " || Z " + gZ + " || ZK " + gZk + " || XT " + gXt);
-            _souls51 = so; _sigils51 = si; _pactPath51 = pp; _pactSel51 = ps; _pactSealed51 = sd; _unlock51 = un; PactSave51(); _atGod = false;
+            _souls51 = so; _sigils51 = si; _pactPath51 = pp; _pactSel51 = ps; _pactSealed51 = sd; _unlock51 = un; PactSave51(); _atGod = false; T.altarFlow1561 = af1561; T.pactGonggong1561 = gg1561;
             AtEnd("descend1555", "hero_sprite_not_base_final2"); // the t1517 cast pose replaces the base hero sprite while the basic fires (as in lmb1517)
         }
     }

@@ -9,7 +9,7 @@ namespace Hellord
         Mode _ma611Mode = (Mode)(-1); int _ma611Sel = -9, _ma611Foc = -9, _ma611View = -9, _ma611Scr = -9, _ma611Path = -9, _ma611SelBits, _ma611Unl, _ma611Panel, _ma611Conf = -1;
 
         static int Bits611(int v) { int c = 0; while (v != 0) { c += v & 1; v >>= 1; } return c; }
-        int UnlCount611() { int c = 0; for (int p = 0; p < 4; p++) c += Bits611(_unlock51[p]); return c; }
+        int UnlCount611() { int c = 0; for (int p = 0; p < _unlock51.Length; p++) /* t1561 */ c += Bits611(_unlock51[p]); return c; }
 
         /// <summary>v0.0.61: called every frame after PactTick51.</summary>
         void MenuAudioTick611()

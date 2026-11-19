@@ -38,14 +38,14 @@ namespace Hellord
         }
         static readonly string[] OldTabName1544 = { "PYROMANCER", "NECROMANCER", "STORMCALLER", "BLOOD REAVER" };
         /// <summary>the tab art has the old Path name baked at (tab x + 19, 50): paint it over with the tab fill (MT_INK) and draw the god name.</summary>
-        void AmTabName1544(int v, int tabX)
+        void AmTabName1544(int v, int tabX, int tabIx = -1)
         {
-            int x = tabX + 19, w = AmBbW(OldTabName1544[v]);
+            int x = tabX + 19, w = AmBbW(OldTabName1544[tabIx >= 0 ? tabIx : v]); // t1561: the tab art's baked name (Gonggong uses another Path's tab)
             MtFill(x - 1, 49, w + 2, 9, MT_INK); AmTxAt(PactData.PathShort[v], x, 50, "BONE");
         }
         int[] AmFaceCrop1544(int p)
         {
-            var a = PT.pactGodFaceCrop1544; if (!PT.pactGods1544 || a == null || a.Length < 2 * p + 2) return AltarMenuData.FaceCrop[p];
+            var a = PT.pactGodFaceCrop1544; if (!PT.pactGods1544 || a == null || a.Length < 2 * p + 2) return p < AltarMenuData.FaceCrop.Length ? AltarMenuData.FaceCrop[p] : new[] { 32, 28 }; // t1561
             return new[] { Mathf.Clamp(a[2 * p], 12, 52), Mathf.Clamp(a[2 * p + 1], 12, 52) };
         }
     }

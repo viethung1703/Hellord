@@ -63,7 +63,7 @@ namespace Hellord
 
             // ---- Pact: t1179 default = v0.0.95 Altar97 carousel (rolling Path avatars) + Necromancer double tree; Your Pact = v0.0.53 screen
             yield return AtWait(0.3f);
-            _souls51 = 1700; _sigils51 = 15; _pactPath51 = -1; _pactSel51 = 0; _unlock51 = new int[4]; PactSave51(); OpenAltar53(); _altarView51 = 0; yield return AtWait(0.6f);
+            _souls51 = 1700; _sigils51 = 15; _pactPath51 = -1; _pactSel51 = 0; _unlock51 = new int[5]; PactSave51(); OpenAltar53(); _altarView51 = 0; yield return AtWait(0.6f);
             ARes("l79_pact_altar97_default", Altar97On && mode == Mode.Altar && _altarScr53 == 0, "Altar97 carousel");
             yield return AtShot("l79_10_pact_carousel");
             yield return AtMenuClick91(606, 185); ARes("l79_carousel_right", _altarView51 == 1, "view " + _altarView51); yield return AtWait(0.5f); yield return AtShot("l79_11_carousel_necro");

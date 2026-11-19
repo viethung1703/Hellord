@@ -41,12 +41,13 @@ namespace Hellord
                     case 4: r = kb.enterKey.wasPressedThisFrame || kb.numpadEnterKey.wasPressedThisFrame || kb.spaceKey.wasPressedThisFrame; break;
                     case 5: r = kb.escapeKey.wasPressedThisFrame || kb.backspaceKey.wasPressedThisFrame; break;
                     case 6: r = kb.xKey.wasPressedThisFrame; break; // t1380: X = SEAL / UNSEAL in the menu-theme Altar
+                    case 7: r = kb.yKey.wasPressedThisFrame; break; // t1561: Y = DESCEND in the menu-theme Altar
                 }
             if (!r && gp != null) switch (which)
                 {
                     case 0: r = gp.dpad.up.wasPressedThisFrame; break; case 1: r = gp.dpad.down.wasPressedThisFrame; break;
                     case 2: r = gp.dpad.left.wasPressedThisFrame; break; case 3: r = gp.dpad.right.wasPressedThisFrame; break;
-                    case 4: r = gp.buttonSouth.wasPressedThisFrame || gp.startButton.wasPressedThisFrame; break; case 5: r = gp.buttonEast.wasPressedThisFrame; break; case 6: r = gp.buttonWest.wasPressedThisFrame; break;
+                    case 4: r = gp.buttonSouth.wasPressedThisFrame || gp.startButton.wasPressedThisFrame; break; case 5: r = gp.buttonEast.wasPressedThisFrame; break; case 6: r = gp.buttonWest.wasPressedThisFrame; break; case 7: r = gp.buttonNorth.wasPressedThisFrame; break;
                 }
             return r;
 #else
@@ -58,6 +59,7 @@ namespace Hellord
                 case 3: return Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D);
                 case 4: return Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0);
                 case 6: return Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.JoystickButton2);
+                case 7: return Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown(KeyCode.JoystickButton3); // t1561
                 default: return Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.JoystickButton1);
             }
 #endif
@@ -91,7 +93,7 @@ namespace Hellord
         {
             switch (i)
             {
-                case 0: if (DfWanted1555()) DfOpen1555(); else Descend51(); break; // t1555: pact pick -> basic pick -> run (menu theme)
+                case 0: if (AltarFlowWanted1561()) AltarOpen1561(); else if (DfWanted1555()) DfOpen1555(); else Descend51(); break; // t1561: DESCEND opens the Sacrifice Altar (its DESCEND starts the run) // t1555: pact pick -> basic pick -> run (menu theme)
                 case 1: OpenAltar53(); break;
                 case 2: SinOpen737(); break; // t770u: Codex row opens the Infernal Sins collection
                 case 3: Msg51("SETTINGS: COMING SOON"); break;

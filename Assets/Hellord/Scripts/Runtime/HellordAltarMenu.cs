@@ -18,7 +18,7 @@ namespace Hellord
             return _amScene && _amAtlas && _amGlow;
         }
         /// <summary>true when the menu-theme Altar overview is drawn (and handles keys); anything missing/failed falls back to the stone carousel.</summary>
-        bool AmActive() { return !_amBroken && HellordUITheme.Active == HellordUITheme.Theme.MenuTheme && NP97 == 4 && PmReady() && AmReady(); }
+        bool AmActive() { return !_amBroken && HellordUITheme.Active == HellordUITheme.Theme.MenuTheme && (NP97 == 4 || NP97 == 5) && PmReady() && AmReady(); } // t1561: 5 with Gonggong
         /// <summary>menu theme + sealed: the Pact path is the ACTIVE path for runs (picks stay editable).</summary>
         bool AmSealKeep() { return _pactSealed51 && HellordUITheme.Active == HellordUITheme.Theme.MenuTheme; }
         static bool _amGlyphs;
@@ -89,7 +89,7 @@ namespace Hellord
             }
             _pactSealed51 = true; PactSave51(); Msg51("PACT SEALED: " + PactData.PathShort[v] + (_pactSel51 == 0 ? " (EMPTY)" : "")); HellordAudio.Play("ui_confirm");
         }
-        void AmDo(string id) { if (id == "amopen") { _altarScr53 = 1; _focus97 = -1; } else if (id == "amback") mode = Mode.MainMenu; }
+        void AmDo(string id) { if (id == "amopen") { _altarScr53 = 1; _focus97 = -1; } else if (id == "amback") mode = Mode.MainMenu; else if (id == "amplay") AltarPlay1561(); } // t1561: amplay = DESCEND (HellordAltarFlow1561.cs)
 
         // ---------------------------------------------------------------- button juice: per-control spring (level -2 pressed .. 0 rest .. +2 hover, overshoot to +3); the control is REDRAWN at the matching baked size (frames stay crisp)
         class AmAnim { public float x, v; public int frame = -1; public float pressUntil; }
@@ -157,12 +157,12 @@ namespace Hellord
             { string sg = "SIGILS " + _sigils51; AmTxAt(sg, AltarMenuData.SigilIx - 4 - MtW(Sanitize(sg), false), 11, "PINK"); }
             // ---- hanging top tab: path name + NODES + sockets (taken = Sins cell + the Pacts INSIDE 20px icon) + count + crest status
             {
-                var tb = AltarMenuData.Tab[v]; AmSpr("tab_" + v, tb[0], tb[1]); if (PT.pactGods1544) AmTabName1544(v, tb[0]);
-                int ns = AltarMenuData.TabSockets[v], mx = MaxSel51(v);
+                int ti = AmTabIx1561(v); var tb = AltarMenuData.Tab[ti]; AmSpr("tab_" + ti, tb[0], tb[1]); if (PT.pactGods1544) AmTabName1544(v, tb[0], ti); // t1561: Gonggong borrows a 6-socket tab
+                int ns = AltarMenuData.TabSockets[ti], mx = MaxSel51(v);
                 for (int k = 0; k < ns; k++)
                 {
                     int sx = tb[4] + k * 28, sy = 42;
-                    if (k < tk.Count) { AmSpr("sock_on", sx, sy); AmSpr("ic_" + v + "_" + tk[k], sx + 2, sy + 2); } else AmSpr("sock_off", sx, sy);
+                    if (k < tk.Count) { AmSpr("sock_on", sx, sy); if (v >= 4) GgIcon1561(GgNodeSkill1561(tk[k]), sx + 2, sy + 2, 20, 1f); else AmSpr("ic_" + v + "_" + tk[k], sx + 2, sy + 2); } else AmSpr("sock_off", sx, sy);
                 }
                 AmTxAt(n + "/" + mx, tb[5], 50, "AMBER");
                 bool crest = yours && n >= PT.pactCrestAt51; AmSpr(crest ? "crest_on" : "crest_off", tb[6], 50); AmTxAt("CREST " + PT.pactCrestAt51 + "+", tb[6] + 11, 50, crest ? "AMBER" : "DIM");
@@ -205,7 +205,7 @@ namespace Hellord
             if (!PT.pactCardsV2 || AmV2FacesFit()) // t1544 v2: the 2x mockup card + SEAL take the faces row (the mockup has no faces row)
             for (int p = 0; p < NP; p++)
             {
-                int x0 = 250 + p * 38, y0 = AltarMenuData.FaceY; bool cur = p == v, lk = PathLocked97(p); var fc = AmFaceCrop1544(p);
+                int x0 = 320 - (NP * 38 - 12) / 2 + p * 38 /* t1561: centred for 4 (= 250) or 5 */, y0 = AltarMenuData.FaceY; bool cur = p == v, lk = PathLocked97(p); var fc = AmFaceCrop1544(p);
                 MtFill(x0, y0, 26, 26, MtC(cur ? "AMBER" : "P2")); MtFill(x0 + 1, y0 + 1, 24, 24, MT_INK);
                 var av = T97(Av97(p, lk, false)); if (av != null) MtBlit(av, fc[0] - 12, fc[1] - 12, 24, 24, x0 + 1, y0 + 1, cur ? 1f : lk ? 0.4f : 0.6f);
                 bool ov = free && !cur && MtOver("amface" + p, x0, y0, 26, 26); if (ov) MtBrackets(x0, y0, 26, 26);
@@ -214,8 +214,10 @@ namespace Hellord
             // ---- OPEN TREE [A] (green) / BACK [B]
             {
                 int by = AltarMenuData.BtnY;
-                if (AmBtn("amopen", "open", AltarMenuData.OpenX, by, 105, 19, free)) AmDo("amopen");
-                if (AmBtn("amback", "back", AltarMenuData.BackX, by, 105, 19, free)) AmDo("amback");
+                bool pl = AltarPlayOn1561(); int ox_ = pl ? AltarBtnX1561(0) : AltarMenuData.OpenX, bx_ = pl ? AltarBtnX1561(2) : AltarMenuData.BackX; // t1561: OPEN TREE | DESCEND | BACK, even gaps
+                if (AmBtn("amopen", "open", ox_, by, 105, 19, free)) AmDo("amopen");
+                if (pl && AmPlayBtn1561("amplay", AltarBtnX1561(1), by, PT.altarPlayW1561, PT.altarPlayLabel1561, free)) AmDo("amplay");
+                if (AmBtn("amback", "back", bx_, by, 105, 19, free)) AmDo("amback");
             }
             // ---- lava life + light (drawn last so the glow also warms the lower UI)
             if (_mtRep)

@@ -19,8 +19,8 @@ namespace Hellord
         public int DescendStep1555 => _df1555; public int DescendRunPact1555 = -1; public SkillId DescendRunBasic1555;
         public string DescendGaps1555 = "";
 
-        bool DfWanted1555() => PT.descendFlow1555 && HellordUITheme.Active == HellordUITheme.Theme.MenuTheme && AmReady() && PmReady() && NP97 == 4;
-        SkillId[] DfBasicsRaw1555(int p) { var T = PT; return p == 0 ? T.descendBasicsZhurong1555 : p == 1 ? T.descendBasicsZhongKui1555 : p == 2 ? T.descendBasicsLeizu1555 : T.descendBasicsXingtian1555; }
+        bool DfWanted1555() => PT.descendFlow1555 && !PT.altarFlow1561 /* t1561: off while the altar flow is on */ && HellordUITheme.Active == HellordUITheme.Theme.MenuTheme && AmReady() && PmReady() && NP97 == 4;
+        SkillId[] DfBasicsRaw1555(int p) { var T = PT; return p == 0 ? T.descendBasicsZhurong1555 : p == 1 ? T.descendBasicsZhongKui1555 : p == 2 ? T.descendBasicsLeizu1555 : p == 3 ? T.descendBasicsXingtian1555 : p == 4 ? T.descendBasicsGonggong1561 : null; } // t1561: 4 = Gonggong
         /// <summary>the pact's basics that really are LMB basics (lmbBasicIds1517), ON HOLD ones dropped (or kept as disabled when descendShowOnHold1555).</summary>
         List<SkillId> DfBasics1555(int p, bool withHold)
         {
@@ -42,7 +42,7 @@ namespace Hellord
         void DfOpen1555()
         {
             PactLoad51(); _df1555 = 1; _dfOpenF1555 = Time.frameCount; _dfSk1555 = 0;
-            int s = _pactSealed51 && _pactPath51 >= 0 && DfPickable1555(_pactPath51) ? _pactPath51 : -1;   // default: the god sealed on the altar
+            int s = _pactSealed51 && _pactPath51 >= 0 && _pactPath51 < NP97 /* t1561: Gonggong saved, toggle off */ && DfPickable1555(_pactPath51) ? _pactPath51 : -1;   // default: the god sealed on the altar
             if (s < 0) for (int k = 0; k < NP97; k++) { int p = (Mathf.Max(0, _pactPath51) + k) % NP97; if (DfPickable1555(p)) { s = p; break; } }
             _dfSel1555 = Mathf.Max(0, s); HellordAudio.Play("ui_confirm");
         }
@@ -86,7 +86,7 @@ namespace Hellord
         /// <summary>t1559: the old start cards, filtered to the run pact's basics (mapping order). Empty after a pact ban -> the unfiltered basics (never an empty pick).</summary>
         bool DfStartCards1559()
         {
-            if (_dfRunPick1559 < 0 || !PT.descendFlow1555 || PT.descendSkillScreen1555) return false;
+            if (_dfRunPick1559 < 0 || !(_altarRun1561 || (PT.descendFlow1555 && !PT.descendSkillScreen1555))) return false; // t1561: also the altar DESCEND
             cards.Clear(); var l = DfBasics1555(_dfRunPick1559, false);
             foreach (var id in l) { var d = HData.Skill(id); if (!PactBanned53(d)) cards.Add(new Card { kind = CardKind.NewSkill, skill = d }); }
             if (cards.Count == 0) foreach (var id in l) cards.Add(new Card { kind = CardKind.NewSkill, skill = HData.Skill(id) });

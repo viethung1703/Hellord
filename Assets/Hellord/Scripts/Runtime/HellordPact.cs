@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Hellord
 {
-    public enum PactPath { Pyromancer = 0, Necromancer = 1, Stormcaller = 2, BloodReaver = 3 } // t539u: Bone Warden REMOVED as a Path; Necromancer took its index 1 (saves migrated in PactMigrate539)
+    public enum PactPath { Pyromancer = 0, Necromancer = 1, Stormcaller = 2, BloodReaver = 3, Gonggong = 4 /* t1561: 5th pact (HellordTuning.pactGonggong1561) */ } // t539u: Bone Warden REMOVED as a Path; Necromancer took its index 1 (saves migrated in PactMigrate539)
 
     public class PactNode
     {
@@ -16,27 +16,27 @@ namespace Hellord
 
     public static class PactData
     {
-        static readonly string[] PathName0 = { "PYROMANCER OF THE PIT", "NECROMANCER THE GRAVECALLER", "STORMCALLER", "BLOOD REAVER" };
-        static readonly string[] PathShort0 = { "PYROMANCER", "NECROMANCER", "STORMCALLER", "BLOOD REAVER" };
+        static readonly string[] PathName0 = { "PYROMANCER OF THE PIT", "NECROMANCER THE GRAVECALLER", "STORMCALLER", "BLOOD REAVER", "GONGGONG BREAKER OF HEAVEN" };
+        static readonly string[] PathShort0 = { "PYROMANCER", "NECROMANCER", "STORMCALLER", "BLOOD REAVER", "GONGGONG" };
         // t1544 (VH "good, apply"): the 4 Paths are shown as gods; names, titles and avatars only (mechanics, ids, saves unchanged).
         // Pyromancer (fire) = Zhurong, Necromancer (soul/death) = Zhong Kui, Stormcaller (lightning) = Leizu, Blood Reaver (blood) = Xingtian.
-        // Gonggong (BREAKER OF HEAVEN, frost/water) has no Path: art is imported (god_gonggong*) but unused.
-        public static readonly string[] GodName = { "ZHURONG", "ZHONG KUI", "LEIZU", "XINGTIAN" };
-        public static readonly string[] GodTitle = { "GOD OF FIRE", "DEMON QUELLER", "LORD OF THUNDER", "THE HEADLESS WAR GOD" };
-        public static readonly string[] GodKey = { "zhurong", "zhongkui", "leizu", "xingtian" };
-        static readonly string[] PathTitle0 = { "OF THE PIT", "THE GRAVECALLER", "", "" };
-        static readonly string[] PathName1 = { "ZHURONG GOD OF FIRE", "ZHONG KUI DEMON QUELLER", "LEIZU LORD OF THUNDER", "XINGTIAN THE HEADLESS WAR GOD" };
+        // t1561 (VH): Gonggong (BREAKER OF HEAVEN, frost/water) is the 5th Path (index 4) when HellordTuning.pactGonggong1561 is on; his node tree is a PLACEHOLDER (see Nodes5).
+        public static readonly string[] GodName = { "ZHURONG", "ZHONG KUI", "LEIZU", "XINGTIAN", "GONGGONG" };
+        public static readonly string[] GodTitle = { "GOD OF FIRE", "DEMON QUELLER", "LORD OF THUNDER", "THE HEADLESS WAR GOD", "BREAKER OF HEAVEN" };
+        public static readonly string[] GodKey = { "zhurong", "zhongkui", "leizu", "xingtian", "gonggong" };
+        static readonly string[] PathTitle0 = { "OF THE PIT", "THE GRAVECALLER", "", "", "BREAKER OF HEAVEN" };
+        static readonly string[] PathName1 = { "ZHURONG GOD OF FIRE", "ZHONG KUI DEMON QUELLER", "LEIZU LORD OF THUNDER", "XINGTIAN THE HEADLESS WAR GOD", "GONGGONG BREAKER OF HEAVEN" };
         static bool Gods => HellordTuning.I.pactGods1544;
         public static string[] PathName => Gods ? PathName1 : PathName0;
         public static string[] PathShort => Gods ? GodName : PathShort0;
         /// <summary>second card line: the god's title (t1544) or the old epithet ("OF THE PIT" etc.).</summary>
         public static string[] PathTitle => Gods ? GodTitle : PathTitle0;
-        public static readonly Color[] PathCol = { new Color32(0xf7, 0x76, 0x22, 255), new Color32(0x5a, 0xc5, 0x4f, 255), new Color32(0x3c, 0x9c, 0xff, 255), new Color32(0xe4, 0x3b, 0x44, 255) };
-        public static readonly string[] PathPassive = { "+INC DAMAGE PER NODE", "SUMMON + BONE SKILLS", "+MOVE SPEED PER NODE", "+MAX HP PER NODE" };
-        public static readonly string[] CrestText = { "CREST: BURN SPREADS ON DEATH", "CREST: MINIONS +15% DMG/LIFE, BONE SKILLS +15% DMG", "CREST: EVERY 4TH TRIGGER FREE, SEEKS SHOCKED", "CREST: MELEE RECASTS AT LOW HP, 30% SHIELD" };
+        public static readonly Color[] PathCol = { new Color32(0xf7, 0x76, 0x22, 255), new Color32(0x5a, 0xc5, 0x4f, 255), new Color32(0x3c, 0x9c, 0xff, 255), new Color32(0xe4, 0x3b, 0x44, 255), new Color32(0x2c, 0xe8, 0xf5, 255) };
+        public static readonly string[] PathPassive = { "+INC DAMAGE PER NODE", "SUMMON + BONE SKILLS", "+MOVE SPEED PER NODE", "+MAX HP PER NODE", "+INC DAMAGE PER NODE" };
+        public static readonly string[] CrestText = { "CREST: BURN SPREADS ON DEATH", "CREST: MINIONS +15% DMG/LIFE, BONE SKILLS +15% DMG", "CREST: EVERY 4TH TRIGGER FREE, SEEKS SHOCKED", "CREST: MELEE RECASTS AT LOW HP, 30% SHIELD", "CREST: PLACEHOLDER, NOT IN GAME YET" };
         // v0.0.53: live = the node's mechanic really runs in game (HellordPact53.cs). partial = runs, but simpler than the design text (see Decisions_for_VH).
         static PactNode N(string id, string n, int c, string r, string d, bool live = true, bool partial = false) => new PactNode { id = id, name = n, cost = c, req = r, desc = d, keystone = id.IndexOf('K') >= 0, live = live, partial = partial };
-        public static readonly PactNode[][] Nodes = {
+        static readonly PactNode[][] Nodes4 = {
             new[] { N("N1","KINDLING",30,"","FIREBALL IMPACTS LEAVE BURNING PATCHES"), N("N2","CINDER SPLIT",40,"N1","BURNING DEATHS JUMP BURN TO 2 NEAR"), N("N3","SCORCHED TRAIL",40,"N1","DASH FIRE LINE EMPOWERS FIRE. DASH CD +20%"),
                     N("N4","OVERHEAT",60,"N2","FIRE: NO COOLDOWN. HEAT 100 = VENT + LOCK"), N("N5","METEOR PACT",60,"N3","EVERY 6TH FIREBALL IS A METEOR"), N("N6","EMBER ORBIT",50,"N2","BURN KILLS SPAWN EMBERS THAT FIRE ON HIT"),
                     N("N7","HELLFIRE LANCE",70,"N5","PILLAR IS A PIERCING BEAM. RATE -30%"), N("N8","PYRE FEAST",80,"N4/N6","BURN KILLS HEAL. CHILL ON BURN = BLIND STEAM"),
@@ -60,13 +60,24 @@ namespace Hellord
                     N("N7","SANGUINE SPEARS",70,"N4","SPEARS RETURN, HEAL, COUNT AS MELEE"), N("N8","LAST RITES",80,"N5/N6","CHEAT DEATH ONCE PER ROOM. MAX HP -10%"),
                     N("K1","MARTYR",150,"2N","HP /2. <30%: EMPOWER + LEECH. >70%: -20%"), N("K2","BLOOD MAGIC",150,"N2","HP PAYS FOR CASTS. NO CD. NO STORM RING") },
         };
+        // t1561 (VH: "add Gonggong as the 5th pact"): PLACEHOLDER tree - VH has not designed Gonggong's nodes. Same 10-node shape and requirement graph as Zhurong
+        // (N1..N8, K1, K2; laid out with Lay97 slot 4 = Zhurong's layout), themed on his two basics (Frostbolt, Frost Cleave). Every node is live = false
+        // ("NOT IN GAME YET"); the only live effect is the Path passive (+INC DAMAGE PER NODE, HellordTuning.ggIncDmgPerNode1561). Costs copy Zhurong's.
+        static readonly PactNode[] Gonggong1561 = {
+            N("N1","RIME BOLT",30,"","PLACEHOLDER: FROSTBOLT +1 PIERCE",false), N("N2","COLD SNAP",40,"N1","PLACEHOLDER: FROSTBOLT CHILL +50%",false), N("N3","GLACIAL EDGE",40,"N1","PLACEHOLDER: FROST CLEAVE ARC +25%",false),
+            N("N4","FLOODTIDE",60,"N2","PLACEHOLDER: FROSTBOLT +1 ORB",false), N("N5","SHATTER",60,"N3","PLACEHOLDER: FROST CLEAVE SHATTERS FROZEN FOES",false), N("N6","BLACK ICE",50,"N2","PLACEHOLDER: CHILL GROUND LASTS +1S",false),
+            N("N7","SPLIT PILLAR",70,"N5","PLACEHOLDER: EVERY 4TH FROST CLEAVE HITS TWICE",false), N("N8","DELUGE",80,"N4/N6","PLACEHOLDER: FROZEN KILLS BURST INTO FROSTBOLTS",false),
+            N("K1","ENDLESS WINTER",150,"2N","PLACEHOLDER: ALL HITS CHILL. NO BURN",false), N("K2","HEAVEN BREAKER",150,"N4","PLACEHOLDER: FROST CLEAVE IS A WAVE. RATE -30%",false) };
+        static readonly PactNode[][] Nodes5 = { Nodes4[0], Nodes4[1], Nodes4[2], Nodes4[3], Gonggong1561 };
+        /// <summary>t1561: 5 Paths with Gonggong (HellordTuning.pactGonggong1561), else the old 4.</summary>
+        public static PactNode[][] Nodes => HellordTuning.I.pactGonggong1561 ? Nodes5 : Nodes4;
     }
 
     public partial class HellordGame
     {
         // ---- meta save (PlayerPrefs) ----
         const string PK = "hellord.pact51.";
-        int _souls51, _sigils51, _pactPath51 = -1, _pactSel51; bool _pactSealed51 /* t1380: Pact SEALED (menu-theme Altar): picks frozen until UNSEAL; PlayerPrefs 'sealed' */; int[] _unlock51 = new int[4]; bool _pactLoaded51;
+        int _souls51, _sigils51, _pactPath51 = -1, _pactSel51; bool _pactSealed51 /* t1380: Pact SEALED (menu-theme Altar): picks frozen until UNSEAL; PlayerPrefs 'sealed' */; int[] _unlock51 = new int[5] /* t1561: 5 = Gonggong */; bool _pactLoaded51;
         // ---- run state ----
         bool _pactPaid51, _lastRitesUsed51; int _pactBossKills51, _soulsEarned51, _sigilsEarned51; bool _pactActive51;
         // ---- ui state ----
@@ -82,7 +93,8 @@ namespace Hellord
             _pactPath51 = PlayerPrefs.GetInt(PK + "path", -1); _pactSel51 = PlayerPrefs.GetInt(PK + "sel", 0);
             for (int p = 0; p < 4; p++) _unlock51[p] = PlayerPrefs.GetInt(PK + "unlock" + p, 0);
             PactMigrate539();
-            if (_pactPath51 < 0 || _pactPath51 > 3) { _pactPath51 = -1; _pactSel51 = 0; }
+            if (_unlock51.Length > 4) _unlock51[4] = PlayerPrefs.GetInt(PK + "unlock4", 0); // t1561 Gonggong: read AFTER the t539u migration (pre-t539 saves used unlock4 for the old Necromancer; the migration deletes it)
+            if (_pactPath51 < 0 || _pactPath51 > NP97 - 1) { _pactPath51 = -1; _pactSel51 = 0; } // t1561: NP97 = 5 with Gonggong
             _pactSel51 &= _pactPath51 >= 0 ? _unlock51[_pactPath51] : 0; // never select a locked node (save repair)
             _pactSealed51 = PlayerPrefs.GetInt(PK + "sealed", 0) == 1 && _pactPath51 >= 0; // t1380 (an empty Pact can be sealed)
             _altarView51 = Mathf.Max(0, _pactPath51);
@@ -107,7 +119,7 @@ namespace Hellord
         {
             PlayerPrefs.SetInt(PK + "souls", _souls51); PlayerPrefs.SetInt(PK + "sigils", _sigils51);
             PlayerPrefs.SetInt(PK + "path", _pactPath51); PlayerPrefs.SetInt(PK + "sel", _pactSel51);
-            for (int p = 0; p < 4; p++) PlayerPrefs.SetInt(PK + "unlock" + p, _unlock51[p]);
+            for (int p = 0; p < _unlock51.Length; p++) PlayerPrefs.SetInt(PK + "unlock" + p, _unlock51[p]); // t1561: + unlock4 = Gonggong
             if (_pactPath51 < 0 || HellordUITheme.Active != HellordUITheme.Theme.MenuTheme) _pactSealed51 = false; // t1380: the seal only exists with picks, and only in the menu theme (stone can edit picks)
             PlayerPrefs.SetInt(PK + "sealed", _pactSealed51 ? 1 : 0);
             PlayerPrefs.Save();
@@ -116,7 +128,7 @@ namespace Hellord
         bool PactMenuOn51 => PT.pactMainMenu51 && !ArgPresent51("-hellordAutotest") && (!ArgPresent51("-botstate") || ArgPresent51("-botmenu")); // t508u: -botmenu keeps the menu for recorded bot runs
         void PactBoot51() { PactLoad51(); PactRunReset51(); if (PactMenuOn51) mode = Mode.MainMenu; }
         void PactAfterReset51() { PactRunReset51(); if (PactMenuOn51) mode = Mode.MainMenu; else PactApply51(); }
-        void PactRunReset51() { _dfRunPick1559 = -1; /* t1559 */ SinRunReset737(); PactReset53(); _pactPaid51 = false; _lastRitesUsed51 = false; _pactBossKills51 = 0; _soulsEarned51 = 0; _sigilsEarned51 = 0; _pactActive51 = false; }
+        void PactRunReset51() { _dfRunPick1559 = -1; /* t1559 */ _altarRun1561 = false; /* t1561 */ SinRunReset737(); PactReset53(); _pactPaid51 = false; _lastRitesUsed51 = false; _pactBossKills51 = 0; _soulsEarned51 = 0; _sigilsEarned51 = 0; _pactActive51 = false; }
 
         // ---- queries ----
         static int Bit(int i) => 1 << i;
@@ -175,6 +187,7 @@ namespace Hellord
                 // t539u: Bone Warden armor-per-node removed with the Path (Necromancer has no per-node stat)
                 case PactPath.Stormcaller: speedMul += n * PT.stormSpeedPerNode51; if (crest) crit += PT.crestStormCrit51; break;
                 case PactPath.BloodReaver: maxHp += n * PT.bloodHpPerNode51 + (crest ? PT.crestBloodHp51 : 0); hp = maxHp; break;
+                case PactPath.Gonggong: incDmg += n * PT.ggIncDmgPerNode1561; break; // t1561 placeholder passive (his nodes are not in game yet; no crest effect)
             }
             PactApply53(); // v0.0.53: node mechanics (HellordPact53.cs)
         }

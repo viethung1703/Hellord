@@ -16,8 +16,9 @@ namespace Hellord
             new[] { 0,1, 1,0, 1,2, 2,1, 2,0, 2,2, 3,0, 4,1, 4,2,   0,1, 1,0, 1,2, 2,1, 2,0, 2,2, 3,1, 4,0, 4,2 }, // t539u: Necromancer now slot 1. t536u Necromancer 18 nodes: group A (SUMMON) idx 0..8, group B (BONE SKILLS) idx 9..17, shown one group at a time
             new[] { 0,1, 1,0, 1,1, 1,2, 2,1, 2,0, 2,2, 3,0, 4,0, 4,2 }, // Stormcaller: Elemental Equilibrium <- Static Fork via lane
             new[] { 0,1, 1,0, 1,2, 2,2, 1,1, 2,1, 3,2, 3,1, 4,2, 4,0 }, // Blood Reaver
+            new[] { 0,1, 1,0, 1,2, 2,0, 2,2, 2,1, 3,2, 3,1, 4,2, 4,0 }, // t1561 Gonggong (PLACEHOLDER tree, same requirement graph as Zhurong -> same layout)
         };
-        static readonly string[] Sub97 = { "OF THE PIT", "", "", "" }; // t1544: Card97 uses PactData.PathTitle when pactGods1544 is on
+        static readonly string[] Sub97 = { "OF THE PIT", "", "", "", "" }; // t1544: Card97 uses PactData.PathTitle when pactGods1544 is on
         static readonly Color A_LEATH = new Color32(46, 30, 34, 255), A_STONE = new Color32(34, 30, 44, 255), A_EDGE = new Color32(0x73, 0x3e, 0x39, 255), A_DEEP = new Color32(20, 16, 28, 255);
         int _grp97; // t536u: visible node group on 18-node Paths (0 SUMMON, 1 BONE SKILLS)
         static bool Big97(int p) => PactData.Nodes[p].Length > 10;
@@ -216,12 +217,12 @@ namespace Hellord
                     R53(cx - 17, cy - 17, 34, 34, A_DEEP); R53(cx - 16, cy - 16, 32, 32, edge); R53(cx - 13, cy - 13, 26, 26, un ? (Color)new Color32(40, 26, 30, 255) : (Color)new Color32(30, 30, 44, 255));
                     if (_focus97 == i) Ol53(cx - 20, cy - 20, 40, 40, Color.white);
                     GUI.matrix = m;
-                    I97(T97("icon_" + (p == (int)PactPath.Necromancer ? 4 : p) + "_" + i + (un ? "" : "_dim")), cx - 12, cy - 12, 24, 24);
+                    if (p >= 4) GgIcon97(i, cx - 12, cy - 12, un); else I97(T97("icon_" + (p == (int)PactPath.Necromancer ? 4 : p) + "_" + i + (un ? "" : "_dim")), cx - 12, cy - 12, 24, 24); // t1561: Gonggong = placeholder frost skill icons (icon_4_* is the Necromancer art)
                 }
                 else
                 {
                     R53(cx - 19, cy - 19, 38, 38, A_DEEP); R53(cx - 18, cy - 18, 36, 36, edge); R53(cx - 15, cy - 15, 30, 30, un ? (Color)new Color32(40, 26, 30, 255) : (Color)new Color32(30, 30, 44, 255));
-                    I97(T97("icon_" + (p == (int)PactPath.Necromancer ? 4 : p) + "_" + i + (un ? "" : "_dim")), cx - 12, cy - 12, 24, 24);
+                    if (p >= 4) GgIcon97(i, cx - 12, cy - 12, un); else I97(T97("icon_" + (p == (int)PactPath.Necromancer ? 4 : p) + "_" + i + (un ? "" : "_dim")), cx - 12, cy - 12, 24, 24); // t1561: Gonggong = placeholder frost skill icons (icon_4_* is the Necromancer art)
                 }
                 if (_focus97 == i && !key) { R53(cx - 22, cy - 22, 6, 2, Color.white); R53(cx - 22, cy - 22, 2, 6, Color.white); R53(cx + 16, cy - 22, 6, 2, Color.white); R53(cx + 20, cy - 22, 2, 6, Color.white); R53(cx - 22, cy + 20, 6, 2, Color.white); R53(cx - 22, cy + 16, 2, 6, Color.white); R53(cx + 16, cy + 20, 6, 2, Color.white); R53(cx + 20, cy + 16, 2, 6, Color.white); }
                 if (tk) R53(cx + 12, cy - 18, 6, 6, U_YEL);
@@ -400,6 +401,7 @@ namespace Hellord
             {   // t1380: key / pad presses show the same press feedback as the mouse; OPEN TREE / BACK fire after ~0.09 s so it is visible
                 if (_amPend != null) { if (Time.unscaledTime >= _amPendAt) { var pid = _amPend; _amPend = null; AmDo(pid); } return; }
                 if (K69Down(6)) { AmKick("amseal"); AmSealToggle(); return; }   // X = SEAL / UNSEAL
+                if (AltarPlayOn1561() && K69Down(7)) { AmKick("amplay"); _amPend = "amplay"; _amPendAt = Time.unscaledTime + 0.09f; return; }   // t1561: Y = DESCEND
                 if (ok) { AmKick("amopen"); _amPend = "amopen"; _amPendAt = Time.unscaledTime + 0.09f; return; }
                 if (back) { AmKick("amback"); _amPend = "amback"; _amPendAt = Time.unscaledTime + 0.09f; return; }
                 if (lf) { AmKick("amarr0"); Scroll97(-1); return; } if (rt) { AmKick("amarr1"); Scroll97(1); return; }
