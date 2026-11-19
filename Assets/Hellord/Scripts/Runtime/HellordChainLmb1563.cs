@@ -17,6 +17,7 @@ namespace Hellord
         bool IsLmbBasic1563(SkillId id)
         {
             var T = HellordTuning.I; if (T == null || T.lmbBasicIds1517 == null || System.Array.IndexOf(T.lmbBasicIds1517, id) < 0) return false;
+            if (IsPb1567(id) && !PbOn1567(id)) return false; // t1567 pact basics (pbOn1567 / pbSkillOn1567)
             return id != SkillId.ChainLightning || T.chainLmb1563;
         }
         /// <summary>first target of the aimed bolt: nearest along the aim line, else nearest to the line inside the cone; -1 = miss.</summary>

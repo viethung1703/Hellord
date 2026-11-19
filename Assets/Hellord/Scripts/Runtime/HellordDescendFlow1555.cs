@@ -260,7 +260,8 @@ namespace Hellord
         void DfIcon1555(SkillId id, int x, int y, int s, float a)
         {
             GUI.color = new Color(1, 1, 1, a);
-            if (IsFb1481(id)) { var ft = FbIcon1481(id); if (ft != null) AmBlitS(ft, 0, 0, 24, 24, x, y, 24 * s, 24 * s); }
+            if (IsPb1567(id)) { var pt = PbIcon1567(id); if (pt != null) AmBlitS(pt, 0, 0, 24, 24, x, y, 24 * s, 24 * s); } // t1567
+            else if (IsFb1481(id)) { var ft = FbIcon1481(id); if (ft != null) AmBlitS(ft, 0, 0, 24, 24, x, y, 24 * s, 24 * s); }
             else if (IceArt.IsIce(id)) { var it = IceArt.Icon24(id); if (it != null) AmBlitS(it, 0, 0, 24, 24, x, y, 24 * s, 24 * s); }
             else { SkillBarTex(); if (_tSkill24 != null) { int c = _icons44 ? (int)id : BarTile(id); AmBlitS(_tSkill24, c * 28, 0, 24, 24, x, y, 24 * s, 24 * s); } }
             GUI.color = Color.white;

@@ -15,7 +15,7 @@ namespace Hellord
         void BuildStartCards()
         {
             if (DfStartCards1559()) return; // t1559: descend flow - only the run pact's basics
-            cards.Clear(); var pool = new List<SkillDef>(HData.Skills); pool.RemoveAll(PactBanned53); Shuffle(pool);
+            cards.Clear(); var pool = new List<SkillDef>(HData.Skills); pool.RemoveAll(PactBanned53); pool.RemoveAll(PbNoOffer1567); /* t1567 */ Shuffle(pool);
             for (int i = 0; i < Mathf.Min(5, pool.Count); i++) cards.Add(new Card { kind = CardKind.NewSkill, skill = pool[i] });
             warning = null;
         }
@@ -31,7 +31,7 @@ namespace Hellord
             var lvl = new List<Card>(); var news = new List<Card>(); var sups = new List<Card>(); var stats = new List<Card>();
             for (int i = 0; i < skills.Count; i++) if (skills[i].level < HData.MaxLv(skills[i].def)) lvl.Add(new Card { kind = CardKind.SkillLevel, skill = skills[i].def, skillIndex = i });
             if (skills.Count < (Manual716 ? HellordTuning.I.manualSkillCap716 : HData.SlotsUnlocked(ShownLevel))) // t716u
-                foreach (var d in HData.Skills) if (!PactBanned53(d) && !skills.Exists(s => s.def == d)) news.Add(new Card { kind = CardKind.NewSkill, skill = d });
+                foreach (var d in HData.Skills) if (!PactBanned53(d) && !PbNoOffer1567(d) /* t1567 */ && !skills.Exists(s => s.def == d)) news.Add(new Card { kind = CardKind.NewSkill, skill = d });
             var ups = new List<Card>(); // v0.0.27: owned supports below Lv5 are offered as UPGRADES
             foreach (var sd in HData.Supports) if (skills.Exists(s => s.CanSocket(sd) == null)) { var sc = new Card { kind = CardKind.Support, support = sd }; if (skills.Exists(s => s.CanUpgrade(sd))) ups.Add(sc); else sups.Add(sc); }
             foreach (var st in HData.Stats) stats.Add(new Card { kind = CardKind.Stat, stat = st });

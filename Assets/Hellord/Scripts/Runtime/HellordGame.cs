@@ -58,6 +58,7 @@ namespace Hellord
         void Awake()
         {
             FireWallDefs948(); // t948u
+            PbDefs1567(); // t1567: pact basics' damage / cooldown from HellordTuning
             if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-runinbg") >= 0) { Application.runInBackground = true; Debug.Log("[Hellord] -runinbg: runInBackground = true"); } // v0.0.21
             // v0.0.17: '-volume <0..1>' command-line arg sets the master volume (stream-friendly playtests); no arg = full volume
             { var a = System.Environment.GetCommandLineArgs(); int vi = System.Array.IndexOf(a, "-volume");
@@ -228,7 +229,7 @@ namespace Hellord
             if (HInput.Down(HKey.F3)) { _tf = (_tf + 1) % 4; SetHeroLayers(); Toast(_tf == 0 ? "Transformation: none" : "Transformation (debug): " + TfSheets[_tf]); }
             float dt = Mathf.Min(Time.deltaTime, 1f / 20f); if (dt <= 0) { UpdateCamera(); return; }
             runTime += dt; if (hp > maxHp) hp = maxHp; // v0.0.14 safety clamp
-            Z37Begin(); UpdateHero(dt); if (floorMode) UpdateFloor(dt); else { UpdateSpawner(dt); UpdateBossSpawn(); } RebuildGrid(); UpdateEnemies(dt); UpdateSkills(dt); PactTick53(dt); UpdateProjectiles(dt); UpdateIce(dt); UpdateFireBasics1481(dt); UpdateOrbLight667(); UpdateBBullets(dt); Update49(dt); UpdateTongueTraps(dt); UpdateHooks(dt); UpdateGossip(dt); ProcessBlasts(); UpdatePickups(dt);
+            Z37Begin(); UpdateHero(dt); if (floorMode) UpdateFloor(dt); else { UpdateSpawner(dt); UpdateBossSpawn(); } RebuildGrid(); UpdateEnemies(dt); UpdateSkills(dt); PactTick53(dt); UpdateProjectiles(dt); UpdateIce(dt); UpdateFireBasics1481(dt); UpdatePb1567(dt); /* t1567 */ UpdateOrbLight667(); UpdateBBullets(dt); Update49(dt); UpdateTongueTraps(dt); UpdateHooks(dt); UpdateGossip(dt); ProcessBlasts(); UpdatePickups(dt);
             if (_room != null) _room.Tick(dt); if (_lane != null) _lane.Tick(dt); Z37End();
             UpdateCamera();
             if (pendingLevels > 0 && mode == Mode.Play) OpenLevelUp();
@@ -403,10 +404,11 @@ namespace Hellord
             int ord = HeroSort;
             _heroBase.flipX = flip; _heroBase.sortingOrder = ord;
             var ol = Hero47On ? HArt.HeroOutline(Art47 + "hero_36_base", T47.hero36CellPx, T47.hero36CellPx, T47.hero36PivotPx.x, T47.hero36PivotPx.y) : HArt.HeroOutline(_tf > 0 ? TfSheets[_tf] : baseF == _heroFrostF ? "hero_skin_frost" : "hero_base");
-            int lf1517 = pose1517 && !(_walkF1528 >= 0 && _castWalk1528 != null) ? 0 : f; /* t1528 v2: walking casts keep the walk frame for overlays */ bool hide1517 = HellordTuning.I.heroPoseHideOverlays1517; // t1517: overlays hold frame 0 (or hide) while attacking
+            int lf1517 = pose1517 && !(_walkF1528 >= 0 && PWalk1567 != null) ? 0 : f; /* t1528 v2: walking casts keep the walk frame for overlays */ bool hide1517 = HellordTuning.I.heroPoseHideOverlays1517; // t1517: overlays hold frame 0 (or hide) while attacking
             if (pose1517) { _heroOutline.enabled = po1517 != null; if (po1517 != null) { _heroOutline.sprite = po1517; _heroOutline.flipX = flip; _heroOutline.sortingOrder = ord - 2; } } else // t1528: the cast strip's own outline
             { _heroOutline.enabled = ol != null; if (ol != null) { _heroOutline.sprite = ol[f]; _heroOutline.flipX = flip; _heroOutline.sortingOrder = ord - 2; } }
             UpdateCastFx1528(flip, ord); // t1528 aura + spark
+            AxeOverlay1567(f, flip, ord, pose1517); // t1567 HA held-axe overlay (Xingtian axe basics)
             foreach (var l in _heroLayers) { l.sr.sprite = l.f[lf1517]; if (hide1517) l.sr.enabled = !pose1517; l.sr.flipX = flip; l.sr.sortingOrder = ord + LayerSort47(l.sr.name); }
             if (_room != null) { _room.SortAgainstHero(_heroPos, HeroSort, HellordTuning.I.heroBehindProps); UpdateRoomGrade(); }
             _iframe -= dt; _hurtT -= dt;

@@ -54,13 +54,13 @@ namespace Hellord
                 Blit(_tCard, (rar * 2 + (hover ? 1 : 0)) * CardW, 0, CardW, CardH, x, y);
                 // name (1-2 lines, centred at y+7)
                 string name = c.kind == CardKind.NewSkill || c.kind == CardKind.SkillLevel ? (c.kind == CardKind.SkillLevel ? skills[c.skillIndex].def.name : c.skill.name) : c.kind == CardKind.Support ? c.support.name : c.stat.name;
-                { string nm = Sanitize(name); if (nm.Length > 18) nm = nm.Substring(0, 17) + "."; Text(nm, x + Mathf.Round((CardW - TextW(nm)) / 2f), y + 7, Color.white); } // banner is one line tall
+                { string nm = Sanitize(name); if (nm.Length > 18 && !(PT.pbCardNameFit1567 && TextW(nm) <= CardW - 6)) nm = nm.Substring(0, 17) + "."; /* t1567: a longer name that fits the banner is kept */ Text(nm, x + Mathf.Round((CardW - TextW(nm)) / 2f), y + 7, Color.white); } // banner is one line tall
                 // icon 16 -> 32 at (42,27)
                 int icon = c.kind == CardKind.NewSkill ? SkillIcon(c.skill.id) : c.kind == CardKind.SkillLevel ? SkillIcon(skills[c.skillIndex].def.id) : -1;
                 if (icon < 0) icon = c.kind == CardKind.Support ? SupportIcon(c.support.id) : StatIcon(c.stat.id);
                 bool newSup = c.kind == CardKind.Support && icon < 0; SkillBarTex(); // v0.0.36: supports without a 16px icon use the approved 20px support sheet at 2x
                 SkillId? nsk = c.kind == CardKind.NewSkill ? c.skill.id : c.kind == CardKind.SkillLevel ? skills[c.skillIndex].def.id : (SkillId?)null;
-                if (nsk.HasValue && (IceArt.IsIce(nsk.Value) || IsFb1481(nsk.Value))) { GUI.color = new Color(1, 1, 1, ra); IceIconBlit(nsk.Value, x + 34, y + 19, 48); }
+                if (nsk.HasValue && (IceArt.IsIce(nsk.Value) || IsFb1481(nsk.Value) || IsPb1567(nsk.Value))) { GUI.color = new Color(1, 1, 1, ra); IceIconBlit(nsk.Value, x + 34, y + 19, 48); }
                 else if (_icons44 && nsk.HasValue && nsk.Value >= SkillId.ChainLightning && _tSkill24 != null) { GUI.color = new Color(1, 1, 1, ra); BlitInset(_tSkill24, (int)nsk.Value * 28, 0, 24, 24, x + 34, y + 19, 48, 48); }
                 else if (icon >= 0 && !newSup)
                 {

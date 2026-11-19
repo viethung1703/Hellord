@@ -22,7 +22,7 @@ namespace Hellord
             yield return AtHold1561(0.7f, clip);
             Act69(0); bool altarLeizu = mode == Mode.Altar && _altarView51 == 2; yield return AtHold1561(1.5f, clip); yield return AtShot("chain1563_altar_opened_on_leizu");
             var pc = AtPlayC1561(); yield return AtFake1561(pc.x, pc.y, clip);
-            string ids = AtCardIds1559(), gL = AtOldPickGaps1559(); bool pickCl = mode == Mode.StartPick && ids == "ChainLightning";
+            string ids = AtCardIds1559(), gL = AtOldPickGaps1559(); bool pickCl = mode == Mode.StartPick && ids == (T.pbOn1567 ? "ChainLightning,SparkSpray,BallLightning,ThunderJavelin" : "ChainLightning"); /* t1567 */
             yield return AtHold1561(1.4f, clip); yield return AtShot("chain1563_ingame_pick_leizu");
             if (cards.Count > 0) Choose(cards[0]);
             var sk = skills.Count > 0 ? skills[0] : null; bool basic = Basic1517() != null && Basic1517().def.id == SkillId.ChainLightning;
@@ -54,7 +54,7 @@ namespace Hellord
             int held = ChainLmbCasts1563 - h0; int expect = Mathf.CeilToInt(2.3f / Mathf.Max(0.1f, cdBase));
             T.chainLmb1563 = false; bool offAuto = Basic1517() == null; int a0 = ChainLmbCasts1563; t = 0; while (t < 1.5f) { yield return null; hp = maxHp; t += Time.deltaTime; } bool offNoAim = ChainLmbCasts1563 == a0; T.chainLmb1563 = true;
             ALog("oldpick leizu " + gL);
-            ARes("chain1563:rules", held >= 1 && held <= expect + 1 && offAuto && offNoAim && gL.Contains("left 262") && gL.Contains("right 262"),
+            ARes("chain1563:rules", held >= 1 && held <= expect + 1 && offAuto && offNoAim && (T.pbOn1567 ? gL.Contains("left 79 gap 6 right 79") : gL.Contains("left 262") && gL.Contains("right 262")) /* t1567: 4 cards */,
                 $"heldLmb2.3s casts {held} (<= {expect + 1}) toggleOff=noBasic {offAuto} toggleOff=noAimedCasts {offNoAim} gaps {gL}");
             AtClearWorld();
             _souls51 = so; _sigils51 = si; _pactPath51 = pp; _pactSel51 = ps; _pactSealed51 = sd; _unlock51 = un; PactSave51(); _atGod = false;

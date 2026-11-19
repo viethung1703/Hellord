@@ -275,7 +275,7 @@ namespace Hellord
                 if (k != null)
                 {
                     int ic = _icons44 ? (int)k.def.id : BarTile(k.def.id);
-                    if (IceArt.IsIce(k.def.id) || IsFb1481(k.def.id)) { GUI.color = Color.white; if (!IceIconBlit(k.def.id, ix, iy, 24) && _tSkill24 != null) Blit(_tSkill24, 0, 0, 24, 24, ix, iy); }
+                    if (IceArt.IsIce(k.def.id) || IsFb1481(k.def.id) || IsPb1567(k.def.id)) { GUI.color = Color.white; if (!IceIconBlit(k.def.id, ix, iy, 24) && _tSkill24 != null) Blit(_tSkill24, 0, 0, 24, 24, ix, iy); }
                     else if (_tSkill24 != null) { var pt = _icons44 ? Color.white : PhTint(k.def.id); GUI.color = pt; Blit(_tSkill24, ic * 28, 0, 24, 24, ix, iy); }
                     float full = Mathf.Max(0.05f, k.def.cooldown * k.CdMul); bool cont = k.def.id == SkillId.BoneOrbit || HData.Summon561(k.def);
                     float cdf = cont ? 0 : Mathf.Clamp01(k.cd / full);

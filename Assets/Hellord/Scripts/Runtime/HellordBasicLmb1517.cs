@@ -49,7 +49,7 @@ namespace Hellord
         {
             float lc = _lastCast[(int)s.def.id]; _basicAim1517 = true;
             try { Cast(s, mul); } finally { _basicAim1517 = false; }
-            if (_lastCast[(int)s.def.id] != lc) { Vector2 d = MouseWorld() - HeroCenter; HeroAttackPose(AttackPoseKind1517.Cast, /* t1528: melee uses the same tail cast (t1519) */ d.sqrMagnitude > 0.01f ? d.normalized : _lastDir, CastFrost1528(s.def.id)); }
+            if (_lastCast[(int)s.def.id] != lc) { _poseLight1567 = CastLight1567(s.def.id); _pose1567 = PoseSetFor1567(s.def.id); Vector2 d = MouseWorld() - HeroCenter; HeroAttackPose(AttackPoseKind1517.Cast, /* t1528: melee uses the same tail cast (t1519) */ d.sqrMagnitude > 0.01f ? d.normalized : _lastDir, CastFrost1528(s.def.id)); }
         }
 
         // ---------------------------------------------------------------- hero attack pose (t1517 hook; t1528: VH's cast variant B "TAIL cast")
@@ -62,8 +62,10 @@ namespace Hellord
         AttackPoseKind1517 _poseKind1517; Vector2 _poseDir1517 = Vector2.right; float _poseT1517 = 99f; bool _poseTried1517, _preWind1528, _poseFrost1528; int _poseCalls1517;
         int _walkF1528 = -1; Sprite[] _castWalk1528, _castWalkOl1528; // t1528 v2: walk-based cast frames (tools/gen_castB_walk_1528.py)
         Sprite[] _castBody1528, _castBodyOl1528, _castBlink1528, _auraFire1528, _auraFrost1528, _sparkFire1528, _sparkFrost1528; SpriteRenderer _aura1528, _spark1528;
-        float CastReleaseS1528 { get { var h = HellordTuning.I.castHoldMs1528; int r = HellordTuning.I.castReleaseIdx1528; float t = 0; for (int i = 0; i < r && i < h.Length; i++) t += h[i]; return t / 1000f; } }
-        float CastTotalS1528 { get { float t = 0; foreach (var x in HellordTuning.I.castHoldMs1528) t += x; return t / 1000f; } }
+        float CastReleaseS1528 { get { var h = PHolds1567; int r = PRel1567; float t = 0; for (int i = 0; i < r && i < h.Length; i++) t += h[i]; return t / 1000f; } }
+        float CastTotalS1528 { get { float t = 0; foreach (var x in PHolds1567) t += x; return t / 1000f; } }
+        bool _poseLight1567; Sprite[] _sparkLight1567, _auraLight1567;
+        bool CastLight1567(SkillId id) { var a = HellordTuning.I.castLightningIds1567; return a != null && System.Array.IndexOf(a, id) >= 0; }
         bool CastFrost1528(SkillId id) { var a = HellordTuning.I.castFrostIds1528; return a != null && System.Array.IndexOf(a, id) >= 0; }
         /// <summary>Starts the cast on the fire frame (jumps to / snaps to the release frame so the shot stays instant).</summary>
         public void HeroAttackPose(AttackPoseKind1517 kind, Vector2 dir) => HeroAttackPose(kind, dir, _poseFrost1528);
@@ -74,7 +76,7 @@ namespace Hellord
             // show the release frame this frame (UpdateHero already ran before the skills), so it lands on the fire frame
             var ps = HeroPose1517(out var po); if (ps == null || _heroBase == null) return; bool flip = HeroFaceCursor1517() ?? _heroBase.flipX;
             _heroBase.sprite = ps; _heroBase.flipX = flip; if (_heroOutline != null && po != null) { _heroOutline.sprite = po; _heroOutline.flipX = flip; }
-            int lf = _walkF1528 >= 0 && _castWalk1528 != null ? HArt.HeroWalk0 + _walkF1528 : 0; foreach (var l in _heroLayers) { if (l.f != null && l.f.Length > lf) l.sr.sprite = l.f[lf]; l.sr.flipX = flip; }
+            int lf = _walkF1528 >= 0 && PWalk1567 != null ? HArt.HeroWalk0 + _walkF1528 : 0; foreach (var l in _heroLayers) { if (l.f != null && l.f.Length > lf) l.sr.sprite = l.f[lf]; l.sr.flipX = flip; }
             UpdateCastFx1528(flip, _heroBase.sortingOrder);
         }
         /// <summary>BasicTick: while LMB is held and the basic's next shot is under the release lead, pre-play f0-f1 so f2 meets the shot.</summary>
@@ -83,7 +85,7 @@ namespace Hellord
             var T = HellordTuning.I; float rel = CastReleaseS1528;
             if (_preWind1528 && !lmbFree) { _preWind1528 = false; _poseT1517 = 99f; return; } // released during the wind-up: drop it
             if (!T.castPreWind1528 || !T.heroPose1517 || !lmbFree || b != _basic1517 || _preWind1528 || _poseT1517 < CastTotalS1528) return;
-            if (b.cd > 0.0001f && b.cd <= rel) { _preWind1528 = true; _poseFrost1528 = CastFrost1528(b.def.id); _poseKind1517 = AttackPoseKind1517.Cast; _poseT1517 = Mathf.Max(0f, rel - b.cd); }
+            if (b.cd > 0.0001f && b.cd <= rel) { _poseLight1567 = CastLight1567(b.def.id); _pose1567 = PoseSetFor1567(b.def.id); _preWind1528 = true; _poseFrost1528 = CastFrost1528(b.def.id); _poseKind1517 = AttackPoseKind1517.Cast; _poseT1517 = Mathf.Max(0f, rel - b.cd); }
         }
         void PoseLoad1517()
         {
@@ -95,6 +97,7 @@ namespace Hellord
             Sprite[] L(string nm, int fr, int px, Vector2 piv) => HArt.Missing(Art47 + nm) ? null : HArt.Strip(Art47 + nm, fr, px, px, piv);
             _auraFire1528 = L(T.castAuraFireSheet1528, 4, 44, T.castAuraPivotPx1528); _auraFrost1528 = L(T.castAuraFrostSheet1528, 4, 44, T.castAuraPivotPx1528);
             _sparkFire1528 = L(T.castSparkFireSheet1528, 3, 13, new Vector2(6.5f, 6.5f)); _sparkFrost1528 = L(T.castSparkFrostSheet1528, 3, 13, new Vector2(6.5f, 6.5f));
+            _sparkLight1567 = L(T.castSparkLightningSheet1567, 3, 13, new Vector2(6.5f, 6.5f)); _auraLight1567 = L(T.castAuraLightningSheet1567, 4, 44, T.castAuraPivotPx1528); // t1567 HFX / HA lightning
         }
         bool PoseSheets1517 { get { PoseLoad1517(); return _castBody1528 != null; } }
         /// <summary>Recoil offset (px table at 30 fps, away from the attack); only when the cast strip is missing (or heroRecoilWithStrips).</summary>
@@ -107,20 +110,20 @@ namespace Hellord
         /// <summary>Cast frame index now (-1 = none). A pre-wind that reached the release without a shot (e.g. Boulder's one-ball cap) holds f1, then drops.</summary>
         int CastIdx1528()
         {
-            var T = HellordTuning.I; if (!T.heroPose1517 || !Hero47On || _poseT1517 > 5f) return -1; var h = T.castHoldMs1528; float rel = CastReleaseS1528;
-            if (_preWind1528 && _poseT1517 >= rel) { if (_poseT1517 > rel + T.castPreWindMaxHoldS1528) { _preWind1528 = false; _poseT1517 = 99f; return -1; } return Mathf.Max(0, T.castReleaseIdx1528 - 1); }
+            var T = HellordTuning.I; if (!T.heroPose1517 || !Hero47On || _poseT1517 > 5f) return -1; var h = PHolds1567; float rel = CastReleaseS1528;
+            if (_preWind1528 && _poseT1517 >= rel) { if (_poseT1517 > rel + T.castPreWindMaxHoldS1528) { _preWind1528 = false; _poseT1517 = 99f; return -1; } return Mathf.Max(0, PRel1567 - 1); }
             float t = _poseT1517 * 1000f; for (int i = 0; i < h.Length; i++) { if (t < h[i]) return i; t -= h[i]; } return -1;
         }
         /// <summary>The cast sprite replacing the hero base this frame (null = none), with its outline.</summary>
         Sprite HeroPose1517(out Sprite outline)
         {
-            outline = null; int i = CastIdx1528(); if (i < 0) return null; PoseLoad1517(); if (_castBody1528 == null || i >= _castBody1528.Length) return null;
-            var T = HellordTuning.I; bool blink = i == T.castReleaseIdx1528 && !_preWind1528 && _poseT1517 - CastReleaseS1528 < T.castBlinkMs1528 / 1000f;
-            int per = _castBody1528.Length + 1; // t1528 v2: walking -> the walk frame's legs + bob with the cast tail / squash / blink (w * 6 + k, k 5 = blink)
-            if (_walkF1528 >= 0 && _castWalk1528 != null) { int wi = _walkF1528 * per + (blink ? per - 1 : i); if (wi < _castWalk1528.Length) { outline = _castWalkOl1528 != null && wi < _castWalkOl1528.Length ? _castWalkOl1528[wi] : null; return _castWalk1528[wi]; } }
-            outline = _castBodyOl1528 != null && i < _castBodyOl1528.Length ? _castBodyOl1528[i] : null;
-            if (blink && _castBlink1528 != null) return _castBlink1528[0];
-            return _castBody1528[i];
+            outline = null; int i = CastIdx1528(); if (i < 0) return null; PoseLoad1517(); var body = PBody1567; if (body == null || i >= body.Length) return null;
+            var T = HellordTuning.I; bool blink = i == PRel1567 && !_preWind1528 && _poseT1517 - CastReleaseS1528 < T.castBlinkMs1528 / 1000f;
+            int per = body.Length + 1; var walk = PWalk1567; // t1528 v2: walking -> the walk frame's legs + bob with the cast tail / squash / blink (w * 6 + k, k 5 = blink)
+            if (_walkF1528 >= 0 && walk != null) { var wol = PWalkOl1567; int wi = _walkF1528 * per + (blink ? per - 1 : i); if (wi < walk.Length) { outline = wol != null && wi < wol.Length ? wol[wi] : null; return walk[wi]; } }
+            var bol = PBodyOl1567; outline = bol != null && i < bol.Length ? bol[i] : null; var bl = PBlink1567;
+            if (blink && bl != null) return bl[0];
+            return body[i];
         }
         /// <summary>Aura (behind the body, f0-f3) and spark (tail tip, f2-f4, above the projectiles), element-tinted. Called from UpdateHero.</summary>
         void UpdateCastFx1528(bool flip, int ord)
@@ -129,10 +132,12 @@ namespace Hellord
             if (_aura1528 == null && _auraFire1528 != null) { _aura1528 = new GameObject("castAura1528").AddComponent<SpriteRenderer>(); _aura1528.transform.SetParent(_hero, false); }
             if (_spark1528 == null && _sparkFire1528 != null) { _spark1528 = new GameObject("castSpark1528").AddComponent<SpriteRenderer>(); _spark1528.transform.SetParent(_hero, false); }
             var au = _poseFrost1528 ? _auraFrost1528 : _auraFire1528; var sp = _poseFrost1528 ? _sparkFrost1528 : _sparkFire1528;
+            if (_poseLight1567 && T.castLightning1567) { if (_auraLight1567 != null) au = _auraLight1567; if (_sparkLight1567 != null) sp = _sparkLight1567; } // t1567
+            if (_pose1567 != null) { au = _pose1567.aura ?? au; sp = _pose1567.noSpark ? null : (_pose1567.spark ?? sp); } // t1567 per-skill pose set (HA)
             if (_aura1528 != null) { bool on = T.castAura1528 && au != null && i >= 0 && i < au.Length; _aura1528.enabled = on; if (on) { _aura1528.sprite = au[i]; _aura1528.flipX = flip; _aura1528.sortingOrder = ord - 3; } }
             if (_spark1528 != null)
             {
-                int si = i - T.castReleaseIdx1528; bool on = T.castSpark1528 && sp != null && !_preWind1528 && si >= 0 && si < sp.Length; _spark1528.enabled = on;
+                int si = i - PRel1567; bool on = T.castSpark1528 && sp != null && !_preWind1528 && si >= 0 && si < sp.Length; _spark1528.enabled = on;
                 if (on) { _spark1528.sprite = sp[si]; _spark1528.flipX = flip; _spark1528.sortingOrder = T.castSparkSort1528; var o = T.castTipPx1528; _spark1528.transform.localPosition = new Vector3((flip ? -o.x : o.x) / HArt.PPU, -o.y / HArt.PPU, 0f); }
             }
         }

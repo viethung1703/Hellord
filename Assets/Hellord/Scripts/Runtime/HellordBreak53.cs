@@ -15,7 +15,7 @@ namespace Hellord
         {
             public List<SpriteRenderer> parts = new List<SpriteRenderer>(3); public SpriteRenderer main;
             public Rect hit; public Rect col, col2; public bool hasCol; public float hp, maxHp, hitT, deadT; public int kind; public bool dead, big;
-            public Vector3 baseScale, basePos; public float[] aoeCd = new float[24];
+            public Vector3 baseScale, basePos; public float[] aoeCd = new float[32]; /* t1567: 26 SkillIds now */
         }
         readonly List<Brk53> _brk53 = new List<Brk53>(16); readonly List<SpriteRenderer> _brkDecal53 = new List<SpriteRenderer>(8);
         static Sprite _brkDecalS53;

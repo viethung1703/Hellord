@@ -26,7 +26,7 @@ namespace Hellord
         }
 
         // v0.0.10 FX self-check (Shift+9 overlay): last cast time per skill
-        readonly float[] _lastCast = new float[24]; // v0.0.36 (t561u: +2 summons): one slot per SkillId
+        readonly float[] _lastCast = new float[32]; /* t1567: 26 SkillIds now */ // v0.0.36 (t561u: +2 summons): one slot per SkillId
         void Cast(SkillInst s, float mul)
         {
             float dmg = SkillDamage(s) * mul; // v0.0.13: _lastCast is stamped only after a real cast (early 'no target' returns no longer count -> no false FX WARN)
@@ -112,6 +112,13 @@ namespace Hellord
                 case SkillId.MagmaThrow: if (!CastMagmaThrow1481(s, dmg)) return; break; // t1481 fire basic main attacks (HellordFireBasics1481.cs)
                 case SkillId.RollingMagmaRock: if (!CastRollingRock1481(s, dmg)) return; break;
                 case SkillId.FirePillar: if (!CastFirePillar1481(s, dmg)) return; break;
+                case SkillId.SparkSpray: if (!CastSparkSpray1567(s, dmg)) return; break; // t1567 pact LMB basics (HellordPactBasics1567.cs)
+                case SkillId.BallLightning: if (!CastBallLightning1567(s, dmg)) return; break;
+                case SkillId.ThunderJavelin: if (!CastThunderJavelin1567(s, dmg)) return; break;
+                case SkillId.HeadsmansChop: if (!CastHeadsmansChop1567(s, dmg)) return; break;
+                case SkillId.EarthSplittingSlam: if (!CastEarthSlam1567(s, dmg)) return; break;
+                case SkillId.TwinAxeThrow: if (!CastTwinAxe1567(s, dmg)) return; break;
+                case SkillId.PhantomAxes: if (!CastPhantomAxes1567(s, dmg)) return; break;
             }
             _lastCast[(int)s.def.id] = Time.time;
         }
