@@ -261,7 +261,7 @@ namespace Hellord
         bool Click53(float x, float y, float w, float h) { if (_block53 || !Hit51(x, y, w, h)) return false; if(Event.current.type==EventType.MouseDown)Event.current.Use(); return true; }
         void Icon51(int p, float x, float y, float s, bool dim = false) => Img53("icon_" + p + (dim ? "_dim" : ""), x, y, s, s);
         bool Active51 => _pactPath51 >= 0 && _pactSel51 != 0;
-        void OpenAltar53() { mode = Mode.Altar; _altarScr53 = 0; _focus97 = -1; _confirm97 = -1; _altarView51 = Mathf.Max(0, _pactPath51); _confirmSwitch51 = -1; }
+        void OpenAltar53() { mode = Mode.Altar; _altarScr53 = 0; _focus97 = -1; _confirm97 = -1; _altarView51 = Mathf.Max(0, _pactPath51); if (PT.altarFocusSealed1563 && _pactSealed51 && _pactPath51 >= 0 && _pactPath51 < NP97) { _altarView51 = _pactPath51; _slide97 = 0; } /* t1563: open centred on the SEALED pact, no slide */ _confirmSwitch51 = -1; }
         void AltarBack53() { if (_confirmSwitch51 >= 0) _confirmSwitch51 = -1; else if (_altarScr53 > 0) _altarScr53 = 0; else mode = Mode.MainMenu; }
 
         void DrawPact51()

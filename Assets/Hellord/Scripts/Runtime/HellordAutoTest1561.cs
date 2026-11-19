@@ -72,7 +72,13 @@ namespace Hellord
             AtSealPlay1561(0, 0x7); yield return AtWait(0.6f); yield return AtShot("altar1561_ingame_pick_zhurong"); string idsZ = AtCardIds1559(), gZ = AtOldPickGaps1559(); bool zNodes = _pactActive51 && SelCount51() == 3; Choose(cards[0]);
             AtSealPlay1561(1, 0); yield return AtWait(0.6f); yield return AtShot("altar1561_ingame_pick_zhongkui"); string idsZk = AtCardIds1559(), gZk = AtOldPickGaps1559(); bool zkEmptyNoNodes = !_pactActive51; Choose(cards[0]);
             AtSealPlay1561(3, 0x3); yield return AtWait(0.6f); yield return AtShot("altar1561_ingame_pick_xingtian"); string idsXt = AtCardIds1559(), gXt = AtOldPickGaps1559(); bool xtNodes = _pactActive51 && SelCount51() == 2; Choose(cards[0]);
-            AtSealPlay1561(2, 0x1); yield return AtWait(0.6f); yield return AtShot("altar1561_ingame_pick_leizu_fallback"); string idsL = AtCardIds1559(); bool leizu = mode == Mode.StartPick && cards.Count > 0 && _pactActive51; if (cards.Count > 0) Choose(cards[0]);
+            AtSealPlay1561(2, 0x1); yield return AtWait(0.6f); yield return AtShot("altar1561_ingame_pick_leizu"); string idsL = AtCardIds1559(), gL = AtOldPickGaps1559(); bool leizu = mode == Mode.StartPick && idsL == "ChainLightning" && _pactActive51; if (cards.Count > 0) Choose(cards[0]); bool leizuRun = mode == Mode.Play && Basic1517() != null && Basic1517().def.id == SkillId.ChainLightning; // t1563: Leizu = Chain Lightning
+            // t1563: the altar opens centred on the sealed pact (each of the 5); nothing sealed = altar Path default; the carousel cycles through all 5
+            string foc = ""; bool focusOk = true;
+            for (int p = 0; p < NP97; p++) { AtMenu1555(); _pactPath51 = p; _pactSel51 = 0; _pactSealed51 = true; _altarView51 = (p + 2) % NP97; Act69(0); yield return null; foc += p + ">" + _altarView51 + " "; focusOk &= _altarView51 == p && mode == Mode.Altar; }
+            AtMenu1555(); _pactPath51 = 3; _pactSealed51 = false; _altarView51 = 0; Act69(0); bool focusUnsealed = _altarView51 == 3; AtMenu1555(); _pactPath51 = -1; _pactSealed51 = false; _altarView51 = 2; Act69(0); bool focusNone = _altarView51 == 0;
+            AtMenu1555(); _pactPath51 = 2; _pactSel51 = 0x1; _pactSealed51 = true; Act69(0); var seen = new HashSet<int>(); for (int k = 0; k < NP97; k++) { seen.Add(_altarView51); Scroll97(1); } bool cycles = seen.Count == 5 && _altarView51 == 2;
+            AtMenu1555(); _pactPath51 = 1; _pactSel51 = 0; _pactSealed51 = true; Act69(0); yield return AtWait(0.6f); yield return AtShot("altar1561_altar_opened_on_sealed_zhongkui");
             AtMenu1555(); bool cleared = _dfRunPick1559 < 0 && !_altarRun1561;
             // altar stills: Gonggong in the centre (sealed), the 5 carousel positions, the Gonggong tree
             AtMenu1555(); _pactPath51 = 4; _pactSel51 = 0x7; _pactSealed51 = true; Act69(0); yield return AtWait(0.6f); yield return AtShot("altar1561_altar_measure");
@@ -83,11 +89,11 @@ namespace Hellord
             _pactPath51 = 0; _pactSealed51 = true; T.altarFlow1561 = false; T.pactGonggong1561 = false; Act69(0); bool picker = _df1555 == 1 && NP97 == 4; DfBack1555(); T.pactGonggong1561 = true;
             AtMenu1555(); Act69(0); yield return null; bool offNoPicker5 = mode == Mode.StartPick && _df1555 == 0; T.altarFlow1561 = true;
             AtMenu1555(); yield return AtWait(0.2f);
-            ARes("altar1561:rules", noSealNoRun && back && idsZ == "Fireball,RollingMagmaRock,FirePillar" && zNodes && idsZk == "SoulSpears" && zkEmptyNoNodes && idsXt == "BloodWhip" && xtNodes && leizu && cleared && picker,
-                $"noSealNoRun {noSealNoRun} backToMenu {back} zhurong [{idsZ}] nodes {zNodes} zhongKui [{idsZk}] emptySealNoNodes {zkEmptyNoNodes} xingtian [{idsXt}] nodes {xtNodes} leizuSealedFallback {leizu} [{idsL}] filterCleared {cleared} altarFlowOff+4pacts=picker {picker} altarFlowOff+5pacts=oldDescend {offNoPicker5}");
-            ALog("buttons " + gB); ALog("oldpick gonggong " + gG); ALog("oldpick zhurong " + gZ); ALog("oldpick zhongkui " + gZk); ALog("oldpick xingtian " + gXt);
-            ARes("altar1561:gaps", gB == "left 141 | open 105 | 21 | descend 106 | 21 | back 105 | right 141" && gG.Contains("left 200 gap 8 right 200") && gZ.Contains("left 138 gap 8 right 138") && gZk.Contains("left 262") && gXt.Contains("right 262"),
-                gB + " || GG " + gG + " || Z " + gZ + " || ZK " + gZk + " || XT " + gXt);
+            ARes("altar1561:rules", noSealNoRun && back && idsZ == "Fireball,RollingMagmaRock,FirePillar" && zNodes && idsZk == "SoulSpears" && zkEmptyNoNodes && idsXt == "BloodWhip" && xtNodes && leizu && leizuRun && focusOk && focusUnsealed && focusNone && cycles && cleared && picker,
+                $"noSealNoRun {noSealNoRun} backToMenu {back} zhurong [{idsZ}] nodes {zNodes} zhongKui [{idsZk}] emptySealNoNodes {zkEmptyNoNodes} xingtian [{idsXt}] nodes {xtNodes} leizuChainLightning {leizu} [{idsL}] leizuRunBasic {leizuRun} focusSealed {focusOk} [{foc}] focusUnsealedPath {focusUnsealed} focusNone {focusNone} cycles5 {cycles} filterCleared {cleared} altarFlowOff+4pacts=picker {picker} altarFlowOff+5pacts=oldDescend {offNoPicker5}");
+            ALog("buttons " + gB); ALog("oldpick gonggong " + gG); ALog("oldpick zhurong " + gZ); ALog("oldpick zhongkui " + gZk); ALog("oldpick xingtian " + gXt); ALog("oldpick leizu " + gL);
+            ARes("altar1561:gaps", gB == "left 141 | open 105 | 21 | descend 106 | 21 | back 105 | right 141" && gG.Contains("left 200 gap 8 right 200") && gZ.Contains("left 138 gap 8 right 138") && gZk.Contains("left 262") && gXt.Contains("right 262") && gL.Contains("left 262") && gL.Contains("right 262"),
+                gB + " || GG " + gG + " || Z " + gZ + " || ZK " + gZk + " || XT " + gXt + " || LZ " + gL);
             _souls51 = so; _sigils51 = si; _pactPath51 = pp; _pactSel51 = ps; _pactSealed51 = sd; _unlock51 = un; PactSave51(); _atGod = false;
             AtEnd("altar1561", "hero_sprite_not_base_final2");
         }

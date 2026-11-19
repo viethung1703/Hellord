@@ -27,7 +27,7 @@ namespace Hellord
             var l = new List<SkillId>(); var raw = DfBasicsRaw1555(p); if (raw == null) return l;
             foreach (var id in raw)
             {
-                if (PT.lmbBasicIds1517 == null || System.Array.IndexOf(PT.lmbBasicIds1517, id) < 0) continue;
+                if (!IsLmbBasic1563(id)) continue; // t1563: Chain Lightning only while chainLmb1563
                 bool hold = PT.descendOnHold1555 != null && System.Array.IndexOf(PT.descendOnHold1555, id) >= 0;
                 if (hold && !(withHold && PT.descendShowOnHold1555)) continue; if (!l.Contains(id)) l.Add(id);
             }

@@ -20,7 +20,7 @@ namespace Hellord
         SkillInst Basic1517()
         {
             var T = HellordTuning.I; if (T == null || !T.lmbBasic1517 || Manual716 || skills.Count == 0) return null;
-            var s = skills[0]; return T.lmbBasicIds1517 != null && System.Array.IndexOf(T.lmbBasicIds1517, s.def.id) >= 0 ? s : null;
+            var s = skills[0]; return IsLmbBasic1563(s.def.id) ? s : null; // t1563: + Chain Lightning (chainLmb1563)
         }
         bool LmbFree1517() => mode == Mode.Play && !_tmOpen && !MouseOverBelt716() && _pickCool716 <= 0f;
         bool BasicWant1517() => HInput.LmbHeld716() && LmbFree1517();

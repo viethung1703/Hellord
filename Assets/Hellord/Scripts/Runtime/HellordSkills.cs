@@ -100,7 +100,7 @@ namespace Hellord
                     }
                     break;
                 }
-                case SkillId.ChainLightning: if (!CastChainLightning(s, dmg)) return; break;
+                case SkillId.ChainLightning: if (_basicAim1517 && HellordTuning.I.chainLmb1563) { CastChainAim1563(s, dmg); break; } /* t1563: LMB basic = aimed bolt (always casts: hit or miss bolt) */ if (!CastChainLightning(s, dmg)) return; break;
                 case SkillId.HellfirePillar: if (SinOn818(40)) { SinFireRing818(s, dmg); break; } if (FireWallOn948) { if (!CastFireWall948(s, dmg)) return; break; } /* t948u Fire Wall (Lance = marching wall) */ /* t818u #40 */ if (Has51(PactPath.Pyromancer, 6)) { if (!PactLance53(s, dmg)) return; break; } if (!CastHellfirePillar(s, dmg)) return; break; // v0.0.53 Hellfire Lance
                 case SkillId.BloodWhip: if (!CastBloodWhip(s, dmg)) return; break;
                 case SkillId.SoulSpears: if (!CastSoulSpears(s, dmg)) return; break;
