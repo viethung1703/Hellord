@@ -1,0 +1,87 @@
+{
+ "earth_splitting_slam_impact": {
+  "w": 43,
+  "h": 34,
+  "n": 14,
+  "rows": 1,
+  "piv": [
+   21,
+   20
+  ],
+  "glow_mask": true,
+  "ms": 33,
+  "loop": "once",
+  "dirs": "none",
+  "glowset": [
+   0.45,
+   1.5,
+   "fee761"
+  ]
+ },
+ "earth_splitting_slam_crack_decal": {
+  "w": 51,
+  "h": 41,
+  "n": 6,
+  "rows": 1,
+  "piv": [
+   26,
+   19
+  ],
+  "glow_mask": true,
+  "ms": "code-stepped",
+  "loop": "stages",
+  "dirs": "none",
+  "glowset": [
+   0.4,
+   1.5,
+   "e43b44"
+  ]
+ },
+ "earth_splitting_slam_eruption": {
+  "w": 51,
+  "h": 48,
+  "n": 14,
+  "rows": 1,
+  "piv": [
+   25,
+   27
+  ],
+  "glow_mask": true,
+  "ms": 33,
+  "loop": "once",
+  "dirs": "none",
+  "glowset": [
+   0.4,
+   1.6,
+   "e43b44"
+  ]
+ },
+ "earth_splitting_slam_dust_v1": {
+  "w": 21,
+  "h": 11,
+  "n": 12,
+  "rows": 1,
+  "piv": [
+   9,
+   8
+  ],
+  "glow_mask": false,
+  "ms": 40,
+  "loop": "once",
+  "dirs": "flipX ok"
+ },
+ "earth_splitting_slam_dust_v2": {
+  "w": 23,
+  "h": 12,
+  "n": 12,
+  "rows": 1,
+  "piv": [
+   11,
+   8
+  ],
+  "glow_mask": false,
+  "ms": 40,
+  "loop": "once",
+  "dirs": "flipX ok"
+ }
+}

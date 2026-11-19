@@ -1,0 +1,40 @@
+{
+ "phantom_axes_chop_dir16": {
+  "w": 53,
+  "h": 44,
+  "n": 16,
+  "rows": 16,
+  "piv": [
+   27,
+   34
+  ],
+  "glow_mask": true,
+  "ms": 33,
+  "loop": "once",
+  "dirs": "dir16 (row = direction from ghost to cursor)",
+  "glowset": [
+   0.4,
+   1.6,
+   "f6757a"
+  ]
+ },
+ "phantom_axes_hit_flash": {
+  "w": 29,
+  "h": 26,
+  "n": 6,
+  "rows": 1,
+  "piv": [
+   13,
+   12
+  ],
+  "glow_mask": true,
+  "ms": 33,
+  "loop": "once",
+  "dirs": "none",
+  "glowset": [
+   0.45,
+   1.3,
+   "f6757a"
+  ]
+ }
+}

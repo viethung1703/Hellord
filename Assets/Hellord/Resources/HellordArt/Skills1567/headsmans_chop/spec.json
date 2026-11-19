@@ -1,0 +1,73 @@
+{
+ "headsmans_chop_arc_dir16": {
+  "w": 78,
+  "h": 58,
+  "n": 6,
+  "rows": 16,
+  "piv": [
+   39,
+   27
+  ],
+  "glow_mask": true,
+  "ms": 33,
+  "loop": "once",
+  "dirs": "dir16",
+  "glowset": [
+   0.35,
+   1.6,
+   "c0cbdc"
+  ]
+ },
+ "headsmans_chop_blood_wave": {
+  "w": 56,
+  "h": 44,
+  "n": 16,
+  "rows": 1,
+  "piv": [
+   27,
+   24
+  ],
+  "glow_mask": true,
+  "ms": 33,
+  "loop": "once",
+  "dirs": "none",
+  "glowset": [
+   0.3,
+   1.4,
+   "e43b44"
+  ]
+ },
+ "headsmans_chop_hit_spark_dir16": {
+  "w": 42,
+  "h": 43,
+  "n": 7,
+  "rows": 16,
+  "piv": [
+   21,
+   21
+  ],
+  "glow_mask": true,
+  "ms": 33,
+  "loop": "once",
+  "dirs": "dir16",
+  "glowset": [
+   0.45,
+   1.2,
+   "fee761"
+  ]
+ },
+ "headsmans_chop_skid_dust": {
+  "w": 23,
+  "h": 7,
+  "n": 11,
+  "rows": 1,
+  "piv": [
+   15,
+   5
+  ],
+  "glow_mask": false,
+  "ms": 40,
+  "loop": "once",
+  "dirs": "flipX"
+ }
+}

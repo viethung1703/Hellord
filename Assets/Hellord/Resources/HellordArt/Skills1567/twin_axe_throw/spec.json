@@ -1,0 +1,87 @@
+{
+ "twin_axe_throw_axe_spin": {
+  "w": 24,
+  "h": 24,
+  "n": 16,
+  "rows": 1,
+  "piv": [
+   12,
+   12
+  ],
+  "glow_mask": true,
+  "ms": 33,
+  "loop": "loop",
+  "dirs": "spin (flipX when thrown left)",
+  "glowset": [
+   0.25,
+   1.2,
+   "c0cbdc"
+  ]
+ },
+ "twin_axe_throw_spin_smear": {
+  "w": 20,
+  "h": 20,
+  "n": 16,
+  "rows": 1,
+  "piv": [
+   10,
+   10
+  ],
+  "glow_mask": false,
+  "ms": 33,
+  "loop": "loop",
+  "dirs": "spin (same index/flip as axe_spin)"
+ },
+ "twin_axe_throw_trail_dir16": {
+  "w": 49,
+  "h": 49,
+  "n": 4,
+  "rows": 16,
+  "piv": [
+   24,
+   24
+  ],
+  "glow_mask": false,
+  "ms": 50,
+  "loop": "loop",
+  "dirs": "dir16 (travel direction)"
+ },
+ "twin_axe_throw_hit_spark_dir16": {
+  "w": 42,
+  "h": 44,
+  "n": 7,
+  "rows": 16,
+  "piv": [
+   21,
+   22
+  ],
+  "glow_mask": true,
+  "ms": 33,
+  "loop": "once",
+  "dirs": "dir16",
+  "glowset": [
+   0.45,
+   1.2,
+   "fee761"
+  ]
+ },
+ "twin_axe_throw_catch_flash": {
+  "w": 25,
+  "h": 25,
+  "n": 6,
+  "rows": 1,
+  "piv": [
+   12,
+   12
+  ],
+  "glow_mask": true,
+  "ms": 33,
+  "loop": "once",
+  "dirs": "none",
+  "glowset": [
+   0.4,
+   1.3,
+   "fee761"
+  ]
+ }
+}

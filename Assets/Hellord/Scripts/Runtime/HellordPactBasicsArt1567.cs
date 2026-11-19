@@ -62,17 +62,22 @@ namespace Hellord
                 bool glowOk = T.pbGlow1567 && _pbGlowSh1567 != null && _pbGlowSh1567.isSupported;
                 foreach (var sp in PbArtSpec1567)
                 {
-                    string k = (string)sp[0], file = (string)sp[1]; int fw = (int)sp[2], fh = (int)sp[3], n = (int)sp[4], rows = (int)sp[5]; float px = (int)sp[6], py = (int)sp[7]; float gain = (float)sp[9]; uint tint = (uint)sp[10];
+                    string k = (string)sp[0], file = (string)sp[1]; int fw = (int)sp[2], fh = (int)sp[3], n = (int)sp[4], rows = (int)sp[5]; float px = (int)sp[6], py = (int)sp[7]; float gain = (float)sp[9]; uint tint = (uint)sp[10]; object ms = sp[8];
+                    PbSpecOv1567(k, ref file, ref fw, ref fh, ref n, ref rows, ref px, ref py, ref ms, ref gain, ref tint); // t1572: remap + spec.json (v2 drop-in)
                     var t = PbTex1567(file + "_strip"); if (t == null || t.width < fw * n || t.height < fh * rows) continue;
-                    var a = new PbArtS { n = n, rows = rows, f = PbGrid1567(t, fw, fh, n, rows, px, py), ms = sp[8] is float[] arr ? arr : new[] { (float)sp[8] } }; got++;
-                    if (glowOk && gain > 0f) { var tg = PbTex1567(file + "_glow_strip"); if (tg != null && tg.width >= fw * n && tg.height >= fh * rows) { a.g = PbGrid1567(tg, fw, fh, n, rows, px, py); a.mat = new Material(_pbGlowSh1567) { name = "pbglow1567_" + k }; a.mat.SetColor("_Tint", new Color32((byte)(tint >> 16), (byte)(tint >> 8), (byte)tint, 255)); a.mat.SetFloat("_Gain", T.pbGlowGain1567 * gain / 0.45f); a.mat.SetFloat("_Add", T.pbGlowAdd1567); glow++; } }
+                    var a = new PbArtS { n = n, rows = rows, f = PbGrid1567(t, fw, fh, n, rows, px, py), ms = ms is float[] arr ? arr : new[] { (float)ms } }; got++;
+                    var tc = new Color32((byte)(tint >> 16), (byte)(tint >> 8), (byte)tint, 255);
+                    if (glowOk && gain > 0f) { var tg = PbTex1567(file + "_glow_strip"); if (tg != null && tg.width >= fw * n && tg.height >= fh * rows) { a.g = PbGrid1567(tg, fw, fh, n, rows, px, py);
+                        if (T.pbGlowMode1567 == 1) a.mat = PbAddMat1567(tc, T.pbGlowAddInt1567 * gain / 0.45f, T.pbGlowAddBands1567); // plain additive (pre-blurred v2 masks)
+                        if (a.mat == null) { a.mat = new Material(_pbGlowSh1567) { name = "pbglow1567_" + k }; a.mat.SetColor("_Tint", tc); a.mat.SetFloat("_Gain", T.pbGlowGain1567 * gain / 0.45f); a.mat.SetFloat("_Add", T.pbGlowAdd1567); }
+                        glow++; } }
                     _pbArt1567[k] = a;
                 }
-                PbArtStatus1567 = "pbArt1567: " + got + "/" + PbArtSpec1567.Length + " strips, glow " + (glowOk ? glow + " masks" : "OFF"); Debug.Log("[Hellord] " + PbArtStatus1567);
+                PbArtStatus1567 = "pbArt1567: " + got + "/" + PbArtSpec1567.Length + " strips from " + PbArtRoot1567 + ", spec.json overrides " + _pbSpecOv1567 + ", glow " + (glowOk ? glow + " masks (mode " + T.pbGlowMode1567 + ")" : "OFF"); Debug.Log("[Hellord] " + PbArtStatus1567);
             }
             return _pbArt1567.TryGetValue(key, out var r) ? r : null;
         }
-        static Texture2D PbTex1567(string f) { var t = Resources.Load<Texture2D>("HellordArt/Skills1567/" + f); if (t != null) { t.filterMode = FilterMode.Point; t.wrapMode = TextureWrapMode.Clamp; } return t; }
+        static Texture2D PbTex1567(string f) { var t = Resources.Load<Texture2D>("HellordArt/" + PbArtRoot1567 + "/" + f); if (t != null) { t.filterMode = FilterMode.Point; t.wrapMode = TextureWrapMode.Clamp; } return t; }
         static Sprite[,] PbGrid1567(Texture2D t, int fw, int fh, int cols, int rows, float px, float py)
         {
             var g = new Sprite[rows, cols]; for (int r = 0; r < rows; r++) for (int c = 0; c < cols; c++) g[r, c] = Sprite.Create(t, new Rect(c * fw, t.height - (r + 1) * fh, fw, fh), new Vector2(px / fw, 1f - py / fh), HArt.PPU, 0, SpriteMeshType.FullRect); return g;
@@ -87,35 +92,35 @@ namespace Hellord
         }
         static int PbRow16(Vector2 v) { float a = Mathf.Atan2(-v.y, v.x) * Mathf.Rad2Deg; if (a < 0f) a += 360f; return Mathf.RoundToInt(a / 22.5f) & 15; }
         /// <summary>puts one frame (+ its glow twin, additive, one order above). False when the key has no art.</summary>
-        bool PbArtPut1567(string key, int row, float age, bool loop, Vector2 p, int order, bool flip = false)
+        bool PbArtPut1567(string key, int row, float age, bool loop, Vector2 p, int order, bool flip = false, float sc = 1f)
         {
             var a = PbA1567(key); if (a == null) return false; int fi = PbAF1567(a, age, loop); if (fi < 0) return true; row = Mathf.Clamp(row, 0, a.rows - 1);
-            PbPut1567(a.f[row, fi], p, 0f, 1f, 1f, Color.white, order, flip);
-            if (a.g != null && a.mat != null) PbPut1567(a.g[row, fi], p, 0f, 1f, 1f, Color.white, order + 1, flip, a.mat);
+            PbPut1567(a.f[row, fi], p, 0f, sc, sc, Color.white, order, flip);
+            if (a.g != null && a.mat != null) PbPut1567(a.g[row, fi], p, 0f, sc, sc, Color.white, order + 1, flip, a.mat);
             return true;
         }
         /// <summary>puts a given frame index (code-stepped strips: crack stages, axe spin) with an alpha</summary>
-        bool PbArtPutF1567(string key, int row, int fi, Vector2 p, int order, bool flip = false, float alpha = 1f)
+        bool PbArtPutF1567(string key, int row, int fi, Vector2 p, int order, bool flip = false, float alpha = 1f, float sc = 1f)
         {
-            var a = PbA1567(key); if (a == null) return false; row = Mathf.Clamp(row, 0, a.rows - 1); fi = ((fi % a.n) + a.n) % a.n; var c = new Color(1f, 1f, 1f, alpha);
-            PbPut1567(a.f[row, fi], p, 0f, 1f, 1f, c, order, flip); if (a.g != null && a.mat != null) PbPut1567(a.g[row, fi], p, 0f, 1f, 1f, c, order + 1, flip, a.mat);
+            var a = string.IsNullOrEmpty(key) ? null : PbA1567(key); if (a == null) return false; row = Mathf.Clamp(row, 0, a.rows - 1); fi = ((fi % a.n) + a.n) % a.n; var c = new Color(1f, 1f, 1f, alpha);
+            PbPut1567(a.f[row, fi], p, 0f, sc, sc, c, order, flip); if (a.g != null && a.mat != null) PbPut1567(a.g[row, fi], p, 0f, sc, sc, c, order + 1, flip, a.mat);
             return true;
         }
         static float PbArtLen1567(string key) { var a = PbA1567(key); if (a == null) return 0f; float t = 0f; for (int i = 0; i < a.n; i++) t += a.ms[Mathf.Min(i, a.ms.Length - 1)]; return t / 1000f; }
 
         // one-shot strips (hits, fizzles, zaps, forks, trails...)
-        class PbFx { public string key; public int row, order; public Vector2 p; public float t; public bool flip; }
+        class PbFx { public string key; public int row, order; public Vector2 p; public float t, sc = 1f; public bool flip; }
         readonly List<PbFx> _pbFx = new List<PbFx>();
-        bool PbFxOnce1567(string key, Vector2 p, int order, int row = 0, float delayS = 0f, bool flip = false)
+        bool PbFxOnce1567(string key, Vector2 p, int order, int row = 0, float delayS = 0f, bool flip = false, float sc = 1f)
         {
-            if (PbA1567(key) == null) return false; _pbFx.Add(new PbFx { key = key, p = p, order = order, row = row, t = -delayS, flip = flip }); return true;
+            if (string.IsNullOrEmpty(key) || PbA1567(key) == null) return false; _pbFx.Add(new PbFx { key = key, p = p, order = order, row = row, t = -delayS, flip = flip, sc = sc }); return true;
         }
         void UpdateDrawPbFx1567(float dt, bool draw)
         {
             for (int i = _pbFx.Count - 1; i >= 0; i--)
             {
                 var x = _pbFx[i]; x.t += dt; var a = PbA1567(x.key); if (a == null || (x.t >= 0f && PbAF1567(a, x.t, false) < 0)) { _pbFx.RemoveAt(i); continue; }
-                if (draw && x.t >= 0f) PbArtPut1567(x.key, x.row, x.t, false, x.p, x.order, x.flip);
+                if (draw && x.t >= 0f) PbArtPut1567(x.key, x.row, x.t, false, x.p, x.order, x.flip, x.sc);
             }
         }
         /// <summary>which art keys are loaded (for the report / test log)</summary>
