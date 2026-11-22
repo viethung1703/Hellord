@@ -31,7 +31,7 @@ namespace Hellord
             return T.pbSkillOn1567 == null || i >= T.pbSkillOn1567.Length || T.pbSkillOn1567[i];
         }
         /// <summary>level-up pools leave the 7 out (they are start-pick basics; taken later they would have no LMB).</summary>
-        bool PbNoOffer1567(SkillDef d) => IsPb1567(d.id) && HellordTuning.I.pbNoLevelUp1567;
+        bool PbNoOffer1567(SkillDef d) => IsPb1567(d.id) && HellordTuning.I.pbNoLevelUp1567 || ZhNoOffer1618(d); // t1618: + Fire Wall / Volcanic Orb (start-pick basics) and the kit source
         /// <summary>damage / cooldown of the 7 SkillDefs come from HellordTuning (pbBaseDmg1567 / pbCd1567).</summary>
         void PbDefs1567()
         {

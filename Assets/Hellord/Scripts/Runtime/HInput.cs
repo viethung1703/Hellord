@@ -80,7 +80,7 @@ namespace Hellord
             return Vector2.ClampMagnitude(v, 1);
         }
         /// <summary>v0.0.49 dash: Space, pad East or RB.</summary>
-        public static bool DashDown() { var kb = Keyboard.current; var gp = Gamepad.current; return (kb != null && kb.spaceKey.wasPressedThisFrame) || (gp != null && (gp.buttonEast.wasPressedThisFrame || gp.rightShoulder.wasPressedThisFrame)); }
+        public static bool DashDown() { var kb = Keyboard.current; var gp = Gamepad.current; return AtDash || (kb != null && kb.spaceKey.wasPressedThisFrame) || (gp != null && (gp.buttonEast.wasPressedThisFrame || gp.rightShoulder.wasPressedThisFrame)); }
         public static bool DashHeld() { var kb = Keyboard.current; var gp = Gamepad.current; return (kb != null && kb.spaceKey.isPressed) || (gp != null && (gp.buttonEast.isPressed || gp.rightShoulder.isPressed)); }
         public static Vector2 AimStick() { var gp = Gamepad.current; return gp != null ? gp.rightStick.ReadValue() : Vector2.zero; }
         public static Vector2 MouseScreen() { var m = Mouse.current; return m != null ? m.position.ReadValue() : Vector2.zero; }
@@ -116,6 +116,9 @@ namespace Hellord
         public static Vector2 Arrows716() { var v = Vector2.zero; var kb = Keyboard.current; if (kb == null) return v; if (kb.leftArrowKey.isPressed) v.x -= 1; if (kb.rightArrowKey.isPressed) v.x += 1; if (kb.downArrowKey.isPressed) v.y -= 1; if (kb.upArrowKey.isPressed) v.y += 1; return v; }
         public static bool LmbDown716() { var m = Mouse.current; return m != null && m.leftButton.wasPressedThisFrame; }
         public static bool AtLmb; // autotest: scripted held left mouse (t1511b)
+        public static bool AtDash, AtRmb, AtUlt; // t1618 autotest: scripted one-frame dash / right click / R presses
+        public static bool SpecialDown1618() => AtRmb || BindDown("RMB"); // t1618 Zhurong special = right mouse
+        public static bool UltDown1618() => AtUlt || BindDown("R"); // t1618 Zhurong ultimate = R (R restarts only on the Dead / Won screens)
         public static bool LmbHeld716() { var m = Mouse.current; return AtLmb || (m != null && m.leftButton.isPressed); }
 #else
         static KeyCode Map(HKey k)
@@ -146,7 +149,7 @@ namespace Hellord
             return Vector2.ClampMagnitude(v, 1);
         }
         // Legacy Input Manager has no default right-stick axis; gamepad aim needs the Input System package.
-        public static bool DashDown() => Input.GetKeyDown(KeyCode.Space); // v0.0.49 dash
+        public static bool DashDown() => AtDash || Input.GetKeyDown(KeyCode.Space); // v0.0.49 dash
         public static bool DashHeld() => Input.GetKey(KeyCode.Space);
         public static Vector2 AimStick() => Vector2.zero;
         public static Vector2 MouseScreen() => Input.mousePosition;
@@ -171,6 +174,9 @@ namespace Hellord
         public static Vector2 Arrows716() { var v = Vector2.zero; if (Input.GetKey(KeyCode.LeftArrow)) v.x -= 1; if (Input.GetKey(KeyCode.RightArrow)) v.x += 1; if (Input.GetKey(KeyCode.DownArrow)) v.y -= 1; if (Input.GetKey(KeyCode.UpArrow)) v.y += 1; return v; }
         public static bool LmbDown716() => Input.GetMouseButtonDown(0);
         public static bool AtLmb; // autotest: scripted held left mouse (t1511b)
+        public static bool AtDash, AtRmb, AtUlt; // t1618 autotest: scripted one-frame dash / right click / R presses
+        public static bool SpecialDown1618() => AtRmb || BindDown("RMB"); // t1618 Zhurong special = right mouse
+        public static bool UltDown1618() => AtUlt || BindDown("R"); // t1618 Zhurong ultimate = R (R restarts only on the Dead / Won screens)
         public static bool LmbHeld716() => AtLmb || Input.GetMouseButton(0);
 #endif
     }

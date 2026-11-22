@@ -81,8 +81,10 @@ namespace Hellord
         {
             _dashCd49 -= dt;
             if (!V49 || mode != Mode.Play) { _dashT49 = 0; return; }
-            if (_dashT49 <= 0 && _dashCd49 <= 0 && DashPressed716())
+            if (_dashT49 <= 0 && ZhAnchorSnap1618()) { } // t1618 Ember Anchor: dash again inside the window = free snap back
+            else if (_dashT49 <= 0 && _dashCd49 <= 0 && DashPressed716())
             {
+                ZhDashStart1618(_heroPos); // t1618 movement slot (own cooldown) + Vermilion Bird near-miss count
                 _dashDir49 = DashDir716(mv); _dashT49 = T49.dashTimeS49; _dashCd49 = T49.dashCooldownS49 * PactDashCdMul53() * _sinDashMul737;
                 _iframe = Mathf.Max(_iframe, T49.dashIFrameS49); _heroVel37 = Vector2.zero; _holdT49 = 0;
                 if (T49.dashBreaksHook49 && _dragBy != null) { if (_dragBy.hookH >= 0) HookChainFX.Release(_dragBy.hookH); _dragBy = null; }

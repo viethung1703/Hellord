@@ -47,8 +47,10 @@ namespace Hellord
         /// <summary>Casts the basic aimed at the cursor; on a real cast: pose + recoil + face the cursor.</summary>
         void BasicCast1517(SkillInst s, float mul)
         {
-            float lc = _lastCast[(int)s.def.id]; _basicAim1517 = true;
-            try { Cast(s, mul); } finally { _basicAim1517 = false; }
+            float lc = _lastCast[(int)s.def.id]; _basicAim1517 = true; float cry = ZhCryMul1625(); // t1625 War Cry charge
+            try { Cast(s, mul * cry); } finally { _basicAim1517 = false; }
+            if (_lastCast[(int)s.def.id] != lc && cry > 1f) ZhCryUsed1625();
+            if (_lastCast[(int)s.def.id] != lc) ZhHeartEcho1618(s, mul); // t1618 Molten Heart: basics fire twice
             if (_lastCast[(int)s.def.id] != lc) { _poseLight1567 = CastLight1567(s.def.id); _pose1567 = PoseSetFor1567(s.def.id); Vector2 d = MouseWorld() - HeroCenter; HeroAttackPose(AttackPoseKind1517.Cast, /* t1528: melee uses the same tail cast (t1519) */ d.sqrMagnitude > 0.01f ? d.normalized : _lastDir, CastFrost1528(s.def.id)); }
         }
 

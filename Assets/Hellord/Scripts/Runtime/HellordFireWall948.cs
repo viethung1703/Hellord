@@ -50,7 +50,7 @@ namespace Hellord
         public int FireWallLive948 => _fw948.Count;
         public string FireWallDebug948() { var sb = new System.Text.StringBuilder(); foreach (var w in _fw948) { sb.Append($"[wall segs {w.seg.Count} life {w.life:0.0}/{w.life0:0.0} spd {w.speed:0.0} thick {w.thick:0.00}"); foreach (var g in w.seg) sb.Append($" {(g.b - g.a).magnitude:0.0}u"); sb.Append("] "); } return sb.ToString(); }
 
-        static bool FireWallOn948 => HellordTuning.I.fireWallOn948;
+        static bool FireWallOn948 => HellordTuning.I.fireWallOn948 && !HellordTuning.I.fireWallSplit1618; // t1618: split = Hellfire Pillar is the old Pillar again, Fire Wall is SkillId.FireWall
         static string FireWallDesc948 = "Wall of flame at your cursor (in range), across your aim. Burns everything crossing it. Longer and longer-lasting per level; Lv5 bends into a V.";
         void FireWallDefs948()
         {   // card / codex text follow the toggle (SkillDef objects are shared)
@@ -66,7 +66,7 @@ namespace Hellord
             float per = dmg / Mathf.Max(0.01f, HData.LevelMul(L)) * (1f + T.fireWallDmgPerLvl737 * (L - 1)) * T.fireWallTickDmgMul948;
             float dist = _echo738 ? Mathf.Max(0.5f, T.fireWallDist737 - T.fireWallEchoGap737) : T.fireWallDist737;
             Vector2 c;
-            if (CurAim720 && T.fireWallCursor986)
+            if ((CurAim720 || _basicAim1517) && T.fireWallCursor986) /* t1618: the Fire Wall LMB basic lands at the cursor */
             {   // t979u v0.0.86: land at the cursor, clamped to groundAoeRange716 (same as Pillar / Rune / Grave Pool); wall stays across hero->cursor
                 Vector2 ga = GroundAim716(), d2 = ga - _heroPos; if (d2.sqrMagnitude > 0.04f) dir = d2.normalized;
                 c = _echo738 ? _heroPos + dir * Mathf.Max(0.5f, d2.magnitude - T.fireWallEchoGap737) : ga;

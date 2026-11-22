@@ -258,7 +258,8 @@ namespace Hellord
                 { string nm = Sanitize(sk.def.name); if (nm.Length > 18) nm = nm.Substring(0, 17) + "."; Text(nm, x + Mathf.Round((CardW - TextW(nm)) / 2f), y + 7, Color.white); }
                 SkillBarTex();
                 GUI.color = Color.white; if (IceIconBlit(sk.def.id, x + 34, y + 19, 48)) { }
-                else if (_icons44 && sk.def.id >= SkillId.ChainLightning && _tSkill24 != null) BlitInset(_tSkill24, (int)sk.def.id * 28, 0, 24, 24, x + 34, y + 19, 48, 48);
+                else if (ZhCardIcon1625(sk.def.id) != null) GUI.DrawTexture(new Rect(x + 34, y + 19, 48, 48), ZhCardIcon1625(sk.def.id)); // t1625 icon hook (icons_v2)
+                else if (_icons44 && sk.def.id >= SkillId.ChainLightning && sk.def.id <= SkillId.PhantomAxes /* t1618 */ && _tSkill24 != null) BlitInset(_tSkill24, (int)sk.def.id * 28, 0, 24, 24, x + 34, y + 19, 48, 48);
                 else
                 {
                     var pt = PhTint(sk.def.id); GUI.color = new Color(pt.r, pt.g, pt.b, 1); BlitInset(_tSkillIcons, SkillIcon(sk.def.id) * 16, 0, 16, 16, x + 42, y + 27, 32, 32); GUI.color = Color.white;

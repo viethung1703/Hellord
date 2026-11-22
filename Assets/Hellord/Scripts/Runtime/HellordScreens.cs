@@ -61,7 +61,8 @@ namespace Hellord
                 bool newSup = c.kind == CardKind.Support && icon < 0; SkillBarTex(); // v0.0.36: supports without a 16px icon use the approved 20px support sheet at 2x
                 SkillId? nsk = c.kind == CardKind.NewSkill ? c.skill.id : c.kind == CardKind.SkillLevel ? skills[c.skillIndex].def.id : (SkillId?)null;
                 if (nsk.HasValue && (IceArt.IsIce(nsk.Value) || IsFb1481(nsk.Value) || IsPb1567(nsk.Value))) { GUI.color = new Color(1, 1, 1, ra); IceIconBlit(nsk.Value, x + 34, y + 19, 48); }
-                else if (_icons44 && nsk.HasValue && nsk.Value >= SkillId.ChainLightning && _tSkill24 != null) { GUI.color = new Color(1, 1, 1, ra); BlitInset(_tSkill24, (int)nsk.Value * 28, 0, 24, 24, x + 34, y + 19, 48, 48); }
+                else if (nsk.HasValue && ZhCardIcon1625(nsk.Value) != null) { GUI.color = new Color(1, 1, 1, ra); GUI.DrawTexture(new Rect(x + 34, y + 19, 48, 48), ZhCardIcon1625(nsk.Value)); GUI.color = Color.white; } // t1625 icon hook (icons_v2)
+                else if (_icons44 && nsk.HasValue && nsk.Value >= SkillId.ChainLightning && nsk.Value <= SkillId.PhantomAxes /* t1618: no sheet column for the new ids */ && _tSkill24 != null) { GUI.color = new Color(1, 1, 1, ra); BlitInset(_tSkill24, (int)nsk.Value * 28, 0, 24, 24, x + 34, y + 19, 48, 48); }
                 else if (icon >= 0 && !newSup)
                 {
                     SkillId? psk = c.kind == CardKind.NewSkill ? c.skill.id : c.kind == CardKind.SkillLevel ? skills[c.skillIndex].def.id : (SkillId?)null; var pt = psk.HasValue ? PhTint(psk.Value) : Color.white;

@@ -264,6 +264,12 @@ namespace Hellord
             if (TmBtn("+1000 souls")) TmSouls53(1000);
             if (TmBtn("Set souls = " + T.testSoulsSet53)) TmSouls53(0, T.testSoulsSet53);
             if (TmBtn("Souls = 0")) TmSouls53(0, 0);
+            TmLabel("ZHURONG KIT (t1618 debug selector)");
+            if (TmBtn("Kit " + (T.kit1618 ? "ON" : "OFF") + (T.kitAnyPact1618 ? " (any pact)" : " (Zhurong runs)"))) T.kitAnyPact1618 = !T.kitAnyPact1618;
+            if (TmBtn("Movement (Space): " + ZhMoveNames1618[Mathf.Clamp(T.kitMove1618, 0, 3)])) { T.kitMove1618 = (T.kitMove1618 + 1) % 4; ZhMoveCd = 0; }
+            if (TmBtn("Special (RMB): " + ZhSpecNames1618[Mathf.Clamp(T.kitSpecial1618, 0, 5)])) { T.kitSpecial1618 = (T.kitSpecial1618 + 1) % 6; ZhSpecCd = 0; }
+            if (TmBtn("Ultimate (R): " + ZhUltNames1618[Mathf.Clamp(T.kitUlt1618, 0, 4)])) { T.kitUlt1618 = (T.kitUlt1618 + 1) % 5; ZhUltCd = 0; }
+            if (TmBtn("Kit: reset cooldowns + fill the ultimate condition")) { ZhMoveCd = ZhSpecCd = ZhUltCd = 0; ZhSunMeter1618 = T.swMeter1618; ZhNearMiss1618 = T.vbNeed1618; }
             TmLabel("NECROMANCER (t536u TEST)");
             if (TmBtn("Unlock all 18 Necromancer nodes")) { PactLoad51(); _unlock51[(int)PactPath.Necromancer] = (1 << PactData.Nodes[(int)PactPath.Necromancer].Length) - 1; PactSave51(); TmSay("All Necromancer nodes unlocked (take them in the Altar)"); }
             if (TmBtn("TEST skeletons: give Skeleton Warriors + Skeleton Archers (Lv1)")) { foreach (var d in HData.Skills) if (HData.Summon561(d) && skills.Find(x => x.def.id == d.id) == null) skills.Add(new SkillInst { def = d }); TmSay("Summons given: " + SummonStatus561()); } // t561u

@@ -251,6 +251,7 @@ namespace Hellord
         float HeroSlowMul37() => _heroSlowT > 0 ? T37.frostSlowMul : 1f;
         void ApplyFrostSlow37(float secs)
         {
+            if (ZhNoSlow1618) return; // t1618 Hearth Blessing / Molten Heart block new slows
             bool fresh = _heroSlowT <= 0; _heroSlowT = Mathf.Max(_heroSlowT, secs);
             if (fresh) { HordeFX.CheapBurst(HeroCenter, E32(0xc0cbdc), 8); HellordAudio.Play("frost_cleave"); }
         }

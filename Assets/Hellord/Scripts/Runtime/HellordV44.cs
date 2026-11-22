@@ -17,7 +17,7 @@ namespace Hellord
         float HeroChillMul44() => HeroFrozen44 ? 0f : Mathf.Max(0.1f, 1f - T44.heroChillSlowPerStack * _chill44);
         void AddChill44(int n)
         {
-            if (n <= 0 || HeroFrozen44 || _freezeImm44 > 0 || _tmGod) return;
+            if (n <= 0 || HeroFrozen44 || _freezeImm44 > 0 || _tmGod || ZhNoSlow1618) return; // t1618 Hearth Blessing / Molten Heart block new slows
             _chill44 += n; _chillDecay44 = T44.heroChillDecayS; HellordAudio.Play("frost_cleave", 1.3f);
             if (_chill44 >= Mathf.Max(1, T44.heroChillFreezeAt))
             {
@@ -50,7 +50,7 @@ namespace Hellord
         }
         void ClearV44()
         {
-            Clear49(); ClearIce(); ClearFb1481(); ClearPb1567();
+            Clear49(); ClearIce(); ClearFb1481(); ClearPb1567(); ClearZh1618(); /* t1618 */
             _drops44.Clear(); _shots44.Clear(); _trails44.Clear(); ClearFireWalls948(); _air44 = false; if (_bossBody) _bossBody.transform.localPosition = Vector3.zero;
             _fxA44 = _fxTr44 = -1; _gTail44 = 0; _pools44.Clear();
             if (_fx44Setup) { IceGorillaFX.Clear(); QilinChariotFX.Clear(); MinionFX.Clear(); HeroSkillFX.Clear(); } SkillLightFX.Clear(); _orbLg667.Clear(); // t667u

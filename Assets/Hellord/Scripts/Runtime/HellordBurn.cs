@@ -35,7 +35,8 @@ namespace Hellord
         void OnBurnTick(int h, Transform tr, int dmg)
         {
             if (tr == null || !_burnMap.TryGetValue(tr, out var e) || !e.alive || e.burnH != h) return;
-            Damage(e, dmg, false, true, true);
+            float zd = dmg * ZhBurnTick1618(e, dmg); // t1618 Flammability (more burn damage), Pyre Mark gauge, Sun's Wrath meter
+            Damage(e, zd, false, true, true);
         }
         void OnDestroy() { BurnFX.OnTick -= OnBurnTick; DisposeSin84(); }
     }
