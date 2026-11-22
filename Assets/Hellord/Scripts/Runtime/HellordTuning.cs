@@ -1705,6 +1705,7 @@ namespace Hellord
     [Tooltip("t1618 movement slot pick (debug / tuning selector): 0 none (plain dash), 1 Ember Effigy, 2 Ember Anchor, 3 Backdraft")] [Range(0, 3)] public int kitMove1618 = 1;
     [Tooltip("t1618 special slot pick: 0 none, 1 Pyre Mark, 2 Flammability, 3 War Cry (t1625; was Molten Shell), 4 Smolder Ring, 5 Hearth Blessing")] [Range(0, 5)] public int kitSpecial1618 = 1;
     [Tooltip("t1618 ultimate slot pick: 0 none, 1 Sun's Wrath, 2 Rebirth Flame, 3 Molten Heart, 4 Vermilion Bird")] [Range(0, 4)] public int kitUlt1618 = 1;
+    [Tooltip("t1639 TESTING override: on = the kit slots come from kitMove1618 / kitSpecial1618 / kitUlt1618 (and the F1 menu) and no kit cards are offered. Off (default) = a run starts with the basic only; movement / special / ultimate are picked on level-up")] public bool kitSlotOverride1639 = false;
     [Tooltip("t1618 split: Fire Wall is its own skill (SkillId.FireWall, LMB basic) and Hellfire Pillar is the old Pillar again. Off = old t948 (Fire Wall replaces Hellfire Pillar)")] public bool fireWallSplit1618 = true;
     [Tooltip("t1618 kit damage scale: every kit hit = ZhurongKit SkillDamage (base 10, run damage stats apply) x this x the skill's own multiplier")] public float kitDmgMul1618 = 1f;
     [Tooltip("t1618 HUD kit readout (bottom-left: special / movement / ultimate cooldown + ultimate condition)")] public bool kitHud1618 = true;

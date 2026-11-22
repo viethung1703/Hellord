@@ -181,7 +181,7 @@ namespace Hellord
             if (_aura != null) { _aura.life = -1; _aura = null; }
             ResetBoss(); ClearHooks();
             _chestAlive = false; _chestSr.gameObject.SetActive(false); _blasts.Clear();
-            skills.Clear(); SetHeroLayers();
+            skills.Clear(); SetHeroLayers(); ZhRunReset1639(); // t1639: kit slots empty at run start
             maxHp = hp = baseMaxHp; if (ArgStartHp > 0) hp = maxHp * ArgStartHp; incDmg = 0; speedMul = 1; pickupMul = 1; armor = 0; crit = baseCrit;
             level = 1; xp = 0; kills = 0; bones = 0; blood = 0; pendingLevels = 0; runTime = 0; _spawnAcc = 0; _nextElite = firstElite;
             _floorIdx = 0; PlanRun42(); ClearBanners(); _sbLastLevel = 0; _heroPos = HeroStart; BuildFloor(); // v0.8: new Ox Pit floor (loads the start room and places the hero)

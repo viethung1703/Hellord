@@ -64,7 +64,7 @@ namespace Hellord
             for (int i = 0; i < cards.Count; i++)
             {
                 var c = cards[i]; if (i > 0) b.Append(',');
-                b.Append("[\"").Append(c.kind).Append("\",\"").Append(c.skill != null ? c.skill.name : c.support != null ? c.support.name : c.stat != null ? c.stat.name : "").Append("\"]");
+                b.Append("[\"").Append(c.kind).Append("\",\"").Append(c.kit > 0 ? ZhKitName1639(c) : c.skill != null ? c.skill.name : c.support != null ? c.support.name : c.stat != null ? c.stat.name : "").Append("\"]");
             }
             b.Append("],\"en\":[");
             bool first = true;

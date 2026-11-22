@@ -266,6 +266,7 @@ namespace Hellord
             if (TmBtn("Souls = 0")) TmSouls53(0, 0);
             TmLabel("ZHURONG KIT (t1618 debug selector)");
             if (TmBtn("Kit " + (T.kit1618 ? "ON" : "OFF") + (T.kitAnyPact1618 ? " (any pact)" : " (Zhurong runs)"))) T.kitAnyPact1618 = !T.kitAnyPact1618;
+            if (TmBtn("Slots: " + (T.kitSlotOverride1639 ? "TEST OVERRIDE (buttons below)" : "LEVEL-UP PICKS (t1639)"))) { T.kitSlotOverride1639 = !T.kitSlotOverride1639; ZhMoveCd = ZhSpecCd = ZhUltCd = 0; }
             if (TmBtn("Movement (Space): " + ZhMoveNames1618[Mathf.Clamp(T.kitMove1618, 0, 3)])) { T.kitMove1618 = (T.kitMove1618 + 1) % 4; ZhMoveCd = 0; }
             if (TmBtn("Special (RMB): " + ZhSpecNames1618[Mathf.Clamp(T.kitSpecial1618, 0, 5)])) { T.kitSpecial1618 = (T.kitSpecial1618 + 1) % 6; ZhSpecCd = 0; }
             if (TmBtn("Ultimate (R): " + ZhUltNames1618[Mathf.Clamp(T.kitUlt1618, 0, 4)])) { T.kitUlt1618 = (T.kitUlt1618 + 1) % 5; ZhUltCd = 0; }

@@ -471,7 +471,7 @@ namespace Hellord
         }
         void OpenSlotSkillPick37()
         {
-            var news = new List<Card>(); foreach (var d in HData.Skills) if (!PactBanned53(d) && !PbNoOffer1567(d) /* t1567 */ && !skills.Exists(s => s.def == d)) news.Add(new Card { kind = CardKind.NewSkill, skill = d });
+            var news = KitOffers1639(); // t1639: the running pact's kit cards only
             if (news.Count == 0 || skills.Count >= HData.SlotsUnlocked(level)) return;
             Shuffle(news); cards.Clear(); for (int i = 0; i < Mathf.Min(3, news.Count); i++) cards.Add(news[i]);
             warning = null; _bossReward37 = true; _chestTitle = "NEW SKILL SLOT"; _chestSub = "PICK THE SKILL FOR IT"; mode = Mode.Chest;

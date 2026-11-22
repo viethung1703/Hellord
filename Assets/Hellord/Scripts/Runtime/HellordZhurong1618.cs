@@ -10,7 +10,7 @@ namespace Hellord
     //                  SPACE movement = a layer on the normal dash with its OWN cooldown; on cooldown the dash is a plain dash
     //                  RMB  special (pressed, longer cooldown)      R  ultimate (longest cooldown, armed by its condition, then pressed;
     //                                                               Rebirth Flame is automatic when a hit would kill you)
-    //  Picking: debug / tuning selector only (HellordTuning.kitMove1618 / kitSpecial1618 / kitUlt1618; also the F1 test menu cycles them).
+    //  Picking (t1639): level-up cards (HellordKitCards1639.cs); the tuning / F1 selector (kitMove1618 / kitSpecial1618 / kitUlt1618) is a testing override (kitSlotOverride1639).
     //  Active only in a Zhurong run (pact path 0) unless kitAnyPact1618. Damage source = SkillId.ZhurongKit (never offered, not in the belt).
     //  FX HOOK (t1625): every effect goes through ZhFx1625 (HellordZhurongFx1625.cs), shaped to HFX's fx_v2 shader spec; shader FX are
     //            off until approved (zhFxV2_1625), so the procedural Endesga-32 placeholders + existing fire HFX strips draw (no new art).
@@ -29,9 +29,9 @@ namespace Hellord
 
         // ---------------------------------------------------------------- state
         public bool ZhOn1618 => TZ != null && TZ.kit1618 && (TZ.kitAnyPact1618 || _pactPath51 == 0);
-        public int ZhMove1618 => ZhOn1618 ? Mathf.Clamp(TZ.kitMove1618, 0, 3) : 0;
-        public int ZhSpec1618 => ZhOn1618 ? Mathf.Clamp(TZ.kitSpecial1618, 0, 5) : 0;
-        public int ZhUlt1618 => ZhOn1618 ? Mathf.Clamp(TZ.kitUlt1618, 0, 4) : 0;
+        public int ZhMove1618 => ZhOn1618 ? Mathf.Clamp(ZhSlotOverride1639 ? TZ.kitMove1618 : ZhRunMove1639, 0, 3) : 0; // t1639: run picks (level-up) unless the testing override
+        public int ZhSpec1618 => ZhOn1618 ? Mathf.Clamp(ZhSlotOverride1639 ? TZ.kitSpecial1618 : ZhRunSpec1639, 0, 5) : 0;
+        public int ZhUlt1618 => ZhOn1618 ? Mathf.Clamp(ZhSlotOverride1639 ? TZ.kitUlt1618 : ZhRunUlt1639, 0, 4) : 0;
         [System.NonSerialized] public float ZhMoveCd, ZhSpecCd, ZhUltCd; // seconds left
         SkillInst _zk1618; SkillInst ZK1618 => _zk1618 ?? (_zk1618 = new SkillInst { def = HData.Skill(SkillId.ZhurongKit), level = 1 });
         float ZkHit1618 => SkillDamage(ZK1618) * TZ.kitDmgMul1618;

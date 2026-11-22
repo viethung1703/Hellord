@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Hellord
 {
     public enum CardKind { NewSkill, SkillLevel, Support, Stat }
-    public class Card { public CardKind kind; public SkillDef skill; public int skillIndex; public SupportDef support; public StatDef stat; }
+    public class Card { public CardKind kind; public SkillDef skill; public int skillIndex; public SupportDef support; public StatDef stat; public int kit, kitPick; } // t1639: kit 1/2/3 = Zhurong movement/special/ultimate NewSkill card (skill null)
 
     public partial class HellordGame
     {
@@ -15,14 +15,14 @@ namespace Hellord
         void BuildStartCards()
         {
             if (DfStartCards1559()) return; // t1559: descend flow - only the run pact's basics
-            cards.Clear(); var pool = new List<SkillDef>(HData.Skills); pool.RemoveAll(PactBanned53); pool.RemoveAll(PbNoOffer1567); /* t1567 */ Shuffle(pool);
+            cards.Clear(); var pool = new List<SkillDef>(HData.Skills); if (!ZhSlotOverride1639) { var pb = DfBasics1555(_pactPath51, false); if (pb.Count > 0) pool = pb.ConvertAll(HData.Skill); } /* t1639: the running pact's basics only (old full pool when the pact has none / testing override) */ pool.RemoveAll(PactBanned53); pool.RemoveAll(PbNoOffer1567); /* t1567 */ Shuffle(pool);
             for (int i = 0; i < Mathf.Min(5, pool.Count); i++) cards.Add(new Card { kind = CardKind.NewSkill, skill = pool[i] });
             warning = null;
         }
         /// <summary>v0.0.9: the level the current card screen is for (GainLevel bumps level at once; queued screens count up one by one).</summary>
         public int ShownLevel => level - pendingLevels;
         readonly HashSet<string> _lastCards = new HashSet<string>();
-        static string CardKey(Card c) => c.kind + ":" + (c.skill != null ? c.skill.name : c.support != null ? c.support.name : c.stat != null ? c.stat.name : "");
+        static string CardKey(Card c) => c.kind + ":" + (c.kit > 0 ? "kit" + c.kit + "." + c.kitPick : c.skill != null ? c.skill.name : c.support != null ? c.support.name : c.stat != null ? c.stat.name : "");
         void OpenLevelUp() { HellordAudio.Play("levelup_sting"); HellordAudio.DuckMusic(4f, 1.5f); pendingLevels--; mode = Mode.LevelUp; freeRerolls = Mathf.Max(0, HellordTuning.I.levelUpFreeRerolls1057); RollFreshLevelCards(); FX26LevelOpen(); }
 
         void RollLevelCards()
@@ -30,8 +30,7 @@ namespace Hellord
             cards.Clear(); warning = null;
             var lvl = new List<Card>(); var news = new List<Card>(); var sups = new List<Card>(); var stats = new List<Card>();
             for (int i = 0; i < skills.Count; i++) if (skills[i].level < HData.MaxLv(skills[i].def)) lvl.Add(new Card { kind = CardKind.SkillLevel, skill = skills[i].def, skillIndex = i });
-            if (skills.Count < (Manual716 ? HellordTuning.I.manualSkillCap716 : HData.SlotsUnlocked(ShownLevel))) // t716u
-                foreach (var d in HData.Skills) if (!PactBanned53(d) && !PbNoOffer1567(d) /* t1567 */ && !skills.Exists(s => s.def == d)) news.Add(new Card { kind = CardKind.NewSkill, skill = d });
+            news.AddRange(KitOffers1639()); // t1639: new skills = the running pact's kit pools only (types not picked yet); no basics / other pacts / old auto-cast skills
             var ups = new List<Card>(); // v0.0.27: owned supports below Lv5 are offered as UPGRADES
             foreach (var sd in HData.Supports) if (skills.Exists(s => s.CanSocket(sd) == null)) { var sc = new Card { kind = CardKind.Support, support = sd }; if (skills.Exists(s => s.CanUpgrade(sd))) ups.Add(sc); else sups.Add(sc); }
             foreach (var st in HData.Stats) stats.Add(new Card { kind = CardKind.Stat, stat = st });
@@ -98,7 +97,7 @@ namespace Hellord
         {
             switch (c.kind)
             {
-                case CardKind.NewSkill: { var ns = new SkillInst { def = c.skill }; skills.Add(ns); SetHeroLayers(); OfferSlot716(ns); break; } // t716u: Manual = pick a slot
+                case CardKind.NewSkill: if (c.kit > 0) { ChooseKit1639(c); break; } { var ns = new SkillInst { def = c.skill }; skills.Add(ns); SetHeroLayers(); OfferSlot716(ns); break; } // t716u: Manual = pick a slot
                 case CardKind.SkillLevel:
                     var s = skills[c.skillIndex]; s.level++;
                     if (HData.Summon561(s.def)) Toast($"{s.def.name} " + SummonLvText561(s.def, s.level)); else if (s.level == HData.MaxSkillLevel) Toast($"{s.def.name} MAX: widest reach!"); else Toast($"{s.def.name} Lv{s.level}: bigger reach, support slot {Mathf.Min(s.level, 4)} open");

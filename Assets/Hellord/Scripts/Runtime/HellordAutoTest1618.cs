@@ -19,7 +19,8 @@ namespace Hellord
                 case "zhclip1618_move": return AtZhClip1618(1);
                 case "zhclip1618_special": return AtZhClip1618(2);
                 case "zhclip1618_ult": return AtZhClip1618(3);
-                case "kindling1635": return AtKindlingClip1635(); // t1635 clip: Kindling shader patches under Fireball hits
+                case "kindling1635": return AtKindlingClip1635();
+                case "levelup1639": return AtLevelUpClip1639(); // t1639 clip: kit cards on level-up // t1635 clip: Kindling shader patches under Fireball hits
                 case "firewall986_nosplit": return ZNoSplit1618(AtFireWall986()); // the t986 Fire Wall test, with the t1618 split off (= Hellfire Pillar is the wall again)
                 case "chain1563": return AtChain1563();
                 case "bh1595": return AtBody1595();
@@ -36,7 +37,7 @@ namespace Hellord
         IEnumerator ZhStart1618(string scen, string clip, SkillId basic)
         {
             yield return AtBegin(scen); HellordUITheme.Requested = HellordUITheme.Theme.MenuTheme; PactLoad51(); var T = HellordTuning.I;
-            _zso = _souls51; _zsi = _sigils51; _zpp = _pactPath51; _zps = _pactSel51; _zsd = _pactSealed51; _zun = (int[])_unlock51.Clone(); _zM0 = T.kitMove1618; _zS0 = T.kitSpecial1618; _zU0 = T.kitUlt1618; _zAny0 = T.kitAnyPact1618;
+            _zso = _souls51; _zsi = _sigils51; _zpp = _pactPath51; _zps = _pactSel51; _zsd = _pactSealed51; _zun = (int[])_unlock51.Clone(); _zM0 = T.kitMove1618; _zS0 = T.kitSpecial1618; _zU0 = T.kitUlt1618; _zAny0 = T.kitAnyPact1618; _zOv0 = T.kitSlotOverride1639; T.kitSlotOverride1639 = true; // t1639: the zh1618 tests drive the slots through the tuning override
             for (int p = 0; p < NP97; p++) _unlock51[p] = (1 << PactData.Nodes[p].Length) - 1;
             _souls51 = 1700; _sigils51 = 15; _pactPath51 = 0; _pactSel51 = 0x1; _pactSealed51 = true; PactSave51(); _altarView51 = 0; T.kitAnyPact1618 = false;
             _atGod = true; Manual716 = false;
@@ -50,12 +51,12 @@ namespace Hellord
             int ci = cards.FindIndex(c => c.skill != null && c.skill.id == basic); if (ci >= 0) Choose(cards[ci]);
             maxHp = hp = 100000; SnapCamera();
         }
-        string _zCards1618 = "";
+        string _zCards1618 = ""; bool _zOv0;
         void ZhEnd1618(string scen, string clip)
         {
             var T = HellordTuning.I; HInput.AtLmb = HInput.AtDash = HInput.AtRmb = HInput.AtUlt = false; AtMove1396 = Vector2.zero; atMouse986 = null;
             HellordAudio.LoopLog = null; AtAudioLog1481.Frame = -1; if (_atRecFps > 0 && clip != null) System.IO.File.WriteAllText(System.IO.Path.Combine(_atOut, "rec_" + clip, "audio_events.txt"), AtAudioLog1481.Sb.ToString());
-            AtClearWorld(); T.kitMove1618 = _zM0; T.kitSpecial1618 = _zS0; T.kitUlt1618 = _zU0; T.kitAnyPact1618 = _zAny0;
+            AtClearWorld(); T.kitMove1618 = _zM0; T.kitSpecial1618 = _zS0; T.kitUlt1618 = _zU0; T.kitAnyPact1618 = _zAny0; T.kitSlotOverride1639 = _zOv0;
             _souls51 = _zso; _sigils51 = _zsi; _pactPath51 = _zpp; _pactSel51 = _zps; _pactSealed51 = _zsd; _unlock51 = _zun; PactSave51(); _atGod = false;
             AtEnd(scen, "hero_sprite_not_base_final2");
         }
@@ -295,6 +296,27 @@ namespace Hellord
             }
             yield return AtShot(scen + "_end");
             ZhEnd1618(scen, null);
+        }
+
+        // ---------------------------------------------------------------- t1639 clip: a Zhurong run's level-ups offer only kit cards; a picked type is not offered again
+        IEnumerator AtLevelUpClip1639()
+        {
+            string scen = "levelup1639", clip = scen; var T = HellordTuning.I; _zClip = clip;
+            yield return ZhStart1618(scen, clip, SkillId.Fireball); T.kitSlotOverride1639 = false; // the new behaviour (default)
+            bool startEmpty = ZhMove1618 == 0 && ZhSpec1618 == 0 && ZhUlt1618 == 0 && ZhRunMove1639 + ZhRunSpec1639 + ZhRunUlt1639 == 0;
+            yield return ZF1618(25); var picked = new List<int>(); var log = new System.Text.StringBuilder(); bool ok = startEmpty;
+            for (int lv = 0; lv < 3; lv++)
+            {
+                GainLevel(); int g = 0; while (mode != Mode.LevelUp && g++ < 200) yield return ZF1618(1);
+                yield return ZF1618(50); // cards slide in and sit on screen
+                Card kc = null; int other = 0; log.Append(" L").Append(lv + 1).Append(':');
+                foreach (var c in cards) { if (c.kind == CardKind.NewSkill && c.kit == 0) other++; if (c.kit > 0) { kc = c; log.Append(' ').Append(ZhKitName1639(c)).Append('(').Append(c.kit).Append(')'); if (picked.Contains(c.kit)) ok = false; } }
+                if (kc == null || other > 0) ok = false; if (kc == null) { log.Append(" no kit card"); break; }
+                picked.Add(kc.kit); Choose(kc); yield return ZF1618(40); // the HUD readout now shows the new slot
+            }
+            ok &= ZhMove1618 > 0 && ZhSpec1618 > 0 && ZhUlt1618 > 0 && KitOffers1639().Count == 0;
+            ARes(scen + ":clip", ok && (_r1561 > 0 || _atRecFps <= 0), $"frames {_r1561} | start slots empty {startEmpty} |{log} | after: {ZhMoveNames1618[ZhMove1618]} / {ZhSpecNames1618[ZhSpec1618]} / {ZhUltNames1618[ZhUlt1618]} | offers left {KitOffers1639().Count}");
+            _zClip = null; ZhEnd1618(scen, clip);
         }
 
         // ---------------------------------------------------------------- t1635 Kindling clip: Zhurong pact (Kindling node), Fireball into a slow pack, overlapping patches

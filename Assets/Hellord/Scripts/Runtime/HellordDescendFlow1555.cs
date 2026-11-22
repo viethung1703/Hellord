@@ -65,7 +65,7 @@ namespace Hellord
             HellordAudio.Play("pact_seal_descend"); mode = Mode.StartPick;
             if (p == _pactPath51) PactApply51();                           // your Path: its (sealed) nodes apply as before
             else { SinRecalc737(); PactLoad51(); _pactActive51 = false; }   // another god: its basic only, no pact nodes; the saved Path is untouched
-            if (skills.Count > 0) { skills.Clear(); SetHeroLayers(); }
+            if (skills.Count > 0) { skills.Clear(); SetHeroLayers(); } ZhRunReset1639(); // t1639
             Choose(new Card { kind = CardKind.NewSkill, skill = HData.Skill(id) });
             Debug.Log("[Hellord] t1555 descend: pact " + PactData.PathShort[p] + " basic " + id + " pactNodes " + (_pactActive51 ? SelCount51() : 0));
         }
@@ -79,7 +79,7 @@ namespace Hellord
             HellordAudio.Play("pact_seal_descend"); mode = Mode.StartPick;
             if (p == _pactPath51) { bool s = _pactSealed51; if (PT.descendApplyChosenNodes1559) _pactSealed51 = true; PactApply51(); _pactSealed51 = s; }
             else { SinRecalc737(); PactLoad51(); _pactActive51 = false; }
-            if (skills.Count > 0) { skills.Clear(); SetHeroLayers(); }
+            if (skills.Count > 0) { skills.Clear(); SetHeroLayers(); } ZhRunReset1639(); // t1639
             BuildStartCards();
             Debug.Log("[Hellord] t1559 descend: pact " + PactData.PathShort[p] + " pactNodes " + (_pactActive51 ? SelCount51() : 0) + " startCards " + cards.Count);
         }

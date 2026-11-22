@@ -148,7 +148,7 @@ namespace Hellord
                 switch (c.kind)
                 {
                     case CardKind.NewSkill:
-                        GUILayout.Label(c.skill.name, _title); GUILayout.Label(c.skill.desc, _body); GUILayout.Label("Tags: " + HData.TagText(c.skill.tags, " · ", false), _small);
+                        if (c.kit > 0) { GUILayout.Label(ZhKitName1639(c), _title); GUILayout.Label(ZhKitDesc1639(c), _body); GUILayout.Label(ZhKitType1639[c.kit], _small); } else { GUILayout.Label(c.skill.name, _title); GUILayout.Label(c.skill.desc, _body); GUILayout.Label("Tags: " + HData.TagText(c.skill.tags, " · ", false), _small); } // t1639 kit card
                         GUILayout.FlexibleSpace(); if (GUILayout.Button("Take skill", _btn, GUILayout.Height(34))) Pick(c, -1); break;
                     case CardKind.SkillLevel:
                         var s = skills[c.skillIndex]; int nl = s.level + 1;
