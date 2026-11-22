@@ -64,12 +64,7 @@ namespace Hellord
         }
         void ZhFxQuad1625(Material m, Vector2 pivot, float l, float b, float w, float h, int order, float fxTime, float seed, ZP[] ps)
         {
-            if (_zfxRoot1625 == null)
-            {
-                _zfxRoot1625 = new GameObject("ZhurongFX1625").transform; _zfxMpb1625 = new MaterialPropertyBlock();
-                _zfxQuad1625 = new Mesh { name = "zfx_quad" }; _zfxQuad1625.vertices = new[] { new Vector3(-0.5f, -0.5f), new Vector3(0.5f, -0.5f), new Vector3(-0.5f, 0.5f), new Vector3(0.5f, 0.5f) };
-                _zfxQuad1625.uv = new[] { new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 1) }; _zfxQuad1625.triangles = new[] { 0, 2, 1, 2, 3, 1 }; _zfxQuad1625.RecalculateBounds();
-            }
+            ZhFxQuad1625Init();
             if (_zfxN1625 >= _zfxR1625.Count) { var go = new GameObject("zfx"); go.transform.SetParent(_zfxRoot1625, false); go.AddComponent<MeshFilter>().sharedMesh = _zfxQuad1625; _zfxR1625.Add(go.AddComponent<MeshRenderer>()); }
             ZhFxQuads1625++; var r = _zfxR1625[_zfxN1625++]; r.enabled = true; r.sharedMaterial = m; r.sortingOrder = order;
             const float U = 1f / 16f; var tr = r.transform; tr.position = new Vector3(pivot.x + (l + w * 0.5f) * U, pivot.y + (b + h * 0.5f) * U, 0f); tr.localScale = new Vector3(w * U, h * U, 1f);
@@ -81,6 +76,15 @@ namespace Hellord
             }
             r.SetPropertyBlock(mpb);
         }
+        void ZhFxQuad1625Init()
+        {
+            if (_zfxRoot1625 == null)
+            {
+                _zfxRoot1625 = new GameObject("ZhurongFX1625").transform; _zfxMpb1625 = new MaterialPropertyBlock();
+                _zfxQuad1625 = new Mesh { name = "zfx_quad" }; _zfxQuad1625.vertices = new[] { new Vector3(-0.5f, -0.5f), new Vector3(0.5f, -0.5f), new Vector3(-0.5f, 0.5f), new Vector3(0.5f, 0.5f) };
+                _zfxQuad1625.uv = new[] { new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 1) }; _zfxQuad1625.triangles = new[] { 0, 2, 1, 2, 3, 1 }; _zfxQuad1625.RecalculateBounds();
+            }
+        }
         void ZhFxHeroSprite1625(MaterialPropertyBlock mpb)
         {
             var sp = _heroBase != null ? _heroBase.sprite : null; if (sp == null || sp.texture == null) return; var t = sp.texture; var rc = sp.textureRect;
@@ -89,6 +93,28 @@ namespace Hellord
         }
         /// <summary>True when the shader route will draw mat (switch on + material present): one-shot placeholders / HFX strips are skipped.</summary>
         bool ZhFxLive1625(string mat) => TZ != null && TZ.zhFxV2_1625 && ZhFxMat1625(mat) != null;
+        // ---------------------------------------------------------------- t1635 Kindling burning ground (fx_v2 §16; replaces the flat 28 % orange ZDisc)
+        // Own pool: PyroTick53 runs before UpdateZh1618's ZhFxBegin/End. Rect (-1.27r, -0.95r, 2.53r, 2.0r) px, decal tier (above the floor, under actors), glow + 1.
+        // Visual cap (spec): at most 6 patches drawn within 1 u of each other, newest first. Damage / life / ticks unchanged.
+        readonly List<MeshRenderer> _kdR1635 = new List<MeshRenderer>(); readonly List<Vector2> _kdDrawn1635 = new List<Vector2>(32);
+        bool KdShader1635 => TZ != null && TZ.zhFxV2_1625 && ZhFxMat1625("ZFX_Kindling") != null;
+        bool KdRoom1635(Vector2 c) { int n = 0; foreach (var q in _kdDrawn1635) if ((q - c).sqrMagnitude < 1f) n++; if (n >= 6) return false; _kdDrawn1635.Add(c); return true; }
+        int KdPatch1635(int k, Vector2 c, float rPx, float age, float seed)
+        {
+            int ord = FbGround + YSort(c.y) + 4; var g = ZhFxMat1625("ZFX_Kindling_Glow");
+            KdQuad1635(k++, ZhFxMat1625("ZFX_Kindling"), c, rPx, age, seed, ord); if (g != null) KdQuad1635(k++, g, c, rPx, age, seed, ord + 1); return k;
+        }
+        void KdQuad1635(int k, Material m, Vector2 c, float rPx, float age, float seed, int order)
+        {
+            ZhFxQuad1625Init();
+            while (_kdR1635.Count <= k) { var go = new GameObject("kindling"); go.transform.SetParent(_zfxRoot1625, false); go.AddComponent<MeshFilter>().sharedMesh = _zfxQuad1625; _kdR1635.Add(go.AddComponent<MeshRenderer>()); }
+            var r = _kdR1635[k]; r.enabled = true; r.sharedMaterial = m; r.sortingOrder = order;
+            const float U = 1f / 16f; float l = -1.27f * rPx, b = -0.95f * rPx, w = 2.53f * rPx, h = 2.0f * rPx;
+            r.transform.position = new Vector3(c.x + (l + w * 0.5f) * U, c.y + (b + h * 0.5f) * U, 0f); r.transform.localScale = new Vector3(w * U, h * U, 1f);
+            var mpb = _zfxMpb1625; mpb.Clear(); mpb.SetVector("_Origin", new Vector4(c.x, c.y, 0, 0)); mpb.SetFloat("_FxTime", age); mpb.SetFloat("_Seed", seed); mpb.SetFloat("_Radius", rPx); mpb.SetFloat("_Life", HellordTuning.I.kindlingLife53);
+            r.SetPropertyBlock(mpb);
+        }
+        void KdEnd1635(int used) { for (int i = used; i < _kdR1635.Count; i++) if (_kdR1635[i].enabled) _kdR1635[i].enabled = false; }
         void ZhFxBegin1625() { _zfxN1625 = 0; }
         void ZhFxEnd1625() { for (int i = _zfxN1625; i < _zfxR1625.Count; i++) if (_zfxR1625[i].enabled) _zfxR1625[i].enabled = false; }
         int ZhHeroOrd1625 => _heroBase != null ? _heroBase.sortingOrder : YSort(_heroPos.y);

@@ -19,6 +19,7 @@ namespace Hellord
                 case "zhclip1618_move": return AtZhClip1618(1);
                 case "zhclip1618_special": return AtZhClip1618(2);
                 case "zhclip1618_ult": return AtZhClip1618(3);
+                case "kindling1635": return AtKindlingClip1635(); // t1635 clip: Kindling shader patches under Fireball hits
                 case "firewall986_nosplit": return ZNoSplit1618(AtFireWall986()); // the t986 Fire Wall test, with the t1618 split off (= Hellfire Pillar is the wall again)
                 case "chain1563": return AtChain1563();
                 case "bh1595": return AtBody1595();
@@ -294,6 +295,21 @@ namespace Hellord
             }
             yield return AtShot(scen + "_end");
             ZhEnd1618(scen, null);
+        }
+
+        // ---------------------------------------------------------------- t1635 Kindling clip: Zhurong pact (Kindling node), Fireball into a slow pack, overlapping patches
+        IEnumerator AtKindlingClip1635()
+        {
+            string scen = "kindling1635", clip = scen; var T = HellordTuning.I; _zClip = clip;
+            yield return ZhStart1618(scen, clip, SkillId.Fireball); bool kit0 = T.kit1618; T.kit1618 = false; // kit off: only the pact patches on the ground
+            var L = new List<Enemy>(); Vector2 H0 = _heroPos; int maxP = 0;
+            for (int i = 0; i < 10; i++) ZMk1618(L, EType.Imp, H0 + new Vector2(3.6f + (i % 5) * 0.9f, -1.1f + (i / 5) * 2.2f), 0.05f, 70f); // small, slow, die in a few hits so the patches show
+            yield return ZF1618(15); Toast("KINDLING (FIREBALL HITS)");
+            HInput.AtLmb = true; float t0 = runTime;
+            while (runTime - t0 < 4.5f) { atMouse986 = H0 + new Vector2(5.4f, Mathf.Sin((runTime - t0) * 1.6f) * 1.3f); yield return ZF1618(1); maxP = Mathf.Max(maxP, _patch53.Count); }
+            HInput.AtLmb = false; yield return ZT1618(2.4f);
+            ARes(scen + ":clip", (_r1561 > 0 || _atRecFps <= 0) && maxP >= 2, $"frames {_r1561} | Kindling node {Has51(PactPath.Pyromancer, 0)} | max patches alive {maxP} | shader {KdShader1635}");
+            ZKill1618(L); T.kit1618 = kit0; _zClip = null; ZhEnd1618(scen, clip);
         }
 
         // ---------------------------------------------------------------- in-game clips (-atRec 30)

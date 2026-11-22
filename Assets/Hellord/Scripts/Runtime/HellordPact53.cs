@@ -22,7 +22,7 @@ namespace Hellord
         float _heat53, _heatLock53, _trailBurnT53, _emberCd53, _infAuraT53, _infBackCd53; int _fbN53;
         struct Seg53 { public Vector2 a, b; public float t; }
         readonly List<Seg53> _trail53 = new List<Seg53>();
-        struct Zone53 { public Vector2 c; public float r, t, dmg, tick; public SkillInst s; }
+        struct Zone53 { public Vector2 c; public float r, t, dmg, tick, seed; public SkillInst s; } // t1635: seed = Kindling shader variation (visual only)
         readonly List<Zone53> _patch53 = new List<Zone53>(), _steam53 = new List<Zone53>(), _rune53 = new List<Zone53>();
         readonly List<float> _ember53 = new List<float>();
         // bone
@@ -166,7 +166,7 @@ namespace Hellord
         {
             if ((p.ret53 && !p.bone53) || (Has51(PactPath.BloodReaver, 6) && p.s != null && p.s.def.id == SkillId.SoulSpears)) Heal53(PT.spearHealPerPierce53);
             if (Has51(PactPath.Pyromancer, 0) && p.s != null && p.s.def.id == SkillId.Fireball && _patch53.Count < 24)
-                _patch53.Add(new Zone53 { c = p.pos, r = PT.kindlingR53 * p.s.AreaMul, t = PT.kindlingLife53, dmg = p.dmg * PT.kindlingDmg53, s = p.s });
+                _patch53.Add(new Zone53 { c = p.pos, r = PT.kindlingR53 * p.s.AreaMul, t = PT.kindlingLife53, dmg = p.dmg * PT.kindlingDmg53, s = p.s, seed = Random.value });
         }
         bool PactMeteor53(SkillInst s, float dmg)
         {
@@ -481,7 +481,7 @@ namespace Hellord
 
         void PyroTick53(float dt, Vector2 hc)
         {
-            if (!Path53(PactPath.Pyromancer)) return;
+            if (!Path53(PactPath.Pyromancer)) { KdEnd1635(0); return; }
             _heat53 = Mathf.Max(0, _heat53 - PT.heatDecay53 * dt);
             for (int i = _trail53.Count - 1; i >= 0; i--) { var g = _trail53[i]; g.t -= dt; if (g.t <= 0) { _trail53.RemoveAt(i); continue; } _trail53[i] = g; ZSeg(g.a, g.b, PT.trailWidth53 * 2f, new Color(1f, 0.45f, 0.1f, 0.35f * Mathf.Min(1, g.t)), 0); }
             if (_trail53.Count > 0 && (_trailBurnT53 -= dt) <= 0)
@@ -489,13 +489,16 @@ namespace Hellord
                 _trailBurnT53 = 0.5f; var fb = Own53(SkillId.Fireball); float bd = fb != null ? SkillDamage(fb) : 6f * Inc53;
                 foreach (var g in _trail53) { _pq53.Clear(); Query((g.a + g.b) * 0.5f, (g.a - g.b).magnitude * 0.5f + 1f, _pq53); foreach (var q in _pq53) { var e = _en[q]; if (e.alive && !e.dying && SegDist53(e.pos, g.a, g.b) < PT.trailWidth53 + e.radius) ApplyStatus(e, Status.Burn, bd, 1f, fb); } }
             }
+            int kd = 0; _kdDrawn1635.Clear(); // t1635 Kindling shader quads (newest first; visual cap per spot)
             for (int i = _patch53.Count - 1; i >= 0; i--)
             {
                 var z = _patch53[i]; z.t -= dt; z.tick -= dt; if (z.t <= 0) { _patch53.RemoveAt(i); continue; }
-                ZDisc(z.c, z.r, new Color(1f, 0.35f, 0.05f, 0.28f), 0.75f);
+                if (!KdShader1635) ZDisc(z.c, z.r, new Color(1f, 0.35f, 0.05f, 0.28f), 0.75f); // OLD flat disc = fallback when fx_v2 is off / material missing
+                else if (KdRoom1635(z.c)) kd = KdPatch1635(kd, z.c, z.r * 16f, PT.kindlingLife53 - z.t, z.seed);
                 if (z.tick <= 0) { z.tick = 0.5f; _pq53.Clear(); Query(z.c, z.r + 0.5f, _pq53); foreach (var q in _pq53) { var e = _en[q]; if (e.alive && !e.dying && (e.pos - z.c).magnitude < z.r + e.radius) ApplyStatus(e, Status.Burn, z.dmg, 1f, z.s); } }
                 _patch53[i] = z;
             }
+            KdEnd1635(kd);
             if (_steam53.Count > 0) SteamBullets53();
             for (int i = _steam53.Count - 1; i >= 0; i--) { var z = _steam53[i]; z.t -= dt; if (z.t <= 0) { _steam53.RemoveAt(i); continue; } _steam53[i] = z; ZDisc(z.c, z.r, new Color(0.85f, 0.88f, 0.92f, 0.25f), 0.75f); }
             for (int i = _ember53.Count - 1; i >= 0; i--) { _ember53[i] -= dt; if (_ember53[i] <= 0) _ember53.RemoveAt(i); }
