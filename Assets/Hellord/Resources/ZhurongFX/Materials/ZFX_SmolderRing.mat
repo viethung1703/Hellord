@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ZFX_SmolderRing
+  m_Shader: {fileID: 4800000, guid: a08659037833fd8d6ed12fe4f5647c68, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: f956134ba0bd31cb7e8c9660a5fa3dbd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RampTex:
+        m_Texture: {fileID: 2800000, guid: 36232a34a175a5b5c7b7ba4c416d111c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _PPU: 16
+    - _FxTime: 0
+    - _StepFps: 15
+    - _Seed: 0
+    - _Layer: 0
+    - _GlowGain: 1
+    - _Shape: 1
+    - _Radius: 40
+    - _Inner: 22
+    - _Length: 0
+    - _Squash: 0.55
+    - _Ignite: 1
+    - _Cool: 0
+    - _FlameH: 6
+    - _Flame: 0.4
+    - _Coal: 0.9
+    - _SmokeAmt: 0.6
+    - _Swirl: 0.15
+    - _Creep: 0.25
+    - _Style: 4
+    - _Progress: 1
+    - _Shadow: 0
+    - _Blink: 0
+    - _CrackScale: 40
+    - _TrailHead: 0
+    - _TrailSpeed: 220
+    - _TrailHold: 1.2
+    - _TrailFade: 0.7
+    - _SrcBlend: 5
+    - _DstBlend: 10
+    m_Colors:
+    - _Origin: {r: 0, g: 0, b: 0, a: 0}
+    - _Dir: {r: 1, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
