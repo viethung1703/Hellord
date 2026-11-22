@@ -48,7 +48,7 @@ namespace Hellord
             bool selZ = _dfSel1555 == 0;                                                              // Zhurong preselected (your altar Path; nothing sealed)
             yield return AtHold1555(0.6f, clip);
             yield return AtFakeClick1555(PT.descendOkX1555 + 52, AtBtnY1555(), clip);
-            bool inPick = mode == Mode.StartPick && _df1555 == 0; string ids = AtCardIds1559(), gZ = AtOldPickGaps1559(); bool fireOnly = ids == "Fireball,RollingMagmaRock,FirePillar";
+            bool inPick = mode == Mode.StartPick && _df1555 == 0; string ids = AtCardIds1559(), gZ = AtOldPickGaps1559(); bool fireOnly = ids == "Fireball,RollingMagmaRock,FirePillar,FireWall,Hydra" /* t1618: + Fire Wall; t1625: + Hydra (OLD: 3 fire basics) */;
             bool nodesZ = _pactActive51 && !_pactSealed51 && _pactPath51 == 0 && _pactSel51 == 0x7;          // unsealed altar Path: its picks apply, seal unchanged
             yield return AtHold1555(1.6f, clip); yield return AtShot("descend1559_ingame_pick_zhurong");
             if (cards.Count > 1) Choose(cards[1]);                                                   // = key 2 / click on card 2 (the same Choose)
@@ -84,7 +84,7 @@ namespace Hellord
             string idsXt = AtCardIds1559(), gXt = AtOldPickGaps1559(); Choose(cards[0]); bool xt = mode == Mode.Play && skills.Count == 1 && skills[0].def.id == SkillId.BloodWhip;
             // sealed altar Path: nodes apply (as before); Path with 0 picks: no nodes
             AtMenu1555(); _pactSealed51 = true; Act69(0); yield return AtWait(0.2f); _dfSel1555 = 0; DfConfirm1555(); bool sealedNodes = _pactActive51 && _pactSealed51; Choose(cards[0]);
-            AtMenu1555(); _pactSealed51 = false; int keep = _pactSel51; _pactSel51 = 0; Act69(0); yield return AtWait(0.2f); _dfSel1555 = 0; DfConfirm1555(); bool zeroPicks = !_pactActive51 && cards.Count == 3; Choose(cards[0]); _pactSel51 = keep;
+            AtMenu1555(); _pactSealed51 = false; int keep = _pactSel51; _pactSel51 = 0; Act69(0); yield return AtWait(0.2f); _dfSel1555 = 0; DfConfirm1555(); bool zeroPicks = !_pactActive51 && cards.Count == 5; /* t1618: Zhurong has 5 basics (OLD 3) */ Choose(cards[0]); _pactSel51 = keep;
             // restart after death clears the filter (old random pick if no pact menu)
             AtMenu1555(); bool cleared = _dfRunPick1559 < 0;
             // 5316082 menu skill screen still behind its toggle
@@ -97,7 +97,7 @@ namespace Hellord
             ARes("descend1555:rules", leizuNo && xingLocked && noStep2 && skipR && skipR2 && back0 && idsZk == "SoulSpears" && zkNoNodes && zk && idsXt == "BloodWhip" && xt && sealedNodes && zeroPicks && cleared && oldScreen && fresh && old,
                 $"leizuNoBasic {leizuNo} xingtianLocked {xingLocked} noMenuSkillScreen {noStep2} keyMoves {skipR}/{skipR2} backToMenu {back0} zhongKuiCards [{idsZk}] otherGodNoNodes+saveKept {zkNoNodes} zkRun {zk} xingtianCards [{idsXt}] xtRun {xt} sealedNodes {sealedNodes} zeroPicksNoNodes {zeroPicks} filterClearedOnReset {cleared} skillScreenToggle {oldScreen} freshSave {fresh} flowOffOld5Cards {old}");
             ALog("gaps " + gP); ALog("oldpick zhurong " + gZ); ALog("oldpick zhongkui " + gZk); ALog("oldpick xingtian " + gXt);
-            ARes("descend1555:gaps", gP.Contains("gapX 13 frameL 13 frameR 13") && gP.Contains("top 39 mid 39 bottom 39") && gZ.Contains("left 138 gap 8 right 138") && gZk.Contains("left 262") && gZk.Contains("right 262"), gP + " || Z " + gZ + " || ZK " + gZk + " || XT " + gXt);
+            ARes("descend1555:gaps", gP.Contains("gapX 13 frameL 13 frameR 13") && gP.Contains("top 39 mid 39 bottom 39") && gZ.Contains("left 18 gap 6 right 18") /* t1618: 5 Zhurong cards (OLD 3: left 138 gap 8 right 138) */ && gZk.Contains("left 262") && gZk.Contains("right 262"), gP + " || Z " + gZ + " || ZK " + gZk + " || XT " + gXt);
             _souls51 = so; _sigils51 = si; _pactPath51 = pp; _pactSel51 = ps; _pactSealed51 = sd; _unlock51 = un; PactSave51(); _atGod = false; T.altarFlow1561 = af1561; T.pactGonggong1561 = gg1561; T.chainLmb1563 = cl1563; T.pbOn1567 = pb1567;
             AtEnd("descend1555", "hero_sprite_not_base_final2"); // the t1517 cast pose replaces the base hero sprite while the basic fires (as in lmb1517)
         }
