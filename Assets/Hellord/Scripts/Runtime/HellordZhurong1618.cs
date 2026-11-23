@@ -70,9 +70,9 @@ namespace Hellord
 
         void ClearZh1618()
         {
-            ZhMoveCd = ZhSpecCd = ZhUltCd = 0f; ZhEffT1618 = ZhAncT1618 = ZhBdT1618 = 0f; ZhMark1618 = null; ZhMarkT1618 = ZhMarkGauge1618 = ZhPyreBuffT1618 = 0f;
+            ZhMoveCd = ZhSpecCd = 0f; /* t1648: ZhUltCd, ZhSunMeter1618, ZhNearMiss1618 carry over between rooms; reset per run in ResetV44 */ ZhEffT1618 = ZhAncT1618 = ZhBdT1618 = 0f; ZhMark1618 = null; ZhMarkT1618 = ZhMarkGauge1618 = ZhPyreBuffT1618 = 0f;
             _zFlam1618.Clear(); _zCursed1618.Clear(); ZhCryCharges1625 = 0; ZhCryT1625 = ZhCryUseT1625 = -9f; _zRings1618.Clear(); ZhHearthT1618 = 0f;
-            ZhSunMeter1618 = 0f; ZhNearMiss1618 = 0; ZhBurning1618 = 0; ZhHeartT1618 = 0f; _zSuns1618.Clear(); _zBirds1618.Clear(); _zFx1618.Clear(); _zHy1625.Clear(); _zBolt1625.Clear();
+            ZhBurning1618 = 0; ZhHeartT1618 = 0f; _zSuns1618.Clear(); _zBirds1618.Clear(); _zFx1618.Clear(); _zHy1625.Clear(); _zBolt1625.Clear();
         }
 
         // ---------------------------------------------------------------- icon hook (PixelLab icons_v2 later); FX hook: HellordZhurongFx1625.cs
