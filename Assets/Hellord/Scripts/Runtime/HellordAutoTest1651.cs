@@ -203,7 +203,7 @@ namespace Hellord
             string scen = "sup1651"; var T = HellordTuning.I;
             SmKitIds1651 = ZkIds1651; SmKitSet1651 = (g, si) => g.SmKitSetI1651(si); SmKitCast1651 = (g, id) => g.SmKitCastI1651(id); SmKitProbe1651 = (g, id) => g.SmKitProbeI1651(id); // t1651 stage 4: kit skills join the matrix
             yield return ZhStart1618(scen, null, SkillId.Fireball); _zKeepHp = false;
-            float crit0 = crit; int cf0 = Time.captureFramerate; Time.captureFramerate = 30; bool pa0 = _pactActive51; _pactActive51 = false; // neutral: no pact node effects (Pyromancer turns statuses into burn, etc.)
+            float crit0 = crit; int cf0 = Time.captureFramerate; Time.captureFramerate = 30; bool pa0 = _pactActive51; _pactActive51 = false; bool ko0 = TZ.kitSlotOverride1639; TZ.kitSlotOverride1639 = false; /* kit slots come from the run picks the test sets, not the testing override */ // neutral: no pact node effects (Pyromancer turns statuses into burn, etc.)
             var cams = new List<Camera>(); foreach (var c in Camera.allCameras) if (c.enabled && System.Environment.GetCommandLineArgs().Length > 0 && !System.Array.Exists(System.Environment.GetCommandLineArgs(), a => a == "-smRender")) { c.enabled = false; cams.Add(c); }
             if (_room != null) { _room.Walkable(6, out var lo, out var hi); _smH1651 = new Vector2(Mathf.Lerp(lo.x, hi.x, 0.5f) - 3.8f, Mathf.Lerp(lo.y, hi.y, 0.5f)); } else _smH1651 = _heroPos;
             // ---- static checks
@@ -262,7 +262,7 @@ namespace Hellord
                 System.IO.File.WriteAllText(System.IO.Path.Combine(_atOut, "sup1651_matrix.txt"), mx.ToString());
             }
             ARes(scen + ":totals", fail == 0 && noise == 0, $"pairs {pairs}: pass {pass}, fail {fail}; missing-tag warnings {warn}; non-deterministic skills {noise} | FAIL: {string.Join("; ", failL)} | WARN: {string.Join("; ", warnL)}");
-            SmClear1651(); foreach (var c in cams) if (c != null) c.enabled = true; Time.captureFramerate = cf0; crit = crit0; _zKeepHp = true; _pactActive51 = pa0;
+            SmClear1651(); foreach (var c in cams) if (c != null) c.enabled = true; Time.captureFramerate = cf0; crit = crit0; _zKeepHp = true; _pactActive51 = pa0; TZ.kitSlotOverride1639 = ko0;
             ZhEnd1618(scen, null);
         }
         public static System.Func<SupportDef, string> SmCardCheck1651; // stage 3: generated card text vs tuning
