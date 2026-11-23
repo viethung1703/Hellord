@@ -18,7 +18,7 @@ namespace Hellord
                 if (HData.Summon561(s.def)) { s.cd = 0; continue; } // t561u: summons are passive (minion tick)
                 if (s.def.id == SkillId.StormRing) hasRing = true;
                 s.cd -= dt; bool want716 = !Manual716 || Want716(s); if (Manual716 && s.cd < 0) s.cd = 0; if (IsFb1481(s.def.id)) { want716 = FbWant1481(s); if (s.cd < 0) s.cd = 0; } /* t1481: player-fired (LMB) */ bool basic1517 = s == _basic1517; if (basic1517) { want716 = BasicWant1517(); if (s.cd < 0) s.cd = 0; } /* t1517: the basic main attack fires only while LMB is held */ // t716u: Manual = cast on key
-                if (s.cd <= 0 && want716 && PactCanCast53(s)) { s.cd = s.def.cooldown * s.CdMul * PactCd53(s); float lc53 = _lastCast[(int)s.def.id]; if (basic1517 || IsFb1481(s.def.id) && s == FbLmbBasic1517()) BasicCast1517(s, 1f); else Cast(s, 1f); if (_lastCast[(int)s.def.id] != lc53) PactAfterCast53(s); s.cd *= SinEchoCd818(s); AtCd1651 = s.cd; /* t1651 probe */ if (s.RepeatN > 0 && !SinNoEcho818(s)) { s.echoLeft = s.RepeatN; /* t1651: Repeat stat */ if (s.def.id == SkillId.CurseRune) s.echoLeft = Mathf.Min(s.echoLeft, HellordTuning.I.curseEchoMax738); s.echoT = s.echoLeft > 0 ? 0.3f : -1; } /* t738u */ }
+                if (s.cd <= 0 && want716 && PactCanCast53(s)) { s.cd = s.def.cooldown * s.CdMul * PactCd53(s) * LzBasicCdK1666(s); /* t1666 Storm Stride */ float lc53 = _lastCast[(int)s.def.id]; if (basic1517 || IsFb1481(s.def.id) && s == FbLmbBasic1517()) BasicCast1517(s, 1f); else Cast(s, 1f); if (_lastCast[(int)s.def.id] != lc53) PactAfterCast53(s); s.cd *= SinEchoCd818(s); AtCd1651 = s.cd; /* t1651 probe */ if (s.RepeatN > 0 && !SinNoEcho818(s)) { s.echoLeft = s.RepeatN; /* t1651: Repeat stat */ if (s.def.id == SkillId.CurseRune) s.echoLeft = Mathf.Min(s.echoLeft, HellordTuning.I.curseEchoMax738); s.echoT = s.echoLeft > 0 ? 0.3f : -1; } /* t738u */ }
                 if (s.echoT > 0) { s.echoT -= dt; if (s.echoT <= 0) { _echo738 = true; Cast(s, s.Stat(SStat1651.RepeatDmg) * SinEchoDmg818()); _echo738 = false; if (--s.echoLeft > 0) s.echoT = 0.3f; else s.echoT = -1; } } // v0.0.27: Echo repeats grow with its level
             }
             if (!hasOrbit && (_orbs.Count > 0 || _orbitJobs != null)) { foreach (var o in _orbs) Destroy(o.gameObject); _orbs.Clear(); KillOrbit(); }
@@ -117,6 +117,10 @@ namespace Hellord
                 case SkillId.SparkSpray: if (!CastSparkSpray1567(s, dmg)) return; break; // t1567 pact LMB basics (HellordPactBasics1567.cs)
                 case SkillId.BallLightning: if (!CastBallLightning1567(s, dmg)) return; break;
                 case SkillId.ThunderJavelin: if (!CastThunderJavelin1567(s, dmg)) return; break;
+                case SkillId.ThunderDrumStrikes: if (!CastDrumStrikes1666(s, dmg)) return; break; // t1666 Leizu basics (HellordLeizu1666.cs)
+                case SkillId.ThunderLash: if (!CastThunderLash1666(s, dmg)) return; break;
+                case SkillId.LiveWire: if (!CastLiveWire1666(s, dmg)) return; break;
+                case SkillId.ThunderHound: if (!CastThunderHound1666(s, dmg)) return; break;
                 case SkillId.HeadsmansChop: if (!CastHeadsmansChop1567(s, dmg)) return; break;
                 case SkillId.EarthSplittingSlam: if (!CastEarthSlam1567(s, dmg)) return; break;
                 case SkillId.TwinAxeThrow: if (!CastTwinAxe1567(s, dmg)) return; break;

@@ -25,21 +25,21 @@ namespace Hellord
         bool _kbArmedPrev1646; int _kbUltPrev1646;
         void KbUltProgress1646(float ix, float iy, bool cooling)
         {
-            int u = ZhUlt1618; bool armed = !cooling && ZhUltArmed1618;
+            int u = KitUlt1666; bool armed = !cooling && KitUltArmed1666; bool lz = LzOn1666; // t1666: + Leizu
             if (Event.current.type == EventType.Repaint)
             {
                 if (u != _kbUltPrev1646) { _kbUltPrev1646 = u; _kbArmedPrev1646 = armed; } // a new pick never chimes
-                else if (armed && !_kbArmedPrev1646 && u != 2) { HellordAudio.Play("ui_confirm"); _kbArmedPrev1646 = true; }
+                else if (armed && !_kbArmedPrev1646 && (u != 2 || lz)) { HellordAudio.Play("ui_confirm"); _kbArmedPrev1646 = true; }
                 else _kbArmedPrev1646 = armed;
             }
             if (cooling) return;
-            if (u == 2) { KbGlow1646(ix, iy, 0.85f); return; } // Rebirth Flame: automatic -> steady glow
+            if (u == 2 && !lz) { KbGlow1646(ix, iy, 0.85f); return; } // Rebirth Flame: automatic -> steady glow
             if (armed) { KbGlow1646(ix, iy, 0.55f + 0.45f * Mathf.Sin(Time.unscaledTime * 7f)); return; }
-            float prog = u == 1 ? ZhSunMeter1618 / Mathf.Max(1f, TZ.swMeter1618) : u == 3 ? ZhBurning1618 / (float)Mathf.Max(1, TZ.mhNeed1618) : u == 4 ? ZhNearMiss1618 / (float)Mathf.Max(1, TZ.vbNeed1618) : 0f;
+            float prog = lz ? LzUltProg1666() : u == 1 ? ZhSunMeter1618 / Mathf.Max(1f, TZ.swMeter1618) : u == 3 ? ZhBurning1618 / (float)Mathf.Max(1, TZ.mhNeed1618) : u == 4 ? ZhNearMiss1618 / (float)Mathf.Max(1, TZ.vbNeed1618) : 0f;
             int h = Mathf.Clamp(Mathf.FloorToInt(24f * Mathf.Clamp01(prog)), 0, 23); // 24 rows only when armed (above)
             if (h < 24) Fill716(ix, iy, 24, 24 - h, new Color32(24, 20, 37, 150));             // still to build: dimmed (sweep-mask ink)
             if (h > 0) { Fill716(ix, iy + 24 - h, 24, h, C716(0xf77622, 0.5f)); Fill716(ix, iy + 24 - h, 24, 1, C716(0xfee761, 0.9f)); } // orange fill + bright top edge
-            if (u == 4) KbCount1646(Mathf.Min(ZhNearMiss1618, TZ.vbNeed1618), TZ.vbNeed1618, ix, iy);
+            if (lz) { if (u == 1) KbCount1646(Mathf.Min(LzCombos1666, TZ.dcNeed1666), TZ.dcNeed1666, ix, iy); else if (u == 2) KbCount1646(Mathf.Min(LzInfusions1666, TZ.haNeed1666), TZ.haNeed1666, ix, iy); } /* t1666 */ else if (u == 4) KbCount1646(Mathf.Min(ZhNearMiss1618, TZ.vbNeed1618), TZ.vbNeed1618, ix, iy);
             GUI.color = Color.white;
         }
         void KbGlow1646(float ix, float iy, float a) { Frame716(ix - 1, iy - 1, 26, 26, C716(0xfee761, a)); Frame716(ix - 2, iy - 2, 28, 28, C716(0xfeae34, a * 0.6f)); GUI.color = Color.white; }
@@ -61,8 +61,8 @@ namespace Hellord
         void DrawKitBelt1641()
         {
             var g = GUI.color; float gm = HellordTuning.I.beltGem716; Vector2 mp = Event.current.mousePosition; int hov = -1;
-            int[] pick = { 0, ZhMove1618, ZhSpec1618, ZhUlt1618 }; float[] cd = { 0f, ZhMoveCd, ZhSpecCd, ZhUltCd };
-            string[] key = { null, MoveKey1618(), SpecKey1618(), UltKey1618() };
+            int[] pick = { 0, KitMove1666, KitSpec1666, KitUlt1666 }; /* t1666: running pact's kit */ float[] cd = { 0f, ZhMoveCd, ZhSpecCd, ZhUltCd };
+            string[] key = { null, KitMoveKey1666(), KitSpecKey1666(), KitUltKey1666() };
             for (int i = 0; i < KbN1641; i++)
             {
                 var r = Cell716(i); float x = r.x, y = r.y; if (r.Contains(mp)) hov = i;
@@ -105,7 +105,7 @@ namespace Hellord
                         Fill716(ix + 7, iy + 10, 10, 8, lc); Fill716(ix + 11, iy + 12, 2, 3, C716(0x181425));
                         _kbFull1641[i] = _kbPrev1641[i] = 0f; continue;
                     }
-                    var tex = ZhIcon1618(key[i]); GUI.color = Color.white;
+                    var tex = KitIcon1666(key[i]); GUI.color = Color.white;
                     if (tex != null) GUI.DrawTexture(new Rect(ix, iy, 24, 24), tex); else BlitInset(_tRoomIcons, 0, 0, 8, 8, ix + 4, iy + 4, 16, 16);
                     float c = Mathf.Max(0f, cd[i]); if (c > _kbPrev1641[i] + 0.01f) _kbFull1641[i] = c; _kbPrev1641[i] = c; float fl = Mathf.Max(0.05f, _kbFull1641[i]); // full = the cooldown just set
                     if (_tCdMask != null && c > 0.05f)

@@ -88,7 +88,7 @@ namespace Hellord
                 _dashDir49 = DashDir716(mv); _dashT49 = T49.dashTimeS49; _dashCd49 = T49.dashCooldownS49 * PactDashCdMul53() * _sinDashMul737;
                 _iframe = Mathf.Max(_iframe, T49.dashIFrameS49); _heroVel37 = Vector2.zero; _holdT49 = 0;
                 if (T49.dashBreaksHook49 && _dragBy != null) { if (_dragBy.hookH >= 0) HookChainFX.Release(_dragBy.hookH); _dragBy = null; }
-                HordeFX.CheapBurst(_heroPos + Vector2.up * 0.4f, E32(0xc0cbdc), 6); HellordAudio.Play("oxhead_lunge_dash", 2f); PactDash53(); SinDash818(); // t818u #19 // v0.0.53 pact dash hooks
+                HordeFX.CheapBurst(_heroPos + Vector2.up * 0.4f, E32(0xc0cbdc), 6); HellordAudio.Play("oxhead_lunge_dash", 2f); PactDash53(); SinDash818(); LzDashAfter1666(); /* t1666 Thunder Step blink */ // t818u #19 // v0.0.53 pact dash hooks
             }
             if (_dashT49 > 0)
             {

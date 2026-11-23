@@ -19,13 +19,13 @@ namespace Hellord
     {
         public static readonly SkillId[] ZkIds1651 = { SkillId.ZkEmberEffigy, SkillId.ZkEmberAnchor, SkillId.ZkBackdraft, SkillId.ZkPyreMark, SkillId.ZkFlammability, SkillId.ZkWarCry, SkillId.ZkSmolderRing, SkillId.ZkHearthBlessing, SkillId.ZkSunsWrath, SkillId.ZkRebirthFlame, SkillId.ZkMoltenHeart, SkillId.ZkVermilionBird };
         public const int KitTarget1651 = 100;
-        readonly SkillInst[] _zkI1651 = new SkillInst[12];
+        readonly SkillInst[] _zkI1651 = new SkillInst[28]; /* t1666: 12 Zhurong + 12 Leizu (LzK0) + spare */
         /// <summary>kit skill k (0-2 movement, 3-7 specials, 8-11 ultimates): its run instance (made on first use, Lv1).</summary>
-        public SkillInst ZkI1651(int k) { k = Mathf.Clamp(k, 0, 11); return _zkI1651[k] ?? (_zkI1651[k] = new SkillInst { def = HData.Skill(ZkIds1651[k]), level = 1 }); }
+        public SkillInst ZkI1651(int k) { k = Mathf.Clamp(k, 0, LzK0 + 11); return _zkI1651[k] ?? (_zkI1651[k] = new SkillInst { def = HData.Skill(k < LzK0 ? ZkIds1651[k] : LzIds1666[k - LzK0]), level = 1 }); } // t1666: k >= LzK0 = Leizu kit
         public static int ZkK1651(int slot, int pick) => slot == 0 ? pick - 1 : slot == 1 ? 2 + pick : 7 + pick;
-        int ZkPick1651(int slot) => slot == 0 ? ZhMove1618 : slot == 1 ? ZhSpec1618 : ZhUlt1618;
+        int ZkPick1651(int slot) => slot == 0 ? KitMove1666 : slot == 1 ? KitSpec1666 : KitUlt1666; // t1666: the running pact's kit (Zhurong or Leizu)
         /// <summary>The kit skill in slot 0/1/2 (move / special / ultimate), null when the slot is empty or the kit is off.</summary>
-        public SkillInst ZkSlotInst1651(int slot) { int p = ZkPick1651(slot); return p > 0 ? ZkI1651(ZkK1651(slot, p)) : null; }
+        public SkillInst ZkSlotInst1651(int slot) { int p = ZkPick1651(slot); return p > 0 ? ZkI1651(KitK1666(slot, p)) : null; }
         void ResetKit1651() { for (int i = 0; i < _zkI1651.Length; i++) _zkI1651[i] = null; }
 
         // ---- the numbers kit code reads (support stats of that kit skill)
@@ -43,7 +43,7 @@ namespace Hellord
         // ---- level cards: the owned kit skills below max level
         List<Card> KitLevelCards1651()
         {
-            var l = new List<Card>(3); if (!ZhOn1618 || ZhSlotOverride1639) return l;
+            var l = new List<Card>(3); if (!KitOn1666 || ZhSlotOverride1639) return l; // t1666: + Leizu
             for (int sl = 0; sl < 3; sl++) { var k = ZkSlotInst1651(sl); if (k != null && k.level < HData.MaxSkillLevel) l.Add(new Card { kind = CardKind.NewSkill, kit = sl + 1, kitPick = ZkPick1651(sl), kitLv1651 = true }); }
             return l;
         }

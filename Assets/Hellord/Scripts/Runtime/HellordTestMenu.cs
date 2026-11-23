@@ -273,6 +273,12 @@ namespace Hellord
             if (TmBtn("Special (RMB): " + ZhSpecNames1618[Mathf.Clamp(T.kitSpecial1618, 0, 5)])) { T.kitSpecial1618 = (T.kitSpecial1618 + 1) % 6; ZhSpecCd = 0; }
             if (TmBtn("Ultimate (R): " + ZhUltNames1618[Mathf.Clamp(T.kitUlt1618, 0, 4)])) { T.kitUlt1618 = (T.kitUlt1618 + 1) % 5; ZhUltCd = 0; }
             if (TmBtn("Kit: reset cooldowns + fill the ultimate condition")) { ZhMoveCd = ZhSpecCd = ZhUltCd = 0; ZhSunMeter1618 = T.swMeter1618; ZhNearMiss1618 = T.vbNeed1618; }
+            TmLabel("LEIZU KIT (t1666 debug selector; Leizu runs, Slots = TEST OVERRIDE)");
+            if (TmBtn("Leizu kit " + (T.lzKit1666 ? "ON" : "OFF") + (LzOn1666 ? " (active)" : ""))) T.lzKit1666 = !T.lzKit1666;
+            if (TmBtn("Movement (Space): " + LzMoveNames1666[Mathf.Clamp(T.lzMove1666, 0, 4)])) { T.lzMove1666 = (T.lzMove1666 + 1) % 5; ZhMoveCd = 0; }
+            if (TmBtn("Special (RMB): " + LzSpecNames1666[Mathf.Clamp(T.lzSpecial1666, 0, 4)])) { T.lzSpecial1666 = (T.lzSpecial1666 + 1) % 5; ZhSpecCd = 0; }
+            if (TmBtn("Ultimate (R): " + LzUltNames1666[Mathf.Clamp(T.lzUlt1666, 0, 4)])) { T.lzUlt1666 = (T.lzUlt1666 + 1) % 5; ZhUltCd = 0; }
+            if (TmBtn("Leizu kit: reset cooldowns + fill the ultimate condition")) { ZhMoveCd = ZhSpecCd = ZhUltCd = 0; LzCombos1666 = T.dcNeed1666; LzInfusions1666 = T.haNeed1666; LzEnergy1666 = T.trNeed1666; LzBossT1666 = T.jwBossFallback1666; }
             TmLabel("NECROMANCER (t536u TEST)");
             if (TmBtn("Unlock all 18 Necromancer nodes")) { PactLoad51(); _unlock51[(int)PactPath.Necromancer] = (1 << PactData.Nodes[(int)PactPath.Necromancer].Length) - 1; PactSave51(); TmSay("All Necromancer nodes unlocked (take them in the Altar)"); }
             if (TmBtn("TEST skeletons: give Skeleton Warriors + Skeleton Archers (Lv1)")) { foreach (var d in HData.Skills) if (HData.Summon561(d) && skills.Find(x => x.def.id == d.id) == null) skills.Add(new SkillInst { def = d }); TmSay("Summons given: " + SummonStatus561()); } // t561u
