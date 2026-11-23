@@ -24,7 +24,8 @@ namespace Hellord
                 case "skillbar1641": return AtSkillBarClip1641(); // t1641 clip: the 4-slot kit bar
                 case "startpact1643": return AtStartPact1643(); // t1643 clip: fresh save -> Zhurong unlocked + sealed
                 case "groundsort1644": return AtGroundSort1644(); // t1644 clip: fire ground over corpses, under living enemies
-                case "ultprog1646": return AtUltProg1646(); // t1646 clip: R slot ultimate progress // t1635 clip: Kindling shader patches under Fireball hits
+                case "ultprog1646": return AtUltProg1646(); // t1646 clip: R slot ultimate progress
+                case "hydrascorch1647": return AtHydraScorch1647(); // t1647 clip: Hydra ends -> v3 scorch (own seed) // t1635 clip: Kindling shader patches under Fireball hits
                 case "firewall986_nosplit": return ZNoSplit1618(AtFireWall986()); // the t986 Fire Wall test, with the t1618 split off (= Hellfire Pillar is the wall again)
                 case "chain1563": return AtChain1563();
                 case "bh1595": return AtBody1595();
@@ -300,6 +301,24 @@ namespace Hellord
             }
             yield return AtShot(scen + "_end");
             ZhEnd1618(scen, null);
+        }
+
+        // ---------------------------------------------------------------- t1647 clip: two Hydras (own seeds) spit, fade, and leave the v3 scorch cooling in place
+        IEnumerator AtHydraScorch1647()
+        {
+            string scen = "hydrascorch1647", clip = scen; var T = HellordTuning.I; _zClip = clip;
+            yield return ZhStart1618(scen, clip, SkillId.Hydra);
+            var sk = Basic1517(); float life = T.hyLife1625; T.hyLife1625 = 2.6f; _zHy1625.Clear(); _zBolt1625.Clear();
+            var L = new List<Enemy>(); Vector2 H0 = _heroPos; ZMk1618(L, EType.Imp, H0 + new Vector2(0.5f, 3.2f), 0f, 50000f); ZMk1618(L, EType.Imp, H0 + new Vector2(-0.5f, 3.4f), 0f, 50000f);
+            Vector2[] spots = { H0 + new Vector2(-2.4f, 0.9f), H0 + new Vector2(2.4f, 0.9f) }; var seeds = new List<float>(); int scorch0 = 0;
+            foreach (var at in spots) { if (sk != null) sk.cd = 0f; atMouse986 = at; HInput.AtLmb = true; yield return ZF1618(2); HInput.AtLmb = false; if (_zHy1625.Count > 0) seeds.Add(_zHy1625[_zHy1625.Count - 1].seed); yield return ZF1618(8); }
+            atMouse986 = H0 + new Vector2(0f, -2.5f);
+            float t0 = runTime; bool sawScorch = false; float sMin = 9f, sMax = -9f;
+            while (runTime - t0 < 4.6f) { yield return ZF1618(1); foreach (var f in _zFx1618) if (f.mat == "ZFX_Hydra_Scorch") { sawScorch = true; sMin = Mathf.Min(sMin, f.seed); sMax = Mathf.Max(sMax, f.seed); } }
+            T.hyLife1625 = life; ZKill1618(L);
+            string sd = string.Join(",", seeds.ConvertAll(x => x.ToString("0.000")));
+            ARes(scen + ":clip", seeds.Count == 2 && sawScorch && _zHy1625.Count == 0, $"frames {_r1561} | hydra seeds {sd} | scorch seeds seen {sMin:0.000}..{sMax:0.000} | scorch mat {(Resources.Load<Material>("ZhurongFX/Materials/ZFX_Hydra_Scorch") is Material mm ? mm.shader.name : "none")}");
+            _zClip = null; ZhEnd1618(scen, clip);
         }
 
         // ---------------------------------------------------------------- t1646 clip: R slot: cooldown sweep -> condition fill -> armed pulse + chime (Sun's Wrath, Vermilion Bird, Molten Heart)

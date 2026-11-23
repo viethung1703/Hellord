@@ -56,7 +56,7 @@ namespace Hellord
         readonly List<ZSun> _zSuns1618 = new List<ZSun>();
         class ZBird { public Vector2 a, dir, p; public float d, drop; public HashSet<Enemy> hit = new HashSet<Enemy>(); }
         readonly List<ZBird> _zBirds1618 = new List<ZBird>();
-        class ZFx { public Vector2 p; public float t, life, r; public int kind; public string mat; public Vector4 rc; public int ord = int.MinValue, drive; } // t1625: + the spec material it stands in for
+        class ZFx { public Vector2 p; public float t, life, r; public int kind; public string mat; public Vector4 rc; public int ord = int.MinValue, drive; public float seed = 0.37f; } // t1625: + the spec material it stands in for
         readonly List<ZFx> _zFx1618 = new List<ZFx>(); // short placeholder rings / bursts
         // Hydra (t1625; replaced Volcanic Orb)
         class ZHy { public Vector2 p; public float t, dmg, seed; public SkillInst s; public float[] next = new float[3], spitT = { -10f, -10f, -10f }, aim = new float[3]; public bool[] armed = new bool[3]; } // fx_v2 §14: 3 heads, own clocks / targets
@@ -128,7 +128,7 @@ namespace Hellord
                 if (f.mat != null)
                 {   // t1625 spec drive: 0 = _Progress over the life; 1 = area _Ignite 0.4 s / _Cool over the last 0.5-0.8 s; 2 = 0.2 s hit-hold then _Progress
                     bool sh = f.drive == 1 ? ZhFx1625(f.mat, f.p, f.rc.x, f.rc.y, f.rc.z, f.rc.w, f.ord != int.MinValue ? f.ord : ord, f.t, 0.37f, ZP.F("_Ignite", Z01(f.t / 0.4f)), ZP.F("_Cool", Z01((f.t - (f.life - Mathf.Min(0.8f, f.life * 0.3f))) / Mathf.Min(0.8f, f.life * 0.3f))))
-                           : f.drive == 4 ? ZhFx1625(f.mat, f.p, f.rc.x, f.rc.y, f.rc.z, f.rc.w, f.ord != int.MinValue ? f.ord : ord, f.t, 0.37f, ZP.F("_Ignite", 1f), ZP.F("_Cool", Z01((f.t - 0.3f) / 1.4f)))
+                           : f.drive == 4 ? ZhFx1625(f.mat, f.p, f.rc.x, f.rc.y, f.rc.z, f.rc.w, f.ord != int.MinValue ? f.ord : ord, f.t, f.seed, ZP.F("_Ignite", 1f), ZP.F("_Cool", Z01((f.t - 0.3f) / 1.4f)))
                            : f.drive == 3 ? ZhFx1625(f.mat, f.p, f.rc.x, f.rc.y, f.rc.z, f.rc.w, f.ord != int.MinValue ? f.ord : ord, f.t, 0.37f, ZP.F("_Intensity", (0.9f * Mathf.Exp(-f.t / 0.25f) + 0.7f * Z01(f.t / 0.4f)) * (1f - Z01((f.t - (f.life - 0.8f)) / 0.8f)))) // ground light
                            : f.drive == 2 ? ZhFx1625(f.mat, f.p, f.rc.x, f.rc.y, f.rc.z, f.rc.w, f.ord != int.MinValue ? f.ord : ord, f.t, 0.37f, ZP.F("_Progress", Z01((f.t - 0.2f) / Mathf.Max(0.05f, f.life - 0.2f))))
                            : ZhFx1625(f.mat, f.p, f.rc.x, f.rc.y, f.rc.z, f.rc.w, f.ord != int.MinValue ? f.ord : ord, f.t, 0.37f, ZP.F("_Progress", k));
@@ -500,7 +500,7 @@ namespace Hellord
         }
         void ZhHydraGone1625(ZHy o)
         {   // fade-out end (or replaced): the scorch cools over 1.4 s from fade + 0.3 s
-            ZFx1618(-1, o.p, 0.5f, 1.7f, "ZFX_Hydra_Scorch", new Vector4(-22, -12, 44, 28), FbGround + YSort(o.p.y) + 2, 4);
+            ZFx1618(-1, o.p, 0.5f, 1.7f, "ZFX_Hydra_Scorch", new Vector4(-22, -12, 44, 28), FbGround + YSort(o.p.y) + 2, 4); _zFx1618[_zFx1618.Count - 1].seed = o.seed; // t1647 §17b: the scorch uses the Hydra's own seed, so its edge matches the Hydra2 pool
             if (!ZhFxLive1625("ZFX_Hydra2")) HordeFX.CheapBurst(o.p + Vector2.up * 0.5f, ZO, 8); HellordAudio.Play("magma_throw_splat", 1.3f);
         }
         static readonly Vector2[] ZHyB1625 = { new Vector2(-5, 3), new Vector2(0, 4), new Vector2(5, 3) }, ZHyR1625 = { new Vector2(-15, 17), new Vector2(1, 25), new Vector2(15, 19) }; // t1632 Hydra v2 rest points (§14b)
