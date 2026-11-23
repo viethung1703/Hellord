@@ -23,7 +23,8 @@ namespace Hellord
                 case "levelup1639": return AtLevelUpClip1639(); // t1639 clip: kit cards on level-up
                 case "skillbar1641": return AtSkillBarClip1641(); // t1641 clip: the 4-slot kit bar
                 case "startpact1643": return AtStartPact1643(); // t1643 clip: fresh save -> Zhurong unlocked + sealed
-                case "groundsort1644": return AtGroundSort1644(); // t1644 clip: fire ground over corpses, under living enemies // t1635 clip: Kindling shader patches under Fireball hits
+                case "groundsort1644": return AtGroundSort1644(); // t1644 clip: fire ground over corpses, under living enemies
+                case "ultprog1646": return AtUltProg1646(); // t1646 clip: R slot ultimate progress // t1635 clip: Kindling shader patches under Fireball hits
                 case "firewall986_nosplit": return ZNoSplit1618(AtFireWall986()); // the t986 Fire Wall test, with the t1618 split off (= Hellfire Pillar is the wall again)
                 case "chain1563": return AtChain1563();
                 case "bh1595": return AtBody1595();
@@ -299,6 +300,32 @@ namespace Hellord
             }
             yield return AtShot(scen + "_end");
             ZhEnd1618(scen, null);
+        }
+
+        // ---------------------------------------------------------------- t1646 clip: R slot: cooldown sweep -> condition fill -> armed pulse + chime (Sun's Wrath, Vermilion Bird, Molten Heart)
+        IEnumerator AtUltProg1646()
+        {
+            string scen = "ultprog1646", clip = scen; var T = HellordTuning.I; _zClip = clip;
+            yield return ZhStart1618(scen, clip, SkillId.Fireball); // tuning override on (ZhStart): the slots come from kitMove / kitSpecial / kitUlt
+            T.kitMove1618 = 1; T.kitSpecial1618 = 3; var log = new System.Text.StringBuilder(); var sk = skills.Count > 0 ? skills[0] : null;
+            // Sun's Wrath: 2 s cooldown, then the meter builds (scripted burn-damage meter), arms, chimes
+            T.kitUlt1618 = 1; ZhSunMeter1618 = 0f; ZhUltCd = 2f; yield return ZT1618(2.1f);
+            for (int k = 0; k <= 40; k++) { ZhSunMeter1618 = T.swMeter1618 * k / 40f; yield return ZF1618(2); }
+            log.Append(" sun armed ").Append(ZhUltArmed1618); yield return ZF1618(40);
+            // Vermilion Bird: 0/5 .. 5/5 near-miss dodges (scripted count), arms, chimes
+            T.kitUlt1618 = 4; ZhUltCd = 0f; ZhNearMiss1618 = 0; yield return ZF1618(20);
+            for (int k = 1; k <= T.vbNeed1618; k++) { ZhNearMiss1618 = k; yield return ZF1618(18); }
+            log.Append(" | bird armed ").Append(ZhUltArmed1618); yield return ZF1618(40);
+            // Molten Heart: the LIVE burning count (real Burn on 15 imps, one by one; it falls again as the burns run out)
+            T.kitUlt1618 = 3; ZhUltCd = 0f; var L = new List<Enemy>(); Vector2 H0 = _heroPos;
+            for (int i = 0; i < 16; i++) ZMk1618(L, EType.Imp, H0 + new Vector2(3.6f + (i % 4) * 0.7f, -1.2f + (i / 4) * 0.8f), 0f, 50000f);
+            yield return ZF1618(5); int maxB = 0;
+            for (int i = 0; i < L.Count; i++) { ApplyStatus(L[i], Status.Burn, 2.5f, 1f, sk); yield return ZF1618(4); maxB = Mathf.Max(maxB, ZhBurning1618); }
+            bool heartArmed = ZhUltArmed1618; yield return ZT1618(3.2f); int after = ZhBurning1618;
+            log.Append(" | heart max ").Append(maxB).Append(" armed ").Append(heartArmed).Append(" after burns ").Append(after);
+            yield return ZF1618(20);
+            ARes(scen + ":clip", log.ToString().Contains("sun armed True") && log.ToString().Contains("bird armed True") && (_r1561 > 0 || _atRecFps <= 0), $"frames {_r1561} |{log} | R cell {Cell716(3)}");
+            ZKill1618(L); _zClip = null; ZhEnd1618(scen, clip);
         }
 
         // ---------------------------------------------------------------- t1644 clip: a corpse pile, living imps on it, Fireball (Kindling patches) then Infernal Boulder (trail band) over the pile

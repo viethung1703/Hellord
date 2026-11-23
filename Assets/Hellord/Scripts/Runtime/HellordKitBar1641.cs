@@ -16,6 +16,46 @@ namespace Hellord
         const int KbN1641 = 4, KbLabelY1641 = 4, KbContentY1641 = 14;
         readonly float[] _kbFull1641 = new float[4], _kbPrev1641 = new float[4];
 
+        // ---------------------------------------------------------------- t1646 (VH plan): ultimate progress on the R slot
+        //  cooldown: sweep + countdown (above). After it: the icon is dimmed and an orange fill rises from the icon's bottom row as the condition builds
+        //  (fill = exactly the 24 x 24 icon box inside the 26 px frame: rows iy + 24 - h .. iy + 23, h = floor(24 * progress)). Armed: full-bright icon,
+        //  pulsing gold border (the basic's ready-pop colours) + one ui_confirm on the transition to armed only. Vermilion Bird: count label "n/N"
+        //  (outlined 3x5 digits, even width 4 * digits + 4, so it centres exactly: 6 | 12 | 6 for "3/5"; rows = the countdown number's rows).
+        //  Rebirth Flame: cooldown, then a steady glow (no pulse, no sound). Molten Heart follows the live burning count (up and down).
+        bool _kbArmedPrev1646; int _kbUltPrev1646;
+        void KbUltProgress1646(float ix, float iy, bool cooling)
+        {
+            int u = ZhUlt1618; bool armed = !cooling && ZhUltArmed1618;
+            if (Event.current.type == EventType.Repaint)
+            {
+                if (u != _kbUltPrev1646) { _kbUltPrev1646 = u; _kbArmedPrev1646 = armed; } // a new pick never chimes
+                else if (armed && !_kbArmedPrev1646 && u != 2) { HellordAudio.Play("ui_confirm"); _kbArmedPrev1646 = true; }
+                else _kbArmedPrev1646 = armed;
+            }
+            if (cooling) return;
+            if (u == 2) { KbGlow1646(ix, iy, 0.85f); return; } // Rebirth Flame: automatic -> steady glow
+            if (armed) { KbGlow1646(ix, iy, 0.55f + 0.45f * Mathf.Sin(Time.unscaledTime * 7f)); return; }
+            float prog = u == 1 ? ZhSunMeter1618 / Mathf.Max(1f, TZ.swMeter1618) : u == 3 ? ZhBurning1618 / (float)Mathf.Max(1, TZ.mhNeed1618) : u == 4 ? ZhNearMiss1618 / (float)Mathf.Max(1, TZ.vbNeed1618) : 0f;
+            int h = Mathf.Clamp(Mathf.FloorToInt(24f * Mathf.Clamp01(prog)), 0, 23); // 24 rows only when armed (above)
+            if (h < 24) Fill716(ix, iy, 24, 24 - h, new Color32(24, 20, 37, 150));             // still to build: dimmed (sweep-mask ink)
+            if (h > 0) { Fill716(ix, iy + 24 - h, 24, h, C716(0xf77622, 0.5f)); Fill716(ix, iy + 24 - h, 24, 1, C716(0xfee761, 0.9f)); } // orange fill + bright top edge
+            if (u == 4) KbCount1646(Mathf.Min(ZhNearMiss1618, TZ.vbNeed1618), TZ.vbNeed1618, ix, iy);
+            GUI.color = Color.white;
+        }
+        void KbGlow1646(float ix, float iy, float a) { Frame716(ix - 1, iy - 1, 26, 26, C716(0xfee761, a)); Frame716(ix - 2, iy - 2, 28, 28, C716(0xfeae34, a * 0.6f)); GUI.color = Color.white; }
+        /// <summary>"n/N" in the countdown digits (5x7 cells incl. outline, advance 4) + a 2 px slash; width 4 * digits + 4 (always even) -> centred exactly in the 24 px icon.</summary>
+        void KbCount1646(int n, int need, float ix, float iy)
+        {
+            string a = n.ToString(), b = need.ToString(); int w = 4 * (a.Length + b.Length) + 4; float x = ix + (24 - w) / 2, y = iy + 8; // y = CdNumber's centred row
+            GUI.color = Color.white; float p = x;
+            foreach (char ch in a) { Blit(_tCdDigits, (ch - '0') * 5, 0, 5, 7, p, y); p += 4; }
+            int[] sx = { 2, 2, 1, 1, 1 }; var ol = Color.black; var fg = new Color32(255, 248, 190, 255); // slash ink cols p+1..p+2, rows y+1..y+5
+            for (int r = 0; r < 5; r++) Fill716(p + sx[r] - 1, y + r, 3, 3, ol);
+            for (int r = 0; r < 5; r++) Fill716(p + sx[r], y + 1 + r, 1, 1, fg);
+            p += 3; foreach (char ch in b) { GUI.color = Color.white; Blit(_tCdDigits, (ch - '0') * 5, 0, 5, 7, p, y); p += 4; }
+            GUI.color = Color.white;
+        }
+
         string KbLabel1641(int i) => i == 0 ? "LMB" : i == 1 ? (Manual716 ? Label716(Bind716(Act716.Dash)) : "SPACE") : i == 2 ? "RMB" : "R";
 
         void DrawKitBelt1641()
@@ -68,12 +108,12 @@ namespace Hellord
                     var tex = ZhIcon1618(key[i]); GUI.color = Color.white;
                     if (tex != null) GUI.DrawTexture(new Rect(ix, iy, 24, 24), tex); else BlitInset(_tRoomIcons, 0, 0, 8, 8, ix + 4, iy + 4, 16, 16);
                     float c = Mathf.Max(0f, cd[i]); if (c > _kbPrev1641[i] + 0.01f) _kbFull1641[i] = c; _kbPrev1641[i] = c; float fl = Mathf.Max(0.05f, _kbFull1641[i]); // full = the cooldown just set
-                    bool unarmed = i == 3 && c <= 0f && !ZhUltArmed1618 && ZhUlt1618 != 2; // the ultimate waits for its condition (Rebirth Flame is automatic)
-                    if (_tCdMask != null && (c > 0.05f || unarmed))
-                    {
-                        int nf = _tCdMask.Length - 1; int fr = unarmed ? 0 : Mathf.Clamp(Mathf.FloorToInt((1 - Mathf.Clamp01(c / fl)) * nf), 0, nf);
-                        GUI.color = Color.white; GUI.DrawTexture(new Rect(ix, iy, 24, 24), _tCdMask[fr]); if (c > 0.05f && fl >= 1.5f) CdNumber(Mathf.CeilToInt(c), ix, iy, true);
+                    if (_tCdMask != null && c > 0.05f)
+                    {   // on cooldown: the existing dark sweep + countdown (all three kit slots)
+                        int nf = _tCdMask.Length - 1; int fr = Mathf.Clamp(Mathf.FloorToInt((1 - Mathf.Clamp01(c / fl)) * nf), 0, nf);
+                        GUI.color = Color.white; GUI.DrawTexture(new Rect(ix, iy, 24, 24), _tCdMask[fr]); if (fl >= 1.5f) CdNumber(Mathf.CeilToInt(c), ix, iy, true);
                     }
+                    if (i == 3) KbUltProgress1646(ix, iy, c > 0.05f); // t1646: R slot condition fill / armed glow (replaces the t1641 'dark when not armed')
                 }
             }
             DrawSinHud818(Cell716(0).x, Cell716(0).y - 1); // t818u sins frame above the belt, left-aligned (unchanged)
