@@ -504,7 +504,7 @@ namespace Hellord
             foreach (int i in _lzq1666) { var e = _en[i]; if (LzOk1666(e) && (e.pos - c).magnitude <= R + e.radius) tg.Add(e); }
             foreach (var e in tg)
             {
-                float floor = TZ.sfFloor1666 * e.maxHp, share = (e.boss || e.elite ? TZ.sfBig1666 : TZ.sfNormal1666) * e.hp; float dmg = Mathf.Min(share, e.hp - floor);
+                float floor = TZ.sfFloor1666 * e.maxHp, share = (e.boss || e.elite ? TZ.sfBig1666 : TZ.sfNormal1666) * e.hp * s.More(); /* damage supports scale the share; the floor still holds */ float dmg = Mathf.Min(share, e.hp - floor);
                 if (dmg <= 0f) { ApplyStatus(e, Status.Shock, 0f, 1f, s); continue; }
                 LzFloorHp1666 = floor; try { Hit(e, dmg, s, Vector2.zero); } finally { LzFloorHp1666 = -1f; } LzStaticHits1666++; LzBolt1666(HeroCenter, BodyCentre1595(e), LC);
             }
@@ -581,20 +581,20 @@ namespace Hellord
         Enemy LzDecreePick1666(LzDecreeS d, float range, bool fresh)
         {
             Enemy best = null; float bs = -1f; Query(_heroPos, range, _lzq1666);
-            foreach (int i in _lzq1666) { var e = _en[i]; if (!LzOk1666(e) || (e.pos - _heroPos).magnitude > range) continue; if (fresh && d.struck.Contains(e.id)) continue; float sc = Random.value + (e.elite || e.boss ? 0.5f : 0f); if (sc > bs) { bs = sc; best = e; } }
+            foreach (int i in _lzq1666) { var e = _en[i]; if (!LzOk1666(e) || (e.pos - _heroPos).magnitude > range) continue; if (fresh && d.struck.Contains(e.id)) continue; float sc = Mathf.Repeat(Mathf.Sin(e.id * 12.9898f + d.fired * 78.233f) * 43758.5453f, 1f) + (e.elite || e.boss ? 0.5f : 0f); /* scattered but deterministic */ if (sc > bs) { bs = sc; best = e; } }
             return best;
         }
         // ---- Heaven-Splitting Arc
         void LzHeavenArc1666(int k)
         {
-            var T = TZ; var s = ZkI1651(k); Vector2 from = HeroCenter; var hit = new HashSet<int>(); int chains = Mathf.Max(1, T.haChains1666); float jr = ZkR1651(k, T.haJumpR1666);
+            var T = TZ; var s = ZkI1651(k); Vector2 from = HeroCenter; var hit = new HashSet<int>(); int chains = Mathf.Max(1, T.haChains1666) + s.ChainExtra; /* Chain support: more jumps */ float jr = ZkR1651(k, T.haJumpR1666);
             Vector2 cur = MouseWorld(); int first = Nearest(cur, 6f, -1); if (first < 0) first = Nearest(_heroPos, 8f, -1);
             Enemy e = first >= 0 ? _en[first] : null; HellordAudio.Play("pact_unlock", 0.8f); ScreenShake.Add(3f, 0.25f);
             if (e == null) { LzBolt1666(from, cur + Vector2.up * 0.5f, LW); return; }
             for (int c = 0; c < chains && e != null; c++)
             {
                 Vector2 to = BodyCentre1595(e); LzBolt1666(from, to, c % 2 == 0 ? (Color?)LW : LY); hit.Add(e.id); LzArcHits1666++;
-                Vector2 gp = e.pos; Hit(e, ZkHit1651(k) * T.haDmg1666, s, Vector2.zero); _lzGround1666.Add(new LzGround { p = gp, r = ZkR1651(k, T.haGroundR1666), life = ZkDur1651(k, T.haGroundS1666), k = k });
+                Vector2 gp = e.pos; Hit(e, ZkHit1651(k) * T.haDmg1666, s, Vector2.zero); _lzGround1666.Add(new LzGround { p = gp, r = ZkR1651(k, T.haGroundR1666), life = T.haGroundS1666, k = k }); /* no Duration tag: fixed */
                 from = to; Enemy nx = null; float bd = jr; Query(gp, jr, _lzq1666);
                 foreach (int i in _lzq1666) { var o = _en[i]; if (!LzOk1666(o) || hit.Contains(o.id)) continue; float d = (o.pos - gp).magnitude; if (d <= bd) { bd = d; nx = o; } }
                 if (nx == null) foreach (int i in _lzq1666) { var o = _en[i]; if (!LzOk1666(o) || o == e) continue; float d = (o.pos - gp).magnitude; if (d <= bd) { bd = d; nx = o; } } // out of new demons: bounce back
@@ -659,7 +659,7 @@ namespace Hellord
             else Hit(e, e.hp * 4f + 1f, s, Vector2.zero); // the cull-ready elite explodes
             Query(at, R, _lzq1666); var tg = new List<Enemy>(); foreach (int ei in _lzq1666) { var o = _en[ei]; if (o != e && LzOk1666(o) && (o.pos - at).magnitude <= R + o.radius) tg.Add(o); }
             foreach (var o in tg) Hit(o, ZkHit1651(k) * T.jwDmg1666, s, (o.pos - at).normalized * 4f);
-            _lzGround1666.Add(new LzGround { p = at, r = R, life = ZkDur1651(k, T.jwGroundS1666), k = k }); LzFxO1666(0, at, R, LzFxLive1666("LZFX_JudgementWarp") ? 0.7f : 0.45f, "LZFX_JudgementWarp", new Vector4(-59, -37, 118, 78));
+            _lzGround1666.Add(new LzGround { p = at, r = R, life = T.jwGroundS1666, k = k }); /* no Duration tag: fixed */ LzFxO1666(0, at, R, LzFxLive1666("LZFX_JudgementWarp") ? 0.7f : 0.45f, "LZFX_JudgementWarp", new Vector4(-59, -37, 118, 78));
         }
     }
 }
