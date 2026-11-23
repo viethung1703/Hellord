@@ -46,7 +46,7 @@ namespace Hellord
             new SkillDef { id = SkillId.Hurricane, name = "Hurricane",  tags = STag.Aura | STag.Area | STag.Hit | STag.Cold | STag.Duration, baseDmg = 4, cooldown = 9.0f, aimable = false, innate = Status.None, desc = "A cold storm circles you for several seconds, ticking damage and chilling. Lasts longer and wider per level." },
             // t1481 fire basic main attacks: player-aimed (cursor), LEFT MOUSE, hold = keep firing. SkillDef cooldown is 1.0; the real fire rate is HellordTuning.fbCd1481 (via SkillInst.CdMul).
             new SkillDef { id = SkillId.MagmaThrow, name = "Molten Spit", tags = STag.Projectile | STag.Area | STag.Hit | STag.Fire, baseDmg = 10, cooldown = 1f, aimable = true, innate = Status.Burn, desc = "Lobs a molten glob to the cursor. It bursts and throws 8 burning shards that scatter and scorch the ground. Hold to keep firing." },
-            new SkillDef { id = SkillId.RollingMagmaRock, name = "Infernal Boulder", tags = STag.Projectile | STag.Hit | STag.Fire, baseDmg = 12, cooldown = 1f, aimable = true, innate = Status.Burn, desc = "Rolls a burning boulder toward the cursor. It pierces demons, leaves a burning line of ground and crumbles on walls. Hold to keep firing." },
+            new SkillDef { id = SkillId.RollingMagmaRock, name = "Infernal Boulder", tags = STag.Projectile | STag.Area | STag.Hit | STag.Fire, /* t1651: + Area (blast / band / patch read AreaMul) */ baseDmg = 12, cooldown = 1f, aimable = true, innate = Status.Burn, desc = "Rolls a burning boulder toward the cursor. It pierces demons, leaves a burning line of ground and crumbles on walls. Hold to keep firing." },
             new SkillDef { id = SkillId.FirePillar, name = "Fire Pillar", tags = STag.Area | STag.Hit | STag.Fire, baseDmg = 8, cooldown = 1f, aimable = true, innate = Status.Burn, desc = "Marks the cursor, then a pillar of fire erupts there. Medium rate. Hold to keep firing." },
             // t1567 pact LMB basics (HellordPactBasics1567.cs): aimed at the cursor, LEFT MOUSE only. baseDmg / cooldown are overwritten from HellordTuning.pbBaseDmg1567 / pbCd1567 (PbDefs1567); the values here are the same first-pass numbers.
             new SkillDef { id = SkillId.SparkSpray, name = "Spark Spray", tags = STag.Projectile | STag.Hit | STag.Lightning, baseDmg = 4, cooldown = 0.6f, aimable = true, innate = Status.Shock, desc = "Aim with the cursor: 3-5 sparks skitter along the ground toward it, weaving around the aim line. Each spark hits one demon. Shocks." },
@@ -64,25 +64,25 @@ namespace Hellord
         };
         public static readonly SupportDef[] Supports =
         {
-            new SupportDef { id = SupportId.MultipleProjectiles, name = "Multi Projectiles", needs = STag.Projectile, needsLabel = "Projectile", desc = "More projectiles per cast (+1 at Lv1, up to +4), slightly less damage" },
-            new SupportDef { id = SupportId.Pierce,       name = "Pierce",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Shots pierce more enemies per level (1 to 5), -15% dmg per pierce" },
-            new SupportDef { id = SupportId.Fork,         name = "Fork",           needs = STag.Projectile, needsLabel = "Projectile", desc = "Splits on first hit: 2 children at Lv1, up to 5, stronger per level" },
-            new SupportDef { id = SupportId.Bounce,       name = "Bounce",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Bounces to nearby enemies: 1 at Lv1, up to 5, longer reach" },
-            new SupportDef { id = SupportId.Homing,       name = "Homing",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Projectiles curve toward enemies, tighter and farther per level" },
-            new SupportDef { id = SupportId.BiggerArea,   name = "Bigger Area",    needs = STag.Area,       needsLabel = "Area",       desc = "Bigger area: +25% at Lv1, up to +90%" },
-            new SupportDef { id = SupportId.Echo,         name = "Echo",           needs = STag.Area,       needsLabel = "Area", excludes = STag.Minion, desc = "Repeats the cast: once at Lv1, 3 times at Lv5, stronger repeats" },
-            new SupportDef { id = SupportId.MoreOrbitals, name = "More Orbitals",  needs = STag.Orbital,    needsLabel = "Orbital",    desc = "More skulls: +1 at Lv1, up to +4" },
-            new SupportDef { id = SupportId.Burn,         name = "Burn",           needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits burn; burn is stronger and lasts longer per level" },
-            new SupportDef { id = SupportId.Chill,        name = "Chill",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits chill (slow 35%); chills last longer, Lv4 freezes in 2 chills" },
-            new SupportDef { id = SupportId.Shock,        name = "Shock",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits shock: +25% damage taken at Lv1, up to +50%" },
-            new SupportDef { id = SupportId.Bleed,        name = "Bleed",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits bleed; bleed is stronger per level" },
-            new SupportDef { id = SupportId.AddedDamage,  name = "Added Damage",   needs = STag.Any,        needsLabel = "Any",        desc = "More damage: +15% at Lv1, up to +50%" },
-            new SupportDef { id = SupportId.FasterCasting,name = "Faster Casting", needs = STag.Any,        needsLabel = "Any",        desc = "Shorter cooldown: -10% at Lv1, up to -35%" },
-            new SupportDef { id = SupportId.Executioner,  name = "Executioner",    needs = STag.Any,        needsLabel = "Any",        desc = "Bonus damage to demons below an HP threshold: 10% HP at Lv1, up to 30% at Lv5" },
-            new SupportDef { id = SupportId.LifeLeech,    name = "Life Leech",     needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits heal you a little (capped per second)" },
-            new SupportDef { id = SupportId.Knockback,    name = "Knockback",      needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits push demons away" },
-            new SupportDef { id = SupportId.SoulHarvest,  name = "Soul Harvest",   needs = STag.Any,        needsLabel = "Any",        desc = "Kills by this skill drop extra XP and sometimes bones" },
-            new SupportDef { id = SupportId.ExplodeOnKill,name = "Explode on Kill",needs = STag.Hit,        needsLabel = "Hit",        desc = "Demons this skill kills explode for a small area hit" },
+            new SupportDef { id = SupportId.MultipleProjectiles, category = "Projectile Count", name = "Multi Projectiles", needs = STag.Projectile, needsLabel = "Projectile", desc = "More projectiles per cast (+1 at Lv1, up to +4), slightly less damage" },
+            new SupportDef { id = SupportId.Pierce, category = "Pierce",       name = "Pierce",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Shots pierce more enemies per level (1 to 5), -15% dmg per pierce" },
+            new SupportDef { id = SupportId.Fork, category = "Fork",         name = "Fork",           needs = STag.Projectile, needsLabel = "Projectile", desc = "Splits on first hit: 2 children at Lv1, up to 5, stronger per level" },
+            new SupportDef { id = SupportId.Bounce, category = "Bounce",       name = "Bounce",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Bounces to nearby enemies: 1 at Lv1, up to 5, longer reach" },
+            new SupportDef { id = SupportId.Homing, category = "Homing",       name = "Homing",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Projectiles curve toward enemies, tighter and farther per level" },
+            new SupportDef { id = SupportId.BiggerArea, category = "Area",   name = "Bigger Area",    needs = STag.Area,       needsLabel = "Area",       desc = "Bigger area: +15% at Lv1, up to +40%" },
+            new SupportDef { id = SupportId.Echo, category = "Repeat",         name = "Echo",           needs = STag.Area,       needsLabel = "Area", excludes = STag.Minion, desc = "Repeats the cast once; the repeat deals 35% damage at Lv1, up to 60%" },
+            new SupportDef { id = SupportId.MoreOrbitals, category = "Orbital Count", name = "More Orbitals",  needs = STag.Orbital,    needsLabel = "Orbital",    desc = "More skulls: +1 at Lv1, up to +4" },
+            new SupportDef { id = SupportId.Burn, category = "Burn",         name = "Burn",           needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits burn; burn is stronger and lasts longer per level" },
+            new SupportDef { id = SupportId.Chill, category = "Chill",        name = "Chill",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits chill (slow 35%); chills last longer, Lv4 freezes in 2 chills" },
+            new SupportDef { id = SupportId.Shock, category = "Shock",        name = "Shock",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits shock: +25% damage taken at Lv1, up to +50%" },
+            new SupportDef { id = SupportId.Bleed, category = "Bleed",        name = "Bleed",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits bleed; bleed is stronger per level" },
+            new SupportDef { id = SupportId.AddedDamage, category = "Damage",  name = "Added Damage",   needs = STag.Any,        needsLabel = "Any",        desc = "More damage: +15% at Lv1, up to +50%" },
+            new SupportDef { id = SupportId.FasterCasting, category = "Cooldown",name = "Faster Casting", needs = STag.Any,        needsLabel = "Any",        desc = "Shorter cooldown: -10% at Lv1, up to -22%" },
+            new SupportDef { id = SupportId.Executioner, category = "Execute",  name = "Executioner",    needs = STag.Any,        needsLabel = "Any",        desc = "Bonus damage to demons below an HP threshold: 10% HP at Lv1, up to 30% at Lv5" },
+            new SupportDef { id = SupportId.LifeLeech, category = "Leech",    name = "Life Leech",     needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits heal you a little (capped per second)" },
+            new SupportDef { id = SupportId.Knockback, category = "Knockback",    name = "Knockback",      needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits push demons away" },
+            new SupportDef { id = SupportId.SoulHarvest, category = "Harvest",  name = "Soul Harvest",   needs = STag.Any,        needsLabel = "Any",        desc = "Kills by this skill drop extra XP and sometimes bones" },
+            new SupportDef { id = SupportId.ExplodeOnKill, category = "On-Kill Blast",name = "Explode on Kill",needs = STag.Hit,        needsLabel = "Hit",        desc = "Demons this skill kills explode for a small area hit" },
         };
         public static readonly StatDef[] Stats =
         {
@@ -146,6 +146,8 @@ namespace Hellord
         /// <summary>Safe table lookup by level (1-based), clamped to the table; a missing/short table falls back to its last/first value.</summary>
         public static float At(float[] a, int lvl, float fb = 1f) { if (a == null || a.Length == 0) return fb; return a[Math.Max(0, Math.Min(a.Length - 1, lvl - 1))]; }
         public static int At(int[] a, int lvl, int fb = 1) { if (a == null || a.Length == 0) return fb; return a[Math.Max(0, Math.Min(a.Length - 1, lvl - 1))]; }
+        /// <summary>t1651: skills whose cast really reads Multi Projectiles (more projectiles). Only these pay its damage penalty.</summary>
+        public static bool MultiHonoured1651(SkillId id) => id == SkillId.Fireball || id == SkillId.SoulSpears || id == SkillId.SkeletonArchers;
         public static bool Summon561(SkillDef d) => d != null && (d.id == SkillId.SkeletonWarriors || d.id == SkillId.SkeletonArchers); // t561u
         public static int MaxLv(SkillDef d) => Summon561(d) ? Math.Max(1, HellordTuning.I.summonMaxLv561) : MaxSkillLevel; // t587u: summons max Lv5 like every skill
         public static bool Fits(SupportDef s, SkillDef k) => (s.needs == STag.Any || (k.tags & s.needs) != 0) && (k.tags & s.requiresAll) == s.requiresAll && (k.tags & s.excludes) == 0; // t626u
@@ -194,7 +196,7 @@ namespace Hellord
         {
             var T = HellordTuning.I; float m = 1;
             if (Has(SupportId.AddedDamage)) m *= HData.At(T.supAddedDmg, Lvl(SupportId.AddedDamage), 1.15f);
-            if (Has(SupportId.MultipleProjectiles)) m *= T.multiProjDmgMul;
+            if (Has(SupportId.MultipleProjectiles) && HData.MultiHonoured1651(def.id)) m *= T.multiProjDmgMul; // t1651: the penalty only where Multi really adds projectiles
             return m;
         }
         public float CdMul => HellordGame.SinSkCdAt818(def.id) * HellordGame.FbCd1481(def.id) * (Has(SupportId.FasterCasting) ? HData.At(HellordTuning.I.supFasterCd, Lvl(SupportId.FasterCasting), 0.9f) : 1f) * HellordGame.PCd49 * ((def.tags & (STag.Zone | STag.Orbital)) != 0 ? HellordGame.SlothCd53 : 1f) * HellordGame.PactCdS53 * HellordGame.SinCd737; // v0.0.49 Intensity; v0.0.53 Sloth Throne / Price of Wrath
