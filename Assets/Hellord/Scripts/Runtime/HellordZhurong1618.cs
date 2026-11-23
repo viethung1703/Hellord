@@ -593,42 +593,9 @@ namespace Hellord
             }
         }
 
-        // ---------------------------------------------------------------- HUD readout (640x360 GUI space, bottom-left)
-        void DrawKit1618()
-        {
-            if (!ZhOn1618 || !TZ.kitHud1618 || mode == Mode.StartPick || mode == Mode.MainMenu) return;
-            float x = 4f, y = TZ.hudCornerV45 ? 243f : 296f; // t1625: above the corner bar's lock row (318 was hidden under the bar)
-            KitLine1618(ref y, x, "MOV SPACE", ZhMoveNames1618[ZhMove1618], ZhMove1618 == 0 ? "" : ZhMoveCd > 0f ? ZhMoveCd.ToString("0.0") : ZhMove1618 == 2 && ZhAncT1618 > 0f ? "RETURN " + ZhAncT1618.ToString("0.0") : "READY", ZhMove1618 == 0 ? ZG : ZhMoveCd > 0f ? ZG : ZY, MoveKey1618());
-            string sx = ZhSpecCd > 0f ? ZhSpecCd.ToString("0.0") : "READY"; Color sc = ZhSpecCd > 0f ? ZG : ZY;
-            if (ZhSpec1618 == 1 && ZhMark1618 != null) { sx = "MARK " + Mathf.RoundToInt(100f * Mathf.Clamp01(ZhMarkGauge1618 / Mathf.Max(1f, TZ.pmThresh1618 * ZhMark1618.maxHp))) + "%"; sc = ZO; }
-            if (ZhSpec1618 == 1 && ZhPyreBuffT1618 > 0f) { sx = "+FIRE " + ZhPyreBuffT1618.ToString("0.0"); sc = ZO; }
-            if (ZhSpec1618 == 3 && ZhCryCharges1625 > 0) { sx = "x" + ZhCryCharges1625 + " " + (ZhSpecCd > 0f ? ZhSpecCd.ToString("0.0") : "READY"); sc = ZO; }
-            if (ZhSpec1618 == 5 && ZhHearthT1618 > 0f) { sx = "CLEANSE " + ZhHearthT1618.ToString("0.0"); sc = ZO; }
-            KitLine1618(ref y, x, "SPC RMB", ZhSpecNames1618[ZhSpec1618], ZhSpec1618 == 0 ? "" : sx, ZhSpec1618 == 0 ? ZG : sc, SpecKey1618());
-            string ux; Color uc;
-            switch (ZhUlt1618)
-            {
-                case 1: ux = Mathf.FloorToInt(100f * ZhSunMeter1618 / Mathf.Max(1f, TZ.swMeter1618)) + "%"; break;
-                case 2: ux = "AUTO ON DEATH"; break;
-                case 3: ux = ZhHeartT1618 > 0f ? "ACTIVE " + ZhHeartT1618.ToString("0.0") : ZhBurning1618 + "/" + TZ.mhNeed1618 + " BURNING"; break;
-                case 4: ux = Mathf.Min(ZhNearMiss1618, TZ.vbNeed1618) + "/" + TZ.vbNeed1618 + " DODGES"; break;
-                default: ux = ""; break;
-            }
-            bool armed = ZhUltArmed1618; if (ZhUltCd > 0f) ux = ux + " CD " + Mathf.CeilToInt(ZhUltCd); else if (armed && ZhUlt1618 != 2) ux = "ARMED! " + ux;
-            uc = ZhUlt1618 == 0 ? ZG : ZhUltCd > 0f ? ZG : armed ? ZY : ZO;
-            KitLine1618(ref y, x, "ULT R", ZhUltNames1618[ZhUlt1618], ux, uc, UltKey1618());
-        }
+        // t1641: the HUD readout (DrawKit1618 / KitLine1618 debug text) was removed; the kit shows in the 4-slot skill bar (HellordKitBar1641.cs). Icon keys:
         string MoveKey1618() => ZhMove1618 == 1 ? "embereffigy" : ZhMove1618 == 2 ? "emberanchor" : ZhMove1618 == 3 ? "backdraft" : null;
         string SpecKey1618() => ZhSpec1618 == 1 ? "pyremark" : ZhSpec1618 == 2 ? "flammability" : ZhSpec1618 == 3 ? "warcry" : ZhSpec1618 == 4 ? "smolderring" : ZhSpec1618 == 5 ? "hearthblessing" : null;
         string UltKey1618() => ZhUlt1618 == 1 ? "sunswrath" : ZhUlt1618 == 2 ? "rebirthflame" : ZhUlt1618 == 3 ? "moltenheart" : ZhUlt1618 == 4 ? "vermilionbird" : null;
-        void KitLine1618(ref float y, float x, string slot, string name, string state, Color c, string iconKey)
-        {
-            var ic = iconKey != null ? ZhIcon1618(iconKey) : null; float tx = x;
-            if (ic != null) { GUI.color = Color.white; GUI.DrawTexture(new Rect(x, y - 1, 9, 9), ic); tx += 11; }
-            string s = slot + " " + name + (state.Length > 0 ? " " + state : "");
-            GUI.color = new Color(HInk.r, HInk.g, HInk.b, 0.7f); GUI.DrawTexture(new Rect(tx - 2, y - 2, TextW(s) + 4, 11), Texture2D.whiteTexture); GUI.color = Color.white;
-            Text(slot, tx, y, ZG, false); Text(name, tx + (slot.Length + 1) * 6, y, Color.white, false); if (state.Length > 0) Text(state, tx + (slot.Length + name.Length + 2) * 6, y, c, false);
-            y += 11f;
-        }
     }
 }

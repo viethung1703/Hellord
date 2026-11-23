@@ -107,7 +107,7 @@ namespace Hellord
             }
             else { float bx = 4; Counter(ref bx, 0, blood); Counter(ref bx, 1, bones); if (showKills) Counter(ref bx, 2, kills); }
             float lblUp = 0;
-            DrawBossHudB(); DrawBossArrowB(); DrawKit1618(); // t1618 kit cooldowns + ultimate condition
+            DrawBossHudB(); DrawBossArrowB(); // t1641: the t1618 MOV / SPC / ULT debug text is gone (the kit lives in the skill bar)
             if (glowLabelT > 0) { glowLabelT -= Time.unscaledDeltaTime; string gl = "CRT GLOW " + crtGlow.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + (!crtEnabled ? " (CRT OFF)" : ""); Text(gl, 640 - TextW(gl) - 6, 350 - lblUp, new Color32(0xfe, 0xe7, 0x61, 255)); } // v0.0.21 G key label
             if (atmosLabelT > 0) { atmosLabelT -= Time.unscaledDeltaTime; string al = "HELL ATMOSPHERE " + (atmosOn ? "ON" : "OFF"); Text(al, 640 - TextW(al) - 6, 340 - lblUp, new Color32(0xfe, 0xe7, 0x61, 255)); } // v0.0.22 H key label
         }

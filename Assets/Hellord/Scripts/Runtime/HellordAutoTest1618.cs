@@ -20,7 +20,8 @@ namespace Hellord
                 case "zhclip1618_special": return AtZhClip1618(2);
                 case "zhclip1618_ult": return AtZhClip1618(3);
                 case "kindling1635": return AtKindlingClip1635();
-                case "levelup1639": return AtLevelUpClip1639(); // t1639 clip: kit cards on level-up // t1635 clip: Kindling shader patches under Fireball hits
+                case "levelup1639": return AtLevelUpClip1639(); // t1639 clip: kit cards on level-up
+                case "skillbar1641": return AtSkillBarClip1641(); // t1641 clip: the 4-slot kit bar // t1635 clip: Kindling shader patches under Fireball hits
                 case "firewall986_nosplit": return ZNoSplit1618(AtFireWall986()); // the t986 Fire Wall test, with the t1618 split off (= Hellfire Pillar is the wall again)
                 case "chain1563": return AtChain1563();
                 case "bh1595": return AtBody1595();
@@ -296,6 +297,33 @@ namespace Hellord
             }
             yield return AtShot(scen + "_end");
             ZhEnd1618(scen, null);
+        }
+
+        // ---------------------------------------------------------------- t1641 clip: bar with only the basic -> level-up picks fill the kit slots -> using them shows the sweeps
+        IEnumerator AtSkillBarClip1641()
+        {
+            string scen = "skillbar1641", clip = scen; var T = HellordTuning.I; _zClip = clip;
+            yield return ZhStart1618(scen, clip, SkillId.Fireball); T.kitSlotOverride1639 = false;
+            Vector2 H0 = _heroPos; var L = new List<Enemy>();
+            for (int i = 0; i < 6; i++) ZMk1618(L, EType.Imp, H0 + new Vector2(4.2f + (i % 3) * 0.8f, -0.8f + (i / 3) * 1.6f), 0f, 50000f);
+            yield return ZF1618(3); atMouse986 = H0 + new Vector2(4.6f, 0f);
+            HInput.AtLmb = true; yield return ZF1618(45); HInput.AtLmb = false; yield return ZF1618(10); // only the basic: LMB sweep, 3 locked slots
+            var log = new System.Text.StringBuilder(); var picked = new List<int>();
+            for (int lv = 0; lv < 3; lv++)
+            {
+                GainLevel(); int g = 0; while (mode != Mode.LevelUp && g++ < 200) yield return ZF1618(1);
+                Card kc = null; for (int t = 0; t < 40; t++) { kc = cards.Find(c => c.kit > 0); if (kc != null && (kc.kit != 3 || kc.kitPick == 1 || kc.kitPick == 4)) break; RollLevelCards(); } // ultimates with a pressable condition read best on film
+                yield return ZF1618(40); if (kc == null) { log.Append(" no kit card"); break; }
+                Choose(kc); picked.Add(kc.kit); log.Append(' ').Append(ZhKitName1639(kc)); yield return ZF1618(20);
+                _heroPos = H0; SnapCamera(); atMouse986 = H0 + new Vector2(4.6f, 0f);
+                if (kc.kit == 1) yield return ZDash1618(new Vector2(-1f, 0.3f).normalized);
+                else if (kc.kit == 2) yield return ZPress1618(1);
+                else { ZhSunMeter1618 = T.swMeter1618; ZhNearMiss1618 = T.vbNeed1618; yield return ZF1618(2); yield return ZPress1618(2); }
+                HInput.AtLmb = true; yield return ZF1618(35); HInput.AtLmb = false; yield return ZF1618(10);
+            }
+            bool ok = picked.Count == 3 && ZhMove1618 > 0 && ZhSpec1618 > 0 && ZhUlt1618 > 0 && KitBar1641;
+            ARes(scen + ":clip", ok && (_r1561 > 0 || _atRecFps <= 0), $"frames {_r1561} | picks{log} | cd move {ZhMoveCd:0.0} spec {ZhSpecCd:0.0} ult {ZhUltCd:0.0} | cell {Cell716(0)} {Cell716(1)} {Cell716(2)} {Cell716(3)}");
+            ZKill1618(L); _zClip = null; ZhEnd1618(scen, clip);
         }
 
         // ---------------------------------------------------------------- t1639 clip: a Zhurong run's level-ups offer only kit cards; a picked type is not offered again

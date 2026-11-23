@@ -1420,6 +1420,8 @@ namespace Hellord
     [Tooltip("t716u: Blood Whip is a channel (cast while held). Off = press-to-cast like the rest.")] public bool whipChannel716 = true;
     [Tooltip("t716u belt: left / bottom margin (HUD px, 640x360).")] public float beltX716 = 4f, beltBottom716 = 4f;
     [Tooltip("t716u belt: cell size + gap (HUD px). 39j V1 mock: 58x42.")] public float beltCellW716 = 58f, beltCellH716 = 42f, beltGap716 = 2f;
+    [Tooltip("t1641: the belt is the 4-slot kit bar (LMB basic | SPACE movement | RMB special | R ultimate; key labels, cooldown sweeps, locked until picked). Off = the old 5-cell belt")] public bool kitBar1641 = true;
+    [Tooltip("t1641 kit bar cell size (HUD px). 57 wide = odd inner width (55), so the 5x7 key labels centre pixel-exactly; 48 tall = 3 pad | label 7 | 3 | content 30 | 3 pad.")] public float kitBarCellW1641 = 57f, kitBarCellH1641 = 48f;
     [Tooltip("t716u belt: support gem size (HUD px, 2x2 grid).")] public float beltGem716 = 10f;
     [Tooltip("t716u belt: show the numbered support tooltip on mouse hover.")] public bool beltTooltip716 = true;
 

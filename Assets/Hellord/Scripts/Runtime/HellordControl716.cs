@@ -188,10 +188,11 @@ namespace Hellord
         }
         static Rect Cell716(int i)
         {
-            var T = HellordTuning.I; float y0 = HH - T.beltBottom716 - T.beltCellH716; // t818u: one row of up to 5 (was 2x4)
-            return new Rect(Mathf.Round(T.beltX716 + i * (T.beltCellW716 + T.beltGap716)), Mathf.Round(y0), T.beltCellW716, T.beltCellH716);
+            var T = HellordTuning.I; bool kb = T.kitBar1641 && T.skillBelt720; float cw = kb ? T.kitBarCellW1641 : T.beltCellW716, ch = kb ? T.kitBarCellH1641 : T.beltCellH716; // t1641 kit bar cells
+            float y0 = HH - T.beltBottom716 - ch; // t818u: one row of up to 5 (was 2x4)
+            return new Rect(Mathf.Round(T.beltX716 + i * (cw + T.beltGap716)), Mathf.Round(y0), cw, ch);
         }
-        int BeltHover716() { var m = MouseHud716(); for (int i = 0; i < BeltN716; i++) if (Cell716(i).Contains(m)) return i; return -1; }
+        int BeltHover716() { var m = MouseHud716(); int n = KitBar1641 ? KbN1641 : BeltN716; /* t1641 */ for (int i = 0; i < n; i++) if (Cell716(i).Contains(m)) return i; return -1; }
         bool MouseOverBelt716() => BeltHover716() >= 0;
 
         // ---- Controls page layout (640x360)
@@ -259,7 +260,8 @@ namespace Hellord
         void DrawBelt716()
         {
             if (!HellordTuning.I.skillBarEnabled) return;
-            FloorTex(); SkillBarTex(); var T = HellordTuning.I; var g = GUI.color; float gm = T.beltGem716;
+            FloorTex(); SkillBarTex(); if (KitBar1641) { DrawKitBelt1641(); return; } // t1641: 4-slot kit bar
+            var T = HellordTuning.I; var g = GUI.color; float gm = T.beltGem716;
             Vector2 mp = Event.current.mousePosition; int hov = -1;
             bool pick = _slotPick716 != null; float pulse = 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * 6f);
             for (int i = 0; i < BeltN716; i++)
