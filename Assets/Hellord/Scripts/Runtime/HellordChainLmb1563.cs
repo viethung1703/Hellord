@@ -60,7 +60,7 @@ namespace Hellord
             }
             else
             {
-                int jumps = HData.At(T.chainJumps, s.level, 2) + SinChainJumps818();
+                int jumps = HData.At(T.chainJumps, s.level, 2) + SinChainJumps818() + s.ChainExtra; /* t1651 Chain support */
                 float range = s.R(HData.At(T.chainJumpRangeU, s.level, 3.2f)); int cur = first; float d = dmg;
                 for (int k = 0; k <= jumps && cur >= 0; k++)
                 {

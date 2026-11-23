@@ -103,7 +103,7 @@ namespace Hellord
         // and the approved step13 support icons (20x20, ui_v26_supports_20, style B) as the support pips. Both are approved MOCK-UP art copied from Art/previews;
         // the padlock, the FREE SLOT frame, the sweep mask and the digit font are code-drawn PH. Sizes come from HellordTuning (skillCdDigitScale, skillBarSupportPx).
         const float SbGap = 4, SbY0 = 356; // bar bottom edge (canvas y)
-        static readonly int[] SupIcon = { 0, 1, 2, 3, 4, 6, 7, 9, 11, 12, 13, 14, 19, 20, 41, 21, 22, 35, 28 }; // v0.0.36: + Executioner(Ruthless), Life Leech, Knockback, Soul Harvest(Thrill of the Kill), Explode on Kill(Detonate) stand-ins // SupportId order -> sheet index (supports_all.json)
+        static readonly int[] SupIcon = { 0, 1, 2, 3, 4, 6, 7, 9, 11, 12, 13, 14, 19, 20, 41, 21, 22, 35, 28, 8, 10 }; /* t1651: + Chain, Duration (stand-in cells) */ // v0.0.36: + Executioner(Ruthless), Life Leech, Knockback, Soul Harvest(Thrill of the Kill), Explode on Kill(Detonate) stand-ins // SupportId order -> sheet index (supports_all.json)
         float SbSup => Mathf.Clamp(Mathf.Round(HellordTuning.I.skillBarSupportPx), 8, 20);
         float SbW => 4 + 24 + 3 + 2 * SbSup + 1 + 4;
         float SbH => Mathf.Max(4 + 24 + 2 + 7 + 3, 8 + 2 * SbSup + 1);

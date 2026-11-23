@@ -75,7 +75,7 @@ namespace Hellord
         bool CastChainLightning(SkillInst s, float dmg)
         {
             var T = HellordTuning.I; int first = PactPreferShocked53(Nearest(_heroPos, T.chainFirstRangeU, -1), T.chainFirstRangeU); first = ChainFirst716(first); if (first < 0 && NearBrk53(HeroCenter, T.chainFirstRangeU, new HashSet<int>()) < 0) { s.cd = 0.15f; return false; } // v0.0.53: decor alone is a valid target
-            int jumps = HData.At(T.chainJumps, s.level, 2) + SinChainJumps818(); // t818u #5
+            int jumps = HData.At(T.chainJumps, s.level, 2) + SinChainJumps818() + s.ChainExtra; /* t1651 Chain support */ // t818u #5
             float range = s.R(HData.At(T.chainJumpRangeU, s.level, 3.2f));
             _chainHit.Clear(); _chainPts.Clear(); _chainPts.Add(HeroCenter); int cur = first; float d = dmg;
             for (int k = 0; k <= jumps && cur >= 0; k++)
