@@ -42,10 +42,11 @@ namespace Hellord
         ProjAfter1651 ProjOnHit1651(ProjCore1651 c, SkillInst s, int hitIx, Vector2 pos, ref Vector2 dir, ref float dmg, System.Action<Vector2, float> spawnChild)
         {
             var T = HellordTuning.I; c.hit.Add(hitIx);
-            if (c.pierce > 0) { c.pierce--; dmg *= 1f - T.pierceFalloff; AtPierces1651++; return ProjAfter1651.Continue; }
+            if (c.pierce > 0) { c.pierce--; dmg *= 1f - HData.PierceFalloffOf1651(s); AtPierces1651++; return ProjAfter1651.Continue; }
             if (c.fork && spawnChild != null)
             {
-                c.fork = false; int fn = Mathf.Max(2, s.ForkN); AtForks1651++;
+                c.fork = false; int fn = Mathf.Max(2, s != null ? s.ForkN : 2); AtForks1651++;
+                // t1654: Multi's damage drawback already applies to forked children because spawnChild multiplies the parent projectile's damage, which went through SkillInst.More() (DmgMul includes multiProjDmgMul).
                 for (int k = 0; k < fn; k++) spawnChild((Vector2)(Quaternion.Euler(0, 0, (k - (fn - 1) * 0.5f) * T.forkSpreadDeg) * dir), c.forkDmg * SinForkDmg818());
                 return ProjAfter1651.Forked;
             }

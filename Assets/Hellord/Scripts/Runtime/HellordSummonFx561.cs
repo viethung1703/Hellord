@@ -45,7 +45,7 @@ namespace Hellord
         void ArcMulti622(NMin536 m, int t, Vector2 end, bool pierce, ref float dmg, SkillInst sk, float rng)
         {
             if (sk == null || sk.ProjExtra <= 0) return; var T = HellordTuning.I;
-            int extra = sk.ProjExtra; dmg *= T.multiProjDmgMul;
+            int extra = sk.ProjExtra; dmg *= HData.MultiDmgMul1651(sk);
             _aq622.Clear(); Query(_en[t].pos, 4f, _aq622); var used = new List<int>(4) { t };
             Vector2 dir = (end - m.p).normalized;
             for (int i = 0; i < extra; i++)
@@ -79,7 +79,7 @@ namespace Hellord
                 }
             }
             if (f.pl < 0) return true; // Marrow Shot lane arrow: unlimited pierce (unchanged)
-            if (f.pl > 0) { f.t = 0; f.pl--; f.dmg *= 1f - T.pierceFalloff; if (!f.pierce) { f.pierce = true; f.tgt = -1; f.b = hp + dir * 4f; } return true; } // Pierce: fly straight on through
+            if (f.pl > 0) { f.t = 0; f.pl--; f.dmg *= 1f - HData.PierceFalloffOf1651(f.sk); if (!f.pierce) { f.pierce = true; f.tgt = -1; f.b = hp + dir * 4f; } return true; } // Pierce: fly straight on through
             if (f.bl > 0) { int nt = NearUnhit622(hp, f.bR, f.hit); if (nt >= 0) { ProjectileFX.HitBounce(hp, ProjElement.Bone); /* t659u */ f.t = 0; f.bl--; f.pierce = false; f.tgt = nt; f.b = _en[nt].pos + Vector2.up * _en[nt].hitY; return true; } } // Bounce: jump to the next demon
             return false;
         }

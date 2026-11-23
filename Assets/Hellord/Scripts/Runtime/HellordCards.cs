@@ -32,8 +32,8 @@ namespace Hellord
             for (int i = 0; i < skills.Count; i++) if (skills[i].level < HData.MaxLv(skills[i].def)) lvl.Add(new Card { kind = CardKind.SkillLevel, skill = skills[i].def, skillIndex = i });
             lvl.AddRange(KitLevelCards1651()); // t1651: picking an owned kit skill again levels it
             news.AddRange(KitOffers1639()); // t1639: new skills = the running pact's kit pools only (types not picked yet); no basics / other pacts / old auto-cast skills
-            var ups = new List<Card>(); // v0.0.27: owned supports below Lv5 are offered as UPGRADES
-            foreach (var sd in HData.Supports) if (SupPool1651().Exists(s => s.CanSocket(sd) == null)) { var sc = new Card { kind = CardKind.Support, support = sd }; if (SupPool1651().Exists(s => s.CanUpgrade(sd))) ups.Add(sc); else sups.Add(sc); }
+            var ups = new List<Card>(); // v0.0.27: owned supports below max level are offered as UPGRADES (t1654: max is Lv3, so this slot falls back to new supports sooner)
+            foreach (var sd in HData.Supports) if (HData.Offered1654(sd) && SupPool1651().Exists(s => s.CanSocket(sd) == null)) { var sc = new Card { kind = CardKind.Support, support = sd }; if (SupPool1651().Exists(s => s.CanUpgrade(sd))) ups.Add(sc); else sups.Add(sc); }
             foreach (var st in HData.Stats) stats.Add(new Card { kind = CardKind.Stat, stat = st });
             Shuffle(lvl); Shuffle(news); Shuffle(sups); Shuffle(ups); Shuffle(stats);
             if (lvl.Count > 0) { cards.Add(lvl[0]); lvl.RemoveAt(0); } // guarantee: one card levels an owned skill
@@ -66,7 +66,7 @@ namespace Hellord
         {
             _bossReward37 = false; _chestTitle = _chestSub = null;
             var sups = new List<Card>(); var upg = new List<Card>();
-            foreach (var sd in HData.Supports) if (SupPool1651().Exists(s => s.CanSocket(sd) == null)) { var sc = new Card { kind = CardKind.Support, support = sd }; if (SupPool1651().Exists(s => s.CanUpgrade(sd))) upg.Add(sc); else sups.Add(sc); }
+            foreach (var sd in HData.Supports) if (HData.Offered1654(sd) && SupPool1651().Exists(s => s.CanSocket(sd) == null)) { var sc = new Card { kind = CardKind.Support, support = sd }; if (SupPool1651().Exists(s => s.CanUpgrade(sd))) upg.Add(sc); else sups.Add(sc); }
             Shuffle(upg); sups.AddRange(upg); // (re-sorted below: the shuffle keeps upgrades possible in the first 3)
             if (sups.Count == 0) { bones += 15; Toast("Chest: no open support slot - got 15 bones"); return; }
             Shuffle(sups); cards.Clear(); for (int i = 0; i < Mathf.Min(3, sups.Count); i++) cards.Add(sups[i]);
@@ -106,7 +106,7 @@ namespace Hellord
                 case CardKind.Support:
                     var t = SupInst1651(target); if (t == null) { warning = "NO SKILL CAN TAKE IT"; return; } var why = t.CanSocket(c.support); // t1651: kit skills too
                     if (why != null) { warning = why; return; }
-                    bool upg = t.Has(c.support.id); t.AddSupport(c.support.id); // v0.0.27: an owned support is upgraded (Lv1-5)
+                    bool upg = t.Has(c.support.id); t.AddSupport(c.support.id); // v0.0.27: an owned support is upgraded (Lv1-MaxSupLevel)
                     Toast(upg ? $"{c.support.name} Lv{t.Lvl(c.support.id)} on {t.def.name}" : $"{c.support.name} added to {t.def.name}"); break;
                 case CardKind.Stat:
                     switch (c.stat.id)

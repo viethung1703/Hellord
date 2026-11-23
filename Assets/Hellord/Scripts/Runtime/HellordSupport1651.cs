@@ -10,7 +10,7 @@ namespace Hellord
         [System.NonSerialized] public int AtDotKills1651, AtExplodes1651; [System.NonSerialized] public float AtLeech1651; /* probes: kill blasts queued, life leeched (total) */
 
         /// <summary>t1651 stage 6: burn / bleed damage carries the skill that applied it (Enemy.burnSrc1651 / bleedSrc1651), so the
-        /// skill's Executioner bonus and Life Leech work on each DoT tick, and a DoT kill is that skill's kill (Soul Harvest, Explode on Kill,
+        /// skill's Executioner bonus works on each DoT tick (t1654: Life Leech is hits-only, no DoT), and a DoT kill is that skill's kill (Soul Harvest, Explode on Kill,
         /// pact on-kill). Knockback stays hit-only (a tick never pushes). No source (pact / sin burns) = plain damage as before.</summary>
         void DotDamage1651(Enemy e, float d, SkillInst src, bool noNumber)
         {

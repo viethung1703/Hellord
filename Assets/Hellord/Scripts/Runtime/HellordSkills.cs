@@ -268,7 +268,7 @@ namespace Hellord
                     ProjectileFX.SkipNova928 = false; ProjectileFX.SkipPackFlash988 = false; ProjectileFX.SkipHitStop = false; ProjectileFX.NovaRadiusPx = 0;
                 } HellordAudio.Play(spear ? "bone_orbit_hit" : "fireball_impact"); // v0.0.36 spears: soul impact, reused bone hit clip
                 // order: Pierce > Fork > Bounce
-                if (p.pierce > 0) { p.pierce--; p.dmg *= 1f - HellordTuning.I.pierceFalloff * (spear ? HellordTuning.I.spearFalloffMul : 1f); p.lastHit = hit; if (p.fx44 < 0) ProjectileFX.HitPierce(p.pos, p.vel, el659); continue; }
+                if (p.pierce > 0) { p.pierce--; p.dmg *= 1f - HData.PierceFalloffOf1651(p.s) * (spear ? HellordTuning.I.spearFalloffMul : 1f); p.lastHit = hit; if (p.fx44 < 0) ProjectileFX.HitPierce(p.pos, p.vel, el659); continue; }
                 if (p.fork)
                 {
                     p.fork = false; ProjectileFX.HitSplit(p.pos, el659);

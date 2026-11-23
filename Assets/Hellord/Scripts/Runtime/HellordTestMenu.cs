@@ -196,9 +196,10 @@ namespace Hellord
             for (int i = 0; i < skills.Count && i < 5; i++) if (TmBtn("Target: " + skills[i].def.name + " Lv" + skills[i].level, true, i == _tmTarget)) _tmTarget = i;
             TmRow();
             var t = skills[_tmTarget];
-            TmLabel("2) click a support: gives it (if it fits + has a slot) or levels it up (max 5).  Slots on " + t.def.name + ": " + t.sup.Count + "/" + Mathf.Min(t.level, HData.MaxSupports));
+            TmLabel("2) click a support: gives it (if it fits + has a slot) or levels it up (max " + SkillInst.MaxSupLevel + ").  Slots on " + t.def.name + ": " + t.sup.Count + "/" + Mathf.Min(t.level, HData.MaxSupports));
             foreach (var sd0 in HData.Supports)
             {
+                if (!HData.Offered1654(sd0)) continue;
                 var sd = sd0; int lv = t.Lvl(sd.id); bool fits = HData.Fits(sd, t.def);
                 string lab = (lv > 0 ? "[Lv" + lv + "] " : "") + sd.name + "  (" + sd.needsLabel + ")" + (fits ? "" : " - no fit");
                 if (TmBtn(lab, true, lv > 0)) TmAction(() =>

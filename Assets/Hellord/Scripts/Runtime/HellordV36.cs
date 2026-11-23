@@ -36,7 +36,7 @@ namespace Hellord
         {
             _sinExec818 = false; if (s.sup.Count == 0) return dmg; var T = HellordTuning.I;
             if (s.Has(SupportId.Executioner))
-            {   // bonus damage below an HP threshold (10% at Lv1 .. 30% at Lv5), not on elites/bosses by default
+            {   // bonus damage below an HP threshold (15% at Lv1 .. 25% at Lv3, t1654), not on elites/bosses by default
                 int l = s.Lvl(SupportId.Executioner);
                 if (e.maxHp > 0 && e.hp <= e.maxHp * (HData.At(T.supExecThreshold, l, 0.1f) + SinExecAdd818(e)) && !(T.executionerSkipBigs && (e.boss || e.elite))) { dmg *= HData.At(T.supExecDmg, l, 2f) * SinExecDmg818(); _sinExec818 = true; } // t818u #8 #29
             }
@@ -44,7 +44,8 @@ namespace Hellord
             {
                 Vector2 d = knock.sqrMagnitude > 0.01f ? knock.normalized : (e.pos - _heroPos).normalized; knock += d * HData.At(T.supKnockback, s.Lvl(SupportId.Knockback), 2f) * SinKnock818(e); // t818u #9
             }
-            if (s.Has(SupportId.LifeLeech) && hp > 0 && mode == Mode.Play)
+            // t1654: Life Leech heals from physical HITS only (no burn/bleed/DoT, no elemental)
+            if (s.Has(SupportId.LifeLeech) && !tick && (s.def.tags & STag.Physical) != 0 && hp > 0 && mode == Mode.Play)
             {
                 int l = s.Lvl(SupportId.LifeLeech); float cap = HData.At(T.supLeechCapPerSec, l, 1f) * SinLeechCap818(); _leechCap = cap; // t818u #34
                 float lm = PactLeechMul53(); cap *= lm; float heal = Mathf.Min(dmg * HData.At(T.supLeechFrac, l, 0.02f) * lm, Mathf.Max(0, cap - _leechHealed));
@@ -225,7 +226,7 @@ namespace Hellord
         // ================= which skill gets the support (second pick) =================
         class TargetPick { public SupportDef sd; public List<int> targets; public bool swap; public System.Action<int> onPick; }
         TargetPick _tp;
-        /// <summary>Every owned skill this support could go to: it fits and either has an open slot or already owns it below Lv5 (an upgrade).</summary>
+        /// <summary>Every owned skill this support could go to: it fits and either has an open slot or already owns it below max level (an upgrade).</summary>
         public List<int> SupportTargets(SupportDef sd)
         {
             var l = new List<int>(4); for (int i = 0; i < skills.Count; i++) if (skills[i].CanSocket(sd) == null) l.Add(i); AddKitTargets1651(sd, l, false); /* t1651 kit skills */ return l;

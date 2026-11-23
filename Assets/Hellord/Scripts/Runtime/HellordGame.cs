@@ -736,7 +736,7 @@ namespace Hellord
             float sd = SinDuration737; // t818u Duration stat
             switch (st)
             {
-                case Status.Burn: { if (src != null) e.burnSrc1651 = src; /* t1651 */ float nb = dmg * HellordTuning.I.burnDpsFromHit * k; if (e.burnT <= 0) e.burnStk818 = 0; e.burnDps = SinBurnDps818(e, nb); e.burnT = (TT.burnDuration + (src != null && src.Has(SupportId.Burn) ? TT.burnExtraSecondsPerLevel * (src.Lvl(SupportId.Burn) - 1) : 0f)) * sd * SinBurnDurMul818() + SinBurnAddS818(); IgniteBurn(e); break; } // t818u #4/#31 + Duration
+                case Status.Burn: { if (src != null) e.burnSrc1651 = src; /* t1651 */ float nb = dmg * HellordTuning.I.burnDpsFromHit * k; if (e.burnT <= 0) e.burnStk818 = 0; e.burnDps = SinBurnDps818(e, nb); e.burnT = (TT.burnDuration + (src != null && src.Has(SupportId.Burn) ? HData.At(TT.supBurnExtraSeconds, src.Lvl(SupportId.Burn), 0f) : 0f)) * sd * SinBurnDurMul818() + SinBurnAddS818(); IgniteBurn(e); break; } // t818u #4/#31 + Duration
                 case Status.Chill: e.chillT = 2 * k; if (++e.chillHits >= (src != null && src.Has(SupportId.Chill) ? HData.At(TT.supChillFreezeHits, src.Lvl(SupportId.Chill), 3) : 3)) { e.chillHits = 0; e.freezeT = 1.2f; } if (!StatusFX.IsAlive(e.chillH)) e.chillH = HFX.ChillStatus(e); StatusFX.SetFrozen(e.chillH, e.freezeT > 0); break;
                 case Status.Shock:
                     e.shockT = 3 * sd * SinShockDur818(); e.shockAmp = (src != null && src.Has(SupportId.Shock) ? HData.At(TT.supShockAmp, src.Lvl(SupportId.Shock), 0.25f) : TT.shockBaseAmp) * SinShockAmp818(); // t818u #24 + Duration

@@ -602,7 +602,7 @@ namespace Hellord
         // ================= bone shrine =================
         void RollShop(FloorRoom r)
         {
-            var ids = new List<SupportId>(); foreach (var s in HData.Supports) ids.Add(s.id); Shuffle(ids);
+            var ids = new List<SupportId>(); foreach (var s in HData.Supports) if (HData.Offered1654(s)) ids.Add(s.id); Shuffle(ids);
             r.shop = new SupportId[3]; r.price = new int[3]; r.sold = new bool[3];
             for (int i = 0; i < 3; i++) { r.shop[i] = ids[i]; r.price[i] = 20 + Random.Range(0, 5) * 5; }
         }
@@ -628,7 +628,7 @@ namespace Hellord
             {
                 if (r.sold[i] || ShopTarget(HData.Support(r.shop[i]), out _) >= 0) continue;
                 var c = new List<SupportId>();
-                foreach (var s in HData.Supports) if (System.Array.IndexOf(r.shop, s.id) < 0 && ShopTarget(s, out _) >= 0) c.Add(s.id);
+                foreach (var s in HData.Supports) if (HData.Offered1654(s) && System.Array.IndexOf(r.shop, s.id) < 0 && ShopTarget(s, out _) >= 0) c.Add(s.id);
                 if (c.Count > 0) r.shop[i] = c[Random.Range(0, c.Count)];
             }
         }

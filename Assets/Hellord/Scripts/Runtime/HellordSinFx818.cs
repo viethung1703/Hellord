@@ -266,7 +266,7 @@ namespace Hellord
             if (p.sin818 == 1 && e.alive) ApplyStatus(e, Status.Burn, p.dmg, 1f, p.s);
             if (p.sin818 == 3 && p.sinN818 < ST737.sin38MaxGrow818)
             {   // sun grows per demon passed (pre-compensates the pierce falloff applied right after)
-                var T = ST737; p.sinN818++; p.dmg *= (1 + T.sin38GrowDmg818) / Mathf.Max(0.05f, 1 - HellordTuning.I.pierceFalloff); p.explodeR += T.sin38GrowR818;
+                var T = ST737; p.sinN818++; p.dmg *= (1 + T.sin38GrowDmg818) / Mathf.Max(0.05f, 1 - HData.PierceFalloffOf1651(p.s)); p.explodeR += T.sin38GrowR818;
                 p.sr.transform.localScale = Vector3.one * (1.6f + 0.05f * p.sinN818);
             }
             if (p.sin818 == 3) SunPierce934(p); // t934u pierce flash
