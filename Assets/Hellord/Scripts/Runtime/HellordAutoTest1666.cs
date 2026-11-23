@@ -76,10 +76,10 @@ namespace Hellord
             {
                 var sk = Basic(SkillId.ThunderDrumStrikes, "LEIZU SPECIALS");
                 // Mark of Judgement: lightning on the marked demon charges it -> bolt + arcs to shocked demons
-                T.lzSpecial1666 = 1; ZhSpecCd = 0; Toast("MARK OF JUDGEMENT"); var big = Pack(EType.Brute, H0 + new Vector2(4.5f, 0.3f), 0f, 1500f); var o1 = Pack(EType.Imp, H0 + new Vector2(5.8f, -1.4f), 0f); var o2 = Pack(EType.Imp, H0 + new Vector2(3.4f, 1.7f), 0f);
-                atMouse986 = BodyCentre1595(big); yield return LF(10); yield return ZPress1618(1); int mp0 = LzMarkPays1666; ApplyStatus(o1, Status.Shock, 1f, 1f, sk); ApplyStatus(o2, Status.Shock, 1f, 1f, sk);
-                HInput.AtLmb = true; for (int f = 0; f < 200 && LzMarkPays1666 == mp0; f++) { atMouse986 = big.alive ? big.pos : atMouse986; if (f % 60 == 0) { if (o1.alive) ApplyStatus(o1, Status.Shock, 1f, 1f, sk); if (o2.alive) ApplyStatus(o2, Status.Shock, 1f, 1f, sk); } yield return LF(1); } HInput.AtLmb = false; yield return LF(40);
-                Res("markofjudgement", LzMarkPays1666 - mp0 == 1, $"payoffs {LzMarkPays1666 - mp0}");
+                T.lzSpecial1666 = 1; ZhSpecCd = 0; Toast("MARK OF JUDGEMENT"); var big = Pack(EType.Brute, H0 + new Vector2(4.5f, 0.3f), 0f, 900f); var o1 = Pack(EType.Imp, H0 + new Vector2(5.8f, -1.4f), 0f); var o2 = Pack(EType.Imp, H0 + new Vector2(3.4f, 1.7f), 0f);
+                atMouse986 = big.pos; yield return LF(10); yield return ZPress1618(1); int mp0 = LzMarkPays1666; bool onBig = LzMark1666 == big; ApplyStatus(o1, Status.Shock, 1f, 1f, sk); ApplyStatus(o2, Status.Shock, 1f, 1f, sk);
+                HInput.AtLmb = true; for (int f = 0; f < 400 && LzMarkPays1666 == mp0; f++) { atMouse986 = big.alive ? big.pos : atMouse986; if (f % 60 == 0) { if (o1.alive) ApplyStatus(o1, Status.Shock, 1f, 1f, sk); if (o2.alive) ApplyStatus(o2, Status.Shock, 1f, 1f, sk); } yield return LF(1); } HInput.AtLmb = false; yield return LF(40);
+                Res("markofjudgement", onBig && LzMarkPays1666 - mp0 == 1, $"marked the demon under the cursor {onBig}, payoffs {LzMarkPays1666 - mp0}");
                 // Conductivity: delayed curse; cursed demons take more shock damage, shock lasts longer and jumps
                 ZKill1618(L); ZhSpecCd = 0; T.lzSpecial1666 = 2; Toast("CONDUCTIVITY"); Vector2 c = H0 + new Vector2(4.5f, 0f); for (int i = 0; i < 6; i++) Pack(EType.Imp, c + new Vector2((i % 3 - 1) * 0.9f, (i / 3) * 1.1f - 0.5f), 0f);
                 atMouse986 = c; int cu0 = LzCursed1666, sp0 = LzSpreads1666; yield return ZPress1618(1); yield return LT(T.cdDelay1666 + 0.2f);
