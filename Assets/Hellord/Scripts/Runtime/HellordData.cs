@@ -112,7 +112,7 @@ namespace Hellord
             new SupportDef { id = SupportId.FasterCasting, mods = new[] { SMod1651.Arr(SStat1651.CdMul, T => T.supFasterCd, 0.9f) }, metric1651 = SupMetric1651.Cooldown, category = "Cooldown",name = "Faster Casting", needs = STag.Any,        needsLabel = "Any",        desc = "Shorter cooldown: -10% at Lv1, up to -22%" },
             new SupportDef { id = SupportId.Executioner, metric1651 = SupMetric1651.Execute, category = "Execute",  name = "Executioner",    needs = STag.Hit,        needsLabel = "Hit",        desc = "Bonus damage to demons below an HP threshold: 15% HP at Lv1, up to 25% at Lv3" },
             new SupportDef { id = SupportId.LifeLeech, metric1651 = SupMetric1651.Leech, category = "Leech",    name = "Life Leech",     needs = STag.Physical,   needsLabel = "Physical",   desc = "Physical hits heal you a little (capped per second). Burn and bleed do not leech." },
-            new SupportDef { id = SupportId.Knockback, metric1651 = SupMetric1651.Knock, category = "Knockback",    name = "Knockback",      needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits push demons away" },
+            new SupportDef { id = SupportId.Knockback, retired1654 = true, metric1651 = SupMetric1651.Knock, category = "Knockback",    name = "Knockback",      needs = STag.Hit,        needsLabel = "Hit",        desc = "Retired: owned Knockback is dropped" },
             new SupportDef { id = SupportId.SoulHarvest, metric1651 = SupMetric1651.KillHook, category = "Harvest",  name = "Soul Harvest",   needs = STag.Hit,        needsLabel = "Hit",        desc = "Kills by this skill drop extra XP and sometimes bones" },
             new SupportDef { id = SupportId.ExplodeOnKill, metric1651 = SupMetric1651.KillHook, category = "On-Kill Blast",name = "Explode on Kill",needs = STag.Hit,        needsLabel = "Hit",        desc = "Demons this skill kills explode for a small area hit" },
             new SupportDef { id = SupportId.Chain, mods = new[] { SMod1651.ArrI(SStat1651.ChainExtra, T => T.supChainExtra1651, 1) }, drawbacks = new[] { SMod1651.Arr(SStat1651.DmgMul, T => T.chainDmgMul1651, 0.85f) }, metric1651 = SupMetric1651.Distinct, category = "Chain", name = "Chain", needs = STag.Chain, needsLabel = "Chain", desc = "More chain jumps" }, // t1651 stage 7; t1654 per-level drawback
@@ -256,11 +256,12 @@ namespace Hellord
         bool _san1654;
         public int OpenSlots => Math.Min(level, HData.MaxSupports) - sup.Count;
         public bool Has(SupportId s) { Sanitize1654(); return sup.Contains(s); }
-        /// <summary>t1654: clamp levels above max; convert a saved Bounce socket to Chain (same level, or the higher of the two if Chain is already on). If the skill can't take Chain, Bounce is dropped and the slot is freed.</summary>
+        /// <summary>t1654: clamp levels above max; convert a saved Bounce socket to Chain (same level, or the higher of the two if Chain is already on). If the skill can't take Chain, Bounce is dropped and the slot is freed. t1661: a saved Knockback socket is dropped (no conversion).</summary>
         public void Sanitize1654()
         {
             if (_san1654) return; _san1654 = true;
             for (int i = 0; i < supLvl.Length; i++) if (supLvl[i] > MaxSupLevel) supLvl[i] = MaxSupLevel;
+            if (sup.Contains(SupportId.Knockback)) { sup.Remove(SupportId.Knockback); supLvl[(int)SupportId.Knockback] = 0; } // t1661: retired, no conversion
             int bi = (int)SupportId.Bounce; if (!sup.Contains(SupportId.Bounce)) return;
             int bl = Math.Max(1, Math.Min(MaxSupLevel, supLvl[bi]));
             sup.Remove(SupportId.Bounce); supLvl[bi] = 0;
@@ -271,7 +272,7 @@ namespace Hellord
         /// <summary>Support level 1..MaxSupLevel (0 = not socketed). t1654: max is 3.</summary>
         public int Lvl(SupportId s) { Sanitize1654(); return sup.Contains(s) ? Math.Max(1, Math.Min(MaxSupLevel, supLvl[(int)s])) : 0; }
         public bool CanUpgrade(SupportDef s) => Has(s.id) && Lvl(s.id) < MaxSupLevel;
-        public void AddSupport(SupportId s) { Sanitize1654(); if (s == SupportId.Bounce) { var ch = HData.Support(SupportId.Chain); if (def != null && ch != null && (sup.Contains(SupportId.Chain) || HData.Fits(ch, def))) s = SupportId.Chain; else return; } if (Has(s)) { supLvl[(int)s] = Math.Min(MaxSupLevel, Lvl(s) + 1); } else { sup.Add(s); supLvl[(int)s] = 1; } }
+        public void AddSupport(SupportId s) { Sanitize1654(); if (s == SupportId.Knockback) return; /* t1661: retired, no conversion */ if (s == SupportId.Bounce) { var ch = HData.Support(SupportId.Chain); if (def != null && ch != null && (sup.Contains(SupportId.Chain) || HData.Fits(ch, def))) s = SupportId.Chain; else return; } if (Has(s)) { supLvl[(int)s] = Math.Min(MaxSupLevel, Lvl(s) + 1); } else { sup.Add(s); supLvl[(int)s] = 1; } }
         /// <summary>null = can socket, otherwise the warning text shown to the player.</summary>
         public string CanSocket(SupportDef s)
         {
