@@ -48,7 +48,7 @@ namespace Hellord
             {
                 int l = s.Lvl(SupportId.LifeLeech); float cap = HData.At(T.supLeechCapPerSec, l, 1f) * SinLeechCap818(); _leechCap = cap; // t818u #34
                 float lm = PactLeechMul53(); cap *= lm; float heal = Mathf.Min(dmg * HData.At(T.supLeechFrac, l, 0.02f) * lm, Mathf.Max(0, cap - _leechHealed));
-                if (heal > 0) { _sinLeechNow818 = true; Heal53(heal); _sinLeechNow818 = false; _leechHealed += heal; } // v0.0.53 pact: heal mul / overheal shield / Blood Magic x3
+                if (heal > 0) { _sinLeechNow818 = true; Heal53(heal); _sinLeechNow818 = false; _leechHealed += heal; AtLeech1651 += heal; /* t1651 probe */ } // v0.0.53 pact: heal mul / overheal shield / Blood Magic x3
             }
             return dmg;
         }
@@ -66,7 +66,7 @@ namespace Hellord
             {
                 int l = s.Lvl(SupportId.ExplodeOnKill);
                 float d = Mathf.Min(T.explodeMaxDmg, e.maxHp * HData.At(T.supExplodeDmg, l, 0.35f) + T.explodeFlatDmg);
-                _blasts.Add(new Blast { pos = e.pos + Vector2.up * 0.4f, r = HData.At(T.supExplodeRadiusU, l, 1.4f), dmg = d, kind = 4, skip = e.id }); AtKill1651 += d; // t1651 probe
+                _blasts.Add(new Blast { pos = e.pos + Vector2.up * 0.4f, r = HData.At(T.supExplodeRadiusU, l, 1.4f), dmg = d, kind = 4, skip = e.id }); AtKill1651 += d; AtExplodes1651++; // t1651 probe
             }
         }
 

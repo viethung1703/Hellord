@@ -7,7 +7,7 @@ namespace Hellord
     {
         [System.NonSerialized] public int AtCasts1651, AtProj1651, AtHits1651, AtSkillKills1651;          // real casts (Cast + kit casts), projectiles spawned (every custom projectile too)
         [System.NonSerialized] public float AtCd1651, AtKill1651;            // cooldown set by the last cast; on-kill support output (harvest XP + blast damage)
-        [System.NonSerialized] public int AtDotKills1651;
+        [System.NonSerialized] public int AtDotKills1651, AtExplodes1651; [System.NonSerialized] public float AtLeech1651; /* probes: kill blasts queued, life leeched (total) */
 
         /// <summary>t1651 stage 6: burn / bleed damage carries the skill that applied it (Enemy.burnSrc1651 / bleedSrc1651), so the
         /// skill's Executioner bonus and Life Leech work on each DoT tick, and a DoT kill is that skill's kill (Soul Harvest, Explode on Kill,

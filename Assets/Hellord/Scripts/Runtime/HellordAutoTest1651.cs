@@ -16,7 +16,7 @@ namespace Hellord
     {
         enum SmFix1651 { Std, Dense, Homing, Exec, Kill, Leech, Dur, SparseLine, SparseSide, StdFar }
         static readonly SmFix1651[] SmAreaFix1651 = { SmFix1651.Dense, SmFix1651.SparseLine, SmFix1651.SparseSide }; static readonly SmFix1651[] SmDistFix1651 = { SmFix1651.Std, SmFix1651.StdFar }; /* StdFar: + demons past the end of a long roll / flight (bounce at the end) */
-        static bool SmLv1Ok1651(double a, double b) => System.Math.Abs(b - a) > System.Math.Max(1e-3, System.Math.Abs(a) * 0.002);
+        static bool SmLv1Ok1651(double a, double b) => System.Math.Abs(b - a) > System.Math.Max(System.Math.Abs(a) < 0.05 ? 1e-5 : 1e-3, System.Math.Abs(a) * 0.002); /* small metrics (1 / 180 s cooldown) need a small floor */
         class SmM1651 { public double hits, firstHit, kills, dmg, affected, potency, disp, heal, span, casts, proj, cdInv, kill, probe; }
         readonly List<Enemy> _smL1651 = new List<Enemy>(128); readonly List<float> _smHp0 = new List<float>(128); readonly List<Vector2> _smP0 = new List<Vector2>(128);
         readonly List<float> _smPot = new List<float>(128);
@@ -94,7 +94,7 @@ namespace Hellord
             SmField1651(f); Random.InitState(1651); crit = 0f; atMouse986 = SmAim1651(f);
             float hp0 = f == SmFix1651.Leech ? maxHp * 0.6f : maxHp; hp = hp0;
             yield return SmFrames1651(2, f, m, false, hp0);
-            int c0 = AtCasts1651, p0 = AtProj1651, h0 = AtHits1651, sk0 = AtSkillKills1651; float k0 = AtKill1651; _pbSparkSeed1567 = 1; _fbShot = 0; AtCd1651 = 0f; s.cd = 0f; float t0 = runTime; m.probe = 0;
+            float lh0 = AtLeech1651; int c0 = AtCasts1651, p0 = AtProj1651, h0 = AtHits1651, sk0 = AtSkillKills1651; float k0 = AtKill1651; _pbSparkSeed1567 = 1; _fbShot = 0; AtCd1651 = 0f; s.cd = 0f; float t0 = runTime; m.probe = 0;
             if (kit) { if (SmKitCast1651 != null) yield return SmKitCast1651(this, id); }
             else { HInput.AtLmb = true; yield return SmFrames1651(2, f, m, false, hp0); HInput.AtLmb = false; }
             float cdAt = AtCd1651; if (kit) m.probe = SmKitProbe1651 != null ? SmKitProbe1651(this, id) : 0f;
@@ -117,7 +117,7 @@ namespace Hellord
                 m.potency += _smPot[i];
             }
             if (kit && SmKitProbe1651 != null) m.probe = System.Math.Max(m.probe, SmKitProbe1651(this, id));
-            m.heal = hp - hp0; HInput.AtLmb = false; skills.Clear(); if (kit) { ResetKit1651(); ZhRunMove1639 = ZhRunSpec1639 = ZhRunUlt1639 = 0; }
+            m.heal = AtLeech1651 - lh0; /* leeched life (a rebirth / regen does not count) */ HInput.AtLmb = false; skills.Clear(); if (kit) { ResetKit1651(); ZhRunMove1639 = ZhRunSpec1639 = ZhRunUlt1639 = 0; }
         }
         double SmDmg1651() { double d = 0; for (int i = 0; i < _smL1651.Count; i++) { var e = _smL1651[i]; d += _smHp0[i] - (e.alive ? Mathf.Max(0f, e.hp) : 0f); } return d; }
         IEnumerator SmFrames1651(int n, SmFix1651 f, SmM1651 m, bool sample, float hp0)
@@ -144,11 +144,11 @@ namespace Hellord
                 if (pass == 2) { s.AddSupport(SupportId.SoulHarvest); s.AddSupport(SupportId.ExplodeOnKill); }
                 _smHp0.Clear(); _smP0.Clear(); _smPot.Clear(); var H = _smH1651;
                 for (int i = 0; i < 4; i++) { var e = ZMk1618(_smL1651, EType.Imp, H + new Vector2(2f + i * 1.5f, 0f), 0f, 1000f); if (e == null) continue; e.hp = pass == 1 ? 150f : pass == 2 ? 6f : 1000f; _smHp0.Add(e.hp); _smP0.Add(e.pos); _smPot.Add(0f); }
-                float hp0 = maxHp * 0.5f; hp = hp0; _leechHealed = 0f; int dk0 = AtDotKills1651; float k0 = AtKill1651; int bl0 = 0;
+                float hp0 = maxHp * 0.5f; hp = hp0; _leechHealed = 0f; int dk0 = AtDotKills1651, ex0 = AtExplodes1651; float lq0 = AtLeech1651; float k0 = AtKill1651; int bl0 = 0;
                 foreach (var e in _smL1651) ApplyStatus(e, st, 40f, 2f, s);
                 for (int f = 0; f < 90; f++) { yield return null; if (mode != Mode.Play) mode = Mode.Play; pendingLevels = 0; _heroPos = _smH1651; if (pass == 2) bl0 = Mathf.Max(bl0, _blasts.Count); }
                 double dmg = SmDmg1651();
-                if (pass == 0) r[0] = hp - hp0;
+                if (pass == 0) r[0] = AtLeech1651 - lq0;
                 if (pass == 1)
                 {   // same DoT without Executioner on the same low-HP demons
                     r[1] = dmg; SmClear1651(); _smHp0.Clear(); var s2 = new SkillInst { def = def, level = 1 };
@@ -157,7 +157,7 @@ namespace Hellord
                     for (int f = 0; f < 90; f++) { yield return null; if (mode != Mode.Play) mode = Mode.Play; pendingLevels = 0; _heroPos = _smH1651; }
                     r[2] = SmDmg1651();
                 }
-                if (pass == 2) { r[3] = AtDotKills1651 - dk0; r[4] = AtKill1651 - k0; r[5] = bl0; }
+                if (pass == 2) { r[3] = AtDotKills1651 - dk0; r[4] = AtKill1651 - k0; r[5] = System.Math.Max(bl0, AtExplodes1651 - ex0); }
             }
             SmClear1651(); hp = maxHp;
         }
@@ -243,12 +243,12 @@ namespace Hellord
                         v0 = SmVal1651(sd, b0);
                         if (fit) { var m1 = new SmM1651(); yield return SmRun1651(id, sd, 1, fx, m1); v1 = SmVal1651(sd, m1); if (sd.metric1651 == SupMetric1651.Repeat) repOk = m1.casts > b0.casts; }
                         var m5 = new SmM1651(); yield return SmRun1651(id, sd, 5, fx, m5); v5 = SmVal1651(sd, m5); tried.Append($"{fx}:{v0:0.##}/{v1:0.##}/{v5:0.##} ");
-                        bool okF = fit ? SmLv1Ok1651(v0, v1) && repOk && v5 > v1 + System.Math.Max(1e-3, System.Math.Abs(v1) * 0.002) : !(v5 > v0 + System.Math.Max(1e-3, System.Math.Abs(v0) * (det ? 0.002 : 0.25)) + (det ? 0 : 1)); if (okF) break; /* stop at the first layout that shows it (fit) / keep probing while no change (missing tag) */
+                        bool okF = fit ? SmLv1Ok1651(v0, v1) && repOk && v5 > v1 + System.Math.Max(System.Math.Abs(v1) < 0.05 ? 1e-5 : 1e-3, System.Math.Abs(v1) * 0.002) : !(v5 > v0 + System.Math.Max(1e-3, System.Math.Abs(v0) * (det ? 0.002 : 0.25)) + (det ? 0 : 1)); if (okF) break; /* stop at the first layout that shows it (fit) / keep probing while no change (missing tag) */
                     }
                     string verdict;
                     if (fit)
                     {
-                        pairs++; bool lv1 = SmLv1Ok1651(v0, v1), lv5 = v5 > v1 + System.Math.Max(1e-3, System.Math.Abs(v1) * 0.002);
+                        pairs++; bool lv1 = SmLv1Ok1651(v0, v1), lv5 = v5 > v1 + System.Math.Max(System.Math.Abs(v1) < 0.05 ? 1e-5 : 1e-3, System.Math.Abs(v1) * 0.002);
                         lv1 &= repOk; verdict = lv1 && lv5 ? "PASS" : !lv1 ? "FAIL lv1=none" : "FAIL lv5<=lv1"; if (lv1 && lv5) pass++; else { fail++; skOk = false; failL.Add($"{def.name}/{sd.name} ({verdict.Substring(5)}: {v0:0.##}/{v1:0.##}/{v5:0.##})"); }
                     }
                     else
