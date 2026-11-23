@@ -223,6 +223,7 @@ namespace Hellord
                 string bad = (SmCardCheck1651 ?? SmCard1651)(sd); if (bad != null) { statOk = false; stat.Append(sd.name).Append(": ").Append(bad).Append("; "); }
             }
             ARes(scen + ":static", statOk, stat.Length == 0 ? $"{offeredN} supports: every one has a category and a test metric; card text checks ok" : stat.ToString());
+            if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-smStatic") >= 0) { /* t1661: static / card-text only, skip the DoT probe and the matrix */ SmClear1651(); foreach (var c in cams) if (c != null) c.enabled = true; Time.captureFramerate = cf0; crit = crit0; _zKeepHp = true; _pactActive51 = pa0; TZ.kitSlotOverride1639 = ko0; ZhEnd1618(scen, null); yield break; }
             // ---- stage 6: burn / bleed carry their skill (leech, executioner, kill hooks on DoT)
             { var dl = new StringBuilder(); bool dok = true; foreach (var st in new[] { Status.Burn, Status.Bleed }) { var r = new double[6]; yield return SmDot1651(st, r); bool ok = r[0] <= 0.01 && r[1] > r[2] * 1.05 && r[3] > 0 && r[4] > 0 && r[5] > 0; dok &= ok; dl.Append($"{st}: leech heal {r[0]:0.##} (DoT must not leech), exec dmg {r[1]:0.#} vs {r[2]:0.#} without, DoT kills {r[3]:0}, harvest XP {r[4]:0}, blasts {r[5]:0} {(ok ? "ok" : "FAIL")} | "); }
               ARes(scen + ":dot", dok, dl.ToString()); }
