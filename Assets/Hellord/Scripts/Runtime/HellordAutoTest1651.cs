@@ -7,8 +7,8 @@ using UnityEngine;
 namespace Hellord
 {
     /// <summary>t1651 support matrix (scenario sup1651). For EVERY pickable skill (the pacts' start basics + the Zhurong kit skills) and EVERY support whose
-    /// tags fit, cast the skill once in a fixed dummy field with no support, with the support at Lv1 and at Lv5, and measure the support's own metric
-    /// (SupportDef.metric1651). FAIL when Lv1 does not change the metric or Lv5 does not beat Lv1 (= the tag lies: the support is offered but dead).
+    /// tags fit, cast the skill once in a fixed dummy field with no support, with the support at Lv1 and at max level, and measure the support's own metric
+    /// (SupportDef.metric1651). FAIL when Lv1 does not change the metric or max level does not beat Lv1 (= the tag lies: the support is offered but dead).
     /// WARN when a support the tags do NOT allow would have changed the metric (a missing tag). Static checks: every support has a category and a metric,
     /// card text is generated from tuning. New skills / supports join automatically (pact basics list, HData.Supports). Fixed dt (captureFramerate 30),
     /// fixed RNG seed, no crits, cameras off while measuring. Output: summary lines + sup1651_matrix.txt.</summary>
@@ -139,8 +139,8 @@ namespace Hellord
             for (int pass = 0; pass < 3; pass++)
             {
                 SmClear1651(); _heroPos = _smH1651; var s = new SkillInst { def = def, level = 1 };
-                if (pass == 0) { s.AddSupport(SupportId.LifeLeech); s.supLvl[(int)SupportId.LifeLeech] = 5; }
-                if (pass == 1) { s.AddSupport(SupportId.Executioner); s.supLvl[(int)SupportId.Executioner] = 5; }
+                if (pass == 0) { s.AddSupport(SupportId.LifeLeech); s.supLvl[(int)SupportId.LifeLeech] = SkillInst.MaxSupLevel; }
+                if (pass == 1) { s.AddSupport(SupportId.Executioner); s.supLvl[(int)SupportId.Executioner] = SkillInst.MaxSupLevel; }
                 if (pass == 2) { s.AddSupport(SupportId.SoulHarvest); s.AddSupport(SupportId.ExplodeOnKill); }
                 _smHp0.Clear(); _smP0.Clear(); _smPot.Clear(); var H = _smH1651;
                 for (int i = 0; i < 4; i++) { var e = ZMk1618(_smL1651, EType.Imp, H + new Vector2(2f + i * 1.5f, 0f), 0f, 1000f); if (e == null) continue; e.hp = pass == 1 ? 150f : pass == 2 ? 6f : 1000f; _smHp0.Add(e.hp); _smP0.Add(e.pos); _smPot.Add(0f); }
@@ -209,20 +209,22 @@ namespace Hellord
             if (_room != null) { _room.Walkable(6, out var lo, out var hi); _smH1651 = new Vector2(Mathf.Lerp(lo.x, hi.x, 0.5f) - 3.8f, Mathf.Lerp(lo.y, hi.y, 0.5f)); } else _smH1651 = _heroPos;
             // ---- static checks
             var stat = new StringBuilder(); bool statOk = true;
+            int offeredN = 0;
             foreach (var sd in HData.Supports)
             {
+                if (!HData.Offered1654(sd)) continue; offeredN++;
                 if (string.IsNullOrEmpty(sd.category)) { statOk = false; stat.Append(sd.name).Append(": no category; "); }
                 if (sd.metric1651 == SupMetric1651.None) { statOk = false; stat.Append(sd.name).Append(": no test metric; "); }
                 string bad = (SmCardCheck1651 ?? SmCard1651)(sd); if (bad != null) { statOk = false; stat.Append(sd.name).Append(": ").Append(bad).Append("; "); }
             }
-            ARes(scen + ":static", statOk, stat.Length == 0 ? $"{HData.Supports.Length} supports: every one has a category and a test metric; card text checks ok" : stat.ToString());
+            ARes(scen + ":static", statOk, stat.Length == 0 ? $"{offeredN} supports: every one has a category and a test metric; card text checks ok" : stat.ToString());
             // ---- stage 6: burn / bleed carry their skill (leech, executioner, kill hooks on DoT)
-            { var dl = new StringBuilder(); bool dok = true; foreach (var st in new[] { Status.Burn, Status.Bleed }) { var r = new double[6]; yield return SmDot1651(st, r); bool ok = r[0] > 0.01 && r[1] > r[2] * 1.05 && r[3] > 0 && r[4] > 0 && r[5] > 0; dok &= ok; dl.Append($"{st}: leech heal {r[0]:0.##} (no hits), exec dmg {r[1]:0.#} vs {r[2]:0.#} without, DoT kills {r[3]:0}, harvest XP {r[4]:0}, blasts {r[5]:0} {(ok ? "ok" : "FAIL")} | "); }
+            { var dl = new StringBuilder(); bool dok = true; foreach (var st in new[] { Status.Burn, Status.Bleed }) { var r = new double[6]; yield return SmDot1651(st, r); bool ok = r[0] <= 0.01 && r[1] > r[2] * 1.05 && r[3] > 0 && r[4] > 0 && r[5] > 0; dok &= ok; dl.Append($"{st}: leech heal {r[0]:0.##} (DoT must not leech), exec dmg {r[1]:0.#} vs {r[2]:0.#} without, DoT kills {r[3]:0}, harvest XP {r[4]:0}, blasts {r[5]:0} {(ok ? "ok" : "FAIL")} | "); }
               ARes(scen + ":dot", dok, dl.ToString()); }
             // ---- matrix
             var ids = SmSkills1651(); if (SmKitIds1651 != null) ids.AddRange(SmKitIds1651);
             { var av = System.Environment.GetCommandLineArgs(); int ai = System.Array.IndexOf(av, "-smSkills"); if (ai >= 0 && ai + 1 < av.Length) { var keep = new List<string>(av[ai + 1].Split(',')); ids.RemoveAll(x => !keep.Contains(x.ToString())); } } // quick subset runs
-            var mx = new StringBuilder(); mx.AppendLine("skill\tsupport\tfit\tmetric\tnone\tlv1\tlv5\tverdict");
+            var mx = new StringBuilder(); mx.AppendLine("skill\tsupport\tfit\tmetric\tnone\tlv1\tlvMax\tverdict");
             int pass = 0, fail = 0, warn = 0, pairs = 0, noise = 0; var failL = new List<string>(); var warnL = new List<string>();
             foreach (var id in ids)
             {
@@ -231,7 +233,7 @@ namespace Hellord
                   det = n1.dmg == n2.dmg && n1.hits == n2.hits && n1.affected == n2.affected; if (!det) { skOk = false; noise++; } line.Append(det ? "deterministic | " : $"NOISE dmg {n1.dmg:0.##}/{n2.dmg:0.##} hits {n1.hits}/{n2.hits} | "); mx.AppendLine($"{def.name}\t(repeat)\t-\tnoise\t{n1.dmg:0.###}\t-\t{n2.dmg:0.###}\t{(det ? "deterministic" : "NOISE")}"); }
                 foreach (var sd in HData.Supports)
                 {
-                    if (sd.metric1651 == SupMetric1651.None) continue; bool fit = HData.Fits(sd, def);
+                    if (!HData.Offered1654(sd) || sd.metric1651 == SupMetric1651.None) continue; bool fit = HData.Fits(sd, def);
                     if (!fit && (sd.needs == STag.Any || sd.needs == STag.Hit || sd.metric1651 == SupMetric1651.Orbitals || sd.metric1651 == SupMetric1651.Repeat)) continue; // Echo needs Area by RULE (not a capability), so no missing-tag probe // missing-tag probe only for the shape tags (Projectile / Area / Duration / Chain)
                     if (!fit && SmKitIds1651 != null && SmIsKit1651(id) && sd.metric1651 != SupMetric1651.Area && sd.metric1651 != SupMetric1651.Duration) continue;
                     var fxs = sd.metric1651 == SupMetric1651.Area ? SmAreaFix1651 : sd.metric1651 == SupMetric1651.Distinct ? SmDistFix1651 : new[] { SmFixFor1651(sd.metric1651) }; /* Area: dense pack first; reach-type areas (chain jump reach, nearest-first zaps) only show on the sparse layouts */
@@ -242,14 +244,14 @@ namespace Hellord
                         if (!baseM.TryGetValue(fx, out var b0) || _smSt1651 != Status.None) { b0 = new SmM1651(); yield return SmRun1651(id, null, 1, fx, b0); baseM[fx] = b0; }
                         v0 = SmVal1651(sd, b0);
                         if (fit) { var m1 = new SmM1651(); yield return SmRun1651(id, sd, 1, fx, m1); v1 = SmVal1651(sd, m1); if (sd.metric1651 == SupMetric1651.Repeat) repOk = m1.casts > b0.casts; }
-                        var m5 = new SmM1651(); yield return SmRun1651(id, sd, 5, fx, m5); v5 = SmVal1651(sd, m5); tried.Append($"{fx}:{v0:0.##}/{v1:0.##}/{v5:0.##} ");
+                        var m5 = new SmM1651(); yield return SmRun1651(id, sd, SkillInst.MaxSupLevel, fx, m5); v5 = SmVal1651(sd, m5); tried.Append($"{fx}:{v0:0.##}/{v1:0.##}/{v5:0.##} ");
                         bool okF = fit ? SmLv1Ok1651(v0, v1) && repOk && v5 > v1 + System.Math.Max(System.Math.Abs(v1) < 0.05 ? 1e-5 : 1e-3, System.Math.Abs(v1) * 0.002) : !(v5 > v0 + System.Math.Max(1e-3, System.Math.Abs(v0) * (det ? 0.002 : 0.25)) + (det ? 0 : 1)); if (okF) break; /* stop at the first layout that shows it (fit) / keep probing while no change (missing tag) */
                     }
                     string verdict;
                     if (fit)
                     {
                         pairs++; bool lv1 = SmLv1Ok1651(v0, v1), lv5 = v5 > v1 + System.Math.Max(System.Math.Abs(v1) < 0.05 ? 1e-5 : 1e-3, System.Math.Abs(v1) * 0.002);
-                        lv1 &= repOk; verdict = lv1 && lv5 ? "PASS" : !lv1 ? "FAIL lv1=none" : "FAIL lv5<=lv1"; if (lv1 && lv5) pass++; else { fail++; skOk = false; failL.Add($"{def.name}/{sd.name} ({verdict.Substring(5)}: {v0:0.##}/{v1:0.##}/{v5:0.##})"); }
+                        lv1 &= repOk; verdict = lv1 && lv5 ? "PASS" : !lv1 ? "FAIL lv1=none" : "FAIL lvMax<=lv1"; if (lv1 && lv5) pass++; else { fail++; skOk = false; failL.Add($"{def.name}/{sd.name} ({verdict.Substring(5)}: {v0:0.##}/{v1:0.##}/{v5:0.##})"); }
                     }
                     else
                     {
@@ -267,20 +269,21 @@ namespace Hellord
             ZhEnd1618(scen, null);
         }
         public static System.Func<SupportDef, string> SmCardCheck1651; // stage 3: generated card text vs tuning
-        /// <summary>t1651 stage 3: card text comes from the tuning. Lv1 and Lv5 effect text exist and differ (or a mod is flat on purpose); stat supports' desc is the generated one and shows the Lv1 + Lv5 values.</summary>
+        /// <summary>t1651 stage 3: card text comes from the tuning. Lv1 and max-level effect text exist and differ (or a mod is flat on purpose); stat supports' desc is the generated one and shows the Lv1 + max values. t1654: max is Lv3.</summary>
         static string SmCard1651(SupportDef sd)
         {
-            string e1 = HData.SupportEffect(sd.id, 1), e5 = HData.SupportEffect(sd.id, SkillInst.MaxSupLevel);
+            int mx = SkillInst.MaxSupLevel;
+            string e1 = HData.SupportEffect(sd.id, 1), e5 = HData.SupportEffect(sd.id, mx);
             if (string.IsNullOrEmpty(e1) || string.IsNullOrEmpty(e5)) return "no effect text";
-            if (e1 == e5) return $"Lv1 and Lv5 text are the same ({e1})";
+            if (e1 == e5) return $"Lv1 and Lv{mx} text are the same ({e1})";
             if (sd.mods != null)
             {
                 string gen = HData.SupportDesc1651(sd); if (sd.desc != gen) return "desc is not the generated text";
-                string m1 = HData.ModText1651(sd.mods, 1, null), m5 = HData.ModText1651(sd.mods, SkillInst.MaxSupLevel, null);
-                if (!sd.desc.Contains(m1) || !sd.desc.Contains(m5)) return "desc misses the Lv1/Lv5 values";
+                string m1 = HData.ModText1651(sd.mods, 1, null), m5 = HData.ModText1651(sd.mods, mx, null);
+                if (!sd.desc.Contains(m1) || !sd.desc.Contains(m5)) return $"desc misses the Lv1/Lv{mx} values";
                 if (sd.drawbacks != null && !sd.desc.Contains("Drawback")) return "drawback not on the card";
-                var T = HellordTuning.I; bool moved = false; foreach (var m in sd.mods) if (Mathf.Abs(m.v(T, 1) - m.v(T, SkillInst.MaxSupLevel)) > 1e-4f) moved = true;
-                if (!moved) return "no mod grows from Lv1 to Lv5";
+                var T = HellordTuning.I; bool moved = false; foreach (var m in sd.mods) if (Mathf.Abs(m.v(T, 1) - m.v(T, mx)) > 1e-4f) moved = true;
+                if (!moved) return $"no mod grows from Lv1 to Lv{mx}";
             }
             return null;
         }
@@ -305,10 +308,10 @@ namespace Hellord
             yield return Shot(SkillId.RollingMagmaRock, "BOULDER + MULTI LV3 + FORK LV3", 3.0f, (SupportId.MultipleProjectiles, 3), (SupportId.Fork, 3));
             yield return Shot(SkillId.SparkSpray, "SPARK SPRAY - NO SUPPORT", 1.6f);
             yield return Shot(SkillId.SparkSpray, "SPARK SPRAY + MULTI LV3", 1.8f, (SupportId.MultipleProjectiles, 3));
-            // kit skill with a support: Backdraft (dash slot 3) pull, without and with Bigger Area Lv5
+            // kit skill with a support: Backdraft (dash slot 3) pull, without and with Bigger Area at max level
             for (int pass = 0; pass < 2; pass++)
             {
-                Pack(); ResetKit1651(); T.kitMove1618 = 3; var ki = ZkI1651(2); if (pass == 1) { ki.AddSupport(SupportId.BiggerArea); ki.supLvl[(int)SupportId.BiggerArea] = 5; }
+                Pack(); ResetKit1651(); T.kitMove1618 = 3; var ki = ZkI1651(2); if (pass == 1) { ki.AddSupport(SupportId.BiggerArea); ki.supLvl[(int)SupportId.BiggerArea] = SkillInst.MaxSupLevel; }
                 Toast(pass == 0 ? "BACKDRAFT (KIT DASH) - NO SUPPORT" : "BACKDRAFT + BIGGER AREA LV5"); yield return ZF1618(12);
                 _heroPos = H0 + new Vector2(4.4f, 0f); ZhMoveCd = 0f; int pl0 = ZhPulled1618; ZhDashStart1618(_heroPos); yield return ZT1618(1.6f);
                 log.Append($" | backdraft{(pass == 1 ? "+area5" : "")}: pulled {ZhPulled1618 - pl0}");
