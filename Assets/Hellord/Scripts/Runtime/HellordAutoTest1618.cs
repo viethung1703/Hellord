@@ -22,7 +22,8 @@ namespace Hellord
                 case "kindling1635": return AtKindlingClip1635();
                 case "levelup1639": return AtLevelUpClip1639(); // t1639 clip: kit cards on level-up
                 case "skillbar1641": return AtSkillBarClip1641(); // t1641 clip: the 4-slot kit bar
-                case "startpact1643": return AtStartPact1643(); // t1643 clip: fresh save -> Zhurong unlocked + sealed // t1635 clip: Kindling shader patches under Fireball hits
+                case "startpact1643": return AtStartPact1643(); // t1643 clip: fresh save -> Zhurong unlocked + sealed
+                case "groundsort1644": return AtGroundSort1644(); // t1644 clip: fire ground over corpses, under living enemies // t1635 clip: Kindling shader patches under Fireball hits
                 case "firewall986_nosplit": return ZNoSplit1618(AtFireWall986()); // the t986 Fire Wall test, with the t1618 split off (= Hellfire Pillar is the wall again)
                 case "chain1563": return AtChain1563();
                 case "bh1595": return AtBody1595();
@@ -298,6 +299,28 @@ namespace Hellord
             }
             yield return AtShot(scen + "_end");
             ZhEnd1618(scen, null);
+        }
+
+        // ---------------------------------------------------------------- t1644 clip: a corpse pile, living imps on it, Fireball (Kindling patches) then Infernal Boulder (trail band) over the pile
+        IEnumerator AtGroundSort1644()
+        {
+            string scen = "groundsort1644", clip = scen; var T = HellordTuning.I; _zClip = clip;
+            yield return ZhStart1618(scen, clip, SkillId.Fireball); bool kit0 = T.kit1618; T.kit1618 = false;
+            Vector2 H0 = _heroPos, P = H0 + new Vector2(4.6f, 0f); var dead = new List<Enemy>(); var L = new List<Enemy>();
+            for (int i = 0; i < 16; i++) ZMk1618(dead, i % 4 == 0 ? EType.Brute : EType.Imp, P + new Vector2((i % 4) * 0.55f - 0.8f, (i / 4) * 0.5f - 0.75f), 0f, 1f);
+            yield return ZF1618(3); foreach (var e in dead) if (e.alive) KillEnemy(e); dead.Clear(); yield return ZF1618(40); // corpses + blood stay (d2CorpsePersist1447)
+            int corpses = 0; foreach (var e in _en) if (!e.alive && e.sr != null && e.sr.gameObject.activeSelf) corpses++;
+            for (int i = 0; i < 4; i++) ZMk1618(L, EType.Imp, P + new Vector2((i % 2) * 1.0f - 0.5f, (i / 2) * 0.9f - 0.45f), 0f, 50000f); // living imps standing on the pile
+            yield return ZF1618(10); Toast("KINDLING ON CORPSES");
+            HInput.AtLmb = true; float t0 = runTime; int maxP = 0;
+            while (runTime - t0 < 3.5f) { atMouse986 = P + new Vector2(0f, Mathf.Sin((runTime - t0) * 2f) * 0.5f); yield return ZF1618(1); maxP = Mathf.Max(maxP, _patch53.Count); }
+            HInput.AtLmb = false; yield return ZF1618(10);
+            skills[0] = new SkillInst { def = HData.Skill(SkillId.RollingMagmaRock), level = 1 }; SetHeroLayers(); Toast("INFERNAL BOULDER TRAIL");
+            HInput.AtLmb = true; t0 = runTime;
+            while (runTime - t0 < 3.0f) { atMouse986 = P + new Vector2(2.5f, ((runTime - t0) < 1.5f ? -0.4f : 0.4f)); yield return ZF1618(1); }
+            HInput.AtLmb = false; yield return ZF1618(30);
+            ARes(scen + ":clip", maxP >= 2 && (_r1561 > 0 || _atRecFps <= 0), $"frames {_r1561} | corpse pile spawned (16 killed) | max Kindling patches {maxP} | FbGround {FbGround} FbTrail {FbTrail} | corpse max order {D2Feel1434.OrdCorpse + 568}");
+            ZKill1618(L); T.kit1618 = kit0; _zClip = null; ZhEnd1618(scen, clip);
         }
 
         // ---------------------------------------------------------------- t1643 clip: a FRESH save (pact keys deleted) -> menu -> altar (Zhurong unlocked + sealed, others locked) -> DESCEND -> run

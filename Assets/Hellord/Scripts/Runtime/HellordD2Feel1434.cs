@@ -11,7 +11,7 @@ namespace Hellord
 
     public static class D2Feel1434
     {
-        const int OrdCorpse = -15000, OrdPool = -15100, OrdSplat = -15050; // ground decals: above the floor (-29xxx), under every actor (about -432 +- 1000)
+        public const int OrdCorpse = -15000, OrdPool = -15100, OrdSplat = -15050; // t1644: public for the fire-ground compile-time check (HellordFireBasics1481) // ground decals: above the floor (-29xxx), under every actor (about -432 +- 1000)
         static readonly string[] Dirs = { "south", "east", "north", "west" }; // = HArt walk rows 0,4,8,12
         static Transform _root;
         static readonly List<D2Corpse1434> _c = new List<D2Corpse1434>(80);

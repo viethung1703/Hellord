@@ -55,7 +55,16 @@ namespace Hellord
         readonly List<FbRecoil> _fbRecoils = new List<FbRecoil>(); readonly List<FbPatch> _fbPatches = new List<FbPatch>(); readonly List<int> _fbQ = new List<int>(64); int _fbShot, _fbPillars;
         void ClearFb1481() { foreach (var b in _fbBalls) HellordAudio.LoopStop(b.loop, 0.1f); _fbPend.Clear(); _fbRocks.Clear(); _fbStrands.Clear(); _fbBalls.Clear(); _fbRecoils.Clear(); _fbPatches.Clear(); _fbPillars = 0; FireBasicsFX1481.Clear(); }
         // draw order (HFX v3 section 3): floor decals (heat, patches) < band tiles < shadows < imps/hero (YSort) < ball +14 / strand +20 / rock +30 < impact, star, blast +40. YSort adds 1 per px, so "+N" = N px in front.
-        const float FbFps = 30f, FbPx = 16f; const int FbGround = -15250, FbTrail = -14500; // both under every actor (see D2Feel1434 OrdPool)
+        // t1644 (VH): fire ground ABOVE every corpse / blood pool / splat at any y, still UNDER every living actor (was -15250 / -14500 = under corpses).
+        //  YSort(y) = room px - 432; rooms are <= 864 px tall (-432..432), checked here with the wider +-1000 (-1432..568) for safety.
+        //  Fire ground = FbGround + YSort + (-100..+40) -> -9532..-7392; trail (airborne shadows) = FbTrail + YSort + 3 -> -8679..-6679.
+        //  Corpse stack = D2Feel1434.OrdPool - 1 .. OrdCorpse + YSort -> at most -14432. Actors = YSort (-20 pickups, -2 outlines) -> at least -1452.
+        //  Same 750 step between FbGround and FbTrail as before. The two const checks below stop the build if a value ever breaks that.
+        const float FbFps = 30f, FbPx = 16f; const int FbGround = -8000, FbTrail = -7250;
+        const int FbYsMin1644 = -1432, FbYsMax1644 = 568;
+        const uint FbAboveCorpses1644 = (uint)(FbGround + FbYsMin1644 - 100 - (D2Feel1434.OrdCorpse + FbYsMax1644) - 1); // compile error if fire ground could touch a corpse
+        const uint FbUnderActors1644 = (uint)((FbYsMin1644 - 20) - (FbTrail + FbYsMax1644 + 3) - 1);                        // compile error if fire ground / trail could touch an actor
+        const int FbDarkBase1644 = -15950; // floor darkening keeps its old place (= old FbGround - 700): above the floor, under corpses and fire decals
 
         // ---------------------------------------------------------------- aim / helpers
         Vector2 FbAimPoint1481(float range)
@@ -68,7 +77,7 @@ namespace Hellord
         bool FbNoNumber1481() => _fbHitMode1481 == 2 && HellordTuning.I.fbDeclutter1481;
         bool FbNoBlob1481() => _fbHitMode1481 != 0 && HellordTuning.I.fbNoHitBlob1481;
         void FbHit1481(Enemy e, float dmg, SkillInst s, Vector2 knock, int mode, bool tick = false) { int o = _fbHitMode1481; _fbHitMode1481 = mode; try { Hit(e, dmg, s, knock, tick); } finally { _fbHitMode1481 = o; } }
-        int FbDarkOrd1481(float y) => FbGround - 700 + YSort(y); // floor darkening: above the floor (-29xxx), under the fire decals and corpses
+        int FbDarkOrd1481(float y) => FbDarkBase1644 + YSort(y); // floor darkening: above the floor (-29xxx), under the fire decals and corpses
         bool FbArea1481(Vector2 at, float r, float dmg, SkillInst s, float knock, int mode = 1, float yScale = 1f)
         {
             Query(at, r, _fbQ); SkillArea53(at, r, dmg, (int)s.def.id); bool any = false;
