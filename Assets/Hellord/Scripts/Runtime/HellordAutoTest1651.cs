@@ -14,8 +14,8 @@ namespace Hellord
     /// fixed RNG seed, no crits, cameras off while measuring. Output: summary lines + sup1651_matrix.txt.</summary>
     public partial class HellordGame
     {
-        enum SmFix1651 { Std, Dense, Homing, Exec, Kill, Leech, Dur, SparseLine, SparseSide, StdFar, AreaBlast, AreaChain, AreaReach, AreaLure }
-        static readonly SmFix1651[] SmAreaFix1651 = { SmFix1651.Dense, SmFix1651.SparseLine, SmFix1651.SparseSide, SmFix1651.AreaBlast, SmFix1651.AreaChain, SmFix1651.AreaReach, SmFix1651.AreaLure }; /* appended layouts only run when earlier ones fail, so already-passing Area pairs stay on Dense / Sparse */ static readonly SmFix1651[] SmDistFix1651 = { SmFix1651.Std, SmFix1651.StdFar }; /* StdFar: + demons past the end of a long roll / flight (bounce at the end) */
+        enum SmFix1651 { Std, Dense, Homing, Exec, Kill, Leech, Dur, SparseLine, SparseSide, StdFar, AreaBlast, AreaChain, AreaReach, AreaLure, AreaFissure }
+        static readonly SmFix1651[] SmAreaFix1651 = { SmFix1651.Dense, SmFix1651.SparseLine, SmFix1651.SparseSide, SmFix1651.AreaBlast, SmFix1651.AreaChain, SmFix1651.AreaReach, SmFix1651.AreaLure, SmFix1651.AreaFissure }; /* appended layouts only run when earlier ones fail, so already-passing Area pairs stay on Dense / Sparse */ static readonly SmFix1651[] SmDistFix1651 = { SmFix1651.Std, SmFix1651.StdFar }; /* StdFar: + demons past the end of a long roll / flight (bounce at the end) */
         static bool SmLv1Ok1651(double a, double b) => System.Math.Abs(b - a) > System.Math.Max(System.Math.Abs(a) < 0.05 ? 1e-5 : 1e-3, System.Math.Abs(a) * 0.002); /* small metrics (1 / 180 s cooldown) need a small floor */
         class SmM1651 { public double hits, firstHit, kills, dmg, affected, potency, disp, heal, span, casts, proj, cdInv, kill, probe; }
         readonly List<Enemy> _smL1651 = new List<Enemy>(128); readonly List<float> _smHp0 = new List<float>(128); readonly List<Vector2> _smP0 = new List<Vector2>(128);
@@ -81,6 +81,7 @@ namespace Hellord
                 case SmFix1651.AreaChain: Mk(new Vector2(2.0f, 0f), 1e6f, 1e6f); Mk(new Vector2(2.0f, 6.7f), 1e6f, 1e6f); Mk(new Vector2(10.0f, 2.7f), 1e6f, 1e6f); break; /* Thunder Javelin built-in chain (4 jumps, s.R(6.5)=6.5 / 7.8 / 9.1). A on the aim line; B 6.7 from A (between 6.5 and Lv1 7.8); C 8.94 from B and 8.44 from A (only Lv3 reaches C from B; the spear itself does not) */
                 case SmFix1651.AreaReach: Mk(new Vector2(4.2f, 0f), 1e6f, 1e6f); Mk(new Vector2(4.2f, 2.67f), 1e6f, 1e6f); Mk(new Vector2(4.2f, -3.00f), 1e6f, 1e6f); break; /* Phantom Axes: 2 ghosts at cursor ±1.8 u, chop toward the cursor, reach RA(2.6)+0.5 = 3.10 / 3.35 / 3.58. On the cursor (always); (4.2, 2.67) dist 3.220 miss none hit Lv1; (4.2, -3.00) on the other side, dist 3.498 miss Lv1 hit Lv3. Opposite sides so the step imps (radius 0.5) do not overlap and get separated */
                 case SmFix1651.AreaLure: Mk(new Vector2(3.0f, 0f), 1e6f, 1e6f); Mk(new Vector2(6.5f, 0f), 1e6f, 1e6f); Mk(new Vector2(7.6f, 0f), 1e6f, 1e6f); break; /* Ember Effigy lure is s.R(6) from the decoy at the dash start (the hero): 6 / 7.2 / 8.4. Inside always / between none and Lv1 / between Lv1 and Lv3 */
+                case SmFix1651.AreaFissure: Mk(new Vector2(3.0f, 0f), 1e6f, 1e6f); Mk(new Vector2(4.5f, 0.89f), 1e6f, 1e6f); Mk(new Vector2(4.5f, -0.95f), 1e6f, 1e6f); break; /* Earth-Splitting Slam v2 width W = 28 px * kW / 16 * RA. SmAim is (6, 0.8) so chest-aim is +x, row 0, kW=0.7 (squash 0.7), fissure on y=0 (the default 4.2,0 cursor would aim slightly down from the chest). hw+0.25 = 0.863 / 0.921 / 0.975. On the line (always); (4.5, 0.89) miss none hit Lv1; (4.5, -0.95) miss Lv1 hit Lv3. Opposite sides, >1 u apart. Length does not scale; the impact circle at P (0.56, 0) does not reach x=4.5 */
                 case SmFix1651.Homing: for (int i = 0; i < 3; i++) for (int j = 0; j < 3; j++) Mk(new Vector2(3.8f + i * 0.7f, 2.4f + j * 0.7f), 1e6f, 1e6f); break;
                 case SmFix1651.Kill: for (int i = 0; i < 8; i++) for (int j = 0; j < 5; j++) Mk(new Vector2(1.2f + i * 0.9f, -1.8f + j * 0.9f), 1f, 1f); break;
                 case SmFix1651.StdFar: for (int i = 0; i < 8; i++) for (int j = 0; j < 5; j++) Mk(new Vector2(1.2f + i * 0.9f, -1.8f + j * 0.9f), 1e6f, 1e6f); Mk(new Vector2(12.5f, 2f), 1e6f, 1e6f); Mk(new Vector2(12.5f, -2f), 1e6f, 1e6f); Mk(new Vector2(14f, 0f), 1e6f, 1e6f); break;
@@ -88,7 +89,7 @@ namespace Hellord
             }
             foreach (var e in _smL1651) { _smHp0.Add(e.hp); _smP0.Add(e.pos); _smPot.Add(0f); }
         }
-        Vector2 SmAim1651(SmFix1651 f) => _smH1651 + (f == SmFix1651.Homing ? new Vector2(5f, -0.6f) : new Vector2(4.2f, 0f));
+        Vector2 SmAim1651(SmFix1651 f) => _smH1651 + (f == SmFix1651.Homing ? new Vector2(5f, -0.6f) : f == SmFix1651.AreaFissure ? new Vector2(6f, 0.8f) : new Vector2(4.2f, 0f)); /* AreaFissure: cursor at chest height so AimDir is +x and the slam row is 0 */
         /// <summary>one measured cast. sup = null: no support. lvl 1..5.</summary>
         IEnumerator SmRun1651(SkillId id, SupportDef sup, int lvl, SmFix1651 f, SmM1651 m)
         {
