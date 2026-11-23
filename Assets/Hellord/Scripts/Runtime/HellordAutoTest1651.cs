@@ -225,9 +225,9 @@ namespace Hellord
             int pass = 0, fail = 0, warn = 0, pairs = 0, noise = 0; var failL = new List<string>(); var warnL = new List<string>();
             foreach (var id in ids)
             {
-                var def = HData.Skill(id); var baseM = new Dictionary<SmFix1651, SmM1651>(); var line = new StringBuilder(); bool skOk = true;
+                var def = HData.Skill(id); var baseM = new Dictionary<SmFix1651, SmM1651>(); var line = new StringBuilder(); bool skOk = true; bool det = true;
                 { _smSt1651 = Status.None; var n1 = new SmM1651(); var n2 = new SmM1651(); yield return SmRun1651(id, null, 1, SmFix1651.Std, n1); yield return SmRun1651(id, null, 1, SmFix1651.Std, n2);
-                  bool det = n1.dmg == n2.dmg && n1.hits == n2.hits && n1.affected == n2.affected; if (!det) { skOk = false; noise++; } line.Append(det ? "deterministic | " : $"NOISE dmg {n1.dmg:0.##}/{n2.dmg:0.##} hits {n1.hits}/{n2.hits} | "); mx.AppendLine($"{def.name}\t(repeat)\t-\tnoise\t{n1.dmg:0.###}\t-\t{n2.dmg:0.###}\t{(det ? "deterministic" : "NOISE")}"); }
+                  det = n1.dmg == n2.dmg && n1.hits == n2.hits && n1.affected == n2.affected; if (!det) { skOk = false; noise++; } line.Append(det ? "deterministic | " : $"NOISE dmg {n1.dmg:0.##}/{n2.dmg:0.##} hits {n1.hits}/{n2.hits} | "); mx.AppendLine($"{def.name}\t(repeat)\t-\tnoise\t{n1.dmg:0.###}\t-\t{n2.dmg:0.###}\t{(det ? "deterministic" : "NOISE")}"); }
                 foreach (var sd in HData.Supports)
                 {
                     if (sd.metric1651 == SupMetric1651.None) continue; bool fit = HData.Fits(sd, def);
@@ -242,7 +242,7 @@ namespace Hellord
                         v0 = SmVal1651(sd, b0);
                         if (fit) { var m1 = new SmM1651(); yield return SmRun1651(id, sd, 1, fx, m1); v1 = SmVal1651(sd, m1); if (sd.metric1651 == SupMetric1651.Repeat) repOk = m1.casts > b0.casts; }
                         var m5 = new SmM1651(); yield return SmRun1651(id, sd, 5, fx, m5); v5 = SmVal1651(sd, m5);
-                        bool okF = fit ? SmLv1Ok1651(v0, v1) && repOk && v5 > v1 + System.Math.Max(1e-3, System.Math.Abs(v1) * 0.002) : !SmLv1Ok1651(v0, v5); if (okF) break; /* stop at the first layout that shows it (fit) / keep probing while no change (missing tag) */
+                        bool okF = fit ? SmLv1Ok1651(v0, v1) && repOk && v5 > v1 + System.Math.Max(1e-3, System.Math.Abs(v1) * 0.002) : !(v5 > v0 + System.Math.Max(1e-3, System.Math.Abs(v0) * (det ? 0.002 : 0.05))); if (okF) break; /* stop at the first layout that shows it (fit) / keep probing while no change (missing tag) */
                     }
                     string verdict;
                     if (fit)
@@ -252,7 +252,7 @@ namespace Hellord
                     }
                     else
                     {
-                        bool chg = System.Math.Abs(v5 - v0) > System.Math.Max(1e-3, System.Math.Abs(v0) * 0.002); verdict = chg ? "WARN missing tag" : "-";
+                        bool chg = v5 > v0 + System.Math.Max(1e-3, System.Math.Abs(v0) * (det ? 0.002 : 0.05)); /* a socketed support only ever raises its metric; on a noisy skill it must beat the noise */ verdict = chg ? "WARN missing tag" : "-";
                         if (chg) { warn++; warnL.Add($"{def.name}/{sd.name} ({v0:0.##}->{v5:0.##})"); }
                     }
                     mx.AppendLine($"{def.name}\t{sd.name}\t{(fit ? "fit" : "no")}\t{sd.metric1651}\t{v0:0.###}\t{(fit ? v1.ToString("0.###") : "-")}\t{v5:0.###}\t{verdict}\t{fx}");
