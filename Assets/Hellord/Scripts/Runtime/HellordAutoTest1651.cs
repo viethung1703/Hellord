@@ -284,6 +284,39 @@ namespace Hellord
             }
             return null;
         }
+
+        // ---------------------------------------------------------------- t1651 clip: pairs that were dead before the rebuild, now working
+        IEnumerator AtSupClip1651()
+        {
+            string scen = "supclip1651", clip = scen; var T = HellordTuning.I; _zClip = clip;
+            yield return ZhStart1618(scen, clip, SkillId.Fireball);
+            bool pa0 = _pactActive51; _pactActive51 = false; float crit0 = crit; crit = 0f;
+            Vector2 H0 = _heroPos; var L = new List<Enemy>(); var log = new StringBuilder();
+            void Pack() { ZKill1618(L); for (int i = 0; i < 5; i++) for (int j = 0; j < 4; j++) ZMk1618(L, EType.Imp, H0 + new Vector2(2.2f + i * 1.1f, -1.9f + j * 1.25f), 0f, 1e6f); }
+            IEnumerator Shot(SkillId id, string label, float sec, params (SupportId, int)[] sups)
+            {
+                Pack(); var s = new SkillInst { def = HData.Skill(id), level = 3 }; foreach (var (sid, lv) in sups) { s.AddSupport(sid); s.supLvl[(int)sid] = lv; }
+                skills.Clear(); skills.Add(s); s.cd = 0f; Toast(label); int p0 = AtProj1651, h0 = AtHits1651;
+                yield return ZF1618(12); _heroPos = H0; atMouse986 = H0 + new Vector2(5f, 0f); HInput.AtLmb = true; yield return ZF1618(3); HInput.AtLmb = false;
+                yield return ZT1618(sec); log.Append($" | {label}: proj {AtProj1651 - p0} hits {AtHits1651 - h0}");
+                foreach (var b in _fbBalls) HellordAudio.LoopStop(b.loop, 0.05f); _fbBalls.Clear(); _fbPend.Clear(); skills.Clear();
+            }
+            yield return Shot(SkillId.RollingMagmaRock, "INFERNAL BOULDER - NO SUPPORT", 2.6f);
+            yield return Shot(SkillId.RollingMagmaRock, "BOULDER + MULTI LV3 + FORK LV3", 3.0f, (SupportId.MultipleProjectiles, 3), (SupportId.Fork, 3));
+            yield return Shot(SkillId.SparkSpray, "SPARK SPRAY - NO SUPPORT", 1.6f);
+            yield return Shot(SkillId.SparkSpray, "SPARK SPRAY + MULTI LV3", 1.8f, (SupportId.MultipleProjectiles, 3));
+            // kit skill with a support: Backdraft (dash slot 3) pull, without and with Bigger Area Lv5
+            for (int pass = 0; pass < 2; pass++)
+            {
+                Pack(); ResetKit1651(); T.kitMove1618 = 3; var ki = ZkI1651(2); if (pass == 1) { ki.AddSupport(SupportId.BiggerArea); ki.supLvl[(int)SupportId.BiggerArea] = 5; }
+                Toast(pass == 0 ? "BACKDRAFT (KIT DASH) - NO SUPPORT" : "BACKDRAFT + BIGGER AREA LV5"); yield return ZF1618(12);
+                _heroPos = H0 + new Vector2(4.4f, 0f); ZhMoveCd = 0f; int pl0 = ZhPulled1618; ZhDashStart1618(_heroPos); yield return ZT1618(1.6f);
+                log.Append($" | backdraft{(pass == 1 ? "+area5" : "")}: pulled {ZhPulled1618 - pl0}");
+            }
+            ResetKit1651(); ZKill1618(L); _pactActive51 = pa0; crit = crit0; _heroPos = H0;
+            ARes(scen + ":clip", _r1561 > 0 || _atRecFps <= 0, $"frames {_r1561}{log}");
+            _zClip = null; ZhEnd1618(scen, clip);
+        }
     }
 }
 #endif
