@@ -116,7 +116,7 @@ namespace Hellord
                 Vector2 d = PbRot(dir, HData.At(T.sparkFanDeg1567, i + 1, 0f)); float range = T.sparkRangeU1567 * HData.At(T.sparkRangeMul1567, i + 1, 1f);
                 _pbSparks.Add(new PbSpark { a = g, p = g, dir = d, nrm = new Vector2(-d.y, d.x), range = range, idx = i, wob = HData.At(T.sparkWobbleU1567, i + 1, 0.3f), hz = T.sparkWobbleHz1567 * HData.At(T.sparkHzMul1567, i + 1, 1f), ph = HData.At(T.sparkPhase1567, i + 1, 0f), z0 = Mathf.Max(0f, o.y - g.y), dmg = dmg * T.sparkDmgMul1567, s = s });
             }
-            _pbSparkSeed1567++; SparkLastN1567 = n; SparkSpawned1567 += n; PbCasts1567[0]++; PbFlash1567(0, _heroPos + PbAim1567() * 0.6f); PbShake1567(0); HellordAudio.Play("storm_ring", PbPitch1567(0));
+            AtProj1651 += n; /* t1651 probe */ _pbSparkSeed1567++; SparkLastN1567 = n; SparkSpawned1567 += n; PbCasts1567[0]++; PbFlash1567(0, _heroPos + PbAim1567() * 0.6f); PbShake1567(0); HellordAudio.Play("storm_ring", PbPitch1567(0));
             return true;
         }
         int _pbSparkSeed1567 = 1;
@@ -239,7 +239,7 @@ namespace Hellord
         bool CastThunderJavelin1567(SkillInst s, float dmg)
         {
             var T = HellordTuning.I; Vector2 dir = PbAim1567(); Vector2 o = CastOrigin1528(HeroCenter + dir * 0.4f, ref dir); dir.Normalize();
-            Vector2 g = o - Vector2.up * T.javHeightU1567; _pbJavs.Add(new PbJav { a = g, p = g, dir = dir, range = T.javRangeU1567, dmg = dmg, s = s });
+            Vector2 g = o - Vector2.up * T.javHeightU1567; _pbJavs.Add(new PbJav { a = g, p = g, dir = dir, range = T.javRangeU1567, dmg = dmg, s = s }); AtProj1651++; /* t1651 probe */
             PbCasts1567[2]++; HellordAudio.Play("storm_ring", PbPitch1567(2)); return true;
         }
         void UpdateJavs1567(float dt)
@@ -428,7 +428,7 @@ namespace Hellord
                 Vector2 dd = m > 0.0001f ? dv / m : dir; b = hand + dd * Mathf.Clamp(m, T.axeRangeMinU1567, T.axeRangeMaxU1567) - hu; AxeLastDir1595 = dd;
             }
             ClampToRoom(ref b, 4);
-            _pbAxe = new PbAxe { a = g, b = b, p = g, dmg = dmg, s = s }; AxeThrows1567++; PbCasts1567[5]++; PbShake1567(5); HellordAudio.Play("hook_chain_throw", PbPitch1567(5)); return true;
+            _pbAxe = new PbAxe { a = g, b = b, p = g, dmg = dmg, s = s }; AxeThrows1567++; AtProj1651++; /* t1651 probe */ PbCasts1567[5]++; PbShake1567(5); HellordAudio.Play("hook_chain_throw", PbPitch1567(5)); return true;
         }
         public static Vector2 AxeLastDir1595, AxeLastFlash1595; public static Enemy AxeLastHitE1595;
         /// <summary>t1595 debug overlay: the axe / javelin hit circles at their drawn positions</summary>

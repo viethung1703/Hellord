@@ -25,6 +25,7 @@ namespace Hellord
                 case "startpact1643": return AtStartPact1643(); // t1643 clip: fresh save -> Zhurong unlocked + sealed
                 case "groundsort1644": return AtGroundSort1644(); // t1644 clip: fire ground over corpses, under living enemies
                 case "ultprog1646": return AtUltProg1646(); // t1646 clip: R slot ultimate progress
+                case "sup1651": return AtSup1651(); // t1651 support matrix
                 case "hydrascorch1647": return AtHydraScorch1647(); // t1647 clip: Hydra ends -> v3 scorch (own seed) // t1635 clip: Kindling shader patches under Fireball hits
                 case "firewall986_nosplit": return ZNoSplit1618(AtFireWall986()); // the t986 Fire Wall test, with the t1618 split off (= Hellfire Pillar is the wall again)
                 case "chain1563": return AtChain1563();

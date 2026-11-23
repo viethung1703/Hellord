@@ -538,7 +538,7 @@ namespace Hellord
                     {   // 0.27 s after the windup started: the bolt leaves the jaw
                         o.armed[h] = false; Vector2 m = o.p + HydraMouthPx1625(h, o.t, ZHyRise1625(o), ZHyFade1625(o), o.spitT[h], o.aim[h]) / 16f; Vector2 dir = new Vector2(Mathf.Cos(o.aim[h]), Mathf.Sin(o.aim[h]));
                         _zBolt1625.Add(new ZBolt { p = m, v = dir * T.hyBoltSpeed1625, t = 0f, life = T.hySight1625 / Mathf.Max(0.1f, T.hyBoltSpeed1625), dmg = o.dmg * T.hyBoltDmg1625, s = o.s, seed = Random.value });
-                        ZhBoltsShot1625++; HellordAudio.Play("fireball_cast", 1.6f);
+                        ZhBoltsShot1625++; AtProj1651++; /* t1651 probe */ HellordAudio.Play("fireball_cast", 1.6f);
                     }
                     if (fading || o.armed[h] || o.t < o.next[h]) continue;
                     // this head picks its own target: the nearest enemy in sight not already taken by another head (else the nearest)

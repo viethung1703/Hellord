@@ -171,7 +171,7 @@ namespace Hellord
             var T = HellordTuning.I; Vector2 dir = p.dir; Vector2 at = _heroPos + dir * (T.rrStartPx1481 / FbPx); ClampToRoom(ref at, 4);
             var b = new FbBall { p = at, dir = dir, range = T.rrRangePx1481 / FbPx * PRange49, z = T.rrDropPx1481, dmg = p.dmg, s = p.s, row = FireBasicsFX1481.DirRow(dir),
                 loop = HellordAudio.LoopStart("Audio/SFX/firebasics1481/magma_rock_roll_loop", Random.Range(T.rrLoopVolMin1481, T.rrLoopVolMax1481), 1f + Random.Range(-T.rrLoopPitchSpread1481, T.rrLoopPitchSpread1481)) }; // one roll voice per ball
-            _fbBalls.Add(b); HellordAudio.Play("magma_rock_launch");
+            _fbBalls.Add(b); AtProj1651++; /* t1651 probe */ HellordAudio.Play("magma_rock_launch");
             if (!T.rrBandFromTouch1528) for (int i = T.rrBandPre1481; i >= 1; i--) FbBandTile1481(b, at - dir * ((i * T.rrBandGapPx1481 + T.rrBandBehindPx1481) / FbPx), -i); // HFX v4: segments -2, -1 laid at launch behind the spawn // 4 tiles behind at -24..-6 px: the band starts ~1.3 balls long
         }
         void FbBandTile1481(FbBall b, Vector2 at, int seg)

@@ -18,7 +18,7 @@ namespace Hellord
                 if (HData.Summon561(s.def)) { s.cd = 0; continue; } // t561u: summons are passive (minion tick)
                 if (s.def.id == SkillId.StormRing) hasRing = true;
                 s.cd -= dt; bool want716 = !Manual716 || Want716(s); if (Manual716 && s.cd < 0) s.cd = 0; if (IsFb1481(s.def.id)) { want716 = FbWant1481(s); if (s.cd < 0) s.cd = 0; } /* t1481: player-fired (LMB) */ bool basic1517 = s == _basic1517; if (basic1517) { want716 = BasicWant1517(); if (s.cd < 0) s.cd = 0; } /* t1517: the basic main attack fires only while LMB is held */ // t716u: Manual = cast on key
-                if (s.cd <= 0 && want716 && PactCanCast53(s)) { s.cd = s.def.cooldown * s.CdMul * PactCd53(s); float lc53 = _lastCast[(int)s.def.id]; if (basic1517 || IsFb1481(s.def.id) && s == FbLmbBasic1517()) BasicCast1517(s, 1f); else Cast(s, 1f); if (_lastCast[(int)s.def.id] != lc53) PactAfterCast53(s); s.cd *= SinEchoCd818(s); if (s.Has(SupportId.Echo) && !SinNoEcho818(s)) { s.echoLeft = HData.At(HellordTuning.I.supEchoCount, s.Lvl(SupportId.Echo)); if (s.def.id == SkillId.CurseRune) s.echoLeft = Mathf.Min(s.echoLeft, HellordTuning.I.curseEchoMax738); s.echoT = s.echoLeft > 0 ? 0.3f : -1; } /* t738u */ }
+                if (s.cd <= 0 && want716 && PactCanCast53(s)) { s.cd = s.def.cooldown * s.CdMul * PactCd53(s); float lc53 = _lastCast[(int)s.def.id]; if (basic1517 || IsFb1481(s.def.id) && s == FbLmbBasic1517()) BasicCast1517(s, 1f); else Cast(s, 1f); if (_lastCast[(int)s.def.id] != lc53) PactAfterCast53(s); s.cd *= SinEchoCd818(s); AtCd1651 = s.cd; /* t1651 probe */ if (s.Has(SupportId.Echo) && !SinNoEcho818(s)) { s.echoLeft = HData.At(HellordTuning.I.supEchoCount, s.Lvl(SupportId.Echo)); if (s.def.id == SkillId.CurseRune) s.echoLeft = Mathf.Min(s.echoLeft, HellordTuning.I.curseEchoMax738); s.echoT = s.echoLeft > 0 ? 0.3f : -1; } /* t738u */ }
                 if (s.echoT > 0) { s.echoT -= dt; if (s.echoT <= 0) { _echo738 = true; Cast(s, HData.At(HellordTuning.I.supEchoDmg, s.Lvl(SupportId.Echo), 0.5f) * SinEchoDmg818()); _echo738 = false; if (--s.echoLeft > 0) s.echoT = 0.3f; else s.echoT = -1; } } // v0.0.27: Echo repeats grow with its level
             }
             if (!hasOrbit && (_orbs.Count > 0 || _orbitJobs != null)) { foreach (var o in _orbs) Destroy(o.gameObject); _orbs.Clear(); KillOrbit(); }
@@ -122,7 +122,7 @@ namespace Hellord
                 case SkillId.TwinAxeThrow: if (!CastTwinAxe1567(s, dmg)) return; break;
                 case SkillId.PhantomAxes: if (!CastPhantomAxes1567(s, dmg)) return; break;
             }
-            _lastCast[(int)s.def.id] = Time.time;
+            _lastCast[(int)s.def.id] = Time.time; AtCasts1651++; // t1651 probe
         }
         // t738u: Curse Rune radius. Area sources add (1 + sum of bonuses) instead of compounding, then capped.
         bool _echo738;
@@ -209,7 +209,7 @@ namespace Hellord
             foreach (var p in _pr)
             {
                 if (p.alive) continue;
-                p.alive = true; p.s = s; p.pos = pos; p.vel = vel; p.dmg = dmg; p.pierce = pierce; p.fork = fork; p.bounce = bounce; p.explodeR = explodeR;
+                AtProj1651++; /* t1651 probe */ p.alive = true; p.s = s; p.pos = pos; p.vel = vel; p.dmg = dmg; p.pierce = pierce; p.fork = fork; p.bounce = bounce; p.explodeR = explodeR;
                 p.ret53 = false; p.emp53 = false; p.bone53 = false; _lastProj53 = p; PactSpawnProj53(p); p.homing = s.Has(SupportId.Homing); p.life = 1.6f * PRange49; p.vel *= PSpeed49;
                 { var T = HellordTuning.I; int hl = s.Lvl(SupportId.Homing), bl = s.Lvl(SupportId.Bounce), fl = s.Lvl(SupportId.Fork); // v0.0.27: support levels
                   p.homingTurn = HData.At(T.supHomingTurn, hl, 6f); p.homingR = HData.At(T.supHomingRangeU, hl, 5f); p.bounceR = HData.At(T.supBounceRangeU, bl, 4f);

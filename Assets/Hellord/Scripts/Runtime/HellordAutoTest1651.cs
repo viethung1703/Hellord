@@ -1,0 +1,187 @@
+#if HELLORD_AUTOTEST
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using PixelFXPack;
+using UnityEngine;
+namespace Hellord
+{
+    /// <summary>t1651 support matrix (scenario sup1651). For EVERY pickable skill (the pacts' start basics + the Zhurong kit skills) and EVERY support whose
+    /// tags fit, cast the skill once in a fixed dummy field with no support, with the support at Lv1 and at Lv5, and measure the support's own metric
+    /// (SupportDef.metric1651). FAIL when Lv1 does not change the metric or Lv5 does not beat Lv1 (= the tag lies: the support is offered but dead).
+    /// WARN when a support the tags do NOT allow would have changed the metric (a missing tag). Static checks: every support has a category and a metric,
+    /// card text is generated from tuning. New skills / supports join automatically (pact basics list, HData.Supports). Fixed dt (captureFramerate 30),
+    /// fixed RNG seed, no crits, cameras off while measuring. Output: summary lines + sup1651_matrix.txt.</summary>
+    public partial class HellordGame
+    {
+        enum SmFix1651 { Std, Dense, Homing, Exec, Kill, Leech, Dur }
+        class SmM1651 { public double hits, firstHit, kills, dmg, affected, potency, disp, heal, span, casts, proj, cdInv, kill, probe; }
+        readonly List<Enemy> _smL1651 = new List<Enemy>(128); readonly List<float> _smHp0 = new List<float>(128); readonly List<Vector2> _smP0 = new List<Vector2>(128);
+        readonly List<float> _smPot = new List<float>(128);
+        Vector2 _smH1651;
+        public static System.Func<HellordGame, SkillId, IEnumerator> SmKitCast1651; // stage 4 hook: kit skills cast through this
+        static SmFix1651 SmFixFor1651(SupMetric1651 m) => m == SupMetric1651.Area ? SmFix1651.Dense : m == SupMetric1651.Homing ? SmFix1651.Homing : m == SupMetric1651.Execute ? SmFix1651.Exec : m == SupMetric1651.KillHook ? SmFix1651.Kill : m == SupMetric1651.Leech ? SmFix1651.Leech : m == SupMetric1651.Duration ? SmFix1651.Dur : SmFix1651.Std;
+        static double SmVal1651(SupportDef sd, SmM1651 m)
+        {
+            switch (sd.metric1651)
+            {
+                case SupMetric1651.Proj: return m.proj;
+                case SupMetric1651.Distinct: return m.hits; // direct hits (pierce / fork / bounce / chain jumps each add one)
+                case SupMetric1651.Homing: return m.firstHit > 0 ? 1.0 / m.firstHit : 0; // reaches the off-axis pack (sooner = better)
+                case SupMetric1651.Area: return m.affected;
+                case SupMetric1651.Repeat: return m.dmg; // + the cast count must rise (checked in the verdict)
+                case SupMetric1651.Status: return m.potency;
+                case SupMetric1651.Damage: case SupMetric1651.Execute: return m.dmg;
+                case SupMetric1651.Cooldown: return m.cdInv;
+                case SupMetric1651.Leech: return m.heal;
+                case SupMetric1651.Knock: return m.disp;
+                case SupMetric1651.KillHook: return m.kills > 0 ? m.kill / m.kills : 0; // support output per kill by the skill
+                case SupMetric1651.Duration: return m.probe > 0 ? m.probe : m.span;
+            }
+            return 0;
+        }
+        static float SmPotency1651(Enemy e, Status st)
+        {
+            switch (st)
+            {
+                case Status.Burn: return e.burnT > 0 ? e.burnDps * e.burnT : 0f;
+                case Status.Bleed: return e.bleedT > 0 ? e.bleedDps * e.bleedT : 0f;
+                case Status.Chill: return Mathf.Max(0f, e.chillT) + (e.freezeT > 0 ? 5f : 0f);
+                case Status.Shock: return e.shockT > 0 ? e.shockAmp * e.shockT * 10f : 0f;
+            }
+            return 0f;
+        }
+        List<SkillId> SmSkills1651()
+        {
+            var l = new List<SkillId>(); for (int p = 0; p < NP97; p++) foreach (var id in DfBasics1555(p, false)) if (!l.Contains(id)) l.Add(id);
+            return l;
+        }
+        bool SmIsKit1651(SkillId id) => SmKitIds1651 != null && System.Array.IndexOf(SmKitIds1651, id) >= 0;
+        public static SkillId[] SmKitIds1651; // stage 4: the 12 Zhurong kit SkillIds
+        void SmClear1651()
+        {
+            foreach (var e in _en) { if (e.boss || !e.alive && !e.dying) continue; StopStatuses(e); DetachFx(e); e.alive = false; e.dying = false; e.sr.gameObject.SetActive(false); }
+            _smL1651.Clear(); foreach (var p in _pr) KillProj(p); _blasts.Clear(); _sched.Clear(); ClearV44(); ZhUltCd = ZhMoveCd = ZhSpecCd = 0f; ZhSunMeter1618 = 0f; ZhNearMiss1618 = 0;
+            foreach (var p in _pk) { var j = p.job; p.job = null; p.magnet = false; if (j != null) HellFXRunner.I.Kill(j); p.alive = false; p.sr.gameObject.SetActive(false); }
+            _leechHealed = 0f;
+        }
+        void SmField1651(SmFix1651 f)
+        {
+            Vector2 H = _smH1651; _smHp0.Clear(); _smP0.Clear(); _smPot.Clear();
+            void Mk(Vector2 at, float hpMax, float hpNow) { var e = ZMk1618(_smL1651, EType.Imp, H + at, 0f, hpMax); if (e == null) return; e.hp = hpNow; }
+            switch (f)
+            {
+                case SmFix1651.Dense: for (int i = 0; i < 12; i++) for (int j = 0; j < 9; j++) Mk(new Vector2(0.8f + i * 0.5f, -2f + j * 0.5f), 1e6f, 1e6f); break;
+                case SmFix1651.Homing: for (int i = 0; i < 3; i++) for (int j = 0; j < 3; j++) Mk(new Vector2(3.8f + i * 0.7f, 2.4f + j * 0.7f), 1e6f, 1e6f); break;
+                case SmFix1651.Kill: for (int i = 0; i < 8; i++) for (int j = 0; j < 5; j++) Mk(new Vector2(1.2f + i * 0.9f, -1.8f + j * 0.9f), 1f, 1f); break;
+                default: { float hpNow = f == SmFix1651.Exec ? 8e4f : 1e6f; for (int i = 0; i < 8; i++) for (int j = 0; j < 5; j++) Mk(new Vector2(1.2f + i * 0.9f, -1.8f + j * 0.9f), 1e6f, hpNow); break; }
+            }
+            foreach (var e in _smL1651) { _smHp0.Add(e.hp); _smP0.Add(e.pos); _smPot.Add(0f); }
+        }
+        Vector2 SmAim1651(SmFix1651 f) => _smH1651 + (f == SmFix1651.Homing ? new Vector2(5f, -0.6f) : new Vector2(4.2f, 0f));
+        /// <summary>one measured cast. sup = null: no support. lvl 1..5.</summary>
+        IEnumerator SmRun1651(SkillId id, SupportDef sup, int lvl, SmFix1651 f, SmM1651 m)
+        {
+            SmClear1651(); _heroPos = _smH1651; SnapCamera(); var T = HellordTuning.I;
+            var s = new SkillInst { def = HData.Skill(id), level = 1 }; if (sup != null) { s.AddSupport(sup.id); s.supLvl[(int)sup.id] = lvl; }
+            bool kit = SmIsKit1651(id);
+            if (!kit) { skills.Clear(); skills.Add(s); } else SmKitSet1651?.Invoke(this, s);
+            SmField1651(f); Random.InitState(1651); crit = 0f; atMouse986 = SmAim1651(f);
+            float hp0 = f == SmFix1651.Leech ? maxHp * 0.6f : maxHp; hp = hp0;
+            yield return SmFrames1651(2, f, m, false, hp0);
+            int c0 = AtCasts1651, p0 = AtProj1651, h0 = AtHits1651, sk0 = AtSkillKills1651; float k0 = AtKill1651; _pbSparkSeed1567 = 1; _fbShot = 0; AtCd1651 = 0f; s.cd = 0f; float t0 = runTime; m.probe = 0;
+            if (kit) { if (SmKitCast1651 != null) yield return SmKitCast1651(this, id); }
+            else { HInput.AtLmb = true; yield return SmFrames1651(2, f, m, false, hp0); HInput.AtLmb = false; }
+            float cdAt = AtCd1651; if (kit) m.probe = SmKitProbe1651 != null ? SmKitProbe1651(this, id) : 0f;
+            float win = f == SmFix1651.Dur ? 7f : 2.5f; int frames = Mathf.CeilToInt(win * 30f);
+            double last = SmDmg1651(); float lastT = 0f, firstT = 0f;
+            for (int i = 0; i < frames; i++)
+            {
+                yield return SmFrames1651(1, f, m, true, hp0); double d = SmDmg1651(); if (d > last + 0.01) { last = d; lastT = runTime - t0; if (firstT <= 0f) firstT = lastT; }
+            }
+            m.dmg = SmDmg1651(); m.casts = AtCasts1651 - c0; m.proj = AtProj1651 - p0; m.kill = AtKill1651 - k0; m.cdInv = cdAt > 0.0001f ? 1.0 / cdAt : 0; m.span = lastT; m.firstHit = firstT; m.hits = AtHits1651 - h0; m.kills = AtSkillKills1651 - sk0;
+            m.affected = 0; m.disp = 0; m.potency = 0;
+            for (int i = 0; i < _smL1651.Count; i++)
+            {
+                var e = _smL1651[i]; bool hitE = e.hp < _smHp0[i] - 0.01f || !e.alive; float dp = (e.pos - _smP0[i]).magnitude; if (e.alive) m.disp += dp;
+                if (hitE || e.zFlam1618 > runTime - win || e.zCry1625 > 0f || e.lured1651) m.affected++; // damaged or marked by the skill (displacement is its own metric)
+                m.potency += _smPot[i];
+            }
+            m.heal = hp - hp0; HInput.AtLmb = false; skills.Clear();
+        }
+        double SmDmg1651() { double d = 0; for (int i = 0; i < _smL1651.Count; i++) { var e = _smL1651[i]; d += _smHp0[i] - (e.alive ? Mathf.Max(0f, e.hp) : 0f); } return d; }
+        IEnumerator SmFrames1651(int n, SmFix1651 f, SmM1651 m, bool sample, float hp0)
+        {
+            for (int k = 0; k < n; k++)
+            {
+                yield return null; if (mode != Mode.Play) mode = Mode.Play; pendingLevels = 0; _heroPos = _smH1651; atMouse986 = SmAim1651(f); AtMove1396 = Vector2.zero;
+                if (f != SmFix1651.Leech) hp = maxHp;
+                foreach (var e in _en) if (e.alive && !e.boss && !_smL1651.Contains(e)) { StopStatuses(e); DetachFx(e); e.alive = false; e.dying = false; e.sr.gameObject.SetActive(false); } // waves / splits
+                foreach (var p in _pk) if (p.alive) p.magnet = false;
+                if (sample && _smSt1651 != Status.None) for (int i = 0; i < _smL1651.Count; i++) { var e = _smL1651[i]; if (e.alive) _smPot[i] = Mathf.Max(_smPot[i], SmPotency1651(e, _smSt1651)); }
+            }
+        }
+        Status _smSt1651;
+        public static System.Action<HellordGame, SkillInst> SmKitSet1651; public static System.Func<HellordGame, SkillId, float> SmKitProbe1651;
+
+        IEnumerator AtSup1651()
+        {
+            string scen = "sup1651"; var T = HellordTuning.I;
+            yield return ZhStart1618(scen, null, SkillId.Fireball); _zKeepHp = false;
+            float crit0 = crit; int cf0 = Time.captureFramerate; Time.captureFramerate = 30; bool pa0 = _pactActive51; _pactActive51 = false; // neutral: no pact node effects (Pyromancer turns statuses into burn, etc.)
+            var cams = new List<Camera>(); foreach (var c in Camera.allCameras) if (c.enabled && System.Environment.GetCommandLineArgs().Length > 0 && !System.Array.Exists(System.Environment.GetCommandLineArgs(), a => a == "-smRender")) { c.enabled = false; cams.Add(c); }
+            if (_room != null) { _room.Walkable(6, out var lo, out var hi); _smH1651 = new Vector2(Mathf.Lerp(lo.x, hi.x, 0.5f) - 3.8f, Mathf.Lerp(lo.y, hi.y, 0.5f)); } else _smH1651 = _heroPos;
+            // ---- static checks
+            var stat = new StringBuilder(); bool statOk = true;
+            foreach (var sd in HData.Supports)
+            {
+                if (string.IsNullOrEmpty(sd.category)) { statOk = false; stat.Append(sd.name).Append(": no category; "); }
+                if (sd.metric1651 == SupMetric1651.None) { statOk = false; stat.Append(sd.name).Append(": no test metric; "); }
+                string bad = SmCardCheck1651?.Invoke(sd); if (bad != null) { statOk = false; stat.Append(sd.name).Append(": ").Append(bad).Append("; "); }
+            }
+            ARes(scen + ":static", statOk, stat.Length == 0 ? $"{HData.Supports.Length} supports: every one has a category and a test metric; card text checks ok" : stat.ToString());
+            // ---- matrix
+            var ids = SmSkills1651(); if (SmKitIds1651 != null) ids.AddRange(SmKitIds1651);
+            { var av = System.Environment.GetCommandLineArgs(); int ai = System.Array.IndexOf(av, "-smSkills"); if (ai >= 0 && ai + 1 < av.Length) { var keep = new List<string>(av[ai + 1].Split(',')); ids.RemoveAll(x => !keep.Contains(x.ToString())); } } // quick subset runs
+            var mx = new StringBuilder(); mx.AppendLine("skill\tsupport\tfit\tmetric\tnone\tlv1\tlv5\tverdict");
+            int pass = 0, fail = 0, warn = 0, pairs = 0, noise = 0; var failL = new List<string>(); var warnL = new List<string>();
+            foreach (var id in ids)
+            {
+                var def = HData.Skill(id); var baseM = new Dictionary<SmFix1651, SmM1651>(); var line = new StringBuilder(); bool skOk = true;
+                { _smSt1651 = Status.None; var n1 = new SmM1651(); var n2 = new SmM1651(); yield return SmRun1651(id, null, 1, SmFix1651.Std, n1); yield return SmRun1651(id, null, 1, SmFix1651.Std, n2);
+                  bool det = n1.dmg == n2.dmg && n1.hits == n2.hits && n1.affected == n2.affected; if (!det) { skOk = false; noise++; } line.Append(det ? "deterministic | " : $"NOISE dmg {n1.dmg:0.##}/{n2.dmg:0.##} hits {n1.hits}/{n2.hits} | "); mx.AppendLine($"{def.name}\t(repeat)\t-\tnoise\t{n1.dmg:0.###}\t-\t{n2.dmg:0.###}\t{(det ? "deterministic" : "NOISE")}"); }
+                foreach (var sd in HData.Supports)
+                {
+                    if (sd.metric1651 == SupMetric1651.None) continue; bool fit = HData.Fits(sd, def);
+                    if (!fit && (sd.needs == STag.Any || sd.needs == STag.Hit || sd.metric1651 == SupMetric1651.Orbitals || sd.metric1651 == SupMetric1651.Repeat)) continue; // Echo needs Area by RULE (not a capability), so no missing-tag probe // missing-tag probe only for the shape tags (Projectile / Area / Duration / Chain)
+                    if (!fit && SmKitIds1651 != null && SmIsKit1651(id) && sd.metric1651 != SupMetric1651.Area && sd.metric1651 != SupMetric1651.Duration) continue;
+                    var fx = SmFixFor1651(sd.metric1651); _smSt1651 = sd.metric1651 == SupMetric1651.Status ? sd.status1651 : Status.None;
+                    if (!baseM.TryGetValue(fx, out var b0) || _smSt1651 != Status.None) { b0 = new SmM1651(); yield return SmRun1651(id, null, 1, fx, b0); baseM[fx] = b0; }
+                    double v0 = SmVal1651(sd, b0), v1 = 0, v5; bool repOk = true;
+                    if (fit) { var m1 = new SmM1651(); yield return SmRun1651(id, sd, 1, fx, m1); v1 = SmVal1651(sd, m1); if (sd.metric1651 == SupMetric1651.Repeat) repOk = m1.casts > b0.casts; }
+                    var m5 = new SmM1651(); yield return SmRun1651(id, sd, 5, fx, m5); v5 = SmVal1651(sd, m5);
+                    string verdict;
+                    if (fit)
+                    {
+                        pairs++; bool lv1 = System.Math.Abs(v1 - v0) > System.Math.Max(1e-3, System.Math.Abs(v0) * 0.002), lv5 = v5 > v1 + System.Math.Max(1e-3, System.Math.Abs(v1) * 0.002);
+                        lv1 &= repOk; verdict = lv1 && lv5 ? "PASS" : !lv1 ? "FAIL lv1=none" : "FAIL lv5<=lv1"; if (lv1 && lv5) pass++; else { fail++; skOk = false; failL.Add($"{def.name}/{sd.name} ({verdict.Substring(5)}: {v0:0.##}/{v1:0.##}/{v5:0.##})"); }
+                    }
+                    else
+                    {
+                        bool chg = System.Math.Abs(v5 - v0) > System.Math.Max(1e-3, System.Math.Abs(v0) * 0.002); verdict = chg ? "WARN missing tag" : "-";
+                        if (chg) { warn++; warnL.Add($"{def.name}/{sd.name} ({v0:0.##}->{v5:0.##})"); }
+                    }
+                    mx.AppendLine($"{def.name}\t{sd.name}\t{(fit ? "fit" : "no")}\t{sd.metric1651}\t{v0:0.###}\t{(fit ? v1.ToString("0.###") : "-")}\t{v5:0.###}\t{verdict}");
+                    if (fit) line.Append(sd.name).Append(verdict == "PASS" ? " ok " : " DEAD ").Append($"({v0:0.#}/{v1:0.#}/{v5:0.#}) | ");
+                }
+                ARes(scen + ":" + def.name, skOk, line.ToString());
+                System.IO.File.WriteAllText(System.IO.Path.Combine(_atOut, "sup1651_matrix.txt"), mx.ToString());
+            }
+            ARes(scen + ":totals", fail == 0 && noise == 0, $"pairs {pairs}: pass {pass}, fail {fail}; missing-tag warnings {warn}; non-deterministic skills {noise} | FAIL: {string.Join("; ", failL)} | WARN: {string.Join("; ", warnL)}");
+            SmClear1651(); foreach (var c in cams) if (c != null) c.enabled = true; Time.captureFramerate = cf0; crit = crit0; _zKeepHp = true; _pactActive51 = pa0;
+            ZhEnd1618(scen, null);
+        }
+        public static System.Func<SupportDef, string> SmCardCheck1651; // stage 3: generated card text vs tuning
+    }
+}
+#endif

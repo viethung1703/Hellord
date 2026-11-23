@@ -8,6 +8,8 @@ namespace Hellord
     [Flags] public enum STag { None = 0, Projectile = 1, Area = 2, Orbital = 4, Hit = 8, Melee = 16, Aura = 32, Zone = 64, Minion = 128, Chain = 256, Duration = 512, Curse = 1024, Strike = 2048, Physical = 4096, Fire = 8192, Cold = 16384, Lightning = 32768, Blood = 65536, Bone = 131072, Soul = 262144, Any = 1 << 20 } // t626u: approved tag design v0.1 // t536u Minion: summoned units' hits (never a player skill)
     public enum SkillId { Fireball, FrostCleave, StormRing, BoneOrbit, CurseRune, ChainLightning, HellfirePillar, BloodWhip, SoulSpears, GravePool, SkeletonWarriors, SkeletonArchers, Frostbolt, IceNova, FrostBomb, Hurricane, MagmaThrow, RollingMagmaRock, FirePillar, SparkSpray, BallLightning, ThunderJavelin, HeadsmansChop, EarthSplittingSlam, TwinAxeThrow, PhantomAxes, FireWall, Hydra /* t1625: was VolcanicOrb (t1618) */, ZhurongKit /* t1618 */ } // t1481: ids 16-18 fire basic main attacks (LMB); t1393u: ids 12-15 are the ice skills; v0.0.36: last 5 are new (placeholder icons)
     public enum SupportId { MultipleProjectiles, Pierce, Fork, Bounce, Homing, BiggerArea, Echo, MoreOrbitals, Burn, Chill, Shock, Bleed, AddedDamage, FasterCasting, Executioner, LifeLeech, Knockback, SoulHarvest, ExplodeOnKill } // v0.0.36: last 5 are new
+    /// <summary>t1651: what the support autotest (sup1651) measures for a support. A support without one fails the static check.</summary>
+    public enum SupMetric1651 { None, Proj, Distinct, Homing, Area, Repeat, Orbitals, Status, Damage, Cooldown, Execute, Leech, Knock, KillHook, Duration }
     public enum StatId { MaxHP, Speed, Pickup, Armor, Crit, Slot }
     public enum Status { None, Burn, Chill, Shock, Bleed, Curse }
 
@@ -17,7 +19,7 @@ namespace Hellord
     }
     public class SupportDef
     {
-        public SupportId id; public string name, desc; public STag needs; public string needsLabel; public STag requiresAll, excludes; public string category; // t626u: needs = requiresAny; category: no two supports of the same category on one skill (only when set)
+        public SupportId id; public string name, desc; public STag needs; public string needsLabel; public STag requiresAll, excludes; public string category; public SupMetric1651 metric1651; public Status status1651; // t1651: autotest metric (+ the status for status supports) // t626u: needs = requiresAny; category: no two supports of the same category on one skill (only when set)
         public STag requiresAny => needs;
     }
     public class StatDef { public StatId id; public string name, desc; }
@@ -64,25 +66,25 @@ namespace Hellord
         };
         public static readonly SupportDef[] Supports =
         {
-            new SupportDef { id = SupportId.MultipleProjectiles, category = "Projectile Count", name = "Multi Projectiles", needs = STag.Projectile, needsLabel = "Projectile", desc = "More projectiles per cast (+1 at Lv1, up to +4), slightly less damage" },
-            new SupportDef { id = SupportId.Pierce, category = "Pierce",       name = "Pierce",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Shots pierce more enemies per level (1 to 5), -15% dmg per pierce" },
-            new SupportDef { id = SupportId.Fork, category = "Fork",         name = "Fork",           needs = STag.Projectile, needsLabel = "Projectile", desc = "Splits on first hit: 2 children at Lv1, up to 5, stronger per level" },
-            new SupportDef { id = SupportId.Bounce, category = "Bounce",       name = "Bounce",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Bounces to nearby enemies: 1 at Lv1, up to 5, longer reach" },
-            new SupportDef { id = SupportId.Homing, category = "Homing",       name = "Homing",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Projectiles curve toward enemies, tighter and farther per level" },
-            new SupportDef { id = SupportId.BiggerArea, category = "Area",   name = "Bigger Area",    needs = STag.Area,       needsLabel = "Area",       desc = "Bigger area: +15% at Lv1, up to +40%" },
-            new SupportDef { id = SupportId.Echo, category = "Repeat",         name = "Echo",           needs = STag.Area,       needsLabel = "Area", excludes = STag.Minion, desc = "Repeats the cast once; the repeat deals 35% damage at Lv1, up to 60%" },
-            new SupportDef { id = SupportId.MoreOrbitals, category = "Orbital Count", name = "More Orbitals",  needs = STag.Orbital,    needsLabel = "Orbital",    desc = "More skulls: +1 at Lv1, up to +4" },
-            new SupportDef { id = SupportId.Burn, category = "Burn",         name = "Burn",           needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits burn; burn is stronger and lasts longer per level" },
-            new SupportDef { id = SupportId.Chill, category = "Chill",        name = "Chill",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits chill (slow 35%); chills last longer, Lv4 freezes in 2 chills" },
-            new SupportDef { id = SupportId.Shock, category = "Shock",        name = "Shock",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits shock: +25% damage taken at Lv1, up to +50%" },
-            new SupportDef { id = SupportId.Bleed, category = "Bleed",        name = "Bleed",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits bleed; bleed is stronger per level" },
-            new SupportDef { id = SupportId.AddedDamage, category = "Damage",  name = "Added Damage",   needs = STag.Any,        needsLabel = "Any",        desc = "More damage: +15% at Lv1, up to +50%" },
-            new SupportDef { id = SupportId.FasterCasting, category = "Cooldown",name = "Faster Casting", needs = STag.Any,        needsLabel = "Any",        desc = "Shorter cooldown: -10% at Lv1, up to -22%" },
-            new SupportDef { id = SupportId.Executioner, category = "Execute",  name = "Executioner",    needs = STag.Any,        needsLabel = "Any",        desc = "Bonus damage to demons below an HP threshold: 10% HP at Lv1, up to 30% at Lv5" },
-            new SupportDef { id = SupportId.LifeLeech, category = "Leech",    name = "Life Leech",     needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits heal you a little (capped per second)" },
-            new SupportDef { id = SupportId.Knockback, category = "Knockback",    name = "Knockback",      needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits push demons away" },
-            new SupportDef { id = SupportId.SoulHarvest, category = "Harvest",  name = "Soul Harvest",   needs = STag.Any,        needsLabel = "Any",        desc = "Kills by this skill drop extra XP and sometimes bones" },
-            new SupportDef { id = SupportId.ExplodeOnKill, category = "On-Kill Blast",name = "Explode on Kill",needs = STag.Hit,        needsLabel = "Hit",        desc = "Demons this skill kills explode for a small area hit" },
+            new SupportDef { id = SupportId.MultipleProjectiles, metric1651 = SupMetric1651.Proj, category = "Projectile Count", name = "Multi Projectiles", needs = STag.Projectile, needsLabel = "Projectile", desc = "More projectiles per cast (+1 at Lv1, up to +4), slightly less damage" },
+            new SupportDef { id = SupportId.Pierce, metric1651 = SupMetric1651.Distinct, category = "Pierce",       name = "Pierce",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Shots pierce more enemies per level (1 to 5), -15% dmg per pierce" },
+            new SupportDef { id = SupportId.Fork, metric1651 = SupMetric1651.Distinct, category = "Fork",         name = "Fork",           needs = STag.Projectile, needsLabel = "Projectile", desc = "Splits on first hit: 2 children at Lv1, up to 5, stronger per level" },
+            new SupportDef { id = SupportId.Bounce, metric1651 = SupMetric1651.Distinct, category = "Bounce",       name = "Bounce",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Bounces to nearby enemies: 1 at Lv1, up to 5, longer reach" },
+            new SupportDef { id = SupportId.Homing, metric1651 = SupMetric1651.Homing, category = "Homing",       name = "Homing",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Projectiles curve toward enemies, tighter and farther per level" },
+            new SupportDef { id = SupportId.BiggerArea, metric1651 = SupMetric1651.Area, category = "Area",   name = "Bigger Area",    needs = STag.Area,       needsLabel = "Area",       desc = "Bigger area: +15% at Lv1, up to +40%" },
+            new SupportDef { id = SupportId.Echo, metric1651 = SupMetric1651.Repeat, category = "Repeat",         name = "Echo",           needs = STag.Area,       needsLabel = "Area", excludes = STag.Minion, desc = "Repeats the cast once; the repeat deals 35% damage at Lv1, up to 60%" },
+            new SupportDef { id = SupportId.MoreOrbitals, metric1651 = SupMetric1651.Orbitals, category = "Orbital Count", name = "More Orbitals",  needs = STag.Orbital,    needsLabel = "Orbital",    desc = "More skulls: +1 at Lv1, up to +4" },
+            new SupportDef { id = SupportId.Burn, metric1651 = SupMetric1651.Status, status1651 = Status.Burn, category = "Burn",         name = "Burn",           needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits burn; burn is stronger and lasts longer per level" },
+            new SupportDef { id = SupportId.Chill, metric1651 = SupMetric1651.Status, status1651 = Status.Chill, category = "Chill",        name = "Chill",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits chill (slow 35%); chills last longer, Lv4 freezes in 2 chills" },
+            new SupportDef { id = SupportId.Shock, metric1651 = SupMetric1651.Status, status1651 = Status.Shock, category = "Shock",        name = "Shock",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits shock: +25% damage taken at Lv1, up to +50%" },
+            new SupportDef { id = SupportId.Bleed, metric1651 = SupMetric1651.Status, status1651 = Status.Bleed, category = "Bleed",        name = "Bleed",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits bleed; bleed is stronger per level" },
+            new SupportDef { id = SupportId.AddedDamage, metric1651 = SupMetric1651.Damage, category = "Damage",  name = "Added Damage",   needs = STag.Any,        needsLabel = "Any",        desc = "More damage: +15% at Lv1, up to +50%" },
+            new SupportDef { id = SupportId.FasterCasting, metric1651 = SupMetric1651.Cooldown, category = "Cooldown",name = "Faster Casting", needs = STag.Any,        needsLabel = "Any",        desc = "Shorter cooldown: -10% at Lv1, up to -22%" },
+            new SupportDef { id = SupportId.Executioner, metric1651 = SupMetric1651.Execute, category = "Execute",  name = "Executioner",    needs = STag.Any,        needsLabel = "Any",        desc = "Bonus damage to demons below an HP threshold: 10% HP at Lv1, up to 30% at Lv5" },
+            new SupportDef { id = SupportId.LifeLeech, metric1651 = SupMetric1651.Leech, category = "Leech",    name = "Life Leech",     needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits heal you a little (capped per second)" },
+            new SupportDef { id = SupportId.Knockback, metric1651 = SupMetric1651.Knock, category = "Knockback",    name = "Knockback",      needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits push demons away" },
+            new SupportDef { id = SupportId.SoulHarvest, metric1651 = SupMetric1651.KillHook, category = "Harvest",  name = "Soul Harvest",   needs = STag.Any,        needsLabel = "Any",        desc = "Kills by this skill drop extra XP and sometimes bones" },
+            new SupportDef { id = SupportId.ExplodeOnKill, metric1651 = SupMetric1651.KillHook, category = "On-Kill Blast",name = "Explode on Kill",needs = STag.Hit,        needsLabel = "Hit",        desc = "Demons this skill kills explode for a small area hit" },
         };
         public static readonly StatDef[] Stats =
         {

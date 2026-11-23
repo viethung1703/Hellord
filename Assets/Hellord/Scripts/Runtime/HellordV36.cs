@@ -54,19 +54,19 @@ namespace Hellord
         }
         void OnSkillKill(Enemy e, SkillInst s)
         {
-            PactOnKill51(e, s); // v0.0.51 damnation pact
+            AtSkillKills1651++; /* t1651 probe */ PactOnKill51(e, s); // v0.0.51 damnation pact
             if (s.sup.Count == 0 || e.boss) return; var T = HellordTuning.I;
             if (s.Has(SupportId.SoulHarvest))
             {
                 int l = s.Lvl(SupportId.SoulHarvest);
-                DropPickup(e.pos + Random.insideUnitCircle * 0.4f, false, HData.At(T.supHarvestXp, l, 1));
+                DropPickup(e.pos + Random.insideUnitCircle * 0.4f, false, HData.At(T.supHarvestXp, l, 1)); AtKill1651 += HData.At(T.supHarvestXp, l, 1); // t1651 probe
                 if (Random.value < HData.At(T.supHarvestBoneChance, l, 0.05f) + SinBoneChance818()) DropPickup(e.pos + Random.insideUnitCircle * 0.5f, true, 1);
             }
             if (s.Has(SupportId.ExplodeOnKill))
             {
                 int l = s.Lvl(SupportId.ExplodeOnKill);
                 float d = Mathf.Min(T.explodeMaxDmg, e.maxHp * HData.At(T.supExplodeDmg, l, 0.35f) + T.explodeFlatDmg);
-                _blasts.Add(new Blast { pos = e.pos + Vector2.up * 0.4f, r = HData.At(T.supExplodeRadiusU, l, 1.4f), dmg = d, kind = 4, skip = e.id });
+                _blasts.Add(new Blast { pos = e.pos + Vector2.up * 0.4f, r = HData.At(T.supExplodeRadiusU, l, 1.4f), dmg = d, kind = 4, skip = e.id }); AtKill1651 += d; // t1651 probe
             }
         }
 
