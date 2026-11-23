@@ -14,8 +14,8 @@ namespace Hellord
     /// fixed RNG seed, no crits, cameras off while measuring. Output: summary lines + sup1651_matrix.txt.</summary>
     public partial class HellordGame
     {
-        enum SmFix1651 { Std, Dense, Homing, Exec, Kill, Leech, Dur, SparseLine, SparseSide, StdFar }
-        static readonly SmFix1651[] SmAreaFix1651 = { SmFix1651.Dense, SmFix1651.SparseLine, SmFix1651.SparseSide }; static readonly SmFix1651[] SmDistFix1651 = { SmFix1651.Std, SmFix1651.StdFar }; /* StdFar: + demons past the end of a long roll / flight (bounce at the end) */
+        enum SmFix1651 { Std, Dense, Homing, Exec, Kill, Leech, Dur, SparseLine, SparseSide, StdFar, AreaBlast, AreaChain, AreaReach, AreaLure }
+        static readonly SmFix1651[] SmAreaFix1651 = { SmFix1651.Dense, SmFix1651.SparseLine, SmFix1651.SparseSide, SmFix1651.AreaBlast }; /* appended layouts only run when earlier ones fail, so already-passing Area pairs stay on Dense / Sparse */ static readonly SmFix1651[] SmDistFix1651 = { SmFix1651.Std, SmFix1651.StdFar }; /* StdFar: + demons past the end of a long roll / flight (bounce at the end) */
         static bool SmLv1Ok1651(double a, double b) => System.Math.Abs(b - a) > System.Math.Max(System.Math.Abs(a) < 0.05 ? 1e-5 : 1e-3, System.Math.Abs(a) * 0.002); /* small metrics (1 / 180 s cooldown) need a small floor */
         class SmM1651 { public double hits, firstHit, kills, dmg, affected, potency, disp, heal, span, casts, proj, cdInv, kill, probe; }
         readonly List<Enemy> _smL1651 = new List<Enemy>(128); readonly List<float> _smHp0 = new List<float>(128); readonly List<Vector2> _smP0 = new List<Vector2>(128);
@@ -76,6 +76,7 @@ namespace Hellord
                 case SmFix1651.Dense: for (int i = 0; i < 12; i++) for (int j = 0; j < 9; j++) Mk(new Vector2(0.8f + i * 0.5f, -2f + j * 0.5f), 1e6f, 1e6f); break;
                 case SmFix1651.SparseLine: Mk(new Vector2(1.5f, 0f), 1e6f, 1e6f); Mk(new Vector2(4.95f, 0f), 1e6f, 1e6f); Mk(new Vector2(9.0f, 0f), 1e6f, 1e6f); break; /* growing gaps 3.45 / 4.05 along the aim: a jump reach of 3.2 (chain Lv1 skill) stops at 1, x1.15 reaches 2, x1.4 reaches 3 */
                 case SmFix1651.SparseSide: Mk(new Vector2(1.5f, 2.6f), 1e6f, 1e6f); Mk(new Vector2(4.0f, 3.1f), 1e6f, 1e6f); Mk(new Vector2(6.5f, 3.6f), 1e6f, 1e6f); break; /* off the aim line, each a bit further out: a zap / pulse radius of ~2.75 reaches 1, x1.15 2, x1.4 3 */
+                case SmFix1651.AreaBlast: Mk(new Vector2(12.0f, 0f), 1e6f, 1e6f); Mk(new Vector2(13.90f, 0f), 1e6f, 1e6f); Mk(new Vector2(14.08f, 0f), 1e6f, 1e6f); break; /* Infernal Boulder end blast at 12 u (start 22 px + range 170 px). Query uses the body (imp hitY 1.1), so reachable dx past the blast is sqrt((r+0.5)^2-1.1^2): none 1.818 / Lv1 1.997 / Lv3 2.159. On the blast / +1.90 (Lv1) / +2.08 (Lv3). The ball contact radius is art-tied and not Area-scaled */
                 case SmFix1651.Homing: for (int i = 0; i < 3; i++) for (int j = 0; j < 3; j++) Mk(new Vector2(3.8f + i * 0.7f, 2.4f + j * 0.7f), 1e6f, 1e6f); break;
                 case SmFix1651.Kill: for (int i = 0; i < 8; i++) for (int j = 0; j < 5; j++) Mk(new Vector2(1.2f + i * 0.9f, -1.8f + j * 0.9f), 1f, 1f); break;
                 case SmFix1651.StdFar: for (int i = 0; i < 8; i++) for (int j = 0; j < 5; j++) Mk(new Vector2(1.2f + i * 0.9f, -1.8f + j * 0.9f), 1e6f, 1e6f); Mk(new Vector2(12.5f, 2f), 1e6f, 1e6f); Mk(new Vector2(12.5f, -2f), 1e6f, 1e6f); Mk(new Vector2(14f, 0f), 1e6f, 1e6f); break;
