@@ -21,7 +21,8 @@ namespace Hellord
                 case "zhclip1618_ult": return AtZhClip1618(3);
                 case "kindling1635": return AtKindlingClip1635();
                 case "levelup1639": return AtLevelUpClip1639(); // t1639 clip: kit cards on level-up
-                case "skillbar1641": return AtSkillBarClip1641(); // t1641 clip: the 4-slot kit bar // t1635 clip: Kindling shader patches under Fireball hits
+                case "skillbar1641": return AtSkillBarClip1641(); // t1641 clip: the 4-slot kit bar
+                case "startpact1643": return AtStartPact1643(); // t1643 clip: fresh save -> Zhurong unlocked + sealed // t1635 clip: Kindling shader patches under Fireball hits
                 case "firewall986_nosplit": return ZNoSplit1618(AtFireWall986()); // the t986 Fire Wall test, with the t1618 split off (= Hellfire Pillar is the wall again)
                 case "chain1563": return AtChain1563();
                 case "bh1595": return AtBody1595();
@@ -297,6 +298,34 @@ namespace Hellord
             }
             yield return AtShot(scen + "_end");
             ZhEnd1618(scen, null);
+        }
+
+        // ---------------------------------------------------------------- t1643 clip: a FRESH save (pact keys deleted) -> menu -> altar (Zhurong unlocked + sealed, others locked) -> DESCEND -> run
+        IEnumerator AtStartPact1643()
+        {
+            string scen = "startpact1643", clip = scen; yield return AtBegin(scen); HellordUITheme.Requested = HellordUITheme.Theme.MenuTheme;
+            foreach (var k in new[] { "souls", "sigils", "path", "sel", "sealed", "mig539", "grant1643", "unlock0", "unlock1", "unlock2", "unlock3", "unlock4" }) PlayerPrefs.DeleteKey(PK + k);
+            PlayerPrefs.Save(); System.Array.Clear(_unlock51, 0, _unlock51.Length); _souls51 = _sigils51 = 0; _pactPath51 = -1; _pactSel51 = 0; _pactSealed51 = false; // = a fresh boot (zeroed memory)
+            _pactLoaded51 = false; PactLoad51(); _pactActive51 = false;
+            ALog(scen + " debug: after load unlock " + string.Join(",", _unlock51) + " path " + _pactPath51 + " sealed " + _pactSealed51 + " grantKey " + PlayerPrefs.GetInt(PK + "grant1643", -1) + " toggle " + PT.startPactGrant1643 + " loaded " + _pactLoaded51);
+            int root = AmRoot(0); bool zOk = _unlock51[0] == (1 << root) && _pactPath51 == 0 && _pactSealed51 && _pactSel51 == 0 && PlayerPrefs.GetInt(PK + "sealed", 0) == 1;
+            bool othersLocked = true; for (int p = 1; p < NP97; p++) if (!PathLocked97(p)) othersLocked = false;
+            int s0 = _souls51, g0 = _sigils51;
+            _atGod = true; Manual716 = false; AtMenu1555(); yield return AtWait(0.5f);
+            _r1561 = 0; AtAudioLog1481.Frame = 0; AtAudioLog1481.Sb.Length = 0; HellordAudio.LoopLog = (kind, hid, a, b) => AtAudioLog1481.Log(kind == "play" ? hid : kind + "|" + hid, a, b);
+            yield return AtHold1561(1.0f, clip);
+            Act69(0); bool altar = mode == Mode.Altar && _altarView51 == 0; yield return AtHold1561(1.6f, clip);
+            for (int v = 1; v < NP97; v++) { _altarView51 = v; yield return AtHold1561(0.7f, clip); } // the other pacts: still locked
+            _altarView51 = 0; yield return AtHold1561(1.0f, clip);
+            var pc = AtPlayC1561(); yield return AtFake1561(pc.x, pc.y, clip);
+            bool pick = mode == Mode.StartPick; string ids = AtCardIds1559(); yield return AtHold1561(1.2f, clip);
+            int ci = cards.FindIndex(c => c.skill != null && c.skill.id == SkillId.Fireball); if (ci >= 0) Choose(cards[ci]);
+            bool run = mode == Mode.Play && skills.Count == 1 && ZhOn1618; maxHp = hp = 100000; SnapCamera();
+            yield return AtHold1561(1.5f, clip);
+            ARes(scen + ":clip", zOk && othersLocked && altar && pick && run && _souls51 == s0 && _sigils51 == g0 && (_r1561 > 0 || _atRecFps <= 0),
+                $"frames {_r1561} | Zhurong root {root} ({PactData.Nodes[0][root].name}) unlock {_unlock51[0]} path {_pactPath51} sealed {_pactSealed51} | others locked {othersLocked} | altar {altar} | pick {pick} [{ids}] | run {run} | souls {_souls51} sigils {_sigils51}");
+            HellordAudio.LoopLog = null; AtAudioLog1481.Frame = -1; if (_atRecFps > 0) System.IO.File.WriteAllText(System.IO.Path.Combine(_atOut, "rec_" + clip, "audio_events.txt"), AtAudioLog1481.Sb.ToString());
+            AtClearWorld(); _atGod = false; AtEnd(scen, "hero_sprite_not_base_final2");
         }
 
         // ---------------------------------------------------------------- t1641 clip: bar with only the basic -> level-up picks fill the kit slots -> using them shows the sweeps

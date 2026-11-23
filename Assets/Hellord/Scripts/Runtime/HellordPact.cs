@@ -97,6 +97,7 @@ namespace Hellord
             if (_pactPath51 < 0 || _pactPath51 > NP97 - 1) { _pactPath51 = -1; _pactSel51 = 0; } // t1561: NP97 = 5 with Gonggong
             _pactSel51 &= _pactPath51 >= 0 ? _unlock51[_pactPath51] : 0; // never select a locked node (save repair)
             _pactSealed51 = PlayerPrefs.GetInt(PK + "sealed", 0) == 1 && _pactPath51 >= 0; // t1380 (an empty Pact can be sealed)
+            PactStartGrant1643();
             _altarView51 = Mathf.Max(0, _pactPath51);
         }
         // t539u: one-time save migration. Old layout: 0 Pyro, 1 BONE WARDEN (10 nodes), 2 Storm, 3 Blood, 4 Necromancer (18 nodes). New: 1 = Necromancer.
@@ -114,6 +115,19 @@ namespace Hellord
             if (_pactPath51 == 1) { _pactPath51 = 1; _pactSel51 = 0; } else if (_pactPath51 == 4) _pactPath51 = 1; else if (_pactPath51 > 4) { _pactPath51 = -1; _pactSel51 = 0; }
             PlayerPrefs.DeleteKey(PK + "unlock4"); PlayerPrefs.SetInt(PK + "mig539", 1); _pactLoaded51 = true; PactSave51();
             Debug.Log("[Hellord] t539u Bone Warden -> Necromancer migration: moved " + moved + " nodes, refunded " + refS + " souls + " + refG + " sigils");
+        }
+        /// <summary>t1643 (VH): a save where no pact is unlocked (fresh, or a stuck old save) gets Zhurong once: entry node (AmRoot, the game's unlock rule)
+        /// unlocked for free (no Souls / Sigils spent), Path = Zhurong, SEALED (empty Pact: no node picked). Written straight to PlayerPrefs because PactSave51
+        /// drops the seal outside the menu theme (at boot the theme may not be ready yet). One time per save (key grant1643).</summary>
+        void PactStartGrant1643()
+        {
+            if (!PT.startPactGrant1643 || PlayerPrefs.GetInt(PK + "grant1643", 0) == 1) return;
+            for (int p = 0; p < _unlock51.Length; p++) if (_unlock51[p] != 0) return;
+            int p0 = (int)PactPath.Pyromancer, ix = AmRoot(p0); if (ix < 0) return;
+            _unlock51[p0] |= Bit(ix); _pactPath51 = p0; _pactSel51 = 0; _pactSealed51 = true;
+            PlayerPrefs.SetInt(PK + "unlock" + p0, _unlock51[p0]); PlayerPrefs.SetInt(PK + "path", p0); PlayerPrefs.SetInt(PK + "sel", 0); PlayerPrefs.SetInt(PK + "sealed", 1);
+            PlayerPrefs.SetInt(PK + "grant1643", 1); PlayerPrefs.Save();
+            Debug.Log("[Hellord] t1643 start pact: Zhurong entry node " + ix + " (" + PactData.Nodes[p0][ix].name + ") unlocked free + sealed");
         }
         void PactSave51()
         {

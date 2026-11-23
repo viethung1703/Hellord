@@ -1057,6 +1057,7 @@ namespace Hellord
     [Tooltip("Bonus Souls for a completed run.")] public int soulsWinBonus51 = 100; // v0.0.51 damnation pact
     [Tooltip("Sigils earned for a completed run.")] public int sigilsPerWin51 = 1; // v0.0.51 damnation pact
     [Tooltip("Sigils earned per boss killed (0 = only on win).")] public int sigilsPerBoss51 = 1; // v0.0.51 damnation pact; t737/t770u Infernal Sins: 0 -> 1 (bosses give 1 Sigil)
+    [Tooltip("t1643: a save with NO pact unlocked (fresh save, or an old stuck one) gets Zhurong (Pyromancer) once: its entry node (AmRoot) unlocked for free and the Path SEALED, so DESCEND works at once. Other pacts stay locked. Off = old behaviour (everything locked)")] public bool startPactGrant1643 = true;
     [Tooltip("Start-of-save Souls (new save only).")] public int startSouls51 = 0; // v0.0.51 damnation pact
     [Tooltip("Path passive per selected node: Pyromancer +inc damage.")] public float pyroIncDmgPerNode51 = 0.04f; // v0.0.51 damnation pact
     [Tooltip("Path passive per selected node: Bone Warden +armor.")] public float boneArmorPerNode51 = 1.5f; // v0.0.51 damnation pact
