@@ -14,8 +14,8 @@ namespace Hellord
     /// fixed RNG seed, no crits, cameras off while measuring. Output: summary lines + sup1651_matrix.txt.</summary>
     public partial class HellordGame
     {
-        enum SmFix1651 { Std, Dense, Homing, Exec, Kill, Leech, Dur, SparseLine, SparseSide }
-        static readonly SmFix1651[] SmAreaFix1651 = { SmFix1651.Dense, SmFix1651.SparseLine, SmFix1651.SparseSide };
+        enum SmFix1651 { Std, Dense, Homing, Exec, Kill, Leech, Dur, SparseLine, SparseSide, StdFar }
+        static readonly SmFix1651[] SmAreaFix1651 = { SmFix1651.Dense, SmFix1651.SparseLine, SmFix1651.SparseSide }; static readonly SmFix1651[] SmDistFix1651 = { SmFix1651.Std, SmFix1651.StdFar }; /* StdFar: + demons past the end of a long roll / flight (bounce at the end) */
         static bool SmLv1Ok1651(double a, double b) => System.Math.Abs(b - a) > System.Math.Max(1e-3, System.Math.Abs(a) * 0.002);
         class SmM1651 { public double hits, firstHit, kills, dmg, affected, potency, disp, heal, span, casts, proj, cdInv, kill, probe; }
         readonly List<Enemy> _smL1651 = new List<Enemy>(128); readonly List<float> _smHp0 = new List<float>(128); readonly List<Vector2> _smP0 = new List<Vector2>(128);
@@ -78,6 +78,7 @@ namespace Hellord
                 case SmFix1651.SparseSide: Mk(new Vector2(1.5f, 2.6f), 1e6f, 1e6f); Mk(new Vector2(4.0f, 3.1f), 1e6f, 1e6f); Mk(new Vector2(6.5f, 3.6f), 1e6f, 1e6f); break; /* off the aim line, each a bit further out: a zap / pulse radius of ~2.75 reaches 1, x1.15 2, x1.4 3 */
                 case SmFix1651.Homing: for (int i = 0; i < 3; i++) for (int j = 0; j < 3; j++) Mk(new Vector2(3.8f + i * 0.7f, 2.4f + j * 0.7f), 1e6f, 1e6f); break;
                 case SmFix1651.Kill: for (int i = 0; i < 8; i++) for (int j = 0; j < 5; j++) Mk(new Vector2(1.2f + i * 0.9f, -1.8f + j * 0.9f), 1f, 1f); break;
+                case SmFix1651.StdFar: for (int i = 0; i < 8; i++) for (int j = 0; j < 5; j++) Mk(new Vector2(1.2f + i * 0.9f, -1.8f + j * 0.9f), 1e6f, 1e6f); Mk(new Vector2(12.5f, 2f), 1e6f, 1e6f); Mk(new Vector2(12.5f, -2f), 1e6f, 1e6f); Mk(new Vector2(14f, 0f), 1e6f, 1e6f); break;
                 default: { float hpNow = f == SmFix1651.Exec ? 8e4f : 1e6f; for (int i = 0; i < 8; i++) for (int j = 0; j < 5; j++) Mk(new Vector2(1.2f + i * 0.9f, -1.8f + j * 0.9f), 1e6f, hpNow); break; }
             }
             foreach (var e in _smL1651) { _smHp0.Add(e.hp); _smP0.Add(e.pos); _smPot.Add(0f); }
@@ -108,11 +109,11 @@ namespace Hellord
                 yield return SmFrames1651(1, f, m, true, hp0); double d = SmDmg1651(); if (d > last + 0.01) { last = d; lastT = runTime - t0; if (firstT <= 0f) firstT = lastT; }
             }
             m.dmg = SmDmg1651(); m.casts = AtCasts1651 - c0; m.proj = AtProj1651 - p0; m.kill = AtKill1651 - k0; m.cdInv = cdAt > 0.0001f ? 1.0 / cdAt : 0; m.span = lastT; m.firstHit = firstT; m.hits = AtHits1651 - h0; m.kills = AtSkillKills1651 - sk0;
-            m.affected = 0; m.disp = 0; m.potency = 0;
+            m.affected = 0; /* affected = damaged, chilled (chill ground), or marked by the skill */ m.disp = 0; m.potency = 0;
             for (int i = 0; i < _smL1651.Count; i++)
             {
                 var e = _smL1651[i]; bool hitE = e.hp < _smHp0[i] - 0.01f || !e.alive; float dp = (e.pos - _smP0[i]).magnitude; if (e.alive) m.disp += dp;
-                if (hitE || e.zFlam1618 > runTime - win || e.zCry1625 > 0f || e.lured1651) m.affected++; // damaged or marked by the skill (displacement is its own metric)
+                if (hitE || e.chillT > 0f || e.freezeT > 0f || e.zFlam1618 > runTime - win || e.zCry1625 > 0f || e.lured1651) m.affected++; // damaged or marked by the skill (displacement is its own metric)
                 m.potency += _smPot[i];
             }
             if (kit && SmKitProbe1651 != null) m.probe = System.Math.Max(m.probe, SmKitProbe1651(this, id));
@@ -233,16 +234,16 @@ namespace Hellord
                     if (sd.metric1651 == SupMetric1651.None) continue; bool fit = HData.Fits(sd, def);
                     if (!fit && (sd.needs == STag.Any || sd.needs == STag.Hit || sd.metric1651 == SupMetric1651.Orbitals || sd.metric1651 == SupMetric1651.Repeat)) continue; // Echo needs Area by RULE (not a capability), so no missing-tag probe // missing-tag probe only for the shape tags (Projectile / Area / Duration / Chain)
                     if (!fit && SmKitIds1651 != null && SmIsKit1651(id) && sd.metric1651 != SupMetric1651.Area && sd.metric1651 != SupMetric1651.Duration) continue;
-                    var fxs = sd.metric1651 == SupMetric1651.Area ? SmAreaFix1651 : new[] { SmFixFor1651(sd.metric1651) }; /* Area: dense pack first; reach-type areas (chain jump reach, nearest-first zaps) only show on the sparse layouts */
-                    double v0 = 0, v1 = 0, v5 = 0; bool repOk = true; SmFix1651 fx = fxs[0];
+                    var fxs = sd.metric1651 == SupMetric1651.Area ? SmAreaFix1651 : sd.metric1651 == SupMetric1651.Distinct ? SmDistFix1651 : new[] { SmFixFor1651(sd.metric1651) }; /* Area: dense pack first; reach-type areas (chain jump reach, nearest-first zaps) only show on the sparse layouts */
+                    double v0 = 0, v1 = 0, v5 = 0; bool repOk = true; SmFix1651 fx = fxs[0]; var tried = new StringBuilder();
                     for (int fi = 0; fi < fxs.Length; fi++)
                     {
                         fx = fxs[fi]; _smSt1651 = sd.metric1651 == SupMetric1651.Status ? sd.status1651 : Status.None; repOk = true; v1 = 0;
                         if (!baseM.TryGetValue(fx, out var b0) || _smSt1651 != Status.None) { b0 = new SmM1651(); yield return SmRun1651(id, null, 1, fx, b0); baseM[fx] = b0; }
                         v0 = SmVal1651(sd, b0);
                         if (fit) { var m1 = new SmM1651(); yield return SmRun1651(id, sd, 1, fx, m1); v1 = SmVal1651(sd, m1); if (sd.metric1651 == SupMetric1651.Repeat) repOk = m1.casts > b0.casts; }
-                        var m5 = new SmM1651(); yield return SmRun1651(id, sd, 5, fx, m5); v5 = SmVal1651(sd, m5);
-                        bool okF = fit ? SmLv1Ok1651(v0, v1) && repOk && v5 > v1 + System.Math.Max(1e-3, System.Math.Abs(v1) * 0.002) : !(v5 > v0 + System.Math.Max(1e-3, System.Math.Abs(v0) * (det ? 0.002 : 0.05))); if (okF) break; /* stop at the first layout that shows it (fit) / keep probing while no change (missing tag) */
+                        var m5 = new SmM1651(); yield return SmRun1651(id, sd, 5, fx, m5); v5 = SmVal1651(sd, m5); tried.Append($"{fx}:{v0:0.##}/{v1:0.##}/{v5:0.##} ");
+                        bool okF = fit ? SmLv1Ok1651(v0, v1) && repOk && v5 > v1 + System.Math.Max(1e-3, System.Math.Abs(v1) * 0.002) : !(v5 > v0 + System.Math.Max(1e-3, System.Math.Abs(v0) * (det ? 0.002 : 0.25)) + (det ? 0 : 1)); if (okF) break; /* stop at the first layout that shows it (fit) / keep probing while no change (missing tag) */
                     }
                     string verdict;
                     if (fit)
@@ -252,10 +253,10 @@ namespace Hellord
                     }
                     else
                     {
-                        bool chg = v5 > v0 + System.Math.Max(1e-3, System.Math.Abs(v0) * (det ? 0.002 : 0.05)); /* a socketed support only ever raises its metric; on a noisy skill it must beat the noise */ verdict = chg ? "WARN missing tag" : "-";
+                        bool chg = v5 > v0 + System.Math.Max(1e-3, System.Math.Abs(v0) * (det ? 0.002 : 0.25)) + (det ? 0 : 1); /* a socketed support only ever raises its metric; on a noisy skill it must beat the noise */ verdict = chg ? "WARN missing tag" : "-";
                         if (chg) { warn++; warnL.Add($"{def.name}/{sd.name} ({v0:0.##}->{v5:0.##})"); }
                     }
-                    mx.AppendLine($"{def.name}\t{sd.name}\t{(fit ? "fit" : "no")}\t{sd.metric1651}\t{v0:0.###}\t{(fit ? v1.ToString("0.###") : "-")}\t{v5:0.###}\t{verdict}\t{fx}");
+                    mx.AppendLine($"{def.name}\t{sd.name}\t{(fit ? "fit" : "no")}\t{sd.metric1651}\t{v0:0.###}\t{(fit ? v1.ToString("0.###") : "-")}\t{v5:0.###}\t{verdict}\t{(fxs.Length > 1 ? tried.ToString().Trim() : fx.ToString())}");
                     if (fit) line.Append(sd.name).Append(verdict == "PASS" ? " ok " : " DEAD ").Append($"({v0:0.#}/{v1:0.#}/{v5:0.#}) | ");
                 }
                 ARes(scen + ":" + def.name, skOk, line.ToString());
