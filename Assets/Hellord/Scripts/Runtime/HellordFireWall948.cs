@@ -153,7 +153,7 @@ namespace Hellord
                 if (w.speed > 0) { Vector2 mv = w.dir * w.speed * dt; foreach (var g in w.seg) { g.a += mv; g.b += mv; } }
                 if ((w.tickT -= dt) <= 0)
                 {
-                    w.tickT = Mathf.Max(0.05f, T.fireWallTick737); bool kb = w.s.Has(SupportId.Knockback);
+                    w.tickT = Mathf.Max(0.05f, T.fireWallTick737); bool kb = w.s.Has(SupportId.Knockback); float kbS = kb ? HData.At(T.supKnockback, w.s.Lvl(SupportId.Knockback), 2f) / Mathf.Max(0.01f, T.supKnockback[0]) : 0f; /* t1651: wall push scales with the Knockback level (Lv1 = fireWallKnock948) */
                     foreach (var g in w.seg)
                     {
                         Vector2 c = (g.a + g.b) * 0.5f; float half = (g.b - g.a).magnitude * 0.5f; Query(c, half + w.thick + 1f, _fwQ948);
@@ -161,7 +161,7 @@ namespace Hellord
                         {
                             var e = _en[k]; if (!e.alive || e.dying) continue;
                             if (SegDist53(e.pos, g.a, g.b) > w.thick * 0.5f + e.radius) continue;
-                            Hit(e, w.dmg, w.s, kb ? w.dir * T.fireWallKnock948 : Vector2.zero, true);
+                            Hit(e, w.dmg, w.s, kb ? w.dir * T.fireWallKnock948 * kbS : Vector2.zero, true);
                         }
                     }
                 }

@@ -14,7 +14,9 @@ namespace Hellord
     /// fixed RNG seed, no crits, cameras off while measuring. Output: summary lines + sup1651_matrix.txt.</summary>
     public partial class HellordGame
     {
-        enum SmFix1651 { Std, Dense, Homing, Exec, Kill, Leech, Dur }
+        enum SmFix1651 { Std, Dense, Homing, Exec, Kill, Leech, Dur, SparseLine, SparseSide }
+        static readonly SmFix1651[] SmAreaFix1651 = { SmFix1651.Dense, SmFix1651.SparseLine, SmFix1651.SparseSide };
+        static bool SmLv1Ok1651(double a, double b) => System.Math.Abs(b - a) > System.Math.Max(1e-3, System.Math.Abs(a) * 0.002);
         class SmM1651 { public double hits, firstHit, kills, dmg, affected, potency, disp, heal, span, casts, proj, cdInv, kill, probe; }
         readonly List<Enemy> _smL1651 = new List<Enemy>(128); readonly List<float> _smHp0 = new List<float>(128); readonly List<Vector2> _smP0 = new List<Vector2>(128);
         readonly List<float> _smPot = new List<float>(128);
@@ -63,7 +65,7 @@ namespace Hellord
             foreach (var e in _en) { if (e.boss || !e.alive && !e.dying) continue; StopStatuses(e); DetachFx(e); e.alive = false; e.dying = false; e.sr.gameObject.SetActive(false); }
             _smL1651.Clear(); foreach (var p in _pr) KillProj(p); _blasts.Clear(); _sched.Clear(); ClearV44(); ZhUltCd = ZhMoveCd = ZhSpecCd = 0f; ZhSunMeter1618 = 0f; ZhNearMiss1618 = 0;
             foreach (var p in _pk) { var j = p.job; p.job = null; p.magnet = false; if (j != null) HellFXRunner.I.Kill(j); p.alive = false; p.sr.gameObject.SetActive(false); }
-            _leechHealed = 0f;
+            _leechHealed = 0f; foreach (var b in _fbBalls) HellordAudio.LoopStop(b.loop, 0.05f); _fbBalls.Clear(); _fbPend.Clear(); /* no boulder from the last run rolls into this one */
         }
         void SmField1651(SmFix1651 f)
         {
@@ -72,6 +74,8 @@ namespace Hellord
             switch (f)
             {
                 case SmFix1651.Dense: for (int i = 0; i < 12; i++) for (int j = 0; j < 9; j++) Mk(new Vector2(0.8f + i * 0.5f, -2f + j * 0.5f), 1e6f, 1e6f); break;
+                case SmFix1651.SparseLine: Mk(new Vector2(1.5f, 0f), 1e6f, 1e6f); Mk(new Vector2(4.95f, 0f), 1e6f, 1e6f); Mk(new Vector2(9.0f, 0f), 1e6f, 1e6f); break; /* growing gaps 3.45 / 4.05 along the aim: a jump reach of 3.2 (chain Lv1 skill) stops at 1, x1.15 reaches 2, x1.4 reaches 3 */
+                case SmFix1651.SparseSide: Mk(new Vector2(1.5f, 2.6f), 1e6f, 1e6f); Mk(new Vector2(4.0f, 3.1f), 1e6f, 1e6f); Mk(new Vector2(6.5f, 3.6f), 1e6f, 1e6f); break; /* off the aim line, each a bit further out: a zap / pulse radius of ~2.75 reaches 1, x1.15 2, x1.4 3 */
                 case SmFix1651.Homing: for (int i = 0; i < 3; i++) for (int j = 0; j < 3; j++) Mk(new Vector2(3.8f + i * 0.7f, 2.4f + j * 0.7f), 1e6f, 1e6f); break;
                 case SmFix1651.Kill: for (int i = 0; i < 8; i++) for (int j = 0; j < 5; j++) Mk(new Vector2(1.2f + i * 0.9f, -1.8f + j * 0.9f), 1f, 1f); break;
                 default: { float hpNow = f == SmFix1651.Exec ? 8e4f : 1e6f; for (int i = 0; i < 8; i++) for (int j = 0; j < 5; j++) Mk(new Vector2(1.2f + i * 0.9f, -1.8f + j * 0.9f), 1e6f, hpNow); break; }
@@ -93,9 +97,13 @@ namespace Hellord
             if (kit) { if (SmKitCast1651 != null) yield return SmKitCast1651(this, id); }
             else { HInput.AtLmb = true; yield return SmFrames1651(2, f, m, false, hp0); HInput.AtLmb = false; }
             float cdAt = AtCd1651; if (kit) m.probe = SmKitProbe1651 != null ? SmKitProbe1651(this, id) : 0f;
-            float win = f == SmFix1651.Dur ? 7f : 2.5f; int frames = Mathf.CeilToInt(win * 30f);
+            float win = f == SmFix1651.Dur ? 12f : 2.5f; /* Dur: long enough that a 4 s wall + its burn ends inside the window */ int frames = Mathf.CeilToInt(win * 30f);
             double last = SmDmg1651(); float lastT = 0f, firstT = 0f;
             for (int i = 0; i < frames; i++)
+            {
+                yield return SmFrames1651(1, f, m, true, hp0); double d = SmDmg1651(); if (d > last + 0.01) { last = d; lastT = runTime - t0; if (firstT <= 0f) firstT = lastT; }
+            }
+            for (int x = 0; x < 75 && (_fbBalls.Count > 0 || _fbPend.Count > 0); x++) /* a rolling boulder (and its bounces) finishes its roll + end blast inside the window */
             {
                 yield return SmFrames1651(1, f, m, true, hp0); double d = SmDmg1651(); if (d > last + 0.01) { last = d; lastT = runTime - t0; if (firstT <= 0f) firstT = lastT; }
             }
@@ -225,15 +233,21 @@ namespace Hellord
                     if (sd.metric1651 == SupMetric1651.None) continue; bool fit = HData.Fits(sd, def);
                     if (!fit && (sd.needs == STag.Any || sd.needs == STag.Hit || sd.metric1651 == SupMetric1651.Orbitals || sd.metric1651 == SupMetric1651.Repeat)) continue; // Echo needs Area by RULE (not a capability), so no missing-tag probe // missing-tag probe only for the shape tags (Projectile / Area / Duration / Chain)
                     if (!fit && SmKitIds1651 != null && SmIsKit1651(id) && sd.metric1651 != SupMetric1651.Area && sd.metric1651 != SupMetric1651.Duration) continue;
-                    var fx = SmFixFor1651(sd.metric1651); _smSt1651 = sd.metric1651 == SupMetric1651.Status ? sd.status1651 : Status.None;
-                    if (!baseM.TryGetValue(fx, out var b0) || _smSt1651 != Status.None) { b0 = new SmM1651(); yield return SmRun1651(id, null, 1, fx, b0); baseM[fx] = b0; }
-                    double v0 = SmVal1651(sd, b0), v1 = 0, v5; bool repOk = true;
-                    if (fit) { var m1 = new SmM1651(); yield return SmRun1651(id, sd, 1, fx, m1); v1 = SmVal1651(sd, m1); if (sd.metric1651 == SupMetric1651.Repeat) repOk = m1.casts > b0.casts; }
-                    var m5 = new SmM1651(); yield return SmRun1651(id, sd, 5, fx, m5); v5 = SmVal1651(sd, m5);
+                    var fxs = sd.metric1651 == SupMetric1651.Area ? SmAreaFix1651 : new[] { SmFixFor1651(sd.metric1651) }; /* Area: dense pack first; reach-type areas (chain jump reach, nearest-first zaps) only show on the sparse layouts */
+                    double v0 = 0, v1 = 0, v5 = 0; bool repOk = true; SmFix1651 fx = fxs[0];
+                    for (int fi = 0; fi < fxs.Length; fi++)
+                    {
+                        fx = fxs[fi]; _smSt1651 = sd.metric1651 == SupMetric1651.Status ? sd.status1651 : Status.None; repOk = true; v1 = 0;
+                        if (!baseM.TryGetValue(fx, out var b0) || _smSt1651 != Status.None) { b0 = new SmM1651(); yield return SmRun1651(id, null, 1, fx, b0); baseM[fx] = b0; }
+                        v0 = SmVal1651(sd, b0);
+                        if (fit) { var m1 = new SmM1651(); yield return SmRun1651(id, sd, 1, fx, m1); v1 = SmVal1651(sd, m1); if (sd.metric1651 == SupMetric1651.Repeat) repOk = m1.casts > b0.casts; }
+                        var m5 = new SmM1651(); yield return SmRun1651(id, sd, 5, fx, m5); v5 = SmVal1651(sd, m5);
+                        bool okF = fit ? SmLv1Ok1651(v0, v1) && repOk && v5 > v1 + System.Math.Max(1e-3, System.Math.Abs(v1) * 0.002) : !SmLv1Ok1651(v0, v5); if (okF) break; /* stop at the first layout that shows it (fit) / keep probing while no change (missing tag) */
+                    }
                     string verdict;
                     if (fit)
                     {
-                        pairs++; bool lv1 = System.Math.Abs(v1 - v0) > System.Math.Max(1e-3, System.Math.Abs(v0) * 0.002), lv5 = v5 > v1 + System.Math.Max(1e-3, System.Math.Abs(v1) * 0.002);
+                        pairs++; bool lv1 = SmLv1Ok1651(v0, v1), lv5 = v5 > v1 + System.Math.Max(1e-3, System.Math.Abs(v1) * 0.002);
                         lv1 &= repOk; verdict = lv1 && lv5 ? "PASS" : !lv1 ? "FAIL lv1=none" : "FAIL lv5<=lv1"; if (lv1 && lv5) pass++; else { fail++; skOk = false; failL.Add($"{def.name}/{sd.name} ({verdict.Substring(5)}: {v0:0.##}/{v1:0.##}/{v5:0.##})"); }
                     }
                     else
@@ -241,7 +255,7 @@ namespace Hellord
                         bool chg = System.Math.Abs(v5 - v0) > System.Math.Max(1e-3, System.Math.Abs(v0) * 0.002); verdict = chg ? "WARN missing tag" : "-";
                         if (chg) { warn++; warnL.Add($"{def.name}/{sd.name} ({v0:0.##}->{v5:0.##})"); }
                     }
-                    mx.AppendLine($"{def.name}\t{sd.name}\t{(fit ? "fit" : "no")}\t{sd.metric1651}\t{v0:0.###}\t{(fit ? v1.ToString("0.###") : "-")}\t{v5:0.###}\t{verdict}");
+                    mx.AppendLine($"{def.name}\t{sd.name}\t{(fit ? "fit" : "no")}\t{sd.metric1651}\t{v0:0.###}\t{(fit ? v1.ToString("0.###") : "-")}\t{v5:0.###}\t{verdict}\t{fx}");
                     if (fit) line.Append(sd.name).Append(verdict == "PASS" ? " ok " : " DEAD ").Append($"({v0:0.#}/{v1:0.#}/{v5:0.#}) | ");
                 }
                 ARes(scen + ":" + def.name, skOk, line.ToString());
