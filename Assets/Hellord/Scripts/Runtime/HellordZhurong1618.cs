@@ -47,7 +47,7 @@ namespace Hellord
         class ZFlam { public Vector2 p; public float t; public bool done; }
         readonly List<ZFlam> _zFlam1618 = new List<ZFlam>(); readonly List<Enemy> _zCursed1618 = new List<Enemy>();
         [System.NonSerialized] public int ZhCryCharges1625; // t1625 War Cry (replaced Molten Shell): powered basics left
-        class ZRingS { public Vector2 p; public float t, tick; }
+        class ZRingS { public Vector2 p; public float t, tick; public HashSet<int> kb; } // t1654: first-entry Knockback (enemy ids)
         readonly List<ZRingS> _zRings1618 = new List<ZRingS>();
         [System.NonSerialized] public float ZhHearthT1618;
         // ultimates
@@ -357,7 +357,12 @@ namespace Hellord
                 {
                     var e = _en[ei]; if (!e.alive || e.dying) continue; Vector2 d = e.pos - r.p; float nx = d.x / R, ny = d.y / (R * 0.6f + 0.4f); if (nx * nx + ny * ny > 1f) continue;
                     if (!e.boss) { e.slowAmt = e.slowT > 0f ? Mathf.Max(e.slowAmt, TZ.srSlow1618) : TZ.srSlow1618; e.slowT = Mathf.Max(e.slowT, 0.15f); }
-                    if (tk) { Hit(e, ZkHit1651(6) * TZ.srDmg1618, ZkI1651(6), Vector2.zero, true); ZhRingHits1618++; }
+                    if (tk)
+                    {   // t1654: scorch ticks were Hit(..., zero, tick=true), so SupportsBeforeHit skipped Knockback. Fire Wall already bakes tick knock into the vector; Smolder Ring has no srKnock field, so the first time each demon is scorched by this ring it gets the support's hit values (2 / 3.5 / 5) once, outward from the ring. Later ticks still scorch with no extra push (8 ticks of the full values would shove 16-40 u).
+                        Vector2 knock = Vector2.zero; var sk = ZkI1651(6);
+                        if (sk != null && sk.Has(SupportId.Knockback) && !e.boss) { if (r.kb == null) r.kb = new HashSet<int>(); if (r.kb.Add(e.id)) { Vector2 dir = d.sqrMagnitude > 0.01f ? d.normalized : Vector2.up; knock = dir * HData.At(TZ.supKnockback, sk.Lvl(SupportId.Knockback), 2f); } }
+                        Hit(e, ZkHit1651(6) * TZ.srDmg1618, sk, knock, true); ZhRingHits1618++;
+                    }
                 }
                 int og = FbGround + YSort(r.p.y) + 6; float a = r.t > ZkDur1651(6, TZ.srLife1618) - 0.4f ? (ZkDur1651(6, TZ.srLife1618) - r.t) / 0.4f : 1f;
                 if (!ZhFx1625("ZFX_SmolderRing", r.p, -50, -28, 100, 52, og, r.t, 0.55f, ZP.F("_Ignite", Z01(r.t / 0.4f)), ZP.F("_Cool", Z01((r.t - (ZkDur1651(6, TZ.srLife1618) - 0.5f)) / 0.5f))))
