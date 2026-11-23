@@ -123,6 +123,35 @@ namespace Hellord
             }
         }
         Status _smSt1651;
+        /// <summary>t1651 stage 6: one DoT applied by a supported skill, no hits after. r = { leech heal, dmg with Executioner (low HP), dmg without, DoT kills, harvest XP, kill blasts }.</summary>
+        IEnumerator SmDot1651(Status st, double[] r)
+        {
+            var def = HData.Skill(SkillId.Fireball);
+            for (int pass = 0; pass < 3; pass++)
+            {
+                SmClear1651(); _heroPos = _smH1651; var s = new SkillInst { def = def, level = 1 };
+                if (pass == 0) { s.AddSupport(SupportId.LifeLeech); s.supLvl[(int)SupportId.LifeLeech] = 5; }
+                if (pass == 1) { s.AddSupport(SupportId.Executioner); s.supLvl[(int)SupportId.Executioner] = 5; }
+                if (pass == 2) { s.AddSupport(SupportId.SoulHarvest); s.AddSupport(SupportId.ExplodeOnKill); }
+                _smHp0.Clear(); _smP0.Clear(); _smPot.Clear(); var H = _smH1651;
+                for (int i = 0; i < 4; i++) { var e = ZMk1618(_smL1651, EType.Imp, H + new Vector2(2f + i * 1.5f, 0f), 0f, 1000f); if (e == null) continue; e.hp = pass == 1 ? 150f : pass == 2 ? 6f : 1000f; _smHp0.Add(e.hp); _smP0.Add(e.pos); _smPot.Add(0f); }
+                float hp0 = maxHp * 0.5f; hp = hp0; _leechHealed = 0f; int dk0 = AtDotKills1651; float k0 = AtKill1651; int bl0 = 0;
+                foreach (var e in _smL1651) ApplyStatus(e, st, 40f, 2f, s);
+                for (int f = 0; f < 90; f++) { yield return null; if (mode != Mode.Play) mode = Mode.Play; pendingLevels = 0; _heroPos = _smH1651; if (pass == 2) bl0 = Mathf.Max(bl0, _blasts.Count); }
+                double dmg = SmDmg1651();
+                if (pass == 0) r[0] = hp - hp0;
+                if (pass == 1)
+                {   // same DoT without Executioner on the same low-HP demons
+                    r[1] = dmg; SmClear1651(); _smHp0.Clear(); var s2 = new SkillInst { def = def, level = 1 };
+                    for (int i = 0; i < 4; i++) { var e = ZMk1618(_smL1651, EType.Imp, H + new Vector2(2f + i * 1.5f, 0f), 0f, 1000f); if (e == null) continue; e.hp = 150f; _smHp0.Add(e.hp); }
+                    foreach (var e in _smL1651) ApplyStatus(e, st, 40f, 2f, s2);
+                    for (int f = 0; f < 90; f++) { yield return null; if (mode != Mode.Play) mode = Mode.Play; pendingLevels = 0; _heroPos = _smH1651; }
+                    r[2] = SmDmg1651();
+                }
+                if (pass == 2) { r[3] = AtDotKills1651 - dk0; r[4] = AtKill1651 - k0; r[5] = bl0; }
+            }
+            SmClear1651(); hp = maxHp;
+        }
         // ---- stage 4: kit skills in the matrix (cast directly; conditions pre-met; probes read the state the cast set)
         int _smK1651 = -1; float _smKT0;
         void SmKitSetI1651(SkillInst si)
@@ -178,6 +207,9 @@ namespace Hellord
                 string bad = (SmCardCheck1651 ?? SmCard1651)(sd); if (bad != null) { statOk = false; stat.Append(sd.name).Append(": ").Append(bad).Append("; "); }
             }
             ARes(scen + ":static", statOk, stat.Length == 0 ? $"{HData.Supports.Length} supports: every one has a category and a test metric; card text checks ok" : stat.ToString());
+            // ---- stage 6: burn / bleed carry their skill (leech, executioner, kill hooks on DoT)
+            { var dl = new StringBuilder(); bool dok = true; foreach (var st in new[] { Status.Burn, Status.Bleed }) { var r = new double[6]; yield return SmDot1651(st, r); bool ok = r[0] > 0.01 && r[1] > r[2] * 1.05 && r[3] > 0 && r[4] > 0 && r[5] > 0; dok &= ok; dl.Append($"{st}: leech heal {r[0]:0.##} (no hits), exec dmg {r[1]:0.#} vs {r[2]:0.#} without, DoT kills {r[3]:0}, harvest XP {r[4]:0}, blasts {r[5]:0} {(ok ? "ok" : "FAIL")} | "); }
+              ARes(scen + ":dot", dok, dl.ToString()); }
             // ---- matrix
             var ids = SmSkills1651(); if (SmKitIds1651 != null) ids.AddRange(SmKitIds1651);
             { var av = System.Environment.GetCommandLineArgs(); int ai = System.Array.IndexOf(av, "-smSkills"); if (ai >= 0 && ai + 1 < av.Length) { var keep = new List<string>(av[ai + 1].Split(',')); ids.RemoveAll(x => !keep.Contains(x.ToString())); } } // quick subset runs

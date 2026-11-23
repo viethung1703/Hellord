@@ -14,7 +14,7 @@ namespace Hellord
         public int id; public EType type; public bool alive, elite; public Vector2 pos, push; public float hp, maxHp, speed, radius, dmg, animT;
         public SpriteRenderer sr; public Transform tr; public Sprite[] frames; public int xp, cx, cy; public float hitT; public PixelFX fx; public int shockH = -1, bleedH = -1, burnH = -1, chillH = -1; public bool boss;
         public float stag1434, stagDur1434, stagCd1434, kbT1434, kbDur1434, kbDist1434, kbDone1434; public Vector2 kbDir1434; public bool fbKill1481; public bool over1434, frozenDeath1434, d2scaled1434, gib1434, burn1434, fx1434, fxFrozen1434; public float corpseLife1434; public bool pop1434, slam1434; public D2Corpse1434 cp1434; public float agT1447, atkV1457; public Sprite[] fxFr1434; public Vector2 deathDir1434; public bool fxHold1434, fxFlip1434; /* t1446 PixelLab death events */ /* t1434 D2 feel */ public float hitY, deathT; public bool dying, splitDone, nest; public int walkRow; // v0.6: hurt-circle height (units above feet), death anim, facing row
-        public bool lured1651; /* t1651 probe: drawn by Ember Effigy */ public float zFlam1618; /* t1618 Flammability curse expiry (runTime) */ public float zCry1625; /* t1625 War Cry: explodes on death until (runTime) */ public float tint948Until, tint948Amt; public Color tint948Col; /* t948u brief status tint */ public float knock818; public int burnStk818; /* t818u sin #9 knock mark (runTime expiry) / #31 burn stacks */ public float slowT, slowAmt; /* v0.0.36 Grave Pool slow */ public float iceBuild; /* t1393u shared chill->freeze buildup */ public float shockAmp = 0.25f; public float burnT, burnDps, chillT, shockT, bleedT, bleedDps, curseT, freezeT, dotTick, orbitCd, auraCd; public int chillHits;
+        public bool lured1651; /* t1651 probe: drawn by Ember Effigy */ public SkillInst burnSrc1651, bleedSrc1651; /* t1651: the skill whose burn / bleed this is */ public float zFlam1618; /* t1618 Flammability curse expiry (runTime) */ public float zCry1625; /* t1625 War Cry: explodes on death until (runTime) */ public float tint948Until, tint948Amt; public Color tint948Col; /* t948u brief status tint */ public float knock818; public int burnStk818; /* t818u sin #9 knock mark (runTime expiry) / #31 burn stacks */ public float slowT, slowAmt; /* v0.0.36 Grave Pool slow */ public float iceBuild; /* t1393u shared chill->freeze buildup */ public float shockAmp = 0.25f; public float burnT, burnDps, chillT, shockT, bleedT, bleedDps, curseT, freezeT, dotTick, orbitCd, auraCd; public int chillHits;
         public byte variant; public float fuseT = -1; /* v0.0.37: 1 frost, 2 exploding */ public float hookCd; public int hookWind = -1, hookH = -1, strafe = 1; public Vector2 hookPrevTip, hookAim; public bool hookTipOk; // v0.0.24 Hook Thrower
         public int v44St, v44Face; public float v44T, v44HurtT, v44CastT, v44AnimT; public byte k49; public int s49, n49; public float t49, cd49; public Vector2 a49, b49; /* v0.0.49 patterns */ public bool v44West; public Vector2 v44Dir, v44Prev; public bool v44Hit; /* v0.0.44 Frost Caster / Fire Wheel */ public float gossipCd, gossipT; public int gossipSt, gossipH = -1; public Vector2 gossipC; // v0.0.25 Gossip Imp (state 0 hover, 1 approach, 2 shouting, 3 recover)
     }
@@ -610,7 +610,7 @@ namespace Hellord
             }
             e.dmg *= TT.contactDamageMul * (1 + (TT.soften679 ? TT.enemyDmgGrowth679 : TT.floorEnemyDmgGrowth) * fl); e.speed *= TT.enemySpeedMul * (1 + TT.floorSpeedGrowth * fl); // v0.0.26 pressure
             e.maxHp *= hpMul; e.hp = e.maxHp; e.alive = true; e.agT1447 = 0f; e.animT = Random.value * 4; e.dying = false; e.splitDone = false; e.nest = false; e.deathT = 0; e.walkRow = 0; e.variant = 0; e.m53 = 0; e.k49 = 0; e.s49 = 0; e.n49 = 0; e.t49 = 0; e.cd49 = 0.8f + Random.value * 1.5f; e.fuseT = -1; e.v44St = 0; e.v44T = 0; e.tr.rotation = Quaternion.identity;
-            e.lured1651 = false; /* t1651 probe */
+            e.lured1651 = false; e.burnSrc1651 = e.bleedSrc1651 = null; /* t1651 */
             e.burnT = e.chillT = e.shockT = e.bleedT = e.curseT = e.freezeT = e.orbitCd = e.auraCd = e.slowT = e.stun53 = e.brit536 = e.zFlam1618 = e.zCry1625 = 0; /* t1618, t1625 */ e.lured1651 = false; e.chillHits = 0; e.iceBuild = 0; e.push = Vector2.zero; D2Reset1434(e);
             e.sr.sprite = e.frames[0]; e.sr.color = Color.white; e.sr.flipX = false; e.sr.enabled = true; e.sr.gameObject.SetActive(true); HordeFX.Prepare(e.sr);
             StopStatuses(e); e.tr.localScale = Vector3.one * EnemyArtMap.Map[t].scale; e.tr.position = e.pos; e.hitT = 0;
@@ -659,7 +659,7 @@ namespace Hellord
                 e.burnT -= dt; e.chillT -= dt; e.shockT -= dt; e.bleedT -= dt; e.curseT -= dt; e.freezeT -= dt; e.orbitCd -= dt; e.auraCd -= dt; e.slowT -= dt; e.stun53 -= dt; D2StagTick1434(e, dt);
                 // DoTs tick every 0.5s
                 e.dotTick -= dt;
-                if (e.dotTick <= 0) { e.dotTick = 0.5f; float d = e.bleedT > 0 ? e.bleedDps : 0; /* v0.0.21: burn damage comes from BurnFX.OnTick */ if (d > 0) { Damage(e, d * 0.5f, false, true); if (!e.alive) continue; } }
+                if (e.dotTick <= 0) { e.dotTick = 0.5f; float d = e.bleedT > 0 ? e.bleedDps : 0; /* v0.0.21: burn damage comes from BurnFX.OnTick */ if (d > 0) { DotDamage1651(e, d * 0.5f, e.bleedSrc1651, false); /* t1651: the bleed carries its skill */ if (!e.alive) continue; } }
                 if (e.boss) { e.hitT -= dt; D2Aggro1447(e, 0f, dt); UpdateBoss(e, dt); UpdateStatusFx(e); UpdateStatusHandles(e); continue; }
                 if (e.nest) { UpdateNest(e, dt); continue; }
                 Vector2 to = _heroPos - e.pos; float dist = to.magnitude; D2Aggro1447(e, dist, dt);
@@ -736,7 +736,7 @@ namespace Hellord
             float sd = SinDuration737; // t818u Duration stat
             switch (st)
             {
-                case Status.Burn: { float nb = dmg * HellordTuning.I.burnDpsFromHit * k; if (e.burnT <= 0) e.burnStk818 = 0; e.burnDps = SinBurnDps818(e, nb); e.burnT = (TT.burnDuration + (src != null && src.Has(SupportId.Burn) ? TT.burnExtraSecondsPerLevel * (src.Lvl(SupportId.Burn) - 1) : 0f)) * sd * SinBurnDurMul818() + SinBurnAddS818(); IgniteBurn(e); break; } // t818u #4/#31 + Duration
+                case Status.Burn: { if (src != null) e.burnSrc1651 = src; /* t1651 */ float nb = dmg * HellordTuning.I.burnDpsFromHit * k; if (e.burnT <= 0) e.burnStk818 = 0; e.burnDps = SinBurnDps818(e, nb); e.burnT = (TT.burnDuration + (src != null && src.Has(SupportId.Burn) ? TT.burnExtraSecondsPerLevel * (src.Lvl(SupportId.Burn) - 1) : 0f)) * sd * SinBurnDurMul818() + SinBurnAddS818(); IgniteBurn(e); break; } // t818u #4/#31 + Duration
                 case Status.Chill: e.chillT = 2 * k; if (++e.chillHits >= (src != null && src.Has(SupportId.Chill) ? HData.At(TT.supChillFreezeHits, src.Lvl(SupportId.Chill), 3) : 3)) { e.chillHits = 0; e.freezeT = 1.2f; } if (!StatusFX.IsAlive(e.chillH)) e.chillH = HFX.ChillStatus(e); StatusFX.SetFrozen(e.chillH, e.freezeT > 0); break;
                 case Status.Shock:
                     e.shockT = 3 * sd * SinShockDur818(); e.shockAmp = (src != null && src.Has(SupportId.Shock) ? HData.At(TT.supShockAmp, src.Lvl(SupportId.Shock), 0.25f) : TT.shockBaseAmp) * SinShockAmp818(); // t818u #24 + Duration
@@ -745,7 +745,7 @@ namespace Hellord
                     if (e.shockH < 0) HFX.Shock(e.pos + Vector2.up * e.hitY); // stand-in
                     break;
                 case Status.Bleed:
-                    Tint948(e, HellordTuning.I.bleedTint948, HellordTuning.I.bleedTintS948, new Color(1f, 0.15f, 0.15f)); e.bleedT = 3 * sd; e.bleedDps = dmg * 0.25f * k * _sinBleedMul737 * SinBleedStill818(); // t818u #23 + Duration
+                    if (src != null) e.bleedSrc1651 = src; /* t1651 */ Tint948(e, HellordTuning.I.bleedTint948, HellordTuning.I.bleedTintS948, new Color(1f, 0.15f, 0.15f)); e.bleedT = 3 * sd; e.bleedDps = dmg * 0.25f * k * _sinBleedMul737 * SinBleedStill818(); // t818u #23 + Duration
                     if (!HFX.Alive(e.bleedH)) e.bleedH = HFX.BleedStatus(e.tr, 3f, e.radius);
                     break;
                 case Status.Curse: e.curseT = 4 * k * sd; break; // t818u Duration
