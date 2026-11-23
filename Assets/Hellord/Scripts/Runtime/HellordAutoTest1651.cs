@@ -33,7 +33,8 @@ namespace Hellord
                 case SupMetric1651.Area: return m.affected;
                 case SupMetric1651.Repeat: return m.dmg; // + the cast count must rise (checked in the verdict)
                 case SupMetric1651.Status: return m.potency;
-                case SupMetric1651.Damage: case SupMetric1651.Execute: return m.dmg;
+                case SupMetric1651.Damage: return m.dmg;
+                case SupMetric1651.Execute: return m.hits > 0 ? m.dmg / m.hits : m.dmg; /* per direct hit: Executioner is a per-hit mul. Total damage over the window is noisy when a skill's cadence uses Random (Hydra heads), because Hit / status rolls consume the seed differently at each mul and the bolt count in 2.5 s drifts; Lv3 total already matched none x 1.75 */
                 case SupMetric1651.Cooldown: return m.cdInv;
                 case SupMetric1651.Leech: return m.heal;
                 case SupMetric1651.Knock: return m.disp;
