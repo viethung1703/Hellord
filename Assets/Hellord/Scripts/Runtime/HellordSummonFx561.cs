@@ -36,16 +36,16 @@ namespace Hellord
         void ArrowSup622(Fx561 f)
         {
             var s = f.sk; f.pl = f.pierce ? -1 : 0; if (s == null) return; var T = HellordTuning.I;
-            if (s.Has(SupportId.Pierce)) f.pl = f.pierce ? -1 : HData.At(T.supPierce, s.Lvl(SupportId.Pierce), 1);
-            if (s.Has(SupportId.Bounce)) { f.bl = HData.At(T.supBounce, s.Lvl(SupportId.Bounce), 1); f.bR = HData.At(T.supBounceRangeU, s.Lvl(SupportId.Bounce), 4f); }
-            f.fk = s.Has(SupportId.Fork);
-            f.hom = s.Has(SupportId.Homing) ? HData.At(T.supHomingRangeU, s.Lvl(SupportId.Homing), 5f) : 0f;
+            if (s.PierceN > 0) f.pl = f.pierce ? -1 : s.PierceN; // t1651 stats
+            if (s.BounceN > 0) { f.bl = s.BounceN; f.bR = s.Stat(SStat1651.BounceR); }
+            f.fk = s.ForkN > 0;
+            f.hom = s.HomingR;
         }
         /// <summary>t622u Multi Projectiles: extra arrows per shot at other demons near the target (or the same one), each at multiProjDmgMul damage.</summary>
         void ArcMulti622(NMin536 m, int t, Vector2 end, bool pierce, ref float dmg, SkillInst sk, float rng)
         {
-            if (sk == null || !sk.Has(SupportId.MultipleProjectiles)) return; var T = HellordTuning.I;
-            int extra = HData.At(T.supMultiExtra, sk.Lvl(SupportId.MultipleProjectiles), 1); dmg *= T.multiProjDmgMul;
+            if (sk == null || sk.ProjExtra <= 0) return; var T = HellordTuning.I;
+            int extra = sk.ProjExtra; dmg *= T.multiProjDmgMul;
             _aq622.Clear(); Query(_en[t].pos, 4f, _aq622); var used = new List<int>(4) { t };
             Vector2 dir = (end - m.p).normalized;
             for (int i = 0; i < extra; i++)
@@ -70,7 +70,7 @@ namespace Hellord
             var T = HellordTuning.I;
             if (f.fk)
             {   // Fork: split once into N children that fly on in a fan (each stops at its first hit, no further fork)
-                f.fk = false; ProjectileFX.HitSplit(hp, ProjElement.Bone); /* t659u */ var s = f.sk; int n = HData.At(T.supForkChildren, s.Lvl(SupportId.Fork), 2); float cd = f.dmg * HData.At(T.supForkDmg, s.Lvl(SupportId.Fork), 0.55f);
+                f.fk = false; ProjectileFX.HitSplit(hp, ProjElement.Bone); /* t659u */ var s = f.sk; int n = Mathf.Max(1, s.ForkN); float cd = f.dmg * s.Stat(SStat1651.ForkDmg); // t1651 stats
                 for (int c = 0; c < n && _fx561.Count < 400; c++)
                 {
                     float a = (c - (n - 1) * 0.5f) * T.forkSpreadDeg; Vector2 d2 = Quaternion.Euler(0, 0, a == 0 ? T.forkSpreadDeg * 0.5f : a) * dir;

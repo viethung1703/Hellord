@@ -35,9 +35,9 @@ namespace Hellord
         bool NCrest536 => Necro536 && Crest53;
         float NHpMul536() => (NHas536(1) ? PT.ironMarrowHp536 : 1f) * (NHas536(7) ? PT.cryptHp536 : 1f) * (NCrest536 ? PT.necroCrestMinion536 : 1f);
         float NDmg536(int kind) => NBaseDmg561(kind) * (1 + incDmg * PT.minionPlayerDmgShare561) * PDmg49() * (NCrest536 ? PT.necroCrestMinion536 : 1f) * (NHas536(7) ? PT.cryptDmg536 : 1f) * (NHas536(8) ? PT.legionDmg536 : 1f) * (kind == 0 && NHas536(4) ? PT.graveEdgeMul536 : 1f) * NSupDmg614(kind);
-        float NSupDmg614(int kind) { var r = NSkill561(kind); return r != null && r.Has(SupportId.AddedDamage) ? HData.At(HellordTuning.I.supAddedDmg, r.Lvl(SupportId.AddedDamage), 1.15f) : 1f; } // v0.0.62 t614u
+        float NSupDmg614(int kind) { var r = NSkill561(kind); return r != null ? r.Stat(SStat1651.DmgMul) / (r.ProjExtra > 0 && HData.MultiHonoured1651(r.def.id) ? Mathf.Max(0.01f, HellordTuning.I.multiProjDmgMul) : 1f) : 1f; } // t1651: damage stat (Multi penalty is applied per arrow in ArcMulti622) // v0.0.62 t614u
         float NRate536(int kind) => SinMinRate818(kind) * (kind == 0 ? PT.skelWarRate561 : PT.skelArcRate561) / (NHas536(2) ? PT.hollowHaste536 : 1f) * NSupRate614(kind);
-        float NSupRate614(int kind) { var r = NSkill561(kind); return r != null && r.Has(SupportId.FasterCasting) ? HData.At(HellordTuning.I.supFasterCd, r.Lvl(SupportId.FasterCasting), 0.9f) : 1f; } // v0.0.62 t614u: Faster Casting = shorter minion attack interval
+        float NSupRate614(int kind) { var r = NSkill561(kind); return r != null ? r.Stat(SStat1651.CdMul) : 1f; } // t1651 stat // v0.0.62 t614u: Faster Casting = shorter minion attack interval
         int NCount536(int kind, bool temp) { int c = 0; foreach (var m in _nmin536) if (m.kind == kind && m.temp == temp) c++; return c; }
         void NSpawn536(int kind, bool temp, Vector2 at, float life = -1f)
         {

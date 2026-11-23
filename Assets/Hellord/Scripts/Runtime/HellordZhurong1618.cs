@@ -523,15 +523,16 @@ namespace Hellord
         }
         const float ZHyW1625 = 0.27f;
         float ZHyRise1625(ZHy o) => Z01(o.t / 0.7f);
-        float ZHyFade1625(ZHy o) => Z01((o.t - (TZ.hyLife1625 - 0.6f)) / 0.6f);
+        float ZHyLife1651(ZHy o) => o.s != null ? o.s.Dur(TZ.hyLife1625) : TZ.hyLife1625; // t1651 duration stat
+        float ZHyFade1625(ZHy o) => Z01((o.t - (ZHyLife1651(o) - 0.6f)) / 0.6f);
         void UpdateHydras1625(float dt)
         {
             var T = TZ;
             for (int i = _zHy1625.Count - 1; i >= 0; i--)
             {
                 var o = _zHy1625[i]; o.t += dt;
-                if (o.t >= T.hyLife1625) { _zHy1625.RemoveAt(i); ZhHydraGone1625(o); continue; }
-                bool fading = o.t >= T.hyLife1625 - 0.6f;
+                if (o.t >= ZHyLife1651(o)) { _zHy1625.RemoveAt(i); ZhHydraGone1625(o); continue; }
+                bool fading = o.t >= ZHyLife1651(o) - 0.6f;
                 for (int h = 0; h < 3; h++)
                 {
                     if (o.armed[h] && o.t - o.spitT[h] >= ZHyW1625)

@@ -61,7 +61,7 @@ namespace Hellord
             else
             {
                 int jumps = HData.At(T.chainJumps, s.level, 2) + SinChainJumps818();
-                float range = HData.At(T.chainJumpRangeU, s.level, 3.2f) * s.AreaMul; int cur = first; float d = dmg;
+                float range = s.R(HData.At(T.chainJumpRangeU, s.level, 3.2f)); int cur = first; float d = dmg;
                 for (int k = 0; k <= jumps && cur >= 0; k++)
                 {
                     var e = _en[cur]; _chainHit.Add(cur); _chainPts.Add(e.pos + Vector2.up * e.hitY);

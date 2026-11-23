@@ -119,14 +119,14 @@ namespace Hellord
             if (T.fbDark1481 && T.msDarkArt1481 && FireBasicsFX1481.Frames("molten_spit_darken") > 0) FireBasicsFX1481.Once("molten_spit_darken", at, FbDarkOrd1481(at.y), 0f, 1f, 0, false, T.msDarkArtDelayF1481, T.msDarkArtSx1481, T.msDarkArtSy1481); // HFX v5 darken b0-5
             else FireBasicsFX1481.Dark(at + r.dir * (T.msDarkFwdPx1481 / FbPx), T.msDarkRxPx1481, T.msDarkRyPx1481, T.msDarkAlpha1481, T.msDarkHoldS1481, FbDarkOrd1481(at.y));
             /* t1511b */ ScreenShake.Add(2, 0.1f); HellordAudio.Play("magma_throw_land");
-            After(T.msImpactDelayF1481 / FbFps, () => { if (mode != Mode.StartPick) FbArea1481(at, T.msHitRU1481 * Mathf.Sqrt(s.AreaMul), dmg * T.msImpactMul1481, s, T.msKnock1481, 1, T.msHitYScale1481); }); // t1514: flattened ellipse, the only hit with a number
+            After(T.msImpactDelayF1481 / FbFps, () => { if (mode != Mode.StartPick) FbArea1481(at, s.RA(T.msHitRU1481), dmg * T.msImpactMul1481, s, T.msKnock1481, 1, T.msHitYScale1481); }); // t1514: flattened ellipse, the only hit with a number
             Vector2 tg = new Vector2(r.dir.x, r.dir.y * T.msStrandYScale1481); Vector2 b2 = at + tg * (T.msB2OutPx1481 / FbPx); ClampToRoom(ref b2, 4);
             After(T.msB2DelayF1481 / FbFps, () =>
             {   // t1514 B2: one medium burst ~20 px, 42 px out along the throw, small damage, no number
                 if (mode == Mode.StartPick) return; FireBasicsFX1481.Once("molten_spit_burst_med", b2, YSort(b2.y) + 40, 0f, T.msB2Speed1481, 0, false, 0f, T.msB2Scale1481, T.msB2Scale1481); // HFX v5 burst_med (~20 px), 6 f
-                HellordAudio.Play("magma_throw_splat"); FbArea1481(b2, T.msB2RU1481 * Mathf.Sqrt(s.AreaMul), dmg * T.msB2Mul1481, s, 0f, 2, T.msHitYScale1481);
+                HellordAudio.Play("magma_throw_splat"); FbArea1481(b2, s.RA(T.msB2RU1481), dmg * T.msB2Mul1481, s, 0f, 2, T.msHitYScale1481);
             });
-            float area = Mathf.Sqrt(s.AreaMul);
+            float area = s.RA(1f);
             if (T.msHeatS1481 > 0f) FbPatch1481(at, T.msHeatRxU1481 * area, T.msHeatRyU1481 * area, T.msHeatS1481, T.msHeatDelayF1481 / FbFps, T.msPatchTickS1481, dmg * T.msPatchTickMul1481, s); // HFX v4 dropped the heat haze (msHeatS 0 = off)
             FireBasicsFX1481.Decal("molten_spit_scorch", FireBasicsFX1481.DecalKind.SpitScorch, at, FbGround + ord, T.msScorchDelayF1481);                    // HFX v5 scorch: 6 stages x 6 f from b2
             FireBasicsFX1481.Once("molten_spit_ember_patch_v1", at + FbPxOff1481(T.msEmber1OffPx1481), FbGround + ord + 4, 0f, 1f, T.msEmberMax1481, false, T.msEmberDelayF1481);  // HFX v5: ember v1 at b3 (-5,+1), v2 at b4 (+6,-1), 30 f once
@@ -149,7 +149,7 @@ namespace Hellord
             if (ek >= 0 && (c == null || c.embers < T.msEmberCastMax1481))
             {   // HFX v5: shards 0, 3, 5, 7 leave an ember patch (alternating v1 / v2, 30 f once); <= msEmberCastMax per cast incl. the 2 impact ones. Damage patch 1.5 s (gameplay, dc1090b)
                 if (c != null) c.embers++; FireBasicsFX1481.Once("molten_spit_ember_patch_v" + (1 + (ek & 1)), b, FbGround + ord + 4, 0f, 1f, T.msEmberMax1481);
-                FbPatch1481(b, T.msEmberRU1481 * Mathf.Sqrt(st.s.AreaMul), T.msEmberRU1481 * Mathf.Sqrt(st.s.AreaMul), T.msEmberS1481, 0f, T.msPatchTickS1481, st.pdmg, st.s);
+                FbPatch1481(b, st.s.RA(T.msEmberRU1481), st.s.RA(T.msEmberRU1481), T.msEmberS1481, 0f, T.msPatchTickS1481, st.pdmg, st.s);
             }
         }
 
@@ -179,11 +179,11 @@ namespace Hellord
             var T = HellordTuning.I; int oy = YSort(at.y); string key = (seg & 1) == 0 || FireBasicsFX1481.Frames("infernal_boulder_band_b") == 0 ? "infernal_boulder_band" : "infernal_boulder_band_b";
             FireBasicsFX1481.Tile(key, at, oy + T.rrBandSort1481, T.rrBandS1481 * SinDuration737, 0f, T.rrBandMax1481, T.rrBandIgnF1481, ((seg * T.rrBandPhaseStep1481) % 12 + 12) % 12);
             if (T.rrDarkBandEvery1481 > 0 && b.tiles % T.rrDarkBandEvery1481 == 0) FireBasicsFX1481.Dark(at, T.rrDarkBandRxPx1481, T.rrDarkBandRyPx1481, T.rrDarkBandAlpha1481, Mathf.Max(0f, T.rrBandS1481 * SinDuration737 - T.fbDarkOutS1481), FbDarkOrd1481(at.y)); // t1511b darkening along the band
-            if ((b.tiles++ & 1) == 0) FbPatch1481(at, T.rrBandRU1481 * Mathf.Sqrt(b.s.AreaMul), T.rrBandRU1481 * Mathf.Sqrt(b.s.AreaMul), T.rrBandS1481, 0f, T.rrBandTickS1481, b.dmg * T.rrBandTickMul1481, b.s);
+            if ((b.tiles++ & 1) == 0) FbPatch1481(at, b.s.RA(T.rrBandRU1481), b.s.RA(T.rrBandRU1481), T.rrBandS1481, 0f, T.rrBandTickS1481, b.dmg * T.rrBandTickMul1481, b.s);
         }
         void FbBallEnd1481(FbBall b)
         {
-            var T = HellordTuning.I; Vector2 at = b.p; ClampToRoom(ref at, 5); int ord = YSort(at.y); float area = Mathf.Sqrt(b.s.AreaMul);
+            var T = HellordTuning.I; Vector2 at = b.p; ClampToRoom(ref at, 5); int ord = YSort(at.y); float area = b.s.RA(1f);
             FbArea1481(at, T.rrBlastRU1481 * area, b.dmg * T.rrBlastMul1481, b.s, 0f); ScreenShake.Add(2, 0.12f);
             FireBasicsFX1481.Once("infernal_boulder_end_blast", at, ord + 40); FireBasicsFX1481.Dark(at, T.rrDarkRxPx1481, T.rrDarkRyPx1481, T.rrDarkAlpha1481, T.rrDarkHoldS1481, FbDarkOrd1481(at.y)); // t1511b                                                                         // flash, chunks, sparks (30 f)
             FireBasicsFX1481.Tile("infernal_boulder_fire_patch", at, FbGround + ord, T.rrPatchS1481 * SinDuration737, T.rrPatchDelayF1481, 0, T.rrPatchIgnF1481);              // fire patch from blast + 2 f, 75 f
@@ -200,7 +200,7 @@ namespace Hellord
         {
             if (mode == Mode.StartPick) return false; var T = HellordTuning.I; EnsureFX44();
             if (_fbPillars >= T.fpMax1481) { s.cd = 0.1f; return false; } // HFX cap: <= 3 pillars alive
-            Vector2 at = FbAimPoint1481(T.fpRangeU1481); float r = HData.At(T.fpRadiusU1481, s.level, 1.2f) * s.AreaMul; float dd = dmg * T.fpDmgMul1481; var sk = s; float tell = Mathf.Max(0.05f, T.fpTellS1481); int ord = YSort(at.y); int shot = _fbShot++; _fbPillars++;
+            Vector2 at = FbAimPoint1481(T.fpRangeU1481); float r = s.R(HData.At(T.fpRadiusU1481, s.level, 1.2f)); float dd = dmg * T.fpDmgMul1481; var sk = s; float tell = Mathf.Max(0.05f, T.fpTellS1481); int ord = YSort(at.y); int shot = _fbShot++; _fbPillars++;
             FireBasicsFX1481.Once("fire_pillar_telegraph", at, FbGround + ord + 5, 0f, (FireBasicsFX1481.Frames("fire_pillar_telegraph") / FbFps) / tell); // telegraph re-timed to the code's tell seconds
             HellordAudio.Play("fire_pillar_telegraph");
             After(tell, () =>

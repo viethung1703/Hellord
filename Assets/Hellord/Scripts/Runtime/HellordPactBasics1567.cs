@@ -208,13 +208,13 @@ namespace Hellord
             {
                 var b = _pbOrbs[i]; b.t += dt;
                 if (b.die >= 0f) { b.die += dt; if (b.die >= OrbPopLen1567) _pbOrbs.RemoveAt(i); continue; }
-                live++; b.dist = Mathf.Min(b.total, b.dist + T.orbSpeedU1567 * dt); Vector2 p = b.a + b.dir * b.dist; ClampToRoom(ref p, 4); b.p = p;
+                live++; b.dist = Mathf.Min(b.total, b.dist + T.orbSpeedU1567 / Mathf.Max(0.1f, b.s.DurMul) * dt); /* t1651 duration stat: same path, slower = longer */ Vector2 p = b.a + b.dir * b.dist; ClampToRoom(ref p, 4); b.p = p;
                 b.trailT += dt; if (b.trailT >= T.orbTrailEveryS1567) { b.trailT -= T.orbTrailEveryS1567; PbFxOnce1567("bl2_trail", p + Vector2.up * T.orbHeightU1567, YSort(p.y) + 28); } // t1584 HFX v2: one trail puff every 3 f (no-op without v2)
                 b.zap -= dt;
                 if (b.zap <= 0f)
                 {
-                    b.zap += Mathf.Max(0.05f, T.orbZapEveryS1567); int nT = HData.At(T.orbZapTargets1567, b.s.level, 2); Vector2 op = p + Vector2.up * T.orbHeightU1567; Query(p, T.orbZapRU1567 + 1.5f, _pbQ); int got = 0;
-                    _pbQSort.Clear(); foreach (int ei in _pbQ) { var e = _en[ei]; if (!PbOk(e)) continue; float d = (PbChest1567(e) - op).magnitude; if (d <= T.orbZapRU1567 + e.radius * 0.5f) _pbQSort.Add(new Vector2(d, ei)); }
+                    b.zap += Mathf.Max(0.05f, T.orbZapEveryS1567); int nT = HData.At(T.orbZapTargets1567, b.s.level, 2); Vector2 op = p + Vector2.up * T.orbHeightU1567; float zr1651 = b.s.R(T.orbZapRU1567); /* t1651 area helper */ Query(p, zr1651 + 1.5f, _pbQ); int got = 0;
+                    _pbQSort.Clear(); foreach (int ei in _pbQ) { var e = _en[ei]; if (!PbOk(e)) continue; float d = (PbChest1567(e) - op).magnitude; if (d <= zr1651 + e.radius * 0.5f) _pbQSort.Add(new Vector2(d, ei)); }
                     _pbQSort.Sort((x, y) => x.x.CompareTo(y.x));
                     foreach (var q in _pbQSort)
                     {
@@ -269,7 +269,7 @@ namespace Hellord
             PbFxOnce1567("tj2_impflash", cc, PbTop1567(c)); PbFxOnce1567("tj2_impground", c, FbGround + YSort(c.y) + 12); PbFxOnce1567("tj2_scorch", c, FbGround + YSort(c.y) + 8);
             if (T.javChain1567)
             {   // t1579 Chain-Lightning style: jump to the nearest unhit demon within javChainRangeU, javChainJumps times, damage x javChainFalloff per jump
-                _pbChains1567.Add(new PbChain1567 { at = firstIx, from = c, dmg = j.dmg, left = Mathf.Clamp(HData.At(T.javChainJumps1567, j.s.level, 4), 0, 20), t = T.javChainDelayS1567 - T.javChainFirstS1567, s = j.s, hit = hit, dir = j.dir }); JavChains1567++;
+                _pbChains1567.Add(new PbChain1567 { at = firstIx, from = c, dmg = j.dmg, left = Mathf.Clamp(HData.At(T.javChainJumps1567, j.s.level, 4) + j.s.ChainExtra, 0, 20), /* t1651 Chain stat */ t = T.javChainDelayS1567 - T.javChainFirstS1567, s = j.s, hit = hit, dir = j.dir }); JavChains1567++;
                 if (!T.javChainKeepForks1567) nf = 0;
             }
             for (int k = 0; k < nf; k++)
@@ -278,7 +278,7 @@ namespace Hellord
                 Vector2 d = PbRot(j.dir, ang), nrm = new Vector2(-d.y, d.x); float delay = HData.At(T.javForkDelayF1567, k + 1, 0) / 30f;
                 // HFX snap: the nearest other demon within javSnapU and javSnapDeg of this fork's angle
                 int snap = -1; float sd = 1e9f;
-                if (T.javSnap1567) { Query(c, T.javSnapU1567 + 1f, _pbQ); foreach (int ei in _pbQ) { if (hit.Contains(ei)) continue; var e = _en[ei]; if (!PbOk(e)) continue; Vector2 v = e.pos - c; float m = v.magnitude; if (m < 0.05f || m > T.javSnapU1567) continue; if (Vector2.Angle(d, v) > T.javSnapDeg1567) continue; if (m < sd) { sd = m; snap = ei; } } }
+                if (T.javSnap1567) { float su1651 = j.s.R(T.javSnapU1567); /* t1651 area helper */ Query(c, su1651 + 1f, _pbQ); foreach (int ei in _pbQ) { if (hit.Contains(ei)) continue; var e = _en[ei]; if (!PbOk(e)) continue; Vector2 v = e.pos - c; float m = v.magnitude; if (m < 0.05f || m > su1651) continue; if (Vector2.Angle(d, v) > T.javSnapDeg1567) continue; if (m < sd) { sd = m; snap = ei; } } }
                 float len = (k & 1) == 0 ? T.javForkLenEvenU1567 : T.javForkLenOddU1567; Vector2 end = c + d * len;
                 if (snap >= 0) { var e = _en[snap]; hit.Add(snap); end = e.pos; PbHit1567(e, j.dmg * T.javForkMul1567, j.s, d * T.javKnock1567 * 0.5f); JavForkHits1567++; PbFxOnce1567("tj_bolthit", PbChest1567(e), YSort(e.pos.y) + 46, 0, delay + 1f / 30f); }
                 else
@@ -305,7 +305,7 @@ namespace Hellord
             {
                 var ch = _pbChains1567[i]; ch.t += dt; if (ch.t < T.javChainDelayS1567) continue; ch.t -= T.javChainDelayS1567;
                 if (ch.left <= 0) { _pbChains1567.RemoveAt(i); continue; }
-                Vector2 c = ch.at >= 0 && ch.at < _en.Length && _en[ch.at] != null ? _en[ch.at].pos : ch.from; float R = T.javChainRangeU1567; Query(c, R + 1f, _pbQ); int best = -1; float bd = 1e9f;
+                Vector2 c = ch.at >= 0 && ch.at < _en.Length && _en[ch.at] != null ? _en[ch.at].pos : ch.from; float R = ch.s != null ? ch.s.R(T.javChainRangeU1567) : T.javChainRangeU1567; /* t1651 area helper */ Query(c, R + 1f, _pbQ); int best = -1; float bd = 1e9f;
                 foreach (int ei in _pbQ) { if (ch.hit.Contains(ei)) continue; var e = _en[ei]; if (!PbOk(e)) continue; float d = (e.pos - c).magnitude; if (d <= R && d < bd) { bd = d; best = ei; } }
                 if (best < 0) { _pbChains1567.RemoveAt(i); continue; }
                 var t = _en[best]; ch.hit.Add(best); ch.jumps++; ch.left--; float mul = Mathf.Pow(T.javChainFalloff1567, ch.jumps); Vector2 fd = t.pos - c; Vector2 kd = fd.sqrMagnitude > 1e-6f ? fd.normalized : ch.dir;
@@ -329,7 +329,7 @@ namespace Hellord
         // chopInnerU is always hit). Knock-back outward. Demons that were ALREADY bleeding when struck release a blood shockwave (up to chopWaveMax).
         bool CastHeadsmansChop1567(SkillInst s, float dmg)
         {
-            var T = HellordTuning.I; Vector2 dir = PbAim1567(); Vector2 c = _heroPos; float r = T.chopRangeU1567 * Mathf.Sqrt(s.AreaMul); bool v2 = T.chopV2_1567 && PbA1567("xc2_flash") != null; float half = v2 ? T.chopHalfDegV2_1567 : T.chopHalfDeg1567; ChopV2Last1567 = v2; ChopLastHalf1567 = half;
+            var T = HellordTuning.I; Vector2 dir = PbAim1567(); Vector2 c = _heroPos; float r = s.RA(T.chopRangeU1567); bool v2 = T.chopV2_1567 && PbA1567("xc2_flash") != null; float half = v2 ? T.chopHalfDegV2_1567 : T.chopHalfDeg1567; ChopV2Last1567 = v2; ChopLastHalf1567 = half;
             Query(c, r + 1.5f, _pbQ); var waves = new List<Vector2>(); int hits = 0;
             foreach (int ei in _pbQ)
             {
@@ -362,7 +362,7 @@ namespace Hellord
         }
         void ChopWave1567(Vector2 at, float dmg, SkillInst s)
         {
-            var T = HellordTuning.I; ChopWaves1567++; float r = T.chopWaveRU1567 * Mathf.Sqrt(s.AreaMul); Query(at, r + 1f, _pbQ);
+            var T = HellordTuning.I; ChopWaves1567++; float r = s.RA(T.chopWaveRU1567); Query(at, r + 1f, _pbQ);
             foreach (int ei in _pbQ) { var e = _en[ei]; if (!PbOk(e)) continue; Vector2 v = e.pos - at; float m = v.magnitude; if (m < 0.05f || m > r + e.radius * 0.5f) continue; PbHit1567(e, dmg, s, v / m * T.chopWaveKnock1567); ChopWaveHits1567++; }
             if (!PbFxOnce1567(PbEv1567("chop.wave", "xc_wave"), at, YSort(at.y) + 2, 0, T.chopWaveDelayF1567 / 30f, false, PbMatch1567(r, T.chopWaveArtPx1567))) { // HFX blood wave at the feet, 2 f after the hit
             _pbRings.Add(new PbRing { c = at, r0 = 0.2f, r1 = r, dur = T.chopWaveS1567, col = PbBlood, order = YSort(at.y) + 35, strip = "headsmans_chop/blood_wave" });
@@ -376,7 +376,7 @@ namespace Hellord
         bool CastEarthSlam1567(SkillInst s, float dmg)
         {
             var T = HellordTuning.I; if (T.slamForward1567) return CastSlamLine1567(s, dmg); // t1572: PoE 2 forward fissure line (off = the round first-pass slam below)
-            Vector2 dir = PbAim1567(); Vector2 hero0 = _heroPos; Vector2 at = _heroPos + dir * T.slamAheadU1567; ClampToRoom(ref at, 4); float area = Mathf.Sqrt(s.AreaMul);
+            Vector2 dir = PbAim1567(); Vector2 hero0 = _heroPos; Vector2 at = _heroPos + dir * T.slamAheadU1567; ClampToRoom(ref at, 4); float area = s.RA(1f);
             float r = T.slamRU1567 * area; Query(at, r + 1f, _pbQ);
             foreach (int ei in _pbQ) { var e = _en[ei]; if (!PbOk(e)) continue; Vector2 v = e.pos - at; float m = v.magnitude; if (m > r + e.radius * 0.5f) continue; PbHit1567(e, dmg, s, (m > 0.05f ? v / m : dir) * T.slamKnock1567); }
             while (_pbCracks.Count >= Mathf.Max(1, T.crackCap1567)) _pbCracks.RemoveAt(0);
@@ -392,7 +392,7 @@ namespace Hellord
             var T = HellordTuning.I;
             for (int i = _pbCracks.Count - 1; i >= 0; i--)
             {
-                var k = _pbCracks[i]; k.t += dt; float area = Mathf.Sqrt(k.s.AreaMul), r = k.r > 0f ? k.r : T.crackRU1567 * area;
+                var k = _pbCracks[i]; k.t += dt; float area = k.s.RA(1f), r = k.r > 0f ? k.r : T.crackRU1567 * area;
                 Query(k.p, r + 1f, _pbQ);
                 if (k.t < k.life - T.crackFadeS1567) foreach (int ei in _pbQ) { var e = _en[ei]; if (!PbOk(e) || e.boss) continue; if ((e.pos - k.p).magnitude > r + e.radius * 0.5f) continue; e.slowT = Mathf.Max(e.slowT, T.crackSlowRefreshS1567); e.slowAmt = Mathf.Max(e.slowT > T.crackSlowRefreshS1567 ? e.slowAmt : 0f, T.crackSlow1567); if (k.slowed.Add(ei)) SlamSlowed1567++; }
                 if (!k.erupted && k.t >= (k.eruptAt > 0f ? k.eruptAt : T.eruptDelayS1567))
@@ -492,7 +492,7 @@ namespace Hellord
                 var g = _pbGhosts[i]; g.t += dt;
                 if (!g.chopped && g.t >= T.phWindS1567)
                 {
-                    g.chopped = true; float r = T.phArcRU1567 * Mathf.Sqrt(g.s.AreaMul); Query(g.p, r + 1.5f, _pbQ);
+                    g.chopped = true; float r = g.s.RA(T.phArcRU1567); Query(g.p, r + 1.5f, _pbQ);
                     foreach (int ei in _pbQ) { var e = _en[ei]; if (!PbOk(e) || !PbInArc1567(e, g.p, g.face, r, T.phArcHalfDeg1567, T.phInnerU1567)) continue; Vector2 kd = e.pos - g.p; kd = kd.sqrMagnitude > 0.0001f ? kd.normalized : g.face; PbHit1567(e, g.dmg, g.s, kd * T.phKnock1567); PhHits1567++; PbFxOnce1567(PbEv1567("ghost.hit", "xp_flash"), PbChest1567(e), YSort(e.pos.y) + 40); }
                     PbShake1567(6); PbFlash1567(6, g.p + g.face * (r * 0.5f)); PhLastR1567 = r;
                     if (PbA1567(PbEv1567("ghost.chop", "xp_chop")) == null) _pbArcs.Add(new PbArc { c = g.p + Vector2.up * T.chopArcLiftU1567, dir = g.face, r = r, half = T.phArcHalfDeg1567, sweep = T.chopSweepS1567, fade = T.chopFadeS1567, c1 = PbGhostCol, c2 = PbBlood, order = YSort(g.p.y) + 30, strip = "phantom_axes/arc" });
@@ -549,7 +549,7 @@ namespace Hellord
                 }
                 float a = Mathf.Clamp01(k.t / 0.08f) * Mathf.Clamp01((k.life - k.t) / 0.4f); var st = PbStrip1567("earth_slam/cracks");
                 if (st != null) { PbPut1567(PbFrame1567("earth_slam/cracks", st, k.t, false), k.p, 0f, 1f, 1f, new Color(1, 1, 1, a), FbGround + YSort(k.p.y)); continue; }
-                float r = T.crackRU1567 * Mathf.Sqrt(k.s.AreaMul); bool warn = !k.erupted && k.t > T.eruptDelayS1567 - T.eruptWarnS1567 && ((int)(k.t * 20f) & 1) == 0;
+                float r = k.s.RA(T.crackRU1567); bool warn = !k.erupted && k.t > T.eruptDelayS1567 - T.eruptWarnS1567 && ((int)(k.t * 20f) & 1) == 0;
                 Color cc = warn ? PbEmber : PbCrackCol; cc.a = a * (warn ? 0.9f : 0.85f); int ord = FbGround + YSort(k.p.y);
                 for (int q = 0; q < 7; q++)
                 {
@@ -627,7 +627,7 @@ namespace Hellord
                 {   // HFX chop (pivot = ghost feet, row = ghost -> cursor) + HA 2-tone ghost body on the same point, faded by the HFX opacity curve
                     int fi = Mathf.Min(15, (int)(g.t * 1000f / 33f)); var hb = PhBody1567();
                     if (hb != null) { var mp = T.phBodyMap1567; int bi = mp != null && fi < mp.Length ? Mathf.Clamp(mp[fi], 0, hb.Length - 1) : 0; var oc = T.phOpacity1567; float op = oc != null && fi < oc.Length ? oc[fi] : 0.55f; PbPut1567(hb[bi], g.p, 0f, 1f, 1f, new Color(1f, 1f, 1f, op), YSort(g.p.y) + 5, g.flip); }
-                    float gs = PbMatch1567(T.phArcRU1567 * Mathf.Sqrt(g.s.AreaMul), T.phArtReachPx1567); PhArtScale1567 = gs; PbArtPutF1567(gk, PbRow16(g.face), fi, g.p, YSort(g.p.y) + 7, false, 1f, gs); continue;
+                    float gs = PbMatch1567(g.s.RA(T.phArcRU1567), T.phArtReachPx1567); PhArtScale1567 = gs; PbArtPutF1567(gk, PbRow16(g.face), fi, g.p, YSort(g.p.y) + 7, false, 1f, gs); continue;
                 }
                 float a = Mathf.Clamp01((g.t + 0.0001f) / 0.08f) * Mathf.Clamp01((T.phLifeS1567 - g.t) / 0.15f); var st = PbStrip1567("phantom_axes/ghost");
                 Color tc = new Color(T.phTint1567.r, T.phTint1567.g, T.phTint1567.b, T.phTint1567.a * a); Sprite sp = st != null ? PbFrame1567("phantom_axes/ghost", st, g.t, false) : g.spr;

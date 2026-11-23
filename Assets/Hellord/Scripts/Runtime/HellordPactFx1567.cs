@@ -147,7 +147,7 @@ namespace Hellord
         bool CastSlamLine1567(SkillInst s, float dmg)
         {
             var T = HellordTuning.I; if (SlamV2On1567) return CastSlamV2_1567(s, dmg); // t1576 HFX v2 (approved)
-            Vector2 dir = PbAim1567(); Vector2 hero0 = _heroPos; float area = Mathf.Sqrt(s.AreaMul); Vector2 at = _heroPos + dir * T.slamAheadU1567;
+            Vector2 dir = PbAim1567(); Vector2 hero0 = _heroPos; float area = s.RA(1f); Vector2 at = _heroPos + dir * T.slamAheadU1567;
             Vector2 a = _heroPos + dir * T.slamLineStartU1567; float len = T.slamLineLenU1567 * (T.slamLineAreaLen1567 ? area : 1f), w = T.slamLineWU1567 * area;
             for (float d = 0f; d <= len; d += 0.25f) { Vector2 p = a + dir * d, q = p; ClampToRoom(ref q, 4); if ((q - p).sqrMagnitude > 0.01f) { len = Mathf.Max(0.5f, d); break; } } // stops at walls
             while (_pbFis.Count >= Mathf.Max(1, T.crackCap1567)) { var old = _pbFis[0]; _pbFis.RemoveAt(0); _pbCracks.RemoveAll(k => k.fis == old); }
@@ -219,7 +219,7 @@ namespace Hellord
         static float PbSq1567(Vector2 d, float sq) { if (sq <= 0f || sq >= 1f) return 1f; return 1f / Mathf.Sqrt(d.x * d.x + (d.y / sq) * (d.y / sq)); }
         bool CastSlamV2_1567(SkillInst s, float dmg)
         {
-            var T = HellordTuning.I; Vector2 aim = PbAim1567(); Vector2 hero0 = _heroPos; float area = Mathf.Sqrt(s.AreaMul); int row = PbRow16(aim); Vector2 rd = PbRowDir1567(row), nrm = new Vector2(-rd.y, rd.x);
+            var T = HellordTuning.I; Vector2 aim = PbAim1567(); Vector2 hero0 = _heroPos; float area = s.RA(1f); int row = PbRow16(aim); Vector2 rd = PbRowDir1567(row), nrm = new Vector2(-rd.y, rd.x);
             float sq = T.slamV2Squash1567 ? T.slamV2GroundSquash1567 : 1f, kL = PbSq1567(rd, sq), kW = PbSq1567(nrm, sq);
             Vector2 P = _heroPos + aim * (T.slamV2BitePx1567 / HArt.PPU);
             float L = T.slamV2LenPx1567 * kL / HArt.PPU * (T.slamLineAreaLen1567 ? area : 1f), W = T.slamV2WPx1567 * kW / HArt.PPU * area;

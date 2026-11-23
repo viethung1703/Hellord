@@ -18,8 +18,8 @@ namespace Hellord
                 if (HData.Summon561(s.def)) { s.cd = 0; continue; } // t561u: summons are passive (minion tick)
                 if (s.def.id == SkillId.StormRing) hasRing = true;
                 s.cd -= dt; bool want716 = !Manual716 || Want716(s); if (Manual716 && s.cd < 0) s.cd = 0; if (IsFb1481(s.def.id)) { want716 = FbWant1481(s); if (s.cd < 0) s.cd = 0; } /* t1481: player-fired (LMB) */ bool basic1517 = s == _basic1517; if (basic1517) { want716 = BasicWant1517(); if (s.cd < 0) s.cd = 0; } /* t1517: the basic main attack fires only while LMB is held */ // t716u: Manual = cast on key
-                if (s.cd <= 0 && want716 && PactCanCast53(s)) { s.cd = s.def.cooldown * s.CdMul * PactCd53(s); float lc53 = _lastCast[(int)s.def.id]; if (basic1517 || IsFb1481(s.def.id) && s == FbLmbBasic1517()) BasicCast1517(s, 1f); else Cast(s, 1f); if (_lastCast[(int)s.def.id] != lc53) PactAfterCast53(s); s.cd *= SinEchoCd818(s); AtCd1651 = s.cd; /* t1651 probe */ if (s.Has(SupportId.Echo) && !SinNoEcho818(s)) { s.echoLeft = HData.At(HellordTuning.I.supEchoCount, s.Lvl(SupportId.Echo)); if (s.def.id == SkillId.CurseRune) s.echoLeft = Mathf.Min(s.echoLeft, HellordTuning.I.curseEchoMax738); s.echoT = s.echoLeft > 0 ? 0.3f : -1; } /* t738u */ }
-                if (s.echoT > 0) { s.echoT -= dt; if (s.echoT <= 0) { _echo738 = true; Cast(s, HData.At(HellordTuning.I.supEchoDmg, s.Lvl(SupportId.Echo), 0.5f) * SinEchoDmg818()); _echo738 = false; if (--s.echoLeft > 0) s.echoT = 0.3f; else s.echoT = -1; } } // v0.0.27: Echo repeats grow with its level
+                if (s.cd <= 0 && want716 && PactCanCast53(s)) { s.cd = s.def.cooldown * s.CdMul * PactCd53(s); float lc53 = _lastCast[(int)s.def.id]; if (basic1517 || IsFb1481(s.def.id) && s == FbLmbBasic1517()) BasicCast1517(s, 1f); else Cast(s, 1f); if (_lastCast[(int)s.def.id] != lc53) PactAfterCast53(s); s.cd *= SinEchoCd818(s); AtCd1651 = s.cd; /* t1651 probe */ if (s.RepeatN > 0 && !SinNoEcho818(s)) { s.echoLeft = s.RepeatN; /* t1651: Repeat stat */ if (s.def.id == SkillId.CurseRune) s.echoLeft = Mathf.Min(s.echoLeft, HellordTuning.I.curseEchoMax738); s.echoT = s.echoLeft > 0 ? 0.3f : -1; } /* t738u */ }
+                if (s.echoT > 0) { s.echoT -= dt; if (s.echoT <= 0) { _echo738 = true; Cast(s, s.Stat(SStat1651.RepeatDmg) * SinEchoDmg818()); _echo738 = false; if (--s.echoLeft > 0) s.echoT = 0.3f; else s.echoT = -1; } } // v0.0.27: Echo repeats grow with its level
             }
             if (!hasOrbit && (_orbs.Count > 0 || _orbitJobs != null)) { foreach (var o in _orbs) Destroy(o.gameObject); _orbs.Clear(); KillOrbit(); }
             if (!hasRing && _aura != null) { _aura.life = -1; _aura = null; }
@@ -39,22 +39,22 @@ namespace Hellord
                     if (SinOn818(38) && !(Nearest(_heroPos, 11, -1) < 0 && !Aiming())) { SinSun818(s, dmg, c); break; } // t818u #38 Divine Sunstrike
                     if (Nearest(_heroPos, 11, -1) < 0 && !BrkNear53(_heroPos, 11) && !Aiming()) { s.cd = 0.1f; return; } // hold fire when nothing to shoot
                     var T = HellordTuning.I; Vector2 dir = AimDir(); Vector2 o1528 = CastOrigin1528(c + dir * 0.4f, ref dir); // t1528: the basic leaves the tail tip
-                    int n = HData.At(T.fbProjectiles, s.level) + HellordGame.PCount49 + (s.Has(SupportId.MultipleProjectiles) ? HData.At(T.supMultiExtra, s.Lvl(SupportId.MultipleProjectiles)) : 0); // v0.0.27: projectiles grow with skill level + Multi level
+                    int n = HData.At(T.fbProjectiles, s.level) + HellordGame.PCount49 + s.ProjExtra; // t1651 stat; v0.0.27: projectiles grow with skill level + Multi level
                     float spread = n > 1 ? Mathf.Min(T.fbSpreadDeg, 150f / (n - 1)) : 0f;
-                    int pierce = s.Has(SupportId.Pierce) ? HData.At(T.supPierce, s.Lvl(SupportId.Pierce)) : 0, bounce = s.Has(SupportId.Bounce) ? HData.At(T.supBounce, s.Lvl(SupportId.Bounce)) : 0;
-                    float expl = HData.At(T.fbSplashRadiusU, s.level, 0.8f) * s.AreaMul;
+                    int pierce = s.PierceN, bounce = s.BounceN; // t1651 stats
+                    float expl = s.R(HData.At(T.fbSplashRadiusU, s.level, 0.8f));
                     for (int i = 0; i < n; i++)
                     {
                         float a = (i - (n - 1) * 0.5f) * spread;
                         var d = (Vector2)(Quaternion.Euler(0, 0, a) * dir);
-                        SpawnProj(s, o1528, d * 11f, dmg, pierce, s.Has(SupportId.Fork), bounce, expl);
+                        SpawnProj(s, o1528, d * 11f, dmg, pierce, s.ForkN > 0, bounce, expl);
                     }
                     Vector2 mz1528 = o1528 + dir * 0.1f; ProjectileFX.CastFlash(mz1528, dir, ProjElement.Fire); Flash661(mz1528, ElemCol661(s)); /* t661u muzzle */ SL667(SkillLightHooks.FireballMuzzle, mz1528, dir); /* t667u */ HellordAudio.Play("fireball_cast");
                     break;
                 }
                 case SkillId.FrostCleave:
                 {
-                    var T = HellordTuning.I; float r = HData.At(T.frostRangeU, s.level, 2.3f) * s.AreaMul, half = SinOn818(43) ? 180f : HData.At(T.frostHalfAngle, s.level, 65f); if (SinOn818(43)) SinGlint818(); // t818u #43 // v0.0.27: reach + arc grow with skill level
+                    var T = HellordTuning.I; float r = s.R(HData.At(T.frostRangeU, s.level, 2.3f)), half = SinOn818(43) ? 180f : HData.At(T.frostHalfAngle, s.level, 65f); if (SinOn818(43)) SinGlint818(); // t818u #43 // v0.0.27: reach + arc grow with skill level
                     if (Nearest(_heroPos, r + 1.5f, -1) < 0 && !BrkNear53(_heroPos, r + 1.5f) && !Aiming()) { s.cd = 0.1f; return; }
                     Vector2 dir = AimDir();
                     Query(c, r, _sq); SkillArea53(c, r, dmg, (int)s.def.id); // v0.0.53 AoE hits decor
@@ -66,7 +66,7 @@ namespace Hellord
                 }
                 case SkillId.StormRing:
                 {
-                    float r = HData.At(HellordTuning.I.stormRadiusU, s.level, 2.6f) * s.AreaMul; // v0.0.27: radius grows with skill level (2.2 u at Lv1 to 7 u at Lv5)
+                    float r = s.R(HData.At(HellordTuning.I.stormRadiusU, s.level, 2.6f)); // v0.0.27: radius grows with skill level (2.2 u at Lv1 to 7 u at Lv5)
                     bool cur818 = SinOn818(35); Vector2 rc = cur818 ? SinRingAnchor818().position : _heroPos; // t818u #35 Wrath of Heaven: ring at the cursor
                     if (_aura == null || Mathf.Abs(_auraR - r) > 0.01f || _auraCur818 != cur818)
                     {
@@ -131,7 +131,7 @@ namespace Hellord
             var T = HellordTuning.I; float b = HData.At(T.curseRadiusU, s.level, 1.8f), m;
             if (T.curseAreaAdditive738)
             {
-                float big = s.Has(SupportId.BiggerArea) ? HData.At(T.supAreaMul, s.Lvl(SupportId.BiggerArea), 1.25f) : 1f;
+                float big = s.Stat(SStat1651.AreaMul); // t1651
                 m = 1f + (big - 1f) + (PArea49 - 1f) + (SlothArea53 - 1f) + (BoneArea536(s.def) - 1f);
             }
             else m = s.AreaMul;
@@ -172,7 +172,7 @@ namespace Hellord
         void UpdateOrbit(SkillInst s, float dt)
         {
             if (PactOrbitAway53()) { if (_orbs.Count > 0) { foreach (var o in _orbs) Destroy(o.gameObject); _orbs.Clear(); } if (_orbitJobs != null) KillOrbit(); return; } // v0.0.53 Rune Ossuary / Marrow Launch: bones are elsewhere
-            var T = HellordTuning.I; int n = HData.At(T.orbitCount, s.level, 3) + (s.Has(SupportId.MoreOrbitals) ? HData.At(T.supOrbitals, s.Lvl(SupportId.MoreOrbitals)) : 0); // v0.0.27: skulls + radius grow with skill level
+            var T = HellordTuning.I; int n = HData.At(T.orbitCount, s.level, 3) + s.StatI(SStat1651.Orbitals); // t1651 stat; v0.0.27: skulls + radius grow with skill level
             float orad = HData.At(T.orbitRadiusU, s.level, 2f) * (T.combatV49 ? T.orbitAreaMul49d : 1f) * PactOrbitR53(), hitR = T.orbitHitRadiusU;
             float rev = 200f / 360f / s.CdMul; SinOrbit818(ref n, ref orad, ref rev); // t818u #15 / #45
             if (_orbitJobs == null || _orbitN != n || Mathf.Abs(_orbitRev - rev) > 0.001f || Mathf.Abs(_orbitR - orad) > 0.001f) RecastOrbit(n, rev, orad); // allocates: only on recast/level-up
@@ -210,10 +210,11 @@ namespace Hellord
             {
                 if (p.alive) continue;
                 AtProj1651++; /* t1651 probe */ p.alive = true; p.s = s; p.pos = pos; p.vel = vel; p.dmg = dmg; p.pierce = pierce; p.fork = fork; p.bounce = bounce; p.explodeR = explodeR;
-                p.ret53 = false; p.emp53 = false; p.bone53 = false; _lastProj53 = p; PactSpawnProj53(p); p.homing = s.Has(SupportId.Homing); p.life = 1.6f * PRange49; p.vel *= PSpeed49;
-                { var T = HellordTuning.I; int hl = s.Lvl(SupportId.Homing), bl = s.Lvl(SupportId.Bounce), fl = s.Lvl(SupportId.Fork); // v0.0.27: support levels
-                  p.homingTurn = HData.At(T.supHomingTurn, hl, 6f); p.homingR = HData.At(T.supHomingRangeU, hl, 5f); p.bounceR = HData.At(T.supBounceRangeU, bl, 4f);
-                  p.forkN = fork ? HData.At(T.supForkChildren, fl, 2) : 2; p.forkDmg = HData.At(T.supForkDmg, fl, 0.55f); } p.lastHit = lastHit; p.animT = 0; p.sin818 = 0; p.sinN818 = 0; p.sr.transform.localScale = Vector3.one; SinSpawnProj818(p, lastHit); // t818u #16 #22
+                p.ret53 = false; p.emp53 = false; p.bone53 = false; _lastProj53 = p; PactSpawnProj53(p); p.homing = s.HomingR > 0f; p.life = 1.6f * PRange49; p.vel *= PSpeed49;
+                { var T = HellordTuning.I; // t1651: support stats (defaults = the old Lv1 fallbacks when the support is absent)
+                  float ht = s.Stat(SStat1651.HomingTurn), hr = s.HomingR, br = s.Stat(SStat1651.BounceR), fd = s.Stat(SStat1651.ForkDmg); int fn = s.ForkN;
+                  p.homingTurn = ht > 0 ? ht : HData.At(T.supHomingTurn, 0, 6f); p.homingR = hr > 0 ? hr : HData.At(T.supHomingRangeU, 0, 5f); p.bounceR = br > 0 ? br : HData.At(T.supBounceRangeU, 0, 4f);
+                  p.forkN = fork && fn > 0 ? fn : 2; p.forkDmg = fd > 0 ? fd : HData.At(T.supForkDmg, 0, 0.55f); } p.lastHit = lastHit; p.animT = 0; p.sin818 = 0; p.sinN818 = 0; p.sr.transform.localScale = Vector3.one; SinSpawnProj818(p, lastHit); // t818u #16 #22
                 p.frames = HArt.Proj(ProjSheet(s.def.id)); p.sr.sprite = p.frames[0]; p.sr.color = s.def.id == SkillId.SoulSpears ? HellordTuning.I.spearTint : Color.white; p.sr.sortingOrder = 2000; // v0.7: above the y-sorted band
                 p.sr.gameObject.SetActive(true); p.sr.enabled = true; // v0.0.10: was swallowed by the comment above -> every projectile was invisible
                 p.trail = HellFX.ProjectileTrail(p.sr.transform, s.def.id == SkillId.SoulSpears ? HellordTuning.I.spearTint : new Color(1f, 0.55f, 0.15f), 2f); // pooled job; null when over budget

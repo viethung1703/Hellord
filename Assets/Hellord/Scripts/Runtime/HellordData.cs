@@ -10,6 +10,17 @@ namespace Hellord
     public enum SupportId { MultipleProjectiles, Pierce, Fork, Bounce, Homing, BiggerArea, Echo, MoreOrbitals, Burn, Chill, Shock, Bleed, AddedDamage, FasterCasting, Executioner, LifeLeech, Knockback, SoulHarvest, ExplodeOnKill } // v0.0.36: last 5 are new
     /// <summary>t1651: what the support autotest (sup1651) measures for a support. A support without one fails the static check.</summary>
     public enum SupMetric1651 { None, Proj, Distinct, Homing, Area, Repeat, Orbitals, Status, Damage, Cooldown, Execute, Leech, Knock, KillHook, Duration }
+    /// <summary>t1651: the named skill stats supports change. Mul stats start at 1 and multiply; the others start at 0 and add.</summary>
+    public enum SStat1651 { DmgMul, CdMul, AreaMul, DurMul, ProjExtra, Pierce, ForkN, ForkDmg, Bounce, BounceR, HomingR, HomingTurn, ChainExtra, RepeatN, RepeatDmg, Orbitals, PierceLoss }
+    /// <summary>t1651: one stat change of a support at a level (values read from HellordTuning arrays, so the tuning stays the one source). when = skills it applies to (null = all).</summary>
+    public class SMod1651
+    {
+        public SStat1651 stat; public Func<HellordTuning, int, float> v; public Func<SkillDef, bool> when; public bool hidden; // hidden = not printed on the card (a secondary value)
+        public static bool IsMul(SStat1651 s) => s <= SStat1651.DurMul;
+        public static SMod1651 Arr(SStat1651 s, Func<HellordTuning, float[]> a, float fb, bool hidden = false) => new SMod1651 { stat = s, v = (T, l) => HData.At(a(T), l, fb), hidden = hidden };
+        public static SMod1651 ArrI(SStat1651 s, Func<HellordTuning, int[]> a, int fb, bool hidden = false) => new SMod1651 { stat = s, v = (T, l) => HData.At(a(T), l, fb), hidden = hidden };
+        public static SMod1651 Val(SStat1651 s, Func<HellordTuning, float> f, Func<SkillDef, bool> when = null) => new SMod1651 { stat = s, v = (T, l) => f(T), when = when };
+    }
     public enum StatId { MaxHP, Speed, Pickup, Armor, Crit, Slot }
     public enum Status { None, Burn, Chill, Shock, Bleed, Curse }
 
@@ -19,7 +30,12 @@ namespace Hellord
     }
     public class SupportDef
     {
-        public SupportId id; public string name, desc; public STag needs; public string needsLabel; public STag requiresAll, excludes; public string category; public SupMetric1651 metric1651; public Status status1651; // t1651: autotest metric (+ the status for status supports) // t626u: needs = requiresAny; category: no two supports of the same category on one skill (only when set)
+        public SupportId id; public string name; string _desc; public STag needs;
+        /// <summary>t1651: card description. Stat supports: generated from the mods + drawbacks and the tuning numbers (never drifts); hook supports: the written text.</summary>
+        public string desc { get => HData.SupportDesc1651(this) ?? _desc; set => _desc = value; }
+        public string rawDesc => _desc;
+        public SMod1651[] mods, drawbacks; // t1651: stat changes (supports as data); drawbacks = PoE 2-style downsides (same stats)
+        public string needsLabel; public STag requiresAll, excludes; public string category; public SupMetric1651 metric1651; public Status status1651; // t1651: autotest metric (+ the status for status supports) // t626u: needs = requiresAny; category: no two supports of the same category on one skill (only when set)
         public STag requiresAny => needs;
     }
     public class StatDef { public StatId id; public string name, desc; }
@@ -66,20 +82,20 @@ namespace Hellord
         };
         public static readonly SupportDef[] Supports =
         {
-            new SupportDef { id = SupportId.MultipleProjectiles, metric1651 = SupMetric1651.Proj, category = "Projectile Count", name = "Multi Projectiles", needs = STag.Projectile, needsLabel = "Projectile", desc = "More projectiles per cast (+1 at Lv1, up to +4), slightly less damage" },
-            new SupportDef { id = SupportId.Pierce, metric1651 = SupMetric1651.Distinct, category = "Pierce",       name = "Pierce",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Shots pierce more enemies per level (1 to 5), -15% dmg per pierce" },
-            new SupportDef { id = SupportId.Fork, metric1651 = SupMetric1651.Distinct, category = "Fork",         name = "Fork",           needs = STag.Projectile, needsLabel = "Projectile", desc = "Splits on first hit: 2 children at Lv1, up to 5, stronger per level" },
-            new SupportDef { id = SupportId.Bounce, metric1651 = SupMetric1651.Distinct, category = "Bounce",       name = "Bounce",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Bounces to nearby enemies: 1 at Lv1, up to 5, longer reach" },
-            new SupportDef { id = SupportId.Homing, metric1651 = SupMetric1651.Homing, category = "Homing",       name = "Homing",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Projectiles curve toward enemies, tighter and farther per level" },
-            new SupportDef { id = SupportId.BiggerArea, metric1651 = SupMetric1651.Area, category = "Area",   name = "Bigger Area",    needs = STag.Area,       needsLabel = "Area",       desc = "Bigger area: +15% at Lv1, up to +40%" },
-            new SupportDef { id = SupportId.Echo, metric1651 = SupMetric1651.Repeat, category = "Repeat",         name = "Echo",           needs = STag.Area,       needsLabel = "Area", excludes = STag.Minion, desc = "Repeats the cast once; the repeat deals 35% damage at Lv1, up to 60%" },
-            new SupportDef { id = SupportId.MoreOrbitals, metric1651 = SupMetric1651.Orbitals, category = "Orbital Count", name = "More Orbitals",  needs = STag.Orbital,    needsLabel = "Orbital",    desc = "More skulls: +1 at Lv1, up to +4" },
+            new SupportDef { id = SupportId.MultipleProjectiles, mods = new[] { SMod1651.ArrI(SStat1651.ProjExtra, T => T.supMultiExtra, 1) }, drawbacks = new[] { SMod1651.Val(SStat1651.DmgMul, T => T.multiProjDmgMul, d => HData.MultiHonoured1651(d.id)) }, metric1651 = SupMetric1651.Proj, category = "Projectile Count", name = "Multi Projectiles", needs = STag.Projectile, needsLabel = "Projectile", desc = "More projectiles per cast (+1 at Lv1, up to +4), slightly less damage" },
+            new SupportDef { id = SupportId.Pierce, mods = new[] { SMod1651.ArrI(SStat1651.Pierce, T => T.supPierce, 1) }, drawbacks = new[] { SMod1651.Val(SStat1651.PierceLoss, T => T.pierceFalloff) }, metric1651 = SupMetric1651.Distinct, category = "Pierce",       name = "Pierce",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Shots pierce more enemies per level (1 to 5), -15% dmg per pierce" },
+            new SupportDef { id = SupportId.Fork, mods = new[] { SMod1651.ArrI(SStat1651.ForkN, T => T.supForkChildren, 2), SMod1651.Arr(SStat1651.ForkDmg, T => T.supForkDmg, 0.6f) }, metric1651 = SupMetric1651.Distinct, category = "Fork",         name = "Fork",           needs = STag.Projectile, needsLabel = "Projectile", desc = "Splits on first hit: 2 children at Lv1, up to 5, stronger per level" },
+            new SupportDef { id = SupportId.Bounce, mods = new[] { SMod1651.ArrI(SStat1651.Bounce, T => T.supBounce, 1), SMod1651.Arr(SStat1651.BounceR, T => T.supBounceRangeU, 3f, true) }, metric1651 = SupMetric1651.Distinct, category = "Bounce",       name = "Bounce",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Bounces to nearby enemies: 1 at Lv1, up to 5, longer reach" },
+            new SupportDef { id = SupportId.Homing, mods = new[] { SMod1651.Arr(SStat1651.HomingR, T => T.supHomingRangeU, 4f), SMod1651.Arr(SStat1651.HomingTurn, T => T.supHomingTurn, 6f, true) }, metric1651 = SupMetric1651.Homing, category = "Homing",       name = "Homing",         needs = STag.Projectile, needsLabel = "Projectile", desc = "Projectiles curve toward enemies, tighter and farther per level" },
+            new SupportDef { id = SupportId.BiggerArea, mods = new[] { SMod1651.Arr(SStat1651.AreaMul, T => T.supAreaMul, 1.25f) }, metric1651 = SupMetric1651.Area, category = "Area",   name = "Bigger Area",    needs = STag.Area,       needsLabel = "Area",       desc = "Bigger area: +15% at Lv1, up to +40%" },
+            new SupportDef { id = SupportId.Echo, mods = new[] { SMod1651.ArrI(SStat1651.RepeatN, T => T.supEchoCount, 1), SMod1651.Arr(SStat1651.RepeatDmg, T => T.supEchoDmg, 0.5f) }, metric1651 = SupMetric1651.Repeat, category = "Repeat",         name = "Echo",           needs = STag.Area,       needsLabel = "Area", excludes = STag.Minion, desc = "Repeats the cast once; the repeat deals 35% damage at Lv1, up to 60%" },
+            new SupportDef { id = SupportId.MoreOrbitals, mods = new[] { SMod1651.ArrI(SStat1651.Orbitals, T => T.supOrbitals, 1) }, metric1651 = SupMetric1651.Orbitals, category = "Orbital Count", name = "More Orbitals",  needs = STag.Orbital,    needsLabel = "Orbital",    desc = "More skulls: +1 at Lv1, up to +4" },
             new SupportDef { id = SupportId.Burn, metric1651 = SupMetric1651.Status, status1651 = Status.Burn, category = "Burn",         name = "Burn",           needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits burn; burn is stronger and lasts longer per level" },
             new SupportDef { id = SupportId.Chill, metric1651 = SupMetric1651.Status, status1651 = Status.Chill, category = "Chill",        name = "Chill",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits chill (slow 35%); chills last longer, Lv4 freezes in 2 chills" },
             new SupportDef { id = SupportId.Shock, metric1651 = SupMetric1651.Status, status1651 = Status.Shock, category = "Shock",        name = "Shock",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits shock: +25% damage taken at Lv1, up to +50%" },
             new SupportDef { id = SupportId.Bleed, metric1651 = SupMetric1651.Status, status1651 = Status.Bleed, category = "Bleed",        name = "Bleed",          needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits bleed; bleed is stronger per level" },
-            new SupportDef { id = SupportId.AddedDamage, metric1651 = SupMetric1651.Damage, category = "Damage",  name = "Added Damage",   needs = STag.Any,        needsLabel = "Any",        desc = "More damage: +15% at Lv1, up to +50%" },
-            new SupportDef { id = SupportId.FasterCasting, metric1651 = SupMetric1651.Cooldown, category = "Cooldown",name = "Faster Casting", needs = STag.Any,        needsLabel = "Any",        desc = "Shorter cooldown: -10% at Lv1, up to -22%" },
+            new SupportDef { id = SupportId.AddedDamage, mods = new[] { SMod1651.Arr(SStat1651.DmgMul, T => T.supAddedDmg, 1.15f) }, metric1651 = SupMetric1651.Damage, category = "Damage",  name = "Added Damage",   needs = STag.Any,        needsLabel = "Any",        desc = "More damage: +15% at Lv1, up to +50%" },
+            new SupportDef { id = SupportId.FasterCasting, mods = new[] { SMod1651.Arr(SStat1651.CdMul, T => T.supFasterCd, 0.9f) }, metric1651 = SupMetric1651.Cooldown, category = "Cooldown",name = "Faster Casting", needs = STag.Any,        needsLabel = "Any",        desc = "Shorter cooldown: -10% at Lv1, up to -22%" },
             new SupportDef { id = SupportId.Executioner, metric1651 = SupMetric1651.Execute, category = "Execute",  name = "Executioner",    needs = STag.Any,        needsLabel = "Any",        desc = "Bonus damage to demons below an HP threshold: 10% HP at Lv1, up to 30% at Lv5" },
             new SupportDef { id = SupportId.LifeLeech, metric1651 = SupMetric1651.Leech, category = "Leech",    name = "Life Leech",     needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits heal you a little (capped per second)" },
             new SupportDef { id = SupportId.Knockback, metric1651 = SupMetric1651.Knock, category = "Knockback",    name = "Knockback",      needs = STag.Hit,        needsLabel = "Hit",        desc = "Hits push demons away" },
@@ -95,26 +111,58 @@ namespace Hellord
             new StatDef { id = StatId.Crit,   name = "Malice",   desc = "+5% crit chance" },
         };
         /// <summary>Short concrete effect of a support at a level (for the level-up card), read from the tuning tables.</summary>
+        /// <summary>t1651: card text for a list of stat mods at a level (kd = the skill, to skip mods that do not apply to it; null = show all).</summary>
+        public static string ModText1651(SMod1651[] ms, int l, SkillDef kd)
+        {
+            if (ms == null) return ""; var T = HellordTuning.I; var sb = new System.Text.StringBuilder();
+            string P(float f) => Mathf.RoundToInt(Math.Abs(f) * 100f) + "%";
+            foreach (var m in ms)
+            {
+                if (m.hidden || (kd != null && m.when != null && !m.when(kd))) continue; float v = m.v(T, l); int n = Mathf.RoundToInt(v); string t;
+                switch (m.stat)
+                {
+                    case SStat1651.DmgMul: t = (v >= 1f ? "+" : "-") + P(v - 1f) + " damage"; break;
+                    case SStat1651.CdMul: t = (v <= 1f ? "-" : "+") + P(v - 1f) + " cooldown"; break;
+                    case SStat1651.AreaMul: t = (v >= 1f ? "+" : "-") + P(v - 1f) + " area"; break;
+                    case SStat1651.DurMul: t = (v >= 1f ? "+" : "-") + P(v - 1f) + " duration"; break;
+                    case SStat1651.ProjExtra: t = $"+{n} projectiles"; break;
+                    case SStat1651.Pierce: t = $"pierces {n} enemies"; break;
+                    case SStat1651.PierceLoss: t = $"-{P(v)} dmg per pierce"; break;
+                    case SStat1651.ForkN: t = $"splits in {n}"; break;
+                    case SStat1651.ForkDmg: t = $"({P(v)} dmg)"; break;
+                    case SStat1651.Bounce: t = $"bounces {n}x"; break;
+                    case SStat1651.HomingR: t = $"homing range {v:0.#}"; break;
+                    case SStat1651.ChainExtra: t = $"+{n} chain jumps"; break;
+                    case SStat1651.RepeatN: t = $"repeats {n}x"; break;
+                    case SStat1651.RepeatDmg: t = $"({P(v)} dmg)"; break;
+                    case SStat1651.Orbitals: t = $"+{n} skulls"; break;
+                    default: t = $"{m.stat} {v:0.##}"; break;
+                }
+                if (sb.Length > 0) sb.Append(t.StartsWith("(") ? " " : ", "); sb.Append(t);
+            }
+            return sb.ToString();
+        }
+        /// <summary>t1651: generated card description of a stat support (Lv1 and Lv5 values from the tuning, then its drawback). null = hook support (keeps its written text).</summary>
+        public static string SupportDesc1651(SupportDef sd)
+        {
+            if (sd == null || sd.mods == null || HellordTuning.I == null) return null;
+            string d1 = ModText1651(sd.drawbacks, 1, null), d5 = ModText1651(sd.drawbacks, SkillInst.MaxSupLevel, null);
+            string r = $"Lv1 {ModText1651(sd.mods, 1, null)}; Lv5 {ModText1651(sd.mods, SkillInst.MaxSupLevel, null)}";
+            if (d1.Length > 0) r += d1 == d5 ? $". Drawback: {d1}" : $". Drawback: {d1} (Lv5 {d5})";
+            return r;
+        }
         public static string SupportEffect(SupportId id, int l, int skillId = -1)
         {
             var T = HellordTuning.I; string P(float f) => Mathf.RoundToInt(f * 100f) + "%";
+            if (id == SupportId.Echo && skillId == (int)SkillId.CurseRune) return $"repeats {At(T.supEchoCount, l)}x: {Mathf.Max(1, T.curseEchoRunes738)} smaller rune ({P(T.curseEchoRadiusMul738)} size, {P(At(T.supEchoDmg, l) * T.curseEchoDmgMul738)} dmg)"; // t818u: Curse Rune echo is its own rule (t738u)
+            var sd0 = (int)id < Supports.Length ? Supports[(int)id] : null;
+            if (sd0 != null && sd0.mods != null) { var kd = skillId >= 0 && skillId < Skills.Length ? Skills[skillId] : null; string e = ModText1651(sd0.mods, l, kd), dr = ModText1651(sd0.drawbacks, l, kd); return dr.Length > 0 ? e + ", " + dr : e; } // t1651: stat supports print their mods
             switch (id)
             {
-                case SupportId.MultipleProjectiles: return $"+{At(T.supMultiExtra, l)} projectiles";
-                case SupportId.Pierce: return $"pierces {At(T.supPierce, l)} enemies";
-                case SupportId.Fork: return $"splits in {At(T.supForkChildren, l)} ({P(At(T.supForkDmg, l))} dmg)";
-                case SupportId.Bounce: return $"bounces {At(T.supBounce, l)}x";
-                case SupportId.Homing: return $"homing range {At(T.supHomingRangeU, l):0.#}";
-                case SupportId.BiggerArea: return $"+{P(At(T.supAreaMul, l) - 1f)} area";
-                case SupportId.Echo: if (skillId == (int)SkillId.CurseRune) return $"repeats {At(T.supEchoCount, l)}x: {Mathf.Max(1, T.curseEchoRunes738)} smaller rune ({P(T.curseEchoRadiusMul738)} size, {P(At(T.supEchoDmg, l) * T.curseEchoDmgMul738)} dmg)"; // t818u: Curse Rune echo is its own rule (t738u)
-                    return $"repeats {At(T.supEchoCount, l)}x ({P(At(T.supEchoDmg, l))} dmg)";
-                case SupportId.MoreOrbitals: return $"+{At(T.supOrbitals, l)} skulls";
                 case SupportId.Burn: return $"burn x{At(T.supBurnMul, l):0.0}, {T.burnDuration + T.burnExtraSecondsPerLevel * (l - 1):0.#}s";
                 case SupportId.Chill: return $"chill x{At(T.supChillTime, l):0.0}, freeze in {At(T.supChillFreezeHits, l)}";
                 case SupportId.Shock: return $"+{P(At(T.supShockAmp, l))} damage taken";
                 case SupportId.Bleed: return $"bleed x{At(T.supBleedMul, l):0.0}";
-                case SupportId.AddedDamage: return $"+{P(At(T.supAddedDmg, l) - 1f)} damage";
-                case SupportId.FasterCasting: return $"-{P(1f - At(T.supFasterCd, l))} cooldown";
                 case SupportId.Executioner: return $"+{P(At(T.supExecDmg, l) - 1f)} dmg below {P(At(T.supExecThreshold, l))} HP";
                 case SupportId.LifeLeech: return $"heal {P(At(T.supLeechFrac, l))} of hit, max {At(T.supLeechCapPerSec, l):0.#}/s";
                 case SupportId.Knockback: return $"push {At(T.supKnockback, l):0.#}";
@@ -194,14 +242,35 @@ namespace Hellord
             if (OpenSlots <= 0) return level < HData.MaxSupports ? $"{def.name} has no open slot (level it up to Lv{level + 1})." : $"{def.name} support slots are full.";
             return null;
         }
-        public float More()
+        /// <summary>t1651: a named stat summed over the socketed supports' mods and drawbacks (Mul stats start at 1, others at 0). Skill code reads these instead of naming supports.</summary>
+        public float Stat(SStat1651 st)
         {
-            var T = HellordTuning.I; float m = 1;
-            if (Has(SupportId.AddedDamage)) m *= HData.At(T.supAddedDmg, Lvl(SupportId.AddedDamage), 1.15f);
-            if (Has(SupportId.MultipleProjectiles) && HData.MultiHonoured1651(def.id)) m *= T.multiProjDmgMul; // t1651: the penalty only where Multi really adds projectiles
-            return m;
+            var T = HellordTuning.I; bool mul = SMod1651.IsMul(st); float v = mul ? 1f : 0f;
+            for (int i = 0; i < sup.Count; i++) { var d = HData.Supports[(int)sup[i]]; int l = Lvl(sup[i]); v = Ap1651(d.mods, st, l, v, mul, T); v = Ap1651(d.drawbacks, st, l, v, mul, T); }
+            return v;
         }
-        public float CdMul => HellordGame.SinSkCdAt818(def.id) * HellordGame.FbCd1481(def.id) * (Has(SupportId.FasterCasting) ? HData.At(HellordTuning.I.supFasterCd, Lvl(SupportId.FasterCasting), 0.9f) : 1f) * HellordGame.PCd49 * ((def.tags & (STag.Zone | STag.Orbital)) != 0 ? HellordGame.SlothCd53 : 1f) * HellordGame.PactCdS53 * HellordGame.SinCd737; // v0.0.49 Intensity; v0.0.53 Sloth Throne / Price of Wrath
-        public float AreaMul => HellordGame.SinSkAreaAt818(def.id) * (Has(SupportId.BiggerArea) ? HData.At(HellordTuning.I.supAreaMul, Lvl(SupportId.BiggerArea), 1.25f) : 1f) * HellordGame.PArea49 * ((def.tags & (STag.Zone | STag.Orbital)) != 0 ? HellordGame.SlothArea53 : 1f) * HellordGame.BoneArea536(def) * HellordGame.SinArea737; // t536u Grave Reach / Grave Colossus // v0.0.49 aggression x Intensity
+        float Ap1651(SMod1651[] ms, SStat1651 st, int l, float v, bool mul, HellordTuning T)
+        {
+            if (ms == null) return v;
+            foreach (var m in ms) if (m.stat == st && (m.when == null || m.when(def))) { float x = m.v(T, l); v = mul ? v * x : v + x; }
+            return v;
+        }
+        public int StatI(SStat1651 st) => Mathf.RoundToInt(Stat(st));
+        public int ProjExtra => StatI(SStat1651.ProjExtra);
+        public int PierceN => StatI(SStat1651.Pierce);
+        public int ForkN => StatI(SStat1651.ForkN);
+        public int BounceN => StatI(SStat1651.Bounce);
+        public float HomingR => Stat(SStat1651.HomingR);
+        public int RepeatN => StatI(SStat1651.RepeatN);
+        public int ChainExtra => StatI(SStat1651.ChainExtra);
+        /// <summary>t1651: support-made duration multiplier (sins etc. stay separate).</summary>
+        public float DurMul => Stat(SStat1651.DurMul);
+        public float Dur(float secs) => secs * DurMul;
+        /// <summary>t1651: THE area helper. R = a length that scales linearly with area (ranges, reaches, wall size); RA = a radius that scales with the square root (blast discs). Both read AreaMul.</summary>
+        public float R(float r) => r * AreaMul;
+        public float RA(float r) => r * Mathf.Sqrt(Mathf.Max(0f, AreaMul));
+        public float More() => Stat(SStat1651.DmgMul); // t1651: Added Damage, Multi's penalty (only where Multi adds projectiles), future damage mods
+        public float CdMul => HellordGame.SinSkCdAt818(def.id) * HellordGame.FbCd1481(def.id) * Stat(SStat1651.CdMul) * HellordGame.PCd49 * ((def.tags & (STag.Zone | STag.Orbital)) != 0 ? HellordGame.SlothCd53 : 1f) * HellordGame.PactCdS53 * HellordGame.SinCd737; // v0.0.49 Intensity; v0.0.53 Sloth Throne / Price of Wrath
+        public float AreaMul => HellordGame.SinSkAreaAt818(def.id) * Stat(SStat1651.AreaMul) * HellordGame.PArea49 * ((def.tags & (STag.Zone | STag.Orbital)) != 0 ? HellordGame.SlothArea53 : 1f) * HellordGame.BoneArea536(def) * HellordGame.SinArea737; // t536u Grave Reach / Grave Colossus // v0.0.49 aggression x Intensity
     }
 }

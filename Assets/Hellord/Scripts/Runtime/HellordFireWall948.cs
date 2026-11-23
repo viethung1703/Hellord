@@ -61,8 +61,8 @@ namespace Hellord
         {
             var T = HellordTuning.I; int L = Mathf.Max(1, s.level);
             Vector2 dir = AimDir(); if (dir.sqrMagnitude < 1e-4f) dir = Vector2.right; dir.Normalize();
-            float len = (T.fireWallLen737 + T.fireWallLenPerLvl737 * (L - 1)) * s.AreaMul, thick = T.fireWallThick737 * s.AreaMul;
-            float sec = (T.fireWallSec737 + T.fireWallSecPerLvl737 * (L - 1)) * SinDuration737;
+            float len = s.R(T.fireWallLen737 + T.fireWallLenPerLvl737 * (L - 1)), /* t1651 area helper */ thick = s.R(T.fireWallThick737);
+            float sec = s.Dur(T.fireWallSec737 + T.fireWallSecPerLvl737 * (L - 1)) * SinDuration737; // t1651 duration stat
             float per = dmg / Mathf.Max(0.01f, HData.LevelMul(L)) * (1f + T.fireWallDmgPerLvl737 * (L - 1)) * T.fireWallTickDmgMul948;
             float dist = _echo738 ? Mathf.Max(0.5f, T.fireWallDist737 - T.fireWallEchoGap737) : T.fireWallDist737;
             Vector2 c;

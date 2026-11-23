@@ -99,7 +99,7 @@ namespace Hellord
         }
         bool CastPillar716(SkillInst s, float dmg)
         {
-            var T = HellordTuning.I; int n = HData.At(T.pillarCount, s.level, 1); float r = HData.At(T.pillarRadiusU, s.level, 1.3f) * s.AreaMul;
+            var T = HellordTuning.I; int n = HData.At(T.pillarCount, s.level, 1); float r = s.R(HData.At(T.pillarRadiusU, s.level, 1.3f));
             Vector2 c = GroundAim716(); float a0 = Random.value * 360f;
             for (int p = 0; p < n; p++)
             {

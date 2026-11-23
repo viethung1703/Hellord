@@ -137,7 +137,7 @@ namespace Hellord
             {
                 if (string.IsNullOrEmpty(sd.category)) { statOk = false; stat.Append(sd.name).Append(": no category; "); }
                 if (sd.metric1651 == SupMetric1651.None) { statOk = false; stat.Append(sd.name).Append(": no test metric; "); }
-                string bad = SmCardCheck1651?.Invoke(sd); if (bad != null) { statOk = false; stat.Append(sd.name).Append(": ").Append(bad).Append("; "); }
+                string bad = (SmCardCheck1651 ?? SmCard1651)(sd); if (bad != null) { statOk = false; stat.Append(sd.name).Append(": ").Append(bad).Append("; "); }
             }
             ARes(scen + ":static", statOk, stat.Length == 0 ? $"{HData.Supports.Length} supports: every one has a category and a test metric; card text checks ok" : stat.ToString());
             // ---- matrix
@@ -182,6 +182,23 @@ namespace Hellord
             ZhEnd1618(scen, null);
         }
         public static System.Func<SupportDef, string> SmCardCheck1651; // stage 3: generated card text vs tuning
+        /// <summary>t1651 stage 3: card text comes from the tuning. Lv1 and Lv5 effect text exist and differ (or a mod is flat on purpose); stat supports' desc is the generated one and shows the Lv1 + Lv5 values.</summary>
+        static string SmCard1651(SupportDef sd)
+        {
+            string e1 = HData.SupportEffect(sd.id, 1), e5 = HData.SupportEffect(sd.id, SkillInst.MaxSupLevel);
+            if (string.IsNullOrEmpty(e1) || string.IsNullOrEmpty(e5)) return "no effect text";
+            if (e1 == e5) return $"Lv1 and Lv5 text are the same ({e1})";
+            if (sd.mods != null)
+            {
+                string gen = HData.SupportDesc1651(sd); if (sd.desc != gen) return "desc is not the generated text";
+                string m1 = HData.ModText1651(sd.mods, 1, null), m5 = HData.ModText1651(sd.mods, SkillInst.MaxSupLevel, null);
+                if (!sd.desc.Contains(m1) || !sd.desc.Contains(m5)) return "desc misses the Lv1/Lv5 values";
+                if (sd.drawbacks != null && !sd.desc.Contains("Drawback")) return "drawback not on the card";
+                var T = HellordTuning.I; bool moved = false; foreach (var m in sd.mods) if (Mathf.Abs(m.v(T, 1) - m.v(T, SkillInst.MaxSupLevel)) > 1e-4f) moved = true;
+                if (!moved) return "no mod grows from Lv1 to Lv5";
+            }
+            return null;
+        }
     }
 }
 #endif

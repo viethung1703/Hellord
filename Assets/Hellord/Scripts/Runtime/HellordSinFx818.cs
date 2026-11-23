@@ -128,7 +128,7 @@ namespace Hellord
             // #40 ring of fire
             if (_sinRingT818 > 0 && _sinRingS818 != null)
             {
-                _sinRingT818 -= dt; float R = T.sin40R818 * _sinRingS818.AreaMul, W = T.sin40W818; Vector2 c = _heroPos + Vector2.up * 0.3f;
+                _sinRingT818 -= dt; float R = _sinRingS818.R(T.sin40R818), W = T.sin40W818; Vector2 c = _heroPos + Vector2.up * 0.3f;
                 if (!ShaderCity930(R, _sinRingT818)) for (int k = 0; k < 28; k++) { float a0 = k * Mathf.PI * 2 / 28, a1 = (k + 1) * Mathf.PI * 2 / 28; ZSeg(c + new Vector2(Mathf.Cos(a0), Mathf.Sin(a0) * 0.75f) * R, c + new Vector2(Mathf.Cos(a1), Mathf.Sin(a1) * 0.75f) * R, W * 0.6f, new Color(1f, 0.45f + 0.15f * Mathf.Sin(runTime * 9 + k), 0.1f, 0.75f), 2); }
                 if ((_sinRingTick818 -= dt) <= 0)
                 {
@@ -273,7 +273,7 @@ namespace Hellord
         }
         void SinSun818(SkillInst s, float dmg, Vector2 c)
         {
-            var T = HellordTuning.I; Vector2 dir = AimDir(); float expl = HData.At(T.fbSplashRadiusU, s.level, 0.8f) * s.AreaMul;
+            var T = HellordTuning.I; Vector2 dir = AimDir(); float expl = s.R(HData.At(T.fbSplashRadiusU, s.level, 0.8f));
             SpawnProj(s, c + dir * 0.4f, dir * 11f * Mathf.Max(0.05f, T.sin38Speed818), dmg, 9999, false, 0, expl);
             var p = _lastProj53; if (p != null && p.s == s) { p.sin818 = 3; p.life = T.sin38Life818; p.homing = false; p.sr.transform.localScale = Vector3.one * 1.6f; p.sr.color = new Color(1f, 0.9f, 0.45f); Sun934(p); } // t934u v2 sun
             ProjectileFX.CastFlash(c + dir * 0.5f, dir, ProjElement.Fire); HellordAudio.Play("fireball_cast"); SinGlint818();
@@ -285,7 +285,7 @@ namespace Hellord
         }
         void SinMushroom818(SkillInst gp)
         {
-            var T = HellordTuning.I; Vector2 at = _heroPos + Random.insideUnitCircle * 1.5f; ClampToRoom(ref at, 4); float dmg = SkillDamage(gp), r = T.sin41R818 * gp.AreaMul;
+            var T = HellordTuning.I; Vector2 at = _heroPos + Random.insideUnitCircle * 1.5f; ClampToRoom(ref at, 4); float dmg = SkillDamage(gp), r = gp.R(T.sin41R818);
             _sfxMush930 = true; GravePoolZone(at, r, T.sin41Secs818, dmg, HData.At(T.graveSlow, gp.level, 0.3f), gp); _sfxMush930 = false; // t930u: kind 5 mushroom pool
             Query(at, r, _sinQ818); foreach (int i in _sinQ818) { var e = _en[i]; Hit(e, dmg * T.sin41Burst818, gp, Vector2.zero); if (e.alive) ApplyStatus(e, Status.Bleed, dmg, 1f, gp); } // Bleed = poison stand-in (no Poison status yet)
             HordeFX.CheapBurst(at + Vector2.up * 0.3f, ShaderFx928(5) ? T.fxMushBurstCol930 : new Color(0.55f, 0.9f, 0.35f), 6);

@@ -166,14 +166,14 @@ namespace Hellord
         {
             if ((p.ret53 && !p.bone53) || (Has51(PactPath.BloodReaver, 6) && p.s != null && p.s.def.id == SkillId.SoulSpears)) Heal53(PT.spearHealPerPierce53);
             if (Has51(PactPath.Pyromancer, 0) && p.s != null && p.s.def.id == SkillId.Fireball && _patch53.Count < 24)
-                _patch53.Add(new Zone53 { c = p.pos, r = PT.kindlingR53 * p.s.AreaMul, t = PT.kindlingLife53, dmg = p.dmg * PT.kindlingDmg53, s = p.s, seed = Random.value });
+                _patch53.Add(new Zone53 { c = p.pos, r = p.s.R(PT.kindlingR53), t = PT.kindlingLife53, dmg = p.dmg * PT.kindlingDmg53, s = p.s, seed = Random.value });
         }
         bool PactMeteor53(SkillInst s, float dmg)
         {
             if (!Has51(PactPath.Pyromancer, 4)) return false;
             int t = Nearest(_heroPos, 11f, -1); if (t < 0) return false;
             if (++_fbN53 % PT.meteorEvery53 != 0) return false;
-            _nova53.Add(new Nova53 { c = _en[t].pos, r = PT.meteorR53 * s.AreaMul, dmg = dmg * PT.meteorDmgMul53, s = s, st = Status.Burn, t = PT.meteorDelay53, kind = 1 });
+            _nova53.Add(new Nova53 { c = _en[t].pos, r = s.R(PT.meteorR53), dmg = dmg * PT.meteorDmgMul53, s = s, st = Status.Burn, t = PT.meteorDelay53, kind = 1 });
             return true;
         }
         bool PactLance53(SkillInst s, float dmg)
@@ -204,7 +204,7 @@ namespace Hellord
         bool PactAnchorPool53(SkillInst s, float dmg, float mul)
         {
             if (!Has51(BoneWardenGone539, 2)) return false;
-            float r = HData.At(HellordTuning.I.gravePoolRadiusU, s.level, 1.3f) * s.AreaMul;
+            float r = s.R(HData.At(HellordTuning.I.gravePoolRadiusU, s.level, 1.3f));
             foreach (var q in _pools44) if (q.anchor53) { q.dmg = dmg * mul; q.r = r; q.life = Mathf.Max(q.life, 4f); q.s = s; return true; }
             _pools44.Add(new Pool44 { at = _heroPos, r = r, life = 4f, tick = 0, dmg = dmg * mul, slow = 0.3f, s = s, anchor53 = true });
             return true;
@@ -233,7 +233,7 @@ namespace Hellord
                 ChainFX.ChainLightningPoints(a + Vector2.up * 0.8f, b + Vector2.up * 0.8f, default, default, 2, new Color(0.6f, 0.85f, 1f), 0.02f, 0.18f);
             }
             if (Has51(PactPath.Pyromancer, 2)) { Vector2 e2 = Has51(PactPath.Stormcaller, 7) ? _heroPos : a + d * T49.dashDistU49; if (_trail53.Count >= 4) _trail53.RemoveAt(0); _trail53.Add(new Seg53 { a = a, b = e2, t = PT.trailLife53 }); }
-            if (Has51(PactPath.Stormcaller, 1) && _cap53 >= 1f) { var ring = Own53(SkillId.StormRing); if (ring != null) { _nova53.Add(new Nova53 { c = _heroPos, r = HData.At(HellordTuning.I.stormRadiusU, ring.level, 2.6f) * ring.AreaMul * 1.5f, dmg = SkillDamage(ring) * _cap53 * PT.capDmgPerCharge53, s = ring, st = Status.Shock, kind = 2 }); } _cap53 = 0; }
+            if (Has51(PactPath.Stormcaller, 1) && _cap53 >= 1f) { var ring = Own53(SkillId.StormRing); if (ring != null) { _nova53.Add(new Nova53 { c = _heroPos, r = ring.R(HData.At(HellordTuning.I.stormRadiusU, ring.level, 2.6f)) * 1.5f, dmg = SkillDamage(ring) * _cap53 * PT.capDmgPerCharge53, s = ring, st = Status.Shock, kind = 2 }); } _cap53 = 0; }
             if (Has51(BoneWardenGone539, 7) && (_legion53.Count >= 3 || OrbitCount53() >= 6))
             {
                 Vector2 n = new Vector2(-d.y, d.x) * PT.wallLen53 * 0.5f; var o = Own53(SkillId.BoneOrbit);
@@ -422,7 +422,7 @@ namespace Hellord
             else foreach (var t in _orbs) if (t != null && t.gameObject.activeSelf) o.Add(t.transform.position);
             o.AddRange(_awayPts53);
         }
-        int OrbN53(SkillInst o) { if (o == null) return 0; var T = HellordTuning.I; return HData.At(T.orbitCount, o.level, 3) + (o.Has(SupportId.MoreOrbitals) ? HData.At(T.supOrbitals, o.Lvl(SupportId.MoreOrbitals)) : 0); }
+        int OrbN53(SkillInst o) { if (o == null) return 0; var T = HellordTuning.I; return HData.At(T.orbitCount, o.level, 3) + o.StatI(SStat1651.Orbitals); } // t1651 stat
         int OrbitCount53() => OrbN53(Own53(SkillId.BoneOrbit)) + _crestBone53.Count + _roomBones53;
         bool RuneHold53 => Has51(BoneWardenGone539, 4) && _rune53.Count > 0 && Own53(SkillId.BoneOrbit) != null;
         bool PactOrbitAway53() => _pactActive51 && (RuneHold53 || _launchFly53 > 0);
@@ -555,7 +555,7 @@ namespace Hellord
                 if ((_launchT53 -= dt) <= 0)
                 {
                     _launchT53 = PT.launchEvery53; int n = Mathf.Max(1, OrbN53(orb)); float sp = PT.launchDist53 / (PT.launchTime53 * 0.5f);
-                    float dmg = SkillDamage(orb) * PactSkillMul51(orb); bool fork = orb.Has(SupportId.Fork);
+                    float dmg = SkillDamage(orb) * PactSkillMul51(orb); bool fork = orb.ForkN > 0; // t1651
                     for (int k = 0; k < n; k++)
                     {
                         float a = runTime * 2f + k * Mathf.PI * 2f / n; Vector2 d = new Vector2(Mathf.Cos(a), Mathf.Sin(a));

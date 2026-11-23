@@ -107,7 +107,7 @@ namespace Hellord
             if (Nearest(_heroPos, T.frostbRangeU, -1) < 0 && !Aiming()) { s.cd = 0.1f; return false; } // hold fire when nothing is near
             EnsureFX44(); Vector2 dir = AimDir(); Vector2 c = HeroCenter + new Vector2(dir.x >= 0f ? 0.45f : -0.45f, 0.45f); bool tail1528 = _basicAim1517 && HellordTuning.I.castFromTail1528; c = CastOrigin1528(c, ref dir); /* t1528: tail tip */ // t1410u: leaves the hero's casting hand (on the facing side), not the body centre
             int n = HData.At(T.frostbOrbs, s.level, 1) + PCount49; float spread = n > 1 ? Mathf.Min(T.frostbSpreadDeg, 120f / (n - 1)) : 0f;
-            float burstR = HData.At(T.frostbBurstU, s.level, 1.2f) * s.AreaMul, trail = HData.At(T.frostbTrailSeconds, s.level, 1.5f) * SinDuration737;
+            float burstR = s.R(HData.At(T.frostbBurstU, s.level, 1.2f)), trail = HData.At(T.frostbTrailSeconds, s.level, 1.5f) * SinDuration737;
             for (int i = 0; i < n; i++)
             {
                 Vector2 d = (Vector2)(Quaternion.Euler(0, 0, (i - (n - 1) * 0.5f) * spread) * dir); Vector2 p0 = tail1528 ? c : c + d * 0.25f;
@@ -119,7 +119,7 @@ namespace Hellord
         }
         bool CastIceNova(SkillInst s, float dmg)
         {
-            var T = HellordTuning.I; float rMax = HData.At(T.novaRadiusU, s.level, 3.2f) * s.AreaMul;
+            var T = HellordTuning.I; float rMax = s.R(HData.At(T.novaRadiusU, s.level, 3.2f));
             Query(_heroPos, rMax * 1.15f, _iceQ); if (_iceQ.Count == 0 && !Aiming()) { s.cd = 0.15f; return false; } // pulse only when something is in reach
             int pulses = HData.At(T.novaPulses, s.level, 1);
             for (int k = 0; k < pulses; k++) { float dd = dmg * (k == 0 ? 1f : T.novaPulse2Mul); var sk = s; int pk = k; After(k * (NovaFX1419.D2Active ? T.novaPulseGapD2S1426 : T.novaPulseGapS), () => SpawnIceNova(sk, dd, rMax, pk)); }
@@ -135,7 +135,7 @@ namespace Hellord
         bool CastFrostBomb(SkillInst s, float dmg)
         {
             var T = HellordTuning.I; Query(_heroPos, T.bombRangeU, _iceQ); if (_iceQ.Count == 0) { s.cd = 0.25f; return false; }
-            float r = HData.At(T.bombRadiusU, s.level, 2f) * s.AreaMul; int n = HData.At(T.bombCount, s.level, 1) + PCount49; int placed = 0;
+            float r = s.R(HData.At(T.bombRadiusU, s.level, 2f)); int n = HData.At(T.bombCount, s.level, 1) + PCount49; int placed = 0;
             for (int b = 0; b < n; b++)
             {   // densest of a few random samples, not on top of a live bomb or one placed this cast
                 int best = -1, bestScore = -1;
@@ -146,7 +146,7 @@ namespace Hellord
                     if (near) continue; Query(cp, r, _iceQ2); if (_iceQ2.Count > bestScore) { bestScore = _iceQ2.Count; best = ci; }
                 }
                 if (best < 0) break; Vector2 at = _en[best].pos; ClampToRoom(ref at, 6);
-                var be = new IceBombE { tgt = _en[best], p = at, dur = HData.At(T.bombSeconds, s.level, 2f) * SinDuration737, pulseT = T.bombPulseS, r = r, dmg = dmg * T.bombBlastMul, pulseDmg = dmg * T.bombPulseDmgMul, s = s }; _iceBombs.Add(be); placed++;
+                var be = new IceBombE { tgt = _en[best], p = at, dur = s.Dur(HData.At(T.bombSeconds, s.level, 2f)) * SinDuration737, pulseT = T.bombPulseS, r = r, dmg = dmg * T.bombBlastMul, pulseDmg = dmg * T.bombPulseDmgMul, s = s }; _iceBombs.Add(be); placed++;
                 HellordAudio.Play("pool_cast", 1.3f); be.fx = IceVfxBombDrop(at, r, be.dur);
             }
             if (placed == 0) { s.cd = 0.3f; return false; }
@@ -155,7 +155,7 @@ namespace Hellord
         bool CastHurricane(SkillInst s, float dmg)
         {
             var T = HellordTuning.I; Query(_heroPos, T.hurrRangeU, _iceQ); if (_iceQ.Count == 0 && _iceStorm == null && !Aiming()) { s.cd = 0.25f; return false; }
-            float r = HData.At(T.hurrRadiusU, s.level, 2.4f) * s.AreaMul, secs = HData.At(T.hurrSeconds, s.level, 4f) * SinDuration737;
+            float r = s.R(HData.At(T.hurrRadiusU, s.level, 2.4f)), secs = s.Dur(HData.At(T.hurrSeconds, s.level, 4f)) * SinDuration737; // t1651 duration stat
             if (_iceStorm != null && _iceStorm.s == s) { _iceStorm.t = _iceStorm.dur = secs; _iceStorm.r = r; _iceStorm.dmg = dmg; }
             else
             {
@@ -185,7 +185,7 @@ namespace Hellord
                 o.trailAcc += (o.p - prev).magnitude; if (o.trailAcc >= T.frostbTrailGapU && o.trailLife > 0.05f)
                 {
                     o.trailAcc = 0; if (_icePatches.Count >= T.frostbMaxPatches) _icePatches.RemoveAt(0);
-                    _icePatches.Add(new IcePatch { p = o.p, r = T.frostbPatchU * Mathf.Sqrt(o.s.AreaMul), life = o.trailLife, life0 = o.trailLife, tick = 0.05f, s = o.s });
+                    _icePatches.Add(new IcePatch { p = o.p, r = o.s.RA(T.frostbPatchU), life = o.trailLife, life0 = o.trailLife, tick = 0.05f, s = o.s });
                 }
                 if (wall || o.life <= 0f) { IceOrbBurst(o); FrostboltFX1432.Release(o); { if (i < _iceOrbs.Count) _iceOrbs.RemoveAt(i); } continue; }
                 IceVfxOrb(o, o.p, o.v, o.age);

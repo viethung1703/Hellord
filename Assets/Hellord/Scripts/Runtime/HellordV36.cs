@@ -76,7 +76,7 @@ namespace Hellord
         {
             var T = HellordTuning.I; int first = PactPreferShocked53(Nearest(_heroPos, T.chainFirstRangeU, -1), T.chainFirstRangeU); first = ChainFirst716(first); if (first < 0 && NearBrk53(HeroCenter, T.chainFirstRangeU, new HashSet<int>()) < 0) { s.cd = 0.15f; return false; } // v0.0.53: decor alone is a valid target
             int jumps = HData.At(T.chainJumps, s.level, 2) + SinChainJumps818(); // t818u #5
-            float range = HData.At(T.chainJumpRangeU, s.level, 3.2f) * s.AreaMul;
+            float range = s.R(HData.At(T.chainJumpRangeU, s.level, 3.2f));
             _chainHit.Clear(); _chainPts.Clear(); _chainPts.Add(HeroCenter); int cur = first; float d = dmg;
             for (int k = 0; k <= jumps && cur >= 0; k++)
             {
@@ -114,7 +114,7 @@ namespace Hellord
         bool CastHellfirePillar(SkillInst s, float dmg)
         {
             var T = HellordTuning.I; if (CurAim720) return CastPillar716(s, dmg); Query(_heroPos, T.pillarRangeU, _sq); if (_sq.Count == 0) { s.cd = 0.25f; return false; }
-            int n = HData.At(T.pillarCount, s.level, 1); float r = HData.At(T.pillarRadiusU, s.level, 1.3f) * s.AreaMul; _pillarAt.Clear();
+            int n = HData.At(T.pillarCount, s.level, 1); float r = s.R(HData.At(T.pillarRadiusU, s.level, 1.3f)); _pillarAt.Clear();
             for (int p = 0; p < n; p++)
             {   // densest cluster out of a few random samples, not on top of an earlier pillar
                 int best = -1, bestScore = -1;
@@ -147,7 +147,7 @@ namespace Hellord
         // ================= Blood Whip =================
         bool CastBloodWhip(SkillInst s, float dmg)
         {
-            var T = HellordTuning.I; float reach = HData.At(T.whipReachU, s.level, 5f) * s.AreaMul, hw = HData.At(T.whipHalfWidthU, s.level, 0.6f) * Mathf.Sqrt(s.AreaMul);
+            var T = HellordTuning.I; float reach = s.R(HData.At(T.whipReachU, s.level, 5f)), hw = HData.At(T.whipHalfWidthU, s.level, 0.6f) * s.RA(1f);
             if (Nearest(_heroPos, reach + 1f, -1) < 0 && !BrkNear53(_heroPos, reach + 1f) && !Aiming()) { s.cd = 0.1f; return false; }
             Vector2 dir = AimDir(); int n = HData.At(T.whipLashes, s.level, 1); var healed = new float[1]; var sk = s;
             HellordAudio.Play("whip_cast", T.whipSfxPitch); // v0.0.38: quiet reused frost-cleave clip, pitched up
@@ -179,13 +179,13 @@ namespace Hellord
         {
             if (Nearest(_heroPos, 11, -1) < 0 && !BrkNear53(_heroPos, 11) && !Aiming()) { s.cd = 0.1f; return false; }
             var T = HellordTuning.I; Vector2 dir = AimDir(); Vector2 c = HeroCenter; Vector2 o1528 = CastOrigin1528(c + dir * 0.4f, ref dir); // t1528: the basic leaves the tail tip
-            int n = HData.At(T.spearCount, s.level, 1) + HellordGame.PCount49 + (s.Has(SupportId.MultipleProjectiles) ? HData.At(T.supMultiExtra, s.Lvl(SupportId.MultipleProjectiles)) : 0);
-            int pierce = SinSpearPierce818() + HData.At(T.spearPierce, s.level, 1) + (s.Has(SupportId.Pierce) ? HData.At(T.supPierce, s.Lvl(SupportId.Pierce)) : 0), bounce = s.Has(SupportId.Bounce) ? HData.At(T.supBounce, s.Lvl(SupportId.Bounce)) : 0;
+            int n = HData.At(T.spearCount, s.level, 1) + HellordGame.PCount49 + s.ProjExtra; // t1651 stat
+            int pierce = SinSpearPierce818() + HData.At(T.spearPierce, s.level, 1) + s.PierceN, bounce = s.BounceN; // t1651 stats
             float spread = n > 1 ? Mathf.Min(T.spearFanDeg, 150f / (n - 1)) : 0f;
             for (int i = 0; i < n; i++)
             {
                 float a = (i - (n - 1) * 0.5f) * spread; var d = (Vector2)(Quaternion.Euler(0, 0, a) * dir);
-                SpawnProj(s, o1528, d * T.spearSpeed * SinSpearSpeed818(), dmg, pierce, s.Has(SupportId.Fork), bounce, 0f);
+                SpawnProj(s, o1528, d * T.spearSpeed * SinSpearSpeed818(), dmg, pierce, s.ForkN > 0, bounce, 0f);
             }
             if (!T44.fxV44Pack) ProjectileFX.CastFlash(c + dir * 0.5f, dir, ProjElement.Soul); Flash661(c + dir * 0.5f, ElemCol661(s)); SL667(SkillLightHooks.SoulSpearsMuzzle, c + dir * 0.5f, dir); // t661u/t667u muzzle light
             HellordAudio.Play("spear_cast", T.spearSfxPitch); // v0.0.38: quiet reused fireball-cast clip, pitched up
@@ -197,13 +197,13 @@ namespace Hellord
         bool CastGravePool(SkillInst s, float dmg, float mul)
         {
             var T = HellordTuning.I; bool echo = mul < 0.99f;
-            if (CurAim720 && !echo) { Vector2 ga = GroundAim716(); if (PactAnchorPool53(s, dmg, mul)) return true; GravePoolZone(ga, HData.At(T.gravePoolRadiusU, s.level, 1.3f) * s.AreaMul, HData.At(T.gravePoolSeconds, s.level, 3f), dmg, HData.At(T.graveSlow, s.level, 0.3f), s); _lastPool = ga; _poolEver = true; HellordAudio.Play("pool_cast", T.poolSfxPitch); return true; } // t716u: Manual = ground AoE at the cursor
+            if (CurAim720 && !echo) { Vector2 ga = GroundAim716(); if (PactAnchorPool53(s, dmg, mul)) return true; GravePoolZone(ga, s.R(HData.At(T.gravePoolRadiusU, s.level, 1.3f)), HData.At(T.gravePoolSeconds, s.level, 3f), dmg, HData.At(T.graveSlow, s.level, 0.3f), s); _lastPool = ga; _poolEver = true; HellordAudio.Play("pool_cast", T.poolSfxPitch); return true; } // t716u: Manual = ground AoE at the cursor
             if (Nearest(_heroPos, 12f, -1) < 0 && !BrkNear53(_heroPos, 12f)) { s.cd = 0.3f; return false; }                                  // no demons around: keep the trail for when it matters
             if (!echo && !Has51(BoneWardenGone539, 2) && _poolEver && (_heroPos - _lastPool).magnitude < T.graveMinSpacingU) { s.cd = 0.15f; return false; } // pools mark where the hero WALKED
             int alive = _pools44.Count;
             if (alive >= T.graveMaxPools && !Has51(BoneWardenGone539, 2)) { s.cd = 0.3f; return false; }
             Vector2 at = _heroPos + (echo ? Random.insideUnitCircle * 1.2f : Vector2.zero); ClampToRoom(ref at, 4); if (PactAnchorPool53(s, dmg, mul)) return true; // v0.0.53 Grave Anchor
-            GravePoolZone(at, HData.At(T.gravePoolRadiusU, s.level, 1.3f) * s.AreaMul, HData.At(T.gravePoolSeconds, s.level, 3f), dmg, HData.At(T.graveSlow, s.level, 0.3f), s);
+            GravePoolZone(at, s.R(HData.At(T.gravePoolRadiusU, s.level, 1.3f)), HData.At(T.gravePoolSeconds, s.level, 3f), dmg, HData.At(T.graveSlow, s.level, 0.3f), s);
             if (!echo) { _lastPool = _heroPos; _poolEver = true; }
             HellordAudio.Play("pool_cast", T.poolSfxPitch); // v0.0.38: quiet reused curse-rune clip, pitched down
             return true;
@@ -211,7 +211,7 @@ namespace Hellord
         void GravePoolZone(Vector2 at, float r, float secs, float dmg, float slow, SkillInst s)
         {   // v0.0.44: HeroSkillFX.GravePool look (AuraField placeholder removed); ticks run in UpdatePools44 (slow + Hit, so supports apply)
             EnsureFX44();
-            slow = SinPoolSlow818(slow); secs *= SinDuration737; // t818u #7 + Duration
+            slow = SinPoolSlow818(slow); secs *= SinDuration737 * (s != null ? s.DurMul : 1f); // t818u #7 + Duration; t1651 duration stat
             int pk930 = _sfxMush930 && ShaderFx928(5) ? 5 : 1; // t930u ghost mushroom pool look
             _pools44.Add(new Pool44 { at = at, r = r, life = secs, tick = HellordTuning.I.graveTickSeconds, dmg = dmg, slow = slow, s = s, fx = ShaderFx928(pk930) ? -1 : HeroSkillFX.GravePool(at, r, secs), sfx928 = ShaderFxSpawn928(pk930, at, r, secs) }); // t928u: shader pool, pack pool = fallback
         }
