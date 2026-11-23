@@ -64,7 +64,7 @@ namespace Hellord
         readonly List<ZHy> _zHy1625 = new List<ZHy>(); readonly List<ZBolt> _zBolt1625 = new List<ZBolt>();
         public int ZhHydras1625 => _zHy1625.Count;
 
-        bool ZhNoOffer1618(SkillDef d) => d.id == SkillId.ZhurongKit || (d.id == SkillId.FireWall || d.id == SkillId.Hydra) && HellordTuning.I.pbNoLevelUp1567;
+        bool ZhNoOffer1618(SkillDef d) => d.id == SkillId.ZhurongKit || HData.IsKit1651(d.id) || (d.id == SkillId.FireWall || d.id == SkillId.Hydra) && HellordTuning.I.pbNoLevelUp1567;
         bool ZhNoSlow1618 => ZhHeartT1618 > 0f || ZhHearthT1618 > 0f;
         bool ZhCleanse1618 => ZhHearthT1618 > 0f;
 
@@ -151,13 +151,13 @@ namespace Hellord
             if (ZhUlt1618 == 4 && ZhNearMissNow1618()) { ZhNearMiss1618++; ZFx1618(2, HeroCenter, 0.7f, 0.25f); if (ZhNearMiss1618 == Mathf.Max(1, TZ.vbNeed1618)) HellordAudio.Play("pact_unlock", 1.3f); }
             int m = ZhMove1618; if (m == 0 || ZhMoveCd > 0f) return; // on cooldown = plain dash
             ZhCasts1618++;
-            if (m == 1) { ZhEffP1618 = p0; ZhEffT1618 = TZ.effLife1618; ZhMoveCd = TZ.effCd1618; HellordAudio.Play("fireball_cast", 0.7f); HordeFX.CheapBurst(p0 + Vector2.up * 0.6f, ZO, 8); }
-            else if (m == 2) { ZhAncP1618 = p0; ZhAncT1618 = TZ.ancWindow1618; ZhMoveCd = TZ.ancCd1618; HellordAudio.Play("curse_rune_arm", 1.4f); }
+            if (m == 1) { ZhEffP1618 = p0; ZhEffT1618 = ZkDur1651(0, TZ.effLife1618); ZhMoveCd = ZkCd1651(0, TZ.effCd1618); HellordAudio.Play("fireball_cast", 0.7f); HordeFX.CheapBurst(p0 + Vector2.up * 0.6f, ZO, 8); }
+            else if (m == 2) { ZhAncP1618 = p0; ZhAncT1618 = ZkDur1651(1, TZ.ancWindow1618); ZhMoveCd = ZkCd1651(1, TZ.ancCd1618); HellordAudio.Play("curse_rune_arm", 1.4f); }
             else if (m == 3)
             {
-                ZhMoveCd = TZ.bdCd1618; ZhBdP1618 = p0; ZhBdT1618 = 1.0f; ZFx1618(1, p0, TZ.bdR1618, 0.4f); // t1625: vortex visual 1.0 s (spec); pull unchanged HellordAudio.Play("storm_ring", 0.6f);
-                Query(p0, TZ.bdR1618, _zq1618);
-                foreach (int i in _zq1618) { var e = _en[i]; if (!e.alive || e.dying || e.boss) continue; Vector2 d = p0 - e.pos; if (d.magnitude > TZ.bdR1618) continue; e.push = d * TZ.bdPull1618 * 8f; ZhPulled1618++; } // push decays at 8/s: total move = push / 8
+                ZhMoveCd = ZkCd1651(2, TZ.bdCd1618); ZhBdP1618 = p0; ZhBdT1618 = 1.0f; ZFx1618(1, p0, ZkR1651(2, TZ.bdR1618), 0.4f); // t1625: vortex visual 1.0 s (spec); pull unchanged HellordAudio.Play("storm_ring", 0.6f);
+                Query(p0, ZkR1651(2, TZ.bdR1618), _zq1618);
+                foreach (int i in _zq1618) { var e = _en[i]; if (!e.alive || e.dying || e.boss) continue; Vector2 d = p0 - e.pos; if (d.magnitude > ZkR1651(2, TZ.bdR1618)) continue; e.push = d * TZ.bdPull1618 * 8f; ZhPulled1618++; e.lured1651 = true; /* t1651 probe: pulled */ } // push decays at 8/s: total move = push / 8
             }
         }
         /// <summary>Ember Anchor: a dash press while the ember is lit snaps you back to it (free: no dash cooldown, no new charge).</summary>
@@ -170,8 +170,8 @@ namespace Hellord
         }
         void ZhLure1618(Enemy e, ref Vector2 v, float sp)
         {
-            if (ZhEffT1618 <= 0f || e.boss) return; Vector2 d = ZhEffP1618 - e.pos; float m = d.magnitude; if (m > TZ.effR1618) return;
-            v = m > 0.3f ? d / m * sp : Vector2.zero; ZhLured1618++;
+            if (ZhEffT1618 <= 0f || e.boss) return; Vector2 d = ZhEffP1618 - e.pos; float m = d.magnitude; if (m > ZkR1651(0, TZ.effR1618)) return;
+            v = m > 0.3f ? d / m * sp : Vector2.zero; ZhLured1618++; e.lured1651 = true; /* t1651 probe */
         }
         bool ZhNearMissNow1618()
         {   // "dash out of an attack in its last moment": an enemy within its touch reach + pad, or a live enemy bullet within its radius + pad
@@ -183,9 +183,9 @@ namespace Hellord
         void ZhDrawEffigy1618()
         {
             var p = ZhEffP1618; float a = Mathf.Clamp01(ZhEffT1618 / 0.3f) * (0.75f + 0.25f * Mathf.Sin(runTime * 30f)); int ord = YSort(p.y);
-            float age = TZ.effLife1618 - ZhEffT1618;
-            ZhFx1625("ZFX_HearthBlessing_Light", p, -20, -8, 40, 16, FbGround + YSort(p.y) + 3, age, 0.21f, ZP.F("_Row", 6f), ZP.F("_Intensity", 0.9f * (1f - Z01((age - (TZ.effLife1618 - 0.6f)) / 0.6f)))); // GLight
-            if (!ZhFx1625("ZFX_EmberEffigy", p, -26, -6, 52, 50, ord, age, 0.21f, ZP.F("_HeroSprite", 1), ZP.F("_Form", Z01(age / 0.15f)), ZP.F("_Fade", Z01((age - (TZ.effLife1618 - 0.6f)) / 0.6f))))
+            float age = ZkDur1651(0, TZ.effLife1618) - ZhEffT1618;
+            ZhFx1625("ZFX_HearthBlessing_Light", p, -20, -8, 40, 16, FbGround + YSort(p.y) + 3, age, 0.21f, ZP.F("_Row", 6f), ZP.F("_Intensity", 0.9f * (1f - Z01((age - (ZkDur1651(0, TZ.effLife1618) - 0.6f)) / 0.6f)))); // GLight
+            if (!ZhFx1625("ZFX_EmberEffigy", p, -26, -6, 52, 50, ord, age, 0.21f, ZP.F("_HeroSprite", 1), ZP.F("_Form", Z01(age / 0.15f)), ZP.F("_Fade", Z01((age - (ZkDur1651(0, TZ.effLife1618) - 0.6f)) / 0.6f))))
             {   // placeholder: the hero's current frame, flame-tinted, + rising ember pixels
                 if (_heroBase != null && _heroBase.sprite != null) { var sr = Z37SR(_heroBase.sprite, ZSnap1618(p), (Vector2)_heroBase.transform.lossyScale, 0f, new Color(ZO.r, ZO.g * 0.9f, ZO.b, a), ord - Z37Order); sr.flipX = _heroBase.flipX; }
                 for (int k = 0; k < 5; k++) { float ph = Mathf.Repeat(runTime * 1.3f + k * 0.21f, 1f); ZPx1618(p + new Vector2(Mathf.Sin(k * 2.1f + runTime * 3f) * 0.3f, 0.2f + ph * 1.5f), 1, ph < 0.5f ? ZY : ZO, ord + 2); }
@@ -194,8 +194,8 @@ namespace Hellord
         }
         void ZhDrawAnchor1618()
         {
-            var p = ZhAncP1618; float k = ZhAncT1618 / Mathf.Max(0.1f, TZ.ancWindow1618); int ord = YSort(p.y) + 5;
-            float age = TZ.ancWindow1618 - ZhAncT1618;
+            var p = ZhAncP1618; float k = ZhAncT1618 / Mathf.Max(0.1f, ZkDur1651(1, TZ.ancWindow1618)); int ord = YSort(p.y) + 5;
+            float age = ZkDur1651(1, TZ.ancWindow1618) - ZhAncT1618;
             if (!ZhFx1625("ZFX_EmberAnchor_Marker", p, -14, -8, 28, 24, ord, age, 0.5f, ZP.F("_Ignite", Z01(age / 0.2f)), ZP.F("_Cool", 0f)))
             {
                 float pu = 0.8f + 0.2f * Mathf.Sin(runTime * 12f); ZDiscO1618(p + Vector2.up * 0.15f, 0.14f * pu, ZY, ord + 1); ZDiscO1618(p + Vector2.up * 0.15f, 0.22f * pu, new Color(ZO.r, ZO.g, ZO.b, 0.8f), ord);
@@ -207,7 +207,7 @@ namespace Hellord
             var p = ZhBdP1618; float k = 1f - ZhBdT1618 / 1.0f; int ord = YSort(p.y) + 10;
             if (ZhFx1625("ZFX_Backdraft_Vortex", p, -40, -22, 80, 44, FbGround + YSort(p.y) + 4, k, 0.6f, ZP.F("_Progress", k))) return;
             k = Z01(k / 0.4f); // placeholder keeps its 0.4 s implosion
-            for (int i = 0; i < 12; i++) { float a = i * 30f * Mathf.Deg2Rad + k * 3f; float r = TZ.bdR1618 * (1f - k); ZPx1618(p + new Vector2(Mathf.Cos(a) * r, Mathf.Sin(a) * r * 0.6f + 0.3f), 2, i % 2 == 0 ? ZA : ZO, ord); }
+            for (int i = 0; i < 12; i++) { float a = i * 30f * Mathf.Deg2Rad + k * 3f; float r = ZkR1651(2, TZ.bdR1618) * (1f - k); ZPx1618(p + new Vector2(Mathf.Cos(a) * r, Mathf.Sin(a) * r * 0.6f + 0.3f), 2, i % 2 == 0 ? ZA : ZO, ord); }
         }
 
         // ---------------------------------------------------------------- SPECIALS (RMB)
@@ -223,13 +223,13 @@ namespace Hellord
                     Enemy best = null; float bd = TZ.pmPickR1618; Query(cur, TZ.pmPickR1618, _zq1618);
                     foreach (int i in _zq1618) { var e = _en[i]; if (!e.alive || e.dying) continue; float d = (BodyCentre1595(e) - cur).magnitude; if (d < bd) { bd = d; best = e; } }
                     if (best == null) { HellordAudio.Play("basic_not_ready", 0.8f); return; } // no target: no cooldown
-                    ZhMark1618 = best; _zMarkId1618 = best.id; ZhMarkT1618 = TZ.pmLife1618; ZhMarkGauge1618 = 0f; ok = true; ZhSpecCd = TZ.pmCd1618; HellordAudio.Play("curse_rune_arm", 1.2f); ZFx1618(0, best.pos, 0.9f, 0.3f);
+                    ZhMark1618 = best; _zMarkId1618 = best.id; ZhMarkT1618 = ZkDur1651(3, TZ.pmLife1618); ZhMarkGauge1618 = 0f; ok = true; ZhSpecCd = ZkCd1651(3, TZ.pmCd1618); HellordAudio.Play("curse_rune_arm", 1.2f); ZFx1618(0, best.pos, 0.9f, 0.3f);
                     break;
                 }
-                case 2: { Vector2 at = GroundAim716(); _zFlam1618.Add(new ZFlam { p = at, t = 0f }); ok = true; ZhSpecCd = TZ.flCd1618; HellordAudio.Play("curse_rune_arm", 0.8f); break; }
-                case 3: { ZhWarCry1625(); ok = true; ZhSpecCd = TZ.wcCd1625; break; } // t1625 War Cry (replaced Molten Shell)
-                case 4: { Vector2 at = GroundAim716(); _zRings1618.Add(new ZRingS { p = at, t = 0f, tick = 0f }); ok = true; ZhSpecCd = TZ.srCd1618; HellordAudio.Play("pool_cast", 0.9f); ZFx1618(0, at, TZ.srR1618, 0.3f); break; }
-                case 5: { ZhHearthT1618 = TZ.hbDur1618; ZhHearthClear1618(); ok = true; ZhSpecCd = TZ.hbCd1618; HellordAudio.Play("shrine_use", 1.1f); ZFx1618(-1, _heroPos, 0.8f, 0.4f, "ZFX_HearthBlessing_Cleanse", new Vector4(-26, -20 + 10, 52, 48), ZhHeroOrd1625 - 1); break; }
+                case 2: { Vector2 at = GroundAim716(); _zFlam1618.Add(new ZFlam { p = at, t = 0f }); ok = true; ZhSpecCd = ZkCd1651(4, TZ.flCd1618); HellordAudio.Play("curse_rune_arm", 0.8f); break; }
+                case 3: { ZhWarCry1625(); ok = true; ZhSpecCd = ZkCd1651(5, TZ.wcCd1625); break; } // t1625 War Cry (replaced Molten Shell)
+                case 4: { Vector2 at = GroundAim716(); _zRings1618.Add(new ZRingS { p = at, t = 0f, tick = 0f }); ok = true; ZhSpecCd = ZkCd1651(6, TZ.srCd1618); HellordAudio.Play("pool_cast", 0.9f); ZFx1618(0, at, ZkR1651(6, TZ.srR1618), 0.3f); break; }
+                case 5: { ZhHearthT1618 = ZkDur1651(7, TZ.hbDur1618); ZhHearthClear1618(); ok = true; ZhSpecCd = ZkCd1651(7, TZ.hbCd1618); HellordAudio.Play("shrine_use", 1.1f); ZFx1618(-1, _heroPos, 0.8f, 0.4f, "ZFX_HearthBlessing_Cleanse", new Vector4(-26, -20 + 10, 52, 48), ZhHeroOrd1625 - 1); break; }
             }
             if (ok) ZhCasts1618++;
         }
@@ -241,7 +241,7 @@ namespace Hellord
             ZhMarkT1618 -= dt; if (ZhMarkT1618 <= 0f) { ZhMark1618 = null; return; } // expired unused
             if (ZhMarkGauge1618 >= TZ.pmThresh1618 * e.maxHp) { ZhPyrePay1618(e.pos); return; }
             Vector2 top = e.pos + Vector2.up * (BodySize1595(e).y + 0.35f); int ord = YSort(e.pos.y) + 60;
-            float mAge = TZ.pmLife1618 - ZhMarkT1618, gauge = Z01(ZhMarkGauge1618 / Mathf.Max(1f, TZ.pmThresh1618 * e.maxHp));
+            float mAge = ZkDur1651(3, TZ.pmLife1618) - ZhMarkT1618, gauge = Z01(ZhMarkGauge1618 / Mathf.Max(1f, TZ.pmThresh1618 * e.maxHp));
             if (!ZhFx1625("ZFX_PyreMark", top, -10, -4, 20, 26, ord, mAge, 0.3f, ZP.F("_Progress", Z01(mAge / 0.2f)), ZP.F("_Intensity", gauge)))
             {   // placeholder: a flame diamond over the head + gauge pixels, ring at the feet
                 float b = Mathf.Floor(Mathf.Sin(runTime * 8f) * 1.5f) / 16f; Vector2 c = top + Vector2.up * b;
@@ -251,7 +251,7 @@ namespace Hellord
             }
             ZRingO1618(e.pos, e.radius + 0.15f, new Color(ZR.r, ZR.g, ZR.b, 0.85f), FbGround + YSort(e.pos.y) + 4, 0.55f);
         }
-        void ZhPyrePay1618(Vector2 at) { ZhMark1618 = null; ZhPyreBuffT1618 = TZ.pmBuffS1618; ZhPyrePays1618++; HellordAudio.Play("fire_pillar_erupt", 1.25f); ZFx1618(0, at, 1.6f, 0.45f, "ZFX_PyreMark_Burst", new Vector4(-24, -18 + 10, 48, 48), YSort(at.y) + 200); ZFx1618(2, _heroPos, 0.9f, 0.3f); Toast("PYRE MARK: +FIRE DAMAGE"); }
+        void ZhPyrePay1618(Vector2 at) { ZhMark1618 = null; ZhPyreBuffT1618 = ZkDur1651(3, TZ.pmBuffS1618); ZhPyrePays1618++; HellordAudio.Play("fire_pillar_erupt", 1.25f); ZFx1618(0, at, 1.6f, 0.45f, "ZFX_PyreMark_Burst", new Vector4(-24, -18 + 10, 48, 48), YSort(at.y) + 200); ZFx1618(2, _heroPos, 0.9f, 0.3f); Toast("PYRE MARK: +FIRE DAMAGE"); }
         void ZhOnKill1618(Enemy e) { if (e != null && e == ZhMark1618 && e.id == _zMarkId1618 && ZhOn1618) ZhPyrePay1618(e.pos); }
         float ZhPreHit1618(float dmg, SkillInst s) => ZhPyreBuffT1618 > 0f && s != null && (s.def.tags & STag.Fire) != 0 ? dmg * TZ.pmBuffMul1618 : dmg;
         float ZhBurnK1618(Enemy e)
@@ -271,8 +271,8 @@ namespace Hellord
         {
             for (int i = _zFlam1618.Count - 1; i >= 0; i--)
             {
-                var f = _zFlam1618[i]; f.t += dt; float R = TZ.flR1618, D = TZ.flDelay1618; int og = FbGround + YSort(f.p.y) + 6;
-                float cool = Z01((f.t - D - TZ.flDur1618) / 0.6f);
+                var f = _zFlam1618[i]; f.t += dt; float R = ZkR1651(4, TZ.flR1618), D = TZ.flDelay1618; int og = FbGround + YSort(f.p.y) + 6;
+                float cool = Z01((f.t - D - ZkDur1651(4, TZ.flDur1618)) / 0.6f);
                 bool shd = ZhFx1625("ZFX_Flammability_Curse", f.p, -46, -26, 92, 52, og, f.t, 0.45f, ZP.F("_Ignite", Z01(f.t / Mathf.Max(0.05f, D))), ZP.F("_Cool", cool));
                 if (f.done) { if (cool >= 1f) _zFlam1618.RemoveAt(i); continue; } // t1625: the cursed ground stays for the spec's sustain + cool (no gameplay)
                 {
@@ -285,7 +285,7 @@ namespace Hellord
                     if (f.t >= D)
                     {
                         f.done = true; HellordAudio.Play("curse_rune_burst", 1.1f); ZFx1618(0, f.p, R, 0.35f); Query(f.p, R + 0.5f, _zq1618);
-                        foreach (int ei in _zq1618) { var e = _en[ei]; if (!e.alive || e.dying) continue; Vector2 d = e.pos - f.p; float nx = d.x / R, ny = d.y / (R * 0.6f + 0.4f); if (nx * nx + ny * ny > 1f) continue; e.zFlam1618 = runTime + TZ.flDur1618; if (!_zCursed1618.Contains(e)) _zCursed1618.Add(e); ZhCursed1618++; }
+                        foreach (int ei in _zq1618) { var e = _en[ei]; if (!e.alive || e.dying) continue; Vector2 d = e.pos - f.p; float nx = d.x / R, ny = d.y / (R * 0.6f + 0.4f); if (nx * nx + ny * ny > 1f) continue; e.zFlam1618 = runTime + ZkDur1651(4, TZ.flDur1618); if (!_zCursed1618.Contains(e)) _zCursed1618.Add(e); ZhCursed1618++; }
                     }
                 }
             }
@@ -301,8 +301,8 @@ namespace Hellord
         void ZhWarCry1625()
         {
             var T = TZ; ZhCryCharges1625 = T.wcCharges1625; ZhCryT1625 = runTime; HellordAudio.Play("oxhead_roar", 1.0f); HellordAudio.Play("storm_ring", 0.5f); ScreenShake.Add(1.5f, 0.15f);
-            if (!ZhFxLive1625("ZFX_WarCry_Roar")) { ZFx1618(0, _heroPos, T.wcR1625, 0.4f); ZFx1618(2, HeroCenter, 0.8f, 0.2f); }
-            Query(_heroPos, T.wcR1625, _zq1618); foreach (int i in _zq1618) { var e = _en[i]; if (!e.alive || e.dying || (e.pos - _heroPos).magnitude > T.wcR1625) continue; e.zCry1625 = runTime + T.wcMarkS1625; }
+            if (!ZhFxLive1625("ZFX_WarCry_Roar")) { ZFx1618(0, _heroPos, ZkR1651(5, TZ.wcR1625), 0.4f); ZFx1618(2, HeroCenter, 0.8f, 0.2f); }
+            Query(_heroPos, ZkR1651(5, TZ.wcR1625), _zq1618); foreach (int i in _zq1618) { var e = _en[i]; if (!e.alive || e.dying || (e.pos - _heroPos).magnitude > ZkR1651(5, TZ.wcR1625)) continue; e.zCry1625 = runTime + T.wcMarkS1625; }
         }
         /// <summary>BasicCast1517: damage multiplier for this basic cast (a War Cry charge); ZhCryUsed1625 spends it after a real cast.</summary>
         float ZhCryMul1625() => ZhOn1618 && ZhSpec1618 == 3 && ZhCryCharges1625 > 0 ? TZ.wcMul1625 : 1f;
@@ -314,10 +314,10 @@ namespace Hellord
         }
         void ZhCryKill1625(Enemy e)
         {
-            if (e == null || e.zCry1625 <= runTime) return; e.zCry1625 = 0f; var T = TZ; Vector2 c = e.pos; float R = T.wcBoomR1625; ZhCryBooms1625++;
+            if (e == null || e.zCry1625 <= runTime) return; e.zCry1625 = 0f; var T = TZ; Vector2 c = e.pos; float R = ZkR1651(5, TZ.wcBoomR1625); ZhCryBooms1625++;
             HellordAudio.Play("magma_rock_hit", 1.2f); ZFx1618(0, c, R, 0.45f, "ZFX_WarCry_DeathPop", new Vector4(-24, -18 + 10, 48, 48), YSort(c.y) + 200); if (!ZhFxLive1625("ZFX_WarCry_DeathPop")) FireBasicsFX1481.Once("molten_spit_pop_v1", c + Vector2.up * 0.4f, YSort(c.y) + 40);
             Query(c, R + 0.5f, _zqCry1625); var hit = new List<Enemy>(); foreach (int i in _zqCry1625) { var o = _en[i]; if (o != e && o.alive && !o.dying && (o.pos - c).magnitude <= R) hit.Add(o); }
-            foreach (var o in hit) Hit(o, ZkHit1618 * T.wcBoomDmg1625, ZK1618, (o.pos - c).normalized * 2f); // marked enemies killed by a blast explode too (chain)
+            foreach (var o in hit) Hit(o, ZkHit1651(5) * T.wcBoomDmg1625, ZkI1651(5), (o.pos - c).normalized * 2f); // marked enemies killed by a blast explode too (chain)
         }
         void TickCry1625(float dt)
         {
@@ -325,7 +325,7 @@ namespace Hellord
             // fx_v2 §15 Roar (0.6 s): wave + light; the front runs out to the gameplay radius (marks are applied at the cast)
             if (age < 0.6f)
             {
-                float Rp = T.wcR1625 * 16f, pr = age / 0.6f, q = Z01((pr - 0.22f) / 0.78f), front = Rp * ZEo(Z01(1.15f * q)) + 2f;
+                float Rp = ZkR1651(5, TZ.wcR1625) * 16f, pr = age / 0.6f, q = Z01((pr - 0.22f) / 0.78f), front = Rp * ZEo(Z01(1.15f * q)) + 2f;
                 ZhFx1625("ZFX_WarCry_Roar", _heroPos, -(Rp + 8f), -(Rp * 0.55f + 6f), 2f * (Rp + 8f), 2f * (Rp * 0.55f + 6f), FbGround + YSort(_heroPos.y) + 6, age, 0.5f, ZP.F("_Progress", pr), ZP.F("_Radius", Rp));
                 ZhFx1625("ZFX_WarCry_Light", _heroPos, -(Rp + 12f), -(Rp * 0.55f + 6f), 2f * (Rp + 12f), 2f * (Rp * 0.55f + 6f), FbGround + YSort(_heroPos.y) + 7, age, 0.5f, ZP.F("_Radius", front + 8f), ZP.F("_Intensity", pr < 0.22f ? 0.4f * pr / 0.22f : 1.1f * Mathf.Pow(1f - q, 1.5f)));
             }
@@ -351,16 +351,16 @@ namespace Hellord
         {
             for (int i = _zRings1618.Count - 1; i >= 0; i--)
             {
-                var r = _zRings1618[i]; r.t += dt; if (r.t >= TZ.srLife1618) { _zRings1618.RemoveAt(i); continue; } float R = TZ.srR1618;
+                var r = _zRings1618[i]; r.t += dt; if (r.t >= ZkDur1651(6, TZ.srLife1618)) { _zRings1618.RemoveAt(i); continue; } float R = ZkR1651(6, TZ.srR1618);
                 Query(r.p, R + 0.6f, _zq1618); r.tick -= dt; bool tk = r.tick <= 0f; if (tk) r.tick = TZ.srTick1618;
                 foreach (int ei in _zq1618)
                 {
                     var e = _en[ei]; if (!e.alive || e.dying) continue; Vector2 d = e.pos - r.p; float nx = d.x / R, ny = d.y / (R * 0.6f + 0.4f); if (nx * nx + ny * ny > 1f) continue;
                     if (!e.boss) { e.slowAmt = e.slowT > 0f ? Mathf.Max(e.slowAmt, TZ.srSlow1618) : TZ.srSlow1618; e.slowT = Mathf.Max(e.slowT, 0.15f); }
-                    if (tk) { Hit(e, ZkHit1618 * TZ.srDmg1618, ZK1618, Vector2.zero, true); ZhRingHits1618++; }
+                    if (tk) { Hit(e, ZkHit1651(6) * TZ.srDmg1618, ZkI1651(6), Vector2.zero, true); ZhRingHits1618++; }
                 }
-                int og = FbGround + YSort(r.p.y) + 6; float a = r.t > TZ.srLife1618 - 0.4f ? (TZ.srLife1618 - r.t) / 0.4f : 1f;
-                if (!ZhFx1625("ZFX_SmolderRing", r.p, -50, -28, 100, 52, og, r.t, 0.55f, ZP.F("_Ignite", Z01(r.t / 0.4f)), ZP.F("_Cool", Z01((r.t - (TZ.srLife1618 - 0.5f)) / 0.5f))))
+                int og = FbGround + YSort(r.p.y) + 6; float a = r.t > ZkDur1651(6, TZ.srLife1618) - 0.4f ? (ZkDur1651(6, TZ.srLife1618) - r.t) / 0.4f : 1f;
+                if (!ZhFx1625("ZFX_SmolderRing", r.p, -50, -28, 100, 52, og, r.t, 0.55f, ZP.F("_Ignite", Z01(r.t / 0.4f)), ZP.F("_Cool", Z01((r.t - (ZkDur1651(6, TZ.srLife1618) - 0.5f)) / 0.5f))))
                 {   // placeholder: smoky disc + glowing rim + rim embers going round
                     ZDiscO1618(r.p, R, new Color(ZK.r, ZK.g, ZK.b, 0.35f * a), og - 1, 0.6f); ZRingO1618(r.p, R, new Color(ZO.r, ZO.g, ZO.b, 0.9f * a), og, 0.6f);
                     for (int k = 0; k < 10; k++) { float an = k * 36f * Mathf.Deg2Rad + r.t * 0.8f; ZPx1618(r.p + new Vector2(Mathf.Cos(an) * R, Mathf.Sin(an) * R * 0.6f + 0.1f), 2, k % 2 == 0 ? ZY : ZR, og + 1); }
@@ -375,10 +375,10 @@ namespace Hellord
         void TickHearth1618(float dt)
         {
             if (ZhHearthT1618 <= 0f) return; float step = Mathf.Min(dt, ZhHearthT1618); ZhHearthT1618 -= dt;
-            if (hp > 0f) hp = Mathf.Min(maxHp, hp + TZ.hbHeal1618 * maxHp * step / Mathf.Max(0.1f, TZ.hbDur1618));
+            if (hp > 0f) hp = Mathf.Min(maxHp, hp + TZ.hbHeal1618 * maxHp * step / Mathf.Max(0.1f, ZkDur1651(7, TZ.hbDur1618)));
             ZhHearthClear1618(); // window: debuffs are removed and new ones blocked (AddChill44 / ApplyFrostSlow37 return early)
             int ord = YSort(_heroPos.y) + 35;
-            float age = TZ.hbDur1618 - ZhHearthT1618, form = Mathf.Min(Z01(age / 0.2f), Z01(ZhHearthT1618 / 0.3f));
+            float age = ZkDur1651(7, TZ.hbDur1618) - ZhHearthT1618, form = Mathf.Min(Z01(age / 0.2f), Z01(ZhHearthT1618 / 0.3f));
             ZhFx1625("ZFX_HearthBlessing_Light", _heroPos, -20, -8, 40, 16, FbGround + YSort(_heroPos.y) + 3, age, 0.6f, ZP.F("_Intensity", form + (age < 0.15f ? 0.5f : 0f))); // GLight (+ the cleanse spike)
             bool shd = ZhFx1625("ZFX_HearthBlessing", _heroPos, -26, -6, 52, 46, ZhHeroOrd1625 - 1, age, 0.6f, ZP.F("_HeroSprite", 1), ZP.F("_Form", form), ZP.F("_Cleanse", 1f - Z01(age / 0.2f)));
             if (!shd)
@@ -402,25 +402,25 @@ namespace Hellord
             int u = ZhUlt1618; if (u == 0 || u == 2) return; // Rebirth Flame is not pressed
             if (!ZhUltArmed1618) { HellordAudio.Play("basic_not_ready", 0.6f); return; }
             ZhCasts1618++;
-            if (u == 1) { Vector2 at = MouseWorld(); ClampToRoom(ref at, 4); _zSuns1618.Add(new ZSun { p = at, t = 0f }); ZhSunMeter1618 = 0f; ZhUltCd = TZ.swCd1618; HellordAudio.Play("fire_pillar_telegraph", 0.6f); }
-            else if (u == 3) { ZhHeartT1618 = TZ.mhDur1618; ZhUltCd = TZ.mhCd1618; HellordAudio.Play("oxhead_roar", 1.3f); ZFx1618(0, _heroPos, 1.8f, 0.4f); Toast("MOLTEN HEART"); }
+            if (u == 1) { Vector2 at = MouseWorld(); ClampToRoom(ref at, 4); _zSuns1618.Add(new ZSun { p = at, t = 0f }); ZhSunMeter1618 = 0f; ZhUltCd = ZkCd1651(8, TZ.swCd1618); HellordAudio.Play("fire_pillar_telegraph", 0.6f); }
+            else if (u == 3) { ZhHeartT1618 = ZkDur1651(10, TZ.mhDur1618); ZhUltCd = ZkCd1651(10, TZ.mhCd1618); HellordAudio.Play("oxhead_roar", 1.3f); ZFx1618(0, _heroPos, 1.8f, 0.4f); Toast("MOLTEN HEART"); }
             else if (u == 4)
             {
                 Vector2 d = MouseWorld() - _heroPos; if (d.sqrMagnitude < 0.01f) d = _lastDir; d.Normalize();
-                _zBirds1618.Add(new ZBird { a = _heroPos, dir = d, p = _heroPos, d = 0f, drop = 0f }); ZhNearMiss1618 = 0; ZhUltCd = TZ.vbCd1618; HellordAudio.Play("magma_throw_cast", 0.6f); HellordAudio.Play("oxhead_roar", 1.6f);
+                _zBirds1618.Add(new ZBird { a = _heroPos, dir = d, p = _heroPos, d = 0f, drop = 0f }); ZhNearMiss1618 = 0; ZhUltCd = ZkCd1651(11, TZ.vbCd1618); HellordAudio.Play("magma_throw_cast", 0.6f); HellordAudio.Play("oxhead_roar", 1.6f);
             }
         }
         /// <summary>HurtHero: a hit would kill you -> Rebirth Flame (if it is the ult and off cooldown): revive at rbHp1618 of max + firestorm.</summary>
         bool ZhRebirth1618()
         {
             if (ZhUlt1618 != 2 || ZhUltCd > 0f) return false;
-            hp = maxHp * TZ.rbHp1618; _iframe = Mathf.Max(_iframe, TZ.rbInv1618); ZhUltCd = TZ.rbCd1618; ZhRebirths1618++; ZhCasts1618++;
-            Vector2 c = _heroPos; float R = TZ.rbR1618; HellordAudio.Play("fire_pillar_erupt", 0.7f); HellordAudio.Play("pact_unlock", 0.9f); ScreenShake.Add(3f, 0.3f); HitStop.Play(0.1f, 0.2f, 0.4f); Toast("REBIRTH FLAME");
+            hp = maxHp * TZ.rbHp1618; _iframe = Mathf.Max(_iframe, TZ.rbInv1618); ZhUltCd = ZkCd1651(9, TZ.rbCd1618); ZhRebirths1618++; ZhCasts1618++;
+            Vector2 c = _heroPos; float R = ZkR1651(9, TZ.rbR1618); HellordAudio.Play("fire_pillar_erupt", 0.7f); HellordAudio.Play("pact_unlock", 0.9f); ScreenShake.Add(3f, 0.3f); HitStop.Play(0.1f, 0.2f, 0.4f); Toast("REBIRTH FLAME");
             ZFx1618(-1, c, R, 1.6f, "ZFX_RebirthFlame_Pillar", new Vector4(-30, -14, 60, 104), YSort(c.y) + 30); // t1625 spec: pillar 1.6 s, firestorm from 0.65 s
             After(0.65f, () => ZFx1618(-1, c, R, 1.4f, "ZFX_RebirthFlame_Storm", new Vector4(-62, -32, 124, 72), FbGround + YSort(c.y) + 6, 1));
             if (!ZhFxLive1625("ZFX_RebirthFlame_Pillar")) { ZFx1618(0, c, R, 0.6f); ZFx1618(2, c, R * 0.6f, 0.4f); }
             if (!ZhFxLive1625("ZFX_RebirthFlame_Pillar")) for (int k = 0; k < 8; k++) { float a = k * 45f * Mathf.Deg2Rad; Vector2 q = c + new Vector2(Mathf.Cos(a) * R * 0.6f, Mathf.Sin(a) * R * 0.6f * 0.6f); FireBasicsFX1481.Once("fire_pillar_erupt", q, YSort(q.y) + 5, 0f, 1f, 0, false, k * 1.5f); }
-            Query(c, R, _zq1618); foreach (int i in _zq1618) { var e = _en[i]; if (!e.alive || (e.pos - c).magnitude > R) continue; Hit(e, ZkHit1618 * TZ.rbDmg1618, ZK1618, (e.pos - c).normalized * 4f); ZhStormHits1618++; }
+            Query(c, R, _zq1618); foreach (int i in _zq1618) { var e = _en[i]; if (!e.alive || (e.pos - c).magnitude > R) continue; Hit(e, ZkHit1651(9) * TZ.rbDmg1618, ZkI1651(9), (e.pos - c).normalized * 4f); ZhStormHits1618++; }
             return true;
         }
         /// <summary>Molten Heart: the basic's real cast is followed by a second one mhGap1618 later (its cooldown is left as the first cast set it).</summary>
@@ -437,7 +437,7 @@ namespace Hellord
         void ZhDrawHeart1618()
         {
             int ord = YSort(_heroPos.y) + 36; float k = 0.5f + 0.5f * Mathf.Sin(runTime * 14f);
-            float age = TZ.mhDur1618 - ZhHeartT1618; int ho = ZhHeroOrd1625; var hp1625 = new[] { ZP.F("_HeroSprite", 1), ZP.F("_Form", Mathf.Min(Z01(age / 0.3f), Z01(ZhHeartT1618 / 0.3f))), ZP.F("_ChestY", 7f) };
+            float age = ZkDur1651(10, TZ.mhDur1618) - ZhHeartT1618; int ho = ZhHeroOrd1625; var hp1625 = new[] { ZP.F("_HeroSprite", 1), ZP.F("_Form", Mathf.Min(Z01(age / 0.3f), Z01(ZhHeartT1618 / 0.3f))), ZP.F("_ChestY", 7f) };
             ZhFx1625("ZFX_HearthBlessing_Light", _heroPos, -20, -8, 40, 16, FbGround + YSort(_heroPos.y) + 3, age, 0.7f, ZP.F("_Row", 6f), ZP.F("_Intensity", 0.7f * Mathf.Min(Z01(age / 0.3f), Z01(ZhHeartT1618 / 0.3f))));
             bool shd = ZhFx1625("ZFX_MoltenHeart_Back", _heroPos, -26, -6, 52, 46, ho - 1, age, 0.7f, hp1625); shd &= ZhFx1625("ZFX_MoltenHeart_Front", _heroPos, -26, -6, 52, 46, ho + 1, age, 0.7f, hp1625);
             if (shd) return;
@@ -448,7 +448,7 @@ namespace Hellord
         {
             for (int i = _zSuns1618.Count - 1; i >= 0; i--)
             {
-                var s = _zSuns1618[i]; s.t += dt; float k = Mathf.Clamp01(s.t / Mathf.Max(0.05f, TZ.swFall1618)), R = TZ.swR1618;
+                var s = _zSuns1618[i]; s.t += dt; float k = Mathf.Clamp01(s.t / Mathf.Max(0.05f, TZ.swFall1618)), R = ZkR1651(8, TZ.swR1618);
                 if (k < 1f)
                 {
                     int og = FbGround + YSort(s.p.y) + 8; Vector2 sky = s.p + Vector2.up * (9f * (1f - k) * (1f - k));
@@ -458,11 +458,11 @@ namespace Hellord
                     continue;
                 }
                 _zSuns1618.RemoveAt(i); ScreenShake.Add(4f, 0.35f); HitStop.Play(0.06f, 0.2f, 0.4f); HellordAudio.Play("fireball_impact", 0.5f); HellordAudio.Play("fire_pillar_erupt", 0.6f);
-                ZFx1618(-1, s.p, R, 1.0f, "ZFX_SunsWrath_Impact", new Vector4(-60, -30, 120, 100), YSort(s.p.y) + 200, 2); ZFx1618(-1, s.p, R, TZ.swAreaS1618, "ZFX_SunsWrath_Burn", new Vector4(-62, -34, 124, 70), FbGround + YSort(s.p.y) + 6, 1); ZFx1618(-1, s.p, R, TZ.swAreaS1618, "ZFX_SunsWrath_Light", new Vector4(-64, -34, 128, 68), FbGround + YSort(s.p.y) + 8, 3); // t1625 spec hooks
+                ZFx1618(-1, s.p, R, 1.0f, "ZFX_SunsWrath_Impact", new Vector4(-60, -30, 120, 100), YSort(s.p.y) + 200, 2); ZFx1618(-1, s.p, R, ZkDur1651(8, TZ.swAreaS1618), "ZFX_SunsWrath_Burn", new Vector4(-62, -34, 124, 70), FbGround + YSort(s.p.y) + 6, 1); ZFx1618(-1, s.p, R, ZkDur1651(8, TZ.swAreaS1618), "ZFX_SunsWrath_Light", new Vector4(-64, -34, 128, 68), FbGround + YSort(s.p.y) + 8, 3); // t1625 spec hooks
                 bool shSun = ZhFxLive1625("ZFX_SunsWrath_Impact");
                 if (!shSun) { FireBasicsFX1481.Once("infernal_boulder_end_blast", s.p, YSort(s.p.y) + 30, 0f, 1f, 0, false, 0f, R / 3f, R / 3f); ZFx1618(0, s.p, R * 1.2f, 0.5f); ZFx1618(2, s.p, R, 0.3f); }
-                Query(s.p, R + 0.6f, _zq1618); foreach (int ei in _zq1618) { var e = _en[ei]; if (!e.alive) continue; Vector2 d = e.pos - s.p; float nx = d.x / R, ny = d.y / (R * 0.6f + 0.5f); if (nx * nx + ny * ny > 1f) continue; Hit(e, ZkHit1618 * TZ.swDmg1618, ZK1618, d.normalized * 3f); ZhSunHits1618++; }
-                FbPatch1481(s.p, TZ.swAreaR1618, TZ.swAreaR1618 * 0.6f, TZ.swAreaS1618, 0f, 0.5f, ZkHit1618 * TZ.swAreaDmg1618, ZK1618); if (!shSun) ZTiles1618(s.p, TZ.swAreaR1618, TZ.swAreaS1618);
+                Query(s.p, R + 0.6f, _zq1618); foreach (int ei in _zq1618) { var e = _en[ei]; if (!e.alive) continue; Vector2 d = e.pos - s.p; float nx = d.x / R, ny = d.y / (R * 0.6f + 0.5f); if (nx * nx + ny * ny > 1f) continue; Hit(e, ZkHit1651(8) * TZ.swDmg1618, ZkI1651(8), d.normalized * 3f); ZhSunHits1618++; }
+                FbPatch1481(s.p, ZkR1651(8, TZ.swAreaR1618), ZkR1651(8, TZ.swAreaR1618) * 0.6f, ZkDur1651(8, TZ.swAreaS1618), 0f, 0.5f, ZkHit1651(8) * TZ.swAreaDmg1618, ZkI1651(8)); if (!shSun) ZTiles1618(s.p, ZkR1651(8, TZ.swAreaR1618), ZkDur1651(8, TZ.swAreaS1618));
             }
         }
         void TickBirds1618(float dt)
@@ -470,9 +470,9 @@ namespace Hellord
             for (int i = _zBirds1618.Count - 1; i >= 0; i--)
             {
                 var b = _zBirds1618[i]; float step = TZ.vbSpeed1618 * dt; Vector2 p0 = b.p; b.d += step; b.p = b.a + b.dir * b.d; Vector2 n = new Vector2(-b.dir.y, b.dir.x);
-                Query((p0 + b.p) * 0.5f, step * 0.5f + TZ.vbHalfW1618 + 0.8f, _zq1618);
-                foreach (int ei in _zq1618) { var e = _en[ei]; if (!e.alive || b.hit.Contains(e)) continue; Vector2 ap = e.pos - p0; float t = Mathf.Clamp01(Vector2.Dot(ap, b.p - p0) / Mathf.Max(1e-4f, (b.p - p0).sqrMagnitude)); if ((p0 + (b.p - p0) * t - e.pos).magnitude > TZ.vbHalfW1618 + e.radius * 0.5f) continue; b.hit.Add(e); Hit(e, ZkHit1618 * TZ.vbDmg1618, ZK1618, b.dir * 3f); ZhBirdHits1618++; }
-                b.drop -= step; if (b.drop <= 0f) { b.drop = 1.1f; Vector2 q = b.p; ClampToRoom(ref q, 4); FbPatch1481(q, 0.9f, 0.55f, TZ.vbStripS1618, 0f, 0.5f, ZkHit1618 * TZ.vbStripDmg1618, ZK1618); FireBasicsFX1481.Tile("infernal_boulder_fire_patch", q, FbGround + YSort(q.y), TZ.vbStripS1618); }
+                Query((p0 + b.p) * 0.5f, step * 0.5f + ZkR1651(11, TZ.vbHalfW1618) + 0.8f, _zq1618);
+                foreach (int ei in _zq1618) { var e = _en[ei]; if (!e.alive || b.hit.Contains(e)) continue; Vector2 ap = e.pos - p0; float t = Mathf.Clamp01(Vector2.Dot(ap, b.p - p0) / Mathf.Max(1e-4f, (b.p - p0).sqrMagnitude)); if ((p0 + (b.p - p0) * t - e.pos).magnitude > ZkR1651(11, TZ.vbHalfW1618) + e.radius * 0.5f) continue; b.hit.Add(e); Hit(e, ZkHit1651(11) * TZ.vbDmg1618, ZkI1651(11), b.dir * 3f); ZhBirdHits1618++; }
+                b.drop -= step; if (b.drop <= 0f) { b.drop = 1.1f; Vector2 q = b.p; ClampToRoom(ref q, 4); FbPatch1481(q, 0.9f, 0.55f, ZkDur1651(11, TZ.vbStripS1618), 0f, 0.5f, ZkHit1651(11) * TZ.vbStripDmg1618, ZkI1651(11)); FireBasicsFX1481.Tile("infernal_boulder_fire_patch", q, FbGround + YSort(q.y), ZkDur1651(11, TZ.vbStripS1618)); }
                 if (b.d >= TZ.vbLen1618) { _zBirds1618.RemoveAt(i); HordeFX.CheapBurst(b.p + Vector2.up * 1.2f, ZO, 14); continue; }
                 Vector2 c = b.p + Vector2.up * 1.3f; int ord = YSort(b.p.y) + 220; float deg = Mathf.Atan2(b.dir.y, b.dir.x) * Mathf.Rad2Deg;
                 float fl0 = 60f / 16f;

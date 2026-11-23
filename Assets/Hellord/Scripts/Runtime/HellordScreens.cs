@@ -82,10 +82,10 @@ namespace Hellord
                     case CardKind.Stat: desc.AddRange(Wrap(HData.StatDesc(c.stat), 17)); break;
                     case CardKind.Support:
                     {
-                        var tl = SupportTargets(c.support); int t = tl.Count > 0 ? tl[0] : -1; int cur = t >= 0 ? skills[t].Lvl(c.support.id) : 0; // v0.0.27: owned = upgrade (LV a - b), else NEW LV 1
+                        var tl = SupportTargets(c.support); int t = tl.Count > 0 ? tl[0] : -1; int cur = t >= 0 && SupInst1651(t) != null ? SupInst1651(t).Lvl(c.support.id) : 0; // v0.0.27: owned = upgrade (LV a - b), else NEW LV 1
                         if (tl.Count > 1) { bool anyUp = false; foreach (int q in tl) if (skills[q].Has(c.support.id)) anyUp = true; cur = 0; desc.Add(anyUp ? "UPGRADE OR NEW" : "NEW  LV 1"); } // v0.0.36: several skills can take it -> chosen after the pick
                         else desc.Add(cur > 0 ? $"UPGRADE LV {cur} - {cur + 1}" : "NEW  LV 1");
-                        desc.AddRange(Wrap(HData.SupportEffect(c.support.id, cur + 1, tl.Count == 1 ? (int)skills[t].def.id : -1), 17));
+                        desc.AddRange(Wrap(HData.SupportEffect(c.support.id, cur + 1, tl.Count == 1 && SupInst1651(t) != null ? (int)SupInst1651(t).def.id : -1), 17));
                         var gen = Wrap(c.support.desc, 17); int room = 5 - desc.Count; if (gen.Count > room) gen.RemoveRange(Mathf.Max(0, room), gen.Count - Mathf.Max(0, room)); desc.AddRange(gen);
                         if (desc.Count < 6) desc.Add("NEEDS " + HData.TagText(c.support.needs) + (c.support.excludes != 0 ? " NOT " + HData.TagText(c.support.excludes) : "")); // t626u tag chip
                         desc.Add(tl.Count > 1 ? $"TO: PICK 1 OF {tl.Count}" : t >= 0 ? "TO: " + Sanitize(skills[t].def.name) : "NO OPEN SLOT"); break;
@@ -96,7 +96,7 @@ namespace Hellord
                 // level dots (5) at y+148 for skills
                 if ((c.kind == CardKind.NewSkill && c.kit == 0) || c.kind == CardKind.SkillLevel || c.kind == CardKind.Support) // t1639: no level dots on kit cards
                 {
-                    int sti = c.kind == CardKind.Support ? (SupportTargets(c.support).Count == 1 ? SupportTarget(c.support) : -1) : -1; int lvl = c.kind == CardKind.NewSkill ? 1 : c.kind == CardKind.Support ? (sti >= 0 ? skills[sti].Lvl(c.support.id) + 1 : 1) : skills[c.skillIndex].level + 1; float dx = x + Mathf.Round((CardW - 43) / 2f);
+                    int sti = c.kind == CardKind.Support ? (SupportTargets(c.support).Count == 1 ? SupportTarget(c.support) : -1) : -1; int lvl = c.kind == CardKind.NewSkill ? 1 : c.kind == CardKind.Support ? (sti >= 0 && SupInst1651(sti) != null ? SupInst1651(sti).Lvl(c.support.id) + 1 : 1) : skills[c.skillIndex].level + 1; float dx = x + Mathf.Round((CardW - 43) / 2f);
                     for (int k = 0; k < 5; k++) Blit(_tDots, (k < lvl ? rar + 1 : 0) * 7, 0, 7, 7, dx + k * 9, y + 148);
                 }
                 Text((i + 1).ToString(), x + 4, y + CardH - 12, CDim);

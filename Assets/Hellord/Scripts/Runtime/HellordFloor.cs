@@ -660,7 +660,7 @@ namespace Hellord
         }
         void CompleteShopBuy(FloorRoom r, int i, SupportDef sd, int t, bool swap)
         {
-            bones -= r.price[i]; r.sold[i] = true; HellordAudio.Play("shop_purchase"); var s = skills[t];
+            bones -= r.price[i]; r.sold[i] = true; HellordAudio.Play("shop_purchase"); var s = SupInst1651(t); if (s == null) return; // t1651 kit targets
             if (swap) { var old = HData.Support(s.sup[s.sup.Count - 1]); s.sup.RemoveAt(s.sup.Count - 1); s.AddSupport(sd.id); Toast($"SWAPPED {old.name} FOR {sd.name}"); }
             else { bool up = s.Has(sd.id); s.AddSupport(sd.id); Toast(up ? $"{sd.name} UPGRADED TO LV{s.Lvl(sd.id)}" : $"{sd.name} SOCKETED IN {s.def.name}"); }
             HellFX.LevelUpBurst(_hero.position);

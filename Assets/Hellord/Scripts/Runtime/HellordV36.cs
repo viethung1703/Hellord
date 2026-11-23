@@ -228,7 +228,7 @@ namespace Hellord
         /// <summary>Every owned skill this support could go to: it fits and either has an open slot or already owns it below Lv5 (an upgrade).</summary>
         public List<int> SupportTargets(SupportDef sd)
         {
-            var l = new List<int>(4); for (int i = 0; i < skills.Count; i++) if (skills[i].CanSocket(sd) == null) l.Add(i); return l;
+            var l = new List<int>(4); for (int i = 0; i < skills.Count; i++) if (skills[i].CanSocket(sd) == null) l.Add(i); AddKitTargets1651(sd, l, false); /* t1651 kit skills */ return l;
         }
         void OpenTargetPick(SupportDef sd, List<int> targets, bool swap, System.Action<int> onPick) { _tp = new TargetPick { sd = sd, targets = targets, swap = swap, onPick = onPick }; _sndHover = -1; HellordAudio.Play("ui_card_select"); }
         void ConfirmTarget(int idx)
@@ -251,7 +251,7 @@ namespace Hellord
             var ev = Event.current; int picked = -1;
             for (int i = 0; i < n; i++)
             {
-                int ti = tp.targets[i]; if (ti >= skills.Count) continue; var sk = skills[ti]; float x = x0 + i * (CardW + gap); var rect = new Rect(x, 80, CardW, CardH);
+                int ti = tp.targets[i]; var sk = SupInst1651(ti); if (sk == null) continue; /* t1651: kit targets too */ float x = x0 + i * (CardW + gap); var rect = new Rect(x, 80, CardW, CardH);
                 bool hover = rect.Contains(ev.mousePosition); if (ev.type == EventType.Repaint) { if (hover && _sndHover != i) { _sndHover = i; HellordAudio.Play("ui_card_select"); } else if (!hover && _sndHover == i) _sndHover = -1; }
                 float y = hover ? 76 : 80;
                 Blit(_tCard, (1 * 2 + (hover ? 1 : 0)) * CardW, 0, CardW, CardH, x, y);

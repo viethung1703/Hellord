@@ -610,6 +610,7 @@ namespace Hellord
             }
             e.dmg *= TT.contactDamageMul * (1 + (TT.soften679 ? TT.enemyDmgGrowth679 : TT.floorEnemyDmgGrowth) * fl); e.speed *= TT.enemySpeedMul * (1 + TT.floorSpeedGrowth * fl); // v0.0.26 pressure
             e.maxHp *= hpMul; e.hp = e.maxHp; e.alive = true; e.agT1447 = 0f; e.animT = Random.value * 4; e.dying = false; e.splitDone = false; e.nest = false; e.deathT = 0; e.walkRow = 0; e.variant = 0; e.m53 = 0; e.k49 = 0; e.s49 = 0; e.n49 = 0; e.t49 = 0; e.cd49 = 0.8f + Random.value * 1.5f; e.fuseT = -1; e.v44St = 0; e.v44T = 0; e.tr.rotation = Quaternion.identity;
+            e.lured1651 = false; /* t1651 probe */
             e.burnT = e.chillT = e.shockT = e.bleedT = e.curseT = e.freezeT = e.orbitCd = e.auraCd = e.slowT = e.stun53 = e.brit536 = e.zFlam1618 = e.zCry1625 = 0; /* t1618, t1625 */ e.lured1651 = false; e.chillHits = 0; e.iceBuild = 0; e.push = Vector2.zero; D2Reset1434(e);
             e.sr.sprite = e.frames[0]; e.sr.color = Color.white; e.sr.flipX = false; e.sr.enabled = true; e.sr.gameObject.SetActive(true); HordeFX.Prepare(e.sr);
             StopStatuses(e); e.tr.localScale = Vector3.one * EnemyArtMap.Map[t].scale; e.tr.position = e.pos; e.hitT = 0;
@@ -905,7 +906,7 @@ namespace Hellord
             // v0.0.15: always moves to the NEXT skill the hero does not own (old version spent presses levelling owned skills and
             // silently swapped slot 3, so Bone Orbit / Curse Rune looked like they never arrived). Full loadout -> slot 3 is replaced.
             var defs = HData.Skills; SkillDef d = null;
-            for (int n = 0; n < defs.Length; n++) { var c = defs[_dbgSkill++ % defs.Length]; if (c.id == SkillId.FrostBomb && !HellordTuning.I.frostBombEnabled1412) continue; if (skills.FindIndex(s => s.def == c) < 0) { d = c; break; } }
+            for (int n = 0; n < defs.Length; n++) { var c = defs[_dbgSkill++ % defs.Length]; if (c.id == SkillId.FrostBomb && !HellordTuning.I.frostBombEnabled1412 || c.id == SkillId.ZhurongKit || HData.IsKit1651(c.id)) continue; if (skills.FindIndex(s => s.def == c) < 0) { d = c; break; } }
             if (d == null) return;
             var inst = new SkillInst { def = d, level = 2 };
             if (skills.Count < HellordTuning.I.skillSlotsMax818) skills.Add(inst); else skills[skills.Count - 1] = inst;

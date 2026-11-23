@@ -16,7 +16,7 @@ namespace Hellord
     {
         [System.NonSerialized] public int ZhRunMove1639, ZhRunSpec1639, ZhRunUlt1639; // 0 = slot empty
         bool ZhSlotOverride1639 => TZ != null && TZ.kitSlotOverride1639;
-        void ZhRunReset1639() { ZhRunMove1639 = ZhRunSpec1639 = ZhRunUlt1639 = 0; }
+        void ZhRunReset1639() { ZhRunMove1639 = ZhRunSpec1639 = ZhRunUlt1639 = 0; ResetKit1651(); } // t1651: kit skill levels / supports are per run
 
         static readonly string[] ZhKitType1639 = { "", "MOVEMENT - SPACE", "SPECIAL - RMB", "ULTIMATE - R" };
         static readonly string[] ZhMoveDesc1639 = { "", "Dash leaves a burning decoy that draws enemies.", "Dash leaves an ember. Dash again soon to snap back.", "Dash start point pulls nearby enemies in." };
@@ -39,6 +39,7 @@ namespace Hellord
         }
         void ChooseKit1639(Card c)
         {
+            if (c.kitLv1651) { KitLevelUp1651(c); return; } // t1651: owned kit skill picked again = level up
             if (c.kit == 1) { ZhRunMove1639 = c.kitPick; ZhMoveCd = 0f; } else if (c.kit == 2) { ZhRunSpec1639 = c.kitPick; ZhSpecCd = 0f; } else { ZhRunUlt1639 = c.kitPick; ZhUltCd = 0f; }
             Toast(ZhKitName1639(c) + " - " + ZhKitType1639[c.kit]);
         }
@@ -49,6 +50,7 @@ namespace Hellord
             var ic = ZhIcon1618(ZhKitKey1639(c));
             if (ic != null) { GUI.color = new Color(1, 1, 1, ra); GUI.DrawTexture(new Rect(x + 34, y + 19, 48, 48), ic); GUI.color = new Color(1, 1, 1, ra); }
             else BlitInset(_tRoomIcons, 0, 0, 8, 8, x + 42, y + 27, 32, 32);
+            if (c.kitLv1651) { var ki = ZkSlotInst1651(c.kit - 1); desc.Add(ki != null ? $"LV {ki.level} - {ki.level + 1}" : "LEVEL UP"); desc.Add($"SUPPORT SLOT {Mathf.Min((ki != null ? ki.level : 0) + 1, HData.MaxSupports)}"); if (ki != null && ki.sup.Count > 0) foreach (var su in ki.sup) desc.Add(HData.Support(su).name + " " + ki.Lvl(su)); return; } // t1651 kit level card
             Blit(_tNew, 0, 0, 25, 9, x + 84, y + 24);
             desc.Add(ZhKitType1639[c.kit]); var dl = Wrap(ZhKitDesc1639(c), 17); if (dl.Count > 6) dl.RemoveRange(6, dl.Count - 6); desc.AddRange(dl);
         }

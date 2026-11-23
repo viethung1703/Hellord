@@ -411,7 +411,7 @@ namespace Hellord
             for (int lv = 0; lv < 3; lv++)
             {
                 GainLevel(); int g = 0; while (mode != Mode.LevelUp && g++ < 200) yield return ZF1618(1);
-                Card kc = null; for (int t = 0; t < 40; t++) { kc = cards.Find(c => c.kit > 0); if (kc != null && (kc.kit != 3 || kc.kitPick == 1 || kc.kitPick == 4)) break; RollLevelCards(); } // ultimates with a pressable condition read best on film
+                Card kc = null; for (int t = 0; t < 40; t++) { kc = cards.Find(c => c.kit > 0 && !c.kitLv1651); if (kc != null && (kc.kit != 3 || kc.kitPick == 1 || kc.kitPick == 4)) break; RollLevelCards(); } // ultimates with a pressable condition read best on film
                 yield return ZF1618(40); if (kc == null) { log.Append(" no kit card"); break; }
                 Choose(kc); picked.Add(kc.kit); log.Append(' ').Append(ZhKitName1639(kc)); yield return ZF1618(20);
                 _heroPos = H0; SnapCamera(); atMouse986 = H0 + new Vector2(4.6f, 0f);
@@ -437,7 +437,7 @@ namespace Hellord
                 GainLevel(); int g = 0; while (mode != Mode.LevelUp && g++ < 200) yield return ZF1618(1);
                 yield return ZF1618(50); // cards slide in and sit on screen
                 Card kc = null; int other = 0; log.Append(" L").Append(lv + 1).Append(':');
-                foreach (var c in cards) { if (c.kind == CardKind.NewSkill && c.kit == 0) other++; if (c.kit > 0) { kc = c; log.Append(' ').Append(ZhKitName1639(c)).Append('(').Append(c.kit).Append(')'); if (picked.Contains(c.kit)) ok = false; } }
+                foreach (var c in cards) { if (c.kind == CardKind.NewSkill && c.kit == 0) other++; if (c.kit > 0 && !c.kitLv1651 /* t1651: owned kit skill level cards are allowed */) { kc = c; log.Append(' ').Append(ZhKitName1639(c)).Append('(').Append(c.kit).Append(')'); if (picked.Contains(c.kit)) ok = false; } }
                 if (kc == null || other > 0) ok = false; if (kc == null) { log.Append(" no kit card"); break; }
                 picked.Add(kc.kit); Choose(kc); yield return ZF1618(40); // the HUD readout now shows the new slot
             }

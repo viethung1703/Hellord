@@ -159,7 +159,7 @@ namespace Hellord
                         GUILayout.Label(c.stat.name, _title); GUILayout.Label(HData.StatDesc(c.stat), _body);
                         GUILayout.FlexibleSpace(); if (GUILayout.Button("Take", _btn, GUILayout.Height(34))) Pick(c, -1); break;
                     case CardKind.Support:
-                        GUILayout.Label(c.support.name, _title); GUILayout.Label(c.support.desc, _body); { int ti = SupportTarget(c.support); int cl = ti >= 0 ? skills[ti].Lvl(c.support.id) : 0; GUILayout.Label((cl > 0 ? $"UPGRADE Lv{cl} -> Lv{cl + 1}: " : "NEW Lv1: ") + HData.SupportEffect(c.support.id, cl + 1), _small); } GUILayout.Label("Needs: " + HData.TagText(c.support.needs, " or ", false) + (c.support.excludes != 0 ? "  (not " + HData.TagText(c.support.excludes, "/", false) + ")" : ""), _small);
+                        GUILayout.Label(c.support.name, _title); GUILayout.Label(c.support.desc, _body); { int ti = SupportTarget(c.support); int cl = ti >= 0 && SupInst1651(ti) != null ? SupInst1651(ti).Lvl(c.support.id) : 0; GUILayout.Label((cl > 0 ? $"UPGRADE Lv{cl} -> Lv{cl + 1}: " : "NEW Lv1: ") + HData.SupportEffect(c.support.id, cl + 1), _small); } GUILayout.Label("Needs: " + HData.TagText(c.support.needs, " or ", false) + (c.support.excludes != 0 ? "  (not " + HData.TagText(c.support.excludes, "/", false) + ")" : ""), _small);
                         GUILayout.FlexibleSpace(); GUILayout.Label("Put it in:", _small);
                         for (int k = 0; k < skills.Count; k++)
                         {

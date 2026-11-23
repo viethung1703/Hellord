@@ -181,6 +181,7 @@ namespace Hellord
             foreach (var d in HData.Skills)
             {
                 if (d.id == SkillId.FrostBomb && !HellordTuning.I.frostBombEnabled1412) continue; // t1412u
+                if (HData.IsKit1651(d.id)) continue; // t1651: kit skills live in the kit slots
                 var def = d; SkillInst own = skills.Find(x => x.def.id == def.id);
                 if (TmBtn(own != null ? def.name + "  (Lv " + own.level + ", " + own.sup.Count + " sup)" : "Give " + def.name, own == null, own != null)) TmAction(() => TmGiveSkill(def), false);
                 if (TmBtn("Level up " + def.name, own != null && own.level < HData.MaxLv(own.def))) TmAction(() => { var s = skills.Find(x => x.def.id == def.id); if (s != null && s.level < HData.MaxSkillLevel) { s.level++; TmSay(def.name + " -> Lv " + s.level); } });

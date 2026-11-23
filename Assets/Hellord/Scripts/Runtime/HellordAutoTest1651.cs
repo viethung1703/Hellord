@@ -107,7 +107,8 @@ namespace Hellord
                 if (hitE || e.zFlam1618 > runTime - win || e.zCry1625 > 0f || e.lured1651) m.affected++; // damaged or marked by the skill (displacement is its own metric)
                 m.potency += _smPot[i];
             }
-            m.heal = hp - hp0; HInput.AtLmb = false; skills.Clear();
+            if (kit && SmKitProbe1651 != null) m.probe = System.Math.Max(m.probe, SmKitProbe1651(this, id));
+            m.heal = hp - hp0; HInput.AtLmb = false; skills.Clear(); if (kit) { ResetKit1651(); ZhRunMove1639 = ZhRunSpec1639 = ZhRunUlt1639 = 0; }
         }
         double SmDmg1651() { double d = 0; for (int i = 0; i < _smL1651.Count; i++) { var e = _smL1651[i]; d += _smHp0[i] - (e.alive ? Mathf.Max(0f, e.hp) : 0f); } return d; }
         IEnumerator SmFrames1651(int n, SmFix1651 f, SmM1651 m, bool sample, float hp0)
@@ -122,11 +123,48 @@ namespace Hellord
             }
         }
         Status _smSt1651;
+        // ---- stage 4: kit skills in the matrix (cast directly; conditions pre-met; probes read the state the cast set)
+        int _smK1651 = -1; float _smKT0;
+        void SmKitSetI1651(SkillInst si)
+        {
+            int k = System.Array.IndexOf(ZkIds1651, si.def.id); _smK1651 = k; ResetKit1651(); _zkI1651[k] = si;
+            ZhRunMove1639 = k < 3 ? k + 1 : 0; ZhRunSpec1639 = k >= 3 && k < 8 ? k - 2 : 0; ZhRunUlt1639 = k >= 8 ? k - 7 : 0;
+        }
+        IEnumerator SmKitCastI1651(SkillId id)
+        {
+            int k = _smK1651; _smKT0 = runTime;
+            if (k < 3) { ZhDashStart1618(_heroPos); AtCd1651 = ZhMoveCd; }
+            else if (k < 8) { ZhSpecial1618(); AtCd1651 = ZhSpecCd; if (k == 5) { yield return null; SmCryKill1651(); } }
+            else if (k == 9) { hp = maxHp; ZhRebirth1618(); AtCd1651 = ZhUltCd; }
+            else
+            {
+                if (k == 8) ZhSunMeter1618 = TZ.swMeter1618; if (k == 11) ZhNearMiss1618 = Mathf.Max(1, TZ.vbNeed1618);
+                if (k == 10) { int n = 0; foreach (var e in _smL1651) if (e.alive && n++ < TZ.mhNeed1618 + 1) { e.burnT = 30f; e.burnDps = 0f; } yield return null; yield return null; }
+                ZhUltimate1618(); AtCd1651 = ZhUltCd;
+            }
+            yield return null;
+        }
+        /// <summary>War Cry's damage is the death blast of roared demons: kill the roared demon nearest the hero (a plain kill, not a skill hit).</summary>
+        void SmCryKill1651()
+        {
+            Enemy best = null; float bd = 1e9f; foreach (var e in _smL1651) { if (!e.alive || e.zCry1625 <= runTime) continue; float d = (e.pos - _heroPos).sqrMagnitude; if (d < bd) { bd = d; best = e; } }
+            if (best != null) { int ix = _smL1651.IndexOf(best); Damage(best, best.hp + 10f, false, true); if (ix >= 0) _smHp0[ix] = 0f; } // the killed one is not the skill's damage
+        }
+        float SmKitProbeI1651(SkillId id)
+        {
+            switch (_smK1651)
+            {
+                case 0: return ZhEffT1618; case 1: return ZhAncT1618; case 3: return ZhMarkT1618; case 7: return ZhHearthT1618; case 10: return ZhHeartT1618;
+                case 4: { float mx = 0f; foreach (var e in _smL1651) mx = Mathf.Max(mx, e.zFlam1618 - _smKT0); return mx; } // curse end, from the cast
+            }
+            return 0f;
+        }
         public static System.Action<HellordGame, SkillInst> SmKitSet1651; public static System.Func<HellordGame, SkillId, float> SmKitProbe1651;
 
         IEnumerator AtSup1651()
         {
             string scen = "sup1651"; var T = HellordTuning.I;
+            SmKitIds1651 = ZkIds1651; SmKitSet1651 = (g, si) => g.SmKitSetI1651(si); SmKitCast1651 = (g, id) => g.SmKitCastI1651(id); SmKitProbe1651 = (g, id) => g.SmKitProbeI1651(id); // t1651 stage 4: kit skills join the matrix
             yield return ZhStart1618(scen, null, SkillId.Fireball); _zKeepHp = false;
             float crit0 = crit; int cf0 = Time.captureFramerate; Time.captureFramerate = 30; bool pa0 = _pactActive51; _pactActive51 = false; // neutral: no pact node effects (Pyromancer turns statuses into burn, etc.)
             var cams = new List<Camera>(); foreach (var c in Camera.allCameras) if (c.enabled && System.Environment.GetCommandLineArgs().Length > 0 && !System.Array.Exists(System.Environment.GetCommandLineArgs(), a => a == "-smRender")) { c.enabled = false; cams.Add(c); }

@@ -458,7 +458,7 @@ namespace Hellord
         {
             var T = T37; var pick = new List<Card>(); bool slot = HData.SlotsUnlocked(level) < HellordTuning.I.skillSlotsMax818;
             var sups = new List<Card>(); var upg = new List<Card>();
-            foreach (var sd in HData.Supports) if (skills.Exists(s => s.CanSocket(sd) == null)) { var sc = new Card { kind = CardKind.Support, support = sd }; if (skills.Exists(s => s.CanUpgrade(sd))) upg.Add(sc); else sups.Add(sc); }
+            foreach (var sd in HData.Supports) if (SupPool1651().Exists(s => s.CanSocket(sd) == null)) { var sc = new Card { kind = CardKind.Support, support = sd }; if (SupPool1651().Exists(s => s.CanUpgrade(sd))) upg.Add(sc); else sups.Add(sc); }
             Shuffle(upg); Shuffle(sups); upg.AddRange(sups);
             var lvl = new List<Card>(); for (int i = 0; i < skills.Count; i++) if (skills[i].level < HData.MaxLv(skills[i].def)) lvl.Add(new Card { kind = CardKind.SkillLevel, skill = skills[i].def, skillIndex = i }); Shuffle(lvl);
             if (slot) pick.Add(new Card { kind = CardKind.Stat, stat = SlotStat37 });
