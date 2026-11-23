@@ -24,9 +24,11 @@ namespace Hellord
     public enum StatId { MaxHP, Speed, Pickup, Armor, Crit, Slot }
     public enum Status { None, Burn, Chill, Shock, Bleed, Curse }
 
+    /// <summary>t1651: projectile mechanics a skill's projectile cannot use (HData.Fits then never offers that support there).</summary>
+    [Flags] public enum ProjCap1651 { None = 0, NoMulti = 1, NoPierce = 2, NoFork = 4, NoBounce = 8, NoHoming = 16 }
     public class SkillDef
     {
-        public SkillId id; public string name, desc; public STag tags; public float baseDmg, cooldown; public bool aimable; public Status innate; public bool kit1651; // t1651: a Zhurong kit skill (own slot, own cooldown; reads only the support part of CdMul / AreaMul)
+        public SkillId id; public string name, desc; public STag tags; public float baseDmg, cooldown; public bool aimable; public Status innate; public bool kit1651; public ProjCap1651 projCaps1651; // t1651: a Zhurong kit skill (own slot, own cooldown; reads only the support part of CdMul / AreaMul)
     }
     public class SupportDef
     {
@@ -64,7 +66,7 @@ namespace Hellord
             new SkillDef { id = SkillId.Hurricane, name = "Hurricane",  tags = STag.Aura | STag.Area | STag.Hit | STag.Cold | STag.Duration, baseDmg = 4, cooldown = 9.0f, aimable = false, innate = Status.None, desc = "A cold storm circles you for several seconds, ticking damage and chilling. Lasts longer and wider per level." },
             // t1481 fire basic main attacks: player-aimed (cursor), LEFT MOUSE, hold = keep firing. SkillDef cooldown is 1.0; the real fire rate is HellordTuning.fbCd1481 (via SkillInst.CdMul).
             new SkillDef { id = SkillId.MagmaThrow, name = "Molten Spit", tags = STag.Projectile | STag.Area | STag.Hit | STag.Fire, baseDmg = 10, cooldown = 1f, aimable = true, innate = Status.Burn, desc = "Lobs a molten glob to the cursor. It bursts and throws 8 burning shards that scatter and scorch the ground. Hold to keep firing." },
-            new SkillDef { id = SkillId.RollingMagmaRock, name = "Infernal Boulder", tags = STag.Projectile | STag.Area | STag.Hit | STag.Fire, /* t1651: + Area (blast / band / patch read AreaMul) */ baseDmg = 12, cooldown = 1f, aimable = true, innate = Status.Burn, desc = "Rolls a burning boulder toward the cursor. It pierces demons, leaves a burning line of ground and crumbles on walls. Hold to keep firing." },
+            new SkillDef { projCaps1651 = ProjCap1651.NoPierce /* t1651: rolls through everything already */, id = SkillId.RollingMagmaRock, name = "Infernal Boulder", tags = STag.Projectile | STag.Area | STag.Hit | STag.Fire, /* t1651: + Area (blast / band / patch read AreaMul) */ baseDmg = 12, cooldown = 1f, aimable = true, innate = Status.Burn, desc = "Rolls a burning boulder toward the cursor. It pierces demons, leaves a burning line of ground and crumbles on walls. Hold to keep firing." },
             new SkillDef { id = SkillId.FirePillar, name = "Fire Pillar", tags = STag.Area | STag.Hit | STag.Fire, baseDmg = 8, cooldown = 1f, aimable = true, innate = Status.Burn, desc = "Marks the cursor, then a pillar of fire erupts there. Medium rate. Hold to keep firing." },
             // t1567 pact LMB basics (HellordPactBasics1567.cs): aimed at the cursor, LEFT MOUSE only. baseDmg / cooldown are overwritten from HellordTuning.pbBaseDmg1567 / pbCd1567 (PbDefs1567); the values here are the same first-pass numbers.
             new SkillDef { id = SkillId.SparkSpray, name = "Spark Spray", tags = STag.Projectile | STag.Hit | STag.Lightning, baseDmg = 4, cooldown = 0.6f, aimable = true, innate = Status.Shock, desc = "Aim with the cursor: 3-5 sparks skitter along the ground toward it, weaving around the aim line. Each spark hits one demon. Shocks." },
@@ -72,7 +74,7 @@ namespace Hellord
             new SkillDef { id = SkillId.ThunderJavelin, name = "Thunder Javelin", tags = STag.Projectile | STag.Area | STag.Hit | STag.Lightning, baseDmg = 12, cooldown = 0.9f, aimable = true, innate = Status.Shock, desc = "Aim with the cursor: a fast bolt that bursts into short forked bolts on the first demon it hits. Shocks." },
             new SkillDef { id = SkillId.HeadsmansChop, name = "Headsman's Chop", tags = STag.Melee | STag.Area | STag.Hit | STag.Physical | STag.Blood, baseDmg = 14, cooldown = 0.85f, aimable = true, innate = Status.Bleed, desc = "Aim with the cursor: a short, wide axe arc that knocks demons back. Bleeding demons burst in a blood shockwave. Bleeds." },
             new SkillDef { id = SkillId.EarthSplittingSlam, name = "Earth-Splitting Slam", tags = STag.Melee | STag.Area | STag.Zone | STag.Hit | STag.Physical, baseDmg = 16, cooldown = 1.25f, aimable = true, innate = Status.None, desc = "Aim with the cursor: the axe smashes the ground just ahead. The cracks slow demons, then erupt again." },
-            new SkillDef { id = SkillId.TwinAxeThrow, name = "Twin Axe Throw", tags = STag.Projectile | STag.Hit | STag.Physical, baseDmg = 9, cooldown = 0.7f, aimable = true, innate = Status.Bleed, desc = "Aim with the cursor: the axe spins out to it, piercing, then returns to your hand, hitting again. One axe out at a time. Bleeds." },
+            new SkillDef { projCaps1651 = ProjCap1651.NoPierce | ProjCap1651.NoFork | ProjCap1651.NoBounce | ProjCap1651.NoHoming /* t1651: one returning axe that cuts through everything; Multi = more axes */, id = SkillId.TwinAxeThrow, name = "Twin Axe Throw", tags = STag.Projectile | STag.Hit | STag.Physical, baseDmg = 9, cooldown = 0.7f, aimable = true, innate = Status.Bleed, desc = "Aim with the cursor: the axe spins out to it, piercing, then returns to your hand, hitting again. One axe out at a time. Bleeds." },
             new SkillDef { id = SkillId.PhantomAxes, name = "Phantom Axes", tags = STag.Melee | STag.Area | STag.Hit | STag.Physical | STag.Blood, baseDmg = 10, cooldown = 1.4f, aimable = true, innate = Status.Bleed, desc = "Aim with the cursor: 2-3 ghost Xingtians appear around it and each chops once. Bleeds." },
             // t1618 Zhurong kit: Fire Wall split out of Hellfire Pillar (the t948 wall code, now its own LMB basic), Volcanic Orb (new LMB basic),
             // ZhurongKit = damage source for the movement / special / ultimate slots (never offered, never in the belt; HellordZhurong1618.cs)
@@ -209,11 +211,12 @@ namespace Hellord
         public static float At(float[] a, int lvl, float fb = 1f) { if (a == null || a.Length == 0) return fb; return a[Math.Max(0, Math.Min(a.Length - 1, lvl - 1))]; }
         public static int At(int[] a, int lvl, int fb = 1) { if (a == null || a.Length == 0) return fb; return a[Math.Max(0, Math.Min(a.Length - 1, lvl - 1))]; }
         /// <summary>t1651: skills whose cast really reads Multi Projectiles (more projectiles). Only these pay its damage penalty.</summary>
-        public static bool MultiHonoured1651(SkillId id) => id == SkillId.Fireball || id == SkillId.SoulSpears || id == SkillId.SkeletonArchers;
+        public static bool MultiHonoured1651(SkillId id) => id == SkillId.Fireball || id == SkillId.SoulSpears || id == SkillId.SkeletonArchers || id == SkillId.RollingMagmaRock || id == SkillId.SparkSpray || id == SkillId.ThunderJavelin || id == SkillId.TwinAxeThrow || id == SkillId.Hydra; // t1651 stage 5: + the shared-helper skills
         public static bool IsKit1651(SkillId id) => id >= SkillId.ZkEmberEffigy && id <= SkillId.ZkVermilionBird;
         public static bool Summon561(SkillDef d) => d != null && (d.id == SkillId.SkeletonWarriors || d.id == SkillId.SkeletonArchers); // t561u
         public static int MaxLv(SkillDef d) => Summon561(d) ? Math.Max(1, HellordTuning.I.summonMaxLv561) : MaxSkillLevel; // t587u: summons max Lv5 like every skill
-        public static bool Fits(SupportDef s, SkillDef k) => (s.needs == STag.Any || (k.tags & s.needs) != 0) && (k.tags & s.requiresAll) == s.requiresAll && (k.tags & s.excludes) == 0; // t626u
+        public static bool Fits(SupportDef s, SkillDef k) => (s.needs == STag.Any || (k.tags & s.needs) != 0) && (k.tags & s.requiresAll) == s.requiresAll && (k.tags & s.excludes) == 0 && (k.projCaps1651 & ProjCapOf1651(s.id)) == 0; // t1651: + projectile caps
+        public static ProjCap1651 ProjCapOf1651(SupportId id) => id == SupportId.MultipleProjectiles ? ProjCap1651.NoMulti : id == SupportId.Pierce ? ProjCap1651.NoPierce : id == SupportId.Fork ? ProjCap1651.NoFork : id == SupportId.Bounce ? ProjCap1651.NoBounce : id == SupportId.Homing ? ProjCap1651.NoHoming : ProjCap1651.None; // t626u
         static readonly STag[] _tagOrder626 = { STag.Projectile, STag.Melee, STag.Strike, STag.Area, STag.Chain, STag.Orbital, STag.Aura, STag.Zone, STag.Minion, STag.Duration, STag.Curse, STag.Hit, STag.Physical, STag.Fire, STag.Cold, STag.Lightning, STag.Blood, STag.Bone, STag.Soul, STag.Movement, STag.Special, STag.Ultimate, STag.Cooldown, STag.Mark, STag.Warcry, STag.Buff, STag.Conditional, STag.Triggered, STag.Decoy };
         /// <summary>t626u: tag chips text, e.g. "PROJECTILE FIRE". short = drop Hit (shown on every skill).</summary>
         public static string TagText(STag t, string sep = " ", bool upper = true, bool skipHit = false)
@@ -229,6 +232,7 @@ namespace Hellord
             if (s.needs != STag.Any && (k.tags & s.needs) == 0) parts.Add("needs " + TagText(s.needs, " or ", false));
             STag miss = s.requiresAll & ~k.tags; if (miss != 0) parts.Add("needs " + TagText(miss, " + ", false));
             STag bad = s.excludes & k.tags; if (bad != 0) parts.Add("can't support " + TagText(bad, "/", false) + " skills");
+            if ((k.projCaps1651 & ProjCapOf1651(s.id)) != 0) parts.Add($"{k.name}'s projectile can't use it"); // t1651
             return parts.Count == 0 ? null : string.Join(", ", parts);
         }
     }

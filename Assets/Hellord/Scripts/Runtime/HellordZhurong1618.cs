@@ -60,7 +60,7 @@ namespace Hellord
         readonly List<ZFx> _zFx1618 = new List<ZFx>(); // short placeholder rings / bursts
         // Hydra (t1625; replaced Volcanic Orb)
         class ZHy { public Vector2 p; public float t, dmg, seed; public SkillInst s; public float[] next = new float[3], spitT = { -10f, -10f, -10f }, aim = new float[3]; public bool[] armed = new bool[3]; } // fx_v2 §14: 3 heads, own clocks / targets
-        class ZBolt { public Vector2 p, v; public float t, life, dmg, seed; public SkillInst s; }
+        class ZBolt { public Vector2 p, v; public float t, life, dmg, seed; public SkillInst s; public ProjCore1651 pc; } // t1651: + shared projectile supports
         readonly List<ZHy> _zHy1625 = new List<ZHy>(); readonly List<ZBolt> _zBolt1625 = new List<ZBolt>();
         public int ZhHydras1625 => _zHy1625.Count;
 
@@ -493,7 +493,7 @@ namespace Hellord
         {
             if (mode == Mode.StartPick) return false; var T = TZ;
             Vector2 to = MouseWorld(), d = to - _heroPos; if (d.magnitude > T.hyRange1625) to = _heroPos + d.normalized * T.hyRange1625; ClampToRoom(ref to, 4);
-            while (_zHy1625.Count >= Mathf.Max(1, T.hyMax1625)) { var o = _zHy1625[0]; _zHy1625.RemoveAt(0); ZhHydraGone1625(o); }
+            while (!_echo738 && _zHy1625.Count >= Mathf.Max(1, T.hyMax1625)) { /* t1651: Echo ignores the cap */ var o = _zHy1625[0]; _zHy1625.RemoveAt(0); ZhHydraGone1625(o); }
             var h = new ZHy { p = to, t = 0f, dmg = dmg, s = s, seed = Random.value }; for (int i = 0; i < 3; i++) h.next[i] = T.hyFirst1625 + i * 0.25f; _zHy1625.Add(h);
             After(0.18f, () => ZFx1618(-1, to, 0.5f, 0.45f, "ZFX_Hydra_Erupt", new Vector4(-28, -18 + 3, 56, 50), YSort(to.y) + 200)); // summon eruption t 0.18-0.63
             HellordAudio.Play("magma_throw_cast", 0.9f); if (!ZhFxLive1625("ZFX_Hydra2")) HordeFX.CheapBurst(to + Vector2.up * 0.3f, ZO, 6); return true;
@@ -538,8 +538,9 @@ namespace Hellord
                     if (o.armed[h] && o.t - o.spitT[h] >= ZHyW1625)
                     {   // 0.27 s after the windup started: the bolt leaves the jaw
                         o.armed[h] = false; Vector2 m = o.p + HydraMouthPx1625(h, o.t, ZHyRise1625(o), ZHyFade1625(o), o.spitT[h], o.aim[h]) / 16f; Vector2 dir = new Vector2(Mathf.Cos(o.aim[h]), Mathf.Sin(o.aim[h]));
-                        _zBolt1625.Add(new ZBolt { p = m, v = dir * T.hyBoltSpeed1625, t = 0f, life = T.hySight1625 / Mathf.Max(0.1f, T.hyBoltSpeed1625), dmg = o.dmg * T.hyBoltDmg1625, s = o.s, seed = Random.value });
-                        ZhBoltsShot1625++; AtProj1651++; /* t1651 probe */ HellordAudio.Play("fireball_cast", 1.6f);
+                        int nb = ProjCount1651(o.s, 1); // t1651: Multi = more bolts per spit, fanned
+                        for (int q = 0; q < nb; q++) { Vector2 bdir = ProjFan1651(dir, q, nb); _zBolt1625.Add(new ZBolt { p = m, v = bdir * T.hyBoltSpeed1625, t = 0f, life = T.hySight1625 / Mathf.Max(0.1f, T.hyBoltSpeed1625), dmg = o.dmg * T.hyBoltDmg1625, s = o.s, seed = Random.value, pc = ProjCoreFor1651(o.s) }); ZhBoltsShot1625++; AtProj1651++; /* t1651 probe */ }
+                        HellordAudio.Play("fireball_cast", 1.6f);
                     }
                     if (fading || o.armed[h] || o.t < o.next[h]) continue;
                     // this head picks its own target: the nearest enemy in sight not already taken by another head (else the nearest)
@@ -560,9 +561,15 @@ namespace Hellord
             }
             for (int i = _zBolt1625.Count - 1; i >= 0; i--)
             {
-                var e = _zBolt1625[i]; Vector2 a = e.p; e.p += e.v * dt; e.t += dt; bool hit = false;
-                _zq1618.Clear(); QueryBody1595(a, e.p, T.hyBoltR1625, _zq1618);
-                foreach (int ei in _zq1618) { var en = _en[ei]; if (!en.alive || en.dying) continue; Hit(en, e.dmg, e.s, e.v.normalized * 0.4f); ZhBoltHits1625++; hit = true; break; }
+                var e = _zBolt1625[i]; if (e.pc != null && e.pc.homR > 0f) e.v = ProjHome1651(e.pc, e.p, e.v.normalized, dt) * e.v.magnitude; /* t1651 Homing */ Vector2 a = e.p; e.p += e.v * dt; e.t += dt; bool hit = false;
+                _zq1618.Clear(); QueryBody1595(a, e.p, T.hyBoltR1625, _zq1618); int hitIx = -1;
+                foreach (int ei in _zq1618) { var en = _en[ei]; if (!en.alive || en.dying || e.pc != null && e.pc.hit.Contains(ei)) continue; Hit(en, e.dmg, e.s, e.v.normalized * 0.4f); ZhBoltHits1625++; hit = true; hitIx = ei; break; }
+                if (hit && e.pc != null)
+                {   // t1651: Pierce > Fork > Bounce through the shared helper
+                    Vector2 nd = e.v.normalized; float dm = e.dmg; var eb = e; float sp = e.v.magnitude;
+                    var res = ProjOnHit1651(e.pc, e.s, hitIx, e.p, ref nd, ref dm, (cd, mul) => { _zBolt1625.Add(new ZBolt { p = eb.p, v = cd * sp, t = 0f, life = Mathf.Max(0.2f, eb.life - eb.t), dmg = eb.dmg * mul, s = eb.s, seed = Random.value, pc = ProjCoreFor1651(eb.s, true, eb.pc) }); AtProj1651++; });
+                    e.dmg = dm; if (res == ProjAfter1651.Continue) hit = false; else if (res == ProjAfter1651.Redirect) { e.v = nd * sp; e.t = Mathf.Min(e.t, e.life * 0.5f); hit = false; }
+                }
                 if (hit || e.t >= e.life)
                 {   // pop on hit or at max range
                     ZFx1618(-1, e.p, 0.3f, 0.3f, "ZFX_Hydra_BoltPop", new Vector4(-16, -12, 32, 30), YSort(e.p.y - 0.6f) + 200); if (hit && !ZhFxLive1625("ZFX_Hydra_BoltPop")) FireBasicsFX1481.Once("molten_spit_pop_v1", e.p, YSort(e.p.y) + 40);

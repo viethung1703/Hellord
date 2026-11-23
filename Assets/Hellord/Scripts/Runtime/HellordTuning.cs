@@ -219,6 +219,7 @@ namespace Hellord
 
         [Header("Balance v0.0.27 - support levels Lv1..Lv5 (picking an owned support upgrades it)")]
         [Tooltip("Multi Projectiles: extra projectiles (was +2 flat), damage multiplier of the skill (was 0.75)")] public int[] supMultiExtra = { 1, 2, 2, 3, 4 }; public float multiProjDmgMul = 0.88f;
+        [Tooltip("t1651 shared projectile helper: angle between the extra projectiles Multi adds (deg) on sparks / javelins / hydra bolts / axes")] public float multiFanDeg1651 = 12f;
         [Tooltip("Pierce: enemies pierced (was 2), damage lost per pierce (was 0.15)")] public int[] supPierce = { 1, 2, 3, 4, 5 }; public float pierceFalloff = 0.15f;
         [Tooltip("Fork: children on first hit (was 2), child damage fraction (was 0.7), fork spread between children (deg)")] public int[] supForkChildren = { 2, 3, 3, 4, 5 }; public float[] supForkDmg = { 0.55f, 0.6f, 0.65f, 0.7f, 0.75f }; public float forkSpreadDeg = 28f;
         [Tooltip("Bounce: bounces (was 2) and search radius for the next demon (was 4)")] public int[] supBounce = { 1, 2, 3, 4, 5 }; public float[] supBounceRangeU = { 4f, 4.5f, 5f, 5.5f, 6f };

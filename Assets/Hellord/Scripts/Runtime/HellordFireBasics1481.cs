@@ -48,7 +48,7 @@ namespace Hellord
         class FbRock { public Vector2 p, a, b, dir; public float t, dur, age, dmg; public SkillInst s; }                                               // Molten Spit rock (t1511 scripted lob: linear ground point + preset height arch)
         class FbCast { public readonly HashSet<int> shardHit = new HashSet<int>(); public int embers, pops; }                                          // t1514: one Spit cast (shrapnel hit-once set, ember / pop caps)
         class FbStrand { public Vector2 a, b, dir; public float t, dmg, pdmg, speedU, flyS; public int idx, row; public bool landed; public FbCast cast; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
-        class FbBall { public object loop; public Vector2 p, dir; public float dist, range, age, dmg, trailAcc, z, bandAt; public bool touched; public int tiles, row, seg; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); }
+        class FbBall { public object loop; public Vector2 p, dir; public float dist, range, age, dmg, trailAcc, z, bandAt; public bool touched; public int tiles, row, seg; public SkillInst s; public readonly HashSet<int> hit = new HashSet<int>(); public ProjCore1651 pc; } // t1651: + shared projectile supports (the boulder already rolls through everything: NoPierce)
         class FbRecoil { public Enemy e; public Vector2 dir; public float f; public int next; }
         class FbPatch { public Vector2 p; public float rx, ry, life, tick, tickS, dmg, delay; public SkillInst s; }
         readonly List<FbPend> _fbPend = new List<FbPend>(); readonly List<FbRock> _fbRocks = new List<FbRock>(); readonly List<FbStrand> _fbStrands = new List<FbStrand>(); readonly List<FbBall> _fbBalls = new List<FbBall>();
@@ -160,8 +160,8 @@ namespace Hellord
         bool CastRollingRock1481(SkillInst s, float dmg)
         {
             if (mode == Mode.StartPick) return false; var T = HellordTuning.I; EnsureFX44();
-            if (FbCasts1481(1) >= T.rrMaxRocks1481) { s.cd = 0.1f; return false; }
-            Vector2 dir = FbAimDir1481(); int n = 1 + PCount49; float spread = T.rrSpreadDeg1481;
+            if (!_echo738 && FbCasts1481(1) >= T.rrMaxRocks1481) { s.cd = 0.1f; return false; } // t1651: Echo ignores the cap
+            Vector2 dir = FbAimDir1481(); int n = ProjCount1651(s, 1 + PCount49); /* t1651: + Multi */ float spread = T.rrSpreadDeg1481;
             _fbPend.Add(new FbPend { kind = 1, t = 0f, dir = dir, dmg = dmg, s = s });
             for (int i = 1; i < n; i++) _fbPend.Add(new FbPend { kind = 2, t = 0f, dir = FbUnit(FbSpread(i, n, spread), dir), dmg = dmg, s = s }); // extra balls share the one ring (kind 2 draws nothing)
             return true;
@@ -171,8 +171,13 @@ namespace Hellord
             var T = HellordTuning.I; Vector2 dir = p.dir; Vector2 at = _heroPos + dir * (T.rrStartPx1481 / FbPx); ClampToRoom(ref at, 4);
             var b = new FbBall { p = at, dir = dir, range = T.rrRangePx1481 / FbPx * PRange49, z = T.rrDropPx1481, dmg = p.dmg, s = p.s, row = FireBasicsFX1481.DirRow(dir),
                 loop = HellordAudio.LoopStart("Audio/SFX/firebasics1481/magma_rock_roll_loop", Random.Range(T.rrLoopVolMin1481, T.rrLoopVolMax1481), 1f + Random.Range(-T.rrLoopPitchSpread1481, T.rrLoopPitchSpread1481)) }; // one roll voice per ball
-            _fbBalls.Add(b); AtProj1651++; /* t1651 probe */ HellordAudio.Play("magma_rock_launch");
+            b.pc = ProjCoreFor1651(p.s); _fbBalls.Add(b); AtProj1651++; /* t1651 probe */ HellordAudio.Play("magma_rock_launch");
             if (!T.rrBandFromTouch1528) for (int i = T.rrBandPre1481; i >= 1; i--) FbBandTile1481(b, at - dir * ((i * T.rrBandGapPx1481 + T.rrBandBehindPx1481) / FbPx), -i); // HFX v4: segments -2, -1 laid at launch behind the spawn // 4 tiles behind at -24..-6 px: the band starts ~1.3 balls long
+        }
+        void FbBallChild1651(FbBall o, Vector2 d, float mul)
+        {
+            var T = HellordTuning.I; var c = new FbBall { p = o.p, dir = d, range = Mathf.Max(1f, o.range - o.dist), z = 0f, dmg = o.dmg * mul, s = o.s, row = FireBasicsFX1481.DirRow(d), touched = true, bandAt = 0f, age = T.rrDropF1481 / FbFps + T.rrBounceF1481 / FbFps, pc = ProjCoreFor1651(o.s, true, o.pc) };
+            foreach (var h in o.hit) c.hit.Add(h); _fbBalls.Add(c); AtProj1651++;
         }
         void FbBandTile1481(FbBall b, Vector2 at, int seg)
         {   // HFX v4: band / band_b alternate by segment parity, life_idx(age, 60, ign 4, loop 12) with phase = seg x 5 mod 12, y-sorted with units
@@ -276,12 +281,13 @@ namespace Hellord
                 else if (fA < dropF + bounceF) { float k = (fA - dropF) / bounceF; o.z = T.rrBouncePx1481 * 4f * k * (1f - k); }          // one tiny bounce
                 else o.z = 0f;
                 float rem = o.range - o.dist, easeU = Mathf.Max(0.01f, T.rrEaseFrac1481 * o.range), vMul = rem < easeU ? Mathf.Lerp(T.rrEaseMinV1481, 1f, rem / easeU) : 1f;
+                if (o.pc != null && o.pc.homR > 0f) { Vector2 hd = ProjHome1651(o.pc, o.p, o.dir, dt); if ((hd - o.dir).sqrMagnitude > 1e-8f) { o.dir = hd; o.row = FireBasicsFX1481.DirRow(hd); } } /* t1651 Homing */
                 float step = Mathf.Min(rem, T.rrSpeedU1481 * PSpeed49 * vMul * dt); Vector2 prev = o.p; o.p += o.dir * step; o.dist += step; bool wall = FbWall1481(o.p);
                 float sc = Mathf.Max(0.1f, T.rrBallScale1481), hitR = T.rrBallU1481 * 0.5f * sc; Query(o.p, hitR + 0.6f, _fbQ);
                 foreach (int ei in _fbQ)
                 {
                     var e = _en[ei]; if (!e.alive || o.hit.Contains(e.id) || (e.pos - o.p).magnitude > hitR + e.radius) continue;
-                    o.hit.Add(e.id); FbHit1481(e, o.dmg, o.s, Vector2.zero, 1); HellordAudio.Play("magma_rock_hit"); _fbRecoils.Add(new FbRecoil { e = e, dir = o.dir }); // knock-back = the HFX recoil table along the roll direction
+                    o.hit.Add(e.id); if (o.pc != null) o.pc.hit.Add(ei); FbHit1481(e, o.dmg, o.s, Vector2.zero, 1); HellordAudio.Play("magma_rock_hit"); _fbRecoils.Add(new FbRecoil { e = e, dir = o.dir }); // knock-back = the HFX recoil table along the roll direction
                 }
                 if (T.rrBandFromTouch1528)
                 {   // t1528 v2: no fire under the caster; the band starts where the ball first touches down and runs unbroken behind it (bounce included)
@@ -289,6 +295,13 @@ namespace Hellord
                     if (o.touched) { float gap = Mathf.Max(0.05f, T.rrBandGapPx1481 / FbPx), lim = Mathf.Max(o.bandAt == o.dist ? o.dist : 0f, o.dist - T.rrBandBehindPx1481 / FbPx); int guard = 0; while (o.bandAt <= lim + 0.0001f && guard++ < 64) { FbBandTile1481(o, o.p - o.dir * (o.dist - o.bandAt), o.seg++); o.bandAt += gap; } }
                 }
                 else if (o.z <= 0.5f) { o.trailAcc += (o.p - prev).magnitude; float gap = T.rrBandGapPx1481 / FbPx; while (o.trailAcc >= gap) { o.trailAcc -= gap; FbBandTile1481(o, o.p - o.dir * (T.rrBandBehindPx1481 / FbPx), o.seg++); } } // the band only burns where the ball touches the ground
+                if (o.pc != null && o.pc.fork && o.pc.hit.Count > 0)
+                {   // t1651 Fork: on its first hit the boulder splits off children (it keeps rolling; children roll the rest of its range and never fork)
+                    Vector2 nd = o.dir; float dm = o.dmg; var ob = o; int first = -1; foreach (int h in o.pc.hit) { first = h; break; }
+                    ProjOnHit1651(o.pc, o.s, first, o.p, ref nd, ref dm, (cd, mul) => FbBallChild1651(ob, cd, mul));
+                }
+                if ((wall || o.dist >= o.range - 0.001f) && o.age < T.rrMaxS1481 && o.pc != null) { Vector2 nd = o.dir; if (ProjOnEnd1651(o.pc, o.p, ref nd)) { o.dir = nd; o.row = FireBasicsFX1481.DirRow(nd); o.range = o.dist + Mathf.Max(1.5f, o.pc.bounceR); if (wall) { ClampToRoom(ref o.p, 6); } } } // t1651 Bounce: at the end of its roll it turns to a demon nearby
+                wall = wall && FbWall1481(o.p);
                 if (wall || o.age >= T.rrMaxS1481 || o.dist >= o.range - 0.001f) { _fbBalls.RemoveAt(i); FbBallEnd1481(o); continue; }
                 HellordAudio.LoopBeat(o.loop); int ro = YSort(o.p.y);
                 FireBasicsFX1481.Show("infernal_boulder_roll_dir16", o.p + Vector2.up * ((T.rrCentrePx1481 * sc + o.z) / FbPx), ((int)(o.dist * FbPx / (T.rrRollPxPerFrame1481 * sc))) % 32, ro + 14, o.row, false, sc);  // roll tied to travel (bigger ball turns slower)
