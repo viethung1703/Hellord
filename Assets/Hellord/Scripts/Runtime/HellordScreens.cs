@@ -83,7 +83,7 @@ namespace Hellord
                     case CardKind.Support:
                     {
                         var tl = SupportTargets(c.support); int t = tl.Count > 0 ? tl[0] : -1; int cur = t >= 0 && SupInst1651(t) != null ? SupInst1651(t).Lvl(c.support.id) : 0; // v0.0.27: owned = upgrade (LV a - b), else NEW LV 1
-                        if (tl.Count > 1) { bool anyUp = false; foreach (int q in tl) if (skills[q].Has(c.support.id)) anyUp = true; cur = 0; desc.Add(anyUp ? "UPGRADE OR NEW" : "NEW  LV 1"); } // v0.0.36: several skills can take it -> chosen after the pick
+                        if (tl.Count > 1) { bool anyUp = false; foreach (int q in tl) { var sq = SupInst1651(q); if (sq != null && sq.Has(c.support.id)) anyUp = true; } /* t1666: q can be a kit slot target (>= KitTarget1651) */ cur = 0; desc.Add(anyUp ? "UPGRADE OR NEW" : "NEW  LV 1"); } // v0.0.36: several skills can take it -> chosen after the pick
                         else desc.Add(cur > 0 ? $"UPGRADE LV {cur} - {cur + 1}" : "NEW  LV 1");
                         desc.AddRange(Wrap(HData.SupportEffect(c.support.id, cur + 1, tl.Count == 1 && SupInst1651(t) != null ? (int)SupInst1651(t).def.id : -1), 17));
                         var gen = Wrap(c.support.desc, 17); int room = 5 - desc.Count; if (gen.Count > room) gen.RemoveRange(Mathf.Max(0, room), gen.Count - Mathf.Max(0, room)); desc.AddRange(gen);

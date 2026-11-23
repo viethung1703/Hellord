@@ -66,7 +66,7 @@ namespace Hellord
             foreach (var e in _en) { if (e.boss || !e.alive && !e.dying) continue; StopStatuses(e); DetachFx(e); e.alive = false; e.dying = false; e.sr.gameObject.SetActive(false); }
             _smL1651.Clear(); foreach (var p in _pr) KillProj(p); _blasts.Clear(); _sched.Clear(); ClearV44(); ZhUltCd = ZhMoveCd = ZhSpecCd = 0f; ZhSunMeter1618 = 0f; ZhNearMiss1618 = 0;
             foreach (var p in _pk) { var j = p.job; p.job = null; p.magnet = false; if (j != null) HellFXRunner.I.Kill(j); p.alive = false; p.sr.gameObject.SetActive(false); }
-            _leechHealed = 0f; foreach (var b in _fbBalls) HellordAudio.LoopStop(b.loop, 0.05f); _fbBalls.Clear(); _fbPend.Clear(); /* no boulder from the last run rolls into this one */
+            ClearLz1666(); LzRunReset1666(); /* t1666 */ _leechHealed = 0f; foreach (var b in _fbBalls) HellordAudio.LoopStop(b.loop, 0.05f); _fbBalls.Clear(); _fbPend.Clear(); /* no boulder from the last run rolls into this one */
         }
         void SmField1651(SmFix1651 f)
         {
@@ -104,7 +104,7 @@ namespace Hellord
             yield return SmFrames1651(2, f, m, false, hp0);
             float lh0 = AtLeech1651; int c0 = AtCasts1651, p0 = AtProj1651, h0 = AtHits1651, sk0 = AtSkillKills1651; float k0 = AtKill1651; _pbSparkSeed1567 = 1; _fbShot = 0; AtCd1651 = 0f; s.cd = 0f; float t0 = runTime; m.probe = 0;
             if (kit) { if (SmKitCast1651 != null) yield return SmKitCast1651(this, id); }
-            else { HInput.AtLmb = true; yield return SmFrames1651(2, f, m, false, hp0); HInput.AtLmb = false; }
+            else { HInput.AtLmb = true; yield return SmFrames1651(2, f, m, false, hp0); HInput.AtLmb = id == SkillId.LiveWire; /* t1666: Live Wire is a held beam: hold LMB through the window */ }
             float cdAt = AtCd1651; if (kit) m.probe = SmKitProbe1651 != null ? SmKitProbe1651(this, id) : 0f;
             float win = f == SmFix1651.Dur ? 12f : 2.5f; /* Dur: long enough that a 4 s wall + its burn ends inside the window */ int frames = Mathf.CeilToInt(win * 30f);
             double last = SmDmg1651(); float lastT = 0f, firstT = 0f;
@@ -125,7 +125,7 @@ namespace Hellord
                 m.potency += _smPot[i];
             }
             if (kit && SmKitProbe1651 != null) m.probe = System.Math.Max(m.probe, SmKitProbe1651(this, id));
-            m.heal = AtLeech1651 - lh0; /* leeched life (a rebirth / regen does not count) */ HInput.AtLmb = false; skills.Clear(); if (kit) { ResetKit1651(); ZhRunMove1639 = ZhRunSpec1639 = ZhRunUlt1639 = 0; }
+            m.heal = AtLeech1651 - lh0; /* leeched life (a rebirth / regen does not count) */ HInput.AtLmb = false; skills.Clear(); if (kit) { ResetKit1651(); ZhRunMove1639 = ZhRunSpec1639 = ZhRunUlt1639 = 0; _pactPath51 = _smPath0; /* t1666 */ }
         }
         double SmDmg1651() { double d = 0; for (int i = 0; i < _smL1651.Count; i++) { var e = _smL1651[i]; d += _smHp0[i] - (e.alive ? Mathf.Max(0f, e.hp) : 0f); } return d; }
         IEnumerator SmFrames1651(int n, SmFix1651 f, SmM1651 m, bool sample, float hp0)
@@ -171,14 +171,18 @@ namespace Hellord
         }
         // ---- stage 4: kit skills in the matrix (cast directly; conditions pre-met; probes read the state the cast set)
         int _smK1651 = -1; float _smKT0;
+        int _smPath0;
         void SmKitSetI1651(SkillInst si)
         {
-            int k = System.Array.IndexOf(ZkIds1651, si.def.id); _smK1651 = k; ResetKit1651(); _zkI1651[k] = si;
+            int lz = System.Array.IndexOf(LzIds1666, si.def.id); // t1666: Leizu kit (index 0-11 = 4 movement, 4 specials, 4 ultimates; a Leizu run)
+            if (lz >= 0) { _smK1651 = LzK0 + lz; ResetKit1651(); _zkI1651[LzK0 + lz] = si; _pactPath51 = 2; ZhRunMove1639 = lz < 4 ? lz + 1 : 0; ZhRunSpec1639 = lz >= 4 && lz < 8 ? lz - 3 : 0; ZhRunUlt1639 = lz >= 8 ? lz - 7 : 0; return; }
+            int k = System.Array.IndexOf(ZkIds1651, si.def.id); _smK1651 = k; ResetKit1651(); _zkI1651[k] = si; _pactPath51 = 0;
             ZhRunMove1639 = k < 3 ? k + 1 : 0; ZhRunSpec1639 = k >= 3 && k < 8 ? k - 2 : 0; ZhRunUlt1639 = k >= 8 ? k - 7 : 0;
         }
         IEnumerator SmKitCastI1651(SkillId id)
         {
             int k = _smK1651; _smKT0 = runTime;
+            if (k >= LzK0) { yield return SmLzCast1666(k - LzK0); yield break; } // t1666
             if (k < 3) { ZhDashStart1618(_heroPos); AtCd1651 = ZhMoveCd; }
             else if (k < 8) { ZhSpecial1618(); AtCd1651 = ZhSpecCd; if (k == 5) { yield return null; SmCryKill1651(); } }
             else if (k == 9) { hp = maxHp; ZhRebirth1618(); AtCd1651 = ZhUltCd; }
@@ -198,6 +202,7 @@ namespace Hellord
         }
         float SmKitProbeI1651(SkillId id)
         {
+            if (_smK1651 >= LzK0) return SmLzProbe1666(_smK1651 - LzK0); // t1666
             switch (_smK1651)
             {
                 case 0: return ZhEffT1618; case 1: return ZhAncT1618; case 3: return ZhMarkT1618; case 7: return ZhHearthT1618; case 10: return ZhHeartT1618;
@@ -205,12 +210,45 @@ namespace Hellord
             }
             return 0f;
         }
+        // ---- t1666: Leizu kit casts with their conditions pre-met (mark charged, drum struck, meters full, a cull-ready elite)
+        float _smLzP1666;
+        IEnumerator SmLzCast1666(int i)
+        {
+            _smLzP1666 = 0f; var T = TZ;
+            if (i < 4)
+            {
+                _dashDir49 = Vector2.right; LzDashStart1666(_heroPos); AtCd1651 = ZhMoveCd; LzDashAfter1666(); _dashT49 = 0f;
+                if (i == 1) { _smLzP1666 = LzWardT1666; Enemy a = null; foreach (var e in _smL1651) if (e.alive) { a = e; break; } _hurtBy53 = a; LzWardAbsorb1666(a != null); } // one absorbed contact hit shocks the attacker
+                if (i == 2) _smLzP1666 = LzStrideT1666;
+                if (i == 3) foreach (var e in _smL1651) _smLzP1666 = Mathf.Max(_smLzP1666, e.stun53);
+            }
+            else if (i < 8)
+            {
+                LzSpecial1666(); AtCd1651 = ZhSpecCd;
+                if (i == 4) { _smLzP1666 = LzMarkT1666; LzMarkPay1666(); }
+                if (i == 6 && _lzDrum1666 != null) { _smLzP1666 = _lzDrum1666.life; LzDrumBoom1666(); }
+            }
+            else
+            {
+                if (i == 8) LzCombos1666 = T.dcNeed1666; if (i == 9) LzInfusions1666 = T.haNeed1666; if (i == 10) LzEnergy1666 = T.trNeed1666;
+                if (i == 11) { Enemy best = null; float bd = 1e9f; foreach (var e in _smL1651) { if (!e.alive) continue; float d = (e.pos - _heroPos).sqrMagnitude; if (d < bd) { bd = d; best = e; } } if (best != null) { best.elite = true; best.hp = best.maxHp * T.jwCull1666 * 0.5f; int ix = _smL1651.IndexOf(best); if (ix >= 0) _smHp0[ix] = 0f; /* its cull is not the measured damage */ } }
+                LzUltimate1666(); AtCd1651 = ZhUltCd; if (i == 10) _smLzP1666 = LzTribT1666;
+                if (i == 11) foreach (var g in _lzGround1666) _smLzP1666 = Mathf.Max(_smLzP1666, g.life);
+                if (i == 9) foreach (var g in _lzGround1666) _smLzP1666 = Mathf.Max(_smLzP1666, g.life);
+            }
+            yield return null;
+        }
+        float SmLzProbe1666(int i)
+        {
+            if (i == 5) { float mx = 0f; foreach (var e in _smL1651) mx = Mathf.Max(mx, e.lzCond1666 - _smKT0); return mx; } // curse end, from the cast
+            return _smLzP1666;
+        }
         public static System.Action<HellordGame, SkillInst> SmKitSet1651; public static System.Func<HellordGame, SkillId, float> SmKitProbe1651;
 
         IEnumerator AtSup1651()
         {
             string scen = "sup1651"; var T = HellordTuning.I;
-            SmKitIds1651 = ZkIds1651; SmKitSet1651 = (g, si) => g.SmKitSetI1651(si); SmKitCast1651 = (g, id) => g.SmKitCastI1651(id); SmKitProbe1651 = (g, id) => g.SmKitProbeI1651(id); // t1651 stage 4: kit skills join the matrix
+            { var ki = new List<SkillId>(ZkIds1651); ki.AddRange(LzIds1666); SmKitIds1651 = ki.ToArray(); } /* t1666: + the 12 Leizu kit skills */ _smPath0 = 0; SmKitSet1651 = (g, si) => g.SmKitSetI1651(si); SmKitCast1651 = (g, id) => g.SmKitCastI1651(id); SmKitProbe1651 = (g, id) => g.SmKitProbeI1651(id); // t1651 stage 4: kit skills join the matrix
             yield return ZhStart1618(scen, null, SkillId.Fireball); _zKeepHp = false;
             float crit0 = crit; int cf0 = Time.captureFramerate; Time.captureFramerate = 30; bool pa0 = _pactActive51; _pactActive51 = false; bool ko0 = TZ.kitSlotOverride1639; TZ.kitSlotOverride1639 = false; /* kit slots come from the run picks the test sets, not the testing override */ // neutral: no pact node effects (Pyromancer turns statuses into burn, etc.)
             var cams = new List<Camera>(); foreach (var c in Camera.allCameras) if (c.enabled && System.Environment.GetCommandLineArgs().Length > 0 && !System.Array.Exists(System.Environment.GetCommandLineArgs(), a => a == "-smRender")) { c.enabled = false; cams.Add(c); }

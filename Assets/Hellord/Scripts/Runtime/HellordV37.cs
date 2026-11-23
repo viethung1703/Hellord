@@ -119,7 +119,7 @@ namespace Hellord
         SpriteRenderer Z37SR(Sprite s, Vector2 pos, Vector2 scale, float deg, Color c, int sub)
         {
             Z37Init(); if (_z37n >= _z37.Count) { var g = new GameObject("z"); g.transform.SetParent(_z37Root, false); var n = g.AddComponent<SpriteRenderer>(); _z37.Add(n); }
-            var sr = _z37[_z37n++]; sr.sprite = s; sr.color = c; sr.sortingOrder = Z37Order + sub; sr.enabled = true;
+            var sr = _z37[_z37n++]; sr.sprite = s; sr.flipX = false; /* t1666: pooled, reset (Zhurong ghost / Leizu hound set it per draw) */ sr.color = c; sr.sortingOrder = Z37Order + sub; sr.enabled = true;
             var tr = sr.transform; tr.position = new Vector3(pos.x, pos.y, 0); tr.rotation = Quaternion.Euler(0, 0, deg); tr.localScale = new Vector3(scale.x, scale.y, 1); return sr;
         }
         void ZDisc(Vector2 c, float r, Color col, float flat = 1f, int sub = 0) => Z37SR(_z37Disc, c, new Vector2(r * 2f, r * 2f * flat), 0, col, sub);

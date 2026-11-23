@@ -18,13 +18,14 @@ namespace Hellord
     //  4-slot bar. Kit skill k = 12 + index in LzIds1666 (HellordKit1651.cs: ZkI1651 / ZkCd1651 / ZkR1651 / ZkDur1651 / ZkHit1651).
     //  Ultimate meters (energy / combos / infusions) carry over rooms (like 0908dfd) and reset per run (LzRunReset1666 in ResetV44).
     //  ICON HOOK: Resources/<lzIconDir1666>/icon_<key>_24.png (keys LzKeys1666); missing = a procedural placeholder icon.
-    //  SPRITE HOOK: Resources/HellordArt/Leizu1666/thunder_hound.png (horizontal strip, square frames, bottom-centre pivot, 10 fps).
+    //  HOUND ART (HA t1666): Resources/HellordArt/Leizu1666/thunder_hound/thunder_hound_all_<idle|run|bite>_<south|east|north>.png, 64x64 frames,
+    //    feet pivot (32,58), idle 8f@8, run 6f@12, bite 6f@12, west = flipped east (Summon561 layout). Missing = the procedural placeholder.
     //  FX HOOK: LzFx1666("LZFX_<name>", ...) draws Resources/LeizuFX/Materials/LZFX_<name>.mat (+ _Glow twin) through the Zhurong
     //    shader-quad route when present (lzFx1666 on); otherwise the procedural PLACEHOLDERS below (Endesga-32 blues + ChainFX bolts).
     // =====================================================================================================================
     public partial class HellordGame
     {
-        public static readonly string[] LzKeys1666 = { "thunderstep", "groundingward", "stormstride", "mirrorflash", "markofjudgement", "conductivity", "thunderministrydrum", "staticfield", "decree24thunderlords", "heavensplittingarc", "tribunalninehavens", "judgementwarp", "thunderdrumstrikes", "thunderlash", "livewire", "thunderhound" };
+        public static readonly string[] LzKeys1666 = { "thunderstep", "groundingward", "stormstride", "mirrorflash", "markofjudgement", "conductivity", "thunderministrydrum", "staticfield", "decree24thunderlords", "heavensplittingarc", "tribunalnineheavens", "judgementwarp", "thunderdrumstrikes", "thunderlash", "livewire", "thunderhound" };
         public static readonly string[] LzMoveNames1666 = { "NONE", "THUNDER STEP", "GROUNDING WARD", "STORM STRIDE", "MIRROR FLASH" };
         public static readonly string[] LzSpecNames1666 = { "NONE", "MARK OF JUDGEMENT", "CONDUCTIVITY", "THUNDER MINISTRY DRUM", "STATIC FIELD" };
         public static readonly string[] LzUltNames1666 = { "NONE", "DECREE OF THE 24 THUNDER LORDS", "HEAVEN-SPLITTING ARC", "TRIBUNAL OF THE NINE HEAVENS", "JUDGEMENT WARP" };
@@ -81,7 +82,7 @@ namespace Hellord
         [System.NonSerialized] public int LzBeat1666; float _lzBeatT1666 = -99f;
         class LzWire { public SkillInst s; public Enemy tgt; public float t, tgtT, tick; public Vector2 end; }
         LzWire _lzWire1666; bool _lzWireNeedUp1666; public bool LzWireOn1666 => _lzWire1666 != null;
-        class LzHound { public Vector2 p, home, face = Vector2.right; public float t, life, bite, dmg, seed; public SkillInst s; public Enemy tgt; public readonly Dictionary<int, float> bitAt = new Dictionary<int, float>(); }
+        class LzHound { public Vector2 p, home, face = Vector2.right; public float t, life, bite, dmg, seed, bitT = -9f; public bool moving; public SkillInst s; public Enemy tgt; public readonly Dictionary<int, float> bitAt = new Dictionary<int, float>(); }
         readonly List<LzHound> _lzHounds1666 = new List<LzHound>(); public int LzHounds1666 => _lzHounds1666.Count;
         class LzFxO { public Vector2 p, q; public float t, life, r; public int kind; public string mat; public Vector4 rc; public int ord = int.MinValue; }
         readonly List<LzFxO> _lzFx1666 = new List<LzFxO>();
@@ -122,13 +123,23 @@ namespace Hellord
             for (int i = 0; i < bx.Length; i++) { int x = bx[i] + sh, y = 20 - i; t.SetPixel(x, y, tint); t.SetPixel(x + 1, y, tint); }
             for (int i = 0; i < 6; i++) t.SetPixel(9 + i + sh, 12, tint); t.Apply(); return t;
         }
-        readonly Dictionary<string, Sprite[]> _lzStrip1666 = new Dictionary<string, Sprite[]>();
-        /// <summary>Sprite hook: Resources/HellordArt/Leizu1666/&lt;key&gt;.png = horizontal strip of square frames (pivot bottom-centre, 16 px/u). null = placeholder.</summary>
-        Sprite[] LzStrip1666(string key)
+        class LzAnim { public Sprite[] f; public float fps; }
+        Dictionary<string, LzAnim> _lzAnim1666;
+        /// <summary>Thunder Hound sheets (HA t1666): thunder_hound_all_&lt;anim&gt;_&lt;dir&gt; (64x64, feet pivot 32,58). null = not imported.</summary>
+        LzAnim LzHoundAnim1666(string anim, string dir)
         {
-            if (_lzStrip1666.TryGetValue(key, out var a)) return a; var t = Resources.Load<Texture2D>("HellordArt/Leizu1666/" + key); if (t == null) return _lzStrip1666[key] = null;
-            t.filterMode = FilterMode.Point; int h = t.height, n = Mathf.Max(1, t.width / Mathf.Max(1, h)); a = new Sprite[n];
-            for (int i = 0; i < n; i++) a[i] = Sprite.Create(t, new Rect(i * h, 0, h, h), new Vector2(0.5f, 0f), 16f); return _lzStrip1666[key] = a;
+            if (_lzAnim1666 == null)
+            {
+                _lzAnim1666 = new Dictionary<string, LzAnim>(); const int fw = 64, fh = 64, px = 32, py = 58;
+                foreach (var r in new[] { "idle:8", "run:12", "bite:12" }) foreach (var d in new[] { "south", "east", "north" })
+                {
+                    var kv = r.Split(':'); var tx = Resources.Load<Texture2D>("HellordArt/Leizu1666/thunder_hound/thunder_hound_all_" + kv[0] + "_" + d); if (tx == null) continue;
+                    tx.filterMode = FilterMode.Point; int n = Mathf.Max(1, tx.width / fw); var a = new LzAnim { f = new Sprite[n], fps = float.Parse(kv[1]) };
+                    for (int i = 0; i < n; i++) a.f[i] = Sprite.Create(tx, new Rect(i * fw, 0, fw, fh), new Vector2(px / (float)fw, 1f - py / (float)fh), 16f);
+                    _lzAnim1666[kv[0] + "_" + d] = a;
+                }
+            }
+            return _lzAnim1666.TryGetValue(anim + "_" + dir, out var x) ? x : null;
         }
         readonly Dictionary<string, Material> _lzMat1666 = new Dictionary<string, Material>();
         Material LzFxMat1666(string n) { if (_lzMat1666.TryGetValue(n, out var m)) return m; m = Resources.Load<Material>("LeizuFX/Materials/" + n); return _lzMat1666[n] = m; }
@@ -197,13 +208,13 @@ namespace Hellord
             if (LzBeat1666 < 3)
             {
                 float r = s.R(T.dsStrikeR1666); LzSky1666(at); Query(at, r, _lzq1666); SkillArea53(at, r, dmg, (int)s.def.id);
-                foreach (int i in _lzq1666) { var e = _en[i]; if (!LzOk1666(e) || (e.pos - at).magnitude > r + e.radius) continue; Hit(e, dmg * T.dsStrikeDmg1666, s, (e.pos - at).normalized * 1.5f); }
+                foreach (int i in _lzq1666.ToArray()) { var e = _en[i]; if (!LzOk1666(e) || (e.pos - at).magnitude > r + e.radius) continue; Hit(e, dmg * T.dsStrikeDmg1666, s, (e.pos - at).normalized * 1.5f); }
                 HellordAudio.Play("storm_ring", 1.6f + 0.15f * LzBeat1666);
             }
             else
             {
                 float r = s.R(T.dsClapR1666); LzBeat1666 = 0; LzClaps1666++; Query(at, r, _lzq1666); SkillArea53(at, r, dmg, (int)s.def.id); LzFxO1666(0, at, r, 0.35f, "LZFX_Thunderclap", new Vector4(-r * 16, -r * 10, r * 32, r * 20)); LzSky1666(at);
-                foreach (int i in _lzq1666) { var e = _en[i]; if (!LzOk1666(e) || (e.pos - at).magnitude > r + e.radius) continue; Hit(e, dmg * (e.shockT > 0f ? T.dsClapShocked1666 : T.dsClapOther1666), s, (e.pos - at).normalized * 3f); }
+                foreach (int i in _lzq1666.ToArray()) { var e = _en[i]; if (!LzOk1666(e) || (e.pos - at).magnitude > r + e.radius) continue; Hit(e, dmg * (e.shockT > 0f ? T.dsClapShocked1666 : T.dsClapOther1666), s, (e.pos - at).normalized * 3f); }
                 HellordAudio.Play("storm_ring", 0.9f); ScreenShake.Add(1.5f, 0.12f);
             }
             return true;
@@ -217,7 +228,7 @@ namespace Hellord
         bool CastThunderLash1666(SkillInst s, float dmg)
         {
             var T = TZ; float r = s.R(T.tlReach1666), half = T.tlArc1666 * 0.5f; Vector2 dir = PbAim1567(), c = _heroPos; Query(c, r + 1f, _lzq1666); SkillArea53(c + dir * r * 0.5f, r * 0.6f, dmg, (int)s.def.id);
-            foreach (int i in _lzq1666)
+            foreach (int i in _lzq1666.ToArray()) // copy: a hit can run a Query (Mark of Judgement payoff)
             {
                 var e = _en[i]; if (!LzOk1666(e) || !PbInArc1567(e, c, dir, r, half, 0.4f)) continue; bool sh = e.shockT > 0f; Vector2 kd = (e.pos - c).normalized;
                 Hit(e, dmg * T.tlDmg1666, s, Vector2.zero); LzLashHits1666++;
@@ -241,7 +252,8 @@ namespace Hellord
             if (_lzWireNeedUp1666 && !HInput.LmbHeld716()) _lzWireNeedUp1666 = false;
             var w = _lzWire1666; if (w == null) return; var T = TZ; var s = w.s;
             bool stillBasic = _basic1517 == s && s.def.id == SkillId.LiveWire;
-            if (!stillBasic || !LzBasicHeld1666 || w.t >= T.lwMaxHold1666) { if (w.t >= T.lwMaxHold1666) _lzWireNeedUp1666 = true; _lzWire1666 = null; s.cd = s.def.cooldown * s.CdMul * LzBasicCdK1666(s); return; }
+            float maxHold = s.Dur(T.lwMaxHold1666); // Duration supports hold longer
+            if (!stillBasic || !LzBasicHeld1666 || w.t >= maxHold) { if (w.t >= maxHold) _lzWireNeedUp1666 = true; _lzWire1666 = null; s.cd = s.def.cooldown * s.CdMul * LzBasicCdK1666(s); return; }
             w.t += dt; s.cd = 99f; // blocked while the beam is held; the real cooldown starts on release
             float range = s.R(T.lwRange1666); Vector2 o = HeroCenter, dir = PbAim1567(), end = o + dir * range;
             // keep the lock while the target stays near the aim line + in range; else re-lock on the closest body along the line
@@ -287,12 +299,12 @@ namespace Hellord
                     foreach (int ei in _lzq1666) { var e = _en[ei]; if (!LzOk1666(e) || (e.pos - h.home).magnitude > leash) continue; float d = (e.pos - h.p).sqrMagnitude + (h.bitAt.TryGetValue(e.id, out var bt) && runTime - bt < 0.8f ? 100f : 0f); if (d < best) { best = d; h.tgt = e; } }
                 }
                 Vector2 goal = h.tgt != null ? h.tgt.pos : h.home + new Vector2(Mathf.Cos(h.t * 2f + h.seed), Mathf.Sin(h.t * 2f + h.seed) * 0.6f) * 0.6f;
-                Vector2 dv = goal - h.p; float dm = dv.magnitude; if (dm > 0.01f) { h.face = dv / dm; h.p += h.face * Mathf.Min(dm, T.hdSpeed1666 * dt * (h.tgt != null ? 1f : 0.3f)); }
+                Vector2 dv = goal - h.p; float dm = dv.magnitude; h.moving = dm > 0.05f; if (dm > 0.01f) { h.face = dv / dm; h.p += h.face * Mathf.Min(dm, T.hdSpeed1666 * dt * (h.tgt != null ? 1f : 0.3f)); }
                 if ((h.p - h.home).magnitude > leash) h.p = h.home + (h.p - h.home).normalized * leash;
                 h.bite -= dt;
                 if (h.tgt != null && h.bite <= 0f && (h.tgt.pos - h.p).magnitude <= T.hdReach1666 + h.tgt.radius)
                 {
-                    h.bite = T.hdBite1666; float d = SkillDamage(h.s) * T.hdDmg1666; Hit(h.tgt, d, h.s, h.face * 1.2f); LzBites1666++; h.bitAt[h.tgt.id] = runTime; _lastCast[(int)h.s.def.id] = Time.time;
+                    h.bite = T.hdBite1666; h.bitT = h.t; float d = SkillDamage(h.s) * T.hdDmg1666; Hit(h.tgt, d, h.s, h.face * 1.2f); LzBites1666++; h.bitAt[h.tgt.id] = runTime; _lastCast[(int)h.s.def.id] = Time.time;
                     LzBolt1666(h.p + Vector2.up * 0.3f, BodyCentre1595(h.tgt), LC); h.tgt = null;
                 }
                 LzDrawHound1666(h);
@@ -300,8 +312,15 @@ namespace Hellord
         }
         void LzDrawHound1666(LzHound h)
         {
-            var fr = LzStrip1666("thunder_hound"); int ord = YSort(h.p.y);
-            if (fr != null && fr.Length > 0) { var sr = Z37SR(fr[(int)(h.t * 10f) % fr.Length], ZSnap1618(h.p), Vector2.one, 0f, new Color(1f, 1f, 1f, Mathf.Clamp01((h.life - h.t) / 0.3f)), ord - Z37Order); sr.flipX = h.face.x < 0f; return; }
+            int ord = YSort(h.p.y); bool biting = h.t - h.bitT < 0.5f; string an = biting ? "bite" : h.moving ? "run" : "idle";
+            bool flip = h.face.x < 0f; string dir = Mathf.Abs(h.face.x) > Mathf.Abs(h.face.y) * 1.1f ? "east" : h.face.y > 0f ? "north" : "south";
+            var a = LzHoundAnim1666(an, dir);
+            if (a != null && a.f.Length > 0)
+            {   // HA sheet (bite plays once from the bite, idle / run loop)
+                float at = biting ? h.t - h.bitT : h.t; int fi = (int)(at * a.fps); fi = biting ? Mathf.Min(fi, a.f.Length - 1) : fi % a.f.Length; float fa = Mathf.Clamp01((h.life - h.t) / 0.3f);
+                ZDiscO1618(h.p, 0.32f, new Color(0, 0, 0, 0.28f * fa), ord - 2, 0.4f);
+                var sr = Z37SR(a.f[fi], ZSnap1618(h.p), Vector2.one, 0f, new Color(1f, 1f, 1f, fa), ord - Z37Order); sr.flipX = flip; return;
+            }
             // PLACEHOLDER: a small bright quadruped silhouette made of discs + a crackle
             float bob = Mathf.Abs(Mathf.Sin(h.t * 14f)) * 0.08f, fx = h.face.x < 0f ? -1f : 1f; float fade = Mathf.Clamp01((h.life - h.t) / 0.3f);
             ZDiscO1618(h.p, 0.3f, new Color(0, 0, 0, 0.3f * fade), ord - 2, 0.4f);
@@ -396,8 +415,8 @@ namespace Hellord
         }
         void LzMarkPay1666()
         {
-            var e = LzMark1666; LzMark1666 = null; if (!LzOk1666(e)) return; int k = LzK1666(1, 1); var s = ZkI1651(k); var T = TZ; Vector2 bc = BodyCentre1595(e); LzMarkPays1666++;
-            LzSky1666(e.pos); ScreenShake.Add(2f, 0.15f); HellordAudio.Play("pact_unlock", 1.1f); Hit(e, ZkHit1651(k) * T.mjDmg1666, s, Vector2.zero);
+            var e = LzMark1666; LzMark1666 = null; if (e == null) return; int k = LzK1666(1, 1); var s = ZkI1651(k); var T = TZ; Vector2 bc = BodyCentre1595(e); LzMarkPays1666++;
+            LzSky1666(e.pos); ScreenShake.Add(2f, 0.15f); HellordAudio.Play("pact_unlock", 1.1f); if (LzOk1666(e)) Hit(e, ZkHit1651(k) * T.mjDmg1666, s, Vector2.zero);
             Query(bc, ZkR1651(k, T.mjArcR1666), _lzq1666); int n = 0; var tg = new List<Enemy>();
             foreach (int i in _lzq1666) { var o = _en[i]; if (o == e || !LzOk1666(o) || o.shockT <= 0f || (o.pos - e.pos).magnitude > ZkR1651(k, T.mjArcR1666)) continue; tg.Add(o); if (++n >= T.mjArcN1666) break; }
             foreach (var o in tg) { LzBolt1666(bc, BodyCentre1595(o), LY); Hit(o, ZkHit1651(k) * T.mjArcDmg1666, s, Vector2.zero); }
@@ -475,7 +494,7 @@ namespace Hellord
         {
             if (!LzOn1666 || s == null) return;
             if (!tick && s == _basic1517) LzComboMark1666(0);
-            if (LzMark1666 != null && e == LzMark1666 && LzLightning1666(s) && s.def.id != SkillId.LzMarkOfJudgement) { LzMarkCharge1666 += dmg * (e.shockT > 0f ? 1f + e.shockAmp : 1f); LzMarkHits1666++; float need = e.boss ? Mathf.Max(1, TZ.mjBossHits1666) : TZ.mjThresh1666 * e.maxHp; if ((e.boss ? LzMarkHits1666 : LzMarkCharge1666) >= need || !e.alive) { if (e.alive) LzMarkPay1666(); else LzMark1666 = null; } }
+            if (LzMark1666 != null && e == LzMark1666 && LzLightning1666(s) && s.def.id != SkillId.LzMarkOfJudgement) { LzMarkCharge1666 += dmg * (e.shockT > 0f ? 1f + e.shockAmp : 1f); LzMarkHits1666++; float need = e.boss ? Mathf.Max(1, TZ.mjBossHits1666) : TZ.mjThresh1666 * e.maxHp; if ((e.boss ? LzMarkHits1666 : LzMarkCharge1666) >= need) LzMarkPay1666(); else if (!e.alive) LzMark1666 = null; } // charged on the killing hit = still pays (arcs from where it fell)
             if (LzDrumOut1666 && LzLightning1666(s) && s.def.id != SkillId.LzThunderDrum && (e.pos - _lzDrum1666.p).magnitude <= TZ.tdHitR1666) LzDrumBoom1666();
         }
         /// <summary>KillEnemy (top): Heaven-Splitting Arc infusion drops from shocked demons.</summary>

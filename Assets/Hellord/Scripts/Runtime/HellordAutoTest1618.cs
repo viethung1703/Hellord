@@ -19,6 +19,10 @@ namespace Hellord
                 case "zhclip1618_move": return AtZhClip1618(1);
                 case "zhclip1618_special": return AtZhClip1618(2);
                 case "zhclip1618_ult": return AtZhClip1618(3);
+                case "lzclip1666_basics": return AtLzClip1666(0); // t1666 Leizu kit clips + checks
+                case "lzclip1666_move": return AtLzClip1666(1);
+                case "lzclip1666_special": return AtLzClip1666(2);
+                case "lzclip1666_ult": return AtLzClip1666(3);
                 case "kindling1635": return AtKindlingClip1635();
                 case "levelup1639": return AtLevelUpClip1639(); // t1639 clip: kit cards on level-up
                 case "skillbar1641": return AtSkillBarClip1641(); // t1641 clip: the 4-slot kit bar
