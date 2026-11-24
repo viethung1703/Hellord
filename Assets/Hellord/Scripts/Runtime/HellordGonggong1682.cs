@@ -26,7 +26,7 @@ namespace Hellord
     // =====================================================================================================================
     public partial class HellordGame
     {
-        public static readonly string[] GgKeys1682 = { "ridetheflood", "rimecoat", "floodgate", "frozenriver", "drowningmark", "hypothermia", "shatter", "toppledpillar", "frostwall", "ramofmountbuzhou", "thegreatflood", "eternalwinter", "pillarsofao", "tidalsurge", "whirlpool", "breathofthedeep", "buzhourift", "eyeoftheblackwaters" };
+        public static readonly string[] GgKeys1682 = { "ridetheflood", "rimecoat", "floodgate", "frozenriver", "drowningmark", "hypothermia", "shatter", "toppledpillar", "frostwall", "ramofmountbuzhou", "greatflood", "eternalwinter", "pillarsofao", "tidalsurge", "whirlpool", "breathofthedeep", "buzhourift", "eyeblackwaters" };
         public static readonly string[] GgMoveNames1682 = { "NONE", "RIDE THE FLOOD", "RIME COAT", "FLOODGATE", "FROZEN RIVER" };
         public static readonly string[] GgSpecNames1682 = { "NONE", "DROWNING MARK", "HYPOTHERMIA", "SHATTER", "TOPPLED PILLAR", "FROST WALL" };
         public static readonly string[] GgUltNames1682 = { "NONE", "RAM OF MOUNT BUZHOU", "THE GREAT FLOOD", "ETERNAL WINTER", "PILLARS OF AO" };
@@ -547,19 +547,187 @@ namespace Hellord
             GgBlockSpec1682(e, prev); GgBlockUlt1682(e, prev);
         }
 
+        // =============================================================== SPECIALS (RMB, ZhSpecCd)
+        void GgSpecial1682()
+        {
+            int sp = GgSpec1682; if (sp == 0) return; if (ZhSpecCd > 0f) { HellordAudio.Play("basic_not_ready", 0.7f); return; }
+            int k = GgK1682(1, sp); var T = TZ; Vector2 cur = MouseWorld(); ClampToRoom(ref cur, 4);
+            if (sp == 1)
+            {   // Drowning Mark: the demon nearest the cursor within the pick radius (fixed: Mark has no Area tag)
+                Enemy best = null; float bd = T.dmPickR1682 * T.dmPickR1682; Query(cur, T.dmPickR1682, _ggq1682);
+                foreach (int ei in _ggq1682) { var e = _en[ei]; if (!GgOk1682(e)) continue; float d = (e.pos - cur).sqrMagnitude; if (d <= bd) { bd = d; best = e; } }
+                if (best == null) { HellordAudio.Play("basic_not_ready", 0.7f); return; }
+                GgMark1682 = best; _ggMarkId1682 = best.id; GgMarkT1682 = ZkDur1651(k, T.dmLife1682); best.lured1651 = true; /* probe */ ZhSpecCd = ZkCd1651(k, T.dmCd1682); HellordAudio.Play("curse_rune_arm", 0.8f); GgFxO1682(3, best.pos, 0.9f, 0.3f);
+            }
+            else if (sp == 2) { _ggCurse1682.Add(new GgCurse { p = cur, r = ZkR1651(k, T.hyR1682), dur = ZkDur1651(k, T.hyDur1682) }); ZhSpecCd = ZkCd1651(k, T.hyCd1682); HellordAudio.Play("curse_rune_arm", 0.7f); }
+            else if (sp == 3)
+            {
+                if (!GgShatter1682(k, cur)) { HellordAudio.Play("basic_not_ready", 0.7f); return; } // nothing frozen near the cursor: no cast, no cooldown
+                ZhSpecCd = ZkCd1651(k, T.shCd1682);
+            }
+            else if (sp == 4)
+            {
+                Vector2 dir = cur - _heroPos; dir = dir.sqrMagnitude > 1e-4f ? dir.normalized : PbAim1567();
+                _ggPillar1682.Add(new GgPillar { p = cur, dir = dir, delay = T.tpDelay1682, r = T.tpR1682, k = k }); ZhSpecCd = ZkCd1651(k, T.tpCd1682); HellordAudio.Play("fire_pillar_telegraph", 0.7f); GgFxO1682(1, cur, 0.8f, 0.25f);
+            }
+            else if (sp == 5)
+            {   // one wall at a time: crystals on a chord across the aim at the cursor, bowed away from you
+                Vector2 dir = cur - _heroPos; dir = dir.sqrMagnitude > 1e-4f ? dir.normalized : PbAim1567(); Vector2 n = new Vector2(-dir.y, dir.x); float L = ZkR1651(k, T.fwLen1682); int N = Mathf.Max(2, T.fwN1682);
+                var w = new GgFrostWall { life = ZkDur1651(k, T.fwDur1682), r = ZkR1651(k, T.fwBoomR1682), mid = cur, dir = dir };
+                for (int i = 0; i < N; i++) { float f = i / (N - 1f) * 2f - 1f; Vector2 p = cur + n * f * L * 0.5f + dir * T.fwBow1682 * (1f - f * f); ClampToRoom(ref p, 4); w.c.Add(new GgCrystal { p = p }); }
+                _ggFw1682 = w; ZhSpecCd = ZkCd1651(k, T.fwCd1682); HellordAudio.Play("frost_cleave", 0.45f);
+            }
+            GgCasts1682++;
+        }
+        /// <summary>Shatter: every frozen demon within shR of the cursor explodes (shBlastR, x2.5); its freeze is used up and the blast chills the demons around it.</summary>
+        bool GgShatter1682(int k, Vector2 cur)
+        {
+            var T = TZ; float R = ZkR1651(k, T.shR1682), br = ZkR1651(k, T.shBlastR1682); var s = ZkI1651(k); var fr = new List<Enemy>(); Query(cur, R, _ggq1682);
+            foreach (int ei in _ggq1682) { var e = _en[ei]; if (GgOk1682(e) && e.freezeT > 0f && (e.pos - cur).magnitude <= R + e.radius) fr.Add(e); }
+            if (fr.Count == 0) return false;
+            foreach (var e in fr)
+            {
+                Vector2 c = e.pos; e.freezeT = 0f; e.chillHits = 0; if (StatusFX.IsAlive(e.chillH)) StatusFX.SetFrozen(e.chillH, false); GgShatters1682++;
+                Query(c, br, _ggq1682);
+                foreach (int oi in _ggq1682.ToArray()) { var o = _en[oi]; if (!GgOk1682(o) || (o.pos - c).magnitude > br + o.radius) continue; Hit(o, ZkHit1651(k) * T.shDmg1682, s, (o.pos - c).normalized * 0.8f); if (o != e && GgOk1682(o)) ApplyStatus(o, Status.Chill, 0f, 1f, s); }
+                GgFxO1682(2, BodyCentre1595(e), br, 0.35f, "GGFX_Shatter", GgZoneRc1682(br)); GgFxO1682(0, c, br, 0.3f);
+            }
+            HellordAudio.Play("ice_shatter", 0.9f); ScreenShake.Add(1.5f, 0.12f); return true;
+        }
+        void GgPillarFall1682(GgPillar p)
+        {
+            var T = TZ; var s = ZkI1651(p.k); float len = ZkR1651(p.k, T.tpLen1682), hw = ZkR1651(p.k, T.tpW1682) * 0.5f; Vector2 a = p.p, b = p.p + p.dir * len; ClampToRoom(ref b, 4);
+            for (int q = 0; q < 3; q++) SkillArea53(Vector2.Lerp(a, b, (q + 0.5f) / 3f), hw + len / 6f, ZkHit1651(p.k) * T.tpDmg1682, (int)SkillId.GgToppledPillar);
+            Query((a + b) * 0.5f, len * 0.5f + hw + 1f, _ggq1682);
+            foreach (int ei in _ggq1682.ToArray())
+            {
+                var e = _en[ei]; if (!GgOk1682(e) || !GgInLine1682(e, a, b, hw)) continue; Hit(e, ZkHit1651(p.k) * T.tpDmg1682, s, p.dir * 0.6f); GgPillarHits1682++;
+                for (int c = 0; c < T.tpChills1682 && GgOk1682(e); c++) ApplyStatus(e, Status.Chill, 0f, 1f, s);
+            }
+            HellordAudio.Play("oxhead_stomp_strike", 0.8f); ScreenShake.Add(2.5f, 0.18f); GgFxO1682(4, a, hw, 0.35f, "GGFX_ToppledPillar_Crush", new Vector4(-8, -8, 16, 16), b);
+        }
+        void GgCrystalBoom1682(GgCrystal c)
+        {
+            var w = _ggFw1682; if (w == null || !c.alive) return; c.alive = false; var T = TZ; int k = GgK1682(1, 5); var s = ZkI1651(k);
+            Query(c.p, w.r, _ggq1682);
+            foreach (int ei in _ggq1682.ToArray()) { var o = _en[ei]; if (!GgOk1682(o) || (o.pos - c.p).magnitude > w.r + o.radius) continue; Hit(o, ZkHit1651(k) * T.fwDmg1682, s, (o.pos - c.p).normalized * 0.8f); if (GgOk1682(o)) ApplyStatus(o, Status.Chill, 0f, 1f, s); }
+            GgCrystalBooms1682++; GgFxO1682(2, c.p + Vector2.up * 0.4f, w.r, 0.3f, "GGFX_FrostWall_Boom", GgZoneRc1682(w.r)); HellordAudio.Play("ice_shatter", 1.2f);
+        }
+        /// <summary>SkillArea53 (any of your areas): Frost Wall crystals inside it explode.</summary>
+        void GgArea1682(Vector2 c, float r, int key)
+        {
+            var w = _ggFw1682; if (w == null || key == (int)SkillId.GgFrostWall) return; float cr = TZ.fwCrR1682;
+            foreach (var x in w.c.ToArray()) if (x.alive && (x.p - c).magnitude <= r + cr) GgCrystalBoom1682(x);
+        }
+        /// <summary>a projectile at p (radius r): a crystal it touches explodes. True = it hit one.</summary>
+        bool GgCrystalAt1682(Vector2 p, float r)
+        {
+            var w = _ggFw1682; if (w == null) return false; float cr = TZ.fwCrR1682;
+            foreach (var x in w.c) if (x.alive && (x.p - p).magnitude <= r + cr) { GgCrystalBoom1682(x); return true; }
+            return false;
+        }
+        void TickGgSpec1682(float dt)
+        {
+            var T = TZ;
+            // ---- Drowning Mark
+            if (GgMark1682 != null)
+            {
+                var e = GgMark1682; GgMarkT1682 -= dt;
+                if (!GgOk1682(e) || e.id != _ggMarkId1682 || GgMarkT1682 <= 0f) { GgMark1682 = null; GgMarkT1682 = 0f; }
+                else
+                {
+                    Vector2 top = e.pos + Vector2.up * (e.boss ? BossHeadY + 0.4f : e.hitY * 2f + 0.5f); int o = YSort(e.pos.y) + 300;
+                    if (!GgFx1682("GGFX_DrowningMark", top, -12, -12, 24, 26, o, runTime, 0.1f, ZP.F("_Left", GgMarkT1682), ZP.F("_Relay", Mathf.Clamp01(1f - (runTime - _ggRelayT1682) / 0.3f))))
+                    {   // PLACEHOLDER: a blue water drop over the head + a faint relay ring on the ground
+                        ZDiscO1618(top, 0.16f, new Color(GB.r, GB.g, GB.b, 0.95f), o); ZSegO1618(top + new Vector2(0f, 0.12f), top + new Vector2(0f, 0.34f), 0.12f, GB, o); ZPx1618(top + new Vector2(-0.05f, 0.03f), 1, GW, o + 1);
+                        ZRingO1618(e.pos, T.dmRelayR1682, new Color(GC.r, GC.g, GC.b, 0.15f + 0.35f * Mathf.Clamp01(1f - (runTime - _ggRelayT1682) / 0.3f)), FbGround + YSort(e.pos.y) + 30, 0.55f);
+                    }
+                }
+            }
+            // ---- Hypothermia (delayed area curse)
+            for (int i = _ggCurse1682.Count - 1; i >= 0; i--)
+            {
+                var c = _ggCurse1682[i]; c.t += dt; int o = FbGround + YSort(c.p.y) + 30;
+                if (!c.done)
+                {
+                    float k = Mathf.Clamp01(c.t / Mathf.Max(0.01f, T.hyDelay1682));
+                    if (!GgFx1682("GGFX_Hypothermia", c.p, -c.r * 16f - 8f, -c.r * 9f - 8f, c.r * 32f + 16f, c.r * 18f + 16f, o, c.t, 0.2f, ZP.F("_Progress", k), ZP.F("_Radius", c.r * 16f)))
+                    { ZRingO1618(c.p, c.r, new Color(GI.r, GI.g, GI.b, 0.5f), o, 0.55f); ZRingO1618(c.p, c.r * (1f - k), new Color(GC.r, GC.g, GC.b, 0.85f), o + 1, 0.55f); }
+                    if (c.t >= T.hyDelay1682)
+                    {
+                        c.done = true; Query(c.p, c.r, _ggq1682);
+                        foreach (int ei in _ggq1682) { var e = _en[ei]; if (!GgOk1682(e) || (e.pos - c.p).magnitude > c.r + e.radius) continue; e.ggHypo1682 = runTime + c.dur; e.lured1651 = true; /* probe */ GgCursed1682++; }
+                        GgFxO1682(0, c.p, c.r, 0.35f); HellordAudio.Play("curse_rune_burst", 0.8f);
+                    }
+                }
+                else if (c.t >= T.hyDelay1682 + 0.4f) _ggCurse1682.RemoveAt(i);
+            }
+            if (GgOn1682 && GgSpec1682 == 2)
+                for (int i = 0; i < maxEnemies; i++)
+                {   // cursed overlay: a pale snowflake over the head
+                    var e = _en[i]; if (e == null || !GgOk1682(e) || e.ggHypo1682 <= runTime) continue; Vector2 top = e.pos + Vector2.up * (e.boss ? BossHeadY + 0.3f : e.hitY * 2f + 0.35f); int o = YSort(e.pos.y) + 290;
+                    if (!GgFx1682("GGFX_Hypothermia_Status", top, -8, -8, 16, 16, o, runTime, e.id * 0.13f, ZP.F("_Left", e.ggHypo1682 - runTime))) { ZSegO1618(top + new Vector2(-0.14f, 0f), top + new Vector2(0.14f, 0f), 0.05f, GI, o); ZSegO1618(top + new Vector2(0f, -0.14f), top + new Vector2(0f, 0.14f), 0.05f, GI, o); }
+                }
+            // ---- Toppled Pillar
+            for (int i = _ggPillar1682.Count - 1; i >= 0; i--)
+            {
+                var p = _ggPillar1682[i]; p.t += dt; if (!p.fell && p.t >= p.delay) { p.fell = true; GgPillarFall1682(p); }
+                float len = ZkR1651(p.k, T.tpLen1682); int o = YSort(p.p.y) + 10;
+                if (!p.fell)
+                {
+                    float k = Mathf.Clamp01(p.t / Mathf.Max(0.01f, p.delay)), rise = Mathf.Clamp01(p.t / 0.15f);
+                    if (!GgFx1682("GGFX_ToppledPillar", p.p, -16, -6, 32, 64, o, p.t, 0.7f, ZP.V("_Dir", p.dir), ZP.F("_Progress", k), ZP.F("_Fell", 0f)))
+                    {   // PLACEHOLDER: a stone pillar with an ice band rising out of the ground + the fall line telegraph
+                        ZSegO1618(p.p, p.p + Vector2.up * 2.4f * rise, 0.55f, GS, o); ZSegO1618(p.p + Vector2.up * 0.9f * rise, p.p + Vector2.up * 1.5f * rise, 0.6f, GI, o + 1); ZSegO1618(p.p + Vector2.up * 2.4f * rise, p.p + Vector2.up * 2.5f * rise, 0.45f, GW, o + 1);
+                        ZSegO1618(p.p, p.p + p.dir * len, ZkR1651(p.k, T.tpW1682), new Color(GD.r, GD.g, GD.b, 0.15f + 0.25f * k), FbGround + YSort(p.p.y) + 20);
+                    }
+                }
+                else
+                {
+                    float f = Mathf.Clamp01((p.t - p.delay) / 0.6f); Vector2 b = p.p + p.dir * len;
+                    if (!GgFx1682("GGFX_ToppledPillar", p.p, -16, -6, 32, 64, o, p.t, 0.7f, ZP.V("_Dir", p.dir), ZP.F("_Progress", 1f), ZP.F("_Fell", f)))
+                    { ZSegO1618(p.p, b, 0.5f, new Color(GS.r, GS.g, GS.b, 1f - f), YSort(Mathf.Min(p.p.y, b.y)) + 10); ZSegO1618(Vector2.Lerp(p.p, b, 0.4f), Vector2.Lerp(p.p, b, 0.62f), 0.55f, new Color(GI.r, GI.g, GI.b, 1f - f), YSort(Mathf.Min(p.p.y, b.y)) + 11); }
+                    if (f >= 1f) _ggPillar1682.RemoveAt(i);
+                }
+            }
+            // ---- Frost Wall
+            var w = _ggFw1682;
+            if (w != null)
+            {
+                w.t += dt; bool any = false; foreach (var x in w.c) any |= x.alive;
+                if (w.t >= w.life || !any) { foreach (var x in w.c) if (x.alive) GgFxO1682(3, x.p, 0.4f, 0.2f); _ggFw1682 = null; }
+                else
+                    foreach (var x in w.c)
+                    {
+                        if (!x.alive) continue; int o = YSort(x.p.y) + 10; float fade = Mathf.Clamp01((w.life - w.t) / 0.3f);
+                        if (!GgFx1682("GGFX_FrostWall_Crystal", x.p, -10, -4, 20, 32, o, w.t, x.p.x * 0.37f, ZP.F("_Life", w.t / w.life), ZP.F("_Fade", fade)))
+                        { ZSegO1618(x.p, x.p + Vector2.up * 1.3f, 0.5f, new Color(GP.r, GP.g, GP.b, fade), o); ZSegO1618(x.p + Vector2.up * 0.2f, x.p + Vector2.up * 1.25f, 0.3f, new Color(GI.r, GI.g, GI.b, fade), o + 1); ZPx1618(x.p + new Vector2(-0.06f, 1.0f), 1, GW, o + 2); }
+                    }
+            }
+        }
+        float _ggRelayT1682 = -9f;
+        /// <summary>Hit (after damage): a cold hit on the Drowning-Marked demon chills every demon within dmRelayR1682 of it.</summary>
+        void GgPostHit1682(Enemy e, float dmg, SkillInst s, bool tick)
+        {
+            if (!GgOn1682 || _ggRelaying1682 || GgMark1682 == null || e != GgMark1682 || GgMarkT1682 <= 0f || !GgCold1682(s)) return;
+            _ggRelaying1682 = true; var src = ZkI1651(GgK1682(1, 1)); float R = TZ.dmRelayR1682; Query(e.pos, R, _ggq1682);
+            foreach (int ei in _ggq1682.ToArray()) { var o = _en[ei]; if (o == e || !GgOk1682(o) || (o.pos - e.pos).magnitude > R + o.radius) continue; ApplyStatus(o, Status.Chill, 0f, 1f, src); o.lured1651 = true; GgMarkRelays1682++; }
+            _ggRelayT1682 = runTime; _ggRelaying1682 = false;
+        }
+        /// <summary>enemy move: a standing pillar and the Frost Wall crystals hold demons back.</summary>
+        void GgBlockSpec1682(Enemy e, Vector2 prev)
+        {
+            foreach (var p in _ggPillar1682) if (!p.fell && GgDiscBlock1682(e, prev, p.p, p.r)) GgPillarBlocks1682++;
+            var w = _ggFw1682; if (w != null) { float cr = TZ.fwCrR1682; foreach (var x in w.c) if (x.alive && GgDiscBlock1682(e, prev, x.p, cr)) GgWallBlocks1682++; }
+        }
+
         // ---- STAGE STUBS (filled in by the next stages)
-        void GgSpecial1682() { }
-        void TickGgSpec1682(float dt) { }
-        void GgPostHit1682(Enemy e, float dmg, SkillInst s, bool tick) { }
-        void GgArea1682(Vector2 c, float r, int key) { }
-        bool GgCrystalAt1682(Vector2 p, float r) => false;
         public bool GgUltArmed1682 => false;
         public float GgUltProg1682() => 0f;
         void GgUltimate1682() { }
         void TickGgUlt1682(float dt) { }
         void GgOnKill1682(Enemy e) { }
         void GgUltHurt1682(float dmg) { }
-        void GgBlockSpec1682(Enemy e, Vector2 prev) { }
         void GgBlockUlt1682(Enemy e, Vector2 prev) { }
     }
 }
