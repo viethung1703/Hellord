@@ -114,7 +114,7 @@ namespace Hellord
             {
                 Basic(SkillId.Frostbolt, "GONGGONG ULTIMATES"); _zKeepHp = false; _atGod = false;
                 // Ram of Mount Buzhou: damage taken fills wrath -> unhurt charge, x8 along the path, shard rain
-                T.ggUlt1682 = 1; Toast("RAM OF MOUNT BUZHOU"); for (int i = 0; i < 6; i++) Pack(EType.Imp, H0 + new Vector2(2f + i * 1.4f, (i % 2 - 0.5f) * 0.8f), 0f, 5000f);
+                T.ggUlt1682 = 1; yield return LF(40); /* t1688: after the floor banner, so the Ram trail reads */ Toast("RAM OF MOUNT BUZHOU"); for (int i = 0; i < 6; i++) Pack(EType.Imp, H0 + new Vector2(2f + i * 1.4f, (i % 2 - 0.5f) * 0.8f), 0f, 5000f);
                 yield return LF(5); bool notYet = !GgUltArmed1682; int g = 0; while (GgWrath1682 < 1f && g++ < 40) { _iframe = 0f; hp = maxHp; HurtHero(maxHp * 0.2f, "clip"); } hp = maxHp; bool armed = GgUltArmed1682;
                 atMouse986 = H0 + new Vector2(8f, 0f); int rh0 = GgRamHits1682, rs0 = GgRamShardHits1682; Vector2 hb = _heroPos; float hpB = hp; yield return ZPress1618(2); yield return LF(4); _iframe = 0f; HurtHero(10f, "clip"); bool unhurt = hp >= hpB - 0.01f; yield return LF(40);
                 Res("ram", notYet && armed && GgRamHits1682 - rh0 >= 5 && GgRamShardHits1682 - rs0 >= 1 && (_heroPos - hb).magnitude > 6f && unhurt, $"armed after {g} hits ({notYet}/{armed}), path hits {GgRamHits1682 - rh0}, shard hits {GgRamShardHits1682 - rs0}, charged {(_heroPos - hb).magnitude:0.#} u, unhurt mid-charge {unhurt}"); hp = maxHp; yield return LF(20);
