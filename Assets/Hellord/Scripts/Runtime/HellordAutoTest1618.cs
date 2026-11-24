@@ -33,6 +33,10 @@ namespace Hellord
                 case "groundsort1644": return AtGroundSort1644(); // t1644 clip: fire ground over corpses, under living enemies
                 case "ultprog1646": return AtUltProg1646(); // t1646 clip: R slot ultimate progress
                 case "sup1651": return AtSup1651(); // t1651 support matrix
+                case "ggclip1682_basics": return AtGgClip1682(0); // t1682 Gonggong kit clips + checks
+                case "ggclip1682_move": return AtGgClip1682(1);
+                case "ggclip1682_special": return AtGgClip1682(2);
+                case "ggclip1682_ult": return AtGgClip1682(3);
                 case "supkit1677": return AtSupKit1677(); // t1677 support card whose only target is a kit slot
                 case "supclip1651": return AtSupClip1651(); // t1651 clip: dead pairs now working
                 case "hydrascorch1647": return AtHydraScorch1647(); // t1647 clip: Hydra ends -> v3 scorch (own seed) // t1635 clip: Kindling shader patches under Fireball hits

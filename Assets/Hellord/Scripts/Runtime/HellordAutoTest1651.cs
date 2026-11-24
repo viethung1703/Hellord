@@ -66,7 +66,7 @@ namespace Hellord
             foreach (var e in _en) { if (e.boss || !e.alive && !e.dying) continue; StopStatuses(e); DetachFx(e); e.alive = false; e.dying = false; e.sr.gameObject.SetActive(false); }
             _smL1651.Clear(); foreach (var p in _pr) KillProj(p); _blasts.Clear(); _sched.Clear(); ClearV44(); ZhUltCd = ZhMoveCd = ZhSpecCd = 0f; ZhSunMeter1618 = 0f; ZhNearMiss1618 = 0;
             foreach (var p in _pk) { var j = p.job; p.job = null; p.magnet = false; if (j != null) HellFXRunner.I.Kill(j); p.alive = false; p.sr.gameObject.SetActive(false); }
-            ClearLz1666(); LzRunReset1666(); /* t1666 */ _leechHealed = 0f; foreach (var b in _fbBalls) HellordAudio.LoopStop(b.loop, 0.05f); _fbBalls.Clear(); _fbPend.Clear(); /* no boulder from the last run rolls into this one */
+            ClearLz1666(); LzRunReset1666(); /* t1666 */ ClearGg1682(); GgRunReset1682(); /* t1682 */ _leechHealed = 0f; foreach (var b in _fbBalls) HellordAudio.LoopStop(b.loop, 0.05f); _fbBalls.Clear(); _fbPend.Clear(); /* no boulder from the last run rolls into this one */
         }
         void SmField1651(SmFix1651 f)
         {
@@ -104,7 +104,7 @@ namespace Hellord
             yield return SmFrames1651(2, f, m, false, hp0);
             float lh0 = AtLeech1651; int c0 = AtCasts1651, p0 = AtProj1651, h0 = AtHits1651, sk0 = AtSkillKills1651; float k0 = AtKill1651; _pbSparkSeed1567 = 1; _fbShot = 0; AtCd1651 = 0f; s.cd = 0f; float t0 = runTime; m.probe = 0;
             if (kit) { if (SmKitCast1651 != null) yield return SmKitCast1651(this, id); }
-            else { HInput.AtLmb = true; yield return SmFrames1651(2, f, m, false, hp0); HInput.AtLmb = id == SkillId.LiveWire; /* t1666: Live Wire is a held beam: hold LMB through the window */ }
+            else { HInput.AtLmb = true; yield return SmFrames1651(2, f, m, false, hp0); HInput.AtLmb = id == SkillId.LiveWire || id == SkillId.BreathOfTheDeep; /* t1682: Breath of the Deep is held too */ /* t1666: Live Wire is a held beam: hold LMB through the window */ }
             float cdAt = AtCd1651; if (kit) m.probe = SmKitProbe1651 != null ? SmKitProbe1651(this, id) : 0f;
             float win = f == SmFix1651.Dur ? 12f : 2.5f; /* Dur: long enough that a 4 s wall + its burn ends inside the window */ int frames = Mathf.CeilToInt(win * 30f);
             double last = SmDmg1651(); float lastT = 0f, firstT = 0f;
@@ -174,6 +174,8 @@ namespace Hellord
         int _smPath0;
         void SmKitSetI1651(SkillInst si)
         {
+            int gg = System.Array.IndexOf(GgIds1682, si.def.id); // t1682: Gonggong kit (0-12 = 4 movement, 5 specials, 4 ultimates; a Gonggong run)
+            if (gg >= 0) { _smK1651 = GgK0 + gg; ResetKit1651(); _zkI1651[GgK0 + gg] = si; _pactPath51 = 4; ZhRunMove1639 = gg < 4 ? gg + 1 : 0; ZhRunSpec1639 = gg >= 4 && gg < 9 ? gg - 3 : 0; ZhRunUlt1639 = gg >= 9 ? gg - 8 : 0; return; }
             int lz = System.Array.IndexOf(LzIds1666, si.def.id); // t1666: Leizu kit (index 0-11 = 4 movement, 4 specials, 4 ultimates; a Leizu run)
             if (lz >= 0) { _smK1651 = LzK0 + lz; ResetKit1651(); _zkI1651[LzK0 + lz] = si; _pactPath51 = 2; ZhRunMove1639 = lz < 4 ? lz + 1 : 0; ZhRunSpec1639 = lz >= 4 && lz < 8 ? lz - 3 : 0; ZhRunUlt1639 = lz >= 8 ? lz - 7 : 0; return; }
             int k = System.Array.IndexOf(ZkIds1651, si.def.id); _smK1651 = k; ResetKit1651(); _zkI1651[k] = si; _pactPath51 = 0;
@@ -182,6 +184,7 @@ namespace Hellord
         IEnumerator SmKitCastI1651(SkillId id)
         {
             int k = _smK1651; _smKT0 = runTime;
+            if (k >= GgK0) { yield return SmGgCast1682(k - GgK0); yield break; } // t1682
             if (k >= LzK0) { yield return SmLzCast1666(k - LzK0); yield break; } // t1666
             if (k < 3) { ZhDashStart1618(_heroPos); AtCd1651 = ZhMoveCd; }
             else if (k < 8) { ZhSpecial1618(); AtCd1651 = ZhSpecCd; if (k == 5) { yield return null; SmCryKill1651(); } }
@@ -202,6 +205,7 @@ namespace Hellord
         }
         float SmKitProbeI1651(SkillId id)
         {
+            if (_smK1651 >= GgK0) return SmGgProbe1682(_smK1651 - GgK0); // t1682
             if (_smK1651 >= LzK0) return SmLzProbe1666(_smK1651 - LzK0); // t1666
             switch (_smK1651)
             {
@@ -248,7 +252,7 @@ namespace Hellord
         IEnumerator AtSup1651()
         {
             string scen = "sup1651"; var T = HellordTuning.I;
-            { var ki = new List<SkillId>(ZkIds1651); ki.AddRange(LzIds1666); SmKitIds1651 = ki.ToArray(); } /* t1666: + the 12 Leizu kit skills */ _smPath0 = 0; SmKitSet1651 = (g, si) => g.SmKitSetI1651(si); SmKitCast1651 = (g, id) => g.SmKitCastI1651(id); SmKitProbe1651 = (g, id) => g.SmKitProbeI1651(id); // t1651 stage 4: kit skills join the matrix
+            { var ki = new List<SkillId>(ZkIds1651); ki.AddRange(LzIds1666); ki.AddRange(GgIds1682); /* t1682 */ SmKitIds1651 = ki.ToArray(); } /* t1666: + the 12 Leizu kit skills */ _smPath0 = 0; SmKitSet1651 = (g, si) => g.SmKitSetI1651(si); SmKitCast1651 = (g, id) => g.SmKitCastI1651(id); SmKitProbe1651 = (g, id) => g.SmKitProbeI1651(id); // t1651 stage 4: kit skills join the matrix
             yield return ZhStart1618(scen, null, SkillId.Fireball); _zKeepHp = false;
             float crit0 = crit; int cf0 = Time.captureFramerate; Time.captureFramerate = 30; bool pa0 = _pactActive51; _pactActive51 = false; bool ko0 = TZ.kitSlotOverride1639; TZ.kitSlotOverride1639 = false; /* kit slots come from the run picks the test sets, not the testing override */ // neutral: no pact node effects (Pyromancer turns statuses into burn, etc.)
             var cams = new List<Camera>(); foreach (var c in Camera.allCameras) if (c.enabled && System.Environment.GetCommandLineArgs().Length > 0 && !System.Array.Exists(System.Environment.GetCommandLineArgs(), a => a == "-smRender")) { c.enabled = false; cams.Add(c); }
