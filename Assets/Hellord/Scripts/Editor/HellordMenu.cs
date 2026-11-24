@@ -39,9 +39,13 @@ namespace Hellord.EditorTools
     /// <summary>Forces pixel-art import settings on Hellord textures (Point, no compression, no mips).</summary>
     public class HellordTextureImport : AssetPostprocessor
     {
+        public override uint GetVersion() { return 1688; } // t1688: bump = reimport once so the GonggongFX exclusion takes effect (other textures import unchanged)
         void OnPreprocessTexture()
         {
             if (!assetPath.StartsWith("Assets/Hellord/")) return;
+            // t1688: GonggongFX shader data textures keep their authored .meta import (noise = Repeat + Bilinear, ramp = Point + Clamp).
+            // Forcing Clamp + Point here broke every noise lookup outside 0..1 (Eternal Winter v2 drew a flat white wash with smeared rows).
+            if (assetPath.StartsWith("Assets/Hellord/Resources/GonggongFX/")) return;
             var ti = (TextureImporter)assetImporter;
             ti.filterMode = FilterMode.Point; ti.textureCompression = TextureImporterCompression.Uncompressed; ti.mipmapEnabled = false;
             ti.npotScale = TextureImporterNPOTScale.None; ti.alphaIsTransparency = true; ti.wrapMode = TextureWrapMode.Clamp;

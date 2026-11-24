@@ -61,8 +61,9 @@ namespace Hellord
             {
                 Basic(SkillId.Frostbolt, "GONGGONG MOVEMENT"); _atGod = false;
                 // Ride the Flood: a longer, steered dash; chill cleared
-                T.ggMove1682 = 1; Toast("RIDE THE FLOOD"); _chill44 = 2; atMouse986 = H0 + new Vector2(10f, 6f); /* far cursor: the ride curves toward it */ int r0 = GgRides1682; Vector2 hb = _heroPos; yield return ZDash1618(Vector2.right); yield return LF(15);
+                T.ggMove1682 = 1; yield return LF(40); /* t1688: after the floor banner */ Vector2 rs = H0 + new Vector2(-7f, -4f); _heroPos = rs; SnapCamera(); yield return LF(5); Toast("RIDE THE FLOOD"); _chill44 = 2; atMouse986 = rs + new Vector2(10f, 6f); /* far cursor: the ride curves toward it; starts low-left so the whole ride stays on screen */ int r0 = GgRides1682; Vector2 hb = _heroPos; yield return ZDash1618(Vector2.right); yield return LF(15);
                 Vector2 moved = _heroPos - hb; Res("ridetheflood", GgRides1682 - r0 == 1 && moved.magnitude > T49.dashDistU49 * 1.2f && moved.y > 0.8f && _chill44 == 0, $"rides {GgRides1682 - r0}, moved ({moved.x:0.#},{moved.y:0.#}) vs plain dash {T49.dashDistU49:0.#} u, curved up {moved.y > 0.8f}, chill {_chill44}");
+                _heroPos = rs + new Vector2(0f, 3f); SnapCamera(); ZhMoveCd = 0f; yield return LF(10); atMouse986 = _heroPos + new Vector2(12f, -2f); yield return ZDash1618(Vector2.right); yield return LF(20); /* t1688: a second ride, for screen time only */
                 // Rime Coat: the first 2 contact attackers freeze, the third does not
                 Reset(); T.ggMove1682 = 2; Toast("RIME COAT"); var at = new List<Enemy>(); for (int i = 0; i < 3; i++) at.Add(Pack(EType.Imp, H0 + new Vector2(-1.5f, -1f + i), 0f)); yield return ZDash1618(Vector2.right); _heroPos = H0; yield return LF(5);
                 int rf0 = GgRimeFreezes1682; var fzA = new bool[3]; for (int ai = 0; ai < 3; ai++) { var a = at[ai]; _iframe = 0f; _hurtBy53 = a; HurtHero(5f, "clip", false, true); fzA[ai] = a.freezeT > 0f; yield return LF(12); }
