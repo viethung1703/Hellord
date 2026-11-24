@@ -129,9 +129,10 @@ namespace Hellord
             {   // the radii the kit / basics / tells ask for (others still build on first use, cached)
                 foreach (int r in new[] { 4, 8, 13, 18, 24, 40 }) { HellSprites.Disk(r); for (int f = 0; f < 3; f++) HellSprites.FireRing(r, f); }
                 foreach (var g in new[] { new Vector2Int(3, 2), new Vector2Int(4, 5), new Vector2Int(5, 4), new Vector2Int(18, 5), new Vector2Int(40, 5) }) PixelFXTextures.Glow(g.x, g.y);
-                HellSprites.Pixel(); HArt.Pixel();
+                HellordPreloadTouch1676(HellSprites.Pixel(), HArt.Pixel(), PbDot, PbLineS, PbDisc, PbAxeSpr, PbSoft1567, PbRingSoft1567); // Pb code-drawn sprites (first Spark Spray / Ball Lightning)
             });
         }
+        static void HellordPreloadTouch1676(params Sprite[] s) { } // the getters above build + cache; nothing to do with the result
         void PlAudio1675(HellordPreload.Ctx c)
         {
             var T = HellordTuning.I; if (T == null || T.preloadAudioFolders1675 == null || T.preloadAudioFolders1675.Length == 0) return;
