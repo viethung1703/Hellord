@@ -11,9 +11,9 @@ namespace Hellord
     //  LMB basics (start pick, descendBasicsGonggong1561): Frostbolt + Frost Cleave (kept) + NEW Tidal Surge, Whirlpool,
     //    Breath of the Deep (held cone), Buzhou Rift, Eye of the Black Waters.
     //  SPACE movement (own cooldown, no damage): Ride the Flood, Rime Coat, Floodgate, Frozen River.
-    //  RMB special: Drowning Mark (one demon), Hypothermia (area curse), Shatter, Toppled Pillar, Frost Wall.
+    //  RMB special: Drowning Mark (one demon), Hypothermia (area curse), Shatter, Frost Wall. (Toppled Pillar: off the kit since t1687, code kept.)
     //  R ultimate (armed, then pressed): Ram of Mount Buzhou (wrath from damage taken), The Great Flood (High Tide window),
-    //    Eternal Winter (25 frozen kills), Pillars of Ao (below 35% HP; disarmed above 60%).
+    //    Eternal Winter (25 frozen kills). (Pillars of Ao: off the kit since t1687, code kept.)
     //  Active in a Gonggong run (pact path 4) while kit1618 + ggKit1682 are on. Shares Zhurong's run picks (ZhRun*1639), slot
     //  cooldowns (ZhMoveCd / ZhSpecCd / ZhUltCd), level cards and the kit bar. Kit skill k = GgK0 (24) + index in GgIds1682
     //  (4 movement, 5 specials, 4 ultimates; HellordKit1651.cs ZkI1651 / ZkCd1651 / ZkR1651 / ZkDur1651 / ZkHit1651).
@@ -43,8 +43,16 @@ namespace Hellord
         // ---------------------------------------------------------------- slots
         public bool GgOn1682 => TZ != null && TZ.kit1618 && TZ.ggKit1682 && !TZ.kitAnyPact1618 && _pactPath51 == 4;
         public int GgMove1682 => GgOn1682 ? Mathf.Clamp(ZhSlotOverride1639 ? TZ.ggMove1682 : ZhRunMove1639, 0, 4) : 0;
-        public int GgSpec1682 => GgOn1682 ? Mathf.Clamp(ZhSlotOverride1639 ? TZ.ggSpecial1682 : ZhRunSpec1639, 0, 5) : 0;
-        public int GgUlt1682 => GgOn1682 ? Mathf.Clamp(ZhSlotOverride1639 ? TZ.ggUlt1682 : ZhRunUlt1639, 0, 4) : 0;
+        // t1687 (VH): Toppled Pillar (special 4) and Pillars of Ao (ultimate 4) are OFF the kit: never offered, picked, cycled or tested. Their code, data and
+        // assets stay (no deletions); internal pick numbers are unchanged, so re-enabling = adding 4 back to these lists. A disabled pick reads as none.
+        public static readonly int[] GgSpecPicks1682 = { 1, 2, 3, 5 }, GgUltPicks1682 = { 1, 2, 3 };
+        public static bool GgPickOn1682(int slot, int pick) => slot == 0 ? pick >= 1 && pick <= 4 : System.Array.IndexOf(slot == 1 ? GgSpecPicks1682 : GgUltPicks1682, pick) >= 0;
+        /// <summary>kit skill index (0-12 in GgIds1682) is on the kit (not disabled).</summary>
+        public static bool GgIdOn1682(int i) => i < 4 ? true : i < 9 ? GgPickOn1682(1, i - 3) : GgPickOn1682(2, i - 8);
+        /// <summary>next enabled pick after cur (0 = none included), for the F1 cycle.</summary>
+        public static int GgNextPick1682(int slot, int cur) { int n = slot == 0 ? 5 : slot == 1 ? 6 : 5; for (int i = 1; i <= n; i++) { int p = (cur + i) % n; if (p == 0 || GgPickOn1682(slot, p)) return p; } return 0; }
+        public int GgSpec1682 { get { if (!GgOn1682) return 0; int p = Mathf.Clamp(ZhSlotOverride1639 ? TZ.ggSpecial1682 : ZhRunSpec1639, 0, 5); return GgPickOn1682(1, p) ? p : 0; } }
+        public int GgUlt1682 { get { if (!GgOn1682) return 0; int p = Mathf.Clamp(ZhSlotOverride1639 ? TZ.ggUlt1682 : ZhRunUlt1639, 0, 4); return GgPickOn1682(2, p) ? p : 0; } }
         /// <summary>kit index (ZkI1651) of slot 0/1/2 pick p: 4 movement, 5 specials, 4 ultimates.</summary>
         public static int GgK1682(int slot, int pick) => GgK0 + (slot == 0 ? pick - 1 : slot == 1 ? 3 + pick : 8 + pick);
 

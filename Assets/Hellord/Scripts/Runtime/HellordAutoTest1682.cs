@@ -95,10 +95,14 @@ namespace Hellord
                 atMouse986 = c; yield return LF(5); var frz = new List<Enemy>(); for (int i = 0; i < 4; i++) { IceFreeze(L[i * 2], 3f); frz.Add(L[i * 2]); } int sh0 = GgShatters1682; float hp0 = 0f; foreach (var e in L) hp0 += e.hp; yield return ZPress1618(1); yield return LF(5);
                 float hp1 = 0f; int still = 0; int refz = 0; foreach (var e in L) { hp1 += e.hp; if (e.freezeT > 0f) { if (frz.Contains(e)) still++; else refz++; } }
                 Res("shatter", GgShatters1682 - sh0 == 4 && still == 0 && hp0 - hp1 > 0f, $"shattered {GgShatters1682 - sh0}/4, originals still frozen {still}, damage {hp0 - hp1:0}, neighbours frozen by the burst chills {refz}"); yield return LF(30);
-                // Toppled Pillar: blocks while standing, then falls along the aim and crushes
-                Reset(); T.ggSpecial1682 = 4; Toast("TOPPLED PILLAR"); Vector2 pc = H0 + new Vector2(3f, 0f); for (int i = 0; i < 3; i++) Pack(EType.Imp, pc + new Vector2(2.5f + i * 0.6f, 0f), 2f, 3000f); for (int i = 0; i < 3; i++) Pack(EType.Imp, pc + new Vector2(1f + i * 1f, 0.3f), 0f, 3000f);
-                atMouse986 = pc; yield return LF(5); int pb0 = GgPillarBlocks1682, ph0 = GgPillarHits1682; yield return ZPress1618(1); yield return LF(30); int blocks = GgPillarBlocks1682 - pb0; yield return LF(40);
-                Res("toppledpillar", blocks > 0 && GgPillarHits1682 - ph0 >= 3, $"blocks while standing {blocks}, crushed {GgPillarHits1682 - ph0}"); yield return LF(20);
+                // t1687: Toppled Pillar is OFF the kit: the selector value reads as none, R/RMB casts nothing, the level-up offers are 4 / 4 / 3 without it or Pillars of Ao
+                Reset(); T.ggSpecial1682 = 4; int pl0 = _ggPillar1682.Count; yield return ZPress1618(1); yield return LF(5); bool pillarOff = GgSpec1682 == 0 && _ggPillar1682.Count == pl0 && ZhSpecCd <= 0f; T.ggSpecial1682 = 1;
+                { bool ov0 = T.kitSlotOverride1639; int rs = ZhRunSpec1639, ru = ZhRunUlt1639, rm = ZhRunMove1639; T.kitSlotOverride1639 = false; ZhRunMove1639 = ZhRunSpec1639 = ZhRunUlt1639 = 0; var offs = KitOffers1639(); T.kitSlotOverride1639 = ov0; ZhRunMove1639 = rm; ZhRunSpec1639 = rs; ZhRunUlt1639 = ru;
+                  int nM = 0, nS = 0, nU = 0; bool bad = false; foreach (var cd in offs) { if (cd.kit == 1) nM++; else if (cd.kit == 2) { nS++; bad |= cd.kitPick == 4; } else if (cd.kit == 3) { nU++; bad |= cd.kitPick == 4; } }
+                  int nx = 0, cyc = 0; var seenS = new HashSet<int>(); do { nx = GgNextPick1682(1, nx); seenS.Add(nx); } while (nx != 0 && ++cyc < 10); int nu = 0; var seenU = new HashSet<int>(); cyc = 0; do { nu = GgNextPick1682(2, nu); seenU.Add(nu); } while (nu != 0 && ++cyc < 10);
+                  var ids = new List<SkillId>(); for (int gi = 0; gi < GgIds1682.Length; gi++) if (GgIdOn1682(gi)) ids.Add(GgIds1682[gi]);
+                  Res("kit_removed", pillarOff && nM == 4 && nS == 4 && nU == 3 && !bad && !seenS.Contains(4) && seenS.Count == 5 && !seenU.Contains(4) && seenU.Count == 4 && !ids.Contains(SkillId.GgToppledPillar) && !ids.Contains(SkillId.GgPillarsOfAo) && ids.Count == 11,
+                      $"Toppled Pillar selector reads none + casts nothing {pillarOff}; offers move/special/ult {nM}/{nS}/{nU} (want 4/4/3), pick 4 offered {bad}; F1 cycle specials [{string.Join(",", seenS)}] ults [{string.Join(",", seenU)}]; tested kit ids {ids.Count} (want 11)"); }
                 // Frost Wall: holds chasers back; crystals hit by your area skills explode
                 Reset(); T.ggSpecial1682 = 5; Toast("FROST WALL"); for (int i = 0; i < 5; i++) Pack(EType.Imp, H0 + new Vector2(8f, -2f + i), 2f, 3000f);
                 atMouse986 = c; yield return LF(5); int wb0 = GgWallBlocks1682, cb0 = GgCrystalBooms1682; yield return ZPress1618(1); yield return LF(60); float mx = 99f; foreach (var e in L) mx = Mathf.Min(mx, e.pos.x - H0.x); int held = GgWallBlocks1682 - wb0;
@@ -129,19 +133,17 @@ namespace Hellord
                 Res("perf_winter", true, $"frame {wb[0]:0.0} ms -> {wf[0]:0.0} ms with the Eternal Winter overlay + pulses (quads/frame {wf[1]:0.#}); {wn[0]:0.0} ms with the GGFX shaders off (placeholders)"); var first = L[4]; IceFreeze(first, 3f); foreach (var e in L) if (e != first) IceFreeze(e, 3f); Damage(first, first.hp + 10f, false, true); yield return LF(20);
                 int dead = 0; foreach (var e in L) if (!e.alive) dead++;
                 Res("eternalwinter", armedW && fk == T.ewNeed1682 && GgWinterChills1682 - wc0 >= 9 && GgWinterBursts1682 - wb0 >= 2 && dead >= 3, $"frozen kills {fk}/{T.ewNeed1682}, armed {armedW}, winter chills {GgWinterChills1682 - wc0}, shatter bursts {GgWinterBursts1682 - wb0} (chain), dead {dead}/9"); yield return LF(60);
-                // Pillars of Ao: below 35% HP; demons pushed out of the square; icicles
-                Reset(); T.ggUlt1682 = 4; Toast("PILLARS OF AO"); for (int i = 0; i < 6; i++) Pack(EType.Imp, H0 + new Vector2(-1f + (i % 3) * 1f, -0.6f + (i / 3) * 1.2f), 0.5f, 5000f); for (int i = 0; i < 4; i++) Pack(EType.Imp, H0 + new Vector2(4f, -1.5f + i), 1f, 5000f);
-                hp = maxHp; yield return LF(5); bool offHigh = !GgUltArmed1682; hp = maxHp * 0.3f; yield return LF(5); bool armedA = GgUltArmed1682; int ai0 = GgAoIcicles1682, ap0 = GgAoPushes1682;
-                yield return ZPress1618(2); yield return LF(60); int inside = 0; float h = T.aoHalf1682; foreach (var e in L) { var d = e.pos - _ggAoC1682; if (Mathf.Abs(d.x) < h && Mathf.Abs(d.y) < h) inside++; } yield return LF(60); hp = maxHp; yield return LF(5); bool disarm = !GgAoArmedLatch1682;
-                Res("pillarsofao", offHigh && armedA && GgAoPushes1682 - ap0 > 0 && inside == 0 && GgAoIcicles1682 - ai0 >= 8 && disarm, $"off at full HP {offHigh}, armed below {T.aoArm1682:0.##} {armedA}, pushes {GgAoPushes1682 - ap0}, demons inside {inside}, icicles {GgAoIcicles1682 - ai0}, disarmed above {T.aoDisarm1682:0.##} {disarm}");
+                // t1687: Pillars of Ao is OFF the kit: the selector value reads as none and R casts nothing even below 35% HP
+                Reset(); T.ggUlt1682 = 4; hp = maxHp * 0.3f; yield return LF(5); float ao0 = GgAoT1682; yield return ZPress1618(2); yield return LF(5);
+                Res("ao_removed", GgUlt1682 == 0 && GgAoT1682 <= 0f && ao0 <= 0f, $"selector 4 reads as ult {GgUlt1682}, Ao active {GgAoT1682 > 0f}"); T.ggUlt1682 = 1; hp = maxHp;
                 _zKeepHp = true; _atGod = true; hp = maxHp;
             }
             {   // every GonggongFX effect this clip exercises drew through its shader (material present + hook reached)
                 string[][] want = {
                     new[] { "TidalSurge", "TidalSurge_Crest", "TidalSurge_Crash", "Whirlpool", "Whirlpool_Collapse", "BreathOfTheDeep", "BreathOfTheDeep_Ground", "BuzhouRift_Burst", "BuzhouRift_Spike", "BuzhouRift_Consume", "EyeBlackWaters", "EyeShard", "EyeShard_Hit" },
                     new[] { "RideTheFlood", "RimeCoat", "Floodgate", "FrozenRiver" },
-                    new[] { "DrowningMark", "Hypothermia", "Hypothermia_Cursed", "Shatter_Burst", "ToppledPillar", "ToppledPillar_Crush", "FrostWall", "FrostWall_Pop" },
-                    new[] { "Ram_Charge", "Ram_Head", "Ram_Shard", "GreatFlood", "EternalWinter", "EternalWinter_Pulse", "EternalWinter_Shatter", "PillarsOfAo", "Icicle", "Icicle_Hit" } };
+                    new[] { "DrowningMark", "Hypothermia", "Hypothermia_Cursed", "Shatter_Burst", "FrostWall", "FrostWall_Pop" },
+                    new[] { "Ram_Charge", "Ram_Head", "Ram_Shard", "GreatFlood", "EternalWinter", "EternalWinter_Pulse", "EternalWinter_Shatter" } };
                 var miss = new List<string>(); foreach (var w in want[which]) if (!ZhFxSeen1625("GGFX_" + w) || GgFxMat1682("GGFX_" + w) == null) miss.Add(w);
                 Res("hfx", miss.Count == 0 && ZhFxQuads1625 > q0, $"drawn {want[which].Length - miss.Count}/{want[which].Length}, quads {ZhFxQuads1625 - q0}" + (miss.Count > 0 ? " | missing " + string.Join(",", miss) : ""));
                 ZhFxLogOn1625 = false;

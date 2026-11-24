@@ -252,7 +252,7 @@ namespace Hellord
         IEnumerator AtSup1651()
         {
             string scen = "sup1651"; var T = HellordTuning.I;
-            { var ki = new List<SkillId>(ZkIds1651); ki.AddRange(LzIds1666); ki.AddRange(GgIds1682); /* t1682 */ SmKitIds1651 = ki.ToArray(); } /* t1666: + the 12 Leizu kit skills */ _smPath0 = 0; SmKitSet1651 = (g, si) => g.SmKitSetI1651(si); SmKitCast1651 = (g, id) => g.SmKitCastI1651(id); SmKitProbe1651 = (g, id) => g.SmKitProbeI1651(id); // t1651 stage 4: kit skills join the matrix
+            { var ki = new List<SkillId>(ZkIds1651); ki.AddRange(LzIds1666); for (int gi = 0; gi < GgIds1682.Length; gi++) if (GgIdOn1682(gi)) ki.Add(GgIds1682[gi]); /* t1682; t1687: only the skills on the kit */ SmKitIds1651 = ki.ToArray(); } /* t1666: + the 12 Leizu kit skills */ _smPath0 = 0; SmKitSet1651 = (g, si) => g.SmKitSetI1651(si); SmKitCast1651 = (g, id) => g.SmKitCastI1651(id); SmKitProbe1651 = (g, id) => g.SmKitProbeI1651(id); // t1651 stage 4: kit skills join the matrix
             yield return ZhStart1618(scen, null, SkillId.Fireball); _zKeepHp = false;
             float crit0 = crit; int cf0 = Time.captureFramerate; Time.captureFramerate = 30; bool pa0 = _pactActive51; _pactActive51 = false; bool ko0 = TZ.kitSlotOverride1639; TZ.kitSlotOverride1639 = false; /* kit slots come from the run picks the test sets, not the testing override */ // neutral: no pact node effects (Pyromancer turns statuses into burn, etc.)
             var cams = new List<Camera>(); foreach (var c in Camera.allCameras) if (c.enabled && System.Environment.GetCommandLineArgs().Length > 0 && !System.Array.Exists(System.Environment.GetCommandLineArgs(), a => a == "-smRender")) { c.enabled = false; cams.Add(c); }

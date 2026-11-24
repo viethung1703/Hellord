@@ -1789,8 +1789,8 @@ namespace Hellord
     // ---- t1682 Gonggong, Breaker of Heaven: 4-slot kit (HellordGonggong1682.cs; design research/t1681_gonggong_kit/report.md). Report numbers; "(pick)" = the report was silent (listed in research/t1682_gonggong_kit/progress.md)
     [Tooltip("t1682 master switch: Gonggong's 4-slot kit (movement on the dash, RMB special, R ultimate) in a Gonggong run (pact path 4). Needs kit1618 on")] public bool ggKit1682 = true;
     [Tooltip("t1682 TESTING selector (kitSlotOverride1639 on, + F1 menu): movement 0 none, 1 Ride the Flood, 2 Rime Coat, 3 Floodgate, 4 Frozen River")] [Range(0, 4)] public int ggMove1682 = 1;
-    [Tooltip("t1682 TESTING selector: special 0 none, 1 Drowning Mark, 2 Hypothermia, 3 Shatter, 4 Toppled Pillar, 5 Frost Wall")] [Range(0, 5)] public int ggSpecial1682 = 1;
-    [Tooltip("t1682 TESTING selector: ultimate 0 none, 1 Ram of Mount Buzhou, 2 The Great Flood, 3 Eternal Winter, 4 Pillars of Ao")] [Range(0, 4)] public int ggUlt1682 = 1;
+    [Tooltip("t1682 TESTING selector: special 0 none, 1 Drowning Mark, 2 Hypothermia, 3 Shatter, 5 Frost Wall (4 = off the kit since t1687, reads as none)")] [Range(0, 5)] public int ggSpecial1682 = 1;
+    [Tooltip("t1682 TESTING selector: ultimate 0 none, 1 Ram of Mount Buzhou, 2 The Great Flood, 3 Eternal Winter (4 = off the kit since t1687, reads as none)")] [Range(0, 3)] public int ggUlt1682 = 1;
     [Tooltip("t1682 icon hook: Resources folder of the Gonggong kit + basic icons (icon_<key>_24.png, keys HellordGame.GgKeys1682). Missing = procedural placeholder")] public string ggIconDir1682 = "HellordArt/Gonggong1682/icons";
     [Tooltip("t1682 FX hook: GGFX_<name> materials (+ _Glow twin) drawn through the shader-quad route when present (spec Art/fx_gonggong_t1682/spec.md); off / missing = placeholders")] public bool ggFx1682 = true;
     [Tooltip("t1682 GonggongFX material folder under Resources")] public string ggFxDir1682 = "GonggongFX/Materials/";

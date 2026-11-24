@@ -282,8 +282,8 @@ namespace Hellord
             TmLabel("GONGGONG KIT (t1682 debug selector; Gonggong runs, Slots = TEST OVERRIDE)");
             if (TmBtn("Gonggong kit " + (T.ggKit1682 ? "ON" : "OFF") + (GgOn1682 ? " (active)" : ""))) T.ggKit1682 = !T.ggKit1682;
             if (TmBtn("Movement (Space): " + GgMoveNames1682[Mathf.Clamp(T.ggMove1682, 0, 4)])) { T.ggMove1682 = (T.ggMove1682 + 1) % 5; ZhMoveCd = 0; }
-            if (TmBtn("Special (RMB): " + GgSpecNames1682[Mathf.Clamp(T.ggSpecial1682, 0, 5)])) { T.ggSpecial1682 = (T.ggSpecial1682 + 1) % 6; ZhSpecCd = 0; }
-            if (TmBtn("Ultimate (R): " + GgUltNames1682[Mathf.Clamp(T.ggUlt1682, 0, 4)])) { T.ggUlt1682 = (T.ggUlt1682 + 1) % 5; ZhUltCd = 0; }
+            if (TmBtn("Special (RMB): " + GgSpecNames1682[Mathf.Clamp(T.ggSpecial1682, 0, 5)])) { T.ggSpecial1682 = GgNextPick1682(1, T.ggSpecial1682); ZhSpecCd = 0; } // t1687: skips Toppled Pillar
+            if (TmBtn("Ultimate (R): " + GgUltNames1682[Mathf.Clamp(T.ggUlt1682, 0, 4)])) { T.ggUlt1682 = GgNextPick1682(2, T.ggUlt1682); ZhUltCd = 0; } // t1687: skips Pillars of Ao
             if (TmBtn("Gonggong kit: reset cooldowns + fill the ultimate condition")) GgFillUlt1682();
             TmLabel("NECROMANCER (t536u TEST)");
             if (TmBtn("Unlock all 18 Necromancer nodes")) { PactLoad51(); _unlock51[(int)PactPath.Necromancer] = (1 << PactData.Nodes[(int)PactPath.Necromancer].Length) - 1; PactSave51(); TmSay("All Necromancer nodes unlocked (take them in the Altar)"); }

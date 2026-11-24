@@ -32,7 +32,7 @@ namespace Hellord
         List<Card> KitOffers1639()
         {
             var l = new List<Card>(12); if (!KitOn1666 || ZhSlotOverride1639) return l;
-            if (GgOn1682) { for (int t = 1; t <= 3; t++) { if ((t == 1 ? ZhRunMove1639 : t == 2 ? ZhRunSpec1639 : ZhRunUlt1639) != 0) continue; for (int i = 1; i <= (t == 2 ? 5 : 4); i++) l.Add(new Card { kind = CardKind.NewSkill, kit = t, kitPick = i }); } return l; } // t1682 Gonggong: 4 + 5 + 4
+            if (GgOn1682) { for (int t = 1; t <= 3; t++) { if (GgPickOn1682(t - 1, t == 1 ? ZhRunMove1639 : t == 2 ? ZhRunSpec1639 : ZhRunUlt1639)) continue; /* t1687: a disabled pick (old run) counts as an empty slot */ for (int i = 1; i <= (t == 2 ? 5 : 4); i++) if (GgPickOn1682(t - 1, i)) l.Add(new Card { kind = CardKind.NewSkill, kit = t, kitPick = i }); } return l; } // t1682 Gonggong; t1687: 4 + 4 + 3 (Toppled Pillar / Pillars of Ao off)
             if (LzOn1666) { for (int t = 1; t <= 3; t++) { if ((t == 1 ? ZhRunMove1639 : t == 2 ? ZhRunSpec1639 : ZhRunUlt1639) != 0) continue; for (int i = 1; i <= 4; i++) l.Add(new Card { kind = CardKind.NewSkill, kit = t, kitPick = i }); } return l; } // t1666 Leizu: 4 + 4 + 4
             if (ZhRunMove1639 == 0) for (int i = 1; i <= 3; i++) l.Add(new Card { kind = CardKind.NewSkill, kit = 1, kitPick = i });
             if (ZhRunSpec1639 == 0) for (int i = 1; i <= 5; i++) l.Add(new Card { kind = CardKind.NewSkill, kit = 2, kitPick = i });
