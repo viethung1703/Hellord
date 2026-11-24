@@ -15,7 +15,7 @@ Shader "Hellord/Gonggong/Frost"
         _Seed ("Per-instance seed 0..1", Float) = 0
         _Layer ("0 = base (cutout palette), 1 = glow (additive / screen)", Float) = 0
         _GlowGain ("Glow gain (glow material only)", Float) = 1
-        _Mode ("0 zone (hypothermia), 1 frozen strip (pivot -> _TargetPx), 2 fissure (pivot -> _TargetPx), 3 screen frost frame + snow, 4 line frost (telegraph / wall base), 5 rime pulse front, 6 square field (pillars), 7 ice decal", Float) = 0
+        _Mode ("0 zone (hypothermia, v2 crystallising ice), 1 frozen strip (pivot -> _TargetPx), 2 fissure (pivot -> _TargetPx), 3 winter ground frost + snow (v2, ground tier, pivot = hero), 4 line frost (telegraph / wall base), 5 frost surge: crystals sprouting outward (v2), 6 square field (pillars), 7 ice decal", Float) = 0
         _Radius ("Radius px (zone, pulse, decal) / half size (square)", Float) = 40
         _Squash ("Ground ellipse y scale", Float) = 0.55
         _TargetPx ("End px relative to the pivot (strip, fissure, line)", Vector) = (80, 0, 0, 0)

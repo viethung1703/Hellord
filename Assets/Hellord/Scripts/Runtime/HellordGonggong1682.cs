@@ -175,7 +175,8 @@ namespace Hellord
         public static readonly string[] GgFxDefs1682 = { "GGFX_TidalSurge", "GGFX_TidalSurge_Crash", "GGFX_Whirlpool", "GGFX_Whirlpool_Collapse", "GGFX_BreathOfTheDeep", "GGFX_BuzhouRift_Burst", "GGFX_BuzhouRift_Spike", "GGFX_EyeBlackWaters", "GGFX_EyeShard",
             "GGFX_RideTheFlood", "GGFX_RimeCoat", "GGFX_Floodgate", "GGFX_FrozenRiver", "GGFX_DrowningMark", "GGFX_Hypothermia", "GGFX_Hypothermia_Cursed", "GGFX_Shatter_Burst", "GGFX_ToppledPillar", "GGFX_ToppledPillar_Crush",
             "GGFX_FrostWall", "GGFX_FrostWall_Pop", "GGFX_Ram_Charge", "GGFX_Ram_Shard", "GGFX_GreatFlood", "GGFX_TideGauge", "GGFX_EternalWinter", "GGFX_EternalWinter_Shatter", "GGFX_PillarsOfAo", "GGFX_Icicle",
-            /* t1682 FX pass extras */ "GGFX_TidalSurge_Crest", "GGFX_BreathOfTheDeep_Ground", "GGFX_BuzhouRift_Consume", "GGFX_EyeShard_Hit", "GGFX_Ram_Head", "GGFX_EternalWinter_Pulse", "GGFX_Icicle_Hit" };
+            /* t1682 FX pass extras */ "GGFX_TidalSurge_Crest", "GGFX_BreathOfTheDeep_Ground", "GGFX_BuzhouRift_Consume", "GGFX_EyeShard_Hit", "GGFX_Ram_Head", "GGFX_EternalWinter_Pulse", "GGFX_Icicle_Hit",
+            /* t1688 HFX v2 */ "GGFX_EternalWinter_Frost", "GGFX_RideTheFlood_Spray", "GGFX_GreatFlood_Crest" };
         /// <summary>one-shot effect: kind 0 expanding ring, 1 flash disc, 2 shatter star, 3 shrinking ring, 4 line flash p -> q; mat = its shader (rect px l,b,w,h).</summary>
         ///   kind -1 = shader only (no placeholder). Returned so a caller can set: ps (fixed params), pf (params from the live state), ord (sort order; default over = YSort + 60),
         ///   delay (hidden until then), t0 (fxTime offset), dart (pivot flies p -> q, _Dir passed).
@@ -529,7 +530,9 @@ namespace Hellord
                 _chill44 = 0; _frozen44 = 0f; _dragBy = null; if (GgRideT1682 <= 0f) { _dashT49 = Mathf.Min(_dashT49, 0f); _ggRidePrev1682 = new Vector2(-1e9f, 0f); }
                 int o = ZhHeroOrd1625 - 1; float k = 1f - Mathf.Clamp01(GgRideT1682 / Mathf.Max(0.01f, T.rideDur1682));
                 Vector2 vel = dt > 1e-5f && _ggRidePrev1682.x > -1e8f ? (_heroPos - _ggRidePrev1682) / dt * 16f : _dashDir49 * 16f * T49.dashDistU49 / Mathf.Max(0.05f, T49.dashTimeS49); _ggRidePrev1682 = _heroPos; // HFX _Vel: hero px/s
-                if (!GgFx1682("GGFX_RideTheFlood", _heroPos, -52, -40, 104, 80, GgGround1682(_heroPos), k * T.rideDur1682, 0.3f, ZP.V("_Vel", vel), ZP.F("_Progress", k)))
+                if (GgFx1682("GGFX_RideTheFlood", _heroPos, -52, -40, 104, 80, GgGround1682(_heroPos), k * T.rideDur1682, 0.3f, ZP.V("_Vel", vel), ZP.F("_Progress", k)))
+                    GgFx1682("GGFX_RideTheFlood_Spray", _heroPos, -52, -40, 104, 92, YSort(_heroPos.y) + 60, k * T.rideDur1682, 0.3f, ZP.V("_Vel", vel), ZP.F("_Progress", k)); // HFX v2 optional: side spray over the sprites
+                else
                 {   // PLACEHOLDER: a wave crest under the feet + spray behind
                     Vector2 nn = new Vector2(-_dashDir49.y, _dashDir49.x); ZSegO1618(_heroPos - nn * 0.6f - _dashDir49 * 0.2f, _heroPos + nn * 0.6f - _dashDir49 * 0.2f, 0.3f, new Color(GB.r, GB.g, GB.b, 0.8f), o); ZSegO1618(_heroPos - nn * 0.55f, _heroPos + nn * 0.55f, 0.12f, GW, o + 1);
                     for (int q = 0; q < 3; q++) ZPx1618(_heroPos - _dashDir49 * (0.5f + q * 0.3f) + nn * (q - 1) * 0.3f, 1, GC, o);
@@ -722,6 +725,11 @@ namespace Hellord
                     float k = Mathf.Clamp01(c.t / Mathf.Max(0.01f, T.hyDelay1682));
                     if (!hyFx)
                     { ZRingO1618(c.p, c.r, new Color(GI.r, GI.g, GI.b, 0.5f), o, 0.55f); ZRingO1618(c.p, c.r * (1f - k), new Color(GC.r, GC.g, GC.b, 0.85f), o + 1, 0.55f); }
+                    else if (c.t < T.hyDelay1682 && GgFxLive1682("GGFX_Hypothermia_Cursed"))
+                    {   // HFX v2: the ice starts crystallising on the demons in the zone during the delay (_Form 0 -> 0.45; the curse continues from 0.45). _Intensity 0.7 so the demons stay readable (VH)
+                        Query(c.p, c.r, _ggq1682);
+                        foreach (int ei in _ggq1682) { var e = _en[ei]; if (!GgOk1682(e) || e.ggHypo1682 > runTime || (e.pos - c.p).magnitude > c.r + e.radius) continue; GgFx1682("GGFX_Hypothermia_Cursed", e.pos, -20, -8, 42, 46, YSort(e.pos.y) + 60, runTime, e.id * 0.13f, ZP.F("_Form", 0.45f * k), ZP.F("_Intensity", 0.7f)); }
+                    }
                     if (c.t >= T.hyDelay1682)
                     {
                         c.done = true; Query(c.p, c.r, _ggq1682);
@@ -736,7 +744,7 @@ namespace Hellord
                 {   // cursed overlay: a pale snowflake over the head
                     var e = _en[i]; if (e == null || !GgOk1682(e) || e.ggHypo1682 <= runTime) continue; Vector2 top = e.pos + Vector2.up * (e.boss ? BossHeadY + 0.3f : e.hitY * 2f + 0.35f); int o = YSort(e.pos.y) + 290;
                     float hl = e.ggHypo1682 - runTime;
-                    if (!GgFx1682("GGFX_Hypothermia_Cursed", e.pos, -20, -8, 42, 46, YSort(e.pos.y) + 60, runTime, e.id * 0.13f, ZP.F("_Form", Mathf.Clamp01((_ggHypoDur1682 - hl) / 0.25f)), ZP.F("_Intensity", Mathf.Clamp01(hl / 0.3f)))) { ZSegO1618(top + new Vector2(-0.14f, 0f), top + new Vector2(0.14f, 0f), 0.05f, GI, o); ZSegO1618(top + new Vector2(0f, -0.14f), top + new Vector2(0f, 0.14f), 0.05f, GI, o); }
+                    if (!GgFx1682("GGFX_Hypothermia_Cursed", e.pos, -20, -8, 42, 46, YSort(e.pos.y) + 60, runTime, e.id * 0.13f, ZP.F("_Form", 0.45f + 0.55f * Mathf.Clamp01((_ggHypoDur1682 - hl) / 0.25f)), ZP.F("_Intensity", 0.7f * Mathf.Clamp01(hl / 0.3f)))) { ZSegO1618(top + new Vector2(-0.14f, 0f), top + new Vector2(0.14f, 0f), 0.05f, GI, o); ZSegO1618(top + new Vector2(0f, -0.14f), top + new Vector2(0f, 0.14f), 0.05f, GI, o); }
                 }
             // ---- Toppled Pillar
             for (int i = _ggPillar1682.Count - 1; i >= 0; i--)
@@ -895,6 +903,7 @@ namespace Hellord
                 float Rp = Mathf.Round(reach * 16f); // HFX: pivot = the cast point, the shader moves the front; rect covers the reach; _Length = reach px (Area-scaled)
                 if (!GgFx1682("GGFX_GreatFlood", fl.o, -Rp - 130f, -Rp - 40f, 2f * Rp + 260f, 2f * Rp + 80f, GgGround1682(fl.o), fl.t, 0.5f, ZP.F("_Progress", f), ZP.F("_Length", Rp)))
                 { ZSegO1618(m - n * reach - d * 0.6f, m + n * reach - d * 0.6f, 1.1f, new Color(GD.r, GD.g, GD.b, 0.55f), o - 1); ZSegO1618(m - n * reach, m + n * reach, 0.5f, new Color(GB.r, GB.g, GB.b, 0.85f), o); ZSegO1618(m - n * reach + d * 0.25f, m + n * reach + d * 0.25f, 0.14f, GW, o + 1); }
+                else GgFx1682("GGFX_GreatFlood_Crest", fl.o, -Rp - 130f, -Rp - 40f, 2f * Rp + 260f, 2f * Rp + 80f, YSort(m.y) + 60, fl.t, 0.5f, ZP.F("_Progress", f), ZP.F("_Length", Rp)); // HFX v2 optional: crest lip + spray over the sprites
                 if (f >= 1f) _ggFlood1682 = null;
             }
             // ---- Eternal Winter: 1 chill per second on everything within reach; frozen deaths shatter (queued by GgOnKill1682, chained next frame)
@@ -902,8 +911,13 @@ namespace Hellord
             {
                 int k = GgK1682(2, 3); var s = ZkI1651(k); GgWinterT1682 -= dt; _ggWinterNext1682 -= dt; float reach = ZkR1651(k, T.ewReach1682);
                 if (_ggWinterNext1682 <= 0f) { _ggWinterNext1682 = T.ewEvery1682; if (GgFxLive1682("GGFX_EternalWinter_Pulse")) GgFxO1682(-1, _heroPos, 0f, 0.8f, "GGFX_EternalWinter_Pulse", new Vector4(-226, -132, 452, 264)).ord = GgGround1682(_heroPos); for (int i = 0; i < maxEnemies; i++) { var e = _en[i]; if (e == null || !GgOk1682(e) || (e.pos - _heroPos).magnitude > reach + e.radius) continue; ApplyStatus(e, Status.Chill, 0f, GgCK1682(s), s); e.lured1651 = true; GgWinterChills1682++; } }
-                if (!GgFx1682("GGFX_EternalWinter", _heroPos, -330, -190, 660, 380, 30000, runTime, 0.3f, ZP.F("_Ignite", Mathf.Min(1f, (_ggWinterDur1682 - GgWinterT1682) / 0.5f)), ZP.F("_Fade", 1f - Mathf.Min(1f, GgWinterT1682 / 0.5f)), ZP.F("_Intensity", 1f)))
+                if (!GgFx1682("GGFX_EternalWinter", _heroPos, -330, -190, 660, 380, GgGround1682(_heroPos), runTime, /* HFX v2: ground frost, no screen overlay */ 0.3f, ZP.F("_Ignite", Mathf.Min(1f, (_ggWinterDur1682 - GgWinterT1682) / 0.5f)), ZP.F("_Fade", 1f - Mathf.Min(1f, GgWinterT1682 / 0.5f)), ZP.F("_Intensity", 1f)))
                     for (int q = 0; q < 24; q++) { float x = Mathf.Repeat(q * 7.3f + runTime * 0.8f, 26f) - 13f, y = 8f - Mathf.Repeat(q * 3.1f + runTime * (1.5f + q % 3 * 0.4f), 16f); ZPx1618(_heroPos + new Vector2(x, y), 1, GW, 30000); }
+                else
+                {   // HFX v2: winter frost on every demon in reach (snow cap, rime, crystals, glints)
+                    float fForm = Mathf.Clamp01((_ggWinterDur1682 - GgWinterT1682) / 0.6f), fI = Mathf.Clamp01(GgWinterT1682 / 0.5f);
+                    for (int i = 0; i < maxEnemies; i++) { var e = _en[i]; if (e == null || !GgOk1682(e) || (e.pos - _heroPos).magnitude > reach + e.radius) continue; GgFx1682("GGFX_EternalWinter_Frost", e.pos, -20, -8, 42, 46, YSort(e.pos.y) + 60, runTime, e.id * 0.13f, ZP.F("_Form", fForm), ZP.F("_Intensity", fI)); }
+                }
                 if (GgWinterT1682 <= 0f) GgWinterT1682 = 0f;
             }
             if (_ggBurstQ1682.Count > 0)

@@ -130,7 +130,7 @@ namespace Hellord
                 Reset(); T.ggUlt1682 = 3; Toast("ETERNAL WINTER"); GgFrozenKills1682 = 0; for (int i = 0; i < 25; i++) { var e = Pack(EType.Imp, H0 + new Vector2(6f + (i % 5) * 0.3f, -3f + (i / 5) * 0.3f), 0f, 20f); IceFreeze(e, 3f); Damage(e, e.hp + 10f, false, true); } yield return LF(10);
                 bool armedW = GgUltArmed1682; int fk = GgFrozenKills1682; L.Clear(); for (int i = 0; i < 9; i++) Pack(EType.Imp, H0 + new Vector2(3f + (i % 3) * 1.2f, -1.2f + (i / 3) * 1.2f), 0f, 30f);
                 yield return LF(5); int wb0 = GgWinterBursts1682, wc0 = GgWinterChills1682; var wb = new float[2]; yield return Ms(20, wb); yield return ZPress1618(2); var wf = new float[2]; yield return Ms(30, wf); T.ggFx1682 = false; var wn = new float[2]; yield return Ms(20, wn); T.ggFx1682 = true; yield return LF(20);
-                Res("perf_winter", true, $"frame {wb[0]:0.0} ms -> {wf[0]:0.0} ms with the Eternal Winter overlay + pulses (quads/frame {wf[1]:0.#}); {wn[0]:0.0} ms with the GGFX shaders off (placeholders)"); var first = L[4]; IceFreeze(first, 3f); foreach (var e in L) if (e != first) IceFreeze(e, 3f); Damage(first, first.hp + 10f, false, true); yield return LF(20);
+                Res("perf_winter", true, $"frame {wb[0]:0.0} ms -> {wf[0]:0.0} ms with the Eternal Winter ground frost + pulses + per-demon frost (quads/frame {wf[1]:0.#}); {wn[0]:0.0} ms with the GGFX shaders off (placeholders)"); var first = L[4]; IceFreeze(first, 3f); foreach (var e in L) if (e != first) IceFreeze(e, 3f); Damage(first, first.hp + 10f, false, true); yield return LF(20);
                 int dead = 0; foreach (var e in L) if (!e.alive) dead++;
                 Res("eternalwinter", armedW && fk == T.ewNeed1682 && GgWinterChills1682 - wc0 >= 9 && GgWinterBursts1682 - wb0 >= 2 && dead >= 3, $"frozen kills {fk}/{T.ewNeed1682}, armed {armedW}, winter chills {GgWinterChills1682 - wc0}, shatter bursts {GgWinterBursts1682 - wb0} (chain), dead {dead}/9"); yield return LF(60);
                 // t1687: Pillars of Ao is OFF the kit: the selector value reads as none and R casts nothing even below 35% HP
@@ -141,9 +141,9 @@ namespace Hellord
             {   // every GonggongFX effect this clip exercises drew through its shader (material present + hook reached)
                 string[][] want = {
                     new[] { "TidalSurge", "TidalSurge_Crest", "TidalSurge_Crash", "Whirlpool", "Whirlpool_Collapse", "BreathOfTheDeep", "BreathOfTheDeep_Ground", "BuzhouRift_Burst", "BuzhouRift_Spike", "BuzhouRift_Consume", "EyeBlackWaters", "EyeShard", "EyeShard_Hit" },
-                    new[] { "RideTheFlood", "RimeCoat", "Floodgate", "FrozenRiver" },
+                    new[] { "RideTheFlood", "RideTheFlood_Spray", "RimeCoat", "Floodgate", "FrozenRiver" },
                     new[] { "DrowningMark", "Hypothermia", "Hypothermia_Cursed", "Shatter_Burst", "FrostWall", "FrostWall_Pop" },
-                    new[] { "Ram_Charge", "Ram_Head", "Ram_Shard", "GreatFlood", "EternalWinter", "EternalWinter_Pulse", "EternalWinter_Shatter" } };
+                    new[] { "Ram_Charge", "Ram_Head", "Ram_Shard", "GreatFlood", "GreatFlood_Crest", "EternalWinter", "EternalWinter_Pulse", "EternalWinter_Shatter", "EternalWinter_Frost" } };
                 var miss = new List<string>(); foreach (var w in want[which]) if (!ZhFxSeen1625("GGFX_" + w) || GgFxMat1682("GGFX_" + w) == null) miss.Add(w);
                 Res("hfx", miss.Count == 0 && ZhFxQuads1625 > q0, $"drawn {want[which].Length - miss.Count}/{want[which].Length}, quads {ZhFxQuads1625 - q0}" + (miss.Count > 0 ? " | missing " + string.Join(",", miss) : ""));
                 ZhFxLogOn1625 = false;

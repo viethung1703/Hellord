@@ -45,6 +45,7 @@ Material:
     - _Length: 96
     - _Width: 14
     - _Radius: 40
+    - _Height: 10
     - _Squash: 0.55
     - _Progress: 0
     - _Fade: 0

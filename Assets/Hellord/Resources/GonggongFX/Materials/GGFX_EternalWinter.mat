@@ -40,8 +40,8 @@ Material:
     - _Layer: 0
     - _GlowGain: 1
     - _Mode: 3
-    - _Radius: 320
-    - _Squash: 0.55
+    - _Radius: 280
+    - _Squash: 0.58
     - _Width: 10
     - _Bend: 0
     - _Ignite: 1

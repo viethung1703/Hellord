@@ -15,12 +15,13 @@ Shader "Hellord/Gonggong/Water"
         _Seed ("Per-instance seed 0..1", Float) = 0
         _Layer ("0 = base (cutout palette), 1 = glow (additive / screen)", Float) = 0
         _GlowGain ("Glow gain (glow material only)", Float) = 1
-        _Mode ("0 tidal surge wave, 1 whirlpool, 2 puddle, 3 great flood sweep, 4 ride-the-flood wake (hero), 5 torrent trail (pivot -> _TargetPx)", Float) = 0
+        _Mode ("0 tidal surge wave (v2 raised crest), 1 whirlpool, 2 puddle, 3 great flood sweep (v2 continuous mass), 4 ride-the-flood mound + Kelvin wake (v2), 5 ram trail: bow surge + freezing torrent (pivot -> _TargetPx, v2)", Float) = 0
         _Part ("0 = water body (ground tier, under sprites), 1 = crest / foam lip / spray (over sprites)", Float) = 0
         _Angle ("Travel / aim angle deg (code: atan2(dir) * Rad2Deg)", Float) = 0
         _Length ("Travel length px (surge 6 u = 96; flood sweep distance)", Float) = 96
         _Width ("Half width px (surge 2.4 u wide = 19; trail half width)", Float) = 19
         _Radius ("Radius px (whirlpool 2.5 u = 40, puddle)", Float) = 40
+        _Height ("v2: crest height px of the raised wave (3/4 view): surge 10, flood 18", Float) = 10
         _Squash ("Ground ellipse y scale", Float) = 0.55
         _Progress ("Life 0..1 (code)", Range(0,1)) = 0
         _Fade ("Extra fade-out 0..1 (code)", Range(0,1)) = 0
@@ -58,6 +59,7 @@ Shader "Hellord/Gonggong/Water"
                 float _Length;
                 float _Width;
                 float _Radius;
+                float _Height;
                 float _Squash;
                 float _Progress;
                 float _Fade;
@@ -101,6 +103,7 @@ Shader "Hellord/Gonggong/Water"
                 float _Length;
                 float _Width;
                 float _Radius;
+                float _Height;
                 float _Squash;
                 float _Progress;
                 float _Fade;

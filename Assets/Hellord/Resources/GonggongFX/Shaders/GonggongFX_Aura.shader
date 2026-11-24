@@ -15,7 +15,7 @@ Shader "Hellord/Gonggong/Aura"
         _Seed ("Per-instance seed 0..1", Float) = 0
         _Layer ("0 = base (cutout palette), 1 = glow (additive / screen)", Float) = 0
         _GlowGain ("Glow gain (glow material only)", Float) = 1
-        _Mode ("0 rime coat (hero), 1 drowning mark, 2 hypothermia cursed, 3 ram head (hero charge)", Float) = 0
+        _Mode ("0 rime coat (hero), 1 drowning mark, 2 hypothermia ice encasement (v2), 3 ram head (hero charge), 4 winter frost on a demon (v2)", Float) = 0
         _Body ("Body box w,h px above the pivot (feet); z = head offset px", Vector) = (14, 30, 0, 0)
         _Intensity ("Strength / fade (code)", Range(0,1)) = 1
         _Charges ("Rime Coat freezes left (0..2)", Float) = 2
