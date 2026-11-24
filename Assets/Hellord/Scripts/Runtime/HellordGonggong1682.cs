@@ -427,13 +427,127 @@ namespace Hellord
             }
         }
 
+        // =============================================================== MOVEMENT (SPACE layer on Dash49; own cooldown ZhMoveCd; no damage)
+        /// <summary>top of ZhDashStart1618 (a real dash start, before the hero moves). On cooldown = a plain dash.</summary>
+        void GgDashStart1682(Vector2 p0)
+        {
+            if (!GgOn1682) return; int m = GgMove1682; if (m == 0 || ZhMoveCd > 0f) return;
+            var T = TZ; int k = GgK1682(0, m); GgCasts1682++; _ggPendMove1682 = m; _ggDash0_1682 = p0;
+            if (m == 1) { ZhMoveCd = ZkCd1651(k, T.rdCd1682); HellordAudio.Play("frost_cleave", 0.7f); }
+            else if (m == 2) { GgRimeT1682 = ZkDur1651(k, T.rcDur1682); GgRimeN1682 = Mathf.Max(1, T.rcN1682); ZhMoveCd = ZkCd1651(k, T.rcCd1682); HellordAudio.Play("curse_rune_arm", 1.5f); GgFxO1682(3, p0, 1.1f, 0.3f); }
+            else if (m == 3) { ZhMoveCd = ZkCd1651(k, T.fgCd1682); }
+            else if (m == 4) { ZhMoveCd = ZkCd1651(k, T.frCd1682); }
+        }
+        /// <summary>Dash49 after the dash started (direction set): Ride the Flood lengthens + steers it; Floodgate / Frozen River are placed along it.</summary>
+        void GgDashAfter1682()
+        {
+            int m = _ggPendMove1682; _ggPendMove1682 = 0; if (m == 0 || !GgOn1682) return; var T = TZ; int k = GgK1682(0, m);
+            Vector2 dir = _dashDir49.sqrMagnitude > 1e-4f ? _dashDir49.normalized : Vector2.right, n = new Vector2(-dir.y, dir.x);
+            if (m == 1) { GgRideT1682 = T.rideDur1682; _dashT49 = Mathf.Max(_dashT49, T.rideDur1682); _chill44 = 0; _frozen44 = 0f; GgRides1682++; }
+            else if (m == 3)
+            {   // one wall at a time (report caps: walls 1), across the path at the dash start
+                Vector2 c = _ggDash0_1682 + dir * 0.2f; float L = T.fgLen1682;
+                _ggGate1682 = new GgWall { a = c - n * L * 0.5f, b = c + n * L * 0.5f, life = ZkDur1651(k, T.fgDur1682), thick = T.fgThick1682, hp = Mathf.Max(1, T.fgHits1682) }; HellordAudio.Play("frost_cleave", 0.5f); GgFxO1682(1, c, 1f, 0.2f);
+            }
+            else if (m == 4)
+            {
+                Vector2 a = _ggDash0_1682, b = a + dir * T49.dashDistU49; ClampToRoom(ref b, HeroMarginPx);
+                _ggRiver1682.Clear(); _ggRiver1682.Add(new GgStrip { a = a - dir * 0.3f, b = b + dir * 0.3f, life = ZkDur1651(k, T.frDur1682), w = T.frW1682 }); HellordAudio.Play("frost_bomb_pulse", 0.7f);
+            }
+        }
+        void TickGgMove1682(float dt)
+        {
+            var T = TZ;
+            if (GgRideT1682 > 0f)
+            {   // steer the ride toward the cursor; no chill / freeze / hook drag while riding
+                GgRideT1682 -= dt; Vector2 want = MouseWorld() - _heroPos;
+                if (want.sqrMagnitude > 0.04f) { want.Normalize(); Vector2 nd = Vector2.Lerp(_dashDir49, want, 1f - Mathf.Exp(-T.rideTurn1682 * dt)); if (nd.sqrMagnitude > 1e-6f) _dashDir49 = nd.normalized; }
+                _chill44 = 0; _frozen44 = 0f; _dragBy = null; if (GgRideT1682 <= 0f) _dashT49 = Mathf.Min(_dashT49, 0f);
+                int o = ZhHeroOrd1625 - 1; float k = 1f - Mathf.Clamp01(GgRideT1682 / Mathf.Max(0.01f, T.rideDur1682));
+                if (!GgFx1682("GGFX_RideTheFlood", _heroPos, -24, -8, 48, 32, o, k * T.rideDur1682, 0.3f, ZP.V("_Dir", _dashDir49), ZP.F("_Progress", k)))
+                {   // PLACEHOLDER: a wave crest under the feet + spray behind
+                    Vector2 nn = new Vector2(-_dashDir49.y, _dashDir49.x); ZSegO1618(_heroPos - nn * 0.6f - _dashDir49 * 0.2f, _heroPos + nn * 0.6f - _dashDir49 * 0.2f, 0.3f, new Color(GB.r, GB.g, GB.b, 0.8f), o); ZSegO1618(_heroPos - nn * 0.55f, _heroPos + nn * 0.55f, 0.12f, GW, o + 1);
+                    for (int q = 0; q < 3; q++) ZPx1618(_heroPos - _dashDir49 * (0.5f + q * 0.3f) + nn * (q - 1) * 0.3f, 1, GC, o);
+                }
+            }
+            if (GgRimeT1682 > 0f)
+            {
+                GgRimeT1682 -= dt; if (GgRimeT1682 <= 0f || GgRimeN1682 <= 0) { GgRimeT1682 = 0f; GgRimeN1682 = 0; }
+                else if (!GgFx1682("GGFX_RimeCoat", _heroPos, -20, -6, 40, 44, ZhHeroOrd1625 + 1, runTime, 0.2f, ZP.F("_Charges", GgRimeN1682), ZP.F("_Left", GgRimeT1682)))
+                {   // PLACEHOLDER: a frosty ring + one ice pip per charge
+                    int o = ZhHeroOrd1625 + 260; ZRingO1618(_heroPos + Vector2.up * 0.6f, 0.7f, new Color(GI.r, GI.g, GI.b, 0.75f), o); for (int q = 0; q < GgRimeN1682; q++) ZPx1618(_heroPos + new Vector2(-0.15f + q * 0.3f, 1.6f), 2, GW, o + 1);
+                }
+            }
+            var g = _ggGate1682;
+            if (g != null)
+            {
+                g.t += dt; if (g.t >= g.life || g.hp <= 0) { if (g.hp <= 0) { GgGateBroken1682++; HellordAudio.Play("ice_shatter", 1.2f); } GgFxO1682(2, (g.a + g.b) * 0.5f, 1.2f, 0.3f); _ggGate1682 = null; }
+                else
+                {
+                    float dmgK = 1f - g.hp / (float)Mathf.Max(1, T.fgHits1682); Vector2 m = (g.a + g.b) * 0.5f; int o = YSort(Mathf.Min(g.a.y, g.b.y)) + 20;
+                    if (!GgFx1682("GGFX_Floodgate", m, -32, -8, 64, 40, o, g.t, 0.5f, ZP.V("_A", (g.a - m) * 16f), ZP.V("_B", (g.b - m) * 16f), ZP.F("_Damage", dmgK), ZP.F("_Life", g.t / g.life)))
+                    {   // PLACEHOLDER: a pale ice slab (two tones) with cracks as it takes hits
+                        ZSegO1618(g.a, g.b, g.thick * 2f, new Color(GP.r, GP.g, GP.b, 0.95f), o); ZSegO1618(g.a + Vector2.up * 0.25f, g.b + Vector2.up * 0.25f, g.thick * 1.6f, new Color(GI.r, GI.g, GI.b, 0.95f), o + 1); ZSegO1618(g.a + Vector2.up * 0.45f, g.b + Vector2.up * 0.45f, 0.06f, GW, o + 2);
+                        int cr = Mathf.FloorToInt(dmgK * 5f); for (int q = 0; q < cr; q++) { Vector2 p = Vector2.Lerp(g.a, g.b, 0.15f + 0.17f * q) + Vector2.up * 0.25f; ZSegO1618(p, p + new Vector2(0.1f, 0.18f), 0.04f, GD, o + 3); }
+                    }
+                }
+            }
+            for (int i = _ggRiver1682.Count - 1; i >= 0; i--)
+            {
+                var r = _ggRiver1682[i]; r.t += dt; if (r.t >= r.life) { _ggRiver1682.RemoveAt(i); continue; }
+                Vector2 m = (r.a + r.b) * 0.5f; Query(m, (r.b - r.a).magnitude * 0.5f + r.w, _ggq1682);
+                foreach (int ei in _ggq1682) { var e = _en[ei]; if (!GgOk1682(e) || PbSegDist(e.pos, r.a, r.b) > r.w * 0.5f + e.radius) continue; if (e.slowT <= 0f || e.slowAmt < T.frSlow1682) e.slowAmt = T.frSlow1682; e.slowT = Mathf.Max(e.slowT, 0.12f); e.chillT = Mathf.Max(e.chillT, 0.12f); GgRiverSlows1682++; }
+                float fade = Mathf.Clamp01((r.life - r.t) / 0.4f); int o = FbGround + YSort(m.y) + 20;
+                if (!GgFx1682("GGFX_FrozenRiver", m, -(r.b - r.a).magnitude * 8f - 12f, -24, (r.b - r.a).magnitude * 16f + 24f, 48, o, r.t, 0.4f, ZP.V("_A", (r.a - m) * 16f), ZP.V("_B", (r.b - m) * 16f), ZP.F("_Width", r.w * 16f), ZP.F("_Fade", fade)))
+                {   // PLACEHOLDER: a pale ice strip with a bright centre line and moving glints
+                    ZSegO1618(r.a, r.b, r.w, new Color(GI.r, GI.g, GI.b, 0.35f * fade), o); ZSegO1618(r.a, r.b, 0.06f, new Color(GW.r, GW.g, GW.b, 0.6f * fade), o + 1);
+                    for (int q = 0; q < 4; q++) ZPx1618(Vector2.Lerp(r.a, r.b, Mathf.Repeat(q * 0.25f + runTime * 0.6f, 1f)) + new Vector2(0f, (q % 2 - 0.5f) * r.w * 0.5f), 1, GW, o + 2);
+                }
+            }
+        }
+        /// <summary>HurtHero (after the damage landed): Rime Coat freezes the contact attacker; Ram of Mount Buzhou wrath.</summary>
+        void GgHeroHit1682(float dmg, bool contact, Enemy by)
+        {
+            if (!GgOn1682) return; var T = TZ;
+            if (GgRimeT1682 > 0f && GgRimeN1682 > 0 && contact && GgOk1682(by))
+            {
+                GgFreeze1682(by, T.rcFreeze1682); by.lured1651 = true; /* probe */ GgRimeN1682--; GgRimeFreezes1682++; GgFxO1682(2, BodyCentre1595(by), 0.6f, 0.3f); HellordAudio.Play("ice_shatter", 1.4f);
+                if (GgRimeN1682 <= 0) GgRimeT1682 = 0f;
+            }
+            GgUltHurt1682(dmg);
+        }
+        /// <summary>Floodgate blocks enemy bullets (UpdateBullets49).</summary>
+        bool GgBulletBlock1682(Vector2 p)
+        {
+            var g = _ggGate1682; if (g == null || PbSegDist(p, g.a, g.b) > g.thick + 0.15f) return false;
+            GgGateBullets1682++; return true;
+        }
+        /// <summary>push a demon out of segment a-b (half-thickness th) to the side it came from. True = it was blocked.</summary>
+        bool GgSegBlock1682(Enemy e, Vector2 prev, Vector2 a, Vector2 b, float th)
+        {
+            Vector2 ab = b - a; float l2 = ab.sqrMagnitude; float R = th + e.radius; if (l2 < 1e-6f) return GgDiscBlock1682(e, prev, a, R - e.radius);
+            float k = Mathf.Clamp01(Vector2.Dot(e.pos - a, ab) / l2); Vector2 c = a + ab * k, off = e.pos - c; float d = off.magnitude; if (d >= R) return false;
+            Vector2 nrm = new Vector2(-ab.y, ab.x).normalized; float side = Vector2.Dot(prev - a, nrm); if (Mathf.Abs(side) < 1e-4f) side = Vector2.Dot(e.pos - a, nrm); if (Mathf.Abs(side) < 1e-4f) side = 1f;
+            Vector2 outD = k > 0f && k < 1f ? nrm * Mathf.Sign(side) : (d > 1e-4f ? off / d : nrm * Mathf.Sign(side));
+            e.pos = c + outD * R; if (Vector2.Dot(e.push, outD) < 0f) e.push -= outD * Vector2.Dot(e.push, outD); return true;
+        }
+        bool GgDiscBlock1682(Enemy e, Vector2 prev, Vector2 c, float r)
+        {
+            float R = r + e.radius; Vector2 off = e.pos - c; float d = off.magnitude; if (d >= R) return false;
+            Vector2 outD = d > 1e-4f ? off / d : ((prev - c).sqrMagnitude > 1e-6f ? (prev - c).normalized : Vector2.right); e.pos = c + outD * R; if (Vector2.Dot(e.push, outD) < 0f) e.push -= outD * Vector2.Dot(e.push, outD); return true;
+        }
+        /// <summary>UpdateEnemies after a demon moved (bosses never come here): walls / pillars hold it back.</summary>
+        void GgEnemyMove1682(Enemy e, Vector2 prev)
+        {
+            var g = _ggGate1682;
+            if (g != null && GgSegBlock1682(e, prev, g.a, g.b, g.thick))
+            {   // each blocked demon chips the wall once per fgHitEvery1682 s
+                GgGateBlocks1682++; if (!g.hitAt.TryGetValue(e.id, out float lt) || runTime - lt >= TZ.fgHitEvery1682) { g.hitAt[e.id] = runTime; g.hp--; }
+            }
+            GgBlockSpec1682(e, prev); GgBlockUlt1682(e, prev);
+        }
+
         // ---- STAGE STUBS (filled in by the next stages)
-        void GgDashStart1682(Vector2 p0) { }
-        void GgDashAfter1682() { }
-        void TickGgMove1682(float dt) { }
-        void GgHeroHit1682(float dmg, bool contact, Enemy by) { }
-        bool GgBulletBlock1682(Vector2 p) => false;
-        void GgEnemyMove1682(Enemy e, Vector2 prev) { }
         void GgSpecial1682() { }
         void TickGgSpec1682(float dt) { }
         void GgPostHit1682(Enemy e, float dmg, SkillInst s, bool tick) { }
@@ -444,5 +558,8 @@ namespace Hellord
         void GgUltimate1682() { }
         void TickGgUlt1682(float dt) { }
         void GgOnKill1682(Enemy e) { }
+        void GgUltHurt1682(float dmg) { }
+        void GgBlockSpec1682(Enemy e, Vector2 prev) { }
+        void GgBlockUlt1682(Enemy e, Vector2 prev) { }
     }
 }
