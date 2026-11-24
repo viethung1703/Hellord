@@ -48,6 +48,7 @@ namespace Hellord
             HellordPreload.Register("ZhurongFX", PlZhurong1675);        // Zhurong kit: ZFX materials, kit icons, fire basics strips
             HellordPreload.Register("shared FX", PlSharedFx1675);       // Fire / Frost / Nova / PixelAoE / FX934 / boss / room light, pools
             HellordPreload.Register("enemy feel", PlEnemyFeel1676);     // t1676: hit / death / corpse / blood art per enemy sheet
+            HellordPreload.Register("hit + hero feedback", PlFeedback1676); // t1676: damage numbers, flash / burn / i-frame materials, drops, cast poses, generated FX sprites
             HellordPreload.Register("audio", PlAudio1675);              // SFX clips: LoadAudioData
             HellordPreload.Register("shaders", PlShaders1675);          // every Resources/HellordShaders shader (temp material) for the warmup
         }
@@ -97,6 +98,7 @@ namespace Hellord
             c.Step("frost cleave", () => { if (FrostCleave990.Ok) { } });
             c.Step("pixel AoE 928/930", () => { if (!_sfxTried928) LoadShaderFx928(); });
             c.Step("FX934 pool", () => { Fx934Prewarm1675(8); foreach (var m in Fx934Mats1675()) c.Warm(m); });
+            c.Step("fire wall material", () => c.Warm(FireWallMat948()));
             c.Step("Pb hit / heat materials", () => { c.Warm(PbHitMat1567()); c.Warm(PbHeatMat1567()); });
             c.Step("boss shader materials", () => { if (Bs950Ok) { } });
             c.Step("room light materials", () => { c.Warm(HellordRoom.LightMatPublic(true)); c.Warm(HellordRoom.LightMatPublic(false)); });
@@ -113,6 +115,21 @@ namespace Hellord
                     "enemy_wraith_v2_k4", "enemy_wraith_v2_k5", "enemy_wraith_v2", "enemy_frost_brute", "enemy_archer" }; // the D2Sheet variants
                 foreach (var kv in EnemyArtMap.Map) { sheets.Add(kv.Value.sheet); foreach (int v in new[] { 1, 2 }) { var s = VarSheet1457(kv.Key, v); if (s != null) sheets.Add(s); } }
                 D2Feel1434.Preload1676(sheets);
+            });
+        }
+        /// <summary>t1676: things the ftime1675 asset log showed being built on the first hit / dash / kill / cast (not pact-specific).</summary>
+        void PlFeedback1676(HellordPreload.Ctx c)
+        {
+            c.Step("damage numbers + hit flash", () => { HordeFX.Prewarm(24); c.Warm(HordeMaterials.Flash); c.Warm(HordeMaterials.CritFlash); });
+            c.Step("burn FX", InitBurn);
+            c.Step("i-frame materials", () => IfPreload1676());
+            c.Step("cast poses + cooldown ring", () => { PoseLoad1517(); RingTex1517(); });
+            c.Step("drops + projectiles", () => { for (int t = 0; t < 3; t++) HArt.Blood(t); HArt.Bone(true); HArt.Bone(false); foreach (var p in new[] { "proj_fireball", "proj_frost", "proj_storm", "proj_bone", "proj_curse" }) HArt.Proj(p); });
+            c.Step("generated FX sprites", () =>
+            {   // the radii the kit / basics / tells ask for (others still build on first use, cached)
+                foreach (int r in new[] { 4, 8, 13, 18, 24, 40 }) { HellSprites.Disk(r); for (int f = 0; f < 3; f++) HellSprites.FireRing(r, f); }
+                foreach (var g in new[] { new Vector2Int(3, 2), new Vector2Int(4, 5), new Vector2Int(5, 4), new Vector2Int(18, 5), new Vector2Int(40, 5) }) PixelFXTextures.Glow(g.x, g.y);
+                HellSprites.Pixel();
             });
         }
         void PlAudio1675(HellordPreload.Ctx c)

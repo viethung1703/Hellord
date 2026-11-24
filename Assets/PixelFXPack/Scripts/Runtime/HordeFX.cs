@@ -124,6 +124,9 @@ namespace PixelFXPack
             if (showNumber && sr) s.DoNumber(sr.transform.position + Vector3.up * (8f / s.pixelsPerUnit), damage, crit, sr.GetInstanceID());
         }
         public static void Flash(SpriteRenderer sr, bool crit = false) => I.DoFlash(sr, crit);
+        /// <summary>Hellord t1676: build the number glyph atlas + plate, park `numbers` pooled numbers and create the flash materials now (a loading screen) instead of on the first hit.</summary>
+        public static void Prewarm(int numbers = 24) => I.DoPrewarm(numbers);
+        void DoPrewarm(int k) { BuildAtlas(); while (_numPool.Count + _nums.Count < k) { var n = NewNum(); n.root.gameObject.SetActive(false); _numPool.Push(n); } var a = HordeMaterials.Flash; var b = HordeMaterials.CritFlash; }
         public static void Number(Vector3 pos, int value, bool crit = false) => I.DoNumber(pos, value, crit, 0);
         /// <summary>v1.8.2: numbers with the same non-zero <paramref name="mergeKey"/> (e.g. target instance id) inside numberMergeWindow merge into one total.</summary>
         public static void Number(Vector3 pos, int value, bool crit, int mergeKey) => I.DoNumber(pos, value, crit, mergeKey);

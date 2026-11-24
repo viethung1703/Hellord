@@ -19,6 +19,15 @@ namespace Hellord
         bool HeroInvuln969 => _iframe > 0 || _tmGod;
 #endif
 
+        /// <summary>t1676: the i-frame material + one per current hero renderer (what IfSet969 makes on the first dash / hit), made during loading. Not applied.</summary>
+        int IfPreload1676()
+        {
+            var T = HellordTuning.I; if (!T.iframeShader970) return 0;
+            if (_ifMat969 == null) { var sh = Resources.Load<Shader>("HellordShaders/HellordHeroIFrame"); if (sh == null) sh = Shader.Find("Hellord/HeroIFrame"); if (sh != null) _ifMat969 = new Material(sh) { name = "HeroIFrame969" }; }
+            if (_ifMat969 == null) return 0; int n = 0;
+            void One(SpriteRenderer r) { if (r == null) return; if (!_ifMats987.TryGetValue(r, out var mi) || mi == null) { _ifMats987[r] = new Material(_ifMat969) { name = "HeroIFrame987_" + r.name }; n++; } }
+            One(_heroBase); foreach (var l in _heroLayers) One(l.sr); return n;
+        }
         void IfSet969(SpriteRenderer r, bool on)
         {
             if (r == null) return;
