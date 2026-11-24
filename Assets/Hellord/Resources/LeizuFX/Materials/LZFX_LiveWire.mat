@@ -41,14 +41,14 @@ Material:
     - _GlowGain: 1
     - _Progress: 0
     - _Mode: 1
-    - _Width: 1
-    - _Amp: 7
-    - _SegLen: 8
+    - _Width: 0.5
+    - _Amp: 4
+    - _SegLen: 5
     - _Forks: 2
-    - _ForkLen: 0.18
+    - _ForkLen: 0.08
     - _Rejit: 1
-    - _EndStar: 0.6
-    - _StartStar: 1
+    - _EndStar: 0.4
+    - _StartStar: 0.6
     - _Overload: 0
     - _Tint: 0
     - _SrcBlend: 5
