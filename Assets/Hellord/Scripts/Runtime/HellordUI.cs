@@ -29,6 +29,7 @@ namespace Hellord
             GUI.depth = 0; DrawLowResWorld();
             InitStyles();
             _fps = Mathf.Lerp(_fps, 1f / Mathf.Max(1e-4f, Time.unscaledDeltaTime), 0.05f);
+            if (Loading1675) { HudBegin(); DrawPreload1675(); return; } // t1675: only the loading screen
             // v0.7: in-run HUD = Option B on a 640x360 canvas at the same integer zoom as the camera (HellordHud.cs)
             // v0.8: everything in-run is on the 640x360 canvas (HUD Option B, floor UI, cards, death/won); F9 debug stays on the old 960 canvas
             // v0.0.9 perf: OnGUI runs for Layout + Repaint (+ input) events; in play there is nothing to click, so only paint once

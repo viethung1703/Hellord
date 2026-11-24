@@ -1759,6 +1759,13 @@ namespace Hellord
     [Tooltip("t1669 folder used for a material missing from lzFxDir1669 (v1 keeps any part v2 does not ship); empty = none")] public string lzFxDirFallback1669 = "LeizuFX/Materials/";
     [Tooltip("t1669 renamed v2 materials: \"LZFX_Old=LZFX_New;...\" (looked up in lzFxDir1669; the _Glow twin follows)")] public string lzFxRename1669 = "";
     [Tooltip("t1669 v2.1 haze override: -1 = the material (_HazeMode 0 = GrabPass distortion + shimmer), 1 = no-grab shimmer bands only")] public float lzHazeMode1669 = -1f;
+    // ---- t1675 run loading phase (HellordPreload1675.cs): preload the sealed pact's FX / sprites / audio / pools + shader warmup between Descend and the run
+    [Tooltip("t1675 loading step after Descend: preloads the run pact's FX materials, sprites, icons, skill audio and pools, warms the shaders, then starts the run. Off = the old lazy first-use loads")] public bool preload1675 = true;
+    [Tooltip("t1675 loading: work budget per frame (ms) so the bar animates")] public float preloadBudgetMs1675 = 12f;
+    [Tooltip("t1675 loading: FX quad pool size prewarmed (ZhurongFX / LeizuFX shader quads)")] public int preloadQuadPool1675 = 128;
+    [Tooltip("t1675 loading: SFX folders (Resources/Audio/SFX/<folder>) whose clips get LoadAudioData during loading; empty = none")] public string[] preloadAudioFolders1675 = { "skills", "fireball", "firebasics1481", "hitdeath", "enemy", "enemies", "hero", "d2sfx1447", "pickups" };
+    [Tooltip("t1675 loading: draw every preloaded FX material + every Resources/HellordShaders shader once on a hidden camera (compiles the shaders there; Editor: synchronously)")] public bool preloadWarmShaders1675 = true;
+    [Tooltip("t1675 loading: minimum seconds the loading screen stays up (0 = only as long as the work takes)")] public float preloadMinSec1675 = 0f;
     [Tooltip("t1666 new basics base damage / cooldown s: Thunder Drum Strikes, Thunder Lash, Live Wire (cooldown after release), Thunder Hound")] public float[] lzBaseDmg1666 = { 7f, 10f, 10f, 8f }, lzCd1666 = { 0.45f, 0.45f, 0.8f, 1.0f };
     [Tooltip("t1666 Thunder Drum Strikes: beat strike radius u / pick radius around the cursor u / beat dmg x / Thunderclap radius u / clap dmg x on shocked / x on the rest / beat-3 window s (the count resets after it)")] public float dsStrikeR1666 = 0.8f, dsPickR1666 = 2f, dsStrikeDmg1666 = 1f, dsClapR1666 = 2.5f, dsClapShocked1666 = 1.8f, dsClapOther1666 = 0.8f, dsWindow1666 = 1.2f;
     [Tooltip("t1666 Thunder Lash: reach u / arc degrees (full) / dmg x / knockback u on enemies already shocked")] public float tlReach1666 = 2.2f, tlArc1666 = 150f, tlDmg1666 = 1.3f, tlKnock1666 = 0.6f;

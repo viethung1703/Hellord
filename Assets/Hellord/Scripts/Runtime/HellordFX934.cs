@@ -30,6 +30,15 @@ namespace Hellord
             }
             return shock ? _okShock934 : _ok934;
         }
+        /// <summary>t1675: make n pooled quads of each kind now (loading phase) through the normal Q934Get path, then park them (off, inactive).</summary>
+        int Fx934Prewarm1675(int n)
+        {
+            int made = 0; var l = new List<Q934>();
+            foreach (bool shock in new[] { false, true }) { if (!Fx934Ok(shock)) continue; int have = 0; foreach (var o in _q934) if (o.shock == shock) have++; for (int i = have; i < n; i++) { var q = Q934Get(shock, 0, new Vector2(-9999f, -9999f), 0.01f, 0.01f, 0.01f, 0); if (q == null) break; l.Add(q); made++; } }
+            foreach (var q in l) { q.on = false; q.sr.gameObject.SetActive(false); }
+            return made;
+        }
+        IEnumerable<Material> Fx934Mats1675() { foreach (var q in _q934) if (q.m != null) yield return q.m; }
         Q934 Q934Get(bool shock, int mode, Vector2 at, float wU, float hU, float life, int order)
         {
             if (!Fx934Ok(shock)) return null; var T = HellordTuning.I;

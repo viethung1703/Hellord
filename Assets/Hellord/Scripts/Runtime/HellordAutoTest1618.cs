@@ -20,6 +20,9 @@ namespace Hellord
                 case "zhclip1618_special": return AtZhClip1618(2);
                 case "zhclip1618_ult": return AtZhClip1618(3);
                 case "lzclip1666_basics": return AtLzClip1666(0); // t1666 Leizu kit clips + checks
+                case "ftime1675_lz": return AtFtime1675(2, false); // t1675 first- vs second-cast frame time (fresh process; -preload1675 0 = the old lazy loads)
+                case "ftime1675_zh": return AtFtime1675(0, false);
+                case "loadclip1675": return AtFtime1675(2, true);  // t1675 clip: Descend -> loading bar -> run -> first casts (run with -atRec 30)
                 case "lzclip1666_move": return AtLzClip1666(1);
                 case "lzclip1666_special": return AtLzClip1666(2);
                 case "lzclip1666_ult": return AtLzClip1666(3);
@@ -45,12 +48,12 @@ namespace Hellord
         IEnumerator ZNoSplit1618(IEnumerator inner) { var T = HellordTuning.I; T.fireWallSplit1618 = false; FireWallDefs948(); yield return inner; T.fireWallSplit1618 = true; FireWallDefs948(); }
         // ---------------------------------------------------------------- shared run start: Zhurong pact, pick the basic from the descend cards
         int _zso, _zsi, _zpp, _zps; bool _zsd; int[] _zun; int _zM0, _zS0, _zU0; bool _zAny0;
-        IEnumerator ZhStart1618(string scen, string clip, SkillId basic)
+        IEnumerator ZhStart1618(string scen, string clip, SkillId basic, int pact = 0) /* t1675: + pact (sealed + descended) */
         {
             yield return AtBegin(scen); HellordUITheme.Requested = HellordUITheme.Theme.MenuTheme; PactLoad51(); var T = HellordTuning.I;
             _zso = _souls51; _zsi = _sigils51; _zpp = _pactPath51; _zps = _pactSel51; _zsd = _pactSealed51; _zun = (int[])_unlock51.Clone(); _zM0 = T.kitMove1618; _zS0 = T.kitSpecial1618; _zU0 = T.kitUlt1618; _zAny0 = T.kitAnyPact1618; _zOv0 = T.kitSlotOverride1639; T.kitSlotOverride1639 = true; // t1639: the zh1618 tests drive the slots through the tuning override
             for (int p = 0; p < NP97; p++) _unlock51[p] = (1 << PactData.Nodes[p].Length) - 1;
-            _souls51 = 1700; _sigils51 = 15; _pactPath51 = 0; _pactSel51 = 0x1; _pactSealed51 = true; PactSave51(); _altarView51 = 0; T.kitAnyPact1618 = false;
+            _souls51 = 1700; _sigils51 = 15; _pactPath51 = pact; _pactSel51 = 0x1; _pactSealed51 = true; PactSave51(); _altarView51 = 0; T.kitAnyPact1618 = false;
             _atGod = true; Manual716 = false;
             AtMenu1555(); yield return AtWait(1.0f);
             _r1561 = 0; AtAudioLog1481.Frame = 0; AtAudioLog1481.Sb.Length = 0; HellordAudio.LoopLog = (kind, hid, a, b) => AtAudioLog1481.Log(kind == "play" ? hid : kind + "|" + hid, a, b);

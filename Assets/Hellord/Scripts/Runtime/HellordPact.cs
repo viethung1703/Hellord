@@ -233,7 +233,7 @@ namespace Hellord
             else if (mode == Mode.Altar) { if (HInput.Down(HKey.Escape)) AltarBack53(); if (HInput.Down(HKey.Tab)) _altarSelectMode51 = !_altarSelectMode51; }
         }
         string PactEndLine51() => _pactPaid51 ? "+" + _soulsEarned51 + " SOULS" + (_sigilsEarned51 > 0 ? "  +" + _sigilsEarned51 + " SIGIL" : "") + "  TOTAL " + _souls51 : null;
-        void Descend51() { HellordAudio.Play("pact_seal_descend"); mode = Mode.StartPick; PactApply51(); } // v0.0.61 t611u sting; menu music fades out
+        void Descend51() { HellordAudio.Play("pact_seal_descend"); mode = Mode.StartPick; PactApply51(); PreloadBegin1675(_pactPath51); } /* t1675: loading step before the run */ // v0.0.61 t611u sting; menu music fades out
 
         // ---- IMGUI (640x360 canvas, placeholder art per step60/v1.6) ----
         static readonly Color CPanel51 = new Color(0.07f, 0.05f, 0.1f, 0.92f), CEdge51 = new Color(0.35f, 0.12f, 0.12f, 1f);

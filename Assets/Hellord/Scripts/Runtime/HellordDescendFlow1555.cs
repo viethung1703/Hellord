@@ -67,6 +67,7 @@ namespace Hellord
             else { SinRecalc737(); PactLoad51(); _pactActive51 = false; }   // another god: its basic only, no pact nodes; the saved Path is untouched
             if (skills.Count > 0) { skills.Clear(); SetHeroLayers(); } ZhRunReset1639(); // t1639
             Choose(new Card { kind = CardKind.NewSkill, skill = HData.Skill(id) });
+            PreloadBegin1675(p); // t1675: loading step (the run is held until the pact's FX / audio / shaders are ready)
             Debug.Log("[Hellord] t1555 descend: pact " + PactData.PathShort[p] + " basic " + id + " pactNodes " + (_pactActive51 ? SelCount51() : 0));
         }
         /// <summary>t1559: the pact picker starts the run; the old start pick (BuildStartCards / DrawCardsB 'CHOOSE YOUR STARTING SKILL') then offers only this pact's basics.
@@ -81,6 +82,7 @@ namespace Hellord
             else { SinRecalc737(); PactLoad51(); _pactActive51 = false; }
             if (skills.Count > 0) { skills.Clear(); SetHeroLayers(); } ZhRunReset1639(); // t1639
             BuildStartCards();
+            PreloadBegin1675(p); // t1675
             Debug.Log("[Hellord] t1559 descend: pact " + PactData.PathShort[p] + " pactNodes " + (_pactActive51 ? SelCount51() : 0) + " startCards " + cards.Count);
         }
         /// <summary>t1559: the old start cards, filtered to the run pact's basics (mapping order). Empty after a pact ban -> the unfiltered basics (never an empty pick).</summary>

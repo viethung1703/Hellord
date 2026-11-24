@@ -76,6 +76,15 @@ namespace Hellord
             }
             r.SetPropertyBlock(mpb);
         }
+        /// <summary>t1675: grow the FX quad pool to n now (loading phase) instead of mid-cast; new quads start disabled. Same objects the on-demand path makes.</summary>
+        int ZhFxPoolPrewarm1675(int n)
+        {
+            ZhFxQuad1625Init(); int made = 0;
+            while (_zfxR1625.Count < n) { var go = new GameObject("zfx"); go.transform.SetParent(_zfxRoot1625, false); go.AddComponent<MeshFilter>().sharedMesh = _zfxQuad1625; var r = go.AddComponent<MeshRenderer>(); r.enabled = false; _zfxR1625.Add(r); made++; }
+            return made;
+        }
+        /// <summary>t1675: the cached ZhurongFX materials (preloader warm list).</summary>
+        IEnumerable<Material> ZhFxMats1675() { foreach (var m in _zfxMat1625.Values) if (m != null) yield return m; }
         void ZhFxQuad1625Init()
         {
             if (_zfxRoot1625 == null)

@@ -31,6 +31,14 @@ namespace Hellord
             return PbArtRoot1567;
         }
         /// <summary>t1578: the {...} body of "stem": { ... } with nested braces skipped; only the top level is returned (nested blocks blanked)</summary>
+        /// <summary>t1675: spec.json text per path and its block per stem, parsed once (dictionary) instead of per key. null = no spec / no block.</summary>
+        static readonly Dictionary<string, string> _pbSpecTxt1675 = new Dictionary<string, string>(), _pbSpecBlk1675 = new Dictionary<string, string>();
+        static string PbSpecBlockCached1675(string rel, string stem)
+        {
+            string path = PbArtPath1567(rel), bk = path + "|" + stem; if (_pbSpecBlk1675.TryGetValue(bk, out var b)) return b;
+            if (!_pbSpecTxt1675.TryGetValue(path, out var txt)) { var ta = Resources.Load<TextAsset>("HellordArt/" + path); txt = ta != null ? ta.text : null; _pbSpecTxt1675[path] = txt; }
+            b = txt != null ? PbSpecBlock1567(txt, stem) : null; _pbSpecBlk1675[bk] = b; return b;
+        }
         static string PbSpecBlock1567(string txt, string stem)
         {
             var m = Regex.Match(txt, "\"" + Regex.Escape(stem) + "\"\\s*:\\s*\\{"); if (!m.Success) return null; int i0 = m.Index + m.Length, d = 1; var sb = new System.Text.StringBuilder(); bool str = false;
@@ -50,8 +58,7 @@ namespace Hellord
             var T = HellordTuning.I; if (T == null) return;
             if (T.pbArtFileMap1567 != null) foreach (var m in T.pbArtFileMap1567) { int i = m.IndexOf('='); if (i > 0 && m.Substring(0, i).Trim() == key) file = m.Substring(i + 1).Trim(); }
             if (!T.pbArtSpecJson1567) return; int sl = file.LastIndexOf('/'); string folder = sl > 0 ? file.Substring(0, sl) : "", stem = sl >= 0 ? file.Substring(sl + 1) : file;
-            var ta = Resources.Load<TextAsset>("HellordArt/" + PbArtPath1567((folder.Length > 0 ? folder + "/" : "") + "spec")); if (ta == null) return;
-            string b = PbSpecBlock1567(ta.text, stem); if (b == null) return; // t1578: brace-matched (v2 Leizu blocks nest "shader": {..})
+            string b = PbSpecBlockCached1675((folder.Length > 0 ? folder + "/" : "") + "spec", stem); if (b == null) return; // t1675: spec.json loaded + split once (was Resources.Load + brace scan per key) // t1578: brace-matched (v2 Leizu blocks nest "shader": {..})
             int I(string f, int d) { var x = Regex.Match(b, "\"" + f + "\"\\s*:\\s*(\\d+)"); return x.Success ? int.Parse(x.Groups[1].Value) : d; }
             fw = I("w", fw); fh = I("h", fh); n = I("n", n); rows = I("rows", rows);
             var pv = Regex.Match(b, "\"piv\"\\s*:\\s*\\[\\s*([\\d.]+)\\s*,\\s*([\\d.]+)"); if (pv.Success) { px = float.Parse(pv.Groups[1].Value, System.Globalization.CultureInfo.InvariantCulture); py = float.Parse(pv.Groups[2].Value, System.Globalization.CultureInfo.InvariantCulture); }

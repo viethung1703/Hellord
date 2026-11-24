@@ -12,7 +12,7 @@ namespace Hellord
     public partial class HellordGame
     {
         int _r1561;
-        IEnumerator AtHold1561(float s, string clip) { float t = 0; while (t < s) { yield return null; t += Time.unscaledDeltaTime; if (clip != null) { AtAudioLog1481.Frame = _r1561; AtRecFrame(clip, ref _r1561); } } }
+        IEnumerator AtHold1561(float s, string clip) { float t = 0; int g = 0; while (t < s || (Loading1675 && g++ < 3000)) { yield return null; t += Time.unscaledDeltaTime; if (clip != null) { AtAudioLog1481.Frame = _r1561; AtRecFrame(clip, ref _r1561); } } } // t1675: also holds until the loading screen is done
         IEnumerator AtFake1561(int x, int y, string clip)
         {
             _mtFakeUsed = false; MenuThemeFake = new Vector2(x, y); float w = 0;
@@ -22,7 +22,7 @@ namespace Hellord
         Vector2Int AtPlayC1561() => new Vector2Int(AltarBtnX1561(1) + PT.altarPlayW1561 / 2, AltarMenuData.BtnY + 9);
         Vector2Int AtSealC1561() => new Vector2Int(AltarMenuData.SealX + 44, (PT.pactCardsV2 ? AmV2SealY() : AltarMenuData.SealY) + 7);
         /// <summary>seal p (switching Path clears picks, like the altar confirm) and press the altar DESCEND (same function as the button).</summary>
-        void AtSealPlay1561(int p, int sel) { AtMenu1555(); _pactPath51 = p; _pactSel51 = sel; _pactSealed51 = true; Act69(0); AltarPlay1561(); }
+        void AtSealPlay1561(int p, int sel) { AtMenu1555(); _pactPath51 = p; _pactSel51 = sel; _pactSealed51 = true; Act69(0); AltarPlay1561(); PreloadFinishNow1675(); } // t1675: the run ready this frame (the checks read it at once)
 
         IEnumerator AtAltar1561()
         {

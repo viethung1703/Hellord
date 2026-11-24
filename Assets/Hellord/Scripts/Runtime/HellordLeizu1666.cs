@@ -142,6 +142,7 @@ namespace Hellord
             return _lzAnim1666.TryGetValue(anim + "_" + dir, out var x) ? x : null;
         }
         readonly Dictionary<string, Material> _lzMat1666 = new Dictionary<string, Material>();
+        IEnumerable<Material> LzFxMats1675() { foreach (var m in _lzMat1666.Values) if (m != null) yield return m; } // t1675 preloader warm list
         Material LzFxMat1666(string n) { if (_lzMat1666.TryGetValue(n, out var m)) return m; m = LzFxLoad1669(n); return _lzMat1666[n] = m; } // t1669: folder + renames from tuning (v2 swap), HellordLeizuFx1669.cs
         /// <summary>HFX shader hook (same quad route + logging as ZhFx1625). True = the shader drew it (skip the placeholder).</summary>
         bool LzFx1666(string mat, Vector2 pivot, float l, float b, float w, float h, int order, float fxTime, float seed, params ZP[] ps)

@@ -102,6 +102,18 @@ namespace Hellord
         }
 
         /// <summary>Stagger frames per facing [S,E,N,W] (HArt walk row / 4). Files: Enemies/&lt;key&gt;_stagger_{south,east,north,west}.png, or one Enemies/&lt;key&gt;_stagger.png used for all four. Cell size = the enemy sheet's.</summary>
+        /// <summary>t1676: fill the per-sheet caches (placeholder-free lookups only) for these enemy sheets + every blood / gib FX strip, so the first hit / death / corpse of a type loads nothing.</summary>
+        public static int Preload1676(IEnumerable<string> sheets)
+        {
+            int n = 0;
+            foreach (var s in sheets)
+            {
+                if (string.IsNullOrEmpty(s)) continue; n++;
+                HitPl(s); DeathPl(s); CorpsePl(s); Stagger(s); Death(s); Corpse(s); Pool(s, false); Pool(s, true);
+            }
+            foreach (var k in FxDefs.Keys) Fx(k);
+            return n;
+        }
         public static Sprite[][] Stagger(string sheet) { if (_stag.TryGetValue(sheet, out var r)) return r; r = Dir4(sheet, "stagger", 2); _stag[sheet] = r; return r; }
         /// <summary>Fast collapse (3 frames @12 fps) per facing, ending on the corpse pose: Enemies/&lt;key&gt;_death_{south,east,north,west}.png</summary>
         public static Sprite[][] Death(string sheet) { if (_death.TryGetValue(sheet, out var r)) return r; r = Dir4(sheet, "death", 3); _death[sheet] = r; return r; }

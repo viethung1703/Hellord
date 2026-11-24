@@ -24,6 +24,12 @@ namespace Hellord
             if (list.Count == 0 && folder != "d2sfx1447") Debug.LogWarning("[HellordAudio] no clips for " + hook); // d2sfx1447: clips arrive later, silent fallback
             _h[hook] = new Hook { folder = folder, v0 = v0, v1 = v1, p0 = p0, p1 = p1, cap = cap, minGap = minGap, clips = list.ToArray(), group = group, replace = replace };
         }
+        /// <summary>t1675: the clips of every hook in these SFX folders (the loading phase calls LoadAudioData on them; the metas keep preloadAudioData 0).</summary>
+        public void Clips1675(ICollection<string> folders, System.Action<AudioClip> add)
+        {
+            if (folders == null || add == null) return;
+            foreach (var h in _h.Values) if (h.clips != null && folders.Contains(h.folder)) foreach (var c in h.clips) if (c != null) add(c);
+        }
         void Awake()
         {
             // AUDIO_MAP.md batch 1 values
