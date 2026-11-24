@@ -54,6 +54,7 @@ namespace Hellord
             GgShatters1682, GgPillarBlocks1682, GgPillarHits1682, GgCrystalBooms1682, GgWallBlocks1682, GgRamHits1682, GgRamShardHits1682, GgFloodHits1682, GgWinterChills1682, GgWinterBursts1682, GgAoPushes1682, GgAoIcicles1682, GgFrozeN1682;
         readonly List<int> _ggq1682 = new List<int>(64);
         bool GgOk1682(Enemy e) => e != null && e.alive && !e.dying;
+        float GgCK1682(SkillInst s) => s != null ? StatusK(s, SupportId.Chill) : 1f; // the kit's own chills last longer with the Chill support (like hit chills)
         // movement
         [System.NonSerialized] public float GgRideT1682, GgRimeT1682; [System.NonSerialized] public int GgRimeN1682; int _ggPendMove1682; Vector2 _ggDash0_1682;
         public bool GgRiding1682 => GgRideT1682 > 0f;
@@ -321,10 +322,18 @@ namespace Hellord
         // ---- Breath of the Deep: HOLD LMB, a frost cone (4 u, 40 deg). Ticks every 0.2 s keep the chill on; a demon held in it 1 s freezes. You move 50% slower.
         bool CastBreath1682(SkillInst s, float dmg)
         {
+            if (_echo738) { GgBreathPulse1682(s, dmg * TZ.brDmg1682); return true; } // Echo (t1682 choice): one extra cone pulse at the echo's damage, held or not
             if (_ggBreath1682 != null || _ggBreathNeedUp1682) { s.cd = 0.05f; return false; }
             _ggBreath1682 = new GgBreath { s = s, tick = 0f }; HellordAudio.Play("frost_cleave", 1.4f); return true;
         }
         readonly List<int> _ggCone1682 = new List<int>();
+        void GgBreathPulse1682(SkillInst s, float d)
+        {
+            var T = TZ; float R = s.R(T.brR1682), half = T.brArc1682 * 0.5f; Vector2 dir = PbAim1567(), o = _heroPos; var hit = new List<int>();
+            Query(o + dir * R * 0.5f, R * 0.5f + 1f, hit); SkillArea53(o + dir * R * 0.5f, R * 0.45f, d, (int)s.def.id);
+            foreach (int ei in hit) { var e = _en[ei]; if (!GgOk1682(e) || !PbInArc1567(e, o, dir, R, half, 0.3f)) continue; Hit(e, d, s, Vector2.zero); e.chillT = Mathf.Max(e.chillT, 0.6f); }
+            GgBreathTicks1682++; _lastCast[(int)s.def.id] = Time.time;
+        }
         void TickGgBreath1682(float dt)
         {
             if (_ggBreathNeedUp1682 && !HInput.LmbHeld716()) _ggBreathNeedUp1682 = false;
@@ -419,7 +428,8 @@ namespace Hellord
             {
                 var sh = _ggShardP1682[i]; Vector2 a = sh.p; sh.p += sh.v * dt; sh.t += dt; bool hit = false;
                 _ggq1682.Clear(); QueryBody1595(a, sh.p, T.eyeShardR1682, _ggq1682);
-                foreach (int ei in _ggq1682) { var e = _en[ei]; if (!GgOk1682(e)) continue; Hit(e, sh.dmg, sh.s, sh.v.normalized * 0.3f); GgEyeHits1682++; hit = true; break; }
+                Enemy he = null; float hd = 1e9f; foreach (int ei in _ggq1682) { var e = _en[ei]; if (!GgOk1682(e)) continue; float d = (e.pos - a).sqrMagnitude; if (d < hd) { hd = d; he = e; } } // the nearest body along the step (not query order)
+                if (he != null) { Hit(he, sh.dmg, sh.s, sh.v.normalized * 0.3f); GgEyeHits1682++; hit = true; }
                 if (!hit && GgCrystalAt1682(sh.p, T.eyeShardR1682)) hit = true; // a Frost Wall crystal hit by a shard explodes
                 if (hit || sh.t >= sh.life) { if (hit) GgFxO1682(1, sh.p, 0.2f, 0.12f, "GGFX_EyeShard"); _ggShardP1682.RemoveAt(i); continue; }
                 int ord = YSort(sh.p.y - 0.6f) + 200; Vector2 dn = sh.v.normalized, c = sh.p + Vector2.up * 0.6f;
@@ -589,7 +599,7 @@ namespace Hellord
             {
                 Vector2 c = e.pos; e.freezeT = 0f; e.chillHits = 0; if (StatusFX.IsAlive(e.chillH)) StatusFX.SetFrozen(e.chillH, false); GgShatters1682++;
                 Query(c, br, _ggq1682);
-                foreach (int oi in _ggq1682.ToArray()) { var o = _en[oi]; if (!GgOk1682(o) || (o.pos - c).magnitude > br + o.radius) continue; Hit(o, ZkHit1651(k) * T.shDmg1682, s, (o.pos - c).normalized * 0.8f); if (o != e && GgOk1682(o)) ApplyStatus(o, Status.Chill, 0f, 1f, s); }
+                foreach (int oi in _ggq1682.ToArray()) { var o = _en[oi]; if (!GgOk1682(o) || (o.pos - c).magnitude > br + o.radius) continue; Hit(o, ZkHit1651(k) * T.shDmg1682, s, (o.pos - c).normalized * 0.8f); if (o != e && GgOk1682(o)) ApplyStatus(o, Status.Chill, 0f, GgCK1682(s), s); }
                 GgFxO1682(2, BodyCentre1595(e), br, 0.35f, "GGFX_Shatter_Burst", GgZoneRc1682(br)); GgFxO1682(0, c, br, 0.3f);
             }
             HellordAudio.Play("ice_shatter", 0.9f); ScreenShake.Add(1.5f, 0.12f); return true;
@@ -602,7 +612,7 @@ namespace Hellord
             foreach (int ei in _ggq1682.ToArray())
             {
                 var e = _en[ei]; if (!GgOk1682(e) || !GgInLine1682(e, a, b, hw)) continue; Hit(e, ZkHit1651(p.k) * T.tpDmg1682, s, p.dir * 0.6f); GgPillarHits1682++;
-                for (int c = 0; c < T.tpChills1682 && GgOk1682(e); c++) ApplyStatus(e, Status.Chill, 0f, 1f, s);
+                for (int c = 0; c < T.tpChills1682 && GgOk1682(e); c++) ApplyStatus(e, Status.Chill, 0f, GgCK1682(s), s);
             }
             HellordAudio.Play("oxhead_stomp_strike", 0.8f); ScreenShake.Add(2.5f, 0.18f); GgFxO1682(4, a, hw, 0.35f, "GGFX_ToppledPillar_Crush", new Vector4(-8, -8, 16, 16), b);
         }
@@ -610,7 +620,7 @@ namespace Hellord
         {
             var w = _ggFw1682; if (w == null || !c.alive) return; c.alive = false; var T = TZ; int k = GgK1682(1, 5); var s = ZkI1651(k);
             Query(c.p, w.r, _ggq1682);
-            foreach (int ei in _ggq1682.ToArray()) { var o = _en[ei]; if (!GgOk1682(o) || (o.pos - c.p).magnitude > w.r + o.radius) continue; Hit(o, ZkHit1651(k) * T.fwDmg1682, s, (o.pos - c.p).normalized * 0.8f); if (GgOk1682(o)) ApplyStatus(o, Status.Chill, 0f, 1f, s); }
+            foreach (int ei in _ggq1682.ToArray()) { var o = _en[ei]; if (!GgOk1682(o) || (o.pos - c.p).magnitude > w.r + o.radius) continue; Hit(o, ZkHit1651(k) * T.fwDmg1682, s, (o.pos - c.p).normalized * 0.8f); if (GgOk1682(o)) ApplyStatus(o, Status.Chill, 0f, GgCK1682(s), s); }
             GgCrystalBooms1682++; GgFxO1682(2, c.p + Vector2.up * 0.4f, w.r, 0.3f, "GGFX_FrostWall_Pop", GgZoneRc1682(w.r)); HellordAudio.Play("ice_shatter", 1.2f);
         }
         /// <summary>SkillArea53 (any of your areas): Frost Wall crystals inside it explode.</summary>
@@ -711,7 +721,7 @@ namespace Hellord
         {
             if (!GgOn1682 || _ggRelaying1682 || GgMark1682 == null || e != GgMark1682 || GgMarkT1682 <= 0f || !GgCold1682(s)) return;
             _ggRelaying1682 = true; var src = ZkI1651(GgK1682(1, 1)); float R = TZ.dmRelayR1682; Query(e.pos, R, _ggq1682);
-            foreach (int ei in _ggq1682.ToArray()) { var o = _en[ei]; if (o == e || !GgOk1682(o) || (o.pos - e.pos).magnitude > R + o.radius) continue; ApplyStatus(o, Status.Chill, 0f, 1f, src); o.lured1651 = true; GgMarkRelays1682++; }
+            foreach (int ei in _ggq1682.ToArray()) { var o = _en[ei]; if (o == e || !GgOk1682(o) || (o.pos - e.pos).magnitude > R + o.radius) continue; ApplyStatus(o, Status.Chill, 0f, GgCK1682(src), src); o.lured1651 = true; GgMarkRelays1682++; }
             _ggRelayT1682 = runTime; _ggRelaying1682 = false;
         }
         /// <summary>enemy move: a standing pillar and the Frost Wall crystals hold demons back.</summary>
@@ -810,7 +820,7 @@ namespace Hellord
                 {
                     var e = _en[i]; if (e == null || !GgOk1682(e) || fl.hit.Contains(i) || (e.pos - fl.o).magnitude > reach + e.radius || Vector2.Dot(e.pos - fl.o, d) > sl) continue;
                     fl.hit.Add(i); Hit(e, ZkHit1651(k) * T.gfDmg1682, s, Vector2.zero); GgFloodHits1682++; if (!GgOk1682(e)) continue;
-                    for (int c = 0; c < T.gfChills1682 && GgOk1682(e); c++) ApplyStatus(e, Status.Chill, 0f, 1f, s);
+                    for (int c = 0; c < T.gfChills1682 && GgOk1682(e); c++) ApplyStatus(e, Status.Chill, 0f, GgCK1682(s), s);
                     e.push += GgForce1682(e, d * T.gfPush1682 * 8f); // the push decays at 8/s: about gfPush1682 u (non-boss; elites half)
                 }
                 Vector2 m = fl.o + d * sl; int o = YSort(m.y) + 300;
@@ -822,7 +832,7 @@ namespace Hellord
             if (GgWinterT1682 > 0f)
             {
                 int k = GgK1682(2, 3); var s = ZkI1651(k); GgWinterT1682 -= dt; _ggWinterNext1682 -= dt; float reach = ZkR1651(k, T.ewReach1682);
-                if (_ggWinterNext1682 <= 0f) { _ggWinterNext1682 = T.ewEvery1682; for (int i = 0; i < maxEnemies; i++) { var e = _en[i]; if (e == null || !GgOk1682(e) || (e.pos - _heroPos).magnitude > reach + e.radius) continue; ApplyStatus(e, Status.Chill, 0f, 1f, s); e.lured1651 = true; GgWinterChills1682++; } }
+                if (_ggWinterNext1682 <= 0f) { _ggWinterNext1682 = T.ewEvery1682; for (int i = 0; i < maxEnemies; i++) { var e = _en[i]; if (e == null || !GgOk1682(e) || (e.pos - _heroPos).magnitude > reach + e.radius) continue; ApplyStatus(e, Status.Chill, 0f, GgCK1682(s), s); e.lured1651 = true; GgWinterChills1682++; } }
                 if (!GgFx1682("GGFX_EternalWinter", _heroPos, -320, -180, 640, 360, 30000, runTime, 0.3f, ZP.F("_Left", GgWinterT1682)))
                     for (int q = 0; q < 24; q++) { float x = Mathf.Repeat(q * 7.3f + runTime * 0.8f, 26f) - 13f, y = 8f - Mathf.Repeat(q * 3.1f + runTime * (1.5f + q % 3 * 0.4f), 16f); ZPx1618(_heroPos + new Vector2(x, y), 1, GW, 30000); }
                 if (GgWinterT1682 <= 0f) GgWinterT1682 = 0f;
@@ -833,7 +843,7 @@ namespace Hellord
                 foreach (var c in q)
                 {
                     Query(c, R, _ggq1682); GgWinterBursts1682++;
-                    foreach (int ei in _ggq1682.ToArray()) { var e = _en[ei]; if (!GgOk1682(e) || (e.pos - c).magnitude > R + e.radius) continue; Hit(e, ZkHit1651(k) * T.ewDmg1682, s, Vector2.zero); if (GgOk1682(e)) ApplyStatus(e, Status.Chill, 0f, 1f, s); }
+                    foreach (int ei in _ggq1682.ToArray()) { var e = _en[ei]; if (!GgOk1682(e) || (e.pos - c).magnitude > R + e.radius) continue; Hit(e, ZkHit1651(k) * T.ewDmg1682, s, Vector2.zero); if (GgOk1682(e)) ApplyStatus(e, Status.Chill, 0f, GgCK1682(s), s); }
                     GgFxO1682(2, c + Vector2.up * 0.5f, R, 0.3f, "GGFX_EternalWinter_Shatter", GgZoneRc1682(R)); GgFxO1682(0, c, R, 0.3f);
                 }
                 HellordAudio.Play("ice_shatter", 1.1f);

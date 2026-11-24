@@ -151,7 +151,7 @@ namespace Hellord
             {
                 int sp = i - 3; Vector2? m0 = atMouse986;
                 if (sp == 3) { Vector2 cur = MouseWorld(); foreach (var e in _smL1651) if (e.alive && (e.pos - cur).magnitude <= 0.5f) IceFreeze(e, 5f); } // Shatter: the demon on the cursor is frozen
-                if (sp == 4) atMouse986 = _heroPos + (Vector2)(Quaternion.Euler(0, 0, 20f) * new Vector2(2.5f, 0f)); // Toppled Pillar: fall diagonally through the pack (a width change shows)
+                if (sp == 4) atMouse986 = _heroPos + new Vector2(0.8f, 0.25f); // Toppled Pillar: stand at the near edge of the pack and fall along +x between two rows, so longer / wider crushes reach more
                 GgSpecial1682(); AtCd1651 = ZhSpecCd; atMouse986 = m0;
                 if (sp == 1) _smGgP1682 = GgMarkT1682;
                 if (sp == 5 && _ggFw1682 != null) { _smGgP1682 = _ggFw1682.life; foreach (var c in _ggFw1682.c.ToArray()) GgCrystalBoom1682(c); } // your skills hit every crystal
