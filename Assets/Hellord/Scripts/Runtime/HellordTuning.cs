@@ -1763,7 +1763,7 @@ namespace Hellord
     [Tooltip("t1675 loading step after Descend: preloads the run pact's FX materials, sprites, icons, skill audio and pools, warms the shaders, then starts the run. Off = the old lazy first-use loads")] public bool preload1675 = true;
     [Tooltip("t1675 loading: work budget per frame (ms) so the bar animates")] public float preloadBudgetMs1675 = 12f;
     [Tooltip("t1675 loading: FX quad pool size prewarmed (ZhurongFX / LeizuFX shader quads)")] public int preloadQuadPool1675 = 128;
-    [Tooltip("t1675 loading: SFX folders (Resources/Audio/SFX/<folder>) whose clips get LoadAudioData during loading; empty = none")] public string[] preloadAudioFolders1675 = { "skills", "fireball", "firebasics1481", "hitdeath", "enemy", "enemies", "hero", "d2sfx1447", "pickups" };
+    [Tooltip("t1675 loading: SFX folders (Resources/Audio/SFX/<folder>) whose clips get LoadAudioData during loading; empty = none")] public string[] preloadAudioFolders1675 = { "skills", "fireball", "firebasics1481", "hitdeath", "enemy", "enemies", "hero", "d2sfx1447", "pickups", "boss", "events", "ui" };
     [Tooltip("t1675 loading: draw every preloaded FX material + every Resources/HellordShaders shader once on a hidden camera (compiles the shaders there; Editor: synchronously)")] public bool preloadWarmShaders1675 = true;
     [Tooltip("t1675 loading: minimum seconds the loading screen stays up (0 = only as long as the work takes)")] public float preloadMinSec1675 = 0f;
     [Tooltip("t1666 new basics base damage / cooldown s: Thunder Drum Strikes, Thunder Lash, Live Wire (cooldown after release), Thunder Hound")] public float[] lzBaseDmg1666 = { 7f, 10f, 10f, 8f }, lzCd1666 = { 0.45f, 0.45f, 0.8f, 1.0f };

@@ -27,6 +27,15 @@ namespace Hellord
             int au = 0; foreach (var a in Resources.FindObjectsOfTypeAll<AudioClip>()) if (a.loadState == AudioDataLoadState.Loaded) au++;
             return new[] { Resources.FindObjectsOfTypeAll<Texture2D>().Length, Resources.FindObjectsOfTypeAll<Material>().Length, Resources.FindObjectsOfTypeAll<Sprite>().Length, au, Resources.FindObjectsOfTypeAll<GameObject>().Length };
         }
+        static HashSet<int> FtIds1675() { var h = new HashSet<int>(); foreach (var o in Resources.FindObjectsOfTypeAll<Texture2D>()) h.Add(o.GetInstanceID()); foreach (var o in Resources.FindObjectsOfTypeAll<Material>()) h.Add(o.GetInstanceID()); foreach (var o in Resources.FindObjectsOfTypeAll<AudioClip>()) if (o.loadState == AudioDataLoadState.Loaded) h.Add(o.GetInstanceID()); return h; }
+        static string FtNew1675(HashSet<int> before)
+        {   // names of textures / materials / loaded clips that appeared (what was loaded or built lazily)
+            var l = new List<string>();
+            foreach (var o in Resources.FindObjectsOfTypeAll<Texture2D>()) if (!before.Contains(o.GetInstanceID())) l.Add("tex:" + o.name);
+            foreach (var o in Resources.FindObjectsOfTypeAll<Material>()) if (!before.Contains(o.GetInstanceID())) l.Add("mat:" + o.name);
+            foreach (var o in Resources.FindObjectsOfTypeAll<AudioClip>()) if (o.loadState == AudioDataLoadState.Loaded && !before.Contains(o.GetInstanceID())) l.Add("clip:" + o.name);
+            return string.Join(" ", l.Count > 14 ? l.GetRange(0, 14) : l) + (l.Count > 14 ? " +" + (l.Count - 14) : "");
+        }
         static string FtDelta1675(int[] a, int[] b) { string[] n = { "tex", "mat", "spr", "clip", "go" }; var s = new List<string>(); for (int i = 0; i < a.Length; i++) if (b[i] != a[i]) s.Add(n[i] + (b[i] - a[i] > 0 ? "+" : "") + (b[i] - a[i])); return s.Count == 0 ? "none" : string.Join(" ", s); }
         IEnumerator FtPress1675(int which, int frames) { if (which == 0) HInput.AtDash = true; else if (which == 1) HInput.AtRmb = true; else HInput.AtUlt = true; yield return FtF1675(1); HInput.AtDash = HInput.AtRmb = HInput.AtUlt = false; yield return FtF1675(frames); }
         IEnumerator FtHold1675(int hold, int after) { HInput.AtLmb = true; yield return FtF1675(hold); HInput.AtLmb = false; yield return FtF1675(after); }
@@ -59,7 +68,7 @@ namespace Hellord
                     _ftTag1675 = name + "#" + (pass + 1);
                     ZKill1618(L); _heroPos = H0; SnapCamera(); ZhMoveCd = ZhSpecCd = ZhUltCd = 0f; _dashCd49 = 0f; if (skills.Count > 0) skills[0].cd = 0f; atMouse986 = H0 + new Vector2(3.5f, 0f);
                     setup(); yield return FtF1675(6);
-                    var c0 = FtCounts1675(); _ftWin1675 = new List<float>(); yield return cast(); var w = _ftWin1675; _ftWin1675 = null; var c1 = FtCounts1675();
+                    var ids0 = FtIds1675(); var c0 = FtCounts1675(); _ftWin1675 = new List<float>(); yield return cast(); var w = _ftWin1675; _ftWin1675 = null; var c1 = FtCounts1675(); ALog($"t1675 new during {name}#{pass + 1}: {FtNew1675(ids0)}");
                     dl[pass] = FtDelta1675(c0, c1); nload[pass] = (c1[0] - c0[0]) + (c1[1] - c0[1]) + (c1[2] - c0[2]) + (c1[3] - c0[3]); // tex + mat + sprite + clip (game objects churn with pooled FX, reported only)
                     float s = 0; foreach (var f in w) { mx[pass] = Mathf.Max(mx[pass], f); s += f; } mean[pass] = w.Count > 0 ? s / w.Count : 0f;
                     HInput.AtLmb = false; AtMove1396 = Vector2.zero; yield return FtF1675(12);
