@@ -25,6 +25,7 @@ namespace Hellord
             IEnumerator LT(float sec) { float t0 = runTime; int g = 0; while (runTime - t0 < sec && g++ < 3000) yield return LF(1); }
             IEnumerator Hold(int n) { HInput.AtLmb = true; yield return LF(n); HInput.AtLmb = false; }
             void Res(string k, bool ok, string d) => ARes(scen + ":" + k, ok, d);
+            ZhFxLogOn1625 = true; ZhFxLogReset1625(); // t1669: which LeizuFX sub-effects drew
             bool on = LzOn1666; Res("active", on, $"LzOn1666 {on} (kit1618 {T.kit1618}, lzKit1666 {T.lzKit1666}, path {_pactPath51})");
             yield return LF(15);
             if (which == 0)
@@ -124,6 +125,16 @@ namespace Hellord
                 yield return LF(15); bool notYet = !LzUltArmed1666; el.hp = el.maxHp * (T.jwCull1666 - 0.05f); yield return LF(25); bool armedW = LzUltArmed1666; int wp0 = LzWarps1666; Vector2 hb = _heroPos;
                 yield return ZPress1618(2); float moved = (_heroPos - hb).magnitude; yield return LF(90); _chestAlive = false; if (_chestSr != null) _chestSr.gameObject.SetActive(false);
                 Res("judgementwarp", notYet && armedW && LzWarps1666 - wp0 == 1 && !el.alive && moved > 3f, $"armed only below {T.jwCull1666:0.##} ({notYet}/{armedW}), warps {LzWarps1666 - wp0}, elite dead {!el.alive}, hero moved {moved:0.#} u");
+            }
+            {   // t1669: every spec sub-effect this clip exercises was drawn (material present + hook reached)
+                string[][] want = {
+                    new[] { "DrumStrike_Bolt", "DrumStrike_Hit", "DrumStrike_Ground", "DrumStrike_Spark", "DrumStrike_Pips", "Thunderclap_Flash", "Thunderclap_Haze", "LiveWire_Hit", "LiveWire_Overload", "Hound_Arrive", "Hound_Aura", "Hound_Bite", "ShockStatus" },
+                    new[] { "GroundingWard_Zap", "StormStride_Trail", "MirrorDazzled" },
+                    new[] { "Judgement_Bolt", "Judgement_Hit", "Judgement_Ground", "Judgement_Arc", "Conductivity_Jump", "DrumBoom_Haze", "StaticField_Core", "ShockStatus" },
+                    new[] { "Decree_Bolt", "Decree_Hit", "Decree_Ground", "HeavenArc_Link", "HeavenArc_Node", "Tribunal_Bolt", "Tribunal_Hit", "Tribunal_Splash", "JudgementWarp_Out", "JudgementWarp_In", "JudgementWarp_Flash", "JudgementWarp_Arc", "JudgementWarp_Haze", "JudgementWarp" } };
+                var miss = new List<string>(); foreach (var w in want[which]) if (!ZhFxSeen1625("LZFX_" + w)) miss.Add(w);
+                Res("hfx_subs", miss.Count == 0, $"drawn {want[which].Length - miss.Count}/{want[which].Length}" + (miss.Count > 0 ? " | missing " + string.Join(",", miss) : ""));
+                ZhFxLogOn1625 = false;
             }
             ARes(scen + ":clip", _r1561 > 0 || _atRecFps <= 0, $"frames {_r1561}");
             ZKill1618(L); ClearLz1666(); LzRunReset1666(); T.lzMove1666 = _lzM0; T.lzSpecial1666 = _lzS0; T.lzUlt1666 = _lzU0;
