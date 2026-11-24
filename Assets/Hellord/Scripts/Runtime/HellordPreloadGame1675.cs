@@ -69,7 +69,7 @@ namespace Hellord
             foreach (var sp in PbArtSpec1567)
             {
                 string key = (string)sp[0], file = (string)sp[1]; if (!folders.Contains(PbFolder1675(file))) continue;
-                c.Step("strip " + key, () => { var a = PbA1567(key); if (a != null) c.Warm(a.mat); });
+                c.Step("strip " + key, () => { var a = PbA1567(key); if (a != null) c.Warm(a.mat); c.Warm(PbBaseMat1567(key)); });
             }
         }
         void PlLeizu1675(HellordPreload.Ctx c)
@@ -98,8 +98,8 @@ namespace Hellord
             c.Step("frost cleave", () => { if (FrostCleave990.Ok) { } });
             c.Step("pixel AoE 928/930", () => { if (!_sfxTried928) LoadShaderFx928(); });
             c.Step("FX934 pool", () => { Fx934Prewarm1675(8); foreach (var m in Fx934Mats1675()) c.Warm(m); });
-            c.Step("fire wall material", () => c.Warm(FireWallMat948()));
-            c.Step("Pb hit / heat materials", () => { c.Warm(PbHitMat1567()); c.Warm(PbHeatMat1567()); });
+            c.Step("fire wall materials", () => { c.Warm(FireWallMat948()); if (_fwEmbMat957 == null) { var sh = Shader.Find("Sprites/Default"); if (sh != null) _fwEmbMat957 = new Material(sh) { name = "fx957_ember" }; } });
+            c.Step("Pb hit / heat / disc materials", () => { c.Warm(PbHitMat1567()); c.Warm(PbHeatMat1567()); c.Warm(PbDiscMat1567()); });
             c.Step("boss shader materials", () => { if (Bs950Ok) { } });
             c.Step("room light materials", () => { c.Warm(HellordRoom.LightMatPublic(true)); c.Warm(HellordRoom.LightMatPublic(false)); });
             c.Step("skill light pool", () => SkillLightRunner.I.Prewarm(128));
@@ -129,7 +129,7 @@ namespace Hellord
             {   // the radii the kit / basics / tells ask for (others still build on first use, cached)
                 foreach (int r in new[] { 4, 8, 13, 18, 24, 40 }) { HellSprites.Disk(r); for (int f = 0; f < 3; f++) HellSprites.FireRing(r, f); }
                 foreach (var g in new[] { new Vector2Int(3, 2), new Vector2Int(4, 5), new Vector2Int(5, 4), new Vector2Int(18, 5), new Vector2Int(40, 5) }) PixelFXTextures.Glow(g.x, g.y);
-                HellSprites.Pixel();
+                HellSprites.Pixel(); HArt.Pixel();
             });
         }
         void PlAudio1675(HellordPreload.Ctx c)
