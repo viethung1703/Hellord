@@ -88,7 +88,7 @@ namespace Hellord
                         desc.AddRange(Wrap(HData.SupportEffect(c.support.id, cur + 1, tl.Count == 1 && SupInst1651(t) != null ? (int)SupInst1651(t).def.id : -1), 17));
                         var gen = Wrap(c.support.desc, 17); int room = 5 - desc.Count; if (gen.Count > room) gen.RemoveRange(Mathf.Max(0, room), gen.Count - Mathf.Max(0, room)); desc.AddRange(gen);
                         if (desc.Count < 6) desc.Add("NEEDS " + HData.TagText(c.support.needs) + (c.support.excludes != 0 ? " NOT " + HData.TagText(c.support.excludes) : "")); // t626u tag chip
-                        desc.Add(tl.Count > 1 ? $"TO: PICK 1 OF {tl.Count}" : t >= 0 ? "TO: " + Sanitize(skills[t].def.name) : "NO OPEN SLOT"); break;
+                        desc.Add(tl.Count > 1 ? $"TO: PICK 1 OF {tl.Count}" : SupInst1651(t)?.def != null ? "TO: " + Sanitize(SupInst1651(t).def.name) : "NO OPEN SLOT"); break; // t1677: t can be a kit slot target (>= KitTarget1651) -> SupInst1651, not skills[t]
                     }
                 }
                 }
