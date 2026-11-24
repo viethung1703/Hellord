@@ -721,13 +721,163 @@ namespace Hellord
             var w = _ggFw1682; if (w != null) { float cr = TZ.fwCrR1682; foreach (var x in w.c) if (x.alive && GgDiscBlock1682(e, prev, x.p, cr)) GgWallBlocks1682++; }
         }
 
-        // ---- STAGE STUBS (filled in by the next stages)
-        public bool GgUltArmed1682 => false;
-        public float GgUltProg1682() => 0f;
-        void GgUltimate1682() { }
-        void TickGgUlt1682(float dt) { }
-        void GgOnKill1682(Enemy e) { }
-        void GgUltHurt1682(float dmg) { }
-        void GgBlockUlt1682(Enemy e, Vector2 prev) { }
+        // =============================================================== ULTIMATES (R, ZhUltCd; meters carry over rooms, GgRunReset1682 per run)
+        public bool GgHighTide1682 => TZ != null && GgTide1682 >= TZ.gfRise1682;
+        public bool GgUltArmed1682
+        {
+            get
+            {
+                if (ZhUltCd > 0f || _ggRam1682 != null) return false; var T = TZ;
+                switch (GgUlt1682) { case 1: return GgWrath1682 >= 0.999f; case 2: return GgHighTide1682; case 3: return GgFrozenKills1682 >= Mathf.Max(1, T.ewNeed1682) && GgWinterT1682 <= 0f; case 4: return GgAoArmedLatch1682 && GgAoT1682 <= 0f; default: return false; }
+            }
+        }
+        /// <summary>0..1 meter of the slotted ultimate (kit bar). The Great Flood: the tide gauge (full = High Tide).</summary>
+        public float GgUltProg1682()
+        {
+            var T = TZ;
+            switch (GgUlt1682)
+            {
+                case 1: return Mathf.Clamp01(GgWrath1682);
+                case 2: return GgHighTide1682 ? 1f : Mathf.Clamp01(GgTide1682 / Mathf.Max(1f, T.gfRise1682));
+                case 3: return Mathf.Clamp01((float)GgFrozenKills1682 / Mathf.Max(1, T.ewNeed1682));
+                case 4: return GgAoArmedLatch1682 ? 1f : Mathf.Clamp01((1f - hp / Mathf.Max(1f, maxHp)) / Mathf.Max(0.01f, 1f - T.aoArm1682));
+                default: return 0f;
+            }
+        }
+        /// <summary>HurtHero: Ram of Mount Buzhou wrath fills from damage taken (full at ramFill1682 x max HP).</summary>
+        void GgUltHurt1682(float dmg)
+        {
+            if (GgUlt1682 != 1 || dmg <= 0f) return; GgWrath1682 = Mathf.Clamp01(GgWrath1682 + dmg / Mathf.Max(1f, maxHp * TZ.ramFill1682)); _ggLastHurt1682 = runTime;
+        }
+        void GgUltimate1682()
+        {
+            int u = GgUlt1682; if (u == 0) return; if (!GgUltArmed1682) { HellordAudio.Play("basic_not_ready", 0.6f); return; }
+            int k = GgK1682(2, u); var T = TZ; GgCasts1682++;
+            if (u == 1)
+            {
+                Vector2 dir = PbAim1567(); _ggRam1682 = new GgRam { a = _heroPos, p = _heroPos, dir = dir, dur = T.ramTime1682, len = T.ramLen1682 }; GgWrath1682 = 0f; ZhUltCd = ZkCd1651(k, T.ramCd1682);
+                HellordAudio.Play("oxhead_lunge_dash", 0.8f); HellordAudio.Play("oxhead_roar", 0.8f); Toast("RAM OF MOUNT BUZHOU");
+            }
+            else if (u == 2) { _ggFlood1682 = new GgFlood { o = _heroPos, s0 = -ZkR1651(k, T.gfReach1682), s1 = ZkR1651(k, T.gfReach1682) }; ZhUltCd = ZkCd1651(k, T.gfCd1682); HellordAudio.Play("pact_seal_descend", 0.7f); ScreenShake.Add(2f, 0.4f); Toast("THE GREAT FLOOD"); }
+            else if (u == 3) { GgFrozenKills1682 = 0; GgWinterT1682 = ZkDur1651(k, T.ewDur1682); _ggWinterNext1682 = 0f; ZhUltCd = ZkCd1651(k, T.ewCd1682); HellordAudio.Play("frost_bomb_pulse", 0.5f); Toast("ETERNAL WINTER"); }
+            else if (u == 4) { _ggAoC1682 = _heroPos; GgAoT1682 = ZkDur1651(k, T.aoDur1682); _ggAoNext1682 = 0f; ZhUltCd = ZkCd1651(k, T.aoCd1682); HellordAudio.Play("oxhead_stomp_strike", 0.6f); ScreenShake.Add(2f, 0.2f); Toast("PILLARS OF AO"); }
+        }
+        void TickGgUlt1682(float dt)
+        {
+            var T = TZ;
+            // ---- meters
+            if (runTime - _ggLastHurt1682 > T.ramGrace1682) GgWrath1682 = Mathf.Max(0f, GgWrath1682 - T.ramDecay1682 * dt);
+            float cyc = T.gfRise1682 + T.gfHigh1682; GgTide1682 += dt; if (cyc > 0.1f && GgTide1682 >= cyc) GgTide1682 -= cyc; // the tide keeps cycling; pressing does not reset it
+            if (hp < maxHp * T.aoArm1682) GgAoArmedLatch1682 = true; else if (hp > maxHp * T.aoDisarm1682) GgAoArmedLatch1682 = false;
+            if (GgUlt1682 == 2) GgDrawTide1682();
+            // ---- Ram of Mount Buzhou: head-first charge (unhurt), x8 along the path, then 12 shards rain around the end
+            var r = _ggRam1682;
+            if (r != null)
+            {
+                int k = GgK1682(2, 1); var s = ZkI1651(k); r.t += dt; float f = Mathf.Min(1f, r.t / Mathf.Max(0.05f, r.dur)); Vector2 prev = r.p, np = r.a + r.dir * r.len * f, cl = np; ClampToRoom(ref cl, HeroMarginPx); bool wall = (cl - np).sqrMagnitude > 0.0004f; r.p = cl;
+                _heroPos = r.p; _iframe = Mathf.Max(_iframe, 0.25f); _dashT49 = 0f; float hw = ZkR1651(k, T.ramW1682);
+                Query((prev + r.p) * 0.5f, (r.p - prev).magnitude * 0.5f + hw + 1f, _ggq1682);
+                foreach (int ei in _ggq1682.ToArray()) { var e = _en[ei]; if (!GgOk1682(e) || r.hit.Contains(ei) || PbSegDist(e.pos, prev, r.p) > hw + e.radius) continue; r.hit.Add(ei); Hit(e, ZkHit1651(k) * T.ramDmg1682, s, Vector2.zero); GgRamHits1682++; }
+                SkillArea53(r.p, hw, ZkHit1651(k) * T.ramDmg1682, (int)SkillId.GgRamOfBuzhou);
+                int o = ZhHeroOrd1625 + 2;
+                if (!GgFx1682("GGFX_Ram_Charge", r.p, -24, -8, 48, 40, o, r.t, 0.5f, ZP.V("_Dir", r.dir), ZP.F("_Progress", f)))
+                { Vector2 n = new Vector2(-r.dir.y, r.dir.x); ZSegO1618(r.p + Vector2.up * 0.7f + r.dir * 0.5f - n * 0.5f, r.p + Vector2.up * 0.7f + r.dir * 0.5f + n * 0.5f, 0.18f, GW, o); ZSegO1618(r.a, r.p, hw * 2f, new Color(GB.r, GB.g, GB.b, 0.25f), FbGround + YSort(r.p.y) + 30); }
+                if (f >= 1f || wall)
+                {
+                    _ggRam1682 = null; float R = ZkR1651(k, T.ramRain1682); int N = Mathf.Max(1, T.ramShards1682);
+                    for (int i = 0; i < N; i++) { float an = i * 137.5f * Mathf.Deg2Rad, rr = R * Mathf.Sqrt((i + 0.5f) / N); Vector2 p = r.p + new Vector2(Mathf.Cos(an), Mathf.Sin(an) * 0.7f) * rr; ClampToRoom(ref p, 4); _ggShards1682.Add(new GgShard { p = p, delay = 0.1f + T.ramRainS1682 * i / N }); }
+                    GgFxO1682(0, r.p, 1.5f, 0.35f); HellordAudio.Play("oxhead_stomp_strike", 1f); ScreenShake.Add(3f, 0.25f);
+                }
+            }
+            for (int i = _ggShards1682.Count - 1; i >= 0; i--)
+            {
+                var sh = _ggShards1682[i]; sh.t += dt; int k = GgK1682(2, 1);
+                if (!sh.done && sh.t >= sh.delay)
+                {
+                    sh.done = true; float R = ZkR1651(k, T.ramShardR1682); SkillArea53(sh.p, R, ZkHit1651(k) * T.ramShardDmg1682, (int)SkillId.GgRamOfBuzhou); Query(sh.p, R, _ggq1682);
+                    foreach (int ei in _ggq1682.ToArray()) { var e = _en[ei]; if (!GgOk1682(e) || (e.pos - sh.p).magnitude > R + e.radius) continue; Hit(e, ZkHit1651(k) * T.ramShardDmg1682, ZkI1651(k), (e.pos - sh.p).normalized * 0.6f); GgRamShardHits1682++; }
+                    GgFxO1682(2, sh.p, R, 0.3f, "GGFX_Ram_Shard", GgZoneRc1682(R)); HellordAudio.Play("ice_shatter", 0.8f + 0.03f * i);
+                }
+                if (!sh.done) { float h = 5f * (1f - sh.t / Mathf.Max(0.01f, sh.delay)); if (sh.t > sh.delay - 0.25f) ZSegO1618(sh.p + Vector2.up * (h + 0.5f), sh.p + Vector2.up * h, 0.14f, GI, YSort(sh.p.y) + 400); }
+                else if (sh.t >= sh.delay + 0.2f) _ggShards1682.RemoveAt(i);
+            }
+            // ---- The Great Flood: a wave line sweeps NW -> SE over everything within reach of the cast point
+            var fl = _ggFlood1682;
+            if (fl != null)
+            {
+                int k = GgK1682(2, 2); var s = ZkI1651(k); fl.t += dt; float f = Mathf.Clamp01(fl.t / Mathf.Max(0.05f, T.gfSweep1682)), sl = Mathf.Lerp(fl.s0, fl.s1, f), reach = fl.s1; Vector2 d = new Vector2(1f, -1f).normalized, n = new Vector2(1f, 1f).normalized;
+                for (int i = 0; i < maxEnemies; i++)
+                {
+                    var e = _en[i]; if (e == null || !GgOk1682(e) || fl.hit.Contains(i) || (e.pos - fl.o).magnitude > reach + e.radius || Vector2.Dot(e.pos - fl.o, d) > sl) continue;
+                    fl.hit.Add(i); Hit(e, ZkHit1651(k) * T.gfDmg1682, s, Vector2.zero); GgFloodHits1682++; if (!GgOk1682(e)) continue;
+                    for (int c = 0; c < T.gfChills1682 && GgOk1682(e); c++) ApplyStatus(e, Status.Chill, 0f, 1f, s);
+                    e.push += GgForce1682(e, d * T.gfPush1682 * 8f); // the push decays at 8/s: about gfPush1682 u (non-boss; elites half)
+                }
+                Vector2 m = fl.o + d * sl; int o = YSort(m.y) + 300;
+                if (!GgFx1682("GGFX_GreatFlood", m, -reach * 16f, -40, reach * 32f, 80, o, fl.t, 0.5f, ZP.V("_Dir", d), ZP.F("_Progress", f), ZP.F("_Reach", reach * 16f)))
+                { ZSegO1618(m - n * reach - d * 0.6f, m + n * reach - d * 0.6f, 1.1f, new Color(GD.r, GD.g, GD.b, 0.55f), o - 1); ZSegO1618(m - n * reach, m + n * reach, 0.5f, new Color(GB.r, GB.g, GB.b, 0.85f), o); ZSegO1618(m - n * reach + d * 0.25f, m + n * reach + d * 0.25f, 0.14f, GW, o + 1); }
+                if (f >= 1f) _ggFlood1682 = null;
+            }
+            // ---- Eternal Winter: 1 chill per second on everything within reach; frozen deaths shatter (queued by GgOnKill1682, chained next frame)
+            if (GgWinterT1682 > 0f)
+            {
+                int k = GgK1682(2, 3); var s = ZkI1651(k); GgWinterT1682 -= dt; _ggWinterNext1682 -= dt; float reach = ZkR1651(k, T.ewReach1682);
+                if (_ggWinterNext1682 <= 0f) { _ggWinterNext1682 = T.ewEvery1682; for (int i = 0; i < maxEnemies; i++) { var e = _en[i]; if (e == null || !GgOk1682(e) || (e.pos - _heroPos).magnitude > reach + e.radius) continue; ApplyStatus(e, Status.Chill, 0f, 1f, s); e.lured1651 = true; GgWinterChills1682++; } }
+                if (!GgFx1682("GGFX_EternalWinter", _heroPos, -320, -180, 640, 360, 30000, runTime, 0.3f, ZP.F("_Left", GgWinterT1682)))
+                    for (int q = 0; q < 24; q++) { float x = Mathf.Repeat(q * 7.3f + runTime * 0.8f, 26f) - 13f, y = 8f - Mathf.Repeat(q * 3.1f + runTime * (1.5f + q % 3 * 0.4f), 16f); ZPx1618(_heroPos + new Vector2(x, y), 1, GW, 30000); }
+                if (GgWinterT1682 <= 0f) GgWinterT1682 = 0f;
+            }
+            if (_ggBurstQ1682.Count > 0)
+            {
+                int k = GgK1682(2, 3); var s = ZkI1651(k); float R = ZkR1651(k, T.ewR1682); var q = _ggBurstQ1682.ToArray(); _ggBurstQ1682.Clear();
+                foreach (var c in q)
+                {
+                    Query(c, R, _ggq1682); GgWinterBursts1682++;
+                    foreach (int ei in _ggq1682.ToArray()) { var e = _en[ei]; if (!GgOk1682(e) || (e.pos - c).magnitude > R + e.radius) continue; Hit(e, ZkHit1651(k) * T.ewDmg1682, s, Vector2.zero); if (GgOk1682(e)) ApplyStatus(e, Status.Chill, 0f, 1f, s); }
+                    GgFxO1682(2, c + Vector2.up * 0.5f, R, 0.3f, "GGFX_Winter_Burst", GgZoneRc1682(R)); GgFxO1682(0, c, R, 0.3f);
+                }
+                HellordAudio.Play("ice_shatter", 1.1f);
+            }
+            // ---- Pillars of Ao: 4 pillars on a square around the cast point; icicles at the nearest demon
+            if (GgAoT1682 > 0f)
+            {
+                int k = GgK1682(2, 4); var s = ZkI1651(k); GgAoT1682 -= dt; _ggAoNext1682 -= dt; float h = ZkR1651(k, T.aoHalf1682), rng = ZkR1651(k, T.aoRange1682);
+                for (int q = 0; q < 4; q++)
+                {
+                    Vector2 p = _ggAoC1682 + new Vector2(q % 2 == 0 ? -h : h, q < 2 ? -h : h); int o = YSort(p.y) + 10;
+                    if (!GgFx1682("GGFX_AoPillar", p, -10, -4, 20, 56, o, runTime, q * 0.25f, ZP.F("_Left", GgAoT1682)))
+                    { ZSegO1618(p, p + Vector2.up * 2.2f, 0.5f, GP, o); ZSegO1618(p + Vector2.up * 0.1f, p + Vector2.up * 2.1f, 0.28f, GI, o + 1); ZSegO1618(p + Vector2.up * 2.1f, p + Vector2.up * 2.3f, 0.4f, GW, o + 2); }
+                    if (_ggAoNext1682 > 0f) continue;
+                    int ni = Nearest(p, rng, -1); if (ni < 0 || !GgOk1682(_en[ni])) continue; var e = _en[ni];
+                    Hit(e, ZkHit1651(k) * T.aoDmg1682, s, Vector2.zero); GgAoIcicles1682++; GgFxO1682(4, p + Vector2.up * 2.2f, 0.2f, 0.15f, "GGFX_AoIcicle", new Vector4(-8, -8, 16, 16), BodyCentre1595(e));
+                }
+                if (_ggAoNext1682 <= 0f) _ggAoNext1682 = T.aoEvery1682;
+                ZRingO1618(_ggAoC1682, 0.1f, GI, FbGround + YSort(_ggAoC1682.y) + 30, 1f);
+                if (GgAoT1682 <= 0f) { GgAoT1682 = 0f; GgFxO1682(1, _ggAoC1682, h, 0.3f); }
+            }
+        }
+        /// <summary>The tide gauge (The Great Flood slotted): a small bar over the hero; bright + pulsing at High Tide.</summary>
+        void GgDrawTide1682()
+        {
+            var T = TZ; float f = GgHighTide1682 ? 1f : Mathf.Clamp01(GgTide1682 / Mathf.Max(1f, T.gfRise1682)); Vector2 a = _heroPos + new Vector2(-0.6f, 2.35f); int o = ZhHeroOrd1625 + 300;
+            if (GgFx1682("GGFX_TideGauge", a + new Vector2(0.6f, 0f), -12, -3, 24, 6, o, runTime, 0f, ZP.F("_Fill", f), ZP.F("_High", GgHighTide1682 ? 1f : 0f))) return;
+            ZSegO1618(a, a + Vector2.right * 1.2f, 0.14f, new Color(GN.r, GN.g, GN.b, 0.8f), o); Color c = GgHighTide1682 ? Color.Lerp(GC, GW, 0.5f + 0.5f * Mathf.Sin(runTime * 8f)) : GB;
+            if (f > 0.01f) ZSegO1618(a, a + Vector2.right * 1.2f * f, 0.1f, c, o + 1);
+        }
+        /// <summary>KillEnemy (top, statuses still on): Eternal Winter counts frozen kills (elites / bosses ewElite1682) and, while active, queues the shatter burst.</summary>
+        void GgOnKill1682(Enemy e)
+        {
+            if (!GgOn1682 || e == null || e.freezeT <= 0f) return; var T = TZ;
+            if (GgWinterT1682 > 0f) { _ggBurstQ1682.Add(e.pos); return; }
+            if (GgUlt1682 == 3) GgFrozenKills1682 = Mathf.Min(Mathf.Max(1, T.ewNeed1682), GgFrozenKills1682 + (e.elite || e.boss ? Mathf.Max(1, T.ewElite1682) : 1));
+        }
+        /// <summary>enemy move: Pillars of Ao keep non-boss demons out of the square (pushed to the nearest edge).</summary>
+        void GgBlockUlt1682(Enemy e, Vector2 prev)
+        {
+            if (GgAoT1682 <= 0f || e.boss) return; int k = GgK1682(2, 4); float H = ZkR1651(k, TZ.aoHalf1682) + e.radius; Vector2 d = e.pos - _ggAoC1682;
+            if (Mathf.Abs(d.x) >= H || Mathf.Abs(d.y) >= H) return;
+            if (H - Mathf.Abs(d.x) < H - Mathf.Abs(d.y)) e.pos.x = _ggAoC1682.x + (d.x >= 0f ? H : -H); else e.pos.y = _ggAoC1682.y + (d.y >= 0f ? H : -H);
+            e.lured1651 = true; /* probe */ GgAoPushes1682++;
+        }
     }
 }
