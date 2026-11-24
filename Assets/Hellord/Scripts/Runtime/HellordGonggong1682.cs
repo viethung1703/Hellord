@@ -54,7 +54,7 @@ namespace Hellord
             GgShatters1682, GgPillarBlocks1682, GgPillarHits1682, GgCrystalBooms1682, GgWallBlocks1682, GgRamHits1682, GgRamShardHits1682, GgFloodHits1682, GgWinterChills1682, GgWinterBursts1682, GgAoPushes1682, GgAoIcicles1682, GgFrozeN1682;
         readonly List<int> _ggq1682 = new List<int>(64);
         bool GgOk1682(Enemy e) => e != null && e.alive && !e.dying;
-        float GgCK1682(SkillInst s) => s != null ? StatusK(s, SupportId.Chill) : 1f; // the kit's own chills last longer with the Chill support (like hit chills)
+        float GgCK1682(SkillInst s) => s != null && s.Has(SupportId.Chill) ? StatusK(s, SupportId.Chill) : 1f; // the kit's own chills last longer with the Chill support (like hit chills)
         // movement
         [System.NonSerialized] public float GgRideT1682, GgRimeT1682; [System.NonSerialized] public int GgRimeN1682; int _ggPendMove1682; Vector2 _ggDash0_1682;
         public bool GgRiding1682 => GgRideT1682 > 0f;

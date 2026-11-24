@@ -175,8 +175,8 @@ namespace Hellord
             else
             {
                 int u = i - 8; GgFillUlt1682(); GgUltimate1682(); AtCd1651 = ZhUltCd;
-                if (u == 3) { _smGgP1682 = GgWinterT1682; Enemy best = null; float bd = 1e9f; foreach (var e in _smL1651) { if (!e.alive) continue; float d = (e.pos - _heroPos).sqrMagnitude; if (d < bd) { bd = d; best = e; } } if (best != null) { int ix = _smL1651.IndexOf(best); IceFreeze(best, 3f); Damage(best, best.hp + 10f, false, true); if (ix >= 0) _smHp0[ix] = 0f; } } // a frozen death = the shatter burst (that kill is not the measured damage)
-                if (u == 4) _smGgP1682 = GgAoT1682;
+                if (u == 3) { _smGgP1682 = GgWinterT1682; Enemy best = null; float bd = 1e9f; foreach (var e in _smL1651) { if (!e.alive) continue; float d = (e.pos - _heroPos).sqrMagnitude; if (d < bd) { bd = d; best = e; } } if (best != null) { int ix = _smL1651.IndexOf(best); IceFreeze(best, 3f); best.hp = 1f; if (ix >= 0) _smHp0[ix] = 1f; Damage(best, 2f, false, true); } } // a 1 HP frozen demon dies: its kill is not the measured damage // a frozen death = the shatter burst (that kill is not the measured damage)
+                if (u == 4) { _smGgP1682 = GgAoT1682; _ggAoC1682 = _heroPos + new Vector2(3.5f, 0f); } // the square sits inside the dense pack, so a bigger square holds more
             }
             yield return null;
         }
