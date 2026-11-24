@@ -38,7 +38,7 @@ Material:
     - _StepFps: 15
     - _Seed: 0
     - _Layer: 1
-    - _GlowGain: 1.0
+    - _GlowGain: 1.2
     - _Mode: 5
     - _Intensity: 1
     - _Charge: 0

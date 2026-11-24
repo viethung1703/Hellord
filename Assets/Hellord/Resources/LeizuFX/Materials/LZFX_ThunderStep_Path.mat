@@ -41,11 +41,11 @@ Material:
     - _GlowGain: 1
     - _Progress: 0
     - _Mode: 2
-    - _Width: 0
-    - _Amp: 3
+    - _Width: 1
+    - _Amp: 4
     - _SegLen: 8
-    - _Forks: 0
-    - _ForkLen: 0.28
+    - _Forks: 1
+    - _ForkLen: 0.12
     - _Rejit: 1
     - _EndStar: 0
     - _StartStar: 0

@@ -76,7 +76,8 @@ float4 ZFX_Frag(float2 p, float2 w)
             float2 a0 = float2(-rx + h * 6.0, y); float2 a1 = float2(rx - (1.0 - h) * 6.0, y + (fi < 0.5 ? 2.0 : -1.0));
             float u;
             float d = lz_jag(q, a0, a1, 4.0, 2.0, frac(h + st * 0.1), u);
-            if (d <= 0.55 / S + 0.05) { c = float4(zramp(_RampTex, 0.0, _Hit > 0.6 ? 4.0 : 3.0), 1.0); gl = max(gl, 0.8 * _Hit); }
+            if (d <= 0.9 / S + 0.05) { c = float4(zramp(_RampTex, 0.0, _Hit > 0.6 ? 4.0 : 3.0), 1.0); gl = max(gl, 0.9 * _Hit); }   // v2: 2 px rim arcs
+            else if (d <= 1.9 / S + 0.05 && _Hit > 0.6) { c = float4(zramp(_RampTex, 0.0, 2.0), 1.0); gl = max(gl, 0.6 * _Hit); }
         }
     }
     // break: a few lacquer chunks fall away

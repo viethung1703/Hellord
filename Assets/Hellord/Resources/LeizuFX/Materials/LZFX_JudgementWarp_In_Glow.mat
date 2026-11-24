@@ -38,12 +38,15 @@ Material:
     - _StepFps: 15
     - _Seed: 0
     - _Layer: 1
-    - _GlowGain: 1.2
+    - _GlowGain: 1.4
     - _Mode: 2
     - _Progress: 0
     - _Size: 10
     - _Height: 40
     - _Tint: 0
+    - _Hot: 1
+    - _GlowCap: 1
+    - _PreFlash: 0
     - _SrcBlend: 1
     - _DstBlend: 1
     m_Colors:

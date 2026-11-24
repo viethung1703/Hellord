@@ -44,6 +44,9 @@ Material:
     - _Size: 10
     - _Height: 40
     - _Tint: 0
+    - _Hot: 1
+    - _GlowCap: 1
+    - _PreFlash: 0
     - _SrcBlend: 5
     - _DstBlend: 10
     m_Colors:

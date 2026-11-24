@@ -41,7 +41,7 @@ Material:
     - _GlowGain: 1
     - _Progress: 0
     - _Mode: 2
-    - _Width: 0
+    - _Width: 1
     - _Amp: 5
     - _SegLen: 7
     - _Forks: 1

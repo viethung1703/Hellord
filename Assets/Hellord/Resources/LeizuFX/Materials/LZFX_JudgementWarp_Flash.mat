@@ -41,9 +41,12 @@ Material:
     - _GlowGain: 1
     - _Mode: 0
     - _Progress: 0
-    - _Size: 14
+    - _Size: 17
     - _Height: 30
     - _Tint: 0
+    - _Hot: 1
+    - _GlowCap: 1
+    - _PreFlash: 0
     - _SrcBlend: 5
     - _DstBlend: 10
     m_Colors:

@@ -1,6 +1,7 @@
 // Leizu Storm Stride trail (t1666). Pivot = dash start (feet), _TargetPx = dash end (feet) in px. A dash segment leaves:
 // 3 jagged afterimage streaks at body height that retract toward the end point, a white head at the end, and dark
 // footfall scuffs on the floor (scorch row) that fade last. _Progress 0..1 over the trail life.
+// v2 (t1666 upgrade): streaks 2 px (were 1 px), glow x1.2.
 float4 ZFX_Frag(float2 p, float2 w)
 {
     float2 B = _TargetPx.xy; float L = max(length(B), 1.0); float2 d = B / L; float2 n = float2(-d.y, d.x);
@@ -29,7 +30,7 @@ float4 ZFX_Frag(float2 p, float2 w)
         float hot = (u > 0.8 && pr < 0.5) ? 1.0 : (pr < 0.4 ? 0.5 : 0.0);
         float keep = zhash(float2(floor(u * L / 5.0), fi + _Seed * 9.0));
         if (keep < (0.35 + 0.5 * pr) * (1.0 - u)) continue;     // broken toward the old end
-        if (dd <= 0.55 && !(fi > 1.5 && hot < 0.4)) { c = float4(zramp(_RampTex, 0.0, 2.0 + hot * 2.0), 1.0); gl = max(gl, 0.5 * (0.4 + hot)); }
+        if (dd <= 0.9 && !(fi > 1.5 && hot < 0.4)) { c = float4(zramp(_RampTex, 0.0, 2.0 + hot * 2.0), 1.0); gl = max(gl, 0.6 * (0.4 + hot)); }
         else gl = max(gl, zsat(1.0 - dd / 4.0) * 0.25 * (1.0 - pr));
     }
     if (_Layer > 0.5) return zglow(_RampTex, gl, w, _GlowGain);

@@ -38,13 +38,13 @@ Material:
     - _StepFps: 15
     - _Seed: 0
     - _Layer: 1
-    - _GlowGain: 1.1
+    - _GlowGain: 1.3
     - _Progress: 0
     - _Mode: 2
-    - _Width: 1
-    - _Amp: 6
-    - _SegLen: 7
-    - _Forks: 2
+    - _Width: 2
+    - _Amp: 7
+    - _SegLen: 8
+    - _Forks: 3
     - _ForkLen: 0.22
     - _Rejit: 1
     - _EndStar: 1

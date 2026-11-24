@@ -1758,6 +1758,7 @@ namespace Hellord
     [Tooltip("t1669 LeizuFX material folder under Resources (v2 swap: \"LeizuFX_v2/Materials/\")")] public string lzFxDir1669 = "LeizuFX/Materials/";
     [Tooltip("t1669 folder used for a material missing from lzFxDir1669 (v1 keeps any part v2 does not ship); empty = none")] public string lzFxDirFallback1669 = "LeizuFX/Materials/";
     [Tooltip("t1669 renamed v2 materials: \"LZFX_Old=LZFX_New;...\" (looked up in lzFxDir1669; the _Glow twin follows)")] public string lzFxRename1669 = "";
+    [Tooltip("t1669 v2.1 haze override: -1 = the material (_HazeMode 0 = GrabPass distortion + shimmer), 1 = no-grab shimmer bands only")] public float lzHazeMode1669 = -1f;
     [Tooltip("t1666 new basics base damage / cooldown s: Thunder Drum Strikes, Thunder Lash, Live Wire (cooldown after release), Thunder Hound")] public float[] lzBaseDmg1666 = { 7f, 10f, 10f, 8f }, lzCd1666 = { 0.45f, 0.45f, 0.8f, 1.0f };
     [Tooltip("t1666 Thunder Drum Strikes: beat strike radius u / pick radius around the cursor u / beat dmg x / Thunderclap radius u / clap dmg x on shocked / x on the rest / beat-3 window s (the count resets after it)")] public float dsStrikeR1666 = 0.8f, dsPickR1666 = 2f, dsStrikeDmg1666 = 1f, dsClapR1666 = 2.5f, dsClapShocked1666 = 1.8f, dsClapOther1666 = 0.8f, dsWindow1666 = 1.2f;
     [Tooltip("t1666 Thunder Lash: reach u / arc degrees (full) / dmg x / knockback u on enemies already shocked")] public float tlReach1666 = 2.2f, tlArc1666 = 150f, tlDmg1666 = 1.3f, tlKnock1666 = 0.6f;

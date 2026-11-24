@@ -38,7 +38,7 @@ Material:
     - _StepFps: 15
     - _Seed: 0
     - _Layer: 1
-    - _GlowGain: 0.8
+    - _GlowGain: 1.0
     - _Mode: 1
     - _Radius: 13
     - _Squash: 0.55

@@ -196,7 +196,7 @@ namespace Hellord
             {
                 var f = _lzFx1666[i]; if (f.delay > 0f) { f.delay -= dt; continue; } f.t += dt; if (f.t >= f.life) { _lzFx1666.RemoveAt(i); continue; } float k = f.t / f.life; int ord = FbGround + YSort(f.p.y) + 40;
                 if (f.kind == -2) { LzBoltFx1666(f.mat, f.p, f.q, f.ord != int.MinValue ? f.ord : YSort(f.p.y) + 60, f.t, f.seed, 0f, ZP.F("_Progress", k)); continue; }
-                if (f.mat != null) { float pk = f.plife > 0f ? f.t / f.plife + f.p0 : k; var ps = new List<ZP> { ZP.F("_Progress", pk) }; if (f.haze) { float e = 1f - (1f - k) * (1f - k); ps.Add(ZP.F("_Radius", f.r0 + (f.r1 - f.r0) * e)); ps.Add(ZP.F("_Fade", 1f - Mathf.Clamp01((k - 0.5f) / 0.5f))); } if (f.ps != null) ps.AddRange(f.ps); if (LzFx1666(f.mat, f.p, f.rc.x, f.rc.y, f.rc.z, f.rc.w, f.ord != int.MinValue ? f.ord : ord, f.t, 0.37f, ps.ToArray())) continue; }
+                if (f.mat != null) { float pk = f.plife > 0f ? f.t / f.plife + f.p0 : k; var ps = new List<ZP> { ZP.F("_Progress", pk) }; if (f.haze) { float e = 1f - (1f - k) * (1f - k); ps.Add(ZP.F("_Radius", f.r0 + (f.r1 - f.r0) * e)); ps.Add(ZP.F("_Fade", 1f - Mathf.Clamp01((k - 0.5f) / 0.5f))); if (TZ.lzHazeMode1669 >= 0f) ps.Add(ZP.F("_HazeMode", TZ.lzHazeMode1669)); } if (f.ps != null) ps.AddRange(f.ps); if (LzFx1666(f.mat, f.p, f.rc.x, f.rc.y, f.rc.z, f.rc.w, f.ord != int.MinValue ? f.ord : ord, f.t, 0.37f, ps.ToArray())) continue; }
                 if (f.kind < 0) continue;
                 switch (f.kind)
                 {
@@ -253,7 +253,7 @@ namespace Hellord
                 Hit(e, dmg * T.tlDmg1666, s, Vector2.zero); LzLashHits1666++;
                 if (sh && e.alive && !e.boss) { e.push += kd * T.tlKnock1666 * 8f; LzLashKnocks1666++; e.lured1651 = true; /* probe: knocked */ } // push decays at 8/s: total move = push / 8
             }
-            if (LzFxLive1666("LZFX_ThunderLash")) LzFxShot1666("LZFX_ThunderLash", _heroPos, new Vector4(-r * 16, -r * 16, r * 32, r * 32), 0.33f, YSort(_heroPos.y) + 60, 0f, ZP.F("_Angle", Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg), ZP.F("_Arc", T.tlArc1666)); // HFX: 0.33 s one-shot driving _Progress
+            if (LzFxLive1666("LZFX_ThunderLash")) LzFxShot1666("LZFX_ThunderLash", _heroPos + new Vector2(4f, 10f) / 16f /* v2: spec pivot = hand height */, new Vector4(-r * 16 - 10, -r * 16 - 10, r * 32 + 20, r * 32 + 20) /* v2: rim + glow reach ~42 px */, 0.33f, YSort(_heroPos.y) + 60, 0f, ZP.F("_Angle", Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg), ZP.F("_Arc", T.tlArc1666)); // HFX: 0.33 s one-shot driving _Progress
             else
             {   // PLACEHOLDER: a jagged arc of bolt segments
                 Vector2 prev = c + Vector2.up * 0.6f + PbRot(dir, -half) * r * 0.3f;

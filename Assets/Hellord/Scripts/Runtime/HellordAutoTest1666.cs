@@ -26,8 +26,19 @@ namespace Hellord
             IEnumerator Hold(int n) { HInput.AtLmb = true; yield return LF(n); HInput.AtLmb = false; }
             void Res(string k, bool ok, string d) => ARes(scen + ":" + k, ok, d);
             ZhFxLogOn1625 = true; ZhFxLogReset1625(); // t1669: which LeizuFX sub-effects drew
+            { var av = System.Environment.GetCommandLineArgs(); int ai = System.Array.IndexOf(av, "-lzFxRename"); if (ai >= 0 && ai + 1 < av.Length) T.lzFxRename1669 = av[ai + 1]; ai = System.Array.IndexOf(av, "-lzHazeMode"); if (ai >= 0 && ai + 1 < av.Length) T.lzHazeMode1669 = float.Parse(av[ai + 1], System.Globalization.CultureInfo.InvariantCulture); } // t1669 A/B: e.g. hide the hazes
             bool on = LzOn1666; Res("active", on, $"LzOn1666 {on} (kit1618 {T.kit1618}, lzKit1666 {T.lzKit1666}, path {_pactPath51})");
             yield return LF(15);
+            if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-lzHazeProbe") >= 0)
+            {   // t1669 v2.1 probe (arg only, not in the clips): a held Thunderclap_Haze ring on bare floor, ground tier (right) and sprite tier (left)
+                for (int i = 0; i < 45; i++)
+                {
+                    Vector2 a = H0 + new Vector2(3f, -2f), b = H0 + new Vector2(-3f, -2f); var ps = new List<ZP> { ZP.F("_Radius", 30f), ZP.F("_Fade", 1f), ZP.F("_Progress", 0.5f) }; if (T.lzHazeMode1669 >= 0f) ps.Add(ZP.F("_HazeMode", T.lzHazeMode1669));
+                    LzFx1666("LZFX_Thunderclap_Haze", a, -48, -28, 96, 56, FbGround + YSort(a.y) + 45, i / 30f, 0.3f, ps.ToArray());
+                    LzFx1666("LZFX_Thunderclap_Haze", b, -48, -28, 96, 56, YSort(b.y) + 60, i / 30f, 0.3f, ps.ToArray());
+                    yield return LF(1);
+                }
+            }
             if (which == 0)
             {
                 // Thunder Drum Strikes: beat, beat, Thunderclap

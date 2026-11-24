@@ -1,6 +1,8 @@
 // Leizu Thunder Lash (t1666): 150 deg close-range arc. Pivot = Leizu's chest; aim = _Angle (deg, as the game hook passes), arc = _Arc (deg).
 // The lash front sweeps across the arc in ~0.13 s, a jagged rim bolt follows it (white at the front, cyan then blue behind),
 // radial bolts fire from the hand as the front passes them, then everything breaks up into blue residual by _Progress 1.
+// v2 (t1666 upgrade): rim and radial bolts 3 px white core (fresh + 2nd phase) + cyan + blue, glow 9 px, a white tip star on each
+// radial bolt as it lands, fatter front star. Quad rect v2: (-(R+10), -(R+10), 2R+20, 2R+20) around the pivot (v1 game hook: +-R).
 float4 ZFX_Frag(float2 p, float2 w)
 {
     float aim = _Angle * ZPI / 180.0;
@@ -29,12 +31,12 @@ float4 ZFX_Frag(float2 p, float2 w)
         float age = (thf - th) / (2.0 * HA) + pr * 0.6;           // 0 at the front
         float hot = age < 0.18 ? 1.0 : (age < 0.45 ? 0.5 : 0.0);
         float chunk = zhash(float2(floor(sa * 2.0), _Seed * 11.0));
-        float wd = hot > 0.75 ? 1.0 : 0.0;
+        float wd = hot > 0.35 ? 1.0 : 0.0;
         if (chunk >= brk)
         {
             float4 bc = lz_boltcol(_RampTex, d, wd, hot, true);
             if (bc.a > 0.5) c = bc;
-            gl = max(gl, zsat(1.0 - d / 6.0) * (0.3 + 0.7 * hot) * (1.0 - brk));
+            gl = max(gl, pow(zsat(1.0 - d / 9.0), 1.6) * (0.45 + 0.55 * hot) * (1.0 - brk));
         }
     }
     // radial bolts fired as the front passes
@@ -52,19 +54,26 @@ float4 ZFX_Frag(float2 p, float2 w)
         float d = lz_jag(g, dd * 5.0, dd * R * 0.86, 4.0, 2.5, frac(_Seed + fi * 0.21), u);
         float chunk = zhash(float2(floor(u * 6.0), fi + _Seed * 3.0));
         if (chunk < zsat((a - 0.55) / 0.45)) continue;
-        float4 bc = lz_boltcol(_RampTex, d, 0.0, hot, hot > 0.35);
+        float4 bc = lz_boltcol(_RampTex, d, hot > 0.75 ? 1.0 : 0.0, hot, hot > 0.35);
         if (bc.a > 0.5 && c.a < 0.5) c = bc;
-        gl = max(gl, zsat(1.0 - d / 5.0) * (0.3 + 0.6 * hot));
+        gl = max(gl, pow(zsat(1.0 - d / 8.0), 1.6) * (0.4 + 0.6 * hot));
+        if (hot > 0.35)
+        {   // tip star where the radial bolt lands
+            float2 tq = g - dd * R * 0.86; tq.y = tq.y * _Squash;
+            float ft = lz_star(tq, hot > 0.75 ? 5.0 : 3.0, hot > 0.75 ? 1.0 : 0.5);
+            if (ft > 0.0) c = float4(zramp(_RampTex, 0.0, ft > 0.4 ? 4.0 : 3.0), 1.0);
+            gl = max(gl, zsat(1.0 - length(tq) / 7.0) * hot);
+        }
     }
     // tip star riding the front + hand spark at the pivot
     if (pr < 0.5)
     {
         float2 tp = float2(cos(thf), sin(thf)) * R * 0.88;
         float2 q = g - tp; q.y = q.y * _Squash;
-        float f = lz_star(q, 4.0, 0.5);
-        if (f > 0.0) c = float4(zramp(_RampTex, 0.0, f > 0.5 ? 4.0 : 3.0), 1.0);
-        gl = max(gl, zsat(1.0 - length(q) / 7.0));
-        float fh = lz_star(p, 3.0, 0.5);
+        float f = lz_star(q, 6.0, 1.0);
+        if (f > 0.0) c = float4(zramp(_RampTex, 0.0, f > 0.4 ? 4.0 : 3.0), 1.0);
+        gl = max(gl, zsat(1.0 - length(q) / 9.0));
+        float fh = lz_star(p, 4.0, 1.0);
         if (fh > 0.0 && pr < 0.3) c = float4(zramp(_RampTex, 0.0, fh > 0.5 ? 4.0 : 3.0), 1.0);
     }
     if (_Layer > 0.5) return zglow(_RampTex, gl, w, _GlowGain);

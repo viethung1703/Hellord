@@ -61,13 +61,13 @@ namespace Hellord
             { "jwHaze",     new LzFxDef { mat = "LZFX_JudgementWarp_Haze", rc = new Vector4(-60, -36, 120, 72), life = 0.45f, delay = 0.4f, layer = LzL.Haze, r0 = 8, r1 = 48 } },
         };
         class LzStrikeDef { public string pre, ground; public float height, boltLife, hitLife, groundLife; public Vector4 hitRc, groundRc; public bool spark; }
-        /// <summary>spec.md "Shared recipe: sky strike". Bolt pivot = strike + (-6 + 12 seed, height) px, _TargetPx to strike + (0,1); Hit at +(0,3); Spark at +(0,2).</summary>
+        /// <summary>spec.md "Shared recipe: sky strike" (v2: every sky height 220 px = full screen). Bolt pivot = strike + (-6 + 12 seed, height) px, _TargetPx to strike + (0,1); Hit at +(0,3); Spark at +(0,2).</summary>
         static readonly Dictionary<string, LzStrikeDef> LzStrikeDefs1669 = new Dictionary<string, LzStrikeDef>
         {
-            { "DrumStrike", new LzStrikeDef { pre = "LZFX_DrumStrike", ground = "_Ground", height = 96, boltLife = 0.33f, hitLife = 0.27f, groundLife = 0.45f, hitRc = new Vector4(-18, -18, 36, 32), groundRc = new Vector4(-24, -18, 48, 40), spark = true } },
-            { "Decree",     new LzStrikeDef { pre = "LZFX_Decree", ground = "_Ground", height = 88, boltLife = 0.3f, hitLife = 0.27f, groundLife = 0.4f, hitRc = new Vector4(-16, -16, 32, 30), groundRc = new Vector4(-23, -17, 46, 38) } },
-            { "Judgement",  new LzStrikeDef { pre = "LZFX_Judgement", ground = "_Ground", height = 110, boltLife = 0.4f, hitLife = 0.27f, groundLife = 0.6f, hitRc = new Vector4(-28, -26, 56, 50), groundRc = new Vector4(-33, -23, 66, 50) } },
-            { "Tribunal",   new LzStrikeDef { pre = "LZFX_Tribunal", ground = "_Splash", height = 100, boltLife = 0.33f, hitLife = 0.27f, groundLife = 0.45f, hitRc = new Vector4(-20, -20, 40, 36), groundRc = new Vector4(-27, -19, 54, 42) } },
+            { "DrumStrike", new LzStrikeDef { pre = "LZFX_DrumStrike", ground = "_Ground", height = 220, boltLife = 0.33f, hitLife = 0.27f, groundLife = 0.45f, hitRc = new Vector4(-18, -18, 36, 32), groundRc = new Vector4(-24, -18, 48, 40), spark = true } },
+            { "Decree",     new LzStrikeDef { pre = "LZFX_Decree", ground = "_Ground", height = 220, boltLife = 0.3f, hitLife = 0.27f, groundLife = 0.4f, hitRc = new Vector4(-16, -16, 32, 30), groundRc = new Vector4(-23, -17, 46, 38) } },
+            { "Judgement",  new LzStrikeDef { pre = "LZFX_Judgement", ground = "_Ground", height = 220, boltLife = 0.4f, hitLife = 0.27f, groundLife = 0.6f, hitRc = new Vector4(-28, -26, 56, 50), groundRc = new Vector4(-33, -23, 66, 50) } },
+            { "Tribunal",   new LzStrikeDef { pre = "LZFX_Tribunal", ground = "_Splash", height = 220, boltLife = 0.33f, hitLife = 0.27f, groundLife = 0.45f, hitRc = new Vector4(-20, -20, 40, 36), groundRc = new Vector4(-27, -19, 54, 42) } },
         };
 
         // ---------------------------------------------------------------- material lookup (folder + rename map from tuning)
@@ -150,7 +150,7 @@ namespace Hellord
                 var e = _en[i]; if (!e.alive || e.dying) continue; float sa = runTime - e.lzShockAt1669; bool s1 = sh && sa >= 0f && sa < e.lzShockDur1669, d1 = dz && e.lzDazzT1669 > runTime; if (!s1 && !d1) continue;
                 Vector2 bs = BodySize1595(e) * 16f; float w = Mathf.Round(Mathf.Clamp(bs.x, 8f, 64f)), h = Mathf.Round(Mathf.Clamp(bs.y, 10f, 96f)); int o = (e.sr != null ? e.sr.sortingOrder : YSort(e.pos.y)) + 1;
                 if (s1) LzFx1666("LZFX_ShockStatus", e.pos, -(w * 0.5f + 7f), -6f, w + 14f, h + 14f, o, sa, (e.id * 0.137f) % 1f, ZP.V("_Body", new Vector4(w, h, 0, 0)), ZP.F("_Intensity", Mathf.Clamp01((e.lzShockDur1669 - sa) / 0.3f)));
-                if (d1) LzFx1666("LZFX_MirrorDazzled", e.pos, -14f, h - 4f, 28f, 16f, o + 2, e.lzDazzS1669 - (e.lzDazzT1669 - runTime), (e.id * 0.211f) % 1f, ZP.F("_Intensity", Mathf.Clamp01((e.lzDazzT1669 - runTime) / 0.2f)));
+                if (d1) LzFx1666("LZFX_MirrorDazzled", e.pos, -14f, h - 4f, 28f, 16f, o + 2, e.lzDazzS1669 - (e.lzDazzT1669 - runTime), (e.id * 0.211f) % 1f, ZP.V("_Body", new Vector4(w, h, 0, 0)) /* v2.1: orbit on this type's head */, ZP.F("_Intensity", Mathf.Clamp01((e.lzDazzT1669 - runTime) / 0.2f)));
             }
         }
     }

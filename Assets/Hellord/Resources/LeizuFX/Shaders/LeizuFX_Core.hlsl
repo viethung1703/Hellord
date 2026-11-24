@@ -1,4 +1,4 @@
-// Leizu combat FX (t1666) shared shader maths, adapted from the approved Zhurong fx_v2 core (t1622). MOCKUP-verified, see spec.md.
+// Leizu combat FX (t1666, v2 lightning upgrade) shared shader maths, adapted from the approved Zhurong fx_v2 core (t1622). MOCKUP-verified, see spec.md.
 // Written in a portable HLSL subset: the SAME file is compiled by Unity (HLSL) and by the preview renderer (GLSL via a #define prelude),
 // so the MOCKUP shows exactly this maths. Rules for editors: float literals with a decimal point, no scalar->vector broadcasts,
 // no fmod/mul/matrices/arrays, scalar ternaries only.
@@ -67,14 +67,19 @@ float zflow(sampler2D n, float2 p, float scale, float t, float speed, float seed
 float zsegd(float2 q, float2 a, float2 b) { float2 ab = b - a; float h = zsat(dot(q - a, ab) / max(1e-4, dot(ab, ab))); return length(q - a - ab * h); }
 float zeaseOut(float x) { x = zsat(x); return 1.0 - (1.0 - x) * (1.0 - x); }
 float zeaseIn(float x) { x = zsat(x); return x * x; }
-// glow output helper: banded additive glow from a smooth field
-float4 zglow(sampler2D r, float field, float2 p, float gain)
+// glow output helper: banded additive glow from a smooth field.
+// v2 (t1666 upgrade): the v1 outer band was deep blue x 0.15 (invisible at game zoom, no bloom in the game CRT).
+// v2 bands: outer = blue (or violet when tint 1) x 0.30, middle = cyan x 0.42, inner = pale c0cbdc x 0.62, all x gain.
+float4 zglowT(sampler2D r, float field, float2 p, float gain, float tint)
 {
-    float b = zband(zsat(field), 4.0, p, 0.45) / 3.0;
-    if (b <= 0.0) return float4(0.0, 0.0, 0.0, 0.0);
-    float3 c = zramp(r, 6.0, 1.0 + b * 5.0);
-    return float4(c * b * gain * 0.45, 1.0);
+    float b = zband(zsat(field), 4.0, p, 0.45);
+    float3 c = zramp(r, 0.0, 2.0); float k = b > 0.5 ? 0.30 : 0.0;
+    if (b < 1.5 && tint > 0.5) c = zramp(r, 2.0, 3.0);
+    if (b > 1.5) { c = zramp(r, 0.0, 3.0); k = 0.42; }
+    if (b > 2.5) { c = zramp(r, 6.0, 5.0); k = 0.62; }
+    return float4(c * k * gain, 1.0);
 }
+float4 zglow(sampler2D r, float field, float2 p, float gain) { return zglowT(r, field, p, gain, 0.0); }
 
 // ---------------- Leizu lightning helpers (t1666) ----------------
 // ramp rows (LZF_Ramp16x8): 0 bolt (ink, deep blue, blue, cyan, white), 1 dust, 2 violet, 3 scorch, 4 drum, 5 dazzle, 6 bloom
@@ -109,30 +114,30 @@ float lz_jag(float2 p, float2 A, float2 B, float n, float amp, float seed, out f
     }
     return best;
 }
-// bolt colour from distance d to the stroke centre and a half width w (px): white core, cyan, blue, ink outline.
-// hot 1 = fresh frame (white core), 0.5 = second frame (cyan core), 0 = residual (blue 1 px). Alpha 0 outside.
+// bolt colour from distance d to the stroke centre and a core half width w (px). v2 (t1666 upgrade), the caller picks w per phase:
+//  hot 1   (fresh)    : white core 2w+1 px, +1 px cyan, +1 px blue each side, +1 px ink (if ink)      -> w 1 = 7 px (+2 ink)
+//  hot 0.5 (2nd phase): white core 2w+1 px, +1 px cyan each side, +1 px ink (if ink)
+//  hot 0   (residual) : cyan core 2w+1 px, +1 px blue each side (+1 px ink if ink)
 float4 lz_boltcol(sampler2D r, float d, float w, float hot, bool ink)
-{
-    w = w + 0.5;
-    if (hot > 0.75)
-    {
-        if (d <= w) return float4(zramp(r, 0.0, 4.0), 1.0);
-        if (d <= w + 1.0) return float4(zramp(r, 0.0, 3.0), 1.0);
-        if (ink && d <= w + 2.0) return float4(zramp(r, 0.0, 0.0), 1.0);
-    }
-    else if (hot > 0.35)
-    {
-        if (d <= w) return float4(zramp(r, 0.0, 3.0), 1.0);
-        if (d <= w + 1.0) return float4(zramp(r, 0.0, 2.0), 1.0);
-        if (ink && d <= w + 2.0) return float4(zramp(r, 0.0, 0.0), 1.0);
-    }
-    else
-    {
-        if (d <= w) return float4(zramp(r, 0.0, 2.0), 1.0);
-        if (ink && d <= w + 1.0) return float4(zramp(r, 0.0, 1.0), 1.0);
-    }
-    return float4(0.0, 0.0, 0.0, 0.0);
+{   // single exit (no D3D 'potentially uninitialized' warnings)
+    float cw = w + 0.5;
+    float idx = -1.0;
+    if (hot > 0.75) idx = d <= cw ? 4.0 : (d <= cw + 1.0 ? 3.0 : (d <= cw + 2.0 ? 2.0 : ((ink && d <= cw + 3.0) ? 0.0 : -1.0)));
+    else if (hot > 0.35) idx = d <= cw ? 4.0 : (d <= cw + 1.0 ? 3.0 : ((ink && d <= cw + 2.0) ? 0.0 : -1.0));
+    else idx = d <= cw ? 3.0 : (d <= cw + 1.0 ? 2.0 : ((ink && d <= cw + 2.0) ? 0.0 : -1.0));
+    float4 o = float4(0.0, 0.0, 0.0, 0.0);
+    if (idx > -0.5) o = float4(zramp(r, 0.0, idx), 1.0);
+    return o;
 }
+// v2: brief ground light under an impact (glow layer only): a squashed banded pool, broken by noise so it never reads as a flat disc.
+// q = p - impact point (art px), rx = x radius px. Returns field 0..1.
+float lz_groundlight(sampler2D n, float2 q, float rx, float seed)
+{
+    float e = length(float2(q.x, q.y / 0.45)) / max(rx, 1.0);
+    float nz = ZTEX(n, q / 11.0 + float2(seed * 5.0, seed * 3.0)).r;
+    return e >= 1.0 ? 0.0 : zsat((1.0 - e) * 1.25 + (nz - 0.5) * 0.6);
+}
+
 // small plus-shaped star (impact / node). len = spike length px, returns field 0..1 (1 at centre)
 float lz_star(float2 q, float len, float th)
 {

@@ -43,9 +43,11 @@ Material:
     - _Radius: 20
     - _Height: 5
     - _Squash: 0.55
-    - _Strength: 1.5
+    - _Strength: 2.5
     - _Fade: 1
     - _UseSortingLayerTex: 1
+    - _Shimmer: 0.6
+    - _HazeMode: 0
     m_Colors:
     - _Origin: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
