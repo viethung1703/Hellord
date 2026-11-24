@@ -17,7 +17,7 @@ namespace Hellord
         float HeroChillMul44() => HeroFrozen44 ? 0f : Mathf.Max(0.1f, 1f - T44.heroChillSlowPerStack * _chill44);
         void AddChill44(int n)
         {
-            if (n <= 0 || HeroFrozen44 || _freezeImm44 > 0 || _tmGod || ZhNoSlow1618) return; // t1618 Hearth Blessing / Molten Heart block new slows
+            if (n <= 0 || HeroFrozen44 || _freezeImm44 > 0 || _tmGod || ZhNoSlow1618 || GgRiding1682) return; /* t1682 Ride the Flood */ // t1618 Hearth Blessing / Molten Heart block new slows
             _chill44 += n; _chillDecay44 = T44.heroChillDecayS; HellordAudio.Play("frost_cleave", 1.3f);
             if (_chill44 >= Mathf.Max(1, T44.heroChillFreezeAt))
             {
@@ -46,7 +46,7 @@ namespace Hellord
         void ResetV44()
         {
             _chill44 = 0; _frozen44 = _freezeImm44 = 0; _tmFreeze44 = false; _bossKind44 = -1; ClearV44();
-            ZhUltCd = 0f; ZhSunMeter1618 = 0f; ZhNearMiss1618 = 0; LzRunReset1666(); /* t1666 */ // t1648: the ultimate cooldown + meters reset once per run (ResetRun only), not per room (ClearV44 -> ClearZh1618)
+            ZhUltCd = 0f; ZhSunMeter1618 = 0f; ZhNearMiss1618 = 0; LzRunReset1666(); /* t1666 */ GgRunReset1682(); /* t1682 */ // t1648: the ultimate cooldown + meters reset once per run (ResetRun only), not per room (ClearV44 -> ClearZh1618)
             if (_chillH44 >= 0) StatusHazardFX.ChillSet(_chillH44, _heroPos, 0, 3, 0, 0);
         }
         void ClearV44()

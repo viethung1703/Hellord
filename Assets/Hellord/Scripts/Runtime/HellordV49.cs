@@ -88,7 +88,7 @@ namespace Hellord
                 _dashDir49 = DashDir716(mv); _dashT49 = T49.dashTimeS49; _dashCd49 = T49.dashCooldownS49 * PactDashCdMul53() * _sinDashMul737;
                 _iframe = Mathf.Max(_iframe, T49.dashIFrameS49); _heroVel37 = Vector2.zero; _holdT49 = 0;
                 if (T49.dashBreaksHook49 && _dragBy != null) { if (_dragBy.hookH >= 0) HookChainFX.Release(_dragBy.hookH); _dragBy = null; }
-                HordeFX.CheapBurst(_heroPos + Vector2.up * 0.4f, E32(0xc0cbdc), 6); HellordAudio.Play("oxhead_lunge_dash", 2f); PactDash53(); SinDash818(); LzDashAfter1666(); /* t1666 Thunder Step blink */ // t818u #19 // v0.0.53 pact dash hooks
+                HordeFX.CheapBurst(_heroPos + Vector2.up * 0.4f, E32(0xc0cbdc), 6); HellordAudio.Play("oxhead_lunge_dash", 2f); PactDash53(); SinDash818(); LzDashAfter1666(); /* t1666 Thunder Step blink */ GgDashAfter1682(); /* t1682 */ // t818u #19 // v0.0.53 pact dash hooks
             }
             if (_dashT49 > 0)
             {
@@ -152,6 +152,7 @@ namespace Hellord
                 if (!b.alive || b.vis) continue;
                 b.life -= dt; b.p += b.v * dt; if (b.life <= 0) { KillBullet49(b, false); continue; }
                 Vector2 q = b.p; ClampToRoom(ref q, 0); if ((q - b.p).sqrMagnitude > 0.01f) { KillBullet49(b, true); continue; }
+                if (GgBulletBlock1682(b.p)) { KillBullet49(b, true); continue; } // t1682 Floodgate blocks bullets
                 float dh = (_heroPos - b.p).magnitude;
                 if (ring && Mathf.Abs(dh - _auraR) < T49.stormEraseBandU49) { KillBullet49(b, true); continue; }
                 if (mode == Mode.Play && dh < b.r + T49.bulletHeroR49 * HeroHitK47)

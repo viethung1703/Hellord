@@ -95,8 +95,8 @@ namespace Hellord
         }
         void IceFreeze(Enemy e, float secs)
         {
-            if (e == null || !e.alive) return; if (e.boss) secs *= 0.4f;
-            e.freezeT = Mathf.Max(e.freezeT, secs); e.chillT = Mathf.Max(e.chillT, secs + 0.5f);
+            if (e == null || !e.alive) return; if (e.boss) secs *= 0.4f; secs *= GgFreezeMul1682(e); /* t1682 */
+            e.freezeT = Mathf.Max(e.freezeT, secs); GgFroze1682(e); e.chillT = Mathf.Max(e.chillT, secs + 0.5f);
             if (!StatusFX.IsAlive(e.chillH)) e.chillH = HFX.ChillStatus(e); if (e.chillH >= 0) StatusFX.SetFrozen(e.chillH, true);
         }
 

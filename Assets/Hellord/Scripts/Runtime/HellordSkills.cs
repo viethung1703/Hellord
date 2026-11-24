@@ -26,7 +26,7 @@ namespace Hellord
         }
 
         // v0.0.10 FX self-check (Shift+9 overlay): last cast time per skill
-        readonly float[] _lastCast = new float[64]; /* t1651: +12 kit ids */ /* t1567: 26 SkillIds now */ // v0.0.36 (t561u: +2 summons): one slot per SkillId
+        readonly float[] _lastCast = new float[96]; /* t1682: 75 SkillIds now */ /* t1651: +12 kit ids */ /* t1567: 26 SkillIds now */ // v0.0.36 (t561u: +2 summons): one slot per SkillId
         void Cast(SkillInst s, float mul)
         {
             float dmg = SkillDamage(s) * mul; // v0.0.13: _lastCast is stamped only after a real cast (early 'no target' returns no longer count -> no false FX WARN)
@@ -121,6 +121,11 @@ namespace Hellord
                 case SkillId.ThunderLash: if (!CastThunderLash1666(s, dmg)) return; break;
                 case SkillId.LiveWire: if (!CastLiveWire1666(s, dmg)) return; break;
                 case SkillId.ThunderHound: if (!CastThunderHound1666(s, dmg)) return; break;
+                case SkillId.TidalSurge: if (!CastTidalSurge1682(s, dmg)) return; break; // t1682 Gonggong basics (HellordGonggong1682.cs)
+                case SkillId.Whirlpool: if (!CastWhirlpool1682(s, dmg)) return; break;
+                case SkillId.BreathOfTheDeep: if (!CastBreath1682(s, dmg)) return; break;
+                case SkillId.BuzhouRift: if (!CastBuzhouRift1682(s, dmg)) return; break;
+                case SkillId.EyeOfTheBlackWaters: if (!CastEye1682(s, dmg)) return; break;
                 case SkillId.HeadsmansChop: if (!CastHeadsmansChop1567(s, dmg)) return; break;
                 case SkillId.EarthSplittingSlam: if (!CastEarthSlam1567(s, dmg)) return; break;
                 case SkillId.TwinAxeThrow: if (!CastTwinAxe1567(s, dmg)) return; break;

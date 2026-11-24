@@ -52,7 +52,7 @@ namespace Hellord
         /// <summary>v0.0.53 pt45x: every AoE / melee / beam / orbit / pool / chain hit also damages breakables, souls and ice
         /// in its area. key = skill id (or 20+ for blasts); each breakable has a per-key cooldown so ticking areas don't shred instantly.</summary>
         bool SkillArea53(Vector2 c, float r, float dmg, int key)
-        {
+        { GgArea1682(c, r, key); /* t1682 Frost Wall crystals hit by an area explode */
             var T = HellordTuning.I; if (!T.brkAoe53) return false; bool any = false; key = Mathf.Clamp(key, 0, 23);
             float cd = Mathf.Max(0f, T.brkAoeCd53), now = Time.time;
             for (int i = _brk53.Count - 1; i >= 0; i--)

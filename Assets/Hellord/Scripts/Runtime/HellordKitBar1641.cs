@@ -25,7 +25,7 @@ namespace Hellord
         bool _kbArmedPrev1646; int _kbUltPrev1646;
         void KbUltProgress1646(float ix, float iy, bool cooling)
         {
-            int u = KitUlt1666; bool armed = !cooling && KitUltArmed1666; bool lz = LzOn1666; // t1666: + Leizu
+            int u = KitUlt1666; bool armed = !cooling && KitUltArmed1666; bool lz = LzOn1666 || GgOn1682; // t1666: + Leizu; t1682: + Gonggong (no automatic ultimate)
             if (Event.current.type == EventType.Repaint)
             {
                 if (u != _kbUltPrev1646) { _kbUltPrev1646 = u; _kbArmedPrev1646 = armed; } // a new pick never chimes
@@ -35,11 +35,11 @@ namespace Hellord
             if (cooling) return;
             if (u == 2 && !lz) { KbGlow1646(ix, iy, 0.85f); return; } // Rebirth Flame: automatic -> steady glow
             if (armed) { KbGlow1646(ix, iy, 0.55f + 0.45f * Mathf.Sin(Time.unscaledTime * 7f)); return; }
-            float prog = lz ? LzUltProg1666() : u == 1 ? ZhSunMeter1618 / Mathf.Max(1f, TZ.swMeter1618) : u == 3 ? ZhBurning1618 / (float)Mathf.Max(1, TZ.mhNeed1618) : u == 4 ? ZhNearMiss1618 / (float)Mathf.Max(1, TZ.vbNeed1618) : 0f;
+            float prog = GgOn1682 ? GgUltProg1682() : lz ? LzUltProg1666() : u == 1 ? ZhSunMeter1618 / Mathf.Max(1f, TZ.swMeter1618) : u == 3 ? ZhBurning1618 / (float)Mathf.Max(1, TZ.mhNeed1618) : u == 4 ? ZhNearMiss1618 / (float)Mathf.Max(1, TZ.vbNeed1618) : 0f;
             int h = Mathf.Clamp(Mathf.FloorToInt(24f * Mathf.Clamp01(prog)), 0, 23); // 24 rows only when armed (above)
             if (h < 24) Fill716(ix, iy, 24, 24 - h, new Color32(24, 20, 37, 150));             // still to build: dimmed (sweep-mask ink)
             if (h > 0) { Fill716(ix, iy + 24 - h, 24, h, C716(0xf77622, 0.5f)); Fill716(ix, iy + 24 - h, 24, 1, C716(0xfee761, 0.9f)); } // orange fill + bright top edge
-            if (lz) { if (u == 1) KbCount1646(Mathf.Min(LzCombos1666, TZ.dcNeed1666), TZ.dcNeed1666, ix, iy); else if (u == 2) KbCount1646(Mathf.Min(LzInfusions1666, TZ.haNeed1666), TZ.haNeed1666, ix, iy); } /* t1666 */ else if (u == 4) KbCount1646(Mathf.Min(ZhNearMiss1618, TZ.vbNeed1618), TZ.vbNeed1618, ix, iy);
+            if (GgOn1682) { if (u == 3) KbCount1646(Mathf.Min(GgFrozenKills1682, TZ.ewNeed1682), TZ.ewNeed1682, ix, iy); } /* t1682 */ else if (lz) { if (u == 1) KbCount1646(Mathf.Min(LzCombos1666, TZ.dcNeed1666), TZ.dcNeed1666, ix, iy); else if (u == 2) KbCount1646(Mathf.Min(LzInfusions1666, TZ.haNeed1666), TZ.haNeed1666, ix, iy); } /* t1666 */ else if (u == 4) KbCount1646(Mathf.Min(ZhNearMiss1618, TZ.vbNeed1618), TZ.vbNeed1618, ix, iy);
             GUI.color = Color.white;
         }
         void KbGlow1646(float ix, float iy, float a) { Frame716(ix - 1, iy - 1, 26, 26, C716(0xfee761, a)); Frame716(ix - 2, iy - 2, 28, 28, C716(0xfeae34, a * 0.6f)); GUI.color = Color.white; }

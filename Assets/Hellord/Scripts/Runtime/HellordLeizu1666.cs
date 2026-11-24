@@ -40,21 +40,21 @@ namespace Hellord
 
         // ---------------------------------------------------------------- slots
         public bool LzOn1666 => TZ != null && TZ.kit1618 && TZ.lzKit1666 && !TZ.kitAnyPact1618 && _pactPath51 == 2;
-        public bool KitOn1666 => ZhOn1618 || LzOn1666;
+        public bool KitOn1666 => ZhOn1618 || LzOn1666 || GgOn1682; // t1682: + Gonggong
         public int LzMove1666 => LzOn1666 ? Mathf.Clamp(ZhSlotOverride1639 ? TZ.lzMove1666 : ZhRunMove1639, 0, 4) : 0;
         public int LzSpec1666 => LzOn1666 ? Mathf.Clamp(ZhSlotOverride1639 ? TZ.lzSpecial1666 : ZhRunSpec1639, 0, 4) : 0;
         public int LzUlt1666 => LzOn1666 ? Mathf.Clamp(ZhSlotOverride1639 ? TZ.lzUlt1666 : ZhRunUlt1639, 0, 4) : 0;
-        public int KitMove1666 => LzOn1666 ? LzMove1666 : ZhMove1618;
-        public int KitSpec1666 => LzOn1666 ? LzSpec1666 : ZhSpec1618;
-        public int KitUlt1666 => LzOn1666 ? LzUlt1666 : ZhUlt1618;
-        public bool KitUltArmed1666 => LzOn1666 ? LzUltArmed1666 : ZhUltArmed1618;
+        public int KitMove1666 => GgOn1682 ? GgMove1682 : LzOn1666 ? LzMove1666 : ZhMove1618;
+        public int KitSpec1666 => GgOn1682 ? GgSpec1682 : LzOn1666 ? LzSpec1666 : ZhSpec1618;
+        public int KitUlt1666 => GgOn1682 ? GgUlt1682 : LzOn1666 ? LzUlt1666 : ZhUlt1618;
+        public bool KitUltArmed1666 => GgOn1682 ? GgUltArmed1682 : LzOn1666 ? LzUltArmed1666 : ZhUltArmed1618;
         /// <summary>kit index (ZkI1651) of slot 0/1/2 pick p for the running pact.</summary>
-        public int KitK1666(int slot, int pick) => LzOn1666 ? LzK0 + slot * 4 + pick - 1 : ZkK1651(slot, pick);
+        public int KitK1666(int slot, int pick) => GgOn1682 ? GgK1682(slot, pick) : LzOn1666 ? LzK0 + slot * 4 + pick - 1 : ZkK1651(slot, pick);
         static int LzK1666(int slot, int pick) => LzK0 + slot * 4 + pick - 1;
-        string KitMoveKey1666() => LzOn1666 ? (LzMove1666 > 0 ? LzKeys1666[LzMove1666 - 1] : null) : MoveKey1618();
-        string KitSpecKey1666() => LzOn1666 ? (LzSpec1666 > 0 ? LzKeys1666[3 + LzSpec1666] : null) : SpecKey1618();
-        string KitUltKey1666() => LzOn1666 ? (LzUlt1666 > 0 ? LzKeys1666[7 + LzUlt1666] : null) : UltKey1618();
-        Texture2D KitIcon1666(string key) => LzOn1666 ? LzIcon1666(key) : ZhIcon1618(key);
+        string KitMoveKey1666() => GgOn1682 ? (GgMove1682 > 0 ? GgKeys1682[GgMove1682 - 1] : null) : LzOn1666 ? (LzMove1666 > 0 ? LzKeys1666[LzMove1666 - 1] : null) : MoveKey1618();
+        string KitSpecKey1666() => GgOn1682 ? (GgSpec1682 > 0 ? GgKeys1682[3 + GgSpec1682] : null) : LzOn1666 ? (LzSpec1666 > 0 ? LzKeys1666[3 + LzSpec1666] : null) : SpecKey1618();
+        string KitUltKey1666() => GgOn1682 ? (GgUlt1682 > 0 ? GgKeys1682[8 + GgUlt1682] : null) : LzOn1666 ? (LzUlt1666 > 0 ? LzKeys1666[7 + LzUlt1666] : null) : UltKey1618();
+        Texture2D KitIcon1666(string key) => GgOn1682 ? GgIcon1682(key) : LzOn1666 ? LzIcon1666(key) : ZhIcon1618(key);
 
         // ---------------------------------------------------------------- state
         [System.NonSerialized] public int LzCasts1666, LzBlinks1666, LzWardAbsorbs1666, LzDazzled1666, LzMarkPays1666, LzCursed1666, LzSpreads1666, LzDrumBooms1666, LzStaticHits1666,

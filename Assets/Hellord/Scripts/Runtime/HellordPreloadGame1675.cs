@@ -45,6 +45,7 @@ namespace Hellord
             if (_plReg1675) return; _plReg1675 = true;
             HellordPreload.Register("pact basics", PlPactBasics1675);   // Pb strips / glow mats / icons / hero pose sets (+ outlines), Leizu + Zhurong basic icons
             HellordPreload.Register("LeizuFX", PlLeizu1675);            // Leizu kit: LZFX materials, Thunder Hound sheets, kit icons
+            HellordPreload.Register("GonggongFX", PlGonggong1682);      // t1682 Gonggong kit: GGFX materials (when shipped), kit + basic icons, placeholder textures
             HellordPreload.Register("ZhurongFX", PlZhurong1675);        // Zhurong kit: ZFX materials, kit icons, fire basics strips
             HellordPreload.Register("shared FX", PlSharedFx1675);       // Fire / Frost / Nova / PixelAoE / FX934 / boss / room light, pools
             HellordPreload.Register("enemy feel", PlEnemyFeel1676);     // t1676: hit / death / corpse / blood art per enemy sheet

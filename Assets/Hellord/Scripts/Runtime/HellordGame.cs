@@ -14,6 +14,7 @@ namespace Hellord
         public int id; public EType type; public bool alive, elite; public Vector2 pos, push; public float hp, maxHp, speed, radius, dmg, animT;
         public SpriteRenderer sr; public Transform tr; public Sprite[] frames; public int xp, cx, cy; public float hitT; public PixelFX fx; public int shockH = -1, bleedH = -1, burnH = -1, chillH = -1; public bool boss;
         public float stag1434, stagDur1434, stagCd1434, kbT1434, kbDur1434, kbDist1434, kbDone1434; public Vector2 kbDir1434; public bool fbKill1481; public bool over1434, frozenDeath1434, d2scaled1434, gib1434, burn1434, fx1434, fxFrozen1434; public float corpseLife1434; public bool pop1434, slam1434; public D2Corpse1434 cp1434; public float agT1447, atkV1457; public Sprite[] fxFr1434; public Vector2 deathDir1434; public bool fxHold1434, fxFlip1434; /* t1446 PixelLab death events */ /* t1434 D2 feel */ public float hitY, deathT; public bool dying, splitDone, nest; public int walkRow; // v0.6: hurt-circle height (units above feet), death anim, facing row
+        public float ggHypo1682; /* t1682 Gonggong Hypothermia curse expiry (runTime) */
         public float lzCond1666; /* t1666 Conductivity curse expiry (runTime) */ public float lzShockAt1669 = -9f, lzShockDur1669, lzDazzT1669, lzDazzS1669; /* t1669 FX only: LZFX_ShockStatus / MirrorDazzled overlays */ public bool lured1651; /* t1651 probe: drawn by Ember Effigy */ public SkillInst burnSrc1651, bleedSrc1651; /* t1651: the skill whose burn / bleed this is */ public float zFlam1618; /* t1618 Flammability curse expiry (runTime) */ public float zCry1625; /* t1625 War Cry: explodes on death until (runTime) */ public float tint948Until, tint948Amt; public Color tint948Col; /* t948u brief status tint */ public float knock818; public int burnStk818; /* t818u sin #9 knock mark (runTime expiry) / #31 burn stacks */ public float slowT, slowAmt; /* v0.0.36 Grave Pool slow */ public float iceBuild; /* t1393u shared chill->freeze buildup */ public float shockAmp = 0.25f; public float burnT, burnDps, chillT, shockT, bleedT, bleedDps, curseT, freezeT, dotTick, orbitCd, auraCd; public int chillHits;
         public byte variant; public float fuseT = -1; /* v0.0.37: 1 frost, 2 exploding */ public float hookCd; public int hookWind = -1, hookH = -1, strafe = 1; public Vector2 hookPrevTip, hookAim; public bool hookTipOk; // v0.0.24 Hook Thrower
         public int v44St, v44Face; public float v44T, v44HurtT, v44CastT, v44AnimT; public byte k49; public int s49, n49; public float t49, cd49; public Vector2 a49, b49; /* v0.0.49 patterns */ public bool v44West; public Vector2 v44Dir, v44Prev; public bool v44Hit; /* v0.0.44 Frost Caster / Fire Wheel */ public float gossipCd, gossipT; public int gossipSt, gossipH = -1; public Vector2 gossipC; // v0.0.25 Gossip Imp (state 0 hover, 1 approach, 2 shouting, 3 recover)
@@ -58,7 +59,7 @@ namespace Hellord
         void Awake()
         {
             FireWallDefs948(); // t948u
-            PbDefs1567(); LzDefs1666(); /* t1666 Leizu basics */ // t1567: pact basics' damage / cooldown from HellordTuning
+            PbDefs1567(); LzDefs1666(); /* t1666 Leizu basics */ GgDefs1682(); /* t1682 Gonggong basics */ // t1567: pact basics' damage / cooldown from HellordTuning
             if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-runinbg") >= 0) { Application.runInBackground = true; Debug.Log("[Hellord] -runinbg: runInBackground = true"); } // v0.0.21
             // v0.0.17: '-volume <0..1>' command-line arg sets the master volume (stream-friendly playtests); no arg = full volume
             { var a = System.Environment.GetCommandLineArgs(); int vi = System.Array.IndexOf(a, "-volume");
@@ -394,7 +395,7 @@ namespace Hellord
 #if HELLORD_AUTOTEST
             if (AtMove1396.sqrMagnitude > 0.0001f) mv = AtMove1396; // autotest: scripted walk (t1396; t1618 moved into the repo)
 #endif
-            Vector2 heroP0 = _heroPos; Dash49(mv, dt); _heroPos += HeroVel37(mv, baseSpeed * speedMul * LzMoveMul1666() /* t1666 Live Wire / Storm Stride */ * (ZhNoSlow1618 ? 1f : HookMoveMul() * HeroSlowMul37() * HeroChillMul44() * HoldMul49()), dt) * dt; /* t1618 Molten Heart / Hearth Blessing: can't be slowed */ // v0.0.24: slowed while a hook drags you; v0.0.37: ice + frost slow
+            Vector2 heroP0 = _heroPos; Dash49(mv, dt); _heroPos += HeroVel37(mv, baseSpeed * speedMul * LzMoveMul1666() /* t1666 Live Wire / Storm Stride */ * GgMoveMul1682() /* t1682 Breath / Frozen River */ * (ZhNoSlow1618 ? 1f : HookMoveMul() * HeroSlowMul37() * HeroChillMul44() * HoldMul49()), dt) * dt; /* t1618 Molten Heart / Hearth Blessing: can't be slowed */ // v0.0.24: slowed while a hook drags you; v0.0.37: ice + frost slow
             if (mv.sqrMagnitude > 0.01f) _lastDir = mv.normalized;
             ClampToRoom(ref _heroPos, HeroMarginPx); ClampToArena(ref _heroPos); BlockShrineStatue(ref _heroPos); BlockSpikes46(ref _heroPos); HeroVelClamp37(heroP0, dt);
             _hero.position = new Vector3(Snap(_heroPos.x), Snap(_heroPos.y), 0) + HeroRecoil1517(); // t1517: attack recoil (1-2 px)
@@ -547,13 +548,14 @@ namespace Hellord
         {
             if (HeroInvuln969) return; // v0.0.38: test-menu god mode
             if (LzWardAbsorb1666(contact)) return; // t1666 Grounding Ward
+            if (GgInvuln1682) return; var ggBy1682 = _hurtBy53; // t1682 Ram charge: unhurt; the attacker for Rime Coat
             if (contact && !boss && V49) dmg *= T49.enemyDmgMul49b; // v0.0.49b
             if (!boss && FloorIdx == 0 && Cur != null && Cur.type == RoomType.Survive) dmg *= HellordTuning.I.surviveF1DmgMul53; // v0.0.53 O1
             if (boss) dmg *= HellordTuning.I.bossDamageMul * (1 + HellordTuning.I.floorBossDmgGrowth * FloorIdx); // v0.0.26
             dmg *= SinHurtMul818(); /* t818u #24 */ dmg *= 100f / (100f + armor * 4f); if (!boss) dmg = Mathf.Min(dmg, maxHp * NonBossHitCap);
             dmg = PactHurt53(dmg, contact); if (dmg < 0) return; // v0.0.53 pact: steam miss / shield / frenzy / inferno
             hp -= dmg; _iframe = contact ? HeroIFrame / Mathf.Max(0.5f, HellordTuning.I.contactIFrameDiv) : HeroIFrame; _hurtT = 0.12f; // v0.0.27: demon touches land more often
-            Mercy49(dmg); lastHitDmg = dmg; lastHitTime = runTime; lastHitSrc = src; heroHits++;
+            Mercy49(dmg); lastHitDmg = dmg; lastHitTime = runTime; lastHitSrc = src; heroHits++; GgHeroHit1682(dmg, contact, ggBy1682); /* t1682 Ram wrath / Rime Coat */
             HordeFX.Number(HeroCenter + Vector2.up * 1.2f, Mathf.Max(1, Mathf.RoundToInt(dmg)), true, 7771);
             if (showDebug) Debug.Log($"[Hurt] {src} -{dmg:0.#} hp={hp:0.#}/{maxHp:0} t={runTime:0.00}");
             ScreenShake.Add(2, 0.15f);
@@ -613,7 +615,7 @@ namespace Hellord
             e.dmg *= TT.contactDamageMul * (1 + (TT.soften679 ? TT.enemyDmgGrowth679 : TT.floorEnemyDmgGrowth) * fl); e.speed *= TT.enemySpeedMul * (1 + TT.floorSpeedGrowth * fl); // v0.0.26 pressure
             e.maxHp *= hpMul; e.hp = e.maxHp; e.alive = true; e.agT1447 = 0f; e.animT = Random.value * 4; e.dying = false; e.splitDone = false; e.nest = false; e.deathT = 0; e.walkRow = 0; e.variant = 0; e.m53 = 0; e.k49 = 0; e.s49 = 0; e.n49 = 0; e.t49 = 0; e.cd49 = 0.8f + Random.value * 1.5f; e.fuseT = -1; e.v44St = 0; e.v44T = 0; e.tr.rotation = Quaternion.identity;
             e.lured1651 = false; e.burnSrc1651 = e.bleedSrc1651 = null; /* t1651 */
-            e.burnT = e.chillT = e.shockT = e.bleedT = e.curseT = e.freezeT = e.orbitCd = e.auraCd = e.slowT = e.stun53 = e.brit536 = e.zFlam1618 = e.zCry1625 = e.lzCond1666 = e.lzShockDur1669 = e.lzDazzT1669 = 0; e.lzShockAt1669 = -9f; /* t1618, t1625 */ e.lured1651 = false; e.chillHits = 0; e.iceBuild = 0; e.push = Vector2.zero; D2Reset1434(e);
+            e.burnT = e.chillT = e.shockT = e.bleedT = e.curseT = e.freezeT = e.orbitCd = e.auraCd = e.slowT = e.stun53 = e.brit536 = e.zFlam1618 = e.zCry1625 = e.ggHypo1682 = e.lzCond1666 = e.lzShockDur1669 = e.lzDazzT1669 = 0; e.lzShockAt1669 = -9f; /* t1618, t1625 */ e.lured1651 = false; e.chillHits = 0; e.iceBuild = 0; e.push = Vector2.zero; D2Reset1434(e);
             e.sr.sprite = e.frames[0]; e.sr.color = Color.white; e.sr.flipX = false; e.sr.enabled = true; e.sr.gameObject.SetActive(true); HordeFX.Prepare(e.sr);
             StopStatuses(e); e.tr.localScale = Vector3.one * EnemyArtMap.Map[t].scale; e.tr.position = e.pos; e.hitT = 0;
             return e;
@@ -678,8 +680,8 @@ namespace Hellord
                     if (j == i) continue; var o = _en[j]; if (!o.alive) continue; Vector2 dd = e.pos - o.pos; float m2 = dd.sqrMagnitude, rr = e.radius + o.radius;
                     if (m2 < rr * rr && m2 > 1e-5f) { sep += dd / Mathf.Sqrt(m2) * (rr - Mathf.Sqrt(m2)); n++; }
                 }
-                e.pos += (v + e.push) * dt + sep * Mathf.Min(1, 8 * dt);
-                e.push = Vector2.Lerp(e.push, Vector2.zero, 1 - Mathf.Exp(-8 * dt));
+                Vector2 gg0 = e.pos; e.pos += (v + e.push) * dt + sep * Mathf.Min(1, 8 * dt); GgEnemyMove1682(e, gg0); // t1682 walls / pillars hold demons back
+                e.push = Vector2.Lerp(e.push, Vector2.zero, 1 - Mathf.Exp(-8 * dt * GgFriction1682(e))); // t1682 Frozen River: knocks slide further
                 if (e.kbDist1434 > 0) D2Knock1434(e, dt); ClampToRoom(ref e.pos, 6); if (_bossArenaOn1006) ClampToArena(ref e.pos); // v0.7 walls; t1006u arena
                 // far away -> respawn closer (keeps density around the player)
                 if (dist > (floorMode ? 60 : 30) && !e.elite) { StopStatuses(e); DetachFx(e); e.alive = false; e.sr.gameObject.SetActive(false); SpawnEnemy(e.type); continue; }
@@ -722,7 +724,7 @@ namespace Hellord
                 _blasts.Add(new Blast { pos = e.pos + Vector2.up * 0.5f, r = 1.8f, dmg = dmg * 2.5f + 10, kind = 1, skip = -1 });
             }
             if (!e.elite) e.push += knock;
-            D2SetDir1434(knock, s); Damage(e, dmg, !tick, tick); _d2DirSet = false; _d2Fire = false; PactPostHit53(e, dmg, s, tick); SinPostHit818(e, dmg, s, tick); LzPostHit1666(e, dmg, s, tick); /* t1666 */ // t818u sins // v0.0.53 pact
+            D2SetDir1434(knock, s); Damage(e, dmg, !tick, tick); _d2DirSet = false; _d2Fire = false; PactPostHit53(e, dmg, s, tick); SinPostHit818(e, dmg, s, tick); LzPostHit1666(e, dmg, s, tick); /* t1666 */ GgPostHit1682(e, dmg, s, tick); /* t1682 Drowning Mark relay */ // t818u sins // v0.0.53 pact
             if (!e.alive) OnSkillKill(e, s); // v0.0.36 Soul Harvest / Explode on Kill
         }
         static SupportId SupportIdFor(Status st) => st == Status.Burn ? SupportId.Burn : st == Status.Chill ? SupportId.Chill : st == Status.Shock ? SupportId.Shock : st == Status.Bleed ? SupportId.Bleed : SupportId.AddedDamage;
@@ -739,7 +741,7 @@ namespace Hellord
             switch (st)
             {
                 case Status.Burn: { if (src != null) e.burnSrc1651 = src; /* t1651 */ float nb = dmg * HellordTuning.I.burnDpsFromHit * k; if (e.burnT <= 0) e.burnStk818 = 0; e.burnDps = SinBurnDps818(e, nb); e.burnT = (TT.burnDuration + (src != null && src.Has(SupportId.Burn) ? HData.At(TT.supBurnExtraSeconds, src.Lvl(SupportId.Burn), 0f) : 0f)) * sd * SinBurnDurMul818() + SinBurnAddS818(); IgniteBurn(e); break; } // t818u #4/#31 + Duration
-                case Status.Chill: e.chillT = 2 * k; if (++e.chillHits >= (src != null && src.Has(SupportId.Chill) ? HData.At(TT.supChillFreezeHits, src.Lvl(SupportId.Chill), 3) : 3)) { e.chillHits = 0; e.freezeT = 1.2f; } if (!StatusFX.IsAlive(e.chillH)) e.chillH = HFX.ChillStatus(e); StatusFX.SetFrozen(e.chillH, e.freezeT > 0); break;
+                case Status.Chill: e.chillT = 2 * k; if (++e.chillHits >= GgChillNeed1682(e, src != null && src.Has(SupportId.Chill) ? HData.At(TT.supChillFreezeHits, src.Lvl(SupportId.Chill), 3) : 3) /* t1682 Hypothermia -1, min 2 */) { e.chillHits = 0; e.freezeT = 1.2f * GgFreezeMul1682(e); GgFroze1682(e); /* t1682 Drowning Mark / Hypothermia longer */ } if (!StatusFX.IsAlive(e.chillH)) e.chillH = HFX.ChillStatus(e); StatusFX.SetFrozen(e.chillH, e.freezeT > 0); break;
                 case Status.Shock:
                     e.shockT = 3 * sd * SinShockDur818(); e.shockAmp = (src != null && src.Has(SupportId.Shock) ? HData.At(TT.supShockAmp, src.Lvl(SupportId.Shock), 0.25f) : TT.shockBaseAmp) * SinShockAmp818(); // t818u #24 + Duration
                     if (HFX.Alive(e.shockH)) { HFX.Stop(ref e.shockH); }
@@ -787,6 +789,7 @@ namespace Hellord
         {
             ZhOnKill1618(e); // t1618 Pyre Mark: activates on death
             LzOnKill1666(e); // t1666 Heaven-Splitting Arc infusion drops
+            GgOnKill1682(e); // t1682 Eternal Winter count + shatter
             ZhCryKill1625(e); // t1625 War Cry: roared-at enemies explode on death
             e.alive = false; e.burn1434 = e.burnT > 0 || _d2Fire; e.fbKill1481 = FbNoBlob1481(); /* t1511b */ if (e.type == EType.HookThrower || e.type == EType.GossipImp) HookCleanup(e);
             EndMinionFx44(e); // v0.0.44
