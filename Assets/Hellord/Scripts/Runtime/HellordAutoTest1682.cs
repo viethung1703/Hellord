@@ -19,7 +19,8 @@ namespace Hellord
             string scen = names[which], clip = scen; var T = HellordTuning.I; _zClip = clip;
             yield return ZhStart1618(scen, clip, SkillId.Frostbolt);
             _ggM0 = T.ggMove1682; _ggS0 = T.ggSpecial1682; _ggU0 = T.ggUlt1682; _pactPath51 = 4; T.kitSlotOverride1639 = true; T.ggMove1682 = T.ggSpecial1682 = T.ggUlt1682 = 0; ClearGg1682(); GgRunReset1682();
-            var L = new List<Enemy>(); Vector2 H0 = _heroPos;
+            var L = new List<Enemy>(); Vector2 H0 = _heroPos; ZhFxLogOn1625 = true; ZhFxLogReset1625(); int q0 = ZhFxQuads1625; // which GonggongFX effects drew
+            IEnumerator Ms(int n, float[] o) { var sw = System.Diagnostics.Stopwatch.StartNew(); int qa = ZhFxQuads1625; yield return LF(n); o[0] = (float)sw.Elapsed.TotalMilliseconds / n; o[1] = (ZhFxQuads1625 - qa) / (float)n; }
             Enemy Pack(EType t, Vector2 at, float speed, float hpv = 600f) => ZMk1618(L, t, at, speed, hpv);
             SkillInst Basic(SkillId id, string name) { var s = new SkillInst { def = HData.Skill(id) }; if (skills.Count > 0) skills[0] = s; else skills.Add(s); Toast(name); return s; }
             IEnumerator LF(int n) { for (int i = 0; i < n; i++) { yield return ZF1618(1); pendingLevels = 0; if (mode != Mode.Play) mode = Mode.Play; foreach (var p in _pk) if (p.alive) { var j = p.job; p.job = null; p.magnet = false; if (j != null) HellFXRunner.I.Kill(j); p.alive = false; p.sr.gameObject.SetActive(false); } } }
@@ -115,12 +116,17 @@ namespace Hellord
                 // The Great Flood: only at High Tide; NW -> SE wave, pushes non-bosses SE, 2 chills
                 Reset(); T.ggUlt1682 = 2; Toast("THE GREAT FLOOD"); GgTide1682 = 0f; for (int i = 0; i < 8; i++) Pack(EType.Imp, H0 + new Vector2(-4f + i * 1.3f, (i % 3 - 1) * 1.4f), 0f, 5000f);
                 yield return LF(10); bool low = !GgUltArmed1682; GgTide1682 = T.gfRise1682 - 0.1f; yield return LF(10); bool high = GgUltArmed1682; var p0 = new List<Vector2>(); foreach (var e in L) p0.Add(e.pos); int fh0 = GgFloodHits1682;
-                yield return ZPress1618(2); yield return LF(50); int se = 0, chl = 0; for (int i = 0; i < L.Count; i++) { var d = L[i].pos - p0[i]; if (d.x > 0.8f && d.y < -0.8f) se++; if (L[i].chillT > 0f || L[i].freezeT > 0f) chl++; }
+                var pb = new float[2]; yield return Ms(20, pb); // baseline: same pack, no ultimate
+                yield return ZPress1618(2); int gOrd = GgGround1682(_heroPos), minAct = int.MaxValue; foreach (var e in L) if (e.sr != null) minAct = Mathf.Min(minAct, e.sr.sortingOrder); minAct = Mathf.Min(minAct, ZhHeroOrd1625);
+                var pf = new float[2]; yield return Ms(25, pf); yield return LF(25); int se = 0, chl = 0;
+                Res("perf_flood", true, $"frame {pb[0]:0.0} ms (quads/frame {pb[1]:0.#}) -> {pf[0]:0.0} ms with the Great Flood (quads/frame {pf[1]:0.#}); wall-clock, software GL on the box");
+                Res("sort_ground", gOrd < minAct && gOrd > FbGround, $"ground tier order {gOrd} (FbGround {FbGround}) < lowest actor order {minAct}"); for (int i = 0; i < L.Count; i++) { var d = L[i].pos - p0[i]; if (d.x > 0.8f && d.y < -0.8f) se++; if (L[i].chillT > 0f || L[i].freezeT > 0f) chl++; }
                 Res("greatflood", low && high && GgFloodHits1682 - fh0 == L.Count && se >= L.Count - 1 && chl == L.Count, $"locked before High Tide {low}, armed at High Tide {high}, hits {GgFloodHits1682 - fh0}/{L.Count}, pushed SE {se}, chilled {chl}"); yield return LF(20);
                 // Eternal Winter: 25 frozen kills arm it; frozen deaths shatter and chain
                 Reset(); T.ggUlt1682 = 3; Toast("ETERNAL WINTER"); GgFrozenKills1682 = 0; for (int i = 0; i < 25; i++) { var e = Pack(EType.Imp, H0 + new Vector2(6f + (i % 5) * 0.3f, -3f + (i / 5) * 0.3f), 0f, 20f); IceFreeze(e, 3f); Damage(e, e.hp + 10f, false, true); } yield return LF(10);
                 bool armedW = GgUltArmed1682; int fk = GgFrozenKills1682; L.Clear(); for (int i = 0; i < 9; i++) Pack(EType.Imp, H0 + new Vector2(3f + (i % 3) * 1.2f, -1.2f + (i / 3) * 1.2f), 0f, 30f);
-                yield return LF(5); int wb0 = GgWinterBursts1682, wc0 = GgWinterChills1682; yield return ZPress1618(2); yield return LF(70); var first = L[4]; IceFreeze(first, 3f); foreach (var e in L) if (e != first) IceFreeze(e, 3f); Damage(first, first.hp + 10f, false, true); yield return LF(20);
+                yield return LF(5); int wb0 = GgWinterBursts1682, wc0 = GgWinterChills1682; var wb = new float[2]; yield return Ms(20, wb); yield return ZPress1618(2); var wf = new float[2]; yield return Ms(30, wf); T.ggFx1682 = false; var wn = new float[2]; yield return Ms(20, wn); T.ggFx1682 = true; yield return LF(20);
+                Res("perf_winter", true, $"frame {wb[0]:0.0} ms -> {wf[0]:0.0} ms with the Eternal Winter overlay + pulses (quads/frame {wf[1]:0.#}); {wn[0]:0.0} ms with the GGFX shaders off (placeholders)"); var first = L[4]; IceFreeze(first, 3f); foreach (var e in L) if (e != first) IceFreeze(e, 3f); Damage(first, first.hp + 10f, false, true); yield return LF(20);
                 int dead = 0; foreach (var e in L) if (!e.alive) dead++;
                 Res("eternalwinter", armedW && fk == T.ewNeed1682 && GgWinterChills1682 - wc0 >= 9 && GgWinterBursts1682 - wb0 >= 2 && dead >= 3, $"frozen kills {fk}/{T.ewNeed1682}, armed {armedW}, winter chills {GgWinterChills1682 - wc0}, shatter bursts {GgWinterBursts1682 - wb0} (chain), dead {dead}/9"); yield return LF(60);
                 // Pillars of Ao: below 35% HP; demons pushed out of the square; icicles
@@ -129,6 +135,16 @@ namespace Hellord
                 yield return ZPress1618(2); yield return LF(60); int inside = 0; float h = T.aoHalf1682; foreach (var e in L) { var d = e.pos - _ggAoC1682; if (Mathf.Abs(d.x) < h && Mathf.Abs(d.y) < h) inside++; } yield return LF(60); hp = maxHp; yield return LF(5); bool disarm = !GgAoArmedLatch1682;
                 Res("pillarsofao", offHigh && armedA && GgAoPushes1682 - ap0 > 0 && inside == 0 && GgAoIcicles1682 - ai0 >= 8 && disarm, $"off at full HP {offHigh}, armed below {T.aoArm1682:0.##} {armedA}, pushes {GgAoPushes1682 - ap0}, demons inside {inside}, icicles {GgAoIcicles1682 - ai0}, disarmed above {T.aoDisarm1682:0.##} {disarm}");
                 _zKeepHp = true; _atGod = true; hp = maxHp;
+            }
+            {   // every GonggongFX effect this clip exercises drew through its shader (material present + hook reached)
+                string[][] want = {
+                    new[] { "TidalSurge", "TidalSurge_Crest", "TidalSurge_Crash", "Whirlpool", "Whirlpool_Collapse", "BreathOfTheDeep", "BreathOfTheDeep_Ground", "BuzhouRift_Burst", "BuzhouRift_Spike", "BuzhouRift_Consume", "EyeBlackWaters", "EyeShard", "EyeShard_Hit" },
+                    new[] { "RideTheFlood", "RimeCoat", "Floodgate", "FrozenRiver" },
+                    new[] { "DrowningMark", "Hypothermia", "Hypothermia_Cursed", "Shatter_Burst", "ToppledPillar", "ToppledPillar_Crush", "FrostWall", "FrostWall_Pop" },
+                    new[] { "Ram_Charge", "Ram_Head", "Ram_Shard", "GreatFlood", "EternalWinter", "EternalWinter_Pulse", "EternalWinter_Shatter", "PillarsOfAo", "Icicle", "Icicle_Hit" } };
+                var miss = new List<string>(); foreach (var w in want[which]) if (!ZhFxSeen1625("GGFX_" + w) || GgFxMat1682("GGFX_" + w) == null) miss.Add(w);
+                Res("hfx", miss.Count == 0 && ZhFxQuads1625 > q0, $"drawn {want[which].Length - miss.Count}/{want[which].Length}, quads {ZhFxQuads1625 - q0}" + (miss.Count > 0 ? " | missing " + string.Join(",", miss) : ""));
+                ZhFxLogOn1625 = false;
             }
             ARes(scen + ":clip", _r1561 > 0 || _atRecFps <= 0, $"frames {_r1561}");
             ZKill1618(L); ClearGg1682(); GgRunReset1682(); T.ggMove1682 = _ggM0; T.ggSpecial1682 = _ggS0; T.ggUlt1682 = _ggU0; HInput.AtLmb = false;

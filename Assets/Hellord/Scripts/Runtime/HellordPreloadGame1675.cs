@@ -45,7 +45,7 @@ namespace Hellord
             if (_plReg1675) return; _plReg1675 = true;
             HellordPreload.Register("pact basics", PlPactBasics1675);   // Pb strips / glow mats / icons / hero pose sets (+ outlines), Leizu + Zhurong basic icons
             HellordPreload.Register("LeizuFX", PlLeizu1675);            // Leizu kit: LZFX materials, Thunder Hound sheets, kit icons
-            HellordPreload.Register("GonggongFX", PlGonggong1682);      // t1682 Gonggong kit: GGFX materials (when shipped), kit + basic icons, placeholder textures
+            HellordPreload.Register("GonggongFX", PlGonggong1682);      // t1682 Gonggong kit: GGFX materials (Resources/GonggongFX, HFX t1682), kit + basic icons
             HellordPreload.Register("ZhurongFX", PlZhurong1675);        // Zhurong kit: ZFX materials, kit icons, fire basics strips
             HellordPreload.Register("shared FX", PlSharedFx1675);       // Fire / Frost / Nova / PixelAoE / FX934 / boss / room light, pools
             HellordPreload.Register("enemy feel", PlEnemyFeel1676);     // t1676: hit / death / corpse / blood art per enemy sheet
@@ -105,7 +105,7 @@ namespace Hellord
             c.Step("room light materials", () => { c.Warm(HellordRoom.LightMatPublic(true)); c.Warm(HellordRoom.LightMatPublic(false)); });
             c.Step("skill light pool", () => SkillLightRunner.I.Prewarm(128));
             c.Step("FX quad pool", () => ZhFxPoolPrewarm1675(T != null ? T.preloadQuadPool1675 : 128));
-            c.Step("kit FX warm list", () => { foreach (var m in LzFxMats1675()) c.Warm(m); foreach (var m in ZhFxMats1675()) c.Warm(m); }); // anything a previous run already loaded
+            c.Step("kit FX warm list", () => { foreach (var m in LzFxMats1675()) c.Warm(m); foreach (var m in ZhFxMats1675()) c.Warm(m); foreach (var m in GgFxMats1682()) c.Warm(m); /* t1682 */ }); // anything a previous run already loaded
         }
         void PlEnemyFeel1676(HellordPreload.Ctx c)
         {
