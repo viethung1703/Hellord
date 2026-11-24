@@ -61,12 +61,12 @@ namespace Hellord
             {
                 Basic(SkillId.Frostbolt, "GONGGONG MOVEMENT"); _atGod = false;
                 // Ride the Flood: a longer, steered dash; chill cleared
-                T.ggMove1682 = 1; Toast("RIDE THE FLOOD"); _chill44 = 2; atMouse986 = H0 + new Vector2(3f, 4f); int r0 = GgRides1682; Vector2 hb = _heroPos; yield return ZDash1618(Vector2.right); yield return LF(15);
+                T.ggMove1682 = 1; Toast("RIDE THE FLOOD"); _chill44 = 2; atMouse986 = H0 + new Vector2(10f, 6f); /* far cursor: the ride curves toward it */ int r0 = GgRides1682; Vector2 hb = _heroPos; yield return ZDash1618(Vector2.right); yield return LF(15);
                 Vector2 moved = _heroPos - hb; Res("ridetheflood", GgRides1682 - r0 == 1 && moved.magnitude > T49.dashDistU49 * 1.2f && moved.y > 0.8f && _chill44 == 0, $"rides {GgRides1682 - r0}, moved ({moved.x:0.#},{moved.y:0.#}) vs plain dash {T49.dashDistU49:0.#} u, curved up {moved.y > 0.8f}, chill {_chill44}");
                 // Rime Coat: the first 2 contact attackers freeze, the third does not
                 Reset(); T.ggMove1682 = 2; Toast("RIME COAT"); var at = new List<Enemy>(); for (int i = 0; i < 3; i++) at.Add(Pack(EType.Imp, H0 + new Vector2(-1.5f, -1f + i), 0f)); yield return ZDash1618(Vector2.right); _heroPos = H0; yield return LF(5);
-                int rf0 = GgRimeFreezes1682; foreach (var a in at) { _iframe = 0f; _hurtBy53 = a; HurtHero(5f, "clip", false, true); yield return LF(12); }
-                Res("rimecoat", GgRimeFreezes1682 - rf0 == 2 && at[0].freezeT > 0f && at[1].freezeT > 0f && at[2].freezeT <= 0f, $"frozen attackers {GgRimeFreezes1682 - rf0} ({at[0].freezeT > 0f}/{at[1].freezeT > 0f}/{at[2].freezeT > 0f})"); hp = maxHp; yield return LF(30);
+                int rf0 = GgRimeFreezes1682; var fzA = new bool[3]; for (int ai = 0; ai < 3; ai++) { var a = at[ai]; _iframe = 0f; _hurtBy53 = a; HurtHero(5f, "clip", false, true); fzA[ai] = a.freezeT > 0f; yield return LF(12); }
+                Res("rimecoat", GgRimeFreezes1682 - rf0 == 2 && fzA[0] && fzA[1] && !fzA[2], $"frozen attackers {GgRimeFreezes1682 - rf0} (on hit: {fzA[0]}/{fzA[1]}/{fzA[2]})"); hp = maxHp; yield return LF(30);
                 // Floodgate: a wall at the dash start holds the chasers back
                 Reset(); T.ggMove1682 = 3; Toast("FLOODGATE"); _heroPos = H0 + new Vector2(-2f, 0f); SnapCamera(); for (int i = 0; i < 4; i++) Pack(EType.Imp, H0 + new Vector2(-6f, -1.2f + i * 0.8f), 2.5f, 5000f);
                 yield return LF(5); int gb0 = GgGateBlocks1682; yield return ZDash1618(Vector2.right); bool wall = _ggGate1682 != null; float gx = wall ? _ggGate1682.a.x : 0f; yield return LF(55);
@@ -82,8 +82,8 @@ namespace Hellord
                 // Drowning Mark: a cold hit on the marked demon chills those around it; its freeze lasts +50%
                 T.ggSpecial1682 = 1; Toast("DROWNING MARK"); var mk = Pack(EType.Brute, c, 0f, 5000f); for (int i = 0; i < 6; i++) Pack(EType.Imp, c + new Vector2(Mathf.Cos(i * 1.05f) * 1.8f, Mathf.Sin(i * 1.05f) * 1.3f), 0f);
                 atMouse986 = c; yield return LF(5); yield return ZPress1618(1); yield return LF(10); bool marked = GgMark1682 == mk; int mr0 = GgMarkRelays1682;
-                for (int h = 0; h < 3; h++) { Hit(mk, 1f, cold, Vector2.zero); yield return LF(8); }
-                int ch = 0; foreach (var e in L) if (e != mk && (e.chillT > 0f || e.freezeT > 0f)) ch++; float fz = mk.freezeT;
+                float fz = 0f; for (int h = 0; h < 3; h++) { Hit(mk, 1f, cold, Vector2.zero); fz = Mathf.Max(fz, mk.freezeT); yield return LF(8); } // freeze length read on the hit that froze it
+                int ch = 0; foreach (var e in L) if (e != mk && (e.chillT > 0f || e.freezeT > 0f)) ch++;
                 Res("drowningmark", marked && GgMarkRelays1682 - mr0 >= 6 && ch >= 6 && fz > 1.2f * 1.4f, $"marked {marked}, relayed chills {GgMarkRelays1682 - mr0}, neighbours chilled {ch}/6, marked demon froze for {fz:0.##} s (base 1.2)"); yield return LF(20);
                 // Hypothermia: cursed demons freeze in 2 chills (never fewer), +30% longer
                 Reset(); T.ggSpecial1682 = 2; Toast("HYPOTHERMIA"); for (int i = 0; i < 7; i++) Pack(EType.Imp, c + new Vector2(Mathf.Cos(i * 0.9f) * 1.5f, Mathf.Sin(i * 0.9f) * 1.1f), 0f);
@@ -92,9 +92,9 @@ namespace Hellord
                 Res("hypothermia", cursed == 7 && !f1 && hz > 1.2f * 1.25f && need == 2, $"cursed {cursed}/7, frozen after 1 chill {f1}, after 2 for {hz:0.##} s (base 1.2), need with Chill-support Lv3 + curse {need} (min 2)"); yield return LF(20);
                 // Shatter: frozen demons near the cursor explode, freezes used up
                 Reset(); T.ggSpecial1682 = 3; Toast("SHATTER"); for (int i = 0; i < 8; i++) Pack(EType.Imp, c + new Vector2(-1.5f + (i % 4) * 1f, -0.6f + (i / 4) * 1.2f), 0f, 3000f);
-                atMouse986 = c; yield return LF(5); for (int i = 0; i < 4; i++) IceFreeze(L[i * 2], 3f); int sh0 = GgShatters1682; float hp0 = 0f; foreach (var e in L) hp0 += e.hp; yield return ZPress1618(1); yield return LF(5);
-                float hp1 = 0f; int still = 0; foreach (var e in L) { hp1 += e.hp; if (e.freezeT > 0f) still++; }
-                Res("shatter", GgShatters1682 - sh0 == 4 && still == 0 && hp0 - hp1 > 0f, $"shattered {GgShatters1682 - sh0}/4, still frozen {still}, damage {hp0 - hp1:0}"); yield return LF(30);
+                atMouse986 = c; yield return LF(5); var frz = new List<Enemy>(); for (int i = 0; i < 4; i++) { IceFreeze(L[i * 2], 3f); frz.Add(L[i * 2]); } int sh0 = GgShatters1682; float hp0 = 0f; foreach (var e in L) hp0 += e.hp; yield return ZPress1618(1); yield return LF(5);
+                float hp1 = 0f; int still = 0; int refz = 0; foreach (var e in L) { hp1 += e.hp; if (e.freezeT > 0f) { if (frz.Contains(e)) still++; else refz++; } }
+                Res("shatter", GgShatters1682 - sh0 == 4 && still == 0 && hp0 - hp1 > 0f, $"shattered {GgShatters1682 - sh0}/4, originals still frozen {still}, damage {hp0 - hp1:0}, neighbours frozen by the burst chills {refz}"); yield return LF(30);
                 // Toppled Pillar: blocks while standing, then falls along the aim and crushes
                 Reset(); T.ggSpecial1682 = 4; Toast("TOPPLED PILLAR"); Vector2 pc = H0 + new Vector2(3f, 0f); for (int i = 0; i < 3; i++) Pack(EType.Imp, pc + new Vector2(2.5f + i * 0.6f, 0f), 2f, 3000f); for (int i = 0; i < 3; i++) Pack(EType.Imp, pc + new Vector2(1f + i * 1f, 0.3f), 0f, 3000f);
                 atMouse986 = pc; yield return LF(5); int pb0 = GgPillarBlocks1682, ph0 = GgPillarHits1682; yield return ZPress1618(1); yield return LF(30); int blocks = GgPillarBlocks1682 - pb0; yield return LF(40);
@@ -102,8 +102,8 @@ namespace Hellord
                 // Frost Wall: holds chasers back; crystals hit by your area skills explode
                 Reset(); T.ggSpecial1682 = 5; Toast("FROST WALL"); for (int i = 0; i < 5; i++) Pack(EType.Imp, H0 + new Vector2(8f, -2f + i), 2f, 3000f);
                 atMouse986 = c; yield return LF(5); int wb0 = GgWallBlocks1682, cb0 = GgCrystalBooms1682; yield return ZPress1618(1); yield return LF(60); float mx = 99f; foreach (var e in L) mx = Mathf.Min(mx, e.pos.x - H0.x); int held = GgWallBlocks1682 - wb0;
-                skills[0].cd = 0f; atMouse986 = c + new Vector2(2f, 0f); yield return Hold(3); yield return LF(30);
-                Res("frostwall", held > 0 && mx > 3.5f && GgCrystalBooms1682 - cb0 >= 1, $"blocks {held}, nearest chaser x {mx:0.#} (wall at ~4), crystals exploded by Tidal Surge {GgCrystalBooms1682 - cb0}"); yield return LF(30);
+                Basic(SkillId.Whirlpool, "WHIRLPOOL ON THE WALL"); skills[0].cd = 0f; atMouse986 = c; yield return Hold(3); yield return LF(45);
+                Res("frostwall", held > 0 && mx > 3.5f && GgCrystalBooms1682 - cb0 >= 1, $"blocks {held}, nearest chaser x {mx:0.#} (wall at ~4), crystals exploded by a Whirlpool collapse {GgCrystalBooms1682 - cb0}"); yield return LF(30);
             }
             else
             {
@@ -120,7 +120,7 @@ namespace Hellord
                 yield return ZPress1618(2); int gOrd = GgGround1682(_heroPos), minAct = int.MaxValue; foreach (var e in L) if (e.sr != null) minAct = Mathf.Min(minAct, e.sr.sortingOrder); minAct = Mathf.Min(minAct, ZhHeroOrd1625);
                 var pf = new float[2]; yield return Ms(25, pf); yield return LF(25); int se = 0, chl = 0;
                 Res("perf_flood", true, $"frame {pb[0]:0.0} ms (quads/frame {pb[1]:0.#}) -> {pf[0]:0.0} ms with the Great Flood (quads/frame {pf[1]:0.#}); wall-clock, software GL on the box");
-                Res("sort_ground", gOrd < minAct && gOrd > FbGround, $"ground tier order {gOrd} (FbGround {FbGround}) < lowest actor order {minAct}"); for (int i = 0; i < L.Count; i++) { var d = L[i].pos - p0[i]; if (d.x > 0.8f && d.y < -0.8f) se++; if (L[i].chillT > 0f || L[i].freezeT > 0f) chl++; }
+                Res("sort_ground", gOrd < minAct && gOrd > HellordRoom.LightOrder, $"ground tier order {gOrd} (FbGround {FbGround} + YSort + 40): above the room floor / props / lights (<= {HellordRoom.LightOrder}) and below the lowest actor order {minAct}"); for (int i = 0; i < L.Count; i++) { var d = L[i].pos - p0[i]; if (d.x > 0.8f && d.y < -0.8f) se++; if (L[i].chillT > 0f || L[i].freezeT > 0f) chl++; }
                 Res("greatflood", low && high && GgFloodHits1682 - fh0 == L.Count && se >= L.Count - 1 && chl == L.Count, $"locked before High Tide {low}, armed at High Tide {high}, hits {GgFloodHits1682 - fh0}/{L.Count}, pushed SE {se}, chilled {chl}"); yield return LF(20);
                 // Eternal Winter: 25 frozen kills arm it; frozen deaths shatter and chain
                 Reset(); T.ggUlt1682 = 3; Toast("ETERNAL WINTER"); GgFrozenKills1682 = 0; for (int i = 0; i < 25; i++) { var e = Pack(EType.Imp, H0 + new Vector2(6f + (i % 5) * 0.3f, -3f + (i / 5) * 0.3f), 0f, 20f); IceFreeze(e, 3f); Damage(e, e.hp + 10f, false, true); } yield return LF(10);
