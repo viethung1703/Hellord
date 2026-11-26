@@ -10,12 +10,28 @@ namespace Hellord
     public partial class HellordGame
     {
         // ---- skill -> numbers
-        SkillInst NSkill561(int kind) { var id = kind == 0 ? SkillId.SkeletonWarriors : SkillId.SkeletonArchers; foreach (var s in skills) if (s.def.id == id) return s; return null; }
+        SkillInst NSkill561(int kind) {
+            if (kind == 2) return NkSpec1713 == 3 ? ZkI1651(NkK1713(1, 3)) : null;
+            if (kind == 3) return NkSpec1713 == 4 ? ZkI1651(NkK1713(1, 4)) : null;
+            var id = kind == 0 ? SkillId.SkeletonWarriors : SkillId.SkeletonArchers; foreach (var s in skills) if (s.def.id == id) return s; return null;
+        }
         int NSkillLv561(int kind) { var s = NSkill561(kind); return s == null ? 0 : s.level; }
         bool HasSummon561 { get { foreach (var s in skills) if (HData.Summon561(s.def)) return true; return false; } }
-        float NBaseHp561(int kind) { int lv = Mathf.Max(1, NSkillLv561(kind)); return (kind == 0 ? PT.skelWarHp561 : PT.skelArcHp561) * (1f + PT.skelHpPerLv561 * (lv - 1)) * _sinMinionMul737 * SinMinHp818(kind); }
-        float NBaseDmg561(int kind) { int lv = NSkillLv561(kind); if (lv <= 0) return PT.minionDmg536 * _sinMinionMul737 * SinMinDmg818(kind); return HData.At(kind == 0 ? PT.skelWarDmg561 : PT.skelArcDmg561, lv, 6f) * _sinMinionMul737 * SinMinDmg818(kind); }
-        float NResp561(int kind) { int lv = NSkillLv561(kind); if (lv <= 0) return PT.minionRespawn536 / SinResp818(); return HData.At(kind == 0 ? PT.skelWarResp561 : PT.skelArcResp561, lv, 6f) / SinResp818(); } // t818u #28
+        float NBaseHp561(int kind) {
+            int lv = Mathf.Max(1, NSkillLv561(kind));
+            if (kind == 2) return HData.At(PT.nkMageHp1713, lv, 18f) * (NHas536(0) ? 1f : 1f) * _sinMinionMul737 * SinMinHp818(0);
+            if (kind == 3) return PT.nkGolemHp1713 * (1f + PT.skelHpPerLv561 * (lv - 1)) * (NHas536(0) ? PT.nkGolemMusterHp1713 : 1f) * _sinMinionMul737 * SinMinHp818(0);
+            if (kind == 4) return PT.nkGhostHp1713 * _sinMinionMul737 * SinMinHp818(0);
+            return (kind == 0 ? PT.skelWarHp561 : PT.skelArcHp561) * (1f + PT.skelHpPerLv561 * (lv - 1)) * _sinMinionMul737 * SinMinHp818(kind);
+        }
+        float NBaseDmg561(int kind) {
+            int lv = NSkillLv561(kind);
+            if (kind == 2) return HData.At(PT.nkMageDmg1713, Mathf.Max(1, lv), 8f) * _sinMinionMul737 * SinMinDmg818(0);
+            if (kind == 3) return PT.nkGolemDmg1713 * (1f + 0.12f * (Mathf.Max(1, lv) - 1)) * _sinMinionMul737 * SinMinDmg818(0);
+            if (kind == 4) return PT.nkGhostDmg1713 * _sinMinionMul737 * SinMinDmg818(0);
+            if (lv <= 0) return PT.minionDmg536 * _sinMinionMul737 * SinMinDmg818(kind); return HData.At(kind == 0 ? PT.skelWarDmg561 : PT.skelArcDmg561, lv, 6f) * _sinMinionMul737 * SinMinDmg818(kind);
+        }
+        float NResp561(int kind) { if (kind == 2) return PT.nkMageResp1713 / SinResp818(); if (kind == 3) return PT.nkGolemResp1713 / SinResp818(); int lv = NSkillLv561(kind); if (lv <= 0) return PT.minionRespawn536 / SinResp818(); return HData.At(kind == 0 ? PT.skelWarResp561 : PT.skelArcResp561, lv, 6f) / SinResp818(); } // t818u #28
         string SummonLvText561(SkillDef d, int lv)
         {
             bool w = d.id == SkillId.SkeletonWarriors; int n = HData.At(w ? PT.skelWarCount561 : PT.skelArcCount561, lv, 1);
@@ -44,20 +60,24 @@ namespace Hellord
         {
             _an561 = new Dictionary<string, Anim561>();
             // values from skel_warrior_pivots_sizes.json / skel_archer_pivots_sizes.json (step37n export)
-            Sheet561("skel_warrior_all", 42, 38, 20, 35, new[] { "idle_south:8", "idle_east:8", "idle_north:8", "walk_south:12", "walk_east:12", "walk_north:12", "attack_south:12", "attack_east:12", "death_south:10", "death_east:10" });
-            Sheet561("skel_archer_all", 38, 39, 19, 35, new[] { "idle_south:8", "idle_north:8", "walk_south:12", "walk_east:12", "walk_north:12", "shoot_south:12", "shoot_east:12" });
+            Sheet561("HellordArt/Summon561/", "skel_warrior_all", 42, 38, 20, 35, new[] { "idle_south:8", "idle_east:8", "idle_north:8", "walk_south:12", "walk_east:12", "walk_north:12", "attack_south:12", "attack_east:12", "death_south:10", "death_east:10" });
+            Sheet561("HellordArt/Summon561/", "skel_archer_all", 38, 39, 19, 35, new[] { "idle_south:8", "idle_north:8", "walk_south:12", "walk_east:12", "walk_north:12", "shoot_south:12", "shoot_east:12" });
+            // t1736: Zhong Kui kit sprites (mage, colossus, jiangshi / Clay Golem slot)
+            Sheet561("HellordArt/ZhongKui1713/skeletal_mage/", "skel_mage_all", 72, 72, 36, 68, new[] { "idle_south:8", "idle_east:8", "idle_north:8", "move_south:12", "move_east:12", "move_north:12", "attack_south:12", "attack_east:12", "attack_north:12" });
+            Sheet561("HellordArt/ZhongKui1713/bone_colossus/", "bone_colossus_all", 116, 116, 58, 112, new[] { "idle_south:8", "idle_east:8", "idle_north:8", "move_south:12", "move_east:12", "move_north:12", "attack_south:12", "attack_east:12", "attack_north:12" });
+            Sheet561("HellordArt/ZhongKui1713/jiangshi_v4/", "jiangshi_all", 76, 76, 38, 73, new[] { "idle_south:8", "idle_east:8", "idle_north:8", "move_south:12", "move_east:12", "move_north:12", "attack_south:12", "attack_east:12", "attack_north:12" });
         }
-        void Sheet561(string pre, int fw, int fh, int px, int py, string[] rows)
+        void Sheet561(string folder, string pre, int fw, int fh, int px, int py, string[] rows)
         {
             foreach (var r in rows)
             {
-                var kv = r.Split(':'); var tx = Resources.Load<Texture2D>("HellordArt/Summon561/" + pre + "_" + kv[0]); if (tx == null) continue;
+                var kv = r.Split(':'); var tx = Resources.Load<Texture2D>(folder + pre + "_" + kv[0]); if (tx == null) continue;
                 tx.filterMode = FilterMode.Point; int n = Mathf.Max(1, tx.width / fw); var a = new Anim561 { f = new Sprite[n], fps = float.Parse(kv[1]) };
                 for (int i = 0; i < n; i++) a.f[i] = Sprite.Create(tx, new Rect(i * fw, 0, fw, fh), new Vector2(px / (float)fw, 1f - py / (float)fh), 16f);
                 _an561[pre + "_" + kv[0]] = a;
             }
         }
-        readonly List<SpriteRenderer> _skSr561 = new List<SpriteRenderer>(); int _skN561;
+        readonly List<SpriteRenderer> _skSr561 = new List<SpriteRenderer>(); int _skN561; float _skScale561 = 1f;
         SpriteRenderer SR561()
         {
             if (_skN561 >= _skSr561.Count) _skSr561.Add(NewSR("skel561", null, null, 0));
@@ -69,7 +89,7 @@ namespace Hellord
         {
             if (a == null || a.f.Length == 0) return false; int fr = (int)(t * a.fps); fr = loop ? fr % a.f.Length : Mathf.Min(fr, a.f.Length - 1);
             var sr = SR561(); sr.sprite = a.f[fr]; sr.flipX = flip; sr.color = c; sr.transform.position = p; sr.transform.rotation = Quaternion.identity;
-            sr.transform.localScale = Vector3.one * PT.skelArtScale561; sr.sortingOrder = YSort(p.y); return true;
+            sr.transform.localScale = Vector3.one * PT.skelArtScale561 * _skScale561; sr.sortingOrder = YSort(p.y); return true;
         }
         // returns false if art is missing -> caller draws the old Spr53 placeholder
         // t602u: direction with hysteresis -> 0 south, 1 east, 2 north; flip only on a clear left/right
@@ -88,24 +108,30 @@ namespace Hellord
         }
         bool Skel561(NMin536 m, int idx, float dt)
         {   // t602u: anim picks from INTENT (brain walk / attack timers), not from frame-to-frame displacement (separation & enemy pushes used to flicker walk/idle and S/E/N)
-            string pre = m.kind == 0 ? "skel_warrior_all_" : "skel_archer_all_";
+            if (m.hideUntil > runTime) return true; // t1790 Grave Legion: FX draws the body until the hand-off
+            string pre = m.kind == 2 ? "skel_mage_all_" : m.kind == 3 ? "jiangshi_all_" : m.kind == 1 ? "skel_archer_all_" : "skel_warrior_all_"; // t1790: v4 mage / jiangshi sheets (move_ rows); kind 4 ghosts stay warrior placeholders
+            _skScale561 = m.kind == 4 ? 0.95f : 1f;
             m.walkHold -= dt; bool moving = m.walkHold > 0f;
             if (m.wantFace.sqrMagnitude > 0.0001f) m.face = m.wantFace;
             if (moving) { int f0 = (int)(m.moveT * 12f) % 6; m.moveT += dt; int f1 = (int)(m.moveT * 12f) % 6; if (f1 != f0 && (f1 == 0 || f1 == 3)) FxDust561(m.p, m.face); } m.prev = m.p;
-            Color c = m.temp ? new Color(0.75f, 0.95f, 1f) : Color.white; if (m.hurtT > 0) c = Color.Lerp(c, new Color(1f, 0.45f, 0.4f), 0.7f); // hurt = short tint flash, anim keeps playing
+            Color c = m.kind == 4 || m.temp ? new Color(0.75f, 0.95f, 1f, 0.8f) : Color.white; if (m.hurtT > 0) c = Color.Lerp(c, new Color(1f, 0.45f, 0.4f), 0.7f); // hurt = short tint flash, anim keeps playing
             bool flip; float ph = idx * 0.37f;
+            bool meleeAtk = m.kind != 1; // warriors, mage, jiangshi, ghosts use attack_ (mage/jiangshi have N/E/S)
             float ao = m.kind == 0 ? 4f / 12f : 0f; // warrior: anim joins at swing frame 4 so the downslash reads on damage frame 0 (FX SPEC v2)
             float at = Time.time - m.atkT + ao;
-            Anim561 atk = A561(pre + (m.kind == 0 ? "attack_" : "shoot_") + "south");
+            string atkVerb = meleeAtk ? "attack_" : "shoot_";
+            Anim561 atk = A561(pre + atkVerb + "south");
             if (atk != null && at < atk.f.Length / atk.fps)
             {   // locked: facing frozen at the moment the attack started
-                bool af = m.atkFace.x < 0; string ad = Mathf.Abs(m.atkFace.x) > Mathf.Abs(m.atkFace.y) ? "east" : "south";
-                var a2 = A561(pre + (m.kind == 0 ? "attack_" : "shoot_") + ad) ?? atk; return Put561(a2, at, false, m.p, af, c);
+                bool af = m.atkFace.x < 0;
+                string ad = (m.kind == 2 || m.kind == 3) ? Dir561(m.atkFace, true, out af) : (Mathf.Abs(m.atkFace.x) > Mathf.Abs(m.atkFace.y) ? "east" : "south");
+                var a2 = A561(pre + atkVerb + ad) ?? atk; return Put561(a2, at, false, m.p, af, c);
             }
             string dk = DirH602(m, m.face, true, out flip);
-            if (moving) return Put561(A561(pre + "walk_" + dk), m.moveT, true, m.p, flip, c);
-            string ik = m.kind == 0 ? dk : (dk == "east" ? (m.face.y > 0 ? "north" : "south") : dk);
-            return Put561(A561(pre + "idle_" + ik), Time.time + ph, true, m.p, m.kind == 0 && flip, c);
+            if (moving) return Put561(A561(pre + ((m.kind == 2 || m.kind == 3) ? "move_" : "walk_") + dk), m.moveT, true, m.p, flip, c);
+            bool hasEastIdle = m.kind != 1; // archer has no east idle
+            string ik = hasEastIdle ? dk : (dk == "east" ? (m.face.y > 0 ? "north" : "south") : dk);
+            return Put561(A561(pre + "idle_" + ik), Time.time + ph, true, m.p, hasEastIdle && flip, c);
         }
         // ---- death playback (art only; the minion is already removed and its respawn timer started)
         struct Dead561 { public Vector2 p, face; public int kind; public float t; }
@@ -115,8 +141,14 @@ namespace Hellord
             for (int i = _dead561.Count - 1; i >= 0; i--)
             {
                 var d = _dead561[i]; d.t += dt; bool flip; float life;
-                if (d.kind == 0) { var a = A561("skel_warrior_all_death_" + Dir561(d.face, true, out flip).Replace("north", "south")); life = a != null ? a.f.Length / a.fps + 0.4f : 0f; if (d.t < life) Put561(a, d.t, false, d.p, flip, new Color(1, 1, 1, Mathf.Clamp01((life - d.t) / 0.4f))); }
-                else { var a = A561("skel_archer_all_idle_" + Dir561(d.face, false, out flip)); life = 0.35f; if (a != null && d.t < life) Put561(a, 0f, false, d.p + Vector2.down * (Mathf.Floor(d.t / life * 3f) + 1f) * 6f / 16f, false, Color.white); } // FX v7: 3 stepped 6px sink, no alpha
+                if (d.kind == 0 || d.kind == 4) { _skScale561 = d.kind == 4 ? 0.95f : 1f; var a = A561("skel_warrior_all_death_" + Dir561(d.face, true, out flip).Replace("north", "south")); life = a != null ? a.f.Length / a.fps + 0.4f : 0f; if (d.t < life) Put561(a, d.t, false, d.p, flip, new Color(1, 1, 1, Mathf.Clamp01((life - d.t) / 0.4f))); }
+                else {
+                    _skScale561 = 1f;
+                    string pre = d.kind == 2 ? "skel_mage_all_idle_" : d.kind == 3 ? "jiangshi_all_idle_" : "skel_archer_all_idle_";
+                    bool hasE = d.kind == 2 || d.kind == 3;
+                    var a = A561(pre + Dir561(d.face, hasE, out flip)); life = 0.35f;
+                    if (a != null && d.t < life) Put561(a, 0f, false, d.p + Vector2.down * (Mathf.Floor(d.t / life * 3f) + 1f) * 6f / 16f, flip, Color.white);
+                } // no death sheet for mage / jiangshi / archer: 3 stepped 6px sink
                 if (d.t >= life) _dead561.RemoveAt(i); else _dead561[i] = d;
             }
         }

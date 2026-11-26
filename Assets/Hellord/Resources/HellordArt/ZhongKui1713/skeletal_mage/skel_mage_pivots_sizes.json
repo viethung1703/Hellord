@@ -1,0 +1,57 @@
+{
+ "skel_mage_all": {
+  "frame_w": 72,
+  "frame_h": 72,
+  "pivot": [
+   36,
+   68
+  ],
+  "rows": {
+   "idle_south": {
+    "frames": 8,
+    "fps": 8,
+    "source": "pixellab idle south group 06c4f265"
+   },
+   "idle_east": {
+    "frames": 8,
+    "fps": 8,
+    "source": "flip of pixellab idle west group 06c4f265"
+   },
+   "idle_north": {
+    "frames": 8,
+    "fps": 8,
+    "source": "pixellab idle north group 06c4f265"
+   },
+   "move_south": {
+    "frames": 6,
+    "fps": 12,
+    "source": "pixellab walk south group 3c0bb437"
+   },
+   "move_east": {
+    "frames": 6,
+    "fps": 12,
+    "source": "flip of pixellab walk west group 3c0bb437"
+   },
+   "move_north": {
+    "frames": 6,
+    "fps": 12,
+    "source": "pixellab walk north retry group 4862571f"
+   },
+   "attack_south": {
+    "frames": 6,
+    "fps": 12,
+    "source": "pixellab attack south group fb2b94a5"
+   },
+   "attack_east": {
+    "frames": 6,
+    "fps": 12,
+    "source": "flip of pixellab attack west group fb2b94a5"
+   },
+   "attack_north": {
+    "frames": 6,
+    "fps": 12,
+    "source": "pixellab attack north retry group d812839b"
+   }
+  }
+ }
+}

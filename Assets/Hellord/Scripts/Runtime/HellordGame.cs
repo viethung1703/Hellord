@@ -15,7 +15,7 @@ namespace Hellord
         public SpriteRenderer sr; public Transform tr; public Sprite[] frames; public int xp, cx, cy; public float hitT; public PixelFX fx; public int shockH = -1, bleedH = -1, burnH = -1, chillH = -1; public bool boss;
         public float stag1434, stagDur1434, stagCd1434, kbT1434, kbDur1434, kbDist1434, kbDone1434; public Vector2 kbDir1434; public bool fbKill1481; public bool over1434, frozenDeath1434, d2scaled1434, gib1434, burn1434, fx1434, fxFrozen1434; public float corpseLife1434; public bool pop1434, slam1434; public D2Corpse1434 cp1434; public float agT1447, atkV1457; public Sprite[] fxFr1434; public Vector2 deathDir1434; public bool fxHold1434, fxFlip1434; /* t1446 PixelLab death events */ /* t1434 D2 feel */ public float hitY, deathT; public bool dying, splitDone, nest; public int walkRow; // v0.6: hurt-circle height (units above feet), death anim, facing row
         public float ggHypo1682; /* t1682 Gonggong Hypothermia curse expiry (runTime) */
-        public float lzCond1666; /* t1666 Conductivity curse expiry (runTime) */ public float lzShockAt1669 = -9f, lzShockDur1669, lzDazzT1669, lzDazzS1669; /* t1669 FX only: LZFX_ShockStatus / MirrorDazzled overlays */ public bool lured1651; /* t1651 probe: drawn by Ember Effigy */ public SkillInst burnSrc1651, bleedSrc1651; /* t1651: the skill whose burn / bleed this is */ public float zFlam1618; /* t1618 Flammability curse expiry (runTime) */ public float zCry1625; /* t1625 War Cry: explodes on death until (runTime) */ public float tint948Until, tint948Amt; public Color tint948Col; /* t948u brief status tint */ public float knock818; public int burnStk818; /* t818u sin #9 knock mark (runTime expiry) / #31 burn stacks */ public float slowT, slowAmt; /* v0.0.36 Grave Pool slow */ public float iceBuild; /* t1393u shared chill->freeze buildup */ public float shockAmp = 0.25f; public float burnT, burnDps, chillT, shockT, bleedT, bleedDps, curseT, freezeT, dotTick, orbitCd, auraCd; public int chillHits;
+        public float nkDecr1713, nkDecrFrom1713, nkPlague1713, nkPlagueDps1713; /* t1713 Decrepify / Soul Plague expiry (runTime); t1790 nkDecrFrom = when the mark started */ public float lzCond1666; /* t1666 Conductivity curse expiry (runTime) */ public float lzShockAt1669 = -9f, lzShockDur1669, lzDazzT1669, lzDazzS1669; /* t1669 FX only: LZFX_ShockStatus / MirrorDazzled overlays */ public bool lured1651; /* t1651 probe: drawn by Ember Effigy */ public SkillInst burnSrc1651, bleedSrc1651; /* t1651: the skill whose burn / bleed this is */ public float zFlam1618; /* t1618 Flammability curse expiry (runTime) */ public float zCry1625; /* t1625 War Cry: explodes on death until (runTime) */ public float tint948Until, tint948Amt; public Color tint948Col; /* t948u brief status tint */ public float knock818; public int burnStk818; /* t818u sin #9 knock mark (runTime expiry) / #31 burn stacks */ public float slowT, slowAmt; /* v0.0.36 Grave Pool slow */ public float iceBuild; /* t1393u shared chill->freeze buildup */ public float shockAmp = 0.25f; public float burnT, burnDps, chillT, shockT, bleedT, bleedDps, curseT, freezeT, dotTick, orbitCd, auraCd; public int chillHits;
         public byte variant; public float fuseT = -1; /* v0.0.37: 1 frost, 2 exploding */ public float hookCd; public int hookWind = -1, hookH = -1, strafe = 1; public Vector2 hookPrevTip, hookAim; public bool hookTipOk; // v0.0.24 Hook Thrower
         public int v44St, v44Face; public float v44T, v44HurtT, v44CastT, v44AnimT; public byte k49; public int s49, n49; public float t49, cd49; public Vector2 a49, b49; /* v0.0.49 patterns */ public bool v44West; public Vector2 v44Dir, v44Prev; public bool v44Hit; /* v0.0.44 Frost Caster / Fire Wheel */ public float gossipCd, gossipT; public int gossipSt, gossipH = -1; public Vector2 gossipC; // v0.0.25 Gossip Imp (state 0 hover, 1 approach, 2 shouting, 3 recover)
     }
@@ -547,7 +547,9 @@ namespace Hellord
         void HurtHero(float dmg, string src = "?", bool boss = false, bool contact = false)
         {
             if (HeroInvuln969) return; // v0.0.38: test-menu god mode
+            if (NkGhostInvuln1713()) return; // t1713 Ghost Step
             if (LzWardAbsorb1666(contact)) return; // t1666 Grounding Ward
+            dmg = NkArmourAbsorb1713(dmg); if (dmg <= 0f) { _iframe = Mathf.Max(_iframe, 0.15f); HordeFX.CheapBurst(HeroCenter, new Color(0.9f, 0.85f, 0.65f), 5); return; } // t1713 Bone Armour
             if (GgInvuln1682) return; var ggBy1682 = _hurtBy53; // t1682 Ram charge: unhurt; the attacker for Rime Coat
             if (contact && !boss && V49) dmg *= T49.enemyDmgMul49b; // v0.0.49b
             if (!boss && FloorIdx == 0 && Cur != null && Cur.type == RoomType.Survive) dmg *= HellordTuning.I.surviveF1DmgMul53; // v0.0.53 O1
@@ -615,7 +617,7 @@ namespace Hellord
             e.dmg *= TT.contactDamageMul * (1 + (TT.soften679 ? TT.enemyDmgGrowth679 : TT.floorEnemyDmgGrowth) * fl); e.speed *= TT.enemySpeedMul * (1 + TT.floorSpeedGrowth * fl); // v0.0.26 pressure
             e.maxHp *= hpMul; e.hp = e.maxHp; e.alive = true; e.agT1447 = 0f; e.animT = Random.value * 4; e.dying = false; e.splitDone = false; e.nest = false; e.deathT = 0; e.walkRow = 0; e.variant = 0; e.m53 = 0; e.k49 = 0; e.s49 = 0; e.n49 = 0; e.t49 = 0; e.cd49 = 0.8f + Random.value * 1.5f; e.fuseT = -1; e.v44St = 0; e.v44T = 0; e.tr.rotation = Quaternion.identity;
             e.lured1651 = false; e.burnSrc1651 = e.bleedSrc1651 = null; /* t1651 */
-            e.burnT = e.chillT = e.shockT = e.bleedT = e.curseT = e.freezeT = e.orbitCd = e.auraCd = e.slowT = e.stun53 = e.brit536 = e.zFlam1618 = e.zCry1625 = e.ggHypo1682 = e.lzCond1666 = e.lzShockDur1669 = e.lzDazzT1669 = 0; e.lzShockAt1669 = -9f; /* t1618, t1625 */ e.lured1651 = false; e.chillHits = 0; e.iceBuild = 0; e.push = Vector2.zero; D2Reset1434(e);
+            e.burnT = e.chillT = e.shockT = e.bleedT = e.curseT = e.freezeT = e.orbitCd = e.auraCd = e.slowT = e.stun53 = e.brit536 = e.zFlam1618 = e.zCry1625 = e.ggHypo1682 = e.lzCond1666 = e.lzShockDur1669 = e.lzDazzT1669 = e.nkDecr1713 = e.nkDecrFrom1713 = e.nkPlague1713 = e.nkPlagueDps1713 = 0; e.lzShockAt1669 = -9f; /* t1618, t1625, t1713 */ e.lured1651 = false; e.chillHits = 0; e.iceBuild = 0; e.push = Vector2.zero; D2Reset1434(e);
             e.sr.sprite = e.frames[0]; e.sr.color = Color.white; e.sr.flipX = false; e.sr.enabled = true; e.sr.gameObject.SetActive(true); HordeFX.Prepare(e.sr);
             StopStatuses(e); e.tr.localScale = Vector3.one * EnemyArtMap.Map[t].scale; e.tr.position = e.pos; e.hitT = 0;
             return e;
@@ -680,7 +682,7 @@ namespace Hellord
                     if (j == i) continue; var o = _en[j]; if (!o.alive) continue; Vector2 dd = e.pos - o.pos; float m2 = dd.sqrMagnitude, rr = e.radius + o.radius;
                     if (m2 < rr * rr && m2 > 1e-5f) { sep += dd / Mathf.Sqrt(m2) * (rr - Mathf.Sqrt(m2)); n++; }
                 }
-                Vector2 gg0 = e.pos; e.pos += (v + e.push) * dt + sep * Mathf.Min(1, 8 * dt); GgEnemyMove1682(e, gg0); // t1682 walls / pillars hold demons back
+                Vector2 gg0 = e.pos; e.pos += (v + e.push) * dt + sep * Mathf.Min(1, 8 * dt); GgEnemyMove1682(e, gg0); NkEnemyMove1713(e, gg0); // t1682 walls / pillars; t1713 Bone Wall
                 e.push = Vector2.Lerp(e.push, Vector2.zero, 1 - Mathf.Exp(-8 * dt * GgFriction1682(e))); // t1682 Frozen River: knocks slide further
                 if (e.kbDist1434 > 0) D2Knock1434(e, dt); ClampToRoom(ref e.pos, 6); if (_bossArenaOn1006) ClampToArena(ref e.pos); // v0.7 walls; t1006u arena
                 // far away -> respawn closer (keeps density around the player)
@@ -709,7 +711,7 @@ namespace Hellord
         void Hit(Enemy e, float dmg, SkillInst s, Vector2 knock, bool tick = false)
         {
             if (!e.alive) return; if (!tick) AtHits1651++; /* t1651 probe */ HitLight661(e, s, tick); // t661u elemental hit light
-            dmg = SupportsBeforeHit(e, dmg, s, ref knock, tick); dmg = PactPreHit53(e, dmg, s, tick); dmg = SinPreHit818(e, dmg, s, tick); dmg = ZhPreHit1618(dmg, s); /* t1618 Pyre Mark payoff */ // t818u sins // v0.0.53 pact // v0.0.36 Executioner / Knockback / Life Leech
+            dmg = SupportsBeforeHit(e, dmg, s, ref knock, tick); dmg *= NkVuln1713(e); /* t1713 Decrepify */ dmg = PactPreHit53(e, dmg, s, tick); dmg = SinPreHit818(e, dmg, s, tick); dmg = ZhPreHit1618(dmg, s); /* t1618 Pyre Mark payoff */ // t818u sins // v0.0.53 pact // v0.0.36 Executioner / Knockback / Life Leech
             bool burnNow = e.burnT > 0, shockNow = e.shockT > 0;
             // v0.0.27: status strength comes from the support's LEVEL (was a flat 1.5 for a matching innate support, 1 for the others)
             ApplyStatus(e, s.def.innate, dmg, s.sup.Contains(SupportIdFor(s.def.innate)) ? StatusK(s, SupportIdFor(s.def.innate)) : 1f, s);
@@ -725,7 +727,7 @@ namespace Hellord
             }
             if (!e.elite) e.push += knock;
             D2SetDir1434(knock, s); Damage(e, dmg, !tick, tick); _d2DirSet = false; _d2Fire = false; PactPostHit53(e, dmg, s, tick); SinPostHit818(e, dmg, s, tick); LzPostHit1666(e, dmg, s, tick); /* t1666 */ GgPostHit1682(e, dmg, s, tick); /* t1682 Drowning Mark relay */ // t818u sins // v0.0.53 pact
-            if (!e.alive) OnSkillKill(e, s); // v0.0.36 Soul Harvest / Explode on Kill
+            if (!e.alive) { NkOnKill1713(e, s); /* t1713 */ OnSkillKill(e, s); } // v0.0.36 Soul Harvest / Explode on Kill
         }
         static SupportId SupportIdFor(Status st) => st == Status.Burn ? SupportId.Burn : st == Status.Chill ? SupportId.Chill : st == Status.Shock ? SupportId.Shock : st == Status.Bleed ? SupportId.Bleed : SupportId.AddedDamage;
         float StatusK(SkillInst s, SupportId id)

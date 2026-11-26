@@ -1,0 +1,57 @@
+{
+ "jiangshi_v2_all": {
+  "frame_w": 64,
+  "frame_h": 64,
+  "pivot": [
+   32,
+   61
+  ],
+  "rows": {
+   "idle_south": {
+    "frames": 8,
+    "fps": 8,
+    "source": "idle_hand (f0 + y offsets 0,-1,-2,-3,-2,-1,0,0)"
+   },
+   "idle_east": {
+    "frames": 8,
+    "fps": 8,
+    "source": "idle_hand (f0 + y offsets 0,-1,-2,-3,-2,-1,0,0)"
+   },
+   "idle_north": {
+    "frames": 8,
+    "fps": 8,
+    "source": "idle_hand (f0 + y offsets 0,-1,-2,-3,-2,-1,0,0)"
+   },
+   "walk_south": {
+    "frames": 6,
+    "fps": 12,
+    "source": "walk"
+   },
+   "walk_east": {
+    "frames": 6,
+    "fps": 12,
+    "source": "walk"
+   },
+   "walk_north": {
+    "frames": 6,
+    "fps": 12,
+    "source": "walk"
+   },
+   "attack_south": {
+    "frames": 6,
+    "fps": 12,
+    "source": "attack"
+   },
+   "attack_east": {
+    "frames": 6,
+    "fps": 12,
+    "source": "attack"
+   },
+   "attack_north": {
+    "frames": 6,
+    "fps": 12,
+    "source": "attack"
+   }
+  }
+ }
+}

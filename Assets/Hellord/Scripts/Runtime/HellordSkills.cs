@@ -15,7 +15,7 @@ namespace Hellord
             foreach (var s in skills)
             {
                 if (s.def.id == SkillId.BoneOrbit) { hasOrbit = true; UpdateOrbit(s, dt); continue; }
-                if (HData.Summon561(s.def)) { s.cd = 0; continue; } // t561u: summons are passive (minion tick)
+                if (HData.Summon561(s.def) && s != _basic1517 && !(skills.Count > 0 && skills[0] == s && IsLmbBasic1563(s.def.id))) { s.cd = 0; continue; } // t561u: summons are passive unless they are the LMB command /* t1713 */
                 if (s.def.id == SkillId.StormRing) hasRing = true;
                 s.cd -= dt; bool want716 = !Manual716 || Want716(s); if (Manual716 && s.cd < 0) s.cd = 0; if (IsFb1481(s.def.id)) { want716 = FbWant1481(s); if (s.cd < 0) s.cd = 0; } /* t1481: player-fired (LMB) */ bool basic1517 = s == _basic1517; if (basic1517) { want716 = BasicWant1517(); if (s.cd < 0) s.cd = 0; } /* t1517: the basic main attack fires only while LMB is held */ // t716u: Manual = cast on key
                 if (s.cd <= 0 && want716 && PactCanCast53(s)) { s.cd = s.def.cooldown * s.CdMul * PactCd53(s) * LzBasicCdK1666(s); /* t1666 Storm Stride */ float lc53 = _lastCast[(int)s.def.id]; if (basic1517 || IsFb1481(s.def.id) && s == FbLmbBasic1517()) BasicCast1517(s, 1f); else Cast(s, 1f); if (_lastCast[(int)s.def.id] != lc53) PactAfterCast53(s); s.cd *= SinEchoCd818(s); AtCd1651 = s.cd; /* t1651 probe */ if (s.RepeatN > 0 && !SinNoEcho818(s)) { s.echoLeft = s.RepeatN; /* t1651: Repeat stat */ if (s.def.id == SkillId.CurseRune) s.echoLeft = Mathf.Min(s.echoLeft, HellordTuning.I.curseEchoMax738); s.echoT = s.echoLeft > 0 ? 0.3f : -1; } /* t738u */ }
@@ -26,7 +26,7 @@ namespace Hellord
         }
 
         // v0.0.10 FX self-check (Shift+9 overlay): last cast time per skill
-        readonly float[] _lastCast = new float[96]; /* t1682: 75 SkillIds now */ /* t1651: +12 kit ids */ /* t1567: 26 SkillIds now */ // v0.0.36 (t561u: +2 summons): one slot per SkillId
+        readonly float[] _lastCast = new float[128]; /* t1713: 88 SkillIds */ /* t1682: 75 SkillIds now */ /* t1651: +12 kit ids */ /* t1567: 26 SkillIds now */ // v0.0.36 (t561u: +2 summons): one slot per SkillId
         void Cast(SkillInst s, float mul)
         {
             float dmg = SkillDamage(s) * mul; // v0.0.13: _lastCast is stamped only after a real cast (early 'no target' returns no longer count -> no false FX WARN)
@@ -126,6 +126,9 @@ namespace Hellord
                 case SkillId.BreathOfTheDeep: if (!CastBreath1682(s, dmg)) return; break;
                 case SkillId.BuzhouRift: if (!CastBuzhouRift1682(s, dmg)) return; break;
                 case SkillId.EyeOfTheBlackWaters: if (!CastEye1682(s, dmg)) return; break;
+                case SkillId.Teeth: if (!CastTeeth1713(s, dmg)) return; break; // t1713
+                case SkillId.SkeletonWarriors:
+                case SkillId.SkeletonArchers: if (!CastNkCommand1713(s)) return; break; // t1713 LMB command
                 case SkillId.HeadsmansChop: if (!CastHeadsmansChop1567(s, dmg)) return; break;
                 case SkillId.EarthSplittingSlam: if (!CastEarthSlam1567(s, dmg)) return; break;
                 case SkillId.TwinAxeThrow: if (!CastTwinAxe1567(s, dmg)) return; break;
@@ -224,7 +227,7 @@ namespace Hellord
                   float ht = s.Stat(SStat1651.HomingTurn), hr = s.HomingR, br = s.Stat(SStat1651.BounceR), fd = s.Stat(SStat1651.ForkDmg); int fn = s.ForkN;
                   p.homingTurn = ht > 0 ? ht : HData.At(T.supHomingTurn, 0, 6f); p.homingR = hr > 0 ? hr : HData.At(T.supHomingRangeU, 0, 5f); p.bounceR = br > 0 ? br : HData.At(T.supBounceRangeU, 0, 4f);
                   p.forkN = fork && fn > 0 ? fn : 2; p.forkDmg = fd > 0 ? fd : HData.At(T.supForkDmg, 0, 0.55f); } p.lastHit = lastHit; p.animT = 0; p.sin818 = 0; p.sinN818 = 0; p.sr.transform.localScale = Vector3.one; SinSpawnProj818(p, lastHit); // t818u #16 #22
-                p.frames = HArt.Proj(ProjSheet(s.def.id)); p.sr.sprite = p.frames[0]; p.sr.color = s.def.id == SkillId.SoulSpears ? HellordTuning.I.spearTint : Color.white; p.sr.sortingOrder = 2000; // v0.7: above the y-sorted band
+                p.frames = HArt.Proj(ProjSheet(s.def.id)); p.sr.sprite = p.frames[0]; p.sr.color = s.def.id == SkillId.SoulSpears || s.def.id == SkillId.Teeth ? HellordTuning.I.spearTint : Color.white; p.sr.sortingOrder = 2000; // v0.7: above the y-sorted band
                 p.sr.gameObject.SetActive(true); p.sr.enabled = true; // v0.0.10: was swallowed by the comment above -> every projectile was invisible
                 p.trail = HellFX.ProjectileTrail(p.sr.transform, s.def.id == SkillId.SoulSpears ? HellordTuning.I.spearTint : new Color(1f, 0.55f, 0.15f), 2f); // pooled job; null when over budget
                 p.sr.transform.position = pos; p.sr.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(vel.y, vel.x) * Mathf.Rad2Deg);
@@ -239,7 +242,7 @@ namespace Hellord
         }
         static void KillProj(Proj p) { p.alive = false; if (p.lg667 >= 0) { SkillLightFX.GlowEnd(p.lg667); p.lg667 = -1; } // t667u
             if (p.fx44 >= 0) { HeroSkillFX.SpearEnd(p.fx44); p.fx44 = -1; } if (p.trail != null) { HellFXRunner.I.Kill(p.trail); p.trail = null; } if (p.sr) p.sr.gameObject.SetActive(false); }
-        static string ProjSheet(SkillId id) => id == SkillId.FrostCleave ? "proj_frost" : id == SkillId.StormRing ? "proj_storm" : id == SkillId.BoneOrbit ? "proj_bone" : id == SkillId.CurseRune ? "proj_curse" : id == SkillId.SoulSpears ? "proj_bone" : "proj_fireball";
+        static string ProjSheet(SkillId id) => id == SkillId.FrostCleave ? "proj_frost" : id == SkillId.StormRing ? "proj_storm" : id == SkillId.BoneOrbit ? "proj_bone" : id == SkillId.CurseRune ? "proj_curse" : id == SkillId.SoulSpears || id == SkillId.Teeth ? "proj_bone" : "proj_fireball";
         void UpdateProjectiles(float dt)
         {
             foreach (var p in _pr)

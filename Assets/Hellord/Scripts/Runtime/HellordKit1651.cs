@@ -19,9 +19,9 @@ namespace Hellord
     {
         public static readonly SkillId[] ZkIds1651 = { SkillId.ZkEmberEffigy, SkillId.ZkEmberAnchor, SkillId.ZkBackdraft, SkillId.ZkPyreMark, SkillId.ZkFlammability, SkillId.ZkWarCry, SkillId.ZkSmolderRing, SkillId.ZkHearthBlessing, SkillId.ZkSunsWrath, SkillId.ZkRebirthFlame, SkillId.ZkMoltenHeart, SkillId.ZkVermilionBird };
         public const int KitTarget1651 = 100;
-        readonly SkillInst[] _zkI1651 = new SkillInst[40]; /* t1682: + 13 Gonggong (GgK0) */ /* t1666: 12 Zhurong + 12 Leizu (LzK0) + spare */
+        readonly SkillInst[] _zkI1651 = new SkillInst[64]; /* t1772: + 10 Zhong Kui (NkK0) */ /* t1682: + 13 Gonggong (GgK0) */ /* t1666: 12 Zhurong + 12 Leizu (LzK0) + spare */
         /// <summary>kit skill k (0-2 movement, 3-7 specials, 8-11 ultimates): its run instance (made on first use, Lv1).</summary>
-        public SkillInst ZkI1651(int k) { k = Mathf.Clamp(k, 0, GgK0 + 12); return _zkI1651[k] ?? (_zkI1651[k] = new SkillInst { def = HData.Skill(k < LzK0 ? ZkIds1651[k] : k < GgK0 ? LzIds1666[k - LzK0] : GgIds1682[k - GgK0]), level = 1 }); /* t1682: k >= GgK0 = Gonggong kit */ } // t1666: k >= LzK0 = Leizu kit
+        public SkillInst ZkI1651(int k) { k = Mathf.Clamp(k, 0, NkK0 + 9); return _zkI1651[k] ?? (_zkI1651[k] = new SkillInst { def = HData.Skill(k < LzK0 ? ZkIds1651[k] : k < GgK0 ? LzIds1666[k - LzK0] : k < NkK0 ? GgIds1682[k - GgK0] : NkIds1713[k - NkK0]), level = 1 }); /* t1713: k >= NkK0 = Zhong Kui kit */ /* t1682: k >= GgK0 = Gonggong kit */ } // t1666: k >= LzK0 = Leizu kit
         public static int ZkK1651(int slot, int pick) => slot == 0 ? pick - 1 : slot == 1 ? 2 + pick : 7 + pick;
         int ZkPick1651(int slot) => slot == 0 ? KitMove1666 : slot == 1 ? KitSpec1666 : KitUlt1666; // t1666: the running pact's kit (Zhurong or Leizu)
         /// <summary>The kit skill in slot 0/1/2 (move / special / ultimate), null when the slot is empty or the kit is off.</summary>

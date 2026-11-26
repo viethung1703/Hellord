@@ -25,7 +25,7 @@ namespace Hellord
         bool _kbArmedPrev1646; int _kbUltPrev1646;
         void KbUltProgress1646(float ix, float iy, bool cooling)
         {
-            int u = KitUlt1666; bool armed = !cooling && KitUltArmed1666; bool lz = LzOn1666 || GgOn1682; // t1666: + Leizu; t1682: + Gonggong (no automatic ultimate)
+            int u = KitUlt1666; bool armed = !cooling && KitUltArmed1666; bool lz = LzOn1666 || GgOn1682 || NkOn1713; // t1666: + Leizu; t1682: + Gonggong; t1713: + Zhong Kui (no automatic ultimate)
             if (Event.current.type == EventType.Repaint)
             {
                 if (u != _kbUltPrev1646) { _kbUltPrev1646 = u; _kbArmedPrev1646 = armed; } // a new pick never chimes
@@ -35,11 +35,11 @@ namespace Hellord
             if (cooling) return;
             if (u == 2 && !lz) { KbGlow1646(ix, iy, 0.85f); return; } // Rebirth Flame: automatic -> steady glow
             if (armed) { KbGlow1646(ix, iy, 0.55f + 0.45f * Mathf.Sin(Time.unscaledTime * 7f)); return; }
-            float prog = GgOn1682 ? GgUltProg1682() : lz ? LzUltProg1666() : u == 1 ? ZhSunMeter1618 / Mathf.Max(1f, TZ.swMeter1618) : u == 3 ? ZhBurning1618 / (float)Mathf.Max(1, TZ.mhNeed1618) : u == 4 ? ZhNearMiss1618 / (float)Mathf.Max(1, TZ.vbNeed1618) : 0f;
+            float prog = NkOn1713 ? NkUltProg1713() : GgOn1682 ? GgUltProg1682() : lz ? LzUltProg1666() : u == 1 ? ZhSunMeter1618 / Mathf.Max(1f, TZ.swMeter1618) : u == 3 ? ZhBurning1618 / (float)Mathf.Max(1, TZ.mhNeed1618) : u == 4 ? ZhNearMiss1618 / (float)Mathf.Max(1, TZ.vbNeed1618) : 0f;
             int h = Mathf.Clamp(Mathf.FloorToInt(24f * Mathf.Clamp01(prog)), 0, 23); // 24 rows only when armed (above)
             if (h < 24) Fill716(ix, iy, 24, 24 - h, new Color32(24, 20, 37, 150));             // still to build: dimmed (sweep-mask ink)
             if (h > 0) { Fill716(ix, iy + 24 - h, 24, h, C716(0xf77622, 0.5f)); Fill716(ix, iy + 24 - h, 24, 1, C716(0xfee761, 0.9f)); } // orange fill + bright top edge
-            if (GgOn1682) { if (u == 3) KbCount1646(Mathf.Min(GgFrozenKills1682, TZ.ewNeed1682), TZ.ewNeed1682, ix, iy); } /* t1682 */ else if (lz) { if (u == 1) KbCount1646(Mathf.Min(LzCombos1666, TZ.dcNeed1666), TZ.dcNeed1666, ix, iy); else if (u == 2) KbCount1646(Mathf.Min(LzInfusions1666, TZ.haNeed1666), TZ.haNeed1666, ix, iy); } /* t1666 */ else if (u == 4) KbCount1646(Mathf.Min(ZhNearMiss1618, TZ.vbNeed1618), TZ.vbNeed1618, ix, iy);
+            if (NkOn1713) { if (u == 1) KbCount1646(Mathf.Min(NkBoneHits1713, TZ.nkNovaNeed1713), TZ.nkNovaNeed1713, ix, iy); else if (u == 3) { int cap = NCapBase536(); KbCount1646(Mathf.Min(NkLiveMinions1713(), cap), Mathf.Max(1, cap), ix, iy); } } /* t1772 */ else if (GgOn1682) { if (u == 3) KbCount1646(Mathf.Min(GgFrozenKills1682, TZ.ewNeed1682), TZ.ewNeed1682, ix, iy); } /* t1682 */ else if (lz) { if (u == 1) KbCount1646(Mathf.Min(LzCombos1666, TZ.dcNeed1666), TZ.dcNeed1666, ix, iy); else if (u == 2) KbCount1646(Mathf.Min(LzInfusions1666, TZ.haNeed1666), TZ.haNeed1666, ix, iy); } /* t1666 */ else if (u == 4) KbCount1646(Mathf.Min(ZhNearMiss1618, TZ.vbNeed1618), TZ.vbNeed1618, ix, iy);
             GUI.color = Color.white;
         }
         void KbGlow1646(float ix, float iy, float a) { Frame716(ix - 1, iy - 1, 26, 26, C716(0xfee761, a)); Frame716(ix - 2, iy - 2, 28, 28, C716(0xfeae34, a * 0.6f)); GUI.color = Color.white; }
@@ -82,7 +82,7 @@ namespace Hellord
                     if (IceArt.IsIce(k.def.id) || IsFb1481(k.def.id) || IsPb1567(k.def.id)) { GUI.color = Color.white; if (!IceIconBlit(k.def.id, ix, iy, 24) && _tSkill24 != null) Blit(_tSkill24, 0, 0, 24, 24, ix, iy); }
                     else if (ZhCardIcon1625(k.def.id) != null) { GUI.color = Color.white; GUI.DrawTexture(new Rect(ix, iy, 24, 24), ZhCardIcon1625(k.def.id)); }
                     else if (_tSkill24 != null) { var pt = _icons44 ? Color.white : PhTint(k.def.id); GUI.color = pt; Blit(_tSkill24, ic * 28, 0, 24, 24, ix, iy); }
-                    float full = Mathf.Max(0.05f, k.def.cooldown * k.CdMul); bool cont = k.def.id == SkillId.BoneOrbit || HData.Summon561(k.def);
+                    float full = Mathf.Max(0.05f, k.def.cooldown * k.CdMul); bool cont = k.def.id == SkillId.BoneOrbit || (HData.Summon561(k.def) && k != _basic1517);
                     float cdf = cont ? 0 : Mathf.Clamp01(k.cd / full);
                     if ((cdf > 0.02f && k.cd > 0.15f || BeltSweep1517(k)) && _tCdMask != null) { int nf = _tCdMask.Length - 1; int fr = Mathf.Clamp(Mathf.FloorToInt((1 - cdf) * nf), 0, nf); GUI.color = Color.white; GUI.DrawTexture(new Rect(ix, iy, 24, 24), _tCdMask[fr]); if (full >= 1.5f) CdNumber(Mathf.CeilToInt(k.cd), ix, iy, true); }
                     float rdy = BeltReady1517(k); if (rdy > 0f) { Frame716(ix - 1, iy - 1, 26, 26, C716(0xfee761, rdy)); Frame716(ix - 2, iy - 2, 28, 28, C716(0xfeae34, rdy * 0.6f)); }

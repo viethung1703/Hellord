@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ZKFX_BoneArmour_Back
+  m_Shader: {fileID: 4800000, guid: 4c3e35a8b831b43f1223c5de20f32668, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: 00f90ca5d4b0900639f7a048be455cb3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RampTex:
+        m_Texture: {fileID: 2800000, guid: 4d20059f0d24994ab177c12c335925aa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BoneTex:
+        m_Texture: {fileID: 2800000, guid: 1342f278f55680752dc9718e0d6955ba, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _PPU: 16
+    - _FxTime: 0
+    - _StepFps: 15
+    - _Seed: 0
+    - _Layer: 0
+    - _GlowGain: 1
+    - _Mode: 1
+    - _Form: 1
+    - _Break: 0
+    - _Fade: 0
+    - _Pool: 1
+    - _HitT: 9
+    - _Speed: 0.9
+    - _Intensity: 1
+    - _Hot: 0
+    - _GlowCap: 0.3
+    - _SrcBlend: 5
+    - _DstBlend: 10
+    m_Colors:
+    - _Origin: {r: 0, g: 0, b: 0, a: 0}
+    - _Orbit: {r: 2.5, g: 7, b: 22, a: 8}
+    - _Body: {r: 2.5, g: 10, b: 12, a: 11.5}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

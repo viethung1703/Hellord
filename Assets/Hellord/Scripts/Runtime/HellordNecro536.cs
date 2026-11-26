@@ -15,7 +15,7 @@ namespace Hellord
         bool NHas536(int i) => Has51(PactPath.Necromancer, i);
         bool Necro536 => Path53(PactPath.Necromancer);
 
-        class NMin536 { public bool sin818; public float blk818 = -99f; public int blkN818; /* t818u #39 risen / #18 free blocks */ public Vector2 p; public int kind; public float hp, maxHp, atk, life; public bool temp; public int shots; public Vector2 prev, face = Vector2.down; public float atkT = -9f, moveT; public int tgt = -1; public int st; public float stT, roamT, stuckT; public Vector2 roam, stuckP; public Vector2 atkFace = Vector2.down, wantFace = Vector2.down; public float walkHold, hurtT, hurtCd, lastHp = -1f; public int dirK = -1; public bool dirFlip; }
+        class NMin536 { public bool sin818; public float blk818 = -99f; public int blkN818; /* t818u #39 risen / #18 free blocks */ public Vector2 p; public int kind; public float hp, maxHp, atk, life; public bool temp; public int shots; public Vector2 prev, face = Vector2.down; public float atkT = -9f, moveT; public int tgt = -1; public int st; public float stT, roamT, stuckT; public Vector2 roam, stuckP; public Vector2 atkFace = Vector2.down, wantFace = Vector2.down; public float walkHold, hurtT, hurtCd, lastHp = -1f, burst, hideUntil; public int dirK = -1; public bool dirFlip; }
         readonly List<NMin536> _nmin536 = new List<NMin536>();
         readonly float[][] _nresp536 = { new float[16], new float[16] }; readonly int[] _nrespN536 = new int[2];
         struct Tr536 { public Vector2 a, b; public float t; public Color c; }
@@ -27,16 +27,17 @@ namespace Hellord
         {
             var real = NSkill561(kind); if (real != null) return real; // v0.0.62 t614u: minion hits carry the summon skill's socketed supports (was a support-less dummy)
             if (_nSk536 == null) _nSk536 = new SkillInst { def = new SkillDef { id = SkillId.BoneOrbit, name = "Skeleton", tags = STag.Hit | STag.Minion, baseDmg = 0, cooldown = 1, innate = Status.None } };
-            _nSk536.def.tags = STag.Hit | STag.Minion | (kind == 0 ? STag.Melee : STag.Projectile); return _nSk536;
+            _nSk536.def.tags = STag.Hit | STag.Minion | (kind == 1 || kind == 2 ? STag.Projectile : STag.Melee) | (kind == 2 || kind == 4 ? STag.Soul : STag.Bone); return _nSk536;
         }
         // ---- counts & stats
-        int NBase536(int kind) { if (NHas536(16)) return 0; int lv = NSkillLv561(kind); if (lv <= 0) return 0; int n = HData.At(kind == 0 ? PT.skelWarCount561 : PT.skelArcCount561, lv, 1); if (n > 0 && NHas536(0)) n++; return SinWarCount818(kind, n); } /* t818u #42 */ // t561u: from summon skill level // A1 Grave Muster: +1 per type you have
-        int NCap536() => PT.minionCap561 + (NHas536(8) ? PT.legionCap536 : 0);
+        int NBase536(int kind) { if (NHas536(16)) return 0; int lv = NSkillLv561(kind); if (lv <= 0) return 0; int n = HData.At(kind == 0 ? PT.skelWarCount561 : PT.skelArcCount561, lv, 1); if (n > 0 && NHas536(0)) n++; n = SinWarCount818(kind, n); return n * NkLegionMul1772(); } /* t818u #42 */ // t561u: from summon skill level // A1 Grave Muster: +1 per type you have
+        int NCapBase536() => PT.minionCap561 + (NHas536(8) ? PT.legionCap536 : 0);
+        int NCap536() => NCapBase536() * NkLegionMul1772();
         bool NCrest536 => Necro536 && Crest53;
         float NHpMul536() => (NHas536(1) ? PT.ironMarrowHp536 : 1f) * (NHas536(7) ? PT.cryptHp536 : 1f) * (NCrest536 ? PT.necroCrestMinion536 : 1f);
-        float NDmg536(int kind) => NBaseDmg561(kind) * (1 + incDmg * PT.minionPlayerDmgShare561) * PDmg49() * (NCrest536 ? PT.necroCrestMinion536 : 1f) * (NHas536(7) ? PT.cryptDmg536 : 1f) * (NHas536(8) ? PT.legionDmg536 : 1f) * (kind == 0 && NHas536(4) ? PT.graveEdgeMul536 : 1f) * NSupDmg614(kind);
+        float NDmg536(int kind) => NBaseDmg561(kind) * (1 + incDmg * PT.minionPlayerDmgShare561) * PDmg49() * (NCrest536 ? PT.necroCrestMinion536 : 1f) * (NHas536(7) ? PT.cryptDmg536 : 1f) * (NHas536(8) ? PT.legionDmg536 : 1f) * ((kind == 0 || kind == 3 || kind == 4) && NHas536(4) ? PT.graveEdgeMul536 : 1f) * NSupDmg614(kind) * NkFrenzyDmg1713();
         float NSupDmg614(int kind) { var r = NSkill561(kind); return r != null ? r.Stat(SStat1651.DmgMul) / (r.ProjExtra > 0 && HData.MultiHonoured1651(r.def.id) ? Mathf.Max(0.01f, HData.MultiDmgMul1651(r)) : 1f) : 1f; } // t1651: damage stat (Multi penalty is applied per arrow in ArcMulti622) // v0.0.62 t614u
-        float NRate536(int kind) => SinMinRate818(kind) * (kind == 0 ? PT.skelWarRate561 : PT.skelArcRate561) / (NHas536(2) ? PT.hollowHaste536 : 1f) * NSupRate614(kind);
+        float NRate536(int kind) => SinMinRate818(kind) * (kind == 0 || kind == 3 || kind == 4 ? (kind == 3 ? PT.skelWarRate561 * 1.6f : PT.skelWarRate561) : (kind == 2 ? PT.skelArcRate561 * 1.15f : PT.skelArcRate561)) / (NHas536(2) ? PT.hollowHaste536 : 1f) * NSupRate614(kind) / NkFrenzyRate1713();
         float NSupRate614(int kind) { var r = NSkill561(kind); return r != null ? r.Stat(SStat1651.CdMul) : 1f; } // t1651 stat // v0.0.62 t614u: Faster Casting = shorter minion attack interval
         int NCount536(int kind, bool temp) { int c = 0; foreach (var m in _nmin536) if (m.kind == kind && m.temp == temp) c++; return c; }
         void NSpawn536(int kind, bool temp, Vector2 at, float life = -1f)
@@ -65,6 +66,7 @@ namespace Hellord
         }
         void NecroPostHit536(Enemy e, float dmg, SkillInst s, bool tick)
         {
+            if (!tick && !_nInX536) NkBoneHit1713(s, tick);
             if (!Necro536 || tick || _nInX536 || !Bone536(s)) return;
             if (NHas536(11)) e.brit536 = runTime + PT.brittleS536;
             if (NHas536(14) && e.alive && !e.dying)
@@ -97,11 +99,11 @@ namespace Hellord
             _boneIds536 = PT.necroBoneSkills536;
             BoneAreaS536 = Necro536 ? (NHas536(13) ? PT.graveReachArea536 : 1f) * (NHas536(17) ? PT.colossusArea536 : 1f) : 1f;
             _splCd536 -= dt;
-            if (!Necro536 && !HasSummon561 && !SinRisen818()) { // t818u #39 risen demons keep the tick alive
+            if (!Necro536 && !HasSummon561 && !NkMinionTick1713 && !SinRisen818()) { // t818u #39 risen demons keep the tick alive /* t1713 */
                 if (_nmin536.Count > 0) _nmin536.Clear(); _dead561.Clear(); _fx561.Clear(); return; }
             if (NHas536(16) && _nmin536.Count > 0) _nmin536.Clear(); // BK Ossuary Tyrant: cannot have minions
-            // respawn / fill permanent minions
-            for (int k = 0; k < 2; k++)
+            // respawn / fill permanent minions (skip while Bone Colossus is holding the army)
+            if (!NkColossusOn1713) for (int k = 0; k < 2; k++)
             {
                 int want = NBase536(k), have = NCount536(k, false) + _nrespN536[k];
                 if (have > want) { for (int i = _nmin536.Count - 1; i >= 0 && have > want; i--) if (_nmin536[i].kind == k && !_nmin536[i].temp) { _nmin536.RemoveAt(i); have--; } }
@@ -118,7 +120,8 @@ namespace Hellord
                 if (m.hp <= 0 || m.life <= 0)
                 {
                     FxDeath561(m.p); _nmin536.RemoveAt(i); _dead561.Add(new Dead561 { p = m.p, kind = m.kind, t = 0f, face = m.face });
-                    if (!m.temp && _nrespN536[m.kind] < 16) _nresp536[m.kind][_nrespN536[m.kind]++] = NResp561(m.kind) * (NHas536(3) ? PT.quickGrave536 : 1f);
+                    NkMinionDied1713(m);
+                    if (!m.temp && m.kind < 2 && _nrespN536[m.kind] < 16) _nresp536[m.kind][_nrespN536[m.kind]++] = NResp561(m.kind) * (NHas536(3) ? PT.quickGrave536 : 1f);
                     continue;
                 }
                 var sk = NSk536(m.kind); float dmg = NDmg536(m.kind);
@@ -170,9 +173,9 @@ namespace Hellord
         void SetSt590(NMin536 m, int s) { if (m.st != s) { m.st = s; m.stT = 0; } }
         void Brain590(NMin536 m, int i, float dt, SkillInst sk, float dmg)
         {
-            m.stT += dt; float hd = (m.p - _heroPos).magnitude; bool war = m.kind == 0; bool moving = false;
-            float spd = PT.skelWarSpeed561, rng = war ? PT.skelWarReach561 : ArcRange590();
-            int t = PickT590(m);
+            m.stT += dt; float hd = (m.p - _heroPos).magnitude; bool war = m.kind != 1 && m.kind != 2; bool moving = false;
+            float spd = m.kind == 3 ? PT.skelWarSpeed561 * 0.75f : (m.kind == 2 ? PT.skelWarSpeed561 * 0.9f : PT.skelWarSpeed561), rng = war ? PT.skelWarReach561 : (ArcRange590() + (m.kind == 2 ? 1.5f : 0f));
+            int t = PickT590(m); t = NkCmdSteer1713(m, t, ref spd);
             // transitions (every tick, explicit)
             if (t >= 0) { var e0 = _en[t]; float d0 = (e0.pos - m.p).magnitude; float inR = war ? PT.skelWarReach561 + e0.radius * 0.5f : rng * 0.9f;
                 if (m.st == F590) { if (d0 > inR + PT.minionFightExit602 && m.stT > PT.minionStateMin602 && !AtkLock602(m)) SetSt590(m, S590); } else if (m.st != S590 || m.stT > 0.1f || d0 <= inR) SetSt590(m, d0 <= inR ? F590 : S590); }
@@ -220,7 +223,8 @@ namespace Hellord
         void Swing590(NMin536 m, int t, float dmg, SkillInst sk)
         {
             if (m.atk > 0 || !LiveEn594(t)) return; var e = _en[t]; Vector2 to = e.pos - m.p;
-            m.atk = NRate536(0); m.atkT = Time.time; m.atkFace = to; Hit(e, dmg, sk, to.normalized * 0.3f); FxWarHit561(m, e); SinCleave818(e, t, dmg, sk); // t818u #42 // damage stays on attack frame 0 (VH open)
+            m.atk = NRate536(m.kind == 3 || m.kind == 4 ? m.kind : 0); m.atkT = Time.time; m.atkFace = to; Hit(e, dmg, sk, to.normalized * 0.3f); FxWarHit561(m, e); SinCleave818(e, t, dmg, sk); // t818u #42 // damage stays on attack frame 0 (VH open)
+            if (m.kind == 3) NkFxClaySlam1736(m.p);
             if (NHas536(4)) { int t2 = Nearest(e.pos, PT.graveEdgeR536, t); if (t2 >= 0) { Hit(_en[t2], dmg, NSk536(0), Vector2.zero); FxEdge561(e, _en[t2]); } } // A5 +1 target
         }
         void Shoot590(NMin536 m, int t, float dmg, SkillInst sk, float rng)
@@ -231,7 +235,9 @@ namespace Hellord
             bool pierce = NHas536(5) && ++m.shots % 3 == 0; // A6 Marrow Shot: every 3rd arrow pierces down the lane to max range
             Vector2 end = pierce ? m.p + dir * rng : e.pos + Vector2.up * e.hitY;
             ArcMulti622(m, t, end, pierce, ref dmg, sk, rng); // t622u Multi Projectiles (extra arrows first; dmg scaled for all)
-            FxArcShot561(m, t, end, pierce, dmg, sk);
+            if (m.kind == 2) NkFxSoulBolt1736(m.p + Vector2.up * 0.6f, dir, 0.4f);
+            FxArcShot561(m, t, end, pierce, dmg, sk); // keep the projectile for damage; soul-bolt shader is the visible bolt
+            if (m.kind == 2 && m.burst > 0f) { m.burst = 0f; float br = 1.6f; Query(e.pos, br, _pq53); foreach (var q in _pq53) { var x = _en[q]; if (!x.alive || x.dying) continue; Hit(x, dmg * 1.2f, sk, Vector2.zero); } if (!NkFxSoulBurst1736(e.pos + Vector2.up * e.hitY)) HordeFX.CheapBurst(e.pos + Vector2.up * e.hitY, new Color(0.6f, 0.88f, 0.82f), 8); }
         }
         // t582u target pick: keep the current target while valid (focus), else demons near the hero (threat), else nearest to the minion inside the leash
         int PickT582(NMin536 m, float r)
@@ -260,7 +266,7 @@ namespace Hellord
             for (int j = 0; j < _nmin536.Count; j++) { float d = (_nmin536[j].p - ep).magnitude; if (d < best) { best = d; bi = j; } }
             return bi >= 0 ? _nmin536[bi].p : _heroPos;
         }
-        void Home536(NMin536 m, int i, float dt) { float a = i * 2.4f + 1.2f; Vector2 home = _heroPos + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * (m.kind == 1 ? PT.skelArcRing561 : 1.8f); if ((home - m.p).magnitude > 0.25f) m.p = Vector2.MoveTowards(m.p, home, PT.skelWarSpeed561 * dt); }
-        void NecroRoomEnter536() { foreach (var m in _nmin536) m.p = _heroPos + Random.insideUnitCircle; }
+        void Home536(NMin536 m, int i, float dt) { float a = i * 2.4f + 1.2f; Vector2 home = _heroPos + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * (m.kind == 1 || m.kind == 2 ? PT.skelArcRing561 : 1.8f); if ((home - m.p).magnitude > 0.25f) m.p = Vector2.MoveTowards(m.p, home, PT.skelWarSpeed561 * dt); }
+        void NecroRoomEnter536() { foreach (var m in _nmin536) m.p = _heroPos + Random.insideUnitCircle; if (_nkColossus1713) _nkColP1713 = _heroPos; }
     }
 }

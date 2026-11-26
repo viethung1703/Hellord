@@ -285,6 +285,12 @@ namespace Hellord
             if (TmBtn("Special (RMB): " + GgSpecNames1682[Mathf.Clamp(T.ggSpecial1682, 0, 5)])) { T.ggSpecial1682 = GgNextPick1682(1, T.ggSpecial1682); ZhSpecCd = 0; } // t1687: skips Toppled Pillar
             if (TmBtn("Ultimate (R): " + GgUltNames1682[Mathf.Clamp(T.ggUlt1682, 0, 4)])) { T.ggUlt1682 = GgNextPick1682(2, T.ggUlt1682); ZhUltCd = 0; } // t1687: skips Pillars of Ao
             if (TmBtn("Gonggong kit: reset cooldowns + fill the ultimate condition")) GgFillUlt1682();
+            TmLabel("ZHONG KUI KIT (t1772 debug selector; Zhong Kui runs, Slots = TEST OVERRIDE)");
+            if (TmBtn("Zhong Kui kit " + (T.nkKit1713 ? "ON" : "OFF") + (NkOn1713 ? " (active)" : ""))) T.nkKit1713 = !T.nkKit1713;
+            if (TmBtn("Movement (Space): " + NkMoveNames1713[Mathf.Clamp(T.nkMove1713, 0, 3)])) { T.nkMove1713 = (T.nkMove1713 + 1) % 4; ZhMoveCd = 0; }
+            if (TmBtn("Special (RMB): " + NkSpecNames1713[Mathf.Clamp(T.nkSpecial1713, 0, 4)])) { T.nkSpecial1713 = (T.nkSpecial1713 + 1) % 5; ZhSpecCd = 0; }
+            if (TmBtn("Ultimate (R): " + NkUltNames1713[Mathf.Clamp(T.nkUlt1713, 0, 3)])) { T.nkUlt1713 = (T.nkUlt1713 + 1) % 4; ZhUltCd = 0; }
+            if (TmBtn("Zhong Kui kit: reset cooldowns + fill the ultimate condition")) NkFillUlt1713();
             TmLabel("NECROMANCER (t536u TEST)");
             if (TmBtn("Unlock all 18 Necromancer nodes")) { PactLoad51(); _unlock51[(int)PactPath.Necromancer] = (1 << PactData.Nodes[(int)PactPath.Necromancer].Length) - 1; PactSave51(); TmSay("All Necromancer nodes unlocked (take them in the Altar)"); }
             if (TmBtn("TEST skeletons: give Skeleton Warriors + Skeleton Archers (Lv1)")) { foreach (var d in HData.Skills) if (HData.Summon561(d) && skills.Find(x => x.def.id == d.id) == null) skills.Add(new SkillInst { def = d }); TmSay("Summons given: " + SummonStatus561()); } // t561u

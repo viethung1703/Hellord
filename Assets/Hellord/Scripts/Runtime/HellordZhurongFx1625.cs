@@ -6,10 +6,11 @@ namespace Hellord
     /// <summary>t1625: one named shader parameter for a Zhurong FX hook (float or vector).</summary>
     public struct ZP
     {
-        public string n; public Vector4 v; public bool vec;
+        public string n; public Vector4 v; public bool vec; public Texture tex;
         public static ZP F(string n, float f) => new ZP { n = n, v = new Vector4(f, 0, 0, 0) };
         public static ZP V(string n, Vector2 v) => new ZP { n = n, v = new Vector4(v.x, v.y, 0, 0), vec = true };
         public static ZP V4(string n, Vector4 v) => new ZP { n = n, v = v, vec = true };
+        public static ZP Tex(string n, Texture t) => new ZP { n = n, tex = t };
     }
 
     // =====================================================================================================================
@@ -71,6 +72,7 @@ namespace Hellord
             var mpb = _zfxMpb1625; mpb.Clear(); mpb.SetVector("_Origin", new Vector4(pivot.x, pivot.y, 0, 0)); mpb.SetFloat("_FxTime", fxTime); mpb.SetFloat("_Seed", seed);
             if (ps != null) foreach (var p in ps)
             {
+                if (p.tex != null) { mpb.SetTexture(p.n, p.tex); continue; }
                 if (p.n == "_HeroSprite") { ZhFxHeroSprite1625(mpb); continue; }
                 if (p.vec) mpb.SetVector(p.n, p.v); else mpb.SetFloat(p.n, p.v.x);
             }

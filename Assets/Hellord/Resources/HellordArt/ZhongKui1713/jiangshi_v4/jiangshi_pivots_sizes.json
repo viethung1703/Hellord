@@ -1,0 +1,57 @@
+{
+ "jiangshi_all": {
+  "frame_w": 76,
+  "frame_h": 76,
+  "pivot": [
+   38,
+   73
+  ],
+  "rows": {
+   "idle_south": {
+    "frames": 8,
+    "fps": 8,
+    "source": "idle_hand (rotation + y 0,-1,-2,-3,-2,-1,0,0)"
+   },
+   "idle_east": {
+    "frames": 8,
+    "fps": 8,
+    "source": "idle_hand (rotation + y 0,-1,-2,-3,-2,-1,0,0)"
+   },
+   "idle_north": {
+    "frames": 8,
+    "fps": 8,
+    "source": "idle_hand (rotation + y 0,-1,-2,-3,-2,-1,0,0)"
+   },
+   "move_south": {
+    "frames": 6,
+    "fps": 12,
+    "source": "pixellab custom v3 hop south (group f2167261)"
+   },
+   "move_east": {
+    "frames": 6,
+    "fps": 12,
+    "source": "move_hand (rotation + y 0,-4,-5,-2,0,0)"
+   },
+   "move_north": {
+    "frames": 6,
+    "fps": 12,
+    "source": "move_hand (rotation + y 0,-4,-5,-2,0,0)"
+   },
+   "attack_south": {
+    "frames": 6,
+    "fps": 12,
+    "source": "attack_hand (rotation + y 0,-3,-6,-4,-1,0  x [0, 0, 0, 0, 0, 0])"
+   },
+   "attack_east": {
+    "frames": 6,
+    "fps": 12,
+    "source": "attack_hand (rotation + y 0,-3,-6,-4,-1,0  x [0, 1, 3, 2, 0, 0])"
+   },
+   "attack_north": {
+    "frames": 6,
+    "fps": 12,
+    "source": "attack_hand (rotation + y 0,-3,-6,-4,-1,0  x [0, 0, 0, 0, 0, 0])"
+   }
+  }
+ }
+}

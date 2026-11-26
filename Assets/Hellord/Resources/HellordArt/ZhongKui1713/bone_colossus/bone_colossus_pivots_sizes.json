@@ -1,0 +1,57 @@
+{
+ "bone_colossus_all": {
+  "frame_w": 116,
+  "frame_h": 116,
+  "pivot": [
+   58,
+   112
+  ],
+  "rows": {
+   "idle_south": {
+    "frames": 8,
+    "fps": 8,
+    "source": "pixellab idle south group e8bf27ff"
+   },
+   "idle_east": {
+    "frames": 8,
+    "fps": 8,
+    "source": "pixellab idle east group e8bf27ff"
+   },
+   "idle_north": {
+    "frames": 8,
+    "fps": 8,
+    "source": "flip of pixellab idle north group e8bf27ff (laterality)"
+   },
+   "move_south": {
+    "frames": 6,
+    "fps": 12,
+    "source": "pixellab walk south group 6853d348"
+   },
+   "move_east": {
+    "frames": 6,
+    "fps": 12,
+    "source": "pixellab walk east group 6853d348"
+   },
+   "move_north": {
+    "frames": 6,
+    "fps": 12,
+    "source": "flip of pixellab walk north group 6853d348 (laterality)"
+   },
+   "attack_south": {
+    "frames": 6,
+    "fps": 12,
+    "source": "pixellab attack south group b847216b"
+   },
+   "attack_east": {
+    "frames": 6,
+    "fps": 12,
+    "source": "pixellab attack east group b847216b"
+   },
+   "attack_north": {
+    "frames": 6,
+    "fps": 12,
+    "source": "flip of pixellab attack_retry north group 3298a426 (laterality)"
+   }
+  }
+ }
+}

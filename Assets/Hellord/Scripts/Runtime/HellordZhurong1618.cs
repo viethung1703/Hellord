@@ -72,6 +72,7 @@ namespace Hellord
         {
             ClearLz1666(); // t1666 Leizu kit (per room; meters carry over)
             ClearGg1682(); // t1682 Gonggong kit
+            ClearNk1713(); // t1713 Zhong Kui kit
             ZhMoveCd = ZhSpecCd = 0f; /* t1648: ZhUltCd, ZhSunMeter1618, ZhNearMiss1618 carry over between rooms; reset per run in ResetV44 */ ZhEffT1618 = ZhAncT1618 = ZhBdT1618 = 0f; ZhMark1618 = null; ZhMarkT1618 = ZhMarkGauge1618 = ZhPyreBuffT1618 = 0f;
             _zFlam1618.Clear(); _zCursed1618.Clear(); ZhCryCharges1625 = 0; ZhCryT1625 = ZhCryUseT1625 = -9f; _zRings1618.Clear(); ZhHearthT1618 = 0f;
             ZhBurning1618 = 0; ZhHeartT1618 = 0f; _zSuns1618.Clear(); _zBirds1618.Clear(); _zFx1618.Clear(); _zHy1625.Clear(); _zBolt1625.Clear();
@@ -86,7 +87,7 @@ namespace Hellord
             if (_zIcon1618.TryGetValue(k, out var t)) return t; t = Resources.Load<Texture2D>(dir + "/icon_" + key + "_24"); if (t != null) t.filterMode = FilterMode.Point; return _zIcon1618[k] = t;
         }
         /// <summary>Picker-card icon for the t1618 / t1625 basics that have no sheet column (null = the old fallback).</summary>
-        Texture2D ZhCardIcon1625(SkillId id) => id == SkillId.FireWall ? ZhIcon1618("firewall") : id == SkillId.Hydra ? ZhIcon1618("hydra") : IsLzBasic1666(id) ? LzIcon1666(LzKeys1666[12 + (id - SkillId.ThunderDrumStrikes)]) : IsGgBasic1682(id) ? GgIcon1682(GgKeys1682[13 + (id - SkillId.TidalSurge)]) /* t1682 */ : null; // t1666: Leizu basics (art or placeholder)
+        Texture2D ZhCardIcon1625(SkillId id) => id == SkillId.FireWall ? ZhIcon1618("firewall") : id == SkillId.Hydra ? ZhIcon1618("hydra") : IsLzBasic1666(id) ? LzIcon1666(LzKeys1666[12 + (id - SkillId.ThunderDrumStrikes)]) : IsGgBasic1682(id) ? GgIcon1682(GgKeys1682[13 + (id - SkillId.TidalSurge)]) /* t1682 */ : IsNkBasic1713(id) ? NkIcon1713("teeth") /* t1713 */ : null; // t1666: Leizu basics (art or placeholder)
         static Vector2 ZSnap1618(Vector2 p) => new Vector2(Mathf.Round(p.x * 16f) / 16f, Mathf.Round(p.y * 16f) / 16f);
         void ZPx1618(Vector2 p, int px, Color c, int order) => Z37SR(HArt.Pixel(), ZSnap1618(p), new Vector2(px, px), 0f, c, order - Z37Order);
         void ZDiscO1618(Vector2 p, float r, Color c, int order, float flat = 1f) => Z37SR(_z37Disc, ZSnap1618(p), new Vector2(r * 2f, r * 2f * flat), 0f, c, order - Z37Order);
@@ -102,7 +103,7 @@ namespace Hellord
         // ---------------------------------------------------------------- update (after the skills, inside Z37Begin / End)
         void UpdateZh1618(float dt)
         {
-            ZhFxBegin1625(); UpdateHydras1625(dt); UpdateLz1666(dt); /* t1666 Leizu kit + new basics */ UpdateGg1682(dt); /* t1682 Gonggong kit + basics */
+            ZhFxBegin1625(); UpdateHydras1625(dt); UpdateLz1666(dt); /* t1666 Leizu kit + new basics */ UpdateGg1682(dt); /* t1682 Gonggong kit + basics */ UpdateNk1713(dt); /* t1713 Zhong Kui kit */
             if (!ZhOn1618) { DrawZhFx1618(dt); ZhFxEnd1625(); return; }
             ZhMoveCd -= dt; ZhSpecCd -= dt; ZhUltCd -= dt; if (ZhMoveCd < 0) ZhMoveCd = 0; if (ZhSpecCd < 0) ZhSpecCd = 0; if (ZhUltCd < 0) ZhUltCd = 0;
             bool free = mode == Mode.Play && !_tmOpen && _pickCool716 <= 0f;
@@ -151,6 +152,7 @@ namespace Hellord
         {
             LzDashStart1666(p0); // t1666 Leizu movement slot
             GgDashStart1682(p0); // t1682 Gonggong movement slot
+            NkDashStart1713(p0); // t1713 Zhong Kui movement slot
             if (!ZhOn1618) return;
             if (ZhUlt1618 == 4 && ZhNearMissNow1618()) { ZhNearMiss1618++; ZFx1618(2, HeroCenter, 0.7f, 0.25f); if (ZhNearMiss1618 == Mathf.Max(1, TZ.vbNeed1618)) HellordAudio.Play("pact_unlock", 1.3f); }
             int m = ZhMove1618; if (m == 0 || ZhMoveCd > 0f) return; // on cooldown = plain dash

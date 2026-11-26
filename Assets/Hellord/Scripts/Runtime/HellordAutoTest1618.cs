@@ -37,6 +37,9 @@ namespace Hellord
                 case "ggclip1682_move": return AtGgClip1682(1);
                 case "ggclip1682_special": return AtGgClip1682(2);
                 case "ggclip1682_ult": return AtGgClip1682(3);
+                case "nkclip1736_basics": return AtNkClip1736(0); // t1736 Zhong Kui kit clips
+                case "nkclip1736_special": return AtNkClip1736(1);
+                case "nkclip1736_ult": return AtNkClip1736(2);
                 case "supkit1677": return AtSupKit1677(); // t1677 support card whose only target is a kit slot
                 case "supclip1651": return AtSupClip1651(); // t1651 clip: dead pairs now working
                 case "hydrascorch1647": return AtHydraScorch1647(); // t1647 clip: Hydra ends -> v3 scorch (own seed) // t1635 clip: Kindling shader patches under Fireball hits

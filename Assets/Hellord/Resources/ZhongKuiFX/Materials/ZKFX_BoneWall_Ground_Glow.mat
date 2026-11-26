@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ZKFX_BoneWall_Ground_Glow
+  m_Shader: {fileID: 4800000, guid: e1f82d5a995ea2462e0ee7ce2aeb11b0, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: 00f90ca5d4b0900639f7a048be455cb3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RampTex:
+        m_Texture: {fileID: 2800000, guid: b827450f9b153760f3473a461d466bc1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BoneTex:
+        m_Texture: {fileID: 2800000, guid: a9e2fcc4c870106bbf1ad113a3cce2a0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _PPU: 16
+    - _FxTime: 0
+    - _StepFps: 15
+    - _Seed: 0
+    - _Layer: 1
+    - _GlowGain: 0.5
+    - _Mode: 0
+    - _Angle: 0
+    - _Length: 48
+    - _Count: 13
+    - _Damage: 0
+    - _Break: 0
+    - _Fade: 0
+    - _Intensity: 1
+    - _Hot: 0.6
+    - _GlowCap: 0.4
+    - _SrcBlend: 1
+    - _DstBlend: 1
+    m_Colors:
+    - _Origin: {r: 0, g: 0, b: 0, a: 0}
+    - _Part: {r: 0, g: 99, b: 0, a: 0}
+    - _WallOff: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

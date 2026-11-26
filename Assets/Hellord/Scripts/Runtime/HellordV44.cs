@@ -46,7 +46,7 @@ namespace Hellord
         void ResetV44()
         {
             _chill44 = 0; _frozen44 = _freezeImm44 = 0; _tmFreeze44 = false; _bossKind44 = -1; ClearV44();
-            ZhUltCd = 0f; ZhSunMeter1618 = 0f; ZhNearMiss1618 = 0; LzRunReset1666(); /* t1666 */ GgRunReset1682(); /* t1682 */ // t1648: the ultimate cooldown + meters reset once per run (ResetRun only), not per room (ClearV44 -> ClearZh1618)
+            ZhUltCd = 0f; ZhSunMeter1618 = 0f; ZhNearMiss1618 = 0; LzRunReset1666(); /* t1666 */ GgRunReset1682(); /* t1682 */ NkRunReset1713(); /* t1713 */ // t1648: the ultimate cooldown + meters reset once per run (ResetRun only), not per room (ClearV44 -> ClearZh1618)
             if (_chillH44 >= 0) StatusHazardFX.ChillSet(_chillH44, _heroPos, 0, 3, 0, 0);
         }
         void ClearV44()
