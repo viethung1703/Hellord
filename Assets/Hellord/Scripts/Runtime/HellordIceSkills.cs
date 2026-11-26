@@ -288,7 +288,7 @@ namespace Hellord
         /// <summary>ONCE when an orb dies on a wall or at the end of its life. r = live burst radius: ring of crystal shards + a brief frost film.</summary>
         void IceVfxOrbBurst(Vector2 p, float r)
         {
-            float rp = Mathf.Clamp(r * HArt.PPU, 8f, 28f); if (!IceFX3.Ok) { ReactionFX.FrostShatter(p + Vector2.up * 0.4f, 8, rp); return; }
+            float rp = Mathf.Max(8f, r * HArt.PPU); /* t1815: no 28 px cap — burst FX follows live frostbBurstU */ if (!IceFX3.Ok) { ReactionFX.FrostShatter(p + Vector2.up * 0.4f, 8, rp); return; }
             IceFX3.ShardBurst(p + Vector2.up * 0.1f, rp, p.x * 0.37f + 2.3f); HordeFX.CheapBurst(p + Vector2.up * 0.3f, IceArt.Cyan, 5);
         }
         /// <summary>EVERY FRAME per chill patch: a few flat frost plates + 2 tiny spikes that melt away over the last 40 % of the life. The chill AREA (p.r) is unchanged.</summary>
@@ -297,11 +297,11 @@ namespace Hellord
             if (!IceFX3.Ok) return; IceFX3.Patch(pt.p, Mathf.Max(8f, pt.r * HArt.PPU * 0.8f), pt.life / pt.life0, (int)(pt.p.x * 7f + pt.p.y * 13f));
         }
         /// <summary>ONCE per pulse (the cast): six small shard squares around the hero. No ring.</summary>
-        void IceVfxNovaCast(Vector2 c, float rMax) { if (NovaFX1419.Ok) return; for (int k = 0; k < 6; k++) { float a = k * Mathf.PI / 3f; HordeFX.CheapBurst(c + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * 0.8f, IceArt.Pale, 4); } }
+        void IceVfxNovaCast(Vector2 c, float rMax) { if (NovaFX1419.Ok) return; float off = Mathf.Max(0.8f, rMax * 0.25f); for (int k = 0; k < 6; k++) { float a = k * Mathf.PI / 3f; HordeFX.CheapBurst(c + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * off, IceArt.Pale, 4); } }
         /// <summary>EVERY FRAME while a nova pulse expands; acts on the FIRST frame only (the effect owns its time after that): a wave of small ice spikes rising as the front passes + light frost film, a thin travelling front line.</summary>
         void IceVfxNova(IceNovaRing n)
         {
-            if (n.vs >= 0) { NovaFX1419.Drive(n, n.c + Vector2.down * 0.3f, n.t, YSort(n.c.y - 0.3f) + 1, n.vs); return; } // t1419: strips + glow + haze (old visual below stays behind HellordTuning.novaGlow1419)
+            if (n.vs >= 0) { NovaFX1419.Drive(n, n.c + Vector2.down * 0.3f, n.t, YSort(n.c.y - 0.3f) + 1, n.vs, n.rMax * HArt.PPU); return; } // t1419: strips + glow + haze (old visual below stays behind HellordTuning.novaGlow1419)
             if (n.spawned) return; n.spawned = true; if (!IceFX3.Ok) return;
             float rp = n.rMax * HArt.PPU, front = Mathf.Max(3f, n.dur * 30f); bool second = n.pulse > 0;
             IceFX3.Shock(n.c, rp, front, YSort(n.c.y - n.rMax) + 80, n.c.x * 0.31f + 3f); // t1412u impulse ring above the actors
@@ -333,7 +333,7 @@ namespace Hellord
         void IceVfxBombBurst(Vector2 p, float r, IceFX3.Inst fx)
         {
             if (fx != null) { fx.reach = fx.r * 0.85f; fx.bright = 0f; }
-            float rp = r * HArt.PPU; ReactionFX.FrostShatter(p + Vector2.up * 0.4f, 8, Mathf.Clamp(rp * 0.3f, 8f, 16f));
+            float rp = r * HArt.PPU; ReactionFX.FrostShatter(p + Vector2.up * 0.4f, 8, Mathf.Max(8f, rp * 0.3f));
             for (int k = 0; k < 6; k++) { float a = k * Mathf.PI / 3f + 0.3f; HordeFX.CheapBurst(p + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * r * 0.6f, IceArt.Cyan, 4); }
             if (!IceFX3.Ok) return; IceFX3.BlastBurst(p, rp, p.x * 0.19f + 21f);
         }

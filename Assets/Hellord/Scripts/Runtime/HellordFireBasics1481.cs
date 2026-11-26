@@ -114,21 +114,24 @@ namespace Hellord
         void FbSpitImpact1481(FbRock r)
         {
             var T = HellordTuning.I; Vector2 at = r.p; ClampToRoom(ref at, 4); int ord = YSort(at.y); var s = r.s; float dmg = r.dmg;
-            FireBasicsFX1481.Once("molten_spit_impact", at, ord + 40, 0f, T.msImpactSpeed1481, 0, false, 0f, T.msBlastSx1481, T.msBlastSy1481); // HFX v5 impact 71x44 (42x27 blob), 7 f: 2 core + 5 fade, native
+            const float MsArtHitRU1481 = 1.3f, MsArtB2RU1481 = 0.625f; // HFX v5 authored for these hit radii
+            float hitSc = (s != null ? s.RA(T.msHitRU1481) : T.msHitRU1481) / MsArtHitRU1481;
+            float sx = T.msBlastSx1481 * hitSc, sy = T.msBlastSy1481 * hitSc;
+            FireBasicsFX1481.Once("molten_spit_impact", at, ord + 40, 0f, T.msImpactSpeed1481, 0, false, 0f, sx, sy); // t1815: scale to live msHitRU1481
             var cast = new FbCast { embers = 1 };
-            if (T.fbDark1481 && T.msDarkArt1481 && FireBasicsFX1481.Frames("molten_spit_darken") > 0) FireBasicsFX1481.Once("molten_spit_darken", at, FbDarkOrd1481(at.y), 0f, 1f, 0, false, T.msDarkArtDelayF1481, T.msDarkArtSx1481, T.msDarkArtSy1481); // HFX v5 darken b0-5
-            else FireBasicsFX1481.Dark(at + r.dir * (T.msDarkFwdPx1481 / FbPx), T.msDarkRxPx1481, T.msDarkRyPx1481, T.msDarkAlpha1481, T.msDarkHoldS1481, FbDarkOrd1481(at.y));
+            if (T.fbDark1481 && T.msDarkArt1481 && FireBasicsFX1481.Frames("molten_spit_darken") > 0) FireBasicsFX1481.Once("molten_spit_darken", at, FbDarkOrd1481(at.y), 0f, 1f, 0, false, T.msDarkArtDelayF1481, T.msDarkArtSx1481 * hitSc, T.msDarkArtSy1481 * hitSc);
+            else FireBasicsFX1481.Dark(at + r.dir * (T.msDarkFwdPx1481 / FbPx), T.msDarkRxPx1481 * hitSc, T.msDarkRyPx1481 * hitSc, T.msDarkAlpha1481, T.msDarkHoldS1481, FbDarkOrd1481(at.y));
             /* t1511b */ ScreenShake.Add(2, 0.1f); HellordAudio.Play("magma_throw_land");
             After(T.msImpactDelayF1481 / FbFps, () => { if (mode != Mode.StartPick) FbArea1481(at, s.RA(T.msHitRU1481), dmg * T.msImpactMul1481, s, T.msKnock1481, 1, T.msHitYScale1481); }); // t1514: flattened ellipse, the only hit with a number
             Vector2 tg = new Vector2(r.dir.x, r.dir.y * T.msStrandYScale1481); Vector2 b2 = at + tg * (T.msB2OutPx1481 / FbPx); ClampToRoom(ref b2, 4);
             After(T.msB2DelayF1481 / FbFps, () =>
             {   // t1514 B2: one medium burst ~20 px, 42 px out along the throw, small damage, no number
-                if (mode == Mode.StartPick) return; FireBasicsFX1481.Once("molten_spit_burst_med", b2, YSort(b2.y) + 40, 0f, T.msB2Speed1481, 0, false, 0f, T.msB2Scale1481, T.msB2Scale1481); // HFX v5 burst_med (~20 px), 6 f
+                if (mode == Mode.StartPick) return; float b2sc = T.msB2Scale1481 * ((s != null ? s.RA(T.msB2RU1481) : T.msB2RU1481) / MsArtB2RU1481); FireBasicsFX1481.Once("molten_spit_burst_med", b2, YSort(b2.y) + 40, 0f, T.msB2Speed1481, 0, false, 0f, b2sc, b2sc); // t1815: scale to live msB2RU1481
                 HellordAudio.Play("magma_throw_splat"); FbArea1481(b2, s.RA(T.msB2RU1481), dmg * T.msB2Mul1481, s, 0f, 2, T.msHitYScale1481);
             });
             float area = s.RA(1f);
             if (T.msHeatS1481 > 0f) FbPatch1481(at, T.msHeatRxU1481 * area, T.msHeatRyU1481 * area, T.msHeatS1481, T.msHeatDelayF1481 / FbFps, T.msPatchTickS1481, dmg * T.msPatchTickMul1481, s); // HFX v4 dropped the heat haze (msHeatS 0 = off)
-            FireBasicsFX1481.Decal("molten_spit_scorch", FireBasicsFX1481.DecalKind.SpitScorch, at, FbGround + ord, T.msScorchDelayF1481);                    // HFX v5 scorch: 6 stages x 6 f from b2
+            FireBasicsFX1481.Decal("molten_spit_scorch", FireBasicsFX1481.DecalKind.SpitScorch, at, FbGround + ord, T.msScorchDelayF1481, 0, hitSc);                    // HFX v5 scorch: 6 stages x 6 f from b2
             FireBasicsFX1481.Once("molten_spit_ember_patch_v1", at + FbPxOff1481(T.msEmber1OffPx1481), FbGround + ord + 4, 0f, 1f, T.msEmberMax1481, false, T.msEmberDelayF1481);  // HFX v5: ember v1 at b3 (-5,+1), v2 at b4 (+6,-1), 30 f once
             FireBasicsFX1481.Once("molten_spit_ember_patch_v2", at + FbPxOff1481(T.msEmber2OffPx1481), FbGround + ord + 4, 0f, 1f, T.msEmberMax1481, false, T.msEmber2DelayF1481); cast.embers = 2;
             FbPatch1481(at, T.msEmberRU1481 * area, T.msEmberRU1481 * area, T.msEmberS1481, T.msEmberDelayF1481 / FbFps, T.msPatchTickS1481, dmg * T.msPatchTickMul1481, s);
@@ -190,7 +193,9 @@ namespace Hellord
         {
             var T = HellordTuning.I; Vector2 at = b.p; ClampToRoom(ref at, 5); int ord = YSort(at.y); float area = b.s.RA(1f);
             FbArea1481(at, T.rrBlastRU1481 * area, b.dmg * T.rrBlastMul1481, b.s, 0f); ScreenShake.Add(2, 0.12f);
-            FireBasicsFX1481.Once("infernal_boulder_end_blast", at, ord + 40); FireBasicsFX1481.Dark(at, T.rrDarkRxPx1481, T.rrDarkRyPx1481, T.rrDarkAlpha1481, T.rrDarkHoldS1481, FbDarkOrd1481(at.y)); // t1511b                                                                         // flash, chunks, sparks (30 f)
+            const float RrArtBlastRU1481 = 1.625f; // HFX v4 end-blast authored for this radius
+            float rrSc = (T.rrBlastRU1481 * area) / RrArtBlastRU1481;
+            FireBasicsFX1481.Once("infernal_boulder_end_blast", at, ord + 40, 0f, 1f, 0, false, 0f, rrSc, rrSc); FireBasicsFX1481.Dark(at, T.rrDarkRxPx1481 * rrSc, T.rrDarkRyPx1481 * rrSc, T.rrDarkAlpha1481, T.rrDarkHoldS1481, FbDarkOrd1481(at.y)); // t1815: scale to live rrBlastRU1481
             FireBasicsFX1481.Tile("infernal_boulder_fire_patch", at, FbGround + ord, T.rrPatchS1481 * SinDuration737, T.rrPatchDelayF1481, 0, T.rrPatchIgnF1481);              // fire patch from blast + 2 f, 75 f
             FbPatch1481(at, T.rrPatchRxU1481 * area, T.rrPatchRyU1481 * area, T.rrPatchS1481, T.rrPatchDelayF1481 / FbFps, T.rrPatchTickS1481, b.dmg * T.rrPatchTickMul1481, b.s);
             float fade = Random.Range(T.rrLoopFadeMin1481, T.rrLoopFadeMax1481); HellordAudio.LoopStop(b.loop, fade); HellordAudio.PlayDelayed("magma_rock_stop", fade); // fade the roll out, then the stop
@@ -206,12 +211,14 @@ namespace Hellord
             if (mode == Mode.StartPick) return false; var T = HellordTuning.I; EnsureFX44();
             if (_fbPillars >= T.fpMax1481) { s.cd = 0.1f; return false; } // HFX cap: <= 3 pillars alive
             Vector2 at = FbAimPoint1481(T.fpRangeU1481); float r = s.R(HData.At(T.fpRadiusU1481, s.level, 1.2f)); float dd = dmg * T.fpDmgMul1481; var sk = s; float tell = Mathf.Max(0.05f, T.fpTellS1481); int ord = YSort(at.y); int shot = _fbShot++; _fbPillars++;
-            FireBasicsFX1481.Once("fire_pillar_telegraph", at, FbGround + ord + 5, 0f, (FireBasicsFX1481.Frames("fire_pillar_telegraph") / FbFps) / tell); // telegraph re-timed to the code's tell seconds
+            const float FpArtRU1481 = 1.1f; // HFX telegraph/erupt authored for L1 1.1 u
+            float fpSc = r / FpArtRU1481; float tellSpd = (FireBasicsFX1481.Frames("fire_pillar_telegraph") / FbFps) / tell;
+            FireBasicsFX1481.Once("fire_pillar_telegraph", at, FbGround + ord + 5, 0f, tellSpd, 0, false, 0f, fpSc, fpSc); // t1815: scale to live fpRadiusU
             HellordAudio.Play("fire_pillar_telegraph");
             After(tell, () =>
             {
                 if (mode == Mode.StartPick) { _fbPillars = Mathf.Max(0, _fbPillars - 1); return; }
-                FireBasicsFX1481.Once("fire_pillar_erupt", at, ord + 30); FireBasicsFX1481.Decal("fire_pillar_scorch_v" + (shot % 2 + 1), FireBasicsFX1481.DecalKind.PillarScorch, at, FbGround + ord, 2f);
+                FireBasicsFX1481.Once("fire_pillar_erupt", at, ord + 30, 0f, 1f, 0, false, 0f, fpSc, fpSc); FireBasicsFX1481.Decal("fire_pillar_scorch_v" + (shot % 2 + 1), FireBasicsFX1481.DecalKind.PillarScorch, at, FbGround + ord, 2f, 0, fpSc);
                 HellordAudio.Play("fire_pillar_erupt"); ScreenShake.Add(2, 0.12f);
                 After(T.fpHitF1481 / FbFps, () => { dd *= PactTrailEmp53(at); FbArea1481(at, r, dd, sk, T.fpKnock1481); }); // HFX hit-test window f3-f12
                 After(18f / FbFps, () => _fbPillars = Mathf.Max(0, _fbPillars - 1));

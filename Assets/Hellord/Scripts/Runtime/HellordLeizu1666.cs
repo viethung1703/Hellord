@@ -226,7 +226,7 @@ namespace Hellord
             LzBeat1666++; _lzBeatT1666 = runTime; LzBeats1666++;
             if (LzBeat1666 < 3)
             {
-                float r = s.R(T.dsStrikeR1666); if (!LzStrike1669("DrumStrike", at)) LzSky1666(at); Query(at, r, _lzq1666); SkillArea53(at, r, dmg, (int)s.def.id);
+                float r = s.R(T.dsStrikeR1666); if (!LzStrike1669("DrumStrike", at, r)) LzSky1666(at); Query(at, r, _lzq1666); SkillArea53(at, r, dmg, (int)s.def.id);
                 foreach (int i in _lzq1666.ToArray()) { var e = _en[i]; if (!LzOk1666(e) || (e.pos - at).magnitude > r + e.radius) continue; Hit(e, dmg * T.dsStrikeDmg1666, s, (e.pos - at).normalized * 1.5f); }
                 HellordAudio.Play("storm_ring", 1.6f + 0.15f * LzBeat1666);
             }
@@ -576,7 +576,7 @@ namespace Hellord
                 while (d.fired < n && d.t >= d.next)
                 {
                     d.next += gap; d.fired++; Enemy best = LzDecreePick1666(d, T.dcRange1666, true) ?? LzDecreePick1666(d, T.dcRange1666, false); // a NEW demon first; out of new ones = re-target
-                    if (best == null) continue; d.struck.Add(best.id); Vector2 at = best.pos; float R = ZkR1651(k, T.dcBoltR1666); if (!LzStrike1669("Decree", at)) LzSky1666(at); LzDecreeBolts1666++;
+                    if (best == null) continue; d.struck.Add(best.id); Vector2 at = best.pos; float R = ZkR1651(k, T.dcBoltR1666); if (!LzStrike1669("Decree", at, R)) LzSky1666(at); LzDecreeBolts1666++;
                     Query(at, R, _lzq1666); var tg = new List<Enemy>(); foreach (int ei in _lzq1666) { var e = _en[ei]; if (LzOk1666(e) && (e.pos - at).magnitude <= R + e.radius) tg.Add(e); }
                     foreach (var e in tg) Hit(e, ZkHit1651(k) * T.dcDmg1666, s, Vector2.zero); if (d.fired % 3 == 0) HellordAudio.Play("storm_ring", 1.2f + Random.value * 0.4f);
                 }
@@ -637,7 +637,7 @@ namespace Hellord
             if (_lzTribNext1666 > 0f) return; _lzTribNext1666 = T.trEvery1666;
             Enemy best = null; float bh = -1f; Query(_heroPos, T.trRange1666, _lzq1666); // the strongest SHOCKED demon (highest current HP); none shocked = the strongest
             foreach (int i in _lzq1666) { var e = _en[i]; if (!LzOk1666(e) || (e.pos - _heroPos).magnitude > T.trRange1666) continue; float sc = e.hp + (e.shockT > 0f ? 1e6f : 0f); if (sc > bh) { bh = sc; best = e; } }
-            if (best == null) return; Vector2 at = best.pos; float R = ZkR1651(k, T.trSplash1666); if (!LzStrike1669("Tribunal", at)) LzSky1666(at); LzTribBolts1666++; _lzTribBolt1669 = runTime;
+            if (best == null) return; Vector2 at = best.pos; float R = ZkR1651(k, T.trSplash1666); if (!LzStrike1669("Tribunal", at, R)) LzSky1666(at); LzTribBolts1666++; _lzTribBolt1669 = runTime;
             Query(at, R, _lzq1666); var tg = new List<Enemy>(); foreach (int ei in _lzq1666) { var e = _en[ei]; if (LzOk1666(e) && (e.pos - at).magnitude <= R + e.radius) tg.Add(e); }
             foreach (var e in tg) Hit(e, ZkHit1651(k) * T.trDmg1666 * (e == best ? 1f : 0.5f), s, Vector2.zero); HellordAudio.Play("storm_ring", 1f);
         }
@@ -659,7 +659,7 @@ namespace Hellord
         {
             var T = TZ; var s = ZkI1651(k); Vector2 from = _heroPos, at = e.pos; float R = ZkR1651(k, T.jwR1666); LzWarps1666++;
             Vector2 land = at + (from - at).normalized * Mathf.Min((from - at).magnitude, e.radius + 0.4f); ClampToRoom(ref land, HeroMarginPx); _heroPos = land; _iframe = Mathf.Max(_iframe, 0.4f); _heroVel37 = Vector2.zero; _dashT49 = 0f;
-            if (LzPlay1669("jwOut", from)) { float sc = R / 3f; LzPlay1669("jwIn", at); LzPlay1669("jwFlash", at); LzPlay1669("jwHaze", at, sc); for (int a = 0; a < 5; a++) { float an = (a * 72f + 18f) * Mathf.Deg2Rad; LzLink1669("jwArc", at, at + new Vector2(Mathf.Cos(an) * 40f, Mathf.Sin(an) * 22f) * sc / 16f, a); } } else { LzBolt1666(from + Vector2.up * 0.6f, land + Vector2.up * 0.6f, LW); LzSky1666(at); } ScreenShake.Add(4f, 0.3f); /* t1669 HFX warp timeline (spec 16) */ HitStop.Play(0.08f, 0.2f, 0.4f); HellordAudio.Play("pact_unlock", 0.7f);
+            if (LzPlay1669("jwOut", from)) { float sc = R / 3f; LzPlay1669("jwIn", at, sc); LzPlay1669("jwFlash", at, sc); LzPlay1669("jwHaze", at, sc); for (int a = 0; a < 5; a++) { float an = (a * 72f + 18f) * Mathf.Deg2Rad; LzLink1669("jwArc", at, at + new Vector2(Mathf.Cos(an) * 40f, Mathf.Sin(an) * 22f) * sc / 16f, a); } } else { LzBolt1666(from + Vector2.up * 0.6f, land + Vector2.up * 0.6f, LW); LzSky1666(at); } ScreenShake.Add(4f, 0.3f); /* t1669 HFX warp timeline (spec 16) */ HitStop.Play(0.08f, 0.2f, 0.4f); HellordAudio.Play("pact_unlock", 0.7f);
             if (e.boss) { Hit(e, ZkHit1651(k) * T.jwBossDmg1666, s, Vector2.zero); LzBossT1666 = 0f; }
             else Hit(e, e.hp * 4f + 1f, s, Vector2.zero); // the cull-ready elite explodes
             Query(at, R, _lzq1666); var tg = new List<Enemy>(); foreach (int ei in _lzq1666) { var o = _en[ei]; if (o != e && LzOk1666(o) && (o.pos - at).magnitude <= R + o.radius) tg.Add(o); }

@@ -74,6 +74,8 @@ namespace Hellord
             ResetRun();
             PactBoot51(); // v0.0.51 damnation pact: main menu on boot
             if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-jiangshiPlaytest") >= 0) StartCoroutine(JiangshiPlaytestCo1796());
+            if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-kitbarSupportsPlaytest") >= 0) StartCoroutine(KitBarSupportsPlaytestCo1812());
+            if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-rangeRebalancePlaytest") >= 0) StartCoroutine(RangeRebalancePlaytestCo1815());
         }
 
         static void EnsureGlobalLight()

@@ -211,7 +211,7 @@ namespace Hellord
         void ZhDrawBackdraft1618()
         {
             var p = ZhBdP1618; float k = 1f - ZhBdT1618 / 1.0f; int ord = YSort(p.y) + 10;
-            if (ZhFx1625("ZFX_Backdraft_Vortex", p, -40, -22, 80, 44, FbGround + YSort(p.y) + 4, k, 0.6f, ZP.F("_Progress", k))) return;
+            { float bdR = ZkR1651(2, TZ.bdR1618); var bdRc = FxDiscRc1815(bdR, 0.55f, 8f); if (ZhFx1625("ZFX_Backdraft_Vortex", p, bdRc.x, bdRc.y, bdRc.z, bdRc.w, FbGround + YSort(p.y) + 4, k, 0.6f, ZP.F("_Progress", k), ZP.F("_Radius", bdR * 16f))) return; }
             k = Z01(k / 0.4f); // placeholder keeps its 0.4 s implosion
             for (int i = 0; i < 12; i++) { float a = i * 30f * Mathf.Deg2Rad + k * 3f; float r = ZkR1651(2, TZ.bdR1618) * (1f - k); ZPx1618(p + new Vector2(Mathf.Cos(a) * r, Mathf.Sin(a) * r * 0.6f + 0.3f), 2, i % 2 == 0 ? ZA : ZO, ord); }
         }
@@ -279,7 +279,7 @@ namespace Hellord
             {
                 var f = _zFlam1618[i]; f.t += dt; float R = ZkR1651(4, TZ.flR1618), D = TZ.flDelay1618; int og = FbGround + YSort(f.p.y) + 6;
                 float cool = Z01((f.t - D - ZkDur1651(4, TZ.flDur1618)) / 0.6f);
-                bool shd = ZhFx1625("ZFX_Flammability_Curse", f.p, -46, -26, 92, 52, og, f.t, 0.45f, ZP.F("_Ignite", Z01(f.t / Mathf.Max(0.05f, D))), ZP.F("_Cool", cool));
+                var flRc = FxDiscRc1815(R, 0.55f, 8f); bool shd = ZhFx1625("ZFX_Flammability_Curse", f.p, flRc.x, flRc.y, flRc.z, flRc.w, og, f.t, 0.45f, ZP.F("_Ignite", Z01(f.t / Mathf.Max(0.05f, D))), ZP.F("_Cool", cool), ZP.F("_Radius", R * 16f));
                 if (f.done) { if (cool >= 1f) _zFlam1618.RemoveAt(i); continue; } // t1625: the cursed ground stays for the spec's sustain + cool (no gameplay)
                 {
                     float k = Mathf.Clamp01(f.t / Mathf.Max(0.05f, D));
@@ -321,7 +321,7 @@ namespace Hellord
         void ZhCryKill1625(Enemy e)
         {
             if (e == null || e.zCry1625 <= runTime) return; e.zCry1625 = 0f; var T = TZ; Vector2 c = e.pos; float R = ZkR1651(5, TZ.wcBoomR1625); ZhCryBooms1625++;
-            HellordAudio.Play("magma_rock_hit", 1.2f); ZFx1618(0, c, R, 0.45f, "ZFX_WarCry_DeathPop", new Vector4(-24, -18 + 10, 48, 48), YSort(c.y) + 200); if (!ZhFxLive1625("ZFX_WarCry_DeathPop")) FireBasicsFX1481.Once("molten_spit_pop_v1", c + Vector2.up * 0.4f, YSort(c.y) + 40);
+            HellordAudio.Play("magma_rock_hit", 1.2f); ZFx1618(0, c, R, 0.45f, "ZFX_WarCry_DeathPop", FxScaleRc1815(new Vector4(-24, -8, 48, 48), R / 1.6f), YSort(c.y) + 200); if (!ZhFxLive1625("ZFX_WarCry_DeathPop")) FireBasicsFX1481.Once("molten_spit_pop_v1", c + Vector2.up * 0.4f, YSort(c.y) + 40);
             Query(c, R + 0.5f, _zqCry1625); var hit = new List<Enemy>(); foreach (int i in _zqCry1625) { var o = _en[i]; if (o != e && o.alive && !o.dying && (o.pos - c).magnitude <= R) hit.Add(o); }
             foreach (var o in hit) Hit(o, ZkHit1651(5) * T.wcBoomDmg1625, ZkI1651(5), (o.pos - c).normalized * 2f); // marked enemies killed by a blast explode too (chain)
         }
@@ -366,10 +366,11 @@ namespace Hellord
                     if (tk) { Hit(e, ZkHit1651(6) * TZ.srDmg1618, ZkI1651(6), Vector2.zero, true); ZhRingHits1618++; }
                 }
                 int og = FbGround + YSort(r.p.y) + 6; float a = r.t > ZkDur1651(6, TZ.srLife1618) - 0.4f ? (ZkDur1651(6, TZ.srLife1618) - r.t) / 0.4f : 1f;
-                if (!ZhFx1625("ZFX_SmolderRing", r.p, -50, -28, 100, 52, og, r.t, 0.55f, ZP.F("_Ignite", Z01(r.t / 0.4f)), ZP.F("_Cool", Z01((r.t - (ZkDur1651(6, TZ.srLife1618) - 0.5f)) / 0.5f))))
+                { var srRc = FxDiscRc1815(R, 0.55f, 8f); if (!ZhFx1625("ZFX_SmolderRing", r.p, srRc.x, srRc.y, srRc.z, srRc.w, og, r.t, 0.55f, ZP.F("_Ignite", Z01(r.t / 0.4f)), ZP.F("_Cool", Z01((r.t - (ZkDur1651(6, TZ.srLife1618) - 0.5f)) / 0.5f)), ZP.F("_Radius", R * 16f)))
                 {   // placeholder: smoky disc + glowing rim + rim embers going round
                     ZDiscO1618(r.p, R, new Color(ZK.r, ZK.g, ZK.b, 0.35f * a), og - 1, 0.6f); ZRingO1618(r.p, R, new Color(ZO.r, ZO.g, ZO.b, 0.9f * a), og, 0.6f);
                     for (int k = 0; k < 10; k++) { float an = k * 36f * Mathf.Deg2Rad + r.t * 0.8f; ZPx1618(r.p + new Vector2(Mathf.Cos(an) * R, Mathf.Sin(an) * R * 0.6f + 0.1f), 2, k % 2 == 0 ? ZY : ZR, og + 1); }
+                }
                 }
             }
         }
@@ -422,8 +423,8 @@ namespace Hellord
             if (ZhUlt1618 != 2 || ZhUltCd > 0f) return false;
             hp = maxHp * TZ.rbHp1618; _iframe = Mathf.Max(_iframe, TZ.rbInv1618); ZhUltCd = ZkCd1651(9, TZ.rbCd1618); ZhRebirths1618++; ZhCasts1618++;
             Vector2 c = _heroPos; float R = ZkR1651(9, TZ.rbR1618); HellordAudio.Play("fire_pillar_erupt", 0.7f); HellordAudio.Play("pact_unlock", 0.9f); ScreenShake.Add(3f, 0.3f); HitStop.Play(0.1f, 0.2f, 0.4f); Toast("REBIRTH FLAME");
-            ZFx1618(-1, c, R, 1.6f, "ZFX_RebirthFlame_Pillar", new Vector4(-30, -14, 60, 104), YSort(c.y) + 30); // t1625 spec: pillar 1.6 s, firestorm from 0.65 s
-            After(0.65f, () => ZFx1618(-1, c, R, 1.4f, "ZFX_RebirthFlame_Storm", new Vector4(-62, -32, 124, 72), FbGround + YSort(c.y) + 6, 1));
+            ZFx1618(-1, c, R, 1.6f, "ZFX_RebirthFlame_Pillar", FxScaleRc1815(new Vector4(-30, -14, 60, 104), R / 4f), YSort(c.y) + 30); // t1815: pillar authored for 4 u
+            After(0.65f, () => ZFx1618(-1, c, R, 1.4f, "ZFX_RebirthFlame_Storm", FxDiscRc1815(R, 0.55f, 8f), FbGround + YSort(c.y) + 6, 1));
             if (!ZhFxLive1625("ZFX_RebirthFlame_Pillar")) { ZFx1618(0, c, R, 0.6f); ZFx1618(2, c, R * 0.6f, 0.4f); }
             if (!ZhFxLive1625("ZFX_RebirthFlame_Pillar")) for (int k = 0; k < 8; k++) { float a = k * 45f * Mathf.Deg2Rad; Vector2 q = c + new Vector2(Mathf.Cos(a) * R * 0.6f, Mathf.Sin(a) * R * 0.6f * 0.6f); FireBasicsFX1481.Once("fire_pillar_erupt", q, YSort(q.y) + 5, 0f, 1f, 0, false, k * 1.5f); }
             Query(c, R, _zq1618); foreach (int i in _zq1618) { var e = _en[i]; if (!e.alive || (e.pos - c).magnitude > R) continue; Hit(e, ZkHit1651(9) * TZ.rbDmg1618, ZkI1651(9), (e.pos - c).normalized * 4f); ZhStormHits1618++; }
@@ -459,12 +460,12 @@ namespace Hellord
                 {
                     int og = FbGround + YSort(s.p.y) + 8; Vector2 sky = s.p + Vector2.up * (9f * (1f - k) * (1f - k));
                     float f = Mathf.Pow(Z01((k - 0.5625f) / 0.4375f), 2f); bool blink = k >= 0.85f && k < 0.9167f || k >= 0.9583f; // spec timeline (0.8 s) scaled to swFall1618
-                    if (!ZhFx1625("ZFX_SunsWrath_Telegraph", s.p, -60, -34, 120, 68, og, s.t, 0.8f, ZP.F("_Progress", k), ZP.F("_Shadow", Z01((k - 0.5625f) / 0.4375f)), ZP.F("_Blink", blink ? 1f : 0f))) { ZDiscO1618(s.p, R * (0.3f + 0.7f * k), new Color(ZK.r, ZK.g, ZK.b, 0.25f + 0.35f * k), og, 0.6f); ZRingO1618(s.p, R, new Color(ZR.r, ZR.g, ZR.b, 0.7f), og + 1, 0.6f); }
+                    var swRc = FxDiscRc1815(R, 0.55f, 8f); if (!ZhFx1625("ZFX_SunsWrath_Telegraph", s.p, swRc.x, swRc.y, swRc.z, swRc.w, og, s.t, 0.8f, ZP.F("_Progress", k), ZP.F("_Shadow", Z01((k - 0.5625f) / 0.4375f)), ZP.F("_Blink", blink ? 1f : 0f), ZP.F("_Radius", R * 16f))) { ZDiscO1618(s.p, R * (0.3f + 0.7f * k), new Color(ZK.r, ZK.g, ZK.b, 0.25f + 0.35f * k), og, 0.6f); ZRingO1618(s.p, R, new Color(ZR.r, ZR.g, ZR.b, 0.7f), og + 1, 0.6f); }
                     if (!ZhFx1625("ZFX_SunsWrath_Sun", s.p + new Vector2(40f * (1f - f), 12f + 130f * (1f - f)) / 16f, -30, -24, 60, 110, YSort(s.p.y) + 200, s.t, 0.8f, ZP.F("_Fall", f), ZP.V("_Vel", new Vector2(-60f, -360f)))) { ZDiscO1618(sky, 1.1f, new Color(ZO.r, ZO.g, ZO.b, 0.9f), YSort(s.p.y) + 200); ZDiscO1618(sky, 0.8f, ZA, YSort(s.p.y) + 201); ZDiscO1618(sky, 0.5f, ZY, YSort(s.p.y) + 202); }
                     continue;
                 }
                 _zSuns1618.RemoveAt(i); ScreenShake.Add(4f, 0.35f); HitStop.Play(0.06f, 0.2f, 0.4f); HellordAudio.Play("fireball_impact", 0.5f); HellordAudio.Play("fire_pillar_erupt", 0.6f);
-                ZFx1618(-1, s.p, R, 1.0f, "ZFX_SunsWrath_Impact", new Vector4(-60, -30, 120, 100), YSort(s.p.y) + 200, 2); ZFx1618(-1, s.p, R, ZkDur1651(8, TZ.swAreaS1618), "ZFX_SunsWrath_Burn", new Vector4(-62, -34, 124, 70), FbGround + YSort(s.p.y) + 6, 1); ZFx1618(-1, s.p, R, ZkDur1651(8, TZ.swAreaS1618), "ZFX_SunsWrath_Light", new Vector4(-64, -34, 128, 68), FbGround + YSort(s.p.y) + 8, 3); // t1625 spec hooks
+                float areaR = ZkR1651(8, TZ.swAreaR1618); ZFx1618(-1, s.p, R, 1.0f, "ZFX_SunsWrath_Impact", FxDiscRc1815(R, 0.83f, 8f), YSort(s.p.y) + 200, 2); ZFx1618(-1, s.p, areaR, ZkDur1651(8, TZ.swAreaS1618), "ZFX_SunsWrath_Burn", FxDiscRc1815(areaR, 0.55f, 8f), FbGround + YSort(s.p.y) + 6, 1); ZFx1618(-1, s.p, areaR, ZkDur1651(8, TZ.swAreaS1618), "ZFX_SunsWrath_Light", FxDiscRc1815(areaR, 0.55f, 8f), FbGround + YSort(s.p.y) + 8, 3); // t1815: follow live swR / swAreaR
                 bool shSun = ZhFxLive1625("ZFX_SunsWrath_Impact");
                 if (!shSun) { FireBasicsFX1481.Once("infernal_boulder_end_blast", s.p, YSort(s.p.y) + 30, 0f, 1f, 0, false, 0f, R / 3f, R / 3f); ZFx1618(0, s.p, R * 1.2f, 0.5f); ZFx1618(2, s.p, R, 0.3f); }
                 Query(s.p, R + 0.6f, _zq1618); foreach (int ei in _zq1618) { var e = _en[ei]; if (!e.alive) continue; Vector2 d = e.pos - s.p; float nx = d.x / R, ny = d.y / (R * 0.6f + 0.5f); if (nx * nx + ny * ny > 1f) continue; Hit(e, ZkHit1651(8) * TZ.swDmg1618, ZkI1651(8), d.normalized * 3f); ZhSunHits1618++; }

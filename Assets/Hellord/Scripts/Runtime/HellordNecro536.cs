@@ -224,7 +224,7 @@ namespace Hellord
         {
             if (m.atk > 0 || !LiveEn594(t)) return; var e = _en[t]; Vector2 to = e.pos - m.p;
             m.atk = NRate536(m.kind == 3 || m.kind == 4 ? m.kind : 0); m.atkT = Time.time; m.atkFace = to; Hit(e, dmg, sk, to.normalized * 0.3f); FxWarHit561(m, e); SinCleave818(e, t, dmg, sk); // t818u #42 // damage stays on attack frame 0 (VH open)
-            if (m.kind == 3) NkFxClaySlam1736(m.p);
+            if (m.kind == 3) NkFxClaySlam1736(m.p, PT.skelWarReach561);
             if (NHas536(4)) { int t2 = Nearest(e.pos, PT.graveEdgeR536, t); if (t2 >= 0) { Hit(_en[t2], dmg, NSk536(0), Vector2.zero); FxEdge561(e, _en[t2]); } } // A5 +1 target
         }
         void Shoot590(NMin536 m, int t, float dmg, SkillInst sk, float rng)
@@ -237,7 +237,7 @@ namespace Hellord
             ArcMulti622(m, t, end, pierce, ref dmg, sk, rng); // t622u Multi Projectiles (extra arrows first; dmg scaled for all)
             if (m.kind == 2) NkFxSoulBolt1736(m.p + Vector2.up * 0.6f, dir, 0.4f);
             FxArcShot561(m, t, end, pierce, dmg, sk); // keep the projectile for damage; soul-bolt shader is the visible bolt
-            if (m.kind == 2 && m.burst > 0f) { m.burst = 0f; float br = 1.6f; Query(e.pos, br, _pq53); foreach (var q in _pq53) { var x = _en[q]; if (!x.alive || x.dying) continue; Hit(x, dmg * 1.2f, sk, Vector2.zero); } if (!NkFxSoulBurst1736(e.pos + Vector2.up * e.hitY)) HordeFX.CheapBurst(e.pos + Vector2.up * e.hitY, new Color(0.6f, 0.88f, 0.82f), 8); }
+            if (m.kind == 2 && m.burst > 0f) { m.burst = 0f; float br = PT.nkMageBurstR1713; Query(e.pos, br, _pq53); foreach (var q in _pq53) { var x = _en[q]; if (!x.alive || x.dying) continue; Hit(x, dmg * 1.2f, sk, Vector2.zero); } if (!NkFxSoulBurst1736(e.pos + Vector2.up * e.hitY, br)) HordeFX.CheapBurst(e.pos + Vector2.up * e.hitY, new Color(0.6f, 0.88f, 0.82f), 8); }
         }
         // t582u target pick: keep the current target while valid (focus), else demons near the hero (threat), else nearest to the minion inside the leash
         int PickT582(NMin536 m, float r)

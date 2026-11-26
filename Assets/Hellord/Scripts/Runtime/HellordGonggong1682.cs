@@ -318,7 +318,8 @@ namespace Hellord
                 }
                 w.t += dt; int ord = YSort(w.p.y) + 40; Vector2 a = w.p - n * w.w * 0.5f, b = w.p + n * w.w * 0.5f; float prog = 1f - w.left / Mathf.Max(0.01f, T.tsDist1682), ang = GgDeg1682(w.dir);
                 // HFX: pivot = the cast start (the front moves inside the shader), _Angle, _Progress 0.8 x travelled while rolling (0.8 -> 1 = the crash, below)
-                Vector4 wrc = GgRotRc1682(new Vector4(-34, -34, 177, 83), ang), crc = GgRotRc1682(new Vector4(-34, -34, 177, 101), ang);
+                float tsScL = T.tsDist1682 / 6f, tsScW = w.w / 2.4f; // t1815: authored 177x83 for 6 x 2.4 u
+                Vector4 wrc = GgRotRc1682(new Vector4(-34f * tsScL, -34f * tsScW, 177f * tsScL, 83f * tsScW), ang), crc = GgRotRc1682(new Vector4(-34f * tsScL, -34f * tsScW, 177f * tsScL, 101f * tsScW), ang);
                 if (GgFx1682("GGFX_TidalSurge_Crest", w.p0, crc.x, crc.y, crc.z, crc.w, YSort(w.p0.y) + 60, w.t, 0.3f, ZP.F("_Angle", ang), ZP.F("_Progress", 0.8f * prog))) { }
                 if (!GgFx1682("GGFX_TidalSurge", w.p0, wrc.x, wrc.y, wrc.z, wrc.w, GgGround1682(w.p0), w.t, 0.3f, ZP.F("_Angle", ang), ZP.F("_Progress", 0.8f * prog)))
                 {   // PLACEHOLDER: a blue wall of water with a white foam crest and a pale wake
@@ -334,7 +335,7 @@ namespace Hellord
                 { var aP = new[] { ZP.F("_Angle", ang) };
                   var wb = GgFxO1682(-1, w.p0, 0f, 0.475f, "GGFX_TidalSurge", wrc); wb.ps = aP; wb.ord = GgGround1682(w.p0); wb.t0 = w.t; wb.pf = o => new[] { ZP.F("_Progress", 0.8f + 0.2f * Mathf.Min(1f, (o.t - o.delay) / 0.125f)), ZP.F("_Fade", Mathf.Clamp01((o.t - o.delay - 0.125f) / 0.35f)) };
                   var wc = GgFxO1682(-1, w.p0, 0f, 0.125f, "GGFX_TidalSurge_Crest", crc); wc.ps = aP; wc.t0 = w.t; wc.pf = o => new[] { ZP.F("_Progress", 0.8f + 0.2f * Mathf.Min(1f, (o.t - o.delay) / 0.125f)) }; }
-                GgSurgeCrashes1682++; GgFxO1682(0, w.p, r, 0.45f, "GGFX_TidalSurge_Crash", new Vector4(-36, -22, 72, 73)); GgFxO1682(1, w.p, r * 0.8f, 0.25f); HellordAudio.Play("frost_cleave", 0.55f); ScreenShake.Add(1f, 0.08f);
+                GgSurgeCrashes1682++; GgFxO1682(0, w.p, r, 0.45f, "GGFX_TidalSurge_Crash", FxScaleRc1815(new Vector4(-36, -22, 72, 73), r / 1.2f)); GgFxO1682(1, w.p, r * 0.8f, 0.25f); HellordAudio.Play("frost_cleave", 0.55f); ScreenShake.Add(1f, 0.08f);
                 _ggWaves1682.RemoveAt(i);
             }
         }
@@ -410,7 +411,7 @@ namespace Hellord
                 GgBreathTicks1682++; _lastCast[(int)s.def.id] = Time.time;
             }
             int ord = YSort(_heroPos.y) + 80; float fl = 0.85f + 0.15f * Mathf.Sin(runTime * 31f);
-            float bAng = GgDeg1682(dir); Vector4 brc = GgConeRc1682(bAng); var bPs = new[] { ZP.F("_Angle", bAng), ZP.F("_Hold", b.t), ZP.F("_Intensity", Mathf.Clamp01(b.t / 0.15f)) }; // HFX: _Hold in seconds held
+            float bAng = GgDeg1682(dir); Vector4 brc = GgConeRc1682(bAng, R * 16f, T.brArc1682); var bPs = new[] { ZP.F("_Angle", bAng), ZP.F("_Hold", b.t), ZP.F("_Intensity", Mathf.Clamp01(b.t / 0.15f)) }; // HFX: _Hold in seconds held
             GgFx1682("GGFX_BreathOfTheDeep_Ground", _heroPos, brc.x, brc.y, brc.z, brc.w, GgGround1682(_heroPos), b.t, 0.3f, bPs);
             if (!GgFx1682("GGFX_BreathOfTheDeep", _heroPos + new Vector2(7f, 16f) / 16f, brc.x, brc.y, brc.z, brc.w, YSort(_heroPos.y) + 60, b.t, 0.4f, bPs))
             {   // PLACEHOLDER: 5 frosty rays fanning out of the hand + drifting flakes
@@ -433,7 +434,7 @@ namespace Hellord
                 {
                     int q = r.done++; Vector2 p = Vector2.Lerp(r.a, r.b, (q + 1f) / (N + 1f)); float R = r.s.R(T.rfBurstR1682); SkillArea53(p, R, r.dmg * T.rfBurst1682, (int)r.s.def.id); Query(p, R, _ggq1682);
                     foreach (int ei in _ggq1682.ToArray()) { var e = _en[ei]; if (!GgOk1682(e) || (e.pos - p).magnitude > R + e.radius) continue; Hit(e, r.dmg * T.rfBurst1682, r.s, Vector2.zero); }
-                    GgRiftBursts1682++; GgFxO1682(2, p, R, 0.3f, "GGFX_BuzhouRift_Burst", new Vector4(-24, -20, 48, 54)).ord = YSort(p.y); HellordAudio.Play("frost_cleave", 1.5f + 0.05f * q);
+                    GgRiftBursts1682++; GgFxO1682(2, p, R, 0.3f, "GGFX_BuzhouRift_Burst", FxScaleRc1815(new Vector4(-24, -20, 48, 54), R / 1.5f)).ord = YSort(p.y); HellordAudio.Play("frost_cleave", 1.5f + 0.05f * q);
                 }
                 if (!r.spiked && r.t >= (N + 1) * T.rfStep1682)
                 {
@@ -444,7 +445,7 @@ namespace Hellord
                         if (fr) { e.freezeT = 0f; e.chillHits = 0; if (StatusFX.IsAlive(e.chillH)) StatusFX.SetFrozen(e.chillH, false); GgRiftShatters1682++; if (GgFxLive1682("GGFX_BuzhouRift_Consume")) GgFxO1682(-1, e.pos + new Vector2(0f, 4f / 16f), 0.7f, 0.45f, "GGFX_BuzhouRift_Consume", new Vector4(-44, -13, 88, 60)); else GgFxO1682(2, BodyCentre1595(e), 0.7f, 0.3f); } // the freeze is consumed
                         Hit(e, r.dmg * T.rfSpike1682 * (fr ? T.rfFrozen1682 : 1f), r.s, (e.pos - r.b).normalized * 1f);
                     }
-                    GgRiftSpikes1682++; GgFxO1682(2, r.b, R * 1.3f, 0.45f, "GGFX_BuzhouRift_Spike", new Vector4(-33, -29, 66, 81)).ord = YSort(r.b.y); GgFxO1682(0, r.b, R, 0.3f); HellordAudio.Play("ice_shatter", 1f); ScreenShake.Add(1.2f, 0.1f);
+                    GgRiftSpikes1682++; GgFxO1682(2, r.b, R * 1.3f, 0.45f, "GGFX_BuzhouRift_Spike", FxScaleRc1815(new Vector4(-33, -29, 66, 81), R / 2.0625f)).ord = YSort(r.b.y); GgFxO1682(0, r.b, R, 0.3f); HellordAudio.Play("ice_shatter", 1f); ScreenShake.Add(1.2f, 0.1f);
                 }
                 // PLACEHOLDER crack: a jagged dark-blue line up to the newest burst, fading after the spike
                 float fade = r.spiked ? Mathf.Clamp01(1f - (r.t - (N + 1) * T.rfStep1682) / 0.4f) : 1f; Vector2 tip = Vector2.Lerp(r.a, r.b, Mathf.Min(1f, r.done / (N + 1f))); Vector2 prev = r.a; int ordc = FbGround + YSort(r.a.y) + 30;
@@ -550,12 +551,12 @@ namespace Hellord
             if (g != null)
             {
                 g.t += dt; if (g.t >= g.life || g.hp <= 0) { if (g.hp <= 0) { GgGateBroken1682++; HellordAudio.Play("ice_shatter", 1.2f); } Vector2 gm = (g.a + g.b) * 0.5f; float ga = GgDeg1682(g.dir);
-                    if (GgFxLive1682("GGFX_Floodgate")) { var bo = GgFxO1682(-1, gm, 1.2f, 0.3f, "GGFX_Floodgate", GgIceWallRc1682(ga)); bo.ord = YSort(gm.y); bo.t0 = g.t; float dk = 1f - g.hp / (float)Mathf.Max(1, T.fgHits1682); bo.ps = new[] { ZP.F("_Angle", ga), ZP.F("_Damage", Mathf.Clamp01(dk)) }; bo.pf = o2 => new[] { ZP.F("_Progress", 1f), ZP.F("_Break", Mathf.Clamp01((o2.t - o2.delay) / o2.life)) }; } // HFX _Break 0 -> 1 over 0.3 s
+                    if (GgFxLive1682("GGFX_Floodgate")) { var bo = GgFxO1682(-1, gm, 1.2f, 0.3f, "GGFX_Floodgate", GgIceWallRc1682(ga, (g.a - g.b).magnitude * 16f)); bo.ord = YSort(gm.y); bo.t0 = g.t; float dk = 1f - g.hp / (float)Mathf.Max(1, T.fgHits1682); bo.ps = new[] { ZP.F("_Angle", ga), ZP.F("_Damage", Mathf.Clamp01(dk)) }; bo.pf = o2 => new[] { ZP.F("_Progress", 1f), ZP.F("_Break", Mathf.Clamp01((o2.t - o2.delay) / o2.life)) }; } // HFX _Break 0 -> 1 over 0.3 s
                     else GgFxO1682(2, gm, 1.2f, 0.3f); _ggGate1682 = null; }
                 else
                 {
                     float dmgK = 1f - g.hp / (float)Mathf.Max(1, T.fgHits1682); Vector2 m = (g.a + g.b) * 0.5f; int o = YSort(Mathf.Min(g.a.y, g.b.y)) + 20;
-                    float ga = GgDeg1682(g.dir); Vector4 grc = GgIceWallRc1682(ga); // HFX: _Angle = dash direction (the wall runs across it)
+                    float ga = GgDeg1682(g.dir); Vector4 grc = GgIceWallRc1682(ga, (g.a - g.b).magnitude * 16f); // HFX: _Angle = dash direction (the wall runs across it)
                     if (!GgFx1682("GGFX_Floodgate", m, grc.x, grc.y, grc.z, grc.w, YSort(m.y), g.t, 0.5f, ZP.F("_Angle", ga), ZP.F("_Progress", Mathf.Clamp01(g.t / 1f)), ZP.F("_Damage", dmgK), ZP.F("_Break", 0f)))
                     {   // PLACEHOLDER: a pale ice slab (two tones) with cracks as it takes hits
                         ZSegO1618(g.a, g.b, g.thick * 2f, new Color(GP.r, GP.g, GP.b, 0.95f), o); ZSegO1618(g.a + Vector2.up * 0.25f, g.b + Vector2.up * 0.25f, g.thick * 1.6f, new Color(GI.r, GI.g, GI.b, 0.95f), o + 1); ZSegO1618(g.a + Vector2.up * 0.45f, g.b + Vector2.up * 0.45f, 0.06f, GW, o + 2);
@@ -568,7 +569,7 @@ namespace Hellord
                 var r = _ggRiver1682[i]; r.t += dt; if (r.t >= r.life) { _ggRiver1682.RemoveAt(i); continue; }
                 Vector2 m = (r.a + r.b) * 0.5f; Query(m, (r.b - r.a).magnitude * 0.5f + r.w, _ggq1682);
                 foreach (int ei in _ggq1682) { var e = _en[ei]; if (!GgOk1682(e) || PbSegDist(e.pos, r.a, r.b) > r.w * 0.5f + e.radius) continue; if (e.slowT <= 0f || e.slowAmt < T.frSlow1682) e.slowAmt = T.frSlow1682; e.slowT = Mathf.Max(e.slowT, 0.12f); e.chillT = Mathf.Max(e.chillT, 0.12f); GgRiverSlows1682++; }
-                float fade = Mathf.Clamp01((r.life - r.t) / 0.4f); int o = FbGround + YSort(m.y) + 20; Vector2 tp = (r.b - r.a) * 16f; Vector4 rrc = GgSegRc1682(tp, 20f);
+                float fade = Mathf.Clamp01((r.life - r.t) / 0.4f); int o = FbGround + YSort(m.y) + 20; Vector2 tp = (r.b - r.a) * 16f; Vector4 rrc = GgSegRc1682(tp, Mathf.Max(12f, r.w * 16f)); // t1815: pad follows live river width
                 if (!GgFx1682("GGFX_FrozenRiver", r.a, rrc.x, rrc.y, rrc.z, rrc.w, GgGround1682(r.a), r.t, 0.4f, ZP.V("_TargetPx", tp), ZP.F("_Ignite", Mathf.Clamp01(r.t / Mathf.Max(0.05f, T49.dashTimeS49))), ZP.F("_Fade", 1f - fade)))
                 {   // PLACEHOLDER: a pale ice strip with a bright centre line and moving glints
                     ZSegO1618(r.a, r.b, r.w, new Color(GI.r, GI.g, GI.b, 0.35f * fade), o); ZSegO1618(r.a, r.b, 0.06f, new Color(GW.r, GW.g, GW.b, 0.6f * fade), o + 1);
@@ -661,7 +662,7 @@ namespace Hellord
                 Vector2 c = e.pos; e.freezeT = 0f; e.chillHits = 0; if (StatusFX.IsAlive(e.chillH)) StatusFX.SetFrozen(e.chillH, false); GgShatters1682++;
                 Query(c, br, _ggq1682);
                 foreach (int oi in _ggq1682.ToArray()) { var o = _en[oi]; if (!GgOk1682(o) || (o.pos - c).magnitude > br + o.radius) continue; Hit(o, ZkHit1651(k) * T.shDmg1682, s, (o.pos - c).normalized * 0.8f); if (o != e && GgOk1682(o)) ApplyStatus(o, Status.Chill, 0f, GgCK1682(s), s); }
-                GgFxO1682(2, c, br, 0.5f, "GGFX_Shatter_Burst", new Vector4(-57, -15, 114, 72)); GgFxO1682(0, c, br, 0.3f);
+                GgFxO1682(2, c, br, 0.5f, "GGFX_Shatter_Burst", FxScaleRc1815(new Vector4(-57, -15, 114, 72), br / (57f / 16f))); GgFxO1682(0, c, br, 0.3f);
             }
             HellordAudio.Play("ice_shatter", 0.9f); ScreenShake.Add(1.5f, 0.12f); return true;
         }
@@ -682,7 +683,7 @@ namespace Hellord
             var w = _ggFw1682; if (w == null || !c.alive) return; c.alive = false; var T = TZ; int k = GgK1682(1, 5); var s = ZkI1651(k);
             Query(c.p, w.r, _ggq1682);
             foreach (int ei in _ggq1682.ToArray()) { var o = _en[ei]; if (!GgOk1682(o) || (o.pos - c.p).magnitude > w.r + o.radius) continue; Hit(o, ZkHit1651(k) * T.fwDmg1682, s, (o.pos - c.p).normalized * 0.8f); if (GgOk1682(o)) ApplyStatus(o, Status.Chill, 0f, GgCK1682(s), s); }
-            GgCrystalBooms1682++; GgFxO1682(2, c.p + Vector2.up * 0.375f, w.r, 0.4f, "GGFX_FrostWall_Pop", new Vector4(-38, -12, 76, 54)); HellordAudio.Play("ice_shatter", 1.2f);
+            GgCrystalBooms1682++; GgFxO1682(2, c.p + Vector2.up * 0.375f, w.r, 0.4f, "GGFX_FrostWall_Pop", FxScaleRc1815(new Vector4(-38, -12, 76, 54), w.r / (38f / 16f))); HellordAudio.Play("ice_shatter", 1.2f);
         }
         /// <summary>SkillArea53 (any of your areas): Frost Wall crystals inside it explode.</summary>
         void GgArea1682(Vector2 c, float r, int key)
@@ -779,8 +780,10 @@ namespace Hellord
                     {
                         var x = w.c[ci]; if (!x.alive) continue; int o = YSort(x.p.y) + 10; float fade = Mathf.Clamp01((w.life - w.t) / 0.3f);
                         float bt = w.t - 0.1f * Mathf.Abs(ci - (w.c.Count - 1) * 0.5f), left = w.life - w.t, fp = left < 0.4f ? 0.75f + 0.25f * (1f - left / 0.4f) : Mathf.Min(0.74f, 0.1f * Mathf.Max(0f, bt) / 0.15f); // HFX: centre first, crumble over the last 0.4 s
-                        if (!GgFx1682("GGFX_FrostWall", x.p, -23, -19, 46, 51, YSort(x.p.y), w.t, x.p.x * 0.37f, ZP.F("_Progress", fp)))
+                        { float crSc = TZ.fwCrR1682 / (23f / 16f); var fwRc = FxScaleRc1815(new Vector4(-23, -19, 46, 51), crSc);
+                        if (!GgFx1682("GGFX_FrostWall", x.p, fwRc.x, fwRc.y, fwRc.z, fwRc.w, YSort(x.p.y), w.t, x.p.x * 0.37f, ZP.F("_Progress", fp)))
                         { ZSegO1618(x.p, x.p + Vector2.up * 1.3f, 0.5f, new Color(GP.r, GP.g, GP.b, fade), o); ZSegO1618(x.p + Vector2.up * 0.2f, x.p + Vector2.up * 1.25f, 0.3f, new Color(GI.r, GI.g, GI.b, fade), o + 1); ZPx1618(x.p + new Vector2(-0.06f, 1.0f), 1, GW, o + 2); }
+                        }
                     }
             }
         }

@@ -4,7 +4,7 @@ namespace Hellord
 {
     // =====================================================================================================================
     // t1641 (VH approved plan): the bottom skill bar = the 4-slot kit: LMB basic | SPACE movement | RMB special | R ultimate.
-    //  Same belt art (black outline, #3a4466 frame, #181425 fill, 26 px icon frame, 2x2 support gems + level on the basic, sweep masks).
+    //  Same belt art (black outline, #3a4466 frame, #181425 fill, 26 px icon frame, 2x2 support gems + level on every unlocked slot, sweep masks).
     //  Each cell: key label on top (centred), icon below (icons_v2 for kit skills, the existing icon for the basic), cooldown sweep.
     //  Kit slots are empty + locked (padlock, dim label) until picked on level-up. Replaces the t1618 MOV / SPC / ULT debug text.
     //  Geometry (HUD px, 640x360), measured for VH: cell 57 x 48 (inner 55 x 46, odd width so every 5x7 label centres exactly), gap 2.
@@ -56,6 +56,21 @@ namespace Hellord
             GUI.color = Color.white;
         }
 
+        /// <summary>t1812: 2x2 support gem sockets + "L#" under them. Same origin as the LMB group
+        /// (fx = left of the 26 px icon frame; gems start fx+30, gy0 = content y). Pixel-identical for every unlocked slot.</summary>
+        void KbDrawGems1812(SkillInst k, float fx, float cy, float gm)
+        {
+            if (k == null) return;
+            float gx0 = fx + 26 + 4, gy0 = cy;
+            for (int p = 0; p < 4; p++)
+            {
+                float sx = gx0 + (p % 2) * (gm + 1), sy = gy0 + (p / 2) * (gm + 1); bool open = p < Mathf.Min(k.level, 4), fill = p < k.sup.Count;
+                if (fill && _tSup20 != null) { int si = SupIx(k.sup[p]); GUI.color = Color.white; Blit(_tSup20, (si % 10) * 20, (si / 10) * 20, 20, 20, sx, sy, gm, gm); }
+                else { Frame716(sx, sy, gm, gm, open ? C716(0x5a6988) : C716(0x262b44)); if (!open) Fill716(sx + 1, sy + 1, gm - 2, gm - 2, C716(0x262b44)); }
+            }
+            GUI.color = Color.white; Text("L" + k.level, gx0, gy0 + 2 * (gm + 1) + 1, k.level >= 5 ? C716(0xfee761) : C716(0x8b9bb4));
+        }
+
         string KbLabel1641(int i) => i == 0 ? "LMB" : i == 1 ? (Manual716 ? Label716(Bind716(Act716.Dash)) : "SPACE") : i == 2 ? "RMB" : "R";
 
         void DrawKitBelt1641()
@@ -86,18 +101,14 @@ namespace Hellord
                     float cdf = cont ? 0 : Mathf.Clamp01(k.cd / full);
                     if ((cdf > 0.02f && k.cd > 0.15f || BeltSweep1517(k)) && _tCdMask != null) { int nf = _tCdMask.Length - 1; int fr = Mathf.Clamp(Mathf.FloorToInt((1 - cdf) * nf), 0, nf); GUI.color = Color.white; GUI.DrawTexture(new Rect(ix, iy, 24, 24), _tCdMask[fr]); if (full >= 1.5f) CdNumber(Mathf.CeilToInt(k.cd), ix, iy, true); }
                     float rdy = BeltReady1517(k); if (rdy > 0f) { Frame716(ix - 1, iy - 1, 26, 26, C716(0xfee761, rdy)); Frame716(ix - 2, iy - 2, 28, 28, C716(0xfeae34, rdy * 0.6f)); }
-                    float gx0 = fx + 26 + 4, gy0 = cy;
-                    for (int p = 0; p < 4; p++)
-                    {
-                        float sx = gx0 + (p % 2) * (gm + 1), sy = gy0 + (p / 2) * (gm + 1); bool open = p < Mathf.Min(k.level, 4), fill = p < k.sup.Count;
-                        if (fill && _tSup20 != null) { int si = SupIx(k.sup[p]); GUI.color = Color.white; Blit(_tSup20, (si % 10) * 20, (si / 10) * 20, 20, 20, sx, sy, gm, gm); }
-                        else { Frame716(sx, sy, gm, gm, open ? C716(0x5a6988) : C716(0x262b44)); if (!open) Fill716(sx + 1, sy + 1, gm - 2, gm - 2, C716(0x262b44)); }
-                    }
-                    GUI.color = Color.white; Text("L" + k.level, gx0, gy0 + 2 * (gm + 1) + 1, k.level >= 5 ? C716(0xfee761) : C716(0x8b9bb4));
+                    KbDrawGems1812(k, fx, cy, gm);
                     continue;
                 }
-                {   // kit slot: icon frame centred (26 px frame in the 55 px inner width: 14 | 26 | 15)
-                    float ix = x + Mathf.Floor((r.width - 24) / 2f), iy = cy + 3;
+                {   // kit slot: locked = icon-centred padlock (unchanged). Unlocked = LMB's group (26 frame + 4 + 21 gems), same fx/ix/iy.
+                    var kk = filled ? ZkSlotInst1651(i - 1) : null;
+                    float grp = 26 + 4 + (2 * gm + 1);
+                    float fx = kk != null ? x + Mathf.Floor((r.width - grp) / 2f) : 0f;
+                    float ix = kk != null ? fx + 1 : x + Mathf.Floor((r.width - 24) / 2f), iy = cy + 3;
                     Frame716(ix - 1, iy - 1, 26, 26, C716(0x3a4466, 0.9f));
                     if (!filled)
                     {   // padlock (10 x 12, centred in the 24 px icon box: 7 | 10 | 7, 6 | 12 | 6), bar ink like the empty '+'
@@ -113,15 +124,9 @@ namespace Hellord
                         int nf = _tCdMask.Length - 1; int fr = Mathf.Clamp(Mathf.FloorToInt((1 - Mathf.Clamp01(c / fl)) * nf), 0, nf);
                         GUI.color = Color.white; GUI.DrawTexture(new Rect(ix, iy, 24, 24), _tCdMask[fr]); if (fl >= 1.5f) CdNumber(Mathf.CeilToInt(c), ix, iy, true);
                     }
-                    if (i == 2 && NkSpecSummonHud1713(out float shp, out float smax, out int shave, out int swant, out float sresp))
-                    {   // t1796: Jiangshi / Skeletal Mage live by HP. Show HP while alive; death-respawn CD only when none are up and the press is ready.
-                        if (shave > 0 && smax > 0.01f)
-                        {
-                            float bw = 24f, bh = 3f, bx = ix, by = iy + 24f - bh;
-                            Fill716(bx, by, bw, bh, C716(0x181425));
-                            Fill716(bx, by, Mathf.Max(1f, Mathf.Round(bw * Mathf.Clamp01(shp / smax))), bh, C716(0x5ac54f));
-                        }
-                        else if (c <= 0.05f && sresp > 0.05f)
+                    if (i == 2 && NkSpecSummonHud1713(out float _, out float _, out int shave, out int _, out float sresp))
+                    {   // t1812: live HP lives on the Option D2 strip. RMB keeps only the death-respawn overlay when none are up and the press is ready.
+                        if (shave <= 0 && c <= 0.05f && sresp > 0.05f)
                         {
                             if (_tCdMask != null)
                             {
@@ -133,11 +138,72 @@ namespace Hellord
                         }
                     }
                     if (i == 3) KbUltProgress1646(ix, iy, c > 0.05f); // t1646: R slot condition fill / armed glow (replaces the t1641 'dark when not armed')
+                    if (kk != null) KbDrawGems1812(kk, fx, cy, gm); // t1812: 2x2 gems + L# , same pixels as LMB
                 }
             }
             DrawSinHud818(Cell716(0).x, Cell716(0).y - 1); // t818u sins frame above the belt, left-aligned (unchanged)
             if (hov == 0 && _slot716[0] != null && HellordTuning.I.beltTooltip716 && !_ctrlOpen716) DrawTip716(_slot716[0], Cell716(0));
             GUI.color = g;
+        }
+
+        // t1812: Play-mode kit-bar verification. Flag: -kitbarSupportsPlaytest
+        System.Collections.IEnumerator KitBarSupportsPlaytestCo1812()
+        {
+            const string tag = "[t1812]";
+            const string shot = "/workspace/tmp/kitbar_supports_playtest.png";
+            void Log(string m) { Debug.Log(tag + " " + m); }
+            yield return null;
+#if UNITY_EDITOR
+            try
+            {
+                var t = System.Type.GetType("Hellord.EditorTools.HellordMenu, Hellord.Editor");
+                t?.GetMethod("ForceGameView1920x1080_1808", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)?.Invoke(null, null);
+            }
+            catch (System.Exception e) { Debug.LogWarning("[t1812] ForceGameView invoke failed: " + e.Message); }
+            for (int _gv = 0; _gv < 8; _gv++) yield return null;
+            Debug.Log("[t1812] screen after GameView force " + Screen.width + "x" + Screen.height);
+#endif
+            var T = HellordTuning.I;
+            T.kit1618 = true; T.nkKit1713 = true; T.kitAnyPact1618 = false; T.kitSlotOverride1639 = false;
+            T.kitBar1641 = true; T.skillBelt720 = true;
+            T.nkMove1713 = T.nkSpecial1713 = T.nkUlt1713 = 0;
+            PreloadStop1675();
+            if (_unlock51 != null) for (int p = 0; p < _unlock51.Length; p++) _unlock51[p] = int.MaxValue;
+            _souls51 = 1700; _sigils51 = 15; _pactPath51 = 1; _pactSel51 = 1; _pactSealed51 = true; PactSave51();
+            ResetRun();
+            _pactPath51 = 1; _pactSel51 = 1; _pactSealed51 = true; PactApply51();
+            PreloadStop1675();
+            pendingLevels = 0; mode = Mode.Play;
+            skills.Clear(); skills.Add(new SkillInst { def = HData.Skill(SkillId.SkeletonWarriors), level = 1 }); SetHeroLayers();
+            foreach (var e in _en) if (e != null && e.alive) { e.dmg = 0f; e.speed = 0f; }
+            ChooseKit1639(new Card { kind = CardKind.NewSkill, kit = 2, kitPick = 4 });
+            SnapCamera();
+            Log("picked Jiangshi; ZhRunSpec1639=" + ZhRunSpec1639 + " NkSpec1713=" + NkSpec1713 + " kitBar=" + KitBar1641);
+            for (int i = 0; i < 30; i++) yield return null;
+            int jn = NCount536(3, false);
+            NMin536 golem = null; foreach (var m in _nmin536) if (m.kind == 3 && !m.temp) { golem = m; break; }
+            if (golem != null) { golem.p = _heroPos + new Vector2(1.85f, 0.15f); golem.prev = golem.p; ClampToRoom(ref golem.p, 6); }
+            SnapCamera();
+            for (int i = 0; i < 8; i++) yield return null;
+            System.IO.Directory.CreateDirectory("/workspace/tmp");
+            if (System.IO.File.Exists(shot)) System.IO.File.Delete(shot);
+            var lmb = skills.Count > 0 ? skills[0] : null;
+            var rmb = ZkSlotInst1651(1);
+            Log("screen " + Screen.width + "x" + Screen.height + " fullscreen=" + Screen.fullScreen);
+            int warHave = NCount536(0, false), warWant = NBase536(0);
+            Log("D2 warriors " + warHave + "/" + warWant + " jiangshi " + jn + " NkSpec=" + NkSpec1713);
+            Log("kit LMB lv=" + (lmb != null ? lmb.level : 0) + " RMB lv=" + (rmb != null ? rmb.level : 0) + " SPACE pick=" + KitMove1666 + " R pick=" + KitUlt1666);
+            ScreenCapture.CaptureScreenshot(shot);
+            yield return new WaitForEndOfFrame();
+            for (int i = 0; i < 20 && !System.IO.File.Exists(shot); i++) yield return null;
+            Log("screenshot " + (System.IO.File.Exists(shot) ? ("ok " + new System.IO.FileInfo(shot).Length + " bytes") : "MISSING"));
+            bool ok = Screen.width == 1920 && Screen.height == 1080 && jn > 0 && golem != null && golem.hp > 0f && lmb != null && lmb.level >= 1 && rmb != null && rmb.level >= 1 && KitMove1666 == 0 && KitUlt1666 == 0 && System.IO.File.Exists(shot);
+            Log(ok ? "PASS" : "FAIL");
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.Exit(ok ? 0 : 1);
+#else
+            Application.Quit(ok ? 0 : 1);
+#endif
         }
     }
 }

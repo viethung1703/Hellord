@@ -292,8 +292,8 @@ namespace Hellord
         }
         void NkPlagueSpread1713(Enemy src)
         {
-            NkFxPlagueSpread1736(src.pos);
-            int k = NkK1713(1, 2); float r = TZ.nkPlagueSpread1713; Query(src.pos, r, _nkq1713);
+            int k = NkK1713(1, 2); float r = ZkR1651(k, TZ.nkPlagueSpread1713); NkFxPlagueSpread1736(src.pos, r);
+            Query(src.pos, r, _nkq1713);
             foreach (int ei in _nkq1713)
             {
                 var e = _en[ei]; if (e == src || !NkOk1713(e) || (e.pos - src.pos).magnitude > r + e.radius) continue;
@@ -333,7 +333,7 @@ namespace Hellord
                 float r = ZkR1651(k, TZ.nkGolemSlamR1713); Query(cur, r, _nkq1713); var s = ZkI1651(k); float dmg = ZkHit1651(k) * TZ.nkGolemSlamDmg1713;
                 foreach (int ei in _nkq1713) { var e = _en[ei]; if (!NkOk1713(e) || (e.pos - cur).magnitude > r + e.radius) continue; Hit(e, dmg, s, (e.pos - cur).normalized * 0.5f); if (!e.boss) e.stun53 = Mathf.Max(e.stun53, TZ.nkGolemStun1713 * (e.elite ? 0.5f : 1f)); }
                 HellordAudio.Play("oxhead_stomp_strike", 0.9f);
-                if (!NkFxClaySlam1736(cur)) ZRingO1618(cur, r, new Color(NB.r, NB.g, NB.b, 0.8f), FbGround + YSort(cur.y) + 25, 0.55f);
+                if (!NkFxClaySlam1736(cur, r)) ZRingO1618(cur, r, new Color(NB.r, NB.g, NB.b, 0.8f), FbGround + YSort(cur.y) + 25, 0.55f);
             }
         }
         // t1796: first fill (and a card pick) is immediate. The respawn CD is armed only when a summon dies (NkMinionDied1713).
@@ -685,6 +685,86 @@ namespace Hellord
             Log("mage pick ZhRunSpec1639=" + ZhRunSpec1639 + " count=" + mn + " hp=" + (mage != null ? mage.hp.ToString("0.#") : "none") + "/" + (mage != null ? mage.maxHp.ToString("0.#") : "-") + " temp=" + (mage != null && mage.temp) + " life=" + (mage != null ? mage.life.ToString() : "none") + " sprites=" + mageSpr + " mageResp=" + _nkMageResp1713.ToString("0.##"));
             bool ok = jn > 0 && golem != null && golem.hp > 0f && !golem.temp && float.IsInfinity(golem.life) && idleOk && moveOk && atkOk && skel && ic != null && icName.IndexOf("jiangshi") >= 0 && T.kitSlotOverride1639 == false && ZhRunSpec1639 == 3 && mn > 0 && mage != null && mage.hp > 0f && !mage.temp && mageSpr;
             Log(ok ? "PASS" : "FAIL");
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.Exit(ok ? 0 : 1);
+#else
+            Application.Quit(ok ? 0 : 1);
+#endif
+        }
+
+        // t1815: 1920x1080 Play-mode check of the 3-pass range rebalance + live-radius FX + kit bar.
+        System.Collections.IEnumerator RangeRebalancePlaytestCo1815()
+        {
+            const string tag = "[t1815]";
+            const string shot = "/workspace/tmp/range_rebalance_playtest.png";
+            void Log(string m) { Debug.Log(tag + " " + m); }
+            string ex = null;
+            Application.logMessageReceived += (c, s, typ) =>
+            {
+                if (typ != LogType.Exception || ex != null) return;
+                // Editor SearchDatabase throws on startup in this Linux batch Play-mode (also seen in prior t1796/t1812 logs); ignore editor-only stacks.
+                if ((s != null && s.IndexOf("UnityEditor.Search") >= 0) || (c != null && c.IndexOf("UnityEditor.Search") >= 0)) return;
+                ex = c;
+            };
+            yield return null;
+#if UNITY_EDITOR
+            try
+            {
+                var t = System.Type.GetType("Hellord.EditorTools.HellordMenu, Hellord.Editor");
+                t?.GetMethod("ForceGameView1920x1080_1808", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)?.Invoke(null, null);
+            }
+            catch (System.Exception e) { Debug.LogWarning("[t1815] ForceGameView invoke failed: " + e.Message); }
+            for (int _gv = 0; _gv < 8; _gv++) yield return null;
+            Debug.Log("[t1815] screen after GameView force " + Screen.width + "x" + Screen.height);
+#endif
+            var T = HellordTuning.I;
+            T.kit1618 = true; T.nkKit1713 = true; T.kitAnyPact1618 = false; T.kitSlotOverride1639 = false;
+            T.kitBar1641 = true; T.skillBelt720 = true;
+            T.nkMove1713 = T.nkSpecial1713 = T.nkUlt1713 = 0;
+            PreloadStop1675();
+            if (_unlock51 != null) for (int p = 0; p < _unlock51.Length; p++) _unlock51[p] = int.MaxValue;
+            _souls51 = 1700; _sigils51 = 15; _pactPath51 = 1; _pactSel51 = 1; _pactSealed51 = true; PactSave51();
+            ResetRun();
+            _pactPath51 = 1; _pactSel51 = 1; _pactSealed51 = true; PactApply51();
+            PreloadStop1675();
+            pendingLevels = 0; mode = Mode.Play;
+            skills.Clear();
+            skills.Add(new SkillInst { def = HData.Skill(SkillId.Teeth), level = 1 });
+            skills.Add(new SkillInst { def = HData.Skill(SkillId.SkeletonWarriors), level = 1 });
+            SetHeroLayers();
+            foreach (var e in _en) if (e != null && e.alive) { e.dmg = 0f; e.speed = 0f; }
+            ChooseKit1639(new Card { kind = CardKind.NewSkill, kit = 2, kitPick = 4 });
+            SnapCamera();
+            Log("picked Jiangshi; NkSpec=" + NkSpec1713 + " kitBar=" + KitBar1641);
+            Log("tune teeth=" + T.nkTeethRange1713 + " slam=" + T.nkGolemSlamR1713 + " warReach=" + T.skelWarReach561 + " wall=" + T.nkWallLen1713 + " plagueSpread=" + T.nkPlagueSpread1713 + " mageBurst=" + T.nkMageBurstR1713 + " colStomp=" + T.nkColSlamR1713 + " groundAoe=" + T.groundAoeRange716 + " fpRange=" + T.fpRangeU1481 + " hySight=" + T.hySight1625 + " leash=" + T.minionLeash561 + " seek=" + T.minionSeekR590 + " standoff=" + T.archerStandoff582 + " kite=" + T.archerKiteR582 + " arcShot=" + T.skelArcRange561 + " iceNova=" + T.novaRadiusU[0] + ".." + T.novaRadiusU[T.novaRadiusU.Length - 1]);
+            for (int i = 0; i < 30; i++) yield return null;
+            int jn = NCount536(3, false);
+            NMin536 golem = null; foreach (var m in _nmin536) if (m.kind == 3 && !m.temp) { golem = m; break; }
+            if (golem != null) { golem.p = _heroPos + new Vector2(1.85f, 0.15f); golem.prev = golem.p; ClampToRoom(ref golem.p, 6); }
+            Enemy dummy = null; foreach (var e in _en) if (e != null && e.alive) { dummy = e; break; }
+            if (dummy != null) { dummy.pos = _heroPos + new Vector2(2.4f, 0.1f); dummy.hp = Mathf.Max(dummy.hp, 40f); }
+            var teeth = skills.Count > 0 ? skills[0] : new SkillInst { def = HData.Skill(SkillId.Teeth), level = 1 };
+            try { CastTeeth1713(teeth, 12f); } catch (System.Exception e) { if (ex == null) ex = e.Message; Log("CastTeeth ex " + e.Message); }
+            try { NkRaiseGolem1713(NkK1713(1, 4), _heroPos + new Vector2(1.2f, 0f)); } catch (System.Exception e) { if (ex == null) ex = e.Message; Log("slam ex " + e.Message); }
+            SnapCamera();
+            for (int i = 0; i < 12; i++) yield return null;
+            System.IO.Directory.CreateDirectory("/workspace/tmp");
+            if (System.IO.File.Exists(shot)) System.IO.File.Delete(shot);
+            var lmb = skills.Count > 0 ? skills[0] : null;
+            var rmb = ZkSlotInst1651(1);
+            int z = CamZoom();
+            Log("screen " + Screen.width + "x" + Screen.height + " zoom=" + z + " camTarget=" + T.camTargetPx49 + " (expect 640x360 @ zoom 3)");
+            int warHave = NCount536(0, false), warWant = NBase536(0);
+            Log("D2 warriors " + warHave + "/" + warWant + " jiangshi " + jn + " NkSpec=" + NkSpec1713 + " teethLv=" + (lmb != null ? lmb.level : 0) + " RMB=" + (rmb != null ? rmb.level : 0) + " SPACE=" + KitMove1666 + " R=" + KitUlt1666);
+            ScreenCapture.CaptureScreenshot(shot);
+            yield return new WaitForEndOfFrame();
+            for (int i = 0; i < 20 && !System.IO.File.Exists(shot); i++) yield return null;
+            Log("screenshot " + (System.IO.File.Exists(shot) ? ("ok " + new System.IO.FileInfo(shot).Length + " bytes") : "MISSING"));
+            if (ex != null) Log("exception " + ex);
+            bool camOk = Screen.width == 1920 && Screen.height == 1080 && z == 3 && T.camTargetPx49.x == 640f && T.camTargetPx49.y == 360f;
+            bool tuneOk = Mathf.Approximately(T.nkTeethRange1713, 5.5f) && Mathf.Approximately(T.nkGolemSlamR1713, 2.9f) && Mathf.Approximately(T.skelWarReach561, 1.5f) && Mathf.Approximately(T.groundAoeRange716, 9f) && Mathf.Approximately(T.minionLeash561, 10f) && Mathf.Approximately(T.minionSeekR590, 10f);
+            bool ok = camOk && tuneOk && jn > 0 && golem != null && golem.hp > 0f && lmb != null && lmb.level >= 1 && lmb.def != null && lmb.def.id == SkillId.Teeth && rmb != null && rmb.level >= 1 && KitMove1666 == 0 && KitUlt1666 == 0 && System.IO.File.Exists(shot) && ex == null;
+            Log(ok ? "PASS" : "FAIL cam=" + camOk + " tune=" + tuneOk + " ex=" + (ex ?? "none"));
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.Exit(ok ? 0 : 1);
 #else

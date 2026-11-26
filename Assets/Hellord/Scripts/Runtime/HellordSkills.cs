@@ -87,7 +87,7 @@ namespace Hellord
                 case SkillId.CurseRune:
                 {
                     Vector2 at;
-                    if (CurAim720) at = GroundAim716(); else if (Aiming()) { at = MouseWorld(); var st = HInput.AimStick(); if (st.sqrMagnitude > 0.09f) at = _heroPos + st.normalized * 4; if ((at - _heroPos).magnitude > 7) at = _heroPos + (at - _heroPos).normalized * 7; }
+                    if (CurAim720) at = GroundAim716(); else if (Aiming()) { at = MouseWorld(); var st = HInput.AimStick(); if (st.sqrMagnitude > 0.09f) at = _heroPos + st.normalized * 4; { float gR716 = HellordTuning.I.groundAoeRange716; if ((at - _heroPos).magnitude > gR716) at = _heroPos + (at - _heroPos).normalized * gR716; } }
                     else { int n = Nearest(_heroPos, 9, -1); if (n < 0) { s.cd = 0.3f; return; } at = _en[n].pos; }
                     if (_scrambleT > 0) { at = _heroPos + ScrambleAim(at - _heroPos); ClampToRoom(ref at, 4); } // v0.0.25: Gossip Imp scramble
                     var T = HellordTuning.I; float r = CurseRadius738(s); var sk = s; float d = dmg; bool ech = _echo738; if (ech) { r *= T.curseEchoRadiusMul738; d *= T.curseEchoDmgMul738; } /* t738u */

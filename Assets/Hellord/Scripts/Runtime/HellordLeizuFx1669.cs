@@ -115,14 +115,16 @@ namespace Hellord
             return true;
         }
         /// <summary>sky strike recipe at p (set = LzStrikeDefs1669 key). False = no bolt material (caller keeps LzSky1666).</summary>
-        bool LzStrike1669(string set, Vector2 p)
+        bool LzStrike1669(string set, Vector2 p, float radiusU = 0f)
         {
             if (!LzStrikeDefs1669.TryGetValue(set, out var s) || !LzFxLive1666(s.pre + "_Bolt")) return false;
             const float U = 1f / 16f; float seed = Mathf.Repeat(p.x * 0.731f + p.y * 0.377f + runTime * 3.1f, 1f); int over = YSort(p.y) + 60;
+            // t1815: scale hit/ground from live radius vs authored hit half-width so Bigger Area stays in sync
+            float artR = Mathf.Max(0.01f, s.hitRc.z * 0.5f / 16f); float sc = radiusU > 0.01f ? radiusU / artR : 1f;
             _lzFx1666.Add(new LzFxO { kind = -2, p = p + new Vector2(-6f + 12f * seed, s.height) * U, q = p + new Vector2(0f, 1f) * U, life = s.boltLife, mat = s.pre + "_Bolt", ord = over, seed = seed });
-            if (LzFxLive1666(s.pre + "_Hit")) _lzFx1666.Add(new LzFxO { kind = -1, p = p + new Vector2(0f, 3f) * U, life = s.hitLife, mat = s.pre + "_Hit", rc = s.hitRc, ord = over + 2 });
-            if (LzFxLive1666(s.pre + s.ground)) _lzFx1666.Add(new LzFxO { kind = -1, p = p, life = s.groundLife, mat = s.pre + s.ground, rc = s.groundRc, ord = FbGround + YSort(p.y) + 40 });
-            if (s.spark && LzFxLive1666(s.pre + "_Spark")) _lzFx1666.Add(new LzFxO { kind = -1, p = p + new Vector2(0f, 2f) * U, life = 0.14f, mat = s.pre + "_Spark", rc = new Vector4(-8, -8, 16, 16), ord = over + 4 }); // the -0.14 s pre-flash, played with the impact (gameplay has no lead-in)
+            if (LzFxLive1666(s.pre + "_Hit")) _lzFx1666.Add(new LzFxO { kind = -1, p = p + new Vector2(0f, 3f) * U, life = s.hitLife, mat = s.pre + "_Hit", rc = FxScaleRc1815(s.hitRc, sc), ord = over + 2 });
+            if (LzFxLive1666(s.pre + s.ground)) _lzFx1666.Add(new LzFxO { kind = -1, p = p, life = s.groundLife, mat = s.pre + s.ground, rc = FxScaleRc1815(s.groundRc, sc), ord = FbGround + YSort(p.y) + 40 });
+            if (s.spark && LzFxLive1666(s.pre + "_Spark")) _lzFx1666.Add(new LzFxO { kind = -1, p = p + new Vector2(0f, 2f) * U, life = 0.14f, mat = s.pre + "_Spark", rc = FxScaleRc1815(new Vector4(-8, -8, 16, 16), sc), ord = over + 4 });
             return true;
         }
         /// <summary>Storm Stride footfall afterimage every 0.18 s while moving (segment = feet 0.18 s ago -> now).</summary>

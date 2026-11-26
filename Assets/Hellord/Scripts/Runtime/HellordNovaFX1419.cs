@@ -10,7 +10,7 @@ namespace Hellord
     //     short centre flash on frames 0-1). HAZE: Hellord/NovaHaze1419 (GrabPass heat-haze ripple behind the wave front, frames 0-6).
     //   * Fallbacks: shader missing / unsupported -> strips only (no glow); GrabPass impossible (SRP) -> no haze; strips missing -> the old IceFX3 visual.
     //   * Gameplay link: the hit ring follows the visual front radius curve (Front01) so damage lands as the ring passes the demons. Max radius and damage unchanged.
-    //  Toggle: HellordTuning.novaGlow1419 (default on; off = the old t1414 IceFX3 nova). Integer 1x nearest only, strips are never scaled. DRAWS ONLY.
+    //  Toggle: HellordTuning.novaGlow1419 (default on; off = the old t1414 IceFX3 nova). Picks the nearest authored set, then uniformly scales strips by liveRadiusPx / set.ref5 so Bigger Area stays in sync (t1815). DRAWS ONLY.
     // =====================================================================================================================
     public class NovaFX1419 : MonoBehaviour
     {
@@ -90,7 +90,7 @@ namespace Hellord
         public static float FullPx(int set) { return set >= 0 && _sets[set] != null ? _sets[set].ref5 : 0f; }
 
         // ------------------------------------------------------------------ instances
-        sealed class Inst { public object key; public Vector2 pos; public float age; public bool driven; public int order, set; public SpriteRenderer back, front, glow, haze; public Material hazeMat; public bool live; }
+        sealed class Inst { public object key; public Vector2 pos; public float age, rMaxPx; public bool driven; public int order, set; public SpriteRenderer back, front, glow, haze; public Material hazeMat; public bool live; }
         readonly List<Inst> _all = new List<Inst>();
         static SpriteRenderer NewSR(Transform p, string n) { var go = new GameObject(n); go.transform.SetParent(p, false); return go.AddComponent<SpriteRenderer>(); }
         Inst Take()
@@ -101,11 +101,11 @@ namespace Hellord
             _all.Add(s); return s;
         }
         /// <summary>Every frame while the hit ring lives: keeps the burst on game time t (seconds since the cast). `ground` = hero feet, `frontOrder` = sorting order of the front strip. First call creates the burst; after the ring is gone it plays out on its own.</summary>
-        public static void Drive(object key, Vector2 ground, float tSec, int frontOrder, int set)
+        public static void Drive(object key, Vector2 ground, float tSec, int frontOrder, int set, float rMaxPx = 0f)
         {
             if (!Ok || set < 0 || _sets[set] == null) return; Inst s = null; foreach (var x in _i._all) if (x.live && x.key == key) { s = x; break; }
             if (s == null) { s = _i.Take(); s.key = key; s.pos = ground; s.set = set; }
-            s.age = tSec * FPS; s.driven = true; s.order = frontOrder;
+            s.age = tSec * FPS; s.driven = true; s.order = frontOrder; if (rMaxPx > 0f) s.rMaxPx = rMaxPx;
         }
         public static void Clear() { if (_i == null) return; foreach (var x in _i._all) Hide(x); }
         static void Hide(Inst s) { s.live = false; s.key = null; s.back.enabled = s.front.enabled = s.glow.enabled = s.haze.enabled = false; }
@@ -120,12 +120,13 @@ namespace Hellord
                 if (!s.live) continue; if (!s.driven) s.age += dFrames; s.driven = false;
                 var st = _sets[s.set]; var _ext = st.ext; int n = _ext.Length; if (s.age >= n) { Hide(s); continue; }
                 int fi = Mathf.Clamp((int)s.age, 0, n - 1); var p = new Vector3(Snap(s.pos.x), Snap(s.pos.y), 0);
-                s.back.enabled = true; s.back.sprite = st.back.f[fi]; s.back.transform.position = p; s.back.sortingOrder = IceFX3.OrdBack;
-                s.front.enabled = true; s.front.sprite = st.front.f[fi]; s.front.transform.position = p; s.front.sortingOrder = s.order;
-                if (_glowOk && st.glow != null) { s.glow.enabled = true; s.glow.sprite = st.glow.f[Mathf.Min(fi, st.glow.f.Length - 1)]; s.glow.transform.position = p; s.glow.sortingOrder = s.order + 3; float fl = st.d2 ? 0f : fi == 0 ? 1f : fi == 1 ? 0.6f : 0f; var gm = st.d2 ? _glowMatD2 : _glowMat; if (s.glow.sharedMaterial != gm) s.glow.sharedMaterial = gm; s.glow.color = new Color(fl, 0f, 0f, st.d2 ? GlowD2[Mathf.Min(fi, GlowD2.Length - 1)] : GlowI[Mathf.Min(fi, GlowI.Length - 1)]); } // t1426: d2spec has no flash blob and uses the low-gain material
+                float sc = (s.rMaxPx > 1f && st.ref5 > 1f) ? s.rMaxPx / st.ref5 : 1f; var sc3 = new Vector3(sc, sc, 1f); // t1815: live radius / authored full radius
+                s.back.enabled = true; s.back.sprite = st.back.f[fi]; s.back.transform.position = p; s.back.transform.localScale = sc3; s.back.sortingOrder = IceFX3.OrdBack;
+                s.front.enabled = true; s.front.sprite = st.front.f[fi]; s.front.transform.position = p; s.front.transform.localScale = sc3; s.front.sortingOrder = s.order;
+                if (_glowOk && st.glow != null) { s.glow.enabled = true; s.glow.sprite = st.glow.f[Mathf.Min(fi, st.glow.f.Length - 1)]; s.glow.transform.position = p; s.glow.transform.localScale = sc3; s.glow.sortingOrder = s.order + 3; float fl = st.d2 ? 0f : fi == 0 ? 1f : fi == 1 ? 0.6f : 0f; var gm = st.d2 ? _glowMatD2 : _glowMat; if (s.glow.sharedMaterial != gm) s.glow.sharedMaterial = gm; s.glow.color = new Color(fl, 0f, 0f, st.d2 ? GlowD2[Mathf.Min(fi, GlowD2.Length - 1)] : GlowI[Mathf.Min(fi, GlowI.Length - 1)]); } // t1426: d2spec has no flash blob and uses the low-gain material
                 if (_hazeOk && s.age < 7f)
                 {
-                    float f = Mathf.Max(0f, s.age); int i0 = Mathf.Min((int)f, n - 1), i1 = Mathf.Min(i0 + 1, n - 1); float front = Mathf.Lerp(_ext[i0], _ext[i1], f - i0);
+                    float f = Mathf.Max(0f, s.age); int i0 = Mathf.Min((int)f, n - 1), i1 = Mathf.Min(i0 + 1, n - 1); float front = Mathf.Lerp(_ext[i0], _ext[i1], f - i0) * sc;
                     s.haze.enabled = true; s.haze.transform.position = p; s.haze.sortingOrder = s.order + 2; s.haze.transform.localScale = new Vector3(2f * (front + 14f) / PPU, 2f * ((front + 14f) * (st.d2 ? 0.5f : SQ) + 4f) / PPU, 1f);
                     s.hazeMat.SetVector("_Center", new Vector4(p.x, p.y, 0, 0)); s.hazeMat.SetFloat("_FrontPx", front); s.hazeMat.SetFloat("_Width", Mathf.Max(6f, front * 0.45f)); s.hazeMat.SetFloat("_Amp", 3f * (1f - s.age / 7f)); s.hazeMat.SetFloat("_Squash", st.d2 ? 0.5f : SQ); s.hazeMat.SetFloat("_PPU", PPU);
                 }

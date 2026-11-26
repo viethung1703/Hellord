@@ -40,6 +40,32 @@ namespace Hellord.EditorTools
             EditorApplication.isPlaying = true;
         }
 
+        /// <summary>t1812: batch Play-mode kit-bar supports verification. Run Unity with
+        /// -executeMethod Hellord.EditorTools.HellordMenu.RunKitBarSupportsPlaytest1812 -kitbarSupportsPlaytest
+        /// (needs a GL context; do not pass -nographics). The runtime hook exits the Editor when done.</summary>
+        public static void RunKitBarSupportsPlaytest1812()
+        {
+            string scene = "Assets/Hellord/Scenes/Hellord_Prototype.unity";
+            if (!System.IO.File.Exists(scene)) scene = "Assets/Hellord/Scenes/Hellord_Prototype_Generated.unity";
+            if (!System.IO.File.Exists(scene)) CreateScene();
+            else UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
+            ForceGameView1920x1080_1808();
+            EditorApplication.isPlaying = true;
+        }
+
+        /// <summary>t1815: batch Play-mode skill-range rebalance verification at 1920x1080 (CAM 640x360 SAFE).
+        /// -executeMethod Hellord.EditorTools.HellordMenu.RunRangeRebalancePlaytest1815 -rangeRebalancePlaytest
+        /// (needs a GL context; do not pass -nographics). The runtime hook exits the Editor when done.</summary>
+        public static void RunRangeRebalancePlaytest1815()
+        {
+            string scene = "Assets/Hellord/Scenes/Hellord_Prototype.unity";
+            if (!System.IO.File.Exists(scene)) scene = "Assets/Hellord/Scenes/Hellord_Prototype_Generated.unity";
+            if (!System.IO.File.Exists(scene)) CreateScene();
+            else UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
+            ForceGameView1920x1080_1808();
+            EditorApplication.isPlaying = true;
+        }
+
 
         /// <summary>t1808: select a FixedResolution 1920x1080 Game View so Play-mode Screen is 1920x1080
         /// (HUD at 3x / CAM 640x360 SAFE), not the inset pane size.

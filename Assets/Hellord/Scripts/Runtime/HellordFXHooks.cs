@@ -164,6 +164,18 @@ namespace Hellord
             if (_orbitJobs != null) foreach (var j in _orbitJobs) HellFXRunner.I.Kill(j);
             _orbitJobs = null; _orbitN = 0;
         }
+
+        // t1815: FX quads from live world-unit sizes so visuals follow the hitbox / Bigger Area.
+        static Vector4 FxDiscRc1815(float rU, float ySquash = 0.55f, float padPx = 8f)
+        {
+            float R = Mathf.Max(0.01f, rU) * HArt.PPU, h = R * ySquash;
+            return new Vector4(-(R + padPx), -(h + padPx), 2f * (R + padPx), 2f * (h + padPx));
+        }
+        static Vector4 FxScaleRc1815(Vector4 authored, float scale)
+        {
+            float s = Mathf.Max(0.01f, scale);
+            return new Vector4(authored.x * s, authored.y * s, authored.z * s, authored.w * s);
+        }
     }
 
     /// <summary>v0.0.35: Frost Cleave swing drawn from the real tuning values: outer rim at radius r, faint inner rim, and (for a partial arc) the two

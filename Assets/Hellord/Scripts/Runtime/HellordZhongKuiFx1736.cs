@@ -141,10 +141,11 @@ namespace Hellord
                 o => er != null && er.alive ? er.pos : o.p);
             return true;
         }
-        bool NkFxPlagueSpread1736(Vector2 pos)
+        bool NkFxPlagueSpread1736(Vector2 pos, float radiusU = 2.5f)
         {
             if (!NkFxLive1736("ZKFX_SoulPlague_Spread")) return false;
-            NkFxAdd1736("ZKFX_SoulPlague_Spread", pos, new Vector4(-56, -38, 112, 76), 0.7f, 2, o => new[] { ZP.F("_Progress", Mathf.Clamp01(o.t / 0.7f)) });
+            // authored 112x76 for 2.5 u spread
+            NkFxAdd1736("ZKFX_SoulPlague_Spread", pos, FxScaleRc1815(new Vector4(-56, -38, 112, 76), radiusU / 2.5f), 0.7f, 2, o => new[] { ZP.F("_Progress", Mathf.Clamp01(o.t / 0.7f)), ZP.F("_Radius", radiusU * 16f) });
             return true;
         }
         bool NkFxOssuaryNova1736(Vector2 pos, float radiusU = 8f)
@@ -259,6 +260,8 @@ namespace Hellord
         {
             if (!NkFxLive1736("ZKFX_BoneWall")) return false;
             _nkWallBreakAt1736 = -1f;
+            float wallPx = (TZ != null ? TZ.nkWallLen1713 : 3f) * 16f; // t1815: follow nkWallLen1713 (authored 48 px = 3 u)
+            float wallSc = wallPx / 48f;
             float seed = Mathf.Repeat(start.x * 0.37f + start.y * 0.13f + runTime, 1f);
             System.Func<NkFxO, ZP[]> pfCore = o =>
             {
@@ -273,7 +276,7 @@ namespace Hellord
                 return new[] { ZP.F("_Angle", dashAng), ZP.F("_Damage", Mathf.Clamp01(dmg)), ZP.F("_Break", br), ZP.F("_Fade", br) };
             };
             if (NkFxLive1736("ZKFX_BoneWall_Ground"))
-                NkFxAdd1736("ZKFX_BoneWall_Ground", start, new Vector4(-44, -36, 88, 72), life + 0.3f, 0, pfCore, seed: seed);
+                NkFxAdd1736("ZKFX_BoneWall_Ground", start, FxScaleRc1815(new Vector4(-44, -36, 88, 72), wallSc), life + 0.3f, 0, pfCore, seed: seed);
             Vector2 dir = new Vector2(Mathf.Cos(dashAng * Mathf.Deg2Rad), Mathf.Sin(dashAng * Mathf.Deg2Rad));
             Vector2 n = new Vector2(-dir.y, dir.x);
             if (Mathf.Abs(n.y) > 0.5f)
@@ -282,15 +285,15 @@ namespace Hellord
                 for (int s = 0; s < 3; s++)
                 {
                     int lo = parts[s, 0], hi = parts[s, 1];
-                    float sa = ((lo + 0.5f) / 13f - 0.5f) * 48f;
-                    float sb = ((hi + 0.5f) / 13f - 0.5f) * 48f;
+                    float sa = ((lo + 0.5f) / 13f - 0.5f) * wallPx;
+                    float sb = ((hi + 0.5f) / 13f - 0.5f) * wallPx;
                     float spx = n.y * sa < n.y * sb ? sa : sb;
                     Vector2 cpx = start * 16f;
                     Vector2 pvpx = new Vector2(Mathf.Round(cpx.x + n.x * spx), Mathf.Round(cpx.y + n.y * spx)) - new Vector2(0f, 3f);
                     Vector2 pv = pvpx / 16f;
                     Vector2 wallOff = pvpx - new Vector2(Mathf.Round(cpx.x), Mathf.Round(cpx.y));
                     var part = new Vector4(lo, hi, 0, 0);
-                    var rc = new Vector4(-40f - wallOff.x, -32f - wallOff.y, 80f, 116f);
+                    var rc = FxScaleRc1815(new Vector4(-40f, -32f, 80f, 116f), wallSc); rc.x -= wallOff.x; rc.y -= wallOff.y;
                     _nkWallFx1736 = NkFxAdd1736("ZKFX_BoneWall", pv, rc, life + 0.3f, 1, o =>
                     {
                         var ps = pfCore(o);
@@ -300,7 +303,7 @@ namespace Hellord
                 }
             }
             else
-                _nkWallFx1736 = NkFxAdd1736("ZKFX_BoneWall", start, new Vector4(-40, -32, 80, 116), life + 0.3f, 1, pfCore, seed: seed);
+                _nkWallFx1736 = NkFxAdd1736("ZKFX_BoneWall", start, FxScaleRc1815(new Vector4(-40, -32, 80, 116), wallSc), life + 0.3f, 1, pfCore, seed: seed);
             return true;
         }
         bool NkFxGhostStep1736(Vector2 start, Vector2 end, float dashTime)
@@ -326,19 +329,23 @@ namespace Hellord
                 o => o.p + d * 8f * Time.deltaTime);
             return true;
         }
-        bool NkFxSoulBurst1736(Vector2 pos)
+        bool NkFxSoulBurst1736(Vector2 pos, float radiusU = 2.4f)
         {
             if (!NkFxLive1736("ZKFX_SoulBurst")) return false;
-            NkFxAdd1736("ZKFX_SoulBurst", pos, new Vector4(-42, -28, 84, 80), 0.55f, 2, o => new[] { ZP.F("_Progress", Mathf.Clamp01(o.t / 0.55f)) });
+            // authored 84x80 for 1.6 u burst
+            NkFxAdd1736("ZKFX_SoulBurst", pos, FxScaleRc1815(new Vector4(-42, -28, 84, 80), radiusU / 1.6f), 0.55f, 2, o => new[] { ZP.F("_Progress", Mathf.Clamp01(o.t / 0.55f)), ZP.F("_Radius", radiusU * 16f) });
             return true;
         }
-        bool NkFxClaySlam1736(Vector2 pos)
+        bool NkFxClaySlam1736(Vector2 pos, float radiusU = 2.9f)
         {
             if (!NkFxLive1736("ZKFX_ClaySlam")) return false;
-            NkFxAdd1736("ZKFX_ClaySlam", pos, new Vector4(-42, -30, 84, 60), 0.85f, 0, o =>
+            // authored 84x60 (~2.6 u visual) ; now follows live slam / melee radius
+            float R = Mathf.Max(0.01f, radiusU) * 16f, y = 60f / 84f, pad = 8f;
+            var rc = new Vector4(-(R + pad), -(R * y + pad), 2f * (R + pad), 2f * (R * y + pad));
+            NkFxAdd1736("ZKFX_ClaySlam", pos, rc, 0.85f, 0, o =>
             {
                 float fade = o.t >= 0.55f ? Mathf.InverseLerp(0.55f, 0.85f, o.t) : 0f;
-                return new[] { ZP.F("_Progress", Mathf.Clamp01(o.t / 0.7f)), ZP.F("_Fade", fade) };
+                return new[] { ZP.F("_Progress", Mathf.Clamp01(o.t / 0.7f)), ZP.F("_Fade", fade), ZP.F("_Radius", R) };
             });
             return true;
         }

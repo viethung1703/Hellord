@@ -118,19 +118,19 @@ namespace Hellord
 
         // ------------------------------------------------------------------ staged floor decals
         public enum DecalKind { PillarScorch, SpitScorch }
-        sealed class DecalI { public Pair p; public Strip s; public DecalKind kind; public float f; public Vector2 pos; public int order, row; public int stage = -9; }
+        sealed class DecalI { public Pair p; public Strip s; public DecalKind kind; public float f, sx = 1f, sy = 1f; public Vector2 pos; public int order, row; public int stage = -9; }
         readonly List<DecalI> _dec = new List<DecalI>();
         static readonly float[][] Ends = { new float[] { 30, 46, 58, 70, 78 }, new float[] { 6, 12, 18, 24, 30, 36 } };   // Fire Pillar scorch stages (v1 art, unchanged); HFX v5 Spit scorch: stage = f div 6, 6 stages (gone at b38)
         static readonly int[] Cap = { 12, 8 }, DissolveStage = { 3, 6 };
         static int Stage(DecalKind k, float f) { var e = Ends[(int)k]; for (int i = 0; i < e.Length; i++) if (f < e[i]) return i; return -2; }
         /// <summary>Staged floor decal. delayF = frames before it starts. row = direction row of a dir16 strip (shard scar). Over the HFX cap the oldest jumps to its dissolve stage.</summary>
-        public static void Decal(string key, DecalKind kind, Vector2 pos, int order, float delayF = 0f, int row = 0)
+        public static void Decal(string key, DecalKind kind, Vector2 pos, int order, float delayF = 0f, int row = 0, float scale = 1f)
         {
             if (!Ok || !_s.TryGetValue(key, out var s)) return; var a = _i; int cap = Cap[(int)kind]; int live = 0; DecalI oldest = null;
             foreach (var d in a._dec) if (d.p.live && d.kind == kind) { live++; if (oldest == null || d.f > oldest.f) oldest = d; }
             if (live >= cap && oldest != null) oldest.f = Mathf.Max(oldest.f, Ends[(int)kind][DissolveStage[(int)kind] - 1]);
             DecalI x = null; foreach (var d in a._dec) if (!d.p.live) { x = d; break; } if (x == null) { x = new DecalI { p = a.NewPair() }; a._dec.Add(x); }
-            x.p.live = true; x.s = s; x.kind = kind; x.f = -delayF; x.pos = pos; x.order = order; x.row = row; x.stage = -9; Hide(x.p);
+            x.p.live = true; x.s = s; x.kind = kind; x.f = -delayF; x.pos = pos; x.order = order; x.row = row; x.stage = -9; x.sx = x.sy = Mathf.Max(0.01f, scale); Hide(x.p);
         }
         // ------------------------------------------------------------------ t1511b floor darkening (code-drawn soft dark ellipse, alpha-black; swappable for HFX art via DarkOverride)
         /// <summary>Set this to draw an art version instead (pos, rx px, ry px, peak alpha, hold s, order); the code ellipse is skipped while it is set.</summary>
@@ -184,7 +184,7 @@ namespace Hellord
             {
                 if (!d.p.live) continue; d.f += dt * FPS; int st = Stage(d.kind, d.f);
                 if (st == -2) { d.p.live = false; Hide(d.p); continue; } if (st == -1 || d.f < 0f) { Hide(d.p); continue; }
-                if (st != d.stage) { d.stage = st; Put(d.p, d.s, d.row, st, d.pos, d.order, 0f, false); }
+                if (st != d.stage) { d.stage = st; Put(d.p, d.s, d.row, st, d.pos, d.order, 0f, false, d.sx, 1f, d.sy); }
             }
         }
     }
