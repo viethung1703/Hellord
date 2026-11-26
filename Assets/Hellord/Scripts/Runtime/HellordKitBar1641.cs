@@ -113,6 +113,25 @@ namespace Hellord
                         int nf = _tCdMask.Length - 1; int fr = Mathf.Clamp(Mathf.FloorToInt((1 - Mathf.Clamp01(c / fl)) * nf), 0, nf);
                         GUI.color = Color.white; GUI.DrawTexture(new Rect(ix, iy, 24, 24), _tCdMask[fr]); if (fl >= 1.5f) CdNumber(Mathf.CeilToInt(c), ix, iy, true);
                     }
+                    if (i == 2 && NkSpecSummonHud1713(out float shp, out float smax, out int shave, out int swant, out float sresp))
+                    {   // t1796: Jiangshi / Skeletal Mage live by HP. Show HP while alive; death-respawn CD only when none are up and the press is ready.
+                        if (shave > 0 && smax > 0.01f)
+                        {
+                            float bw = 24f, bh = 3f, bx = ix, by = iy + 24f - bh;
+                            Fill716(bx, by, bw, bh, C716(0x181425));
+                            Fill716(bx, by, Mathf.Max(1f, Mathf.Round(bw * Mathf.Clamp01(shp / smax))), bh, C716(0x5ac54f));
+                        }
+                        else if (c <= 0.05f && sresp > 0.05f)
+                        {
+                            if (_tCdMask != null)
+                            {
+                                float rfull = Mathf.Max(0.05f, NkSpec1713 == 4 ? TZ.nkGolemResp1713 : TZ.nkMageResp1713);
+                                int nf = _tCdMask.Length - 1; int fr = Mathf.Clamp(Mathf.FloorToInt((1 - Mathf.Clamp01(sresp / rfull)) * nf), 0, nf);
+                                GUI.color = Color.white; GUI.DrawTexture(new Rect(ix, iy, 24, 24), _tCdMask[fr]);
+                            }
+                            CdNumber(Mathf.CeilToInt(sresp), ix, iy, true);
+                        }
+                    }
                     if (i == 3) KbUltProgress1646(ix, iy, c > 0.05f); // t1646: R slot condition fill / armed glow (replaces the t1641 'dark when not armed')
                 }
             }

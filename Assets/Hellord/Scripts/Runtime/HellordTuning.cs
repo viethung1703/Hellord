@@ -1821,7 +1821,7 @@ namespace Hellord
     // ================================================================= t1713 Zhong Kui kit (HellordZhongKui1713.cs)
     [Tooltip("t1713 master switch: Zhong Kui's 4-slot kit (movement on the dash, RMB special, R ultimate) in a Zhong Kui / Necromancer run (pact path 1). Needs kit1618 on")] public bool nkKit1713 = true;
     [Tooltip("t1713 TESTING selector (kitSlotOverride1639 on, + F1 menu): movement 0 none, 1 Ghost Step, 2 Bone Armour, 3 Bone Wall")] [Range(0, 3)] public int nkMove1713 = 1;
-    [Tooltip("t1713 TESTING selector: special 0 none, 1 Decrepify, 2 Soul Plague, 3 Skeletal Mage, 4 Clay Golem")] [Range(0, 4)] public int nkSpecial1713 = 1;
+    [Tooltip("t1713 TESTING selector: special 0 none, 1 Decrepify, 2 Soul Plague, 3 Skeletal Mage, 4 Jiangshi")] [Range(0, 4)] public int nkSpecial1713 = 1;
     [Tooltip("t1772 TESTING selector: ultimate 0 none, 1 Ossuary Nova, 2 Bone Colossus, 3 Grave Legion")] [Range(0, 3)] public int nkUlt1713 = 1;
     [Tooltip("t1713 icon hook: Resources folder of the Zhong Kui kit + Teeth icons (icon_<key>_24.png, keys HellordGame.NkKeys1713). Missing = procedural placeholder")] public string nkIconDir1713 = "HellordArt/ZhongKui1713/icons";
     // LMB
@@ -1835,7 +1835,7 @@ namespace Hellord
     [Tooltip("t1713 Decrepify: cooldown s / radius u / duration s / slow fraction / extra damage taken")] public float nkDecrCd1713 = 14f, nkDecrR1713 = 2.5f, nkDecrDur1713 = 6f, nkDecrSlow1713 = 0.3f, nkDecrVuln1713 = 0.25f;
     [Tooltip("t1713 Soul Plague: cooldown s / pick radius u / duration s / dps x kit hit / spread radius u")] public float nkPlagueCd1713 = 11f, nkPlaguePick1713 = 4f, nkPlagueDur1713 = 5f, nkPlagueDps1713 = 0.6f, nkPlagueSpread1713 = 2.5f;
     [Tooltip("t1713 Skeletal Mage: press cooldown s / cap per level 1..5 / respawn s / soul-bolt dmg table (placeholder)")] public float nkMageCd1713 = 8f; public int[] nkMageCount1713 = { 1, 1, 1, 2, 2 }; public float nkMageResp1713 = 10f; public float[] nkMageDmg1713 = { 8f, 8f, 10f, 12f, 14f }; public float[] nkMageHp1713 = { 18f, 20f, 22f, 24f, 28f };
-    [Tooltip("t1713 Clay Golem: press cooldown s / respawn s / slam radius u / slam dmg x kit hit / stun s / golem dmg & hp (placeholder; Grave Muster adds life, not a second golem)")] public float nkGolemCd1713 = 10f, nkGolemResp1713 = 12f, nkGolemSlamR1713 = 1.8f, nkGolemSlamDmg1713 = 2f, nkGolemStun1713 = 0.4f, nkGolemDmg1713 = 14f, nkGolemHp1713 = 80f, nkGolemMusterHp1713 = 1.4f;
+    [Tooltip("t1713 Jiangshi: press cooldown s / respawn s / slam radius u / slam dmg x kit hit / stun s / golem dmg & hp (placeholder; Grave Muster adds life, not a second golem)")] public float nkGolemCd1713 = 10f, nkGolemResp1713 = 12f, nkGolemSlamR1713 = 1.8f, nkGolemSlamDmg1713 = 2f, nkGolemStun1713 = 0.4f, nkGolemDmg1713 = 14f, nkGolemHp1713 = 80f, nkGolemMusterHp1713 = 1.4f;
     // ultimates
     [Tooltip("t1713 Ossuary Nova: cooldown s / bone hits to arm / radius u / dmg x kit hit / Bone Orbit double window s")] public float nkNovaCd1713 = 45f; public int nkNovaNeed1713 = 30; public float nkNovaR1713 = 8f, nkNovaDmg1713 = 3f, nkNovaOrbit1713 = 4f;
     [Tooltip("t1713 Army of the Dead: cooldown s / minions to arm / duration s / path length u / half-width u / dmg x")] public float nkArmyCd1713 = 50f; public int nkArmyNeed1713 = 6; public float nkArmyDur1713 = 6f, nkArmyLen1713 = 10f, nkArmyW1713 = 1.25f, nkArmyDmg1713 = 3f;

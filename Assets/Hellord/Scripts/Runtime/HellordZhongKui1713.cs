@@ -13,7 +13,7 @@ namespace Hellord
     //  LMB basics (descendBasicsZhongKui1555): Soul Spears (kept, standalone) + Teeth + Skeleton Warriors +
     //    Skeleton Archers (auto-respawn up to cap; when the LMB pick is a summon, the press commands the living army).
     //  SPACE movement (own cooldown, no damage, no army hooks): Ghost Step, Bone Armour, Bone Wall.
-    //  RMB special: Decrepify (area curse), Soul Plague (spreading mark), Skeletal Mage, Clay Golem.
+    //  RMB special: Decrepify (area curse), Soul Plague (spreading mark), Skeletal Mage, Jiangshi.
     //  R ultimate (armed, then pressed): Ossuary Nova, Bone Colossus, Grave Legion.
     //  Active in a Zhong Kui / Necromancer run (pact path 1) while kit1618 + nkKit1713 are on. Shares Zhurong's run
     //  picks (ZhRun*1639), slot cooldowns (ZhMoveCd / ZhSpecCd / ZhUltCd), level cards and the kit bar.
@@ -23,12 +23,12 @@ namespace Hellord
     // =====================================================================================================================
     public partial class HellordGame
     {
-        public static readonly string[] NkKeys1713 = { "ghoststep", "bonearmour", "bonewall", "decrepify", "soulplague", "skeletalmage", "claygolem", "ossuarynova", "bonecolossus", "gravelegion", "teeth" };
+        public static readonly string[] NkKeys1713 = { "ghoststep", "bonearmour", "bonewall", "decrepify", "soulplague", "skeletalmage", "jiangshi", "ossuarynova", "bonecolossus", "gravelegion", "teeth" };
         public static readonly string[] NkMoveNames1713 = { "NONE", "GHOST STEP", "BONE ARMOUR", "BONE WALL" };
-        public static readonly string[] NkSpecNames1713 = { "NONE", "DECREPIFY", "SOUL PLAGUE", "SKELETAL MAGE", "CLAY GOLEM" };
+        public static readonly string[] NkSpecNames1713 = { "NONE", "DECREPIFY", "SOUL PLAGUE", "SKELETAL MAGE", "JIANGSHI" };
         public static readonly string[] NkUltNames1713 = { "NONE", "OSSUARY NOVA", "BONE COLOSSUS", "GRAVE LEGION" };
         public static readonly string[] NkMoveDesc1713 = { "", "During the dash, and shortly after, you are untargetable and pass through demons.", "For 3 s after a dash, a bone shell absorbs a pool of damage equal to 30% of your max life.", "The dash leaves a bone barrier across your path. It blocks demons and their bullets." };
-        public static readonly string[] NkSpecDesc1713 = { "", "Curse an area: demons are slowed and take more damage. No death blast.", "Mark the demon near the cursor with a soul rot. If it dies, the rot spreads.", "Raise back-line mages. They fire heavy soul bolts. At cap, the press bursts the next bolts.", "Raise one clay golem that slams. At cap, the press is an immediate slam at the cursor." };
+        public static readonly string[] NkSpecDesc1713 = { "", "Curse an area: demons are slowed and take more damage. No death blast.", "Mark the demon near the cursor with a soul rot. If it dies, the rot spreads.", "Raise back-line mages. They live by their health and respawn after a cooldown if killed. At cap, the press bursts the next bolts.", "Raise one Jiangshi. It lives by its health and respawns after a cooldown if killed. At cap, the press is an immediate slam at the cursor." };
         public static readonly string[] NkUltDesc1713 = { "", "Armed after 30 bone hits, or 4 Marrow Harvest charges: a ring of bone spears bursts out of you.", "Armed while 5 or more minions are alive: they merge into one giant skeleton that lasts until killed, then split back out.", "Armed while at minion cap: for 10 s the cap doubles and every skeleton type you have rises at full strength. Extra over-cap skeletons crumble when it ends." };
         public static readonly SkillId[] NkIds1713 = { SkillId.NkGhostStep, SkillId.NkBoneArmour, SkillId.NkBoneWall, SkillId.NkDecrepify, SkillId.NkSoulPlague, SkillId.NkSkeletalMage, SkillId.NkClayGolem, SkillId.NkOssuaryNova, SkillId.NkBoneColossus, SkillId.NkGraveLegion };
         public const int NkK0 = 37; // after Zhurong 12 + Leizu 12 + Gonggong 13
@@ -71,6 +71,7 @@ namespace Hellord
             NkBoneHits1713 = 0; NkBanquetPts1713 = 0;
             _nkColCdPend1772 = 0f; NkEndColossus1713(false);
             _nkLegionT1772 = 0f;
+            _nkMageResp1713 = _nkGolemResp1713 = 0f; // t1796: first raise of a new run is immediate (death arms the respawn CD)
         }
         void NkFillUlt1713()
         {
@@ -335,26 +336,53 @@ namespace Hellord
                 if (!NkFxClaySlam1736(cur)) ZRingO1618(cur, r, new Color(NB.r, NB.g, NB.b, 0.8f), FbGround + YSort(cur.y) + 25, 0.55f);
             }
         }
+        // t1796: first fill (and a card pick) is immediate. The respawn CD is armed only when a summon dies (NkMinionDied1713).
+        void NkOnSpecPicked1713()
+        {
+            if (!NkOn1713) return;
+            if (NkSpec1713 == 3) { _nkMageResp1713 = 0f; NkFillMageGolemNow1713(2); }
+            if (NkSpec1713 == 4) { _nkGolemResp1713 = 0f; NkFillMageGolemNow1713(3); }
+        }
+        void NkFillMageGolemNow1713(int kind)
+        {
+            if (NHas536(16) || _nkColossus1713) return;
+            int want = kind == 2 ? NkMageCap1713() : kind == 3 ? NkGolemCap1713() : 0;
+            int have = NCount536(kind, false);
+            while (have < want && _nmin536.Count < NCap536())
+            {
+                Vector2 p = _heroPos + (kind == 2 ? Random.insideUnitCircle.normalized * 2f : new Vector2(1.8f, 0.3f) + Random.insideUnitCircle * 0.15f);
+                ClampToRoom(ref p, 6);
+                int before = _nmin536.Count;
+                NSpawn536(kind, false, p);
+                if (_nmin536.Count <= before) break;
+                have++;
+            }
+        }
         void TickNkMageGolem1713(float dt)
         {
             if (NHas536(16)) { _nkMageResp1713 = _nkGolemResp1713 = 0f; return; }
             if (_nkColossus1713) return;
-            int mw = NkMageCap1713(), mh = NCount536(2, false);
-            if (mh < mw)
-            {
-                if (_nkMageResp1713 <= 0f) _nkMageResp1713 = TZ.nkMageResp1713 * (NHas536(3) ? PT.quickGrave536 : 1f);
-                _nkMageResp1713 -= dt;
-                if (_nkMageResp1713 <= 0f) { NSpawn536(2, false, _heroPos + Random.insideUnitCircle.normalized * 2f); _nkMageResp1713 = 0f; }
-            }
-            else _nkMageResp1713 = 0f;
-            int gw = NkGolemCap1713(), gh = NCount536(3, false);
-            if (gh < gw)
-            {
-                if (_nkGolemResp1713 <= 0f) _nkGolemResp1713 = TZ.nkGolemResp1713 * (NHas536(3) ? PT.quickGrave536 : 1f);
-                _nkGolemResp1713 -= dt;
-                if (_nkGolemResp1713 <= 0f) { NSpawn536(3, false, _heroPos + Random.insideUnitCircle * 1.2f); _nkGolemResp1713 = 0f; }
-            }
-            else _nkGolemResp1713 = 0f;
+            TickNkSpecFill1713(2, NkMageCap1713(), ref _nkMageResp1713, dt);
+            TickNkSpecFill1713(3, NkGolemCap1713(), ref _nkGolemResp1713, dt);
+        }
+        void TickNkSpecFill1713(int kind, int want, ref float resp, float dt)
+        {
+            int have = NCount536(kind, false);
+            if (have >= want) { resp = 0f; return; }
+            if (resp > 0f) { resp -= dt; if (resp > 0f) return; resp = 0f; }
+            NkFillMageGolemNow1713(kind);
+        }
+        // RMB HUD: living summon HP (and the death-respawn CD when none are alive). Press CD stays on ZhSpecCd.
+        public bool NkSpecSummonHud1713(out float hp, out float maxHp, out int have, out int want, out float resp)
+        {
+            hp = maxHp = 0f; have = want = 0; resp = 0f;
+            if (!NkOn1713) return false;
+            int kind = NkSpec1713 == 3 ? 2 : NkSpec1713 == 4 ? 3 : -1;
+            if (kind < 0) return false;
+            want = kind == 2 ? NkMageCap1713() : NkGolemCap1713();
+            have = NCount536(kind, false); resp = kind == 2 ? _nkMageResp1713 : _nkGolemResp1713;
+            foreach (var m in _nmin536) if (m.kind == kind && !m.temp) { hp += m.hp; maxHp += m.maxHp; }
+            return true;
         }
 
         // ---------------------------------------------------------------- ULTIMATES
@@ -585,6 +613,83 @@ namespace Hellord
             if (ct >= 0) { t = ct; m.tgt = ct; }
             else { m.roam = _nkCmdP1713; }
             spd *= 1.35f; return t;
+        }
+
+        // t1796: real Play-mode verification (Editor or player). Flag: -jiangshiPlaytest
+        // Uses the run pick (ZhRunSpec1639 = 4) via ChooseKit1639, never kitSlotOverride1639.
+        System.Collections.IEnumerator JiangshiPlaytestCo1796()
+        {
+            const string tag = "[t1796]";
+            const string shot = "/workspace/tmp/jiangshi_d2_playtest.png";
+            void Log(string m) { Debug.Log(tag + " " + m); }
+            yield return null;
+#if UNITY_EDITOR
+            // Reflect into Hellord.Editor — runtime asmdef must not reference the Editor assembly.
+            try
+            {
+                var t = System.Type.GetType("Hellord.EditorTools.HellordMenu, Hellord.Editor");
+                t?.GetMethod("ForceGameView1920x1080_1808", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)?.Invoke(null, null);
+            }
+            catch (System.Exception e) { Debug.LogWarning("[t1796] ForceGameView invoke failed: " + e.Message); }
+            for (int _gv = 0; _gv < 8; _gv++) yield return null;
+            Debug.Log("[t1796] screen after GameView force " + Screen.width + "x" + Screen.height);
+#endif
+            var T = HellordTuning.I;
+            T.kit1618 = true; T.nkKit1713 = true; T.kitAnyPact1618 = false; T.kitSlotOverride1639 = false;
+            T.nkMove1713 = T.nkSpecial1713 = T.nkUlt1713 = 0;
+            PreloadStop1675();
+            if (_unlock51 != null) for (int p = 0; p < _unlock51.Length; p++) _unlock51[p] = int.MaxValue;
+            _souls51 = 1700; _sigils51 = 15; _pactPath51 = 1; _pactSel51 = 1; _pactSealed51 = true; PactSave51();
+            ResetRun();
+            _pactPath51 = 1; _pactSel51 = 1; _pactSealed51 = true; PactApply51();
+            PreloadStop1675();
+            pendingLevels = 0; mode = Mode.Play;
+            skills.Clear(); skills.Add(new SkillInst { def = HData.Skill(SkillId.SkeletonWarriors), level = 1 }); SetHeroLayers();
+            foreach (var e in _en) if (e != null && e.alive) { e.dmg = 0f; e.speed = 0f; }
+            ChooseKit1639(new Card { kind = CardKind.NewSkill, kit = 2, kitPick = 4 });
+            SnapCamera();
+            Log("picked Jiangshi via ChooseKit1639; kitSlotOverride=" + T.kitSlotOverride1639 + " ZhRunSpec1639=" + ZhRunSpec1639 + " NkSpec1713=" + NkSpec1713 + " NkOn1713=" + NkOn1713 + " path=" + _pactPath51);
+            for (int i = 0; i < 30; i++) yield return null;
+            int jn = NCount536(3, false);
+            NMin536 golem = null; foreach (var m in _nmin536) if (m.kind == 3 && !m.temp) { golem = m; break; }
+            if (golem != null) { golem.p = _heroPos + new Vector2(1.85f, 0.15f); golem.prev = golem.p; ClampToRoom(ref golem.p, 6); }
+            SnapCamera();
+            // Let the normal draw path render one body at the new position (do not call Skel561 here — it would leave a second SR for this frame).
+            for (int i = 0; i < 8; i++) yield return null;
+            var idle = A561("jiangshi_all_idle_south"); var move = A561("jiangshi_all_move_south"); var atk = A561("jiangshi_all_attack_south");
+            bool idleOk = idle != null && idle.f != null && idle.f.Length > 0 && idle.f[0] != null;
+            bool moveOk = move != null && move.f != null && move.f.Length > 0 && move.f[0] != null;
+            bool atkOk = atk != null && atk.f != null && atk.f.Length > 0 && atk.f[0] != null;
+            var ic = NkIcon1713("jiangshi");
+            string icName = ic != null ? ic.name : "null";
+            System.IO.Directory.CreateDirectory("/workspace/tmp");
+            if (System.IO.File.Exists(shot)) System.IO.File.Delete(shot);
+            Log("screen " + Screen.width + "x" + Screen.height + " fullscreen=" + Screen.fullScreen);
+            int warHave = NCount536(0, false), warWant = NBase536(0);
+            Log("D2 strip warriors " + warHave + "/" + warWant + " jiangshi " + jn + " NkSpec=" + NkSpec1713);
+            ScreenCapture.CaptureScreenshot(shot);
+            yield return new WaitForEndOfFrame();
+            for (int i = 0; i < 20 && !System.IO.File.Exists(shot); i++) yield return null;
+            Log("screenshot " + (System.IO.File.Exists(shot) ? ("ok " + new System.IO.FileInfo(shot).Length + " bytes") : "MISSING"));
+            bool skel = false; if (golem != null) { skel = Skel561(golem, 0, 0f); HideSk561(); }
+            Log("jiangshi count=" + jn + " hp=" + (golem != null ? golem.hp.ToString("0.#") : "none") + "/" + (golem != null ? golem.maxHp.ToString("0.#") : "-") + " temp=" + (golem != null && golem.temp) + " life=" + (golem != null ? golem.life.ToString() : "none") + " pos=" + (golem != null ? golem.p.ToString() : "none"));
+            Log("sprites idle_south=" + idleOk + " move_south=" + moveOk + " attack_south=" + atkOk + " readable_idle=" + (idleOk && idle.f[0].texture != null && idle.f[0].texture.isReadable));
+            Log("Skel561=" + skel + " RMB icon=" + icName + " override=" + T.kitSlotOverride1639 + " ZhSpecCd=" + ZhSpecCd.ToString("0.##") + " golemResp=" + _nkGolemResp1713.ToString("0.##"));
+
+            // Skeletal Mage: immediate spawn on pick, lives by HP
+            ChooseKit1639(new Card { kind = CardKind.NewSkill, kit = 2, kitPick = 3 });
+            for (int i = 0; i < 8; i++) yield return null;
+            int mn = NCount536(2, false); NMin536 mage = null; foreach (var m in _nmin536) if (m.kind == 2 && !m.temp) { mage = m; break; }
+            var midle = A561("skel_mage_all_idle_south");
+            bool mageSpr = midle != null && midle.f != null && midle.f.Length > 0 && midle.f[0] != null;
+            Log("mage pick ZhRunSpec1639=" + ZhRunSpec1639 + " count=" + mn + " hp=" + (mage != null ? mage.hp.ToString("0.#") : "none") + "/" + (mage != null ? mage.maxHp.ToString("0.#") : "-") + " temp=" + (mage != null && mage.temp) + " life=" + (mage != null ? mage.life.ToString() : "none") + " sprites=" + mageSpr + " mageResp=" + _nkMageResp1713.ToString("0.##"));
+            bool ok = jn > 0 && golem != null && golem.hp > 0f && !golem.temp && float.IsInfinity(golem.life) && idleOk && moveOk && atkOk && skel && ic != null && icName.IndexOf("jiangshi") >= 0 && T.kitSlotOverride1639 == false && ZhRunSpec1639 == 3 && mn > 0 && mage != null && mage.hp > 0f && !mage.temp && mageSpr;
+            Log(ok ? "PASS" : "FAIL");
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.Exit(ok ? 0 : 1);
+#else
+            Application.Quit(ok ? 0 : 1);
+#endif
         }
     }
 }

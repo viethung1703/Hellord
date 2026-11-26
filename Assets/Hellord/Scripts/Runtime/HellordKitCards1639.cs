@@ -43,7 +43,7 @@ namespace Hellord
         void ChooseKit1639(Card c)
         {
             if (c.kitLv1651) { KitLevelUp1651(c); return; } // t1651: owned kit skill picked again = level up
-            if (c.kit == 1) { ZhRunMove1639 = c.kitPick; ZhMoveCd = 0f; } else if (c.kit == 2) { ZhRunSpec1639 = c.kitPick; ZhSpecCd = 0f; } else { ZhRunUlt1639 = c.kitPick; ZhUltCd = 0f; }
+            if (c.kit == 1) { ZhRunMove1639 = c.kitPick; ZhMoveCd = 0f; } else if (c.kit == 2) { ZhRunSpec1639 = c.kitPick; ZhSpecCd = 0f; NkOnSpecPicked1713(); } else { ZhRunUlt1639 = c.kitPick; ZhUltCd = 0f; }
             Toast(ZhKitName1639(c) + " - " + ZhKitType1639[c.kit]);
         }
 

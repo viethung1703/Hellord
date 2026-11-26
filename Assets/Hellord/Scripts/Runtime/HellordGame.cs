@@ -73,6 +73,7 @@ namespace Hellord
             foreach (EType t in System.Enum.GetValues(typeof(EType))) _eSprites[t] = HArt.Enemy(t); // mapping: EnemyArtMap (HArt.cs)
             ResetRun();
             PactBoot51(); // v0.0.51 damnation pact: main menu on boot
+            if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-jiangshiPlaytest") >= 0) StartCoroutine(JiangshiPlaytestCo1796());
         }
 
         static void EnsureGlobalLight()

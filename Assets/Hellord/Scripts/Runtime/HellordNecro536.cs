@@ -44,7 +44,7 @@ namespace Hellord
         {
             if (_nmin536.Count >= NCap536() || NHas536(16)) return;
             float hp = NBaseHp561(kind) * NHpMul536();
-            _nmin536.Add(new NMin536 { p = at, prev = at, kind = kind, hp = hp, maxHp = hp, life = temp ? (life > 0 ? life : PT.ossuaryLife536) : 1e9f, temp = temp });
+            _nmin536.Add(new NMin536 { p = at, prev = at, kind = kind, hp = hp, maxHp = hp, life = temp ? (life > 0 ? life : PT.ossuaryLife536) : float.PositiveInfinity, temp = temp }); // t1796: permanents expire on HP only
             FxSpawn561(at); // t561u: bone/ivory grave ring (was green CheapBurst)
         }
 
@@ -112,7 +112,7 @@ namespace Hellord
             }
             for (int i = _nmin536.Count - 1; i >= 0; i--)
             {
-                var m = _nmin536[i]; m.life -= dt; m.atk -= dt; float mx = NBaseHp561(m.kind) * NHpMul536(); if ((m.p - _heroPos).magnitude > PT.minionTeleport561) { Vector2 o = m.p; m.p = _heroPos + Random.insideUnitCircle; ClampToRoom(ref m.p, 6); m.prev = m.p; FxBlink561(o, m.p); } if (Mathf.Abs(mx - m.maxHp) > 0.01f) { m.hp *= mx / m.maxHp; m.maxHp = mx; }
+                var m = _nmin536[i]; if (m.temp) m.life -= dt; m.atk -= dt; // t1796: permanent summons (Jiangshi / mage / warriors) live by health float mx = NBaseHp561(m.kind) * NHpMul536(); if ((m.p - _heroPos).magnitude > PT.minionTeleport561) { Vector2 o = m.p; m.p = _heroPos + Random.insideUnitCircle; ClampToRoom(ref m.p, 6); m.prev = m.p; FxBlink561(o, m.p); } if (Mathf.Abs(mx - m.maxHp) > 0.01f) { m.hp *= mx / m.maxHp; m.maxHp = mx; }
                 // baseline: demons touching a minion hurt it
                 _pq53.Clear(); Query(m.p, 1.2f, _pq53); foreach (var q in _pq53) { var e = _en[q]; if (e.alive && !e.dying && e.stun53 <= 0 && (e.pos - m.p).magnitude < e.radius + 0.35f) m.hp -= e.dmg * PT.minionHurtMul536 * dt; }
                 Block561(m);

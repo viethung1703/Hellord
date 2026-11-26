@@ -107,6 +107,7 @@ namespace Hellord
             }
             else { float bx = 4; Counter(ref bx, 0, blood); Counter(ref bx, 1, bones); if (showKills) Counter(ref bx, 2, kills); }
             float lblUp = 0;
+            DrawMinionHudD21808(); // t1808: Option D2 minion strip, right of HP/XP, Play only
             DrawBossHudB(); DrawBossArrowB(); // t1641: the t1618 MOV / SPC / ULT debug text is gone (the kit lives in the skill bar)
             if (glowLabelT > 0) { glowLabelT -= Time.unscaledDeltaTime; string gl = "CRT GLOW " + crtGlow.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + (!crtEnabled ? " (CRT OFF)" : ""); Text(gl, 640 - TextW(gl) - 6, 350 - lblUp, new Color32(0xfe, 0xe7, 0x61, 255)); } // v0.0.21 G key label
             if (atmosLabelT > 0) { atmosLabelT -= Time.unscaledDeltaTime; string al = "HELL ATMOSPHERE " + (atmosOn ? "ON" : "OFF"); Text(al, 640 - TextW(al) - 6, 340 - lblUp, new Color32(0xfe, 0xe7, 0x61, 255)); } // v0.0.22 H key label
@@ -189,6 +190,85 @@ namespace Hellord
         float MsgSlotY(int i) => MsgStackTop() + i * 14;
         float MsgStackBottom() => MsgSlotY(3);
         float _bossBarA = 1f; public bool bossBarFaded;
+
+        /// <summary>t1808: Option D2 minion strip. 28x28 squares (1px black, 1px steel, 24x24 icon) at (113,4),
+        /// 2px gaps, live/cap or HP/respawn 2px below, Play mode only. Matches minion_hud_option_d2.png.</summary>
+        const int MhX1808 = 113, MhY1808 = 4, MhSz1808 = 28, MhGap1808 = 2;
+        static readonly Color MhSteel1808 = new Color32(0x3a, 0x44, 0x66, 255), MhGreen1808 = new Color32(0x5a, 0xc5, 0x4f, 255), MhTrack1808 = new Color32(0x0b, 0x09, 0x12, 255);
+
+        void DrawMinionHudD21808()
+        {
+            if (mode != Mode.Play) return;
+            if (NSkillLv561(0) <= 0 && NSkillLv561(1) <= 0 && NkSpec1713 < 3 && !_nkColossus1713) return;
+            SkillBarTex();
+            float x = MhX1808, y = MhY1808;
+            if (NSkillLv561(0) > 0) { int have = NCount536(0, false), want = Mathf.Max(0, NBase536(0)); MhSheetFrame1808(x, y, (int)SkillId.SkeletonWarriors, have <= 0 && want > 0); MhLabel1808(x, y, have + "/" + want); x += MhSz1808 + MhGap1808; }
+            if (NSkillLv561(1) > 0) { int have = NCount536(1, false), want = Mathf.Max(0, NBase536(1)); MhSheetFrame1808(x, y, (int)SkillId.SkeletonArchers, have <= 0 && want > 0); MhLabel1808(x, y, have + "/" + want); x += MhSz1808 + MhGap1808; }
+            if (NkSpec1713 == 3)
+            {
+                int have = NCount536(2, false), want = Mathf.Max(0, NkMageCap1713()); bool dead = have <= 0;
+                MhTexFrame1808(x, y, NkIcon1713("skeletalmage"), dead);
+                MhLabel1808(x, y, dead && _nkMageResp1713 > 0f ? Mathf.CeilToInt(_nkMageResp1713).ToString() : have + "/" + want);
+                x += MhSz1808 + MhGap1808;
+            }
+            if (NkSpec1713 == 4)
+            {
+                int have = NCount536(3, false); float hp = 0f, max = 0f;
+                foreach (var m in _nmin536) if (m.kind == 3 && !m.temp) { hp += m.hp; max += m.maxHp; }
+                bool dead = have <= 0 || max <= 0f;
+                MhTexFrame1808(x, y, NkIcon1713("jiangshi"), dead);
+                if (dead && _nkGolemResp1713 > 0f) MhLabel1808(x, y, Mathf.CeilToInt(_nkGolemResp1713).ToString());
+                else if (dead) MhLabel1808(x, y, "0/1");
+                else MhBar1808(x, y, hp / max);
+                x += MhSz1808 + MhGap1808;
+            }
+            if (_nkColossus1713)
+            {
+                MhTexFrame1808(x, y, NkIcon1713("bonecolossus"), _nkColHp1713 <= 0f);
+                MhBar1808(x, y, _nkColMax1713 > 0f ? _nkColHp1713 / _nkColMax1713 : 0f);
+                x += MhSz1808 + MhGap1808;
+            }
+            GUI.color = Color.white;
+        }
+        void MhSheetFrame1808(float x, float y, int ic, bool dim)
+        {
+            MhChrome1808(x, y);
+            GUI.color = dim ? new Color(1f, 1f, 1f, 0.45f) : Color.white;
+            if (_tSkill24 != null) Blit(_tSkill24, ic * 28, 0, 24, 24, x + 2, y + 2);
+            GUI.color = Color.white;
+        }
+        void MhTexFrame1808(float x, float y, Texture2D icon, bool dim)
+        {
+            MhChrome1808(x, y);
+            GUI.color = dim ? new Color(1f, 1f, 1f, 0.45f) : Color.white;
+            if (icon != null) GUI.DrawTexture(new Rect(x + 2, y + 2, 24, 24), icon);
+            GUI.color = Color.white;
+        }
+        void MhChrome1808(float x, float y)
+        {
+            Fill716(x, y, MhSz1808, MhSz1808, Color.black);
+            Fill716(x + 1, y + 1, MhSz1808 - 2, MhSz1808 - 2, MhSteel1808);
+            Fill716(x + 2, y + 2, 24, 24, HInk);
+        }
+        void MhLabel1808(float x, float y, string s)
+        {
+            if (string.IsNullOrEmpty(s)) return;
+            s = s.ToUpperInvariant();
+            int cw = TextW(s); float cx = x + Mathf.Floor((MhSz1808 - cw) / 2f), cy = y + MhSz1808 + MhGap1808;
+            Fill716(cx - 1, cy, cw + 2, 8, HInk); // 1px navy outline; 2px gap under the frame stays empty
+            Text(s, cx, cy, Color.white);
+        }
+        void MhBar1808(float x, float y, float frac)
+        {
+            frac = Mathf.Clamp01(frac);
+            float bx = x + 1, cy = y + MhSz1808 + MhGap1808; // 26 wide, centred in 28
+            Fill716(bx, cy, 26, 7, HInk);
+            Fill716(bx, cy + 1, 26, 4, Color.black);
+            Fill716(bx + 1, cy + 2, 24, 2, MhTrack1808);
+            float fw = Mathf.Round(24f * frac);
+            if (fw > 0f) Fill716(bx + 1, cy + 2, fw, 2, MhGreen1808);
+        }
+
         void DrawBossHudB()
         {
             if (!BossAlive) return;

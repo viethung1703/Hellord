@@ -62,7 +62,7 @@ namespace Hellord
             // values from skel_warrior_pivots_sizes.json / skel_archer_pivots_sizes.json (step37n export)
             Sheet561("HellordArt/Summon561/", "skel_warrior_all", 42, 38, 20, 35, new[] { "idle_south:8", "idle_east:8", "idle_north:8", "walk_south:12", "walk_east:12", "walk_north:12", "attack_south:12", "attack_east:12", "death_south:10", "death_east:10" });
             Sheet561("HellordArt/Summon561/", "skel_archer_all", 38, 39, 19, 35, new[] { "idle_south:8", "idle_north:8", "walk_south:12", "walk_east:12", "walk_north:12", "shoot_south:12", "shoot_east:12" });
-            // t1736: Zhong Kui kit sprites (mage, colossus, jiangshi / Clay Golem slot)
+            // t1736: Zhong Kui kit sprites (mage, colossus, jiangshi)
             Sheet561("HellordArt/ZhongKui1713/skeletal_mage/", "skel_mage_all", 72, 72, 36, 68, new[] { "idle_south:8", "idle_east:8", "idle_north:8", "move_south:12", "move_east:12", "move_north:12", "attack_south:12", "attack_east:12", "attack_north:12" });
             Sheet561("HellordArt/ZhongKui1713/bone_colossus/", "bone_colossus_all", 116, 116, 58, 112, new[] { "idle_south:8", "idle_east:8", "idle_north:8", "move_south:12", "move_east:12", "move_north:12", "attack_south:12", "attack_east:12", "attack_north:12" });
             Sheet561("HellordArt/ZhongKui1713/jiangshi_v4/", "jiangshi_all", 76, 76, 38, 73, new[] { "idle_south:8", "idle_east:8", "idle_north:8", "move_south:12", "move_east:12", "move_north:12", "attack_south:12", "attack_east:12", "attack_north:12" });
@@ -71,8 +71,10 @@ namespace Hellord
         {
             foreach (var r in rows)
             {
-                var kv = r.Split(':'); var tx = Resources.Load<Texture2D>(folder + pre + "_" + kv[0]); if (tx == null) continue;
-                tx.filterMode = FilterMode.Point; int n = Mathf.Max(1, tx.width / fw); var a = new Anim561 { f = new Sprite[n], fps = float.Parse(kv[1]) };
+                var kv = r.Split(':'); string path = folder + pre + "_" + kv[0]; var tx = Resources.Load<Texture2D>(path); if (tx == null) { Debug.LogWarning("[Hellord] Sheet561 missing " + path); continue; }
+                if (!tx.isReadable) { Debug.LogError("[Hellord] Sheet561 not readable (Sprite.Create will fail): " + path); continue; }
+                tx.filterMode = FilterMode.Point; int n = Mathf.Max(1, tx.width / fw); if (tx.height < fh || n < 1) { Debug.LogWarning("[Hellord] Sheet561 bad size " + path + " " + tx.width + "x" + tx.height); continue; }
+                var a = new Anim561 { f = new Sprite[n], fps = float.Parse(kv[1]) };
                 for (int i = 0; i < n; i++) a.f[i] = Sprite.Create(tx, new Rect(i * fw, 0, fw, fh), new Vector2(px / (float)fw, 1f - py / (float)fh), 16f);
                 _an561[pre + "_" + kv[0]] = a;
             }
