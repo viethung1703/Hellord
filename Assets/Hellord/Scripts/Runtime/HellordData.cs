@@ -239,6 +239,50 @@ namespace Hellord
             }
             return "";
         }
+        /// <summary>t1823: card flavour description, with per-level figures taken from the same tuning arrays as SupportEffect.</summary>
+        public static string SupportCardDesc(SupportDef s)
+        {
+            if (s == null) return "";
+            var T = HellordTuning.I;
+            switch (s.id)
+            {
+                case SupportId.FasterCasting:
+                {
+                    var a = T.supFasterCd; int p1 = Mathf.RoundToInt((1f - a[0]) * 100f), pN = Mathf.RoundToInt((1f - a[a.Length - 1]) * 100f);
+                    return $"Shorter cooldown: -{p1}% at Lv1, up to -{pN}%";
+                }
+                case SupportId.BiggerArea:
+                {
+                    var a = T.supAreaMul; int p1 = Mathf.RoundToInt((a[0] - 1f) * 100f), pN = Mathf.RoundToInt((a[a.Length - 1] - 1f) * 100f);
+                    return $"Bigger area: +{p1}% at Lv1, up to +{pN}%";
+                }
+                case SupportId.AddedDamage:
+                {
+                    var a = T.supAddedDmg; int p1 = Mathf.RoundToInt((a[0] - 1f) * 100f), pN = Mathf.RoundToInt((a[a.Length - 1] - 1f) * 100f);
+                    return $"More damage: +{p1}% at Lv1, up to +{pN}%";
+                }
+                case SupportId.Shock:
+                {
+                    var a = T.supShockAmp; int p1 = Mathf.RoundToInt(a[0] * 100f), pN = Mathf.RoundToInt(a[a.Length - 1] * 100f);
+                    return $"Hits shock: +{p1}% damage taken at Lv1, up to +{pN}%";
+                }
+                case SupportId.MoreOrbitals:
+                {
+                    var a = T.supOrbitals; return $"More skulls: +{a[0]} at Lv1, up to +{a[a.Length - 1]}";
+                }
+                case SupportId.Executioner:
+                {
+                    var th = T.supExecThreshold; int t1 = Mathf.RoundToInt(th[0] * 100f), tN = Mathf.RoundToInt(th[th.Length - 1] * 100f);
+                    return $"Bonus damage to demons below an HP threshold: {t1}% HP at Lv1, up to {tN}% at Lv{th.Length}";
+                }
+                case SupportId.Chill:
+                {
+                    var hits = T.supChillFreezeHits;
+                    return $"Hits chill (slow 35%); chills last longer, Lv{hits.Length} freezes in {hits[hits.Length - 1]} chills";
+                }
+                default: return s.desc;
+            }
+        }
         public static string StatDesc(StatDef d)
         {
             var T = HellordTuning.I;
@@ -277,6 +321,7 @@ namespace Hellord
         public static int MaxLv(SkillDef d) => Summon561(d) ? Math.Max(1, HellordTuning.I.summonMaxLv561) : MaxSkillLevel; // t587u: summons max Lv5 like every skill
         public static bool Fits(SupportDef s, SkillDef k) => (s.needs == STag.Any || (k.tags & s.needs) != 0) && (k.tags & s.requiresAll) == s.requiresAll && (k.tags & s.excludes) == 0 && (k.projCaps1651 & ProjCapOf1651(s.id)) == 0; // t1651: + projectile caps
         public static ProjCap1651 ProjCapOf1651(SupportId id) => id == SupportId.MultipleProjectiles ? ProjCap1651.NoMulti : id == SupportId.Pierce ? ProjCap1651.NoPierce : id == SupportId.Fork ? ProjCap1651.NoFork : id == SupportId.Bounce ? ProjCap1651.NoBounce : id == SupportId.Homing ? ProjCap1651.NoHoming : ProjCap1651.None; // t626u
+        public static STag[] TagOrder1825 => _tagOrder626; // t1825 card tag line
         static readonly STag[] _tagOrder626 = { STag.Projectile, STag.Melee, STag.Strike, STag.Area, STag.Chain, STag.Orbital, STag.Aura, STag.Zone, STag.Minion, STag.Duration, STag.Curse, STag.Hit, STag.Physical, STag.Fire, STag.Cold, STag.Lightning, STag.Blood, STag.Bone, STag.Soul, STag.Movement, STag.Special, STag.Ultimate, STag.Cooldown, STag.Mark, STag.Warcry, STag.Buff, STag.Conditional, STag.Triggered, STag.Decoy };
         /// <summary>t626u: tag chips text, e.g. "PROJECTILE FIRE". short = drop Hit (shown on every skill).</summary>
         public static string TagText(STag t, string sep = " ", bool upper = true, bool skipHit = false)

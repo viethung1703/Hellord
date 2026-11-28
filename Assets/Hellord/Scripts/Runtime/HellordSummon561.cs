@@ -27,7 +27,7 @@ namespace Hellord
         float NBaseDmg561(int kind) {
             int lv = NSkillLv561(kind);
             if (kind == 2) return HData.At(PT.nkMageDmg1713, Mathf.Max(1, lv), 8f) * _sinMinionMul737 * SinMinDmg818(0);
-            if (kind == 3) return PT.nkGolemDmg1713 * (1f + 0.12f * (Mathf.Max(1, lv) - 1)) * _sinMinionMul737 * SinMinDmg818(0);
+            if (kind == 3) return PT.nkGolemDmg1713 * (1f + PT.nkGolemDmgPerLv1713 * (Mathf.Max(1, lv) - 1)) * _sinMinionMul737 * SinMinDmg818(0);
             if (kind == 4) return PT.nkGhostDmg1713 * _sinMinionMul737 * SinMinDmg818(0);
             if (lv <= 0) return PT.minionDmg536 * _sinMinionMul737 * SinMinDmg818(kind); return HData.At(kind == 0 ? PT.skelWarDmg561 : PT.skelArcDmg561, lv, 6f) * _sinMinionMul737 * SinMinDmg818(kind);
         }

@@ -9,7 +9,7 @@ namespace Hellord
     public partial class HellordGame
     {
         const int HW = 640, HH = 360;
-        const string FontMap = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ:/+-%!.x'? ";
+        const string FontMap = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ:/+-%!.x'? ,;()·";
         static readonly Color HInk = new Color32(0x18, 0x14, 0x25, 255), HCyan = new Color32(0x2c, 0xe8, 0xf5, 255);
         Texture2D _tHp, _tFill, _tXp, _tGoal, _tPanel, _tCells, _tIcons5, _tCorr, _tCIcons, _tCBg, _tFont; float _ghostHp = -1;
 
@@ -58,20 +58,47 @@ namespace Hellord
         }
         /// <summary>v0.0.26: alpha multiplier for Text/blits (LevelUpFX card reveal); 1 everywhere else.</summary>
         static float _guiA = 1f;
-        /// <summary>t1822: map punctuation the 5x7 FontMap lacks (middle dot, em-dash, equals, ...) onto a glyph it has, so Text never falls back to '?'.</summary>
+        /// <summary>t1823: map only punctuation the 5x7 FontMap still lacks onto a glyph it has. Comma, semicolon, parentheses and middle-dot are real glyphs now.</summary>
         static char FontGlyph(char c)
         {
+            if (c == '·' || c == '•') return '·';
+            if (c == '–' || c == '—' || c == '−' || c == '|') return '-';
+            if (c == '\u2018' || c == '\u2019' || c == '\u201C' || c == '\u201D') return '\'';
             c = char.ToUpperInvariant(c);
-            if (c == '·' || c == '•' || c == '|' || c == '–' || c == '—' || c == '−') return '-';
-            if (c == '=' || c == ';') return ':';
-            if (c == ',') return '.';
+            if (c == '=') return ':';
             return c;
         }
         static string Sanitize(string s)
         {
-            var sb = new System.Text.StringBuilder(); foreach (char c0 in s) { char c = FontGlyph(c0); c = c == '(' || c == '[' ? ' ' : c; if (c0 == ')' || c0 == ']') continue; sb.Append(c); }
-            for (int i = sb.Length - 1; i > 0; i--) if (sb[i] == ' ' && (sb[i - 1] == ' ' || (i + 1 < sb.Length && (sb[i + 1] == '.' || sb[i + 1] == ':')))) sb.Remove(i, 1);
+            if (string.IsNullOrEmpty(s)) return s;
+            var sb = new System.Text.StringBuilder(s.Length);
+            foreach (char c0 in s) sb.Append(FontGlyph(c0));
             return sb.ToString();
+        }
+
+        /// <summary>t1823: draw "LVn" centred in the XP-bar label well (25 px including 1 px side ink). 6 px advance when it fits; 5 px for a 3-digit label.</summary>
+        /// <summary>Always "LVn" (V stays at 2-3 digits). Shrinks glyph advance from 6 to 4 if needed so the label fits boxW and stays centred when centre=true.</summary>
+        void DrawLvTag(int lv, float x, float y, int boxW, Color c, bool centre = false)
+        {
+            if (!_tFont || boxW <= 0) return;
+            lv = Mathf.Clamp(lv, 0, 999);
+            string s = "LV" + lv;
+            int adv = 6, tw = s.Length * adv - 1;
+            while (tw > boxW && adv > 4) { adv--; tw = s.Length * adv - 1; }
+            int lx = (int)x + (centre ? (boxW - tw) / 2 : 0);
+            var tc = c; tc.a *= _guiA; GUI.color = tc;
+            for (int i = 0; i < s.Length; i++)
+            {
+                char ch = FontGlyph(s[i]); if (ch == ' ') continue; int k = FontMap.IndexOf(ch); if (k < 0) k = FontMap.IndexOf('?');
+                Blit(_tFont, k * 5, 0, 5, 7, lx + i * adv, (int)y, 5, 7);
+            }
+            GUI.color = new Color(1, 1, 1, _guiA);
+        }
+        void DrawLevelBadge(int lv, float barX, float barY, int wellW, int wellH, Color c)
+        {
+            int wellX = (int)barX + 1, inner = wellW - 2, wellY = (int)barY + 1;
+            int ly = wellY + (wellH - 2 - 7) / 2;
+            DrawLvTag(lv, wellX, ly, inner, c, true);
         }
 
         void DrawHudB()
@@ -91,7 +118,8 @@ namespace Hellord
             float xf = Mathf.Clamp01((float)xp / Mathf.Max(1, HData.XpToNext(level))); if (pendingLevels > 0) xf = 1; // queued level-ups: bar full until the last card
             float xpx = HellordTuning.I.hudCornerV45 ? HellordTuning.I.hudXpBarX : 17; /* v0.0.45: LV / XP left edge = HP widget left edge (4) */
             Blit(_tXp, 0, 0, 98, 9, xpx, 21); Blit(_tXp, 98, 0, 25 + Mathf.Round(72 * xf), 9, xpx, 21);
-            Text(ShownLevel < 10 ? "LV" + ShownLevel : "L" + Mathf.Min(ShownLevel, 99), xpx + 1, 22, HCyan, false);
+            // t1823: always "LVn", centred in the XP-bar label well (x 1..24 of the 98px frame).
+            DrawLevelBadge(ShownLevel, xpx, 21, 25, 9, HCyan);
             // v0.8: goal box shows the current room's goal; minimap is built from the floor layout (HellordFloor.cs)
             if (floorMode)
             {

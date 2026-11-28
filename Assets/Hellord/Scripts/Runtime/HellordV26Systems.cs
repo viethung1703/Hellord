@@ -210,7 +210,7 @@ namespace Hellord
                         GUI.color = new Color(1, 1, 1, _sbA); GUI.DrawTexture(new Rect(ix, iy, 24, 24), _tCdMask[fr]);
                         if (full >= 1.5f) CdNumber(Mathf.CeilToInt(k.cd), ix, iy);
                     }
-                    GUI.color = Color.white; Text("L" + k.level, x + 4, y + 4 + 24 + 2, k.level >= 5 ? (Color)new Color32(0xfe, 0xe7, 0x61, 255) : Color.white);
+                    GUI.color = Color.white; DrawLvTag(k.level, x + 4, y + 4 + 24 + 2, 24, k.level >= 5 ? (Color)new Color32(0xfe, 0xe7, 0x61, 255) : Color.white, false);
                     for (int p = 0; p < 4; p++)
                     {   // support pips: filled = the support's approved icon, dim frame = open slot, dark = locked until the skill levels up
                         float sx = x + 4 + 24 + 3 + (p % 2) * (sup + 1), sy = y + 4 + (p / 2) * (sup + 1);

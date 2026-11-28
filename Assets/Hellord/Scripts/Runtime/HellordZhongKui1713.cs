@@ -77,7 +77,7 @@ namespace Hellord
         {
             ZhMoveCd = ZhSpecCd = ZhUltCd = 0;
             int u = NkUlt1713; var T = TZ;
-            if (u == 1) { NkBoneHits1713 = Mathf.Max(1, T.nkNovaNeed1713); _harvC536 = Mathf.Max(_harvC536, 4); }
+            if (u == 1) { NkBoneHits1713 = Mathf.Max(1, T.nkNovaNeed1713); _harvC536 = Mathf.Max(_harvC536, NkNovaHarvest1825); }
         }
 
         // ---------------------------------------------------------------- icon hook
@@ -108,7 +108,7 @@ namespace Hellord
                 if (!NkOn1713 || ZhUltCd > 0.05f) return false; var T = TZ;
                 switch (NkUlt1713)
                 {
-                    case 1: return NkBoneHits1713 >= Mathf.Max(1, T.nkNovaNeed1713) || _harvC536 >= 4;
+                    case 1: return NkBoneHits1713 >= Mathf.Max(1, T.nkNovaNeed1713) || _harvC536 >= NkNovaHarvest1825;
                     case 2: return NkLiveMinions1713() >= Mathf.Max(1, T.nkColNeed1713) && !_nkColossus1713;
                     case 3: return _nkLegionT1772 <= 0f && NkLiveMinions1713() >= NCapBase536();
                     default: return false;
@@ -118,7 +118,7 @@ namespace Hellord
         public float NkUltProg1713()
         {
             if (!NkOn1713) return 0f; var T = TZ; int u = NkUlt1713;
-            if (u == 1) return _harvC536 >= 4 ? 1f : NkBoneHits1713 / (float)Mathf.Max(1, T.nkNovaNeed1713);
+            if (u == 1) return _harvC536 >= NkNovaHarvest1825 ? 1f : NkBoneHits1713 / (float)Mathf.Max(1, T.nkNovaNeed1713);
             if (u == 2) return _nkColossus1713 && _nkColMax1713 > 0f ? _nkColHp1713 / _nkColMax1713 : NkLiveMinions1713() / (float)Mathf.Max(1, T.nkColNeed1713);
             if (u == 3) return NkLiveMinions1713() / (float)Mathf.Max(1, NCapBase536());
             return 0f;
@@ -392,7 +392,7 @@ namespace Hellord
             int k = NkK1713(2, u); var T = TZ; NkCasts1713++; Vector2 cur = MouseWorld(); ClampToRoom(ref cur, 4);
             if (u == 1)
             {
-                NkBoneHits1713 = 0; if (_harvC536 >= 4) _harvC536 = 0;
+                NkBoneHits1713 = 0; if (_harvC536 >= NkNovaHarvest1825) _harvC536 = 0;
                 float r = ZkR1651(k, T.nkNovaR1713); float dmg = ZkHit1651(k) * T.nkNovaDmg1713; var s = ZkI1651(k);
                 Query(_heroPos, r, _nkq1713);
                 foreach (int ei in _nkq1713) { var e = _en[ei]; if (!NkOk1713(e) || (e.pos - _heroPos).magnitude > r + e.radius) continue; Hit(e, dmg, s, (e.pos - _heroPos).normalized * 0.6f); }
@@ -527,7 +527,7 @@ namespace Hellord
             if (_nkColCdPend1772 > 0f) { ZhUltCd = Mathf.Max(ZhUltCd, _nkColCdPend1772); _nkColCdPend1772 = 0f; }
         }
 
-        int NkLegionMul1772() => _nkLegionT1772 > 0f ? 2 : 1;
+        int NkLegionMul1772() => _nkLegionT1772 > 0f ? NkLegionMul1825 : 1;
         int NkTypeWant1772(int kind)
         {
             if (kind < 2) return NBase536(kind);

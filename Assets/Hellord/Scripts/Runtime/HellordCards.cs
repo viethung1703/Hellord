@@ -113,7 +113,7 @@ namespace Hellord
                     {
                         case StatId.MaxHP: maxHp *= 1f + HellordTuning.I.statHpFrac; hp = Mathf.Min(maxHp, hp + maxHp * HellordTuning.I.statHpFrac); break;
                         case StatId.Speed: speedMul += HellordTuning.I.statSpeed; break;
-                        case StatId.Pickup: pickupMul += 0.15f; break;
+                        case StatId.Pickup: pickupMul += StatPickupAdd1825; break;
                         case StatId.Armor: armor += HellordTuning.I.statArmor; break;
                         case StatId.Crit: crit += HellordTuning.I.statCrit; break;
                         case StatId.Slot: HData.BonusSlots++; _sbFlash = 1.2f; _slotSkillPending = true; Toast("NEW SKILL SLOT UNLOCKED"); break; // v0.0.37 boss reward
@@ -151,7 +151,7 @@ namespace Hellord
                 if (HInput.Down(keys[i]))
                 {
                     var c = cards[i]; HellordAudio.Play("ui_card_select"); // v0.0.34
-                    if (c.kind == CardKind.Support) { var tl = SupportTargets(c.support); if (tl.Count == 1) Choose(c, tl[0]); else if (tl.Count > 1) OpenTargetPick(c.support, tl, false, tIx => Choose(c, tIx)); }
+                    if (c.kind == CardKind.Support) { PickSupTarget1831u(c.support, SupportTargets(c.support), false, tIx => Choose(c, tIx)); } // t1831u: 1 match = apply, 2+ = picker of only those skills
                     else Choose(c);
                     return;
                 }

@@ -34,6 +34,14 @@ namespace Hellord
             }
             if (cooling) return;
             if (u == 2 && !lz) { KbGlow1646(ix, iy, 0.85f); return; } // Rebirth Flame: automatic -> steady glow
+            if (NkOn1713 && u == 2 && _nkColossus1713)
+            {   // live colossus: keep the real icon (same as picker / strip). HP is a 2 px bar under the frame, not the orange charge wash.
+                float hp = _nkColMax1713 > 0f ? Mathf.Clamp01(_nkColHp1713 / _nkColMax1713) : 0f;
+                int hw = Mathf.Clamp(Mathf.RoundToInt(24f * hp), 0, 24);
+                Fill716(ix, iy + 25, 24, 2, new Color32(24, 20, 37, 230));
+                if (hw > 0) Fill716(ix, iy + 25, hw, 2, C716(0x73ef2e, 1f));
+                return;
+            }
             if (armed) { KbGlow1646(ix, iy, 0.55f + 0.45f * Mathf.Sin(Time.unscaledTime * 7f)); return; }
             float prog = NkOn1713 ? NkUltProg1713() : GgOn1682 ? GgUltProg1682() : lz ? LzUltProg1666() : u == 1 ? ZhSunMeter1618 / Mathf.Max(1f, TZ.swMeter1618) : u == 3 ? ZhBurning1618 / (float)Mathf.Max(1, TZ.mhNeed1618) : u == 4 ? ZhNearMiss1618 / (float)Mathf.Max(1, TZ.vbNeed1618) : 0f;
             int h = Mathf.Clamp(Mathf.FloorToInt(24f * Mathf.Clamp01(prog)), 0, 23); // 24 rows only when armed (above)
@@ -68,7 +76,7 @@ namespace Hellord
                 if (fill && _tSup20 != null) { int si = SupIx(k.sup[p]); GUI.color = Color.white; Blit(_tSup20, (si % 10) * 20, (si / 10) * 20, 20, 20, sx, sy, gm, gm); }
                 else { Frame716(sx, sy, gm, gm, open ? C716(0x5a6988) : C716(0x262b44)); if (!open) Fill716(sx + 1, sy + 1, gm - 2, gm - 2, C716(0x262b44)); }
             }
-            GUI.color = Color.white; Text("L" + k.level, gx0, gy0 + 2 * (gm + 1) + 1, k.level >= 5 ? C716(0xfee761) : C716(0x8b9bb4));
+            GUI.color = Color.white; DrawLvTag(k.level, gx0, gy0 + 2 * (gm + 1) + 1, Mathf.Max(1, Mathf.RoundToInt(2 * gm + 1)), k.level >= 5 ? C716(0xfee761) : C716(0x8b9bb4), true);
         }
 
         string KbLabel1641(int i) => i == 0 ? "LMB" : i == 1 ? (Manual716 ? Label716(Bind716(Act716.Dash)) : "SPACE") : i == 2 ? "RMB" : "R";

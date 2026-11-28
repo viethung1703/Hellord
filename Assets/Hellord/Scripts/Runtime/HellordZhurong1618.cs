@@ -59,7 +59,7 @@ namespace Hellord
         class ZFx { public Vector2 p; public float t, life, r; public int kind; public string mat; public Vector4 rc; public int ord = int.MinValue, drive; public float seed = 0.37f; } // t1625: + the spec material it stands in for
         readonly List<ZFx> _zFx1618 = new List<ZFx>(); // short placeholder rings / bursts
         // Hydra (t1625; replaced Volcanic Orb)
-        class ZHy { public Vector2 p; public float t, dmg, seed; public SkillInst s; public float[] next = new float[3], spitT = { -10f, -10f, -10f }, aim = new float[3]; public bool[] armed = new bool[3]; } // fx_v2 §14: 3 heads, own clocks / targets
+        class ZHy { public Vector2 p; public float t, dmg, seed; public SkillInst s; public float[] next = new float[ZhHydraHeads1825], spitT = { -10f, -10f, -10f }, aim = new float[ZhHydraHeads1825]; public bool[] armed = new bool[ZhHydraHeads1825]; } // fx_v2 §14: 3 heads, own clocks / targets
         class ZBolt { public Vector2 p, v; public float t, life, dmg, seed; public SkillInst s; public ProjCore1651 pc; } // t1651: + shared projectile supports
         readonly List<ZHy> _zHy1625 = new List<ZHy>(); readonly List<ZBolt> _zBolt1625 = new List<ZBolt>();
         public int ZhHydras1625 => _zHy1625.Count;
@@ -478,7 +478,7 @@ namespace Hellord
                     continue;
                 }
                 _zSuns1618.RemoveAt(i); ScreenShake.Add(4f, 0.35f); HitStop.Play(0.06f, 0.2f, 0.4f); HellordAudio.Play("fireball_impact", 0.5f); HellordAudio.Play("fire_pillar_erupt", 0.6f);
-                float areaR = ZkR1651(8, TZ.swAreaR1618); ZFx1618(-1, s.p, R, 1.0f, "ZFX_SunsWrath_Impact", FxDiscRc1815(R, 0.83f, 8f), YSort(s.p.y) + 200, 2); ZFx1618(-1, s.p, areaR, ZkDur1651(8, TZ.swAreaS1618), "ZFX_SunsWrath_Burn", FxDiscRc1815(areaR), FbGround + YSort(s.p.y) + 6, 1); ZFx1618(-1, s.p, areaR, ZkDur1651(8, TZ.swAreaS1618), "ZFX_SunsWrath_Light", FxDiscRc1815(areaR), FbGround + YSort(s.p.y) + 8, 3); // t1815: follow live swR / swAreaR
+                float areaR = ZkR1651(8, TZ.swAreaR1618); ZFx1618(-1, s.p, R, 1.0f, "ZFX_SunsWrath_Impact", FxDiscRc1815(R), YSort(s.p.y) + 200, 2); ZFx1618(-1, s.p, areaR, ZkDur1651(8, TZ.swAreaS1618), "ZFX_SunsWrath_Burn", FxDiscRc1815(areaR), FbGround + YSort(s.p.y) + 6, 1); ZFx1618(-1, s.p, areaR, ZkDur1651(8, TZ.swAreaS1618), "ZFX_SunsWrath_Light", FxDiscRc1815(areaR), FbGround + YSort(s.p.y) + 8, 3); // t1815: follow live swR / swAreaR
                 bool shSun = ZhFxLive1625("ZFX_SunsWrath_Impact");
                 if (!shSun) { FireBasicsFX1481.Once("infernal_boulder_end_blast", s.p, YSort(s.p.y) + 30, 0f, 1f, 0, false, 0f, R / 3f, R / 3f); ZFx1618(0, s.p, R * 1.2f, 0.5f); ZFx1618(2, s.p, R, 0.3f); }
                 Query(s.p, R + 0.6f, _zq1618); foreach (int ei in _zq1618) { var e = _en[ei]; if (!e.alive) continue; if (!InGroundOval(s.p, e.pos, R, e.radius)) continue; Hit(e, ZkHit1651(8) * TZ.swDmg1618, ZkI1651(8), (e.pos - s.p).normalized * 3f); ZhSunHits1618++; }
@@ -514,7 +514,7 @@ namespace Hellord
             if (mode == Mode.StartPick) return false; var T = TZ;
             Vector2 to = MouseWorld(), d = to - _heroPos; if (d.magnitude > T.hyRange1625) to = _heroPos + d.normalized * T.hyRange1625; ClampToRoom(ref to, 4);
             while (!_echo738 && _zHy1625.Count >= Mathf.Max(1, T.hyMax1625)) { /* t1651: Echo ignores the cap */ var o = _zHy1625[0]; _zHy1625.RemoveAt(0); ZhHydraGone1625(o); }
-            var h = new ZHy { p = to, t = 0f, dmg = dmg, s = s, seed = Random.value }; for (int i = 0; i < 3; i++) h.next[i] = T.hyFirst1625 + i * 0.25f; _zHy1625.Add(h);
+            var h = new ZHy { p = to, t = 0f, dmg = dmg, s = s, seed = Random.value }; for (int i = 0; i < ZhHydraHeads1825; i++) h.next[i] = T.hyFirst1625 + i * 0.25f; _zHy1625.Add(h);
             After(0.18f, () => ZFx1618(-1, to, 0.5f, 0.45f, "ZFX_Hydra_Erupt", new Vector4(-28, -18 + 3, 56, 50), YSort(to.y) + 200)); // summon eruption t 0.18-0.63
             HellordAudio.Play("magma_throw_cast", 0.9f); if (!ZhFxLive1625("ZFX_Hydra2")) HordeFX.CheapBurst(to + Vector2.up * 0.3f, ZO, 6); return true;
         }
@@ -553,7 +553,7 @@ namespace Hellord
                 var o = _zHy1625[i]; o.t += dt;
                 if (o.t >= ZHyLife1651(o)) { _zHy1625.RemoveAt(i); ZhHydraGone1625(o); continue; }
                 bool fading = o.t >= ZHyLife1651(o) - 0.6f;
-                for (int h = 0; h < 3; h++)
+                for (int h = 0; h < ZhHydraHeads1825; h++)
                 {
                     if (o.armed[h] && o.t - o.spitT[h] >= ZHyW1625)
                     {   // 0.27 s after the windup started: the bolt leaves the jaw
@@ -570,7 +570,7 @@ namespace Hellord
                     {
                         var e = _en[ei]; if (!e.alive || e.dying) continue; float dd = (e.pos - o.p).magnitude; if (dd > T.hySight1625) continue;
                         if (dd < ad) { ad = dd; any = e; }
-                        bool taken = false; for (int k = 0; k < 3; k++) if (k != h && o.armed[k] && _zHyTgt1625[k] == e) taken = true;
+                        bool taken = false; for (int k = 0; k < ZhHydraHeads1825; k++) if (k != h && o.armed[k] && _zHyTgt1625[k] == e) taken = true;
                         if (!taken && dd < bd) { bd = dd; best = e; }
                     }
                     best = best ?? any; if (best == null) { o.next[h] = o.t + 0.1f; continue; }
@@ -606,7 +606,7 @@ namespace Hellord
         void ZhDrawHydra1625(ZHy o)
         {
             var T = TZ; float rise = ZHyRise1625(o), fade = ZHyFade1625(o); int ord = YSort(o.p.y);
-            float flash = 0f; for (int h = 0; h < 3; h++) { float sd = o.t - o.spitT[h] - ZHyW1625; if (sd >= 0f && sd < 0.15f) flash = Mathf.Max(flash, 1f - sd / 0.15f); }
+            float flash = 0f; for (int h = 0; h < ZhHydraHeads1825; h++) { float sd = o.t - o.spitT[h] - ZHyW1625; if (sd >= 0f && sd < 0.15f) flash = Mathf.Max(flash, 1f - sd / 0.15f); }
             float breath = 0.5f + 0.5f * Mathf.Sin(2.6f * o.t), summon = Mathf.Exp(-Mathf.Abs(o.t - 0.3f) / 0.1f);
             ZhFx1625("ZFX_Hydra_Light", o.p + Vector2.up / 16f, -26, -12, 52, 24, FbGround + YSort(o.p.y) + 3, o.t, o.seed, ZP.F("_Intensity", (0.55f + 0.15f * breath + 0.6f * flash + 0.6f * summon) * (1f - fade)));
             if (ZhFx1625("ZFX_Hydra2", o.p, -36, -10, 72, 50, ord, o.t, o.seed, ZP.F("_Rise", rise), ZP.F("_Fade", fade), ZP.F("_Windup", ZHyW1625),
@@ -614,7 +614,7 @@ namespace Hellord
             // placeholder: scorched base + 3 necks / heads at HFX's mouth positions
             float g = Mathf.Max(0.15f, rise) * (1f - fade);
             ZDiscO1618(o.p, 0.42f * g, new Color(ZK.r, ZK.g, ZK.b, 0.55f), FbGround + YSort(o.p.y) + 2, 0.5f); ZRingO1618(o.p, 0.42f * g, new Color(ZD.r, ZD.g, ZD.b, 0.8f), FbGround + YSort(o.p.y) + 3, 0.5f);
-            for (int k = 0; k < 3; k++)
+            for (int k = 0; k < ZhHydraHeads1825; k++)
             {
                 Vector2 hp = o.p + HydraMouthPx1625(k, o.t, rise, fade, o.spitT[k], o.aim[k]) / 16f; bool sp = flash > 0f && o.t - o.spitT[k] < ZHyW1625 + 0.15f;
                 ZSegO1618(o.p + Vector2.up * 0.1f, hp, 0.16f, ZD, ord + k); ZDiscO1618(hp, 0.13f, sp ? ZO : ZR, ord + 4 + k); ZPx1618(hp + new Vector2(0f, 0.03f), 1, sp ? ZW : ZY, ord + 8 + k);

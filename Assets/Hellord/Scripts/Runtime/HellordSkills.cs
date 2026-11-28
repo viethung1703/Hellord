@@ -73,7 +73,7 @@ namespace Hellord
                         if (_aura != null) _aura.life = -1; _auraCur818 = cur818;
                         _auraR = r; _aura = HellFX.AuraField(cur818 ? SinRingAnchor818() : _hero, r * HArt.PPU, new Color(0.55f, 0.8f, 1f, Mathf.Clamp(0.55f * 3.2f / r, 0.22f, 0.55f)), 1e6f, 0.5f); // fainter fill when the ring is huge so the screen stays readable
                     }
-                    Query(rc, r, _sq); SkillArea53(rc, r, dmg, (int)s.def.id, true); int arcs = 0; if (cur818 && _sq.Count > 0) SinGlint818(); Vector3 a1 = default, a2 = default, a3 = default;
+                    Query(rc, r, _sq, true); SkillArea53(rc, r, dmg, (int)s.def.id, true); int arcs = 0; if (cur818 && _sq.Count > 0) SinGlint818(); Vector3 a1 = default, a2 = default, a3 = default;
                     foreach (int i in _sq)
                     {
                         var e = _en[i]; if (!InGroundOval(rc, e.pos, r, e.radius)) continue; Vector3 top = e.pos + Vector2.up * e.hitY; Hit(e, dmg, s, Vector2.zero);
@@ -172,7 +172,7 @@ namespace Hellord
             var job = HellFX.AuraField(t, CursePx738(r) * HArt.PPU / 16f, new Color(0.6f, 0.25f, 0.9f, 0.5f), 1.6f * SinDuration737, HellordTuning.I.curseZoneTick738, () =>
             {
                 if (sfx928 >= 0) ShaderFxPulse928(sfx928); // t928u
-                if (mode != Mode.Play) return; var l = _zoneQ; Query(at, r, l); SkillArea53(at, r, dmg * 0.15f, 21, true);
+                if (mode != Mode.Play) return; var l = _zoneQ; Query(at, r, l, true); SkillArea53(at, r, dmg * 0.15f, 21, true);
                 foreach (int i in l) { var e = _en[i]; if (!InGroundOval(at, e.pos, r, e.radius)) continue; e.curseT = Mathf.Max(e.curseT, 1f); Damage(e, dmg * 0.15f, false, true); }
             }, 4);
             if (job == null) { t.gameObject.SetActive(false); return; }

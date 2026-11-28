@@ -232,6 +232,29 @@ namespace Hellord
             var l = new List<int>(4); for (int i = 0; i < skills.Count; i++) if (skills[i].CanSocket(sd) == null) l.Add(i); AddKitTargets1651(sd, l, false); /* t1651 kit skills */ return l;
         }
         void OpenTargetPick(SupportDef sd, List<int> targets, bool swap, System.Action<int> onPick) { _tp = new TargetPick { sd = sd, targets = targets, swap = swap, onPick = onPick }; _sndHover = -1; HellordAudio.Play("ui_card_select"); }
+        /// <summary>t1831u (VH): only supports the current skills can use are offered. When the player picks one, apply it
+        /// if exactly one skill can take it; if more than one can, the WHICH SKILL? picker lists only those skills, in
+        /// skill-bar order (SupportTargets already walks the bar then the kit slots). Zero matches should be impossible
+        /// because of the offer filter: no empty picker (that would softlock), log it, and refund as bones or leave the
+        /// card screen up so the player can skip / pick another card.</summary>
+        void PickSupTarget1831u(SupportDef sd, List<int> valid, bool swap, System.Action<int> onPick)
+        {
+            if (sd == null) return;
+            int n = valid != null ? valid.Count : 0;
+            if (n == 1) { onPick(valid[0]); return; }
+            if (n > 1) { OpenTargetPick(sd, valid, swap, onPick); return; }
+            Debug.LogWarning("[t1831u] no skill can take " + sd.name + " (the offer filter should have prevented this)");
+            HellordAudio.Play("ui_denied");
+            if (mode == Mode.Chest)
+            {
+                bool boss = _bossReward37; int pay = boss ? HellordTuning.I.bossRewardBones : 15;
+                bones += pay; cards.Clear(); warning = null; _bossReward37 = false; mode = Mode.Play;
+                Toast(boss ? ("BOSS REWARD: +" + pay + " BONES") : ("Chest: no open support slot - got " + pay + " bones"));
+                return;
+            }
+            if (mode == Mode.LevelUp || mode == Mode.StartPick) { warning = "NO SKILL CAN TAKE IT"; Toast("NO SKILL CAN TAKE " + sd.name); return; }
+            Toast("NO SKILL CAN TAKE " + sd.name); // shrine shop already toasts and returns before this; safety net only
+        }
         void ConfirmTarget(int idx)
         {
             var tp = _tp; if (tp == null || idx < 0 || idx >= tp.targets.Count) return; _tp = null; HellordAudio.Play("ui_card_select"); tp.onPick(tp.targets[idx]);
@@ -245,39 +268,63 @@ namespace Hellord
         }
         void DrawTargetPickB()
         {
+            if (HellordTuning.I.cardsD1831) { DrawTargetPickD1831(); return; } // t1831 frame D
+            if (HellordTuning.I.cardsA1825) { DrawTargetPickA1825(); return; } // t1825 Option A
             var tp = _tp; if (tp == null) return; FloorTex(); SkillBarTex();
             DimScreen(new Color(HInk.r, HInk.g, HInk.b, 0.8f));
-            TextC("WHICH SKILL?", 40, HCyan, 2); TextC(Sanitize(tp.sd.name) + (tp.swap ? "  (SWAP)" : ""), 62, Color.white);
-            int n = tp.targets.Count; int gap = n > 3 ? 6 : 8; float x0 = Mathf.Round((640 - (n * CardW + (n - 1) * gap)) / 2f);
+            TextC("WHICH SKILL?", CardScreenTitleY, HCyan, 2); TextC(Sanitize(tp.sd.name) + (tp.swap ? " - SWAP" : ""), CardScreenSubY, Color.white);
+            int n = tp.targets.Count; int x0 = CardRowX0(n), rowY = CardRowY();
             var ev = Event.current; int picked = -1;
+            var copies = new CardCopy[n]; var titles = new List<string>[n];
+            int maxBody = 0, maxTitle = 1;
             for (int i = 0; i < n; i++)
             {
-                int ti = tp.targets[i]; var sk = SupInst1651(ti); if (sk == null) continue; /* t1651: kit targets too */ float x = x0 + i * (CardW + gap); var rect = new Rect(x, 80, CardW, CardH);
+                int ti = tp.targets[i]; var sk = SupInst1651(ti);
+                titles[i] = sk != null ? WrapCard(sk.def.name) : new List<string>();
+                copies[i] = new CardCopy();
+                if (sk == null) continue;
+                int cur = sk.Lvl(tp.sd.id);
+                if (tp.swap && sk.sup.Count > 0)
+                {
+                    copies[i].AddSection(CardTone.Header, "SWAP OUT");
+                    copies[i].AddSection(CardTone.Stat, WrapCard(HData.Support(sk.sup[sk.sup.Count - 1]).name));
+                }
+                else copies[i].AddSection(CardTone.Header, cur > 0 ? $"UPGRADE LV {cur} - {cur + 1}" : "NEW LV 1");
+                copies[i].AddSection(CardTone.Stat, WrapCard(HData.SupportEffect(tp.sd.id, tp.swap ? 1 : cur + 1, (int)sk.def.id)));
+                copies[i].AddSection(CardTone.Need, $"SKILL LV {sk.level}");
+                copies[i].AddMixed(false, CardTone.Need, WrapCard($"SLOTS {sk.sup.Count}/{Mathf.Min(sk.level, 4)}"));
+                if (titles[i].Count > maxTitle) maxTitle = titles[i].Count;
+                int bh = copies[i].BodyH(); if (bh > maxBody) maxBody = bh;
+            }
+            int plateH = CardPlateH(maxTitle), cardH = CardHeight(maxTitle, maxBody);
+            for (int i = 0; i < n; i++)
+            {
+                int ti = tp.targets[i]; var sk = SupInst1651(ti); if (sk == null) continue;
+                int x = x0 + i * (CardW + CardGap); var rect = new Rect(x, rowY, CardW, cardH);
                 bool hover = rect.Contains(ev.mousePosition); if (ev.type == EventType.Repaint) { if (hover && _sndHover != i) { _sndHover = i; HellordAudio.Play("ui_card_select"); } else if (!hover && _sndHover == i) _sndHover = -1; }
-                float y = hover ? 76 : 80;
-                Blit(_tCard, (1 * 2 + (hover ? 1 : 0)) * CardW, 0, CardW, CardH, x, y);
-                { string nm = Sanitize(sk.def.name); if (nm.Length > 18) nm = nm.Substring(0, 17) + "."; Text(nm, x + Mathf.Round((CardW - TextW(nm)) / 2f), y + 7, Color.white); }
+                int y = rowY - (hover ? CardHover : 0);
+                int artX = (1 * 2 + (hover ? 1 : 0)) * CardArtW;
+                DrawCardChrome(artX, x, y, CardW, cardH, plateH);
+                DrawCardTitle(x, y, plateH, titles[i]);
                 SkillBarTex();
-                GUI.color = Color.white; if (IceIconBlit(sk.def.id, x + 34, y + 19, 48)) { }
-                else if (ZhCardIcon1625(sk.def.id) != null) GUI.DrawTexture(new Rect(x + 34, y + 19, 48, 48), ZhCardIcon1625(sk.def.id)); // t1625 icon hook (icons_v2)
-                else if (_icons44 && sk.def.id >= SkillId.ChainLightning && sk.def.id <= SkillId.PhantomAxes /* t1618 */ && _tSkill24 != null) BlitInset(_tSkill24, (int)sk.def.id * 28, 0, 24, 24, x + 34, y + 19, 48, 48);
+                int ix = BoxCenterX(x, CardW, CardIcon), iy = y + plateH + CardPad;
+                StampCardWell(0, ix, iy);
+                GUI.color = Color.white;
+                if (IceIconBlit(sk.def.id, ix, iy, CardIcon)) { }
+                else if (ZhCardIcon1625(sk.def.id) != null) GUI.DrawTexture(new Rect(ix, iy, CardIcon, CardIcon), ZhCardIcon1625(sk.def.id));
+                else if (_icons44 && sk.def.id >= SkillId.ChainLightning && sk.def.id <= SkillId.PhantomAxes && _tSkill24 != null) BlitInset(_tSkill24, (int)sk.def.id * 28, 0, 24, 24, ix, iy, CardIcon, CardIcon);
                 else
                 {
-                    var pt = PhTint(sk.def.id); GUI.color = new Color(pt.r, pt.g, pt.b, 1); BlitInset(_tSkillIcons, SkillIcon(sk.def.id) * 16, 0, 16, 16, x + 42, y + 27, 32, 32); GUI.color = Color.white;
-                    var tg = PhTag(sk.def.id); if (tg != null) Text(tg, x + 44, y + 55, Color.white);
+                    var pt = PhTint(sk.def.id); GUI.color = new Color(pt.r, pt.g, pt.b, 1); BlitInset(_tSkillIcons, SkillIcon(sk.def.id) * 16, 0, 16, 16, ix, iy, CardIcon, CardIcon); GUI.color = Color.white;
                 }
-                var desc = new List<string>(); int cur = sk.Lvl(tp.sd.id);
-                if (tp.swap && sk.sup.Count > 0) { desc.Add("SWAP OUT"); desc.AddRange(Wrap(HData.Support(sk.sup[sk.sup.Count - 1]).name, 17)); }
-                else desc.Add(cur > 0 ? $"UPGRADE LV {cur} - {cur + 1}" : "NEW  LV 1");
-                desc.AddRange(Wrap(HData.SupportEffect(tp.sd.id, tp.swap ? 1 : cur + 1, (int)sk.def.id), 17));
-                desc.Add($"SKILL LV {sk.level}"); desc.Add($"SLOTS {sk.sup.Count}/{Mathf.Min(sk.level, 4)}");
-                for (int k = 0; k < desc.Count && k < 7; k++) Text(desc[k], x + 7, y + 70 + 10 * k, k >= desc.Count - 2 ? CDim : CBody);
-                int lvl = tp.swap ? 1 : cur + 1; float dx = x + Mathf.Round((CardW - 43) / 2f);
-                for (int k = 0; k < 5; k++) Blit(_tDots, (k < lvl ? 2 : 0) * 7, 0, 7, 7, dx + k * 9, y + 148);
-                Text((i + 1).ToString(), x + 4, y + CardH - 12, CDim);
+                int textY = y + plateH + CardPad + CardIcon + CardPad;
+                DrawCardCopy(copies[i], x, textY);
+                int cur = sk.Lvl(tp.sd.id); int lvl = tp.swap ? 1 : cur + 1;
+                DrawCardDots(x, y, cardH, lvl, 1);
+                DrawCardIndex(x, y, cardH, i);
                 if (ev.type == EventType.MouseDown && ev.button == 0 && hover) { picked = i; ev.Use(); }
             }
-            TextC($"1-{n} PICK THE SKILL   ESC BACK", 262, CDim);
+            TextC($"{CardKeyRange1831(n)} PICK THE SKILL - ESC BACK", rowY + cardH + CardPad, CDim);
             if (picked >= 0) ConfirmTarget(picked);
         }
     }

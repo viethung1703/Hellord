@@ -938,7 +938,7 @@ namespace Hellord
             if (GgAoT1682 > 0f)
             {
                 int k = GgK1682(2, 4); var s = ZkI1651(k); GgAoT1682 -= dt; _ggAoNext1682 -= dt; float h = ZkR1651(k, T.aoHalf1682), rng = ZkR1651(k, T.aoRange1682);
-                for (int q = 0; q < 4; q++)
+                for (int q = 0; q < GgAoPillars1825; q++)
                 {
                     Vector2 p = _ggAoC1682 + new Vector2(q % 2 == 0 ? -h : h, q < 2 ? -h : h); int o = YSort(p.y) + 10;
                     float ael = _ggAoDur1682 - GgAoT1682; // HFX: _Progress rise, _Pulse per shot, _Break 0 -> 0.25 over the last 0.3 s

@@ -485,13 +485,13 @@ namespace Hellord
                 var cur = _sinEq737[i] >= 0 ? HSins.All[_sinEq737[i]] : null; bool ok = SinTierOk737(d, i);
                 var r = new Rect(x + 8, ly, w - 16, 22); bool ov = r.Contains(Event.current.mousePosition);
                 Rect51(r.x, r.y, r.width, r.height, ov && ok ? U_PLUM : U_INK);
-                Text(Sanitize("[" + (i + 1) + "] SWAP OUT: " + (cur != null ? cur.name : "EMPTY")), r.x + 4, r.y + 3, ok ? U_SAND : U_GREY);
+                Text(Sanitize((i + 1) + ": SWAP OUT: " + (cur != null ? cur.name : "EMPTY")), r.x + 4, r.y + 3, ok ? U_SAND : U_GREY);
                 if (cur != null) Text(Sanitize(string.Join("  ", HSins.Lines(cur, _sinRoll737[cur.id], false))), r.x + 4, r.y + 12, U_GREY);
                 if (_sinSwapArmed737 && ok && Event.current.type == EventType.MouseDown && ov) { Event.current.Use(); SinSwapPick737(i); return; }
                 ly += 26;
             }
             var kr = new Rect(x + 8, y + h - 20, w - 16, 14); bool ko = kr.Contains(Event.current.mousePosition);
-            Rect51(kr.x, kr.y, kr.width, kr.height, ko ? U_PLUM : U_INK); Text("[ESC] KEEP CURRENT SINS (NEW ONE GOES TO COLLECTION)", kr.x + 4, kr.y + 4, U_SAND);
+            Rect51(kr.x, kr.y, kr.width, kr.height, ko ? U_PLUM : U_INK); Text("ESC: KEEP CURRENT SINS (NEW ONE GOES TO COLLECTION)", kr.x + 4, kr.y + 4, U_SAND);
             if (_sinSwapArmed737 && Event.current.type == EventType.MouseDown && ko) { Event.current.Use(); SinSwapPick737(-1); }
         }
 

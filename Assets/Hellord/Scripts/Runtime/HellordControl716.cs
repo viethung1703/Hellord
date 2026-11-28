@@ -291,7 +291,7 @@ namespace Hellord
                         if (fill && _tSup20 != null) { int si = SupIx(k.sup[p]); GUI.color = Color.white; Blit(_tSup20, (si % 10) * 20, (si / 10) * 20, 20, 20, sx, sy, gm, gm); }
                         else { Frame716(sx, sy, gm, gm, open ? C716(0x5a6988) : C716(0x262b44)); if (!open) Fill716(sx + 1, sy + 1, gm - 2, gm - 2, C716(0x262b44)); }
                     }
-                    GUI.color = Color.white; Text("L" + k.level, gx0, gy0 + 2 * (gm + 1) + 1, k.level >= 5 ? C716(0xfee761) : C716(0x8b9bb4));
+                    GUI.color = Color.white; DrawLvTag(k.level, gx0, gy0 + 2 * (gm + 1) + 1, Mathf.Max(1, Mathf.RoundToInt(2 * gm + 1)), k.level >= 5 ? C716(0xfee761) : C716(0x8b9bb4), true);
                 }
                 else { Fill716(ix + 11, iy + 7, 2, 10, C716(0x3a4466)); Fill716(ix + 7, iy + 11, 10, 2, C716(0x3a4466)); }
                 if (HellordTuning.I.showKeyBadges720) Keycap716(Bind716((Act716)i), ix - 4, iy - 6);

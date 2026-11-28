@@ -46,7 +46,7 @@ namespace Hellord
             if (!ok) return;
             if (_tmBtn == null)
             {
-                _tmBtn = new GUIStyle(GUI.skin.button) { fontSize = 13, alignment = TextAnchor.MiddleLeft, clipping = TextClipping.Clip };
+                _tmBtn = new GUIStyle(GUI.skin.button) { fontSize = 13, alignment = TextAnchor.MiddleLeft, clipping = TextClipping.Overflow, wordWrap = true };
                 _tmTab0 = new GUIStyle(GUI.skin.button) { fontSize = 13, fontStyle = FontStyle.Bold };
                 _tmHead = new GUIStyle(GUI.skin.label) { fontSize = 20, fontStyle = FontStyle.Bold, normal = { textColor = new Color(1f, 0.85f, 0.4f) } };
                 _tmTxt = new GUIStyle(GUI.skin.label) { fontSize = 13, wordWrap = true, normal = { textColor = new Color(0.92f, 0.9f, 0.96f) } };
@@ -107,8 +107,16 @@ namespace Hellord
             float bodyY = P.y + 76, bodyH = P.yMax - 30 - bodyY - 6; _tmViewH = bodyH;
             var view = new Rect(P.x + 10, bodyY, P.width - 20, bodyH);
             float innerW = view.width - 16; if (_tmContentH < bodyH) _tmContentH = bodyH;
+            var ev = Event.current;
+            if (ev.type == EventType.ScrollWheel)
+            {
+                _tmScroll.y += ev.delta.y * 24f;
+                _tmScroll.y = Mathf.Clamp(_tmScroll.y, 0f, Mathf.Max(0f, _tmContentH - bodyH));
+                ev.Use();
+            }
             _tmScroll = GUI.BeginScrollView(view, _tmScroll, new Rect(0, 0, innerW, _tmContentH));
-            _gx = 4; _gy = 0; _gw = (innerW - 8 - 16) / 3f; _gcol = 0;
+            int cols = _tmTab == TmPactTab53 ? 2 : 3; _tmCols = cols;
+            _gx = 4; _gy = 0; _gw = (innerW - 8 - 8 * (cols - 1)) / (float)cols; _gcol = 0;
             switch (_tmTab)
             {
                 case 0: TabFloor(); break;
@@ -135,13 +143,19 @@ namespace Hellord
         float _gx, _gy, _gw; int _gcol; const float GH = 28, GG = 6;
         bool TmBtn(string label, bool enabled = true, bool on = false)
         {
-            var r = new Rect(_gx + _gcol * (_gw + 8), _gy, _gw, GH); int idx = _tmI++;
+            float rowH = GH;
+            if (_tmBtn != null && _tmBtn.wordWrap && Event.current != null)
+            {
+                float th = _tmBtn.CalcHeight(new GUIContent(label), _gw - 8);
+                if (th > GH - 4) rowH = Mathf.Max(GH, Mathf.Ceil(th) + 8);
+            }
+            var r = new Rect(_gx + _gcol * (_gw + 8), _gy, _gw, rowH); int idx = _tmI++;
             bool sel = idx == _tmSel; if (sel) _tmSelY = r.y;
             GUI.color = new Color(1, 1, 1, 1);
             if (sel) { GUI.color = new Color(1f, 0.85f, 0.3f); GUI.DrawTexture(new Rect(r.x - 3, r.y - 3, r.width + 6, r.height + 6), _white); GUI.color = new Color(0.08f, 0.06f, 0.12f, 1f); GUI.DrawTexture(r, _white); GUI.color = Color.white; } // v0.0.53 B12: yellow frame + dark fill so text stays readable
             if (on && !sel) GUI.color = new Color(0.6f, 1f, 0.6f);
             GUI.enabled = enabled; bool hit = GUI.Button(r, label, _tmBtn); GUI.enabled = true; GUI.color = Color.white;
-            if (++_gcol >= 3) { _gcol = 0; _gy += GH + GG; }
+            if (++_gcol >= _tmCols) { _gcol = 0; _gy += rowH + GG; }
             if (hit) { _tmSel = idx; return true; }
             if (sel && _tmAct && Event.current.type == EventType.KeyDown) { _tmAct = false; return enabled; }
             return false;
@@ -157,8 +171,18 @@ namespace Hellord
             TmLabel("JUMP TO A DEPTH (new random rooms; keeps skills / level)");
             for (int f = 0; f < Mathf.Max(3, FloorCount); f++) if (TmBtn("Depth " + (f + 1) + " - " + FloorLabel53(ThemeAt(f), false), f < FloorCount, FloorIdx == f)) { int ff = f; TmAction(() => TmJumpFloor(ff)); }
             TmLabel("JUMP TO A THEME (its depth in this run; if it is not in this run, the current depth is re-themed)");
-            for (int th = 0; th < 3; th++) if (TmBtn(TmFloorNames[th], true, Theme == th)) { int tt = th; TmAction(() => TmJumpFloor(DepthForTheme42(tt))); }
-            TmLabel("THIS FLOOR (depth " + (FloorIdx + 1) + ", " + TmFloorNames[Mathf.Clamp(Theme, 0, 2)] + ")");
+            for (int th = 0; th < 4; th++)
+            {
+                if (th == 3 && !(HellordTuning.I.mortarFloor52 && MortarTiles52.Available)) continue;
+                bool on = ThemeSlot53 == th;
+                if (TmBtn(FloorLabel53(th, true), true, on))
+                {
+                    int tt = th, dest = FloorIdx;
+                    for (int f = 0; f < FloorCount; f++) if (ThemeAt(f) == tt) { dest = f; break; }
+                    int dd = dest; TmAction(() => TmJumpFloor(dd));
+                }
+            }
+            TmLabel("THIS FLOOR (depth " + (FloorIdx + 1) + ", " + FloorLabel53(ThemeSlot53, true) + ")");
             if (TmBtn("Boss room (fight starts)")) TmAction(TmJumpBoss);
             if (TmBtn("Start room")) TmAction(() => TmJumpRoom(RoomType.Start));
             if (TmBtn(_mapRevealed ? "Reveal secret rooms: ON" : "Reveal secret rooms: OFF", true, _mapRevealed)) FloorRevealMap();

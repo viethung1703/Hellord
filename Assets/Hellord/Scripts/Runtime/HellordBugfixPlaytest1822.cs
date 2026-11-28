@@ -133,7 +133,7 @@ namespace Hellord
             cards.Add(new Card { kind = CardKind.NewSkill, kit = 3, kitPick = 3 }); // Grave Legion
             _chestTitle = "KIT CARDS"; _chestSub = "FULL TEXT MUST FIT";
             _tp = null; mode = Mode.Chest;
-            Log("NkOn=" + NkOn1713 + " card lines J/M/O/L=" + Wrap(ZhKitDesc1639(cards[0]), CardWrap).Count + "/" + Wrap(ZhKitDesc1639(cards[1]), CardWrap).Count + "/" + Wrap(ZhKitDesc1639(cards[2]), CardWrap).Count + "/" + Wrap(ZhKitDesc1639(cards[3]), CardWrap).Count);
+            Log("NkOn=" + NkOn1713 + " card lines J/M/O/L=" + WrapCard(ZhKitDesc1639(cards[0])).Count + "/" + WrapCard(ZhKitDesc1639(cards[1])).Count + "/" + WrapCard(ZhKitDesc1639(cards[2])).Count + "/" + WrapCard(ZhKitDesc1639(cards[3])).Count);
             for (int i = 0; i < 12; i++) yield return null;
             yield return Shot1822(dir + "/bugfix_2e80984_cards_kit.png");
 

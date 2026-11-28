@@ -29,7 +29,7 @@ namespace Hellord
         int AtBtnY1555() { int cy, by, g, rem; DfVert1555(_df1555 == 1 ? DfPactH1555() : DfSkillH1555(), out cy, out by, out g, out rem); return by + 9; }
 
         /// <summary>old in-game start pick card rects (DrawCardsB layout: CardW 116, gap 8 for up to 3 cards / 6 above, row centred in 640, y 80): left margin, gap, right margin.</summary>
-        string AtOldPickGaps1559() { int n = cards.Count; int gap = n > 3 ? 6 : 8; float x0 = Mathf.Round((640 - (n * CardW + (n - 1) * gap)) / 2f); int r = 640 - (int)x0 - (n * CardW + (n - 1) * gap); return $"n {n} cards {CardW}x{CardH} left {x0} gap {gap} right {r} top 80"; }
+        string AtOldPickGaps1559() { int n = cards.Count; int x0 = CardRowX0(n), row = CardRowWidth(n), r = HW - x0 - row; return $"n {n} cards {CardW}x row left {x0} gap {CardGap} right {r} top {CardRowY()}"; }
         string AtCardIds1559() { var l = new List<string>(); foreach (var c in cards) l.Add(c.skill != null ? c.skill.id.ToString() : c.kind.ToString()); return string.Join(",", l); }
 
         IEnumerator AtDescend1555()

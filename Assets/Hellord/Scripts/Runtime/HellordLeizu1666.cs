@@ -224,7 +224,7 @@ namespace Hellord
         {
             var T = TZ; if (runTime - _lzBeatT1666 > T.dsWindow1666) LzBeat1666 = 0; Vector2 cur = PbCursor1567(10f); Vector2 at = LzPick1666(cur, s.R(T.dsPickR1666), out var tgt);
             LzBeat1666++; _lzBeatT1666 = runTime; LzBeats1666++;
-            if (LzBeat1666 < 3)
+            if (LzBeat1666 < LzClapBeat1825)
             {
                 float r = s.R(T.dsStrikeR1666); if (!LzStrike1669("DrumStrike", at, r)) LzSky1666(at); Query(at, r, _lzq1666); SkillArea53(at, r, dmg, (int)s.def.id);
                 foreach (int i in _lzq1666.ToArray()) { var e = _en[i]; if (!LzOk1666(e) || (e.pos - at).magnitude > r + e.radius) continue; Hit(e, dmg * T.dsStrikeDmg1666, s, (e.pos - at).normalized * 1.5f); }

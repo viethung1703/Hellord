@@ -80,7 +80,57 @@ namespace Hellord.EditorTools
         }
 
 
-        /// <summary>t1808: select a FixedResolution 1920x1080 Game View so Play-mode Screen is 1920x1080
+        /// <summary>t1823: batch Play-mode audit of the redone card layout at 1920x1080 (CAM 640x360 SAFE).
+        /// -executeMethod Hellord.EditorTools.HellordMenu.RunCardLayoutPlaytest1823 -cardsV2Playtest
+        /// (needs a GL context; do not pass -nographics).</summary>
+        public static void RunCardLayoutPlaytest1823()
+        {
+            string scene = "Assets/Hellord/Scenes/Hellord_Prototype.unity";
+            if (!System.IO.File.Exists(scene)) scene = "Assets/Hellord/Scenes/Hellord_Prototype_Generated.unity";
+            if (!System.IO.File.Exists(scene)) CreateScene();
+            else UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
+            ForceGameView1920x1080_1808();
+            EditorApplication.isPlaying = true;
+        }
+
+        /// <summary>t1831 frame D cards: Play-mode shots + in-engine audit at 1920x1080 (CAM 640x360 SAFE).
+        /// -executeMethod Hellord.EditorTools.HellordMenu.RunCardsDPlaytest1831 -cardsDPlaytest (needs a GL context; no -nographics).</summary>
+        public static void RunCardsDPlaytest1831()
+        {
+            string scene = "Assets/Hellord/Scenes/Hellord_Prototype.unity";
+            if (!System.IO.File.Exists(scene)) scene = "Assets/Hellord/Scenes/Hellord_Prototype_Generated.unity";
+            if (!System.IO.File.Exists(scene)) CreateScene();
+            else UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
+            ForceGameView1920x1080_1808();
+            EditorApplication.isPlaying = true;
+        }
+
+        /// <summary>t1825 Option A cards: Play-mode shots + in-engine OCD audit at 1920x1080 (CAM 640x360 SAFE).
+        /// -executeMethod Hellord.EditorTools.HellordMenu.RunCardsAPlaytest1825 -cardsAPlaytest (needs a GL context; no -nographics).</summary>
+        public static void RunCardsAPlaytest1825()
+        {
+            string scene = "Assets/Hellord/Scenes/Hellord_Prototype.unity";
+            if (!System.IO.File.Exists(scene)) scene = "Assets/Hellord/Scenes/Hellord_Prototype_Generated.unity";
+            if (!System.IO.File.Exists(scene)) CreateScene();
+            else UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
+            ForceGameView1920x1080_1808();
+            EditorApplication.isPlaying = true;
+        }
+
+        /// <summary>t1823 f8d3426 retest shots at 1920x1080.
+        /// -executeMethod Hellord.EditorTools.HellordMenu.RunFixPlaytestF8d3426 -fixF8d3426Playtest
+        /// (needs a GL context; do not pass -nographics).</summary>
+        public static void RunFixPlaytestF8d3426()
+        {
+            string scene = "Assets/Hellord/Scenes/Hellord_Prototype.unity";
+            if (!System.IO.File.Exists(scene)) scene = "Assets/Hellord/Scenes/Hellord_Prototype_Generated.unity";
+            if (!System.IO.File.Exists(scene)) CreateScene();
+            else UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
+            ForceGameView1920x1080_1808();
+            EditorApplication.isPlaying = true;
+        }
+
+                /// <summary>t1808: select a FixedResolution 1920x1080 Game View so Play-mode Screen is 1920x1080
         /// (HUD at 3x / CAM 640x360 SAFE), not the inset pane size.
         /// Unity 6 GameViewSizeGroup uses GetTotalCount (GetCount was removed and NRE'd the first helper).</summary>
         public static void ForceGameView1920x1080_1808()

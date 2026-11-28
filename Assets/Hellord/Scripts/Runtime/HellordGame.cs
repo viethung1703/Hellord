@@ -77,6 +77,10 @@ namespace Hellord
             if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-kitbarSupportsPlaytest") >= 0) StartCoroutine(KitBarSupportsPlaytestCo1812());
             if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-rangeRebalancePlaytest") >= 0) StartCoroutine(RangeRebalancePlaytestCo1815());
             if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-bugfixPlaytest1822") >= 0) StartCoroutine(BugfixPlaytestCo1822());
+            if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-cardsV2Playtest") >= 0) StartCoroutine(CardLayoutPlaytestCo1823());
+            if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-fixF8d3426Playtest") >= 0) StartCoroutine(FixPlaytestCoF8d());
+            if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-cardsDPlaytest") >= 0) StartCoroutine(CardsDPlaytestCo1831()); // t1831 frame D cards
+            if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-cardsAPlaytest") >= 0) StartCoroutine(CardsAPlaytestCo1825()); // t1825 Option A cards
         }
 
         static void EnsureGlobalLight()
@@ -640,15 +644,16 @@ namespace Hellord
             }
         }
         /// <summary>Fills _q-like list with alive enemies whose body circle overlaps (p, r).</summary>
-        void Query(Vector2 p, float r, List<int> outList)
+        void Query(Vector2 p, float r, List<int> outList, bool ground = false)
         {
-            outList.Clear(); float rr = r + 1.0f;
+            outList.Clear(); float rr = r + 2.0f; // cell window covers radius + typical enemy radius
             int x0 = Mathf.FloorToInt((p.x - rr) / Cell), x1 = Mathf.FloorToInt((p.x + rr) / Cell), y0 = Mathf.FloorToInt((p.y - rr) / Cell), y1 = Mathf.FloorToInt((p.y + rr) / Cell);
             for (int cx = x0; cx <= x1; cx++) for (int cy = y0; cy <= y1; cy++)
                 for (int i = _head[Bucket(cx, cy)]; i >= 0; i = _next[i])
                 {
                     var e = _en[i]; if (!e.alive || e.cx != cx || e.cy != cy) continue;
-                    float d = r + e.radius; if ((e.pos + Vector2.up * e.hitY - p).sqrMagnitude <= d * d) outList.Add(i);
+                    Vector2 q = ground ? e.pos : e.pos + Vector2.up * e.hitY;
+                    float d = r + e.radius; if ((q - p).sqrMagnitude <= d * d) outList.Add(i);
                 }
         }
         int Nearest(Vector2 p, float maxR, int skip)
@@ -673,7 +678,7 @@ namespace Hellord
                 if (e.boss) { e.hitT -= dt; D2Aggro1447(e, 0f, dt); UpdateBoss(e, dt); UpdateStatusFx(e); UpdateStatusHandles(e); continue; }
                 if (e.nest) { UpdateNest(e, dt); continue; }
                 Vector2 to = _heroPos - e.pos; float dist = to.magnitude; D2Aggro1447(e, dist, dt);
-                float sp = e.freezeT > 0 || e.stun53 > 0 || e.stag1434 > 0 ? 0 : e.speed * (e.chillT > 0 ? 0.65f : 1f) * (e.slowT > 0 ? 1f - e.slowAmt : 1f);
+                float sp = e.freezeT > 0 || e.stun53 > 0 || e.stag1434 > 0 ? 0 : e.speed * (e.chillT > 0 ? EnemyChillMul1825 : 1f) * (e.slowT > 0 ? 1f - e.slowAmt : 1f);
                 Vector2 v = dist > 0.01f ? to / dist * sp : Vector2.zero;
                 if (_nmin536.Count > 0 && e.type != EType.HookThrower && e.type != EType.GossipImp) { Vector2 g = EnemyGoal584(e.pos, dist) - e.pos; if (g.sqrMagnitude > 0.0001f && g != to) v = g.normalized * sp; } // t584u: demons chase a closer minion
                 if (e.type == EType.HookThrower) v = HookThrowerMove(e, to, dist, sp);
@@ -747,9 +752,9 @@ namespace Hellord
             switch (st)
             {
                 case Status.Burn: { if (src != null) e.burnSrc1651 = src; /* t1651 */ float nb = dmg * HellordTuning.I.burnDpsFromHit * k; if (e.burnT <= 0) e.burnStk818 = 0; e.burnDps = SinBurnDps818(e, nb); e.burnT = (TT.burnDuration + (src != null && src.Has(SupportId.Burn) ? HData.At(TT.supBurnExtraSeconds, src.Lvl(SupportId.Burn), 0f) : 0f)) * sd * SinBurnDurMul818() + SinBurnAddS818(); IgniteBurn(e); break; } // t818u #4/#31 + Duration
-                case Status.Chill: e.chillT = 2 * k; if (++e.chillHits >= GgChillNeed1682(e, src != null && src.Has(SupportId.Chill) ? HData.At(TT.supChillFreezeHits, src.Lvl(SupportId.Chill), 3) : 3) /* t1682 Hypothermia -1, min 2 */) { e.chillHits = 0; e.freezeT = 1.2f * GgFreezeMul1682(e); GgFroze1682(e); /* t1682 Drowning Mark / Hypothermia longer */ } if (!StatusFX.IsAlive(e.chillH)) e.chillH = HFX.ChillStatus(e); StatusFX.SetFrozen(e.chillH, e.freezeT > 0); break;
+                case Status.Chill: e.chillT = StChillS1825 * k; if (++e.chillHits >= GgChillNeed1682(e, src != null && src.Has(SupportId.Chill) ? HData.At(TT.supChillFreezeHits, src.Lvl(SupportId.Chill), StFreezeHits1825) : StFreezeHits1825) /* t1682 Hypothermia -1, min 2 */) { e.chillHits = 0; e.freezeT = StFreezeS1825 * GgFreezeMul1682(e); GgFroze1682(e); /* t1682 Drowning Mark / Hypothermia longer */ } if (!StatusFX.IsAlive(e.chillH)) e.chillH = HFX.ChillStatus(e); StatusFX.SetFrozen(e.chillH, e.freezeT > 0); break;
                 case Status.Shock:
-                    e.shockT = 3 * sd * SinShockDur818(); e.shockAmp = (src != null && src.Has(SupportId.Shock) ? HData.At(TT.supShockAmp, src.Lvl(SupportId.Shock), 0.25f) : TT.shockBaseAmp) * SinShockAmp818(); // t818u #24 + Duration
+                    e.shockT = StShockS1825 * sd * SinShockDur818(); e.shockAmp = (src != null && src.Has(SupportId.Shock) ? HData.At(TT.supShockAmp, src.Lvl(SupportId.Shock), 0.25f) : TT.shockBaseAmp) * SinShockAmp818(); // t818u #24 + Duration
                     if (HFX.Alive(e.shockH)) { HFX.Stop(ref e.shockH); }
                     if (LzShockFx1669(e)) { e.shockH = -1; Tint948(e, HellordTuning.I.shockTint948, HellordTuning.I.shockTintS948, new Color(0.6f, 0.85f, 1f)); } // t1669: Leizu kit = LZFX_ShockStatus overlay (FX only)
                     else {
@@ -759,10 +764,10 @@ namespace Hellord
                     LzOnShock1666(e, src); // t1666 Conductivity + Tribunal energy
                     break;
                 case Status.Bleed:
-                    if (src != null) e.bleedSrc1651 = src; /* t1651 */ Tint948(e, HellordTuning.I.bleedTint948, HellordTuning.I.bleedTintS948, new Color(1f, 0.15f, 0.15f)); e.bleedT = 3 * sd; e.bleedDps = dmg * 0.25f * k * _sinBleedMul737 * SinBleedStill818(); // t818u #23 + Duration
+                    if (src != null) e.bleedSrc1651 = src; /* t1651 */ Tint948(e, HellordTuning.I.bleedTint948, HellordTuning.I.bleedTintS948, new Color(1f, 0.15f, 0.15f)); e.bleedT = StBleedS1825 * sd; e.bleedDps = dmg * StBleedDps1825 * k * _sinBleedMul737 * SinBleedStill818(); // t818u #23 + Duration
                     if (!HFX.Alive(e.bleedH)) e.bleedH = HFX.BleedStatus(e.tr, 3f, e.radius);
                     break;
-                case Status.Curse: e.curseT = 4 * k * sd; break; // t818u Duration
+                case Status.Curse: e.curseT = StCurseS1825 * k * sd; break; // t818u Duration
             }
         }
         void Damage(Enemy e, float dmg, bool canCrit, bool dot, bool noNumber = false)

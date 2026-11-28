@@ -48,11 +48,18 @@ namespace Hellord
         }
 
         /// <summary>Card body for a kit card in DrawCardsB: icons_v2 icon (48 px like the other new-ids), NEW badge, type label + description.</summary>
-        void ZhKitCardBody1639(Card c, float x, float y, float ra, List<string> desc)
+        void ZhKitCardBody1639(Card c, CardCopy copy)
         {
-            // t1822: fill-only; DrawCardsB paints the icon / NEW badge with the row typography so the full description fits.
-            if (c.kitLv1651) { var ki = ZkSlotInst1651(c.kit - 1); desc.Add(ki != null ? $"LV {ki.level} - {ki.level + 1}" : "LEVEL UP"); desc.Add($"SUPPORT SLOT {Mathf.Min((ki != null ? ki.level : 0) + 1, HData.MaxSupports)}"); if (ki != null && ki.sup.Count > 0) foreach (var su in ki.sup) desc.Add(HData.Support(su).name + " " + ki.Lvl(su)); return; }
-            desc.Add(ZhKitType1639[c.kit]); desc.AddRange(Wrap(ZhKitDesc1639(c), CardWrap));
+            if (c.kitLv1651)
+            {
+                var ki = ZkSlotInst1651(c.kit - 1);
+                copy.AddSection(CardTone.Header, ki != null ? $"LV {ki.level} - {ki.level + 1}" : "LEVEL UP");
+                copy.AddSection(CardTone.Body, $"SUPPORT SLOT {Mathf.Min((ki != null ? ki.level : 0) + 1, HData.MaxSupports)}");
+                if (ki != null && ki.sup.Count > 0) foreach (var su in ki.sup) copy.AddSection(CardTone.Need, HData.Support(su).name + " " + ki.Lvl(su));
+                return;
+            }
+            copy.AddSection(CardTone.Header, ZhKitType1639[c.kit]);
+            copy.AddSection(CardTone.Body, WrapCard(ZhKitDesc1639(c)));
         }
     }
 }

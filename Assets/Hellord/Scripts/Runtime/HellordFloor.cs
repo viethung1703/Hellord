@@ -131,7 +131,7 @@ namespace Hellord
             switch (t)
             {
                 case RoomType.Start: return Theme == 0 ? "OX PIT - LEVEL 10" : FloorName37(); // v0.0.42: theme case RoomType.Survive: return "SURVIVE 60 SECONDS"; case RoomType.Hunt: return "HUNT: KILL 100";
-                case RoomType.Nests: return "DESTROY 3 NESTS"; case RoomType.Elite: return "ELITE: KILL THE ELITE AND ITS GUARDS"; case RoomType.Shrine: return "BONE SHRINE: 1-3 BUY OR SWAP";
+                case RoomType.Nests: return "DESTROY 3 NESTS"; case RoomType.Elite: return "ELITE: KILL THE ELITE AND ITS GUARDS"; case RoomType.Shrine: return "BONE SHRINE: " + CardKeyRange1831(3) + " BUY OR SWAP";
                 case RoomType.Curse: return "CURSE ALTAR: STEP ON IT TO ACCEPT"; case RoomType.Treasure: return "TREASURE: KILL 40"; case RoomType.Secret: return "SECRET ROOM!";
                 default: return "BOSS: " + BossName37();
             }
@@ -655,8 +655,7 @@ namespace Hellord
             var sd = HData.Support(r.shop[i]); var tl = ShopTargets(sd, out bool swap);
             if (tl.Count == 0) { Toast("NO SKILL CAN TAKE " + sd.name); return; }
             if (bones < r.price[i]) { Toast("NOT ENOUGH BONES"); return; }
-            if (tl.Count > 1) { OpenTargetPick(sd, tl, swap, tIx => { if (!r.sold[i] && bones >= r.price[i]) CompleteShopBuy(r, i, sd, tIx, swap); }); return; } // v0.0.36: several skills can take it -> player chooses
-            CompleteShopBuy(r, i, sd, tl[0], swap);
+            PickSupTarget1831u(sd, tl, swap, tIx => { if (!r.sold[i] && bones >= r.price[i]) CompleteShopBuy(r, i, sd, tIx, swap); }); // v0.0.36 / t1831u: 1 match = buy, 2+ = picker of only those skills
         }
         void CompleteShopBuy(FloorRoom r, int i, SupportDef sd, int t, bool swap)
         {
@@ -759,7 +758,7 @@ namespace Hellord
                 Text((i + 1).ToString(), p.x + w[i] / 2 - 2, p.y - 10, near ? HCyan : (Color)new Color32(0x8b, 0x9b, 0xb4, 255));
                 x += w[i] + 6;
             }
-            var b = RoomToCanvas(cx, sy + 34); string h = near ? "PRESS 1-3 TO BUY. SEVERAL FIT = YOU PICK THE SKILL. SWAP REPLACES THE LAST SUPPORT" : "COME CLOSER TO TRADE BONES";
+            var b = RoomToCanvas(cx, sy + 34); string h = near ? "PRESS " + CardKeyRange1831(3) + " TO BUY. SEVERAL FIT = YOU PICK THE SKILL. SWAP REPLACES THE LAST SUPPORT" : "COME CLOSER TO TRADE BONES";
             Text(h, b.x - TextW(h) / 2, b.y, new Color32(0x8b, 0x9b, 0xb4, 255));
         }
         // v0.0.16: card wide enough for the name AND 'icon price  BUY/SWAP/NO FIT' (price used to be drawn under the tag)
