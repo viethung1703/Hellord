@@ -207,7 +207,7 @@ namespace Hellord
         }
         static float GgDeg1682(Vector2 d) => Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg;
         int GgGround1682(Vector2 p) => FbGround + YSort(p.y) + 40; // HFX "ground" tier: under every actor
-        static Vector4 GgZoneRc1682(float rU) { float R = Mathf.Round(rU * 16f); float h = Mathf.Ceil(R * 0.55f); return new Vector4(-(R + 8), -(h + 8), 2 * R + 16, 2 * h + 16); }
+        static Vector4 GgZoneRc1682(float rU) { float R = Mathf.Round(rU * 16f); float h = Mathf.Ceil(R * HellFX.GroundYSquash); return new Vector4(-(R + 8), -(h + 8), 2 * R + 16, 2 * h + 16); }
         void DrawGgFx1682(float dt)
         {
             for (int i = _ggFx1682.Count - 1; i >= 0; i--)
@@ -347,8 +347,8 @@ namespace Hellord
         }
         void GgPoolCollapse1682(GgPool w)
         {
-            var T = TZ; SkillArea53(w.p, w.r, w.dmg * T.wpDmg1682, (int)w.s.def.id); Query(w.p, w.r, _ggq1682);
-            foreach (int ei in _ggq1682.ToArray()) { var e = _en[ei]; if (!GgOk1682(e) || (e.pos - w.p).magnitude > w.r + e.radius) continue; Hit(e, w.dmg * T.wpDmg1682, w.s, Vector2.zero); }
+            var T = TZ; SkillArea53(w.p, w.r, w.dmg * T.wpDmg1682, (int)w.s.def.id, true); Query(w.p, w.r, _ggq1682);
+            foreach (int ei in _ggq1682.ToArray()) { var e = _en[ei]; if (!GgOk1682(e) || !InGroundOval(w.p, e.pos, w.r, e.radius)) continue; Hit(e, w.dmg * T.wpDmg1682, w.s, Vector2.zero); }
             GgPoolCollapses1682++; GgFxO1682(3, w.p, w.r, 0.55f, "GGFX_Whirlpool_Collapse", new Vector4(-30, -18, 60, 68)); GgFxO1682(1, w.p, 0.6f, 0.2f); HellordAudio.Play("frost_cleave", 0.9f);
         }
         void TickGgPools1682(float dt)
@@ -359,7 +359,7 @@ namespace Hellord
                 var w = _ggPools1682[i]; w.t += dt; Query(w.p, w.r, _ggq1682);
                 foreach (int ei in _ggq1682)
                 {   // pull toward the centre (bosses stay, elites half); never past it
-                    var e = _en[ei]; if (!GgOk1682(e)) continue; Vector2 to = w.p - e.pos; float m = to.magnitude; if (m > w.r + e.radius || m < 0.05f) continue;
+                    var e = _en[ei]; if (!GgOk1682(e)) continue; Vector2 to = w.p - e.pos; float m = to.magnitude; if (!InGroundOval(w.p, e.pos, w.r, e.radius) || m < 0.05f) continue;
                     GgDisplace1682(e, to / m * Mathf.Min(m, T.wpPull1682 * dt)); GgPoolPulls1682++;
                 }
                 float k = Mathf.Clamp01(w.t / Mathf.Max(0.01f, w.dur)); int ord = FbGround + YSort(w.p.y) + 40;
@@ -729,12 +729,12 @@ namespace Hellord
                     else if (c.t < T.hyDelay1682 && GgFxLive1682("GGFX_Hypothermia_Cursed"))
                     {   // HFX v2: the ice starts crystallising on the demons in the zone during the delay (_Form 0 -> 0.45; the curse continues from 0.45). _Intensity 0.7 so the demons stay readable (VH)
                         Query(c.p, c.r, _ggq1682);
-                        foreach (int ei in _ggq1682) { var e = _en[ei]; if (!GgOk1682(e) || e.ggHypo1682 > runTime || (e.pos - c.p).magnitude > c.r + e.radius) continue; GgFx1682("GGFX_Hypothermia_Cursed", e.pos, -20, -8, 42, 46, YSort(e.pos.y) + 60, runTime, e.id * 0.13f, ZP.F("_Form", 0.45f * k), ZP.F("_Intensity", 0.7f)); }
+                        foreach (int ei in _ggq1682) { var e = _en[ei]; if (!GgOk1682(e) || e.ggHypo1682 > runTime || !InGroundOval(c.p, e.pos, c.r, e.radius)) continue; GgFx1682("GGFX_Hypothermia_Cursed", e.pos, -20, -8, 42, 46, YSort(e.pos.y) + 60, runTime, e.id * 0.13f, ZP.F("_Form", 0.45f * k), ZP.F("_Intensity", 0.7f)); }
                     }
                     if (c.t >= T.hyDelay1682)
                     {
                         c.done = true; Query(c.p, c.r, _ggq1682);
-                        _ggHypoDur1682 = c.dur; foreach (int ei in _ggq1682) { var e = _en[ei]; if (!GgOk1682(e) || (e.pos - c.p).magnitude > c.r + e.radius) continue; e.ggHypo1682 = runTime + c.dur; e.lured1651 = true; /* probe */ GgCursed1682++; }
+                        _ggHypoDur1682 = c.dur; foreach (int ei in _ggq1682) { var e = _en[ei]; if (!GgOk1682(e) || !InGroundOval(c.p, e.pos, c.r, e.radius)) continue; e.ggHypo1682 = runTime + c.dur; e.lured1651 = true; /* probe */ GgCursed1682++; }
                         if (!hyFx) GgFxO1682(0, c.p, c.r, 0.35f); HellordAudio.Play("curse_rune_burst", 0.8f);
                     }
                 }

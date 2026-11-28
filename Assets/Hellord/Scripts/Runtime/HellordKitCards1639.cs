@@ -50,12 +50,9 @@ namespace Hellord
         /// <summary>Card body for a kit card in DrawCardsB: icons_v2 icon (48 px like the other new-ids), NEW badge, type label + description.</summary>
         void ZhKitCardBody1639(Card c, float x, float y, float ra, List<string> desc)
         {
-            var ic = KitIcon1666(ZhKitKey1639(c)); // t1666: Leizu icons / placeholder
-            if (ic != null) { GUI.color = new Color(1, 1, 1, ra); GUI.DrawTexture(new Rect(x + 34, y + 19, 48, 48), ic); GUI.color = new Color(1, 1, 1, ra); }
-            else BlitInset(_tRoomIcons, 0, 0, 8, 8, x + 42, y + 27, 32, 32);
-            if (c.kitLv1651) { var ki = ZkSlotInst1651(c.kit - 1); desc.Add(ki != null ? $"LV {ki.level} - {ki.level + 1}" : "LEVEL UP"); desc.Add($"SUPPORT SLOT {Mathf.Min((ki != null ? ki.level : 0) + 1, HData.MaxSupports)}"); if (ki != null && ki.sup.Count > 0) foreach (var su in ki.sup) desc.Add(HData.Support(su).name + " " + ki.Lvl(su)); return; } // t1651 kit level card
-            Blit(_tNew, 0, 0, 25, 9, x + 84, y + 24);
-            desc.Add(ZhKitType1639[c.kit]); var dl = Wrap(ZhKitDesc1639(c), 17); if (dl.Count > 6) dl.RemoveRange(6, dl.Count - 6); desc.AddRange(dl);
+            // t1822: fill-only; DrawCardsB paints the icon / NEW badge with the row typography so the full description fits.
+            if (c.kitLv1651) { var ki = ZkSlotInst1651(c.kit - 1); desc.Add(ki != null ? $"LV {ki.level} - {ki.level + 1}" : "LEVEL UP"); desc.Add($"SUPPORT SLOT {Mathf.Min((ki != null ? ki.level : 0) + 1, HData.MaxSupports)}"); if (ki != null && ki.sup.Count > 0) foreach (var su in ki.sup) desc.Add(HData.Support(su).name + " " + ki.Lvl(su)); return; }
+            desc.Add(ZhKitType1639[c.kit]); desc.AddRange(Wrap(ZhKitDesc1639(c), CardWrap));
         }
     }
 }

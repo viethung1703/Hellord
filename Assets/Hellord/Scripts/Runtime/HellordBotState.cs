@@ -104,7 +104,7 @@ namespace Hellord
             if (r.type == RoomType.Shrine)
             {
                 var D = _room.D; float sx = D.shrineX > 0 ? D.shrineX : D.w / 2, sy = D.shrineY > 0 ? D.shrineY : D.h / 2;
-                var p0 = HellordRoom.Px(sx - 28, sy + 3); var p1 = HellordRoom.Px(sx + 28, sy - 96);
+                var p0 = HellordRoom.Px(sx - 28, sy + 20); var p1 = HellordRoom.Px(sx + 28, sy - 96); // t1822: match BlockShrineStatue pedestal
                 b.Append("{\"kind\":\"shrine_statue\",\"shape\":\"rect\",\"x0\":").Append(F(p0.x)).Append(",\"y0\":").Append(F(p0.y)).Append(",\"x1\":").Append(F(p1.x)).Append(",\"y1\":").Append(F(p1.y)).Append("}");
             }
             b.Append("],\"hazards\":[");

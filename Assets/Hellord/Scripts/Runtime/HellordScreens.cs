@@ -36,6 +36,47 @@ namespace Hellord
             }
             if (cur.Length > 0) lines.Add(cur); return lines;
         }
+        const int CardWrap = 17, CardPad = 6;
+        /// <summary>t1822: typography for one card row. Full descriptions, no dropped lines. Icon shrinks uniformly so every card in the row stays aligned; step and start split leftover space evenly above the dots / number.</summary>
+        static void CardTypeFit(int maxLines, bool reserveDots, out float iconS, out float iconY, out float textY, out float step)
+        {
+            const float nameBot = 15f, minStep = 8f, maxStep = 10f, gap = 4f;
+            float footer = reserveDots ? 146f : 150f;
+            iconS = 48f; iconY = 19f; textY = 70f; step = maxStep;
+            float[] sizes = { 48f, 40f, 36f, 32f };
+            for (int i = 0; i < sizes.Length; i++)
+            {
+                float s = sizes[i]; float iy = nameBot + gap, ib = iy + s, typ = ib + gap;
+                float avail = footer - typ; if (avail < 7f) continue;
+                int n = Mathf.Max(1, maxLines);
+                float st = n <= 1 ? maxStep : Mathf.Min(maxStep, (avail - 7f) / Mathf.Max(1, n - 1));
+                if (st + 0.001f < minStep && i < sizes.Length - 1) continue;
+                if (st < minStep) st = minStep;
+                float need = (n - 1) * st + 7f; float left = Mathf.Max(0f, avail - need);
+                iconS = s; iconY = iy; textY = typ + left * 0.5f; step = st; return;
+            }
+        }
+        void FillCardDesc(Card c, List<string> desc)
+        {
+            if (c.kit > 0) { ZhKitCardBody1639(c, 0, 0, 1f, desc); return; }
+            switch (c.kind)
+            {
+                case CardKind.NewSkill: { var tg = Wrap(HData.TagText(c.skill.tags, " ", true, true), CardWrap); var dl = Wrap(c.skill.desc, CardWrap); desc.AddRange(dl); desc.AddRange(tg); } break;
+                case CardKind.SkillLevel: { var s = skills[c.skillIndex]; int lv = s.level + 1; desc.Add($"LV {s.level} - {lv}"); desc.AddRange(Wrap(HData.Summon561(s.def) ? SummonLvText561(s.def, lv) : lv >= HData.MaxSkillLevel ? "MAX: widest reach, most projectiles" : $"More reach and coverage. support slot {Mathf.Min(lv, 4)} opens", CardWrap)); break; }
+                case CardKind.Stat: desc.AddRange(Wrap(HData.StatDesc(c.stat), CardWrap)); break;
+                case CardKind.Support:
+                {
+                    var tl = SupportTargets(c.support); int t = tl.Count > 0 ? tl[0] : -1; int cur = t >= 0 && SupInst1651(t) != null ? SupInst1651(t).Lvl(c.support.id) : 0;
+                    if (tl.Count > 1) { bool anyUp = false; foreach (int q in tl) { var sq = SupInst1651(q); if (sq != null && sq.Has(c.support.id)) anyUp = true; } cur = 0; desc.Add(anyUp ? "UPGRADE OR NEW" : "NEW  LV 1"); }
+                    else desc.Add(cur > 0 ? $"UPGRADE LV {cur} - {cur + 1}" : "NEW  LV 1");
+                    desc.AddRange(Wrap(HData.SupportEffect(c.support.id, cur + 1, tl.Count == 1 && SupInst1651(t) != null ? (int)SupInst1651(t).def.id : -1), CardWrap));
+                    desc.AddRange(Wrap(c.support.desc, CardWrap));
+                    desc.AddRange(Wrap("NEEDS " + HData.TagText(c.support.needs) + (c.support.excludes != 0 ? " NOT " + HData.TagText(c.support.excludes) : ""), CardWrap));
+                    desc.AddRange(Wrap(tl.Count > 1 ? $"TO: PICK 1 OF {tl.Count}" : SupInst1651(t)?.def != null ? "TO: " + Sanitize(SupInst1651(t).def.name) : "NO OPEN SLOT", CardWrap));
+                    break;
+                }
+            }
+        }
 
         void DrawCardsB(string title, string sub, bool levelUp)
         {
@@ -45,6 +86,9 @@ namespace Hellord
             _guiA = levelUp ? FX26Reveal(-1) : 1f; TextC(title, 40, HCyan, 2); TextC(sub, 62, Color.white); _guiA = 1f;
             int n = cards.Count; int gap = n > 3 ? 6 : 8; float x0 = Mathf.Round((640 - (n * CardW + (n - 1) * gap)) / 2f);
             var ev = Event.current; Card picked = null;
+            var descs = new List<string>[n]; int maxLines = 1; bool reserveDots = false;
+            for (int ci = 0; ci < n; ci++) { descs[ci] = new List<string>(); FillCardDesc(cards[ci], descs[ci]); if (descs[ci].Count > maxLines) maxLines = descs[ci].Count; var knd = cards[ci]; if ((knd.kind == CardKind.NewSkill && knd.kit == 0) || knd.kind == CardKind.SkillLevel || knd.kind == CardKind.Support) reserveDots = true; }
+            CardTypeFit(maxLines, reserveDots, out float iconS, out float iconY, out float textY, out float lineStep);
             for (int i = 0; i < n; i++)
             {
                 var c = cards[i]; float x = x0 + i * (CardW + gap); var rect = new Rect(x, 80, CardW, CardH);
@@ -55,44 +99,38 @@ namespace Hellord
                 // name (1-2 lines, centred at y+7)
                 string name = c.kit > 0 ? ZhKitName1639(c) /* t1639 */ : c.kind == CardKind.NewSkill || c.kind == CardKind.SkillLevel ? (c.kind == CardKind.SkillLevel ? skills[c.skillIndex].def.name : c.skill.name) : c.kind == CardKind.Support ? c.support.name : c.stat.name;
                 { string nm = Sanitize(name); if (nm.Length > 18 && !(PT.pbCardNameFit1567 && TextW(nm) <= CardW - 6)) nm = nm.Substring(0, 17) + "."; /* t1567: a longer name that fits the banner is kept */ Text(nm, x + Mathf.Round((CardW - TextW(nm)) / 2f), y + 7, Color.white); } // banner is one line tall
-                var desc = new List<string>();
-                if (c.kit > 0) ZhKitCardBody1639(c, x, y, ra, desc); // t1639 kit card (icons_v2 icon, type label)
+                var desc = descs[i];
+                float ix = x + Mathf.Round((CardW - iconS) / 2f), iy = y + iconY;
+                if (c.kit > 0)
+                {
+                    var ic = KitIcon1666(ZhKitKey1639(c));
+                    if (ic != null) { GUI.color = new Color(1, 1, 1, ra); GUI.DrawTexture(new Rect(ix, iy, iconS, iconS), ic); GUI.color = new Color(1, 1, 1, ra); }
+                    else BlitInset(_tRoomIcons, 0, 0, 8, 8, ix, iy, iconS, iconS);
+                    if (!c.kitLv1651) Blit(_tNew, 0, 0, 25, 9, x + 84, y + 24);
+                }
                 else {
-                // icon 16 -> 32 at (42,27)
                 int icon = c.kind == CardKind.NewSkill ? SkillIcon(c.skill.id) : c.kind == CardKind.SkillLevel ? SkillIcon(skills[c.skillIndex].def.id) : -1;
                 if (icon < 0) icon = c.kind == CardKind.Support ? SupportIcon(c.support.id) : StatIcon(c.stat.id);
-                bool newSup = c.kind == CardKind.Support && icon < 0; SkillBarTex(); // v0.0.36: supports without a 16px icon use the approved 20px support sheet at 2x
+                bool newSup = c.kind == CardKind.Support && icon < 0; SkillBarTex();
                 SkillId? nsk = c.kind == CardKind.NewSkill ? c.skill.id : c.kind == CardKind.SkillLevel ? skills[c.skillIndex].def.id : (SkillId?)null;
-                if (nsk.HasValue && (IceArt.IsIce(nsk.Value) || IsFb1481(nsk.Value) || IsPb1567(nsk.Value))) { GUI.color = new Color(1, 1, 1, ra); IceIconBlit(nsk.Value, x + 34, y + 19, 48); }
-                else if (nsk.HasValue && ZhCardIcon1625(nsk.Value) != null) { GUI.color = new Color(1, 1, 1, ra); GUI.DrawTexture(new Rect(x + 34, y + 19, 48, 48), ZhCardIcon1625(nsk.Value)); GUI.color = Color.white; } // t1625 icon hook (icons_v2)
-                else if (_icons44 && nsk.HasValue && nsk.Value >= SkillId.ChainLightning && nsk.Value <= SkillId.PhantomAxes /* t1618: no sheet column for the new ids */ && _tSkill24 != null) { GUI.color = new Color(1, 1, 1, ra); BlitInset(_tSkill24, (int)nsk.Value * 28, 0, 24, 24, x + 34, y + 19, 48, 48); }
+                if (nsk.HasValue && (IceArt.IsIce(nsk.Value) || IsFb1481(nsk.Value) || IsPb1567(nsk.Value))) { GUI.color = new Color(1, 1, 1, ra); IceIconBlit(nsk.Value, ix, iy, iconS); }
+                else if (nsk.HasValue && ZhCardIcon1625(nsk.Value) != null) { GUI.color = new Color(1, 1, 1, ra); GUI.DrawTexture(new Rect(ix, iy, iconS, iconS), ZhCardIcon1625(nsk.Value)); GUI.color = Color.white; }
+                else if (_icons44 && nsk.HasValue && nsk.Value >= SkillId.ChainLightning && nsk.Value <= SkillId.PhantomAxes && _tSkill24 != null) { GUI.color = new Color(1, 1, 1, ra); BlitInset(_tSkill24, (int)nsk.Value * 28, 0, 24, 24, ix, iy, iconS, iconS); }
                 else if (icon >= 0 && !newSup)
                 {
                     SkillId? psk = c.kind == CardKind.NewSkill ? c.skill.id : c.kind == CardKind.SkillLevel ? skills[c.skillIndex].def.id : (SkillId?)null; var pt = psk.HasValue ? PhTint(psk.Value) : Color.white;
-                    GUI.color = new Color(pt.r, pt.g, pt.b, ra); BlitInset(_tSkillIcons, icon * 16, 0, 16, 16, x + 42, y + 27, 32, 32); GUI.color = new Color(1, 1, 1, ra);
-                    var ptg = psk.HasValue ? PhTag(psk.Value) : null; if (ptg != null) Text(ptg, x + 44, y + 55, Color.white);
+                    GUI.color = new Color(pt.r, pt.g, pt.b, ra); BlitInset(_tSkillIcons, icon * 16, 0, 16, 16, ix, iy, iconS, iconS); GUI.color = new Color(1, 1, 1, ra);
+                    var ptg = psk.HasValue ? PhTag(psk.Value) : null; if (ptg != null) Text(ptg, x + Mathf.Round((CardW - TextW(ptg)) / 2f), iy + iconS - 8, Color.white);
                 }
-                else if (newSup && _tSup20 != null) { int si = SupIx(c.support.id); BlitInset(_tSup20, (si % 10) * 20, (si / 10) * 20, 20, 20, x + 38, y + 23, 40, 40); }
-                else BlitInset(_tRoomIcons, (c.kind == CardKind.Support ? 5 : 0) * 8, 0, 8, 8, x + 42, y + 27, 32, 32); // no support/stat icon art yet: room icons stand in
+                else if (newSup && _tSup20 != null) { int si = SupIx(c.support.id); BlitInset(_tSup20, (si % 10) * 20, (si / 10) * 20, 20, 20, ix, iy, iconS, iconS); }
+                else BlitInset(_tRoomIcons, (c.kind == CardKind.Support ? 5 : 0) * 8, 0, 8, 8, ix, iy, iconS, iconS);
                 if (c.kind == CardKind.NewSkill) Blit(_tNew, 0, 0, 25, 9, x + 84, y + 24);
-                switch (c.kind)
+                }
+                for (int k = 0; k < desc.Count; k++)
                 {
-                    case CardKind.NewSkill: { var tg = Wrap(HData.TagText(c.skill.tags, " ", true, true), 17); var dl = Wrap(c.skill.desc, 17); int room = 7 - tg.Count; if (dl.Count > room) dl.RemoveRange(room, dl.Count - room); desc.AddRange(dl); desc.AddRange(tg); } break; // t626u: tag chips (last lines)
-                    case CardKind.SkillLevel: { var s = skills[c.skillIndex]; int lv = s.level + 1; desc.Add($"LV {s.level} - {lv}"); desc.AddRange(Wrap(HData.Summon561(s.def) ? SummonLvText561(s.def, lv) : lv >= HData.MaxSkillLevel ? "MAX: widest reach, most projectiles" : $"More reach and coverage. support slot {Mathf.Min(lv, 4)} opens", 17)); break; }
-                    case CardKind.Stat: desc.AddRange(Wrap(HData.StatDesc(c.stat), 17)); break;
-                    case CardKind.Support:
-                    {
-                        var tl = SupportTargets(c.support); int t = tl.Count > 0 ? tl[0] : -1; int cur = t >= 0 && SupInst1651(t) != null ? SupInst1651(t).Lvl(c.support.id) : 0; // v0.0.27: owned = upgrade (LV a - b), else NEW LV 1
-                        if (tl.Count > 1) { bool anyUp = false; foreach (int q in tl) { var sq = SupInst1651(q); if (sq != null && sq.Has(c.support.id)) anyUp = true; } /* t1666: q can be a kit slot target (>= KitTarget1651) */ cur = 0; desc.Add(anyUp ? "UPGRADE OR NEW" : "NEW  LV 1"); } // v0.0.36: several skills can take it -> chosen after the pick
-                        else desc.Add(cur > 0 ? $"UPGRADE LV {cur} - {cur + 1}" : "NEW  LV 1");
-                        desc.AddRange(Wrap(HData.SupportEffect(c.support.id, cur + 1, tl.Count == 1 && SupInst1651(t) != null ? (int)SupInst1651(t).def.id : -1), 17));
-                        var gen = Wrap(c.support.desc, 17); int room = 5 - desc.Count; if (gen.Count > room) gen.RemoveRange(Mathf.Max(0, room), gen.Count - Mathf.Max(0, room)); desc.AddRange(gen);
-                        if (desc.Count < 6) desc.Add("NEEDS " + HData.TagText(c.support.needs) + (c.support.excludes != 0 ? " NOT " + HData.TagText(c.support.excludes) : "")); // t626u tag chip
-                        desc.Add(tl.Count > 1 ? $"TO: PICK 1 OF {tl.Count}" : SupInst1651(t)?.def != null ? "TO: " + Sanitize(SupInst1651(t).def.name) : "NO OPEN SLOT"); break; // t1677: t can be a kit slot target (>= KitTarget1651) -> SupInst1651, not skills[t]
-                    }
+                    string line = desc[k]; float lx = x + Mathf.Round((CardW - TextW(line)) / 2f); if (lx < x + CardPad) lx = x + CardPad;
+                    bool lastSup = k == desc.Count - 1 && c.kind == CardKind.Support; Text(line, lx, y + textY + lineStep * k, lastSup ? HCyan : CBody);
                 }
-                }
-                for (int k = 0; k < desc.Count && k < 7; k++) Text(desc[k], x + 7, y + 70 + 10 * k, k == desc.Count - 1 && c.kind == CardKind.Support ? HCyan : CBody);
                 // level dots (5) at y+148 for skills
                 if ((c.kind == CardKind.NewSkill && c.kit == 0) || c.kind == CardKind.SkillLevel || c.kind == CardKind.Support) // t1639: no level dots on kit cards
                 {

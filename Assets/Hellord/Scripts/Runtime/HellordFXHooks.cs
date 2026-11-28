@@ -166,7 +166,7 @@ namespace Hellord
         }
 
         // t1815: FX quads from live world-unit sizes so visuals follow the hitbox / Bigger Area.
-        static Vector4 FxDiscRc1815(float rU, float ySquash = 0.55f, float padPx = 8f)
+        static Vector4 FxDiscRc1815(float rU, float ySquash = HellFX.GroundYSquash, float padPx = 8f)
         {
             float R = Mathf.Max(0.01f, rU) * HArt.PPU, h = R * ySquash;
             return new Vector4(-(R + padPx), -(h + padPx), 2f * (R + padPx), 2f * (h + padPx));
@@ -175,6 +175,12 @@ namespace Hellord
         {
             float s = Mathf.Max(0.01f, scale);
             return new Vector4(authored.x * s, authored.y * s, authored.z * s, authored.w * s);
+        }
+        /// <summary>t1822: ground-oval hit. Same live radius and HellFX.GroundYSquash as the drawn disk. Enemy radius inflates both axes.</summary>
+        static bool InGroundOval(Vector2 center, Vector2 pos, float radiusU, float enemyR = 0f)
+        {
+            float rx = Mathf.Max(0.01f, radiusU + enemyR), ry = Mathf.Max(0.01f, radiusU * HellFX.GroundYSquash + enemyR);
+            float dx = pos.x - center.x, dy = pos.y - center.y; return (dx * dx) / (rx * rx) + (dy * dy) / (ry * ry) <= 1f;
         }
     }
 

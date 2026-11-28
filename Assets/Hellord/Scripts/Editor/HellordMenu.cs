@@ -66,6 +66,19 @@ namespace Hellord.EditorTools
             EditorApplication.isPlaying = true;
         }
 
+        /// <summary>t1822: batch Play-mode verification of the 2e80984 playtest bugfixes at 1920x1080 (CAM 640x360 SAFE).
+        /// -executeMethod Hellord.EditorTools.HellordMenu.RunBugfixPlaytest1822 -bugfixPlaytest1822
+        /// (needs a GL context; do not pass -nographics).</summary>
+        public static void RunBugfixPlaytest1822()
+        {
+            string scene = "Assets/Hellord/Scenes/Hellord_Prototype.unity";
+            if (!System.IO.File.Exists(scene)) scene = "Assets/Hellord/Scenes/Hellord_Prototype_Generated.unity";
+            if (!System.IO.File.Exists(scene)) CreateScene();
+            else UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
+            ForceGameView1920x1080_1808();
+            EditorApplication.isPlaying = true;
+        }
+
 
         /// <summary>t1808: select a FixedResolution 1920x1080 Game View so Play-mode Screen is 1920x1080
         /// (HUD at 3x / CAM 640x360 SAFE), not the inset pane size.

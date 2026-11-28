@@ -36,7 +36,8 @@ namespace Hellord
         {
             bool w = d.id == SkillId.SkeletonWarriors; int n = HData.At(w ? PT.skelWarCount561 : PT.skelArcCount561, lv, 1);
             float dm = HData.At(w ? PT.skelWarDmg561 : PT.skelArcDmg561, lv, 5f), r = HData.At(w ? PT.skelWarResp561 : PT.skelArcResp561, lv, 6f);
-            return $"Lv{lv}: {n} {(w ? "warriors" : "archers")} · {dm:0} dmg · respawn {r:0.#}s";
+            string unit = w ? (n == 1 ? "warrior" : "warriors") : (n == 1 ? "archer" : "archers");
+            return $"Lv{lv}: {n} {unit} - {dm:0} dmg - respawn {r:0.#}s";
         }
         string SummonStatus561() { string a = ""; foreach (var s in skills) if (HData.Summon561(s.def)) a += s.def.name + " Lv" + s.level + "  "; return a + "| warriors " + NCount536(0, false) + (NCount536(0, true) > 0 ? "+" + NCount536(0, true) + " temp" : "") + " archers " + NCount536(1, false) + " | minions " + _nmin536.Count + "/" + NCap536(); }
 

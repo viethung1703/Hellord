@@ -612,7 +612,7 @@ namespace Hellord
         {
             var r = Cur; if (r == null || r.type != RoomType.Shrine || _room == null) return; var D = _room.D;
             float sx = D.shrineX > 0 ? D.shrineX : D.w / 2, sy = D.shrineY > 0 ? D.shrineY : D.h / 2;
-            float x0 = sx - 28, x1 = sx + 28, y0 = sy - 96, y1 = sy + 3; var p = new Vector2(pos.x * HArt.PPU, -pos.y * HArt.PPU);
+            float x0 = sx - 28, x1 = sx + 28, y0 = sy - 96, y1 = sy + 20; var p = new Vector2(pos.x * HArt.PPU, -pos.y * HArt.PPU); // t1822: y1 covers the visible pedestal (was sy+3, top of the plinth only)
             if (p.x <= x0 || p.x >= x1 || p.y <= y0 || p.y >= y1) return;
             float dl = p.x - x0, dr = x1 - p.x, du = p.y - y0, dd = y1 - p.y, m = Mathf.Min(Mathf.Min(dl, dr), Mathf.Min(du, dd));
             if (m == dd) p.y = y1; else if (m == dl) p.x = x0; else if (m == dr) p.x = x1; else p.y = y0;

@@ -51,7 +51,7 @@ namespace Hellord
 
         /// <summary>v0.0.53 pt45x: every AoE / melee / beam / orbit / pool / chain hit also damages breakables, souls and ice
         /// in its area. key = skill id (or 20+ for blasts); each breakable has a per-key cooldown so ticking areas don't shred instantly.</summary>
-        bool SkillArea53(Vector2 c, float r, float dmg, int key)
+        bool SkillArea53(Vector2 c, float r, float dmg, int key, bool oval = false)
         { GgArea1682(c, r, key); /* t1682 Frost Wall crystals hit by an area explode */
             var T = HellordTuning.I; if (!T.brkAoe53) return false; bool any = false; key = Mathf.Clamp(key, 0, 23);
             float cd = Mathf.Max(0f, T.brkAoeCd53), now = Time.time;
@@ -59,7 +59,8 @@ namespace Hellord
             {
                 var b = _brk53[i]; if (b.dead || !b.main) continue;
                 var h = b.hit; float dx = Mathf.Max(h.xMin - c.x, 0, c.x - h.xMax), dy = Mathf.Max(h.yMin - c.y, 0, c.y - h.yMax);
-                if (dx * dx + dy * dy > r * r) continue;
+                if (oval) { var closest = new Vector2(Mathf.Clamp(c.x, h.xMin, h.xMax), Mathf.Clamp(c.y, h.yMin, h.yMax)); if (!InGroundOval(c, closest, r, 0f)) continue; }
+                else if (dx * dx + dy * dy > r * r) continue;
                 if (b.aoeCd[key] > now) continue; b.aoeCd[key] = now + cd;
                 float d = Mathf.Max(1f, dmg * T.brkDmgMul53 * T.brkAoeDmgMul53); b.hp -= d; b.hitT = T.brkWobbleS53; any = true;
                 HordeFX.Hit(b.main, Mathf.RoundToInt(d), false, T.brkNumbers53);

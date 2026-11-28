@@ -76,6 +76,7 @@ namespace Hellord
             if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-jiangshiPlaytest") >= 0) StartCoroutine(JiangshiPlaytestCo1796());
             if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-kitbarSupportsPlaytest") >= 0) StartCoroutine(KitBarSupportsPlaytestCo1812());
             if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-rangeRebalancePlaytest") >= 0) StartCoroutine(RangeRebalancePlaytestCo1815());
+            if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-bugfixPlaytest1822") >= 0) StartCoroutine(BugfixPlaytestCo1822());
         }
 
         static void EnsureGlobalLight()

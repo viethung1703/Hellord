@@ -12,6 +12,7 @@ namespace Hellord
     public partial class HellordGame
     {
         bool _tmOpen, _tmGod, _tmFast; int _tmTab, _tmSel, _tmCount, _tmCols = 3, _tmTarget, _tmSpawnN = 1, _tmI, _jumpFloor = -1;
+        Vector2 _tmScroll; float _tmContentH, _tmSelY, _tmViewH; // t1822: scroll the tab body so rows never overlap the footer
         string _tmMsg = "Click a button, or arrows + Enter. F1 / ` / Esc closes."; Action _tmPending; bool _tmAct, _tmDownK, _tmUpK, _tmLeftK, _tmRightK;
         GUIStyle _tmBtn, _tmTab0, _tmHead, _tmTxt;
         static readonly string[] TmTabs = { "FLOOR", "PLAYER", "SKILLS", "SUPPORTS", "ENEMIES", "BOSS", "PACT", "SINS", "KEYS" }; // t770u: SINS tab // v0.0.53 pt480u: PACT tab (souls / sigils / reset save)
@@ -71,9 +72,9 @@ namespace Hellord
                         case KeyCode.LeftArrow: _tmLeftK = used = true; break;
                         case KeyCode.RightArrow: _tmRightK = used = true; break;
                         case KeyCode.Return: case KeyCode.KeypadEnter: case KeyCode.Space: _tmAct = used = true; break;
-                        case KeyCode.Tab: _tmTab = (_tmTab + (ev.shift ? TmTabs.Length - 1 : 1)) % TmTabs.Length; _tmSel = 0; used = true; break;
-                        case KeyCode.PageDown: _tmTab = (_tmTab + 1) % TmTabs.Length; _tmSel = 0; used = true; break;
-                        case KeyCode.PageUp: _tmTab = (_tmTab + TmTabs.Length - 1) % TmTabs.Length; _tmSel = 0; used = true; break;
+                        case KeyCode.Tab: _tmTab = (_tmTab + (ev.shift ? TmTabs.Length - 1 : 1)) % TmTabs.Length; _tmSel = 0; _tmScroll = Vector2.zero; used = true; break;
+                        case KeyCode.PageDown: _tmTab = (_tmTab + 1) % TmTabs.Length; _tmSel = 0; _tmScroll = Vector2.zero; used = true; break;
+                        case KeyCode.PageUp: _tmTab = (_tmTab + TmTabs.Length - 1) % TmTabs.Length; _tmSel = 0; _tmScroll = Vector2.zero; used = true; break;
                         case KeyCode.Escape: TmClose(); used = true; break;
                     }
                 }
@@ -95,15 +96,19 @@ namespace Hellord
             for (int i = 0; i < TmTabs.Length; i++)
             {
                 GUI.color = i == _tmTab ? new Color(1f, 0.8f, 0.3f) : Color.white;
-                if (GUI.Button(new Rect(P.x + 14 + i * tw, P.y + 40, tw - 4, 26), TmTabs[i], _tmTab0)) { _tmTab = i; _tmSel = 0; }
+                if (GUI.Button(new Rect(P.x + 14 + i * tw, P.y + 40, tw - 4, 26), TmTabs[i], _tmTab0)) { _tmTab = i; _tmSel = 0; _tmScroll = Vector2.zero; }
             }
             GUI.color = Color.white;
-            // content: auto grid
+            // content: auto grid, clipped and scrolled above a fixed footer (t1822)
             _tmI = 0; _tmCols = 3;
             if (_tmDownK) _tmSel += _tmCols; if (_tmUpK) _tmSel -= _tmCols; if (_tmRightK) _tmSel++; if (_tmLeftK) _tmSel--;
             if (_tmCount > 0) _tmSel = Mathf.Clamp(_tmSel, 0, _tmCount - 1);
-            _gx = P.x + 14; _gy = P.y + 76; _gw = (P.width - 28 - 16) / 3f; _gcol = 0;
             if (MenuMode53 && _tmTab != TmPactTab53 && _tmTab != TmSinTab737 && _tmTab != TmTabs.Length - 1) _tmTab = TmPactTab53; // other tabs need a run
+            float bodyY = P.y + 76, bodyH = P.yMax - 30 - bodyY - 6; _tmViewH = bodyH;
+            var view = new Rect(P.x + 10, bodyY, P.width - 20, bodyH);
+            float innerW = view.width - 16; if (_tmContentH < bodyH) _tmContentH = bodyH;
+            _tmScroll = GUI.BeginScrollView(view, _tmScroll, new Rect(0, 0, innerW, _tmContentH));
+            _gx = 4; _gy = 0; _gw = (innerW - 8 - 16) / 3f; _gcol = 0;
             switch (_tmTab)
             {
                 case 0: TabFloor(); break;
@@ -116,6 +121,13 @@ namespace Hellord
                 case TmSinTab737: TabSins737(); break;
                 default: TabKeys(P); break;
             }
+            TmRow(); _tmContentH = Mathf.Max(_gy + 8, bodyH);
+            if (_tmDownK || _tmUpK || _tmLeftK || _tmRightK)
+            {
+                if (_tmSelY < _tmScroll.y) _tmScroll.y = _tmSelY;
+                if (_tmSelY + GH > _tmScroll.y + bodyH) _tmScroll.y = _tmSelY + GH - bodyH;
+            }
+            GUI.EndScrollView();
             _tmCount = _tmI;
             GUI.color = new Color(1f, 0.9f, 0.5f); GUI.Label(new Rect(P.x + 14, P.yMax - 30, P.width - 28, 24), _tmMsg, _tmTxt); GUI.color = Color.white;
         }
@@ -124,7 +136,7 @@ namespace Hellord
         bool TmBtn(string label, bool enabled = true, bool on = false)
         {
             var r = new Rect(_gx + _gcol * (_gw + 8), _gy, _gw, GH); int idx = _tmI++;
-            bool sel = idx == _tmSel;
+            bool sel = idx == _tmSel; if (sel) _tmSelY = r.y;
             GUI.color = new Color(1, 1, 1, 1);
             if (sel) { GUI.color = new Color(1f, 0.85f, 0.3f); GUI.DrawTexture(new Rect(r.x - 3, r.y - 3, r.width + 6, r.height + 6), _white); GUI.color = new Color(0.08f, 0.06f, 0.12f, 1f); GUI.DrawTexture(r, _white); GUI.color = Color.white; } // v0.0.53 B12: yellow frame + dark fill so text stays readable
             if (on && !sel) GUI.color = new Color(0.6f, 1f, 0.6f);
@@ -135,7 +147,7 @@ namespace Hellord
             return false;
         }
         void TmRow() { if (_gcol != 0) { _gcol = 0; _gy += GH + GG; } }
-        void TmLabel(string s) { TmRow(); GUI.color = new Color(0.7f, 0.85f, 1f); GUI.Label(new Rect(_gx, _gy, 800, 22), s, _tmTxt); GUI.color = Color.white; _gy += 22; }
+        void TmLabel(string s) { TmRow(); GUI.color = new Color(0.7f, 0.85f, 1f); GUI.Label(new Rect(_gx, _gy, _gw * 3f + 16, 22), s, _tmTxt); GUI.color = Color.white; _gy += 22; }
 
         // ---------- tabs ----------
         void TabFloor()
@@ -340,7 +352,7 @@ namespace Hellord
                 "(F1 used to give a level: use PLAYER > +1 level now.  Shift+1..9 = F1..F9 on keyboards without F-keys.)\n\n" +
                 "Tuning: HellordTuning.testMenuEnabled turns this whole menu off for a release build.\n" +
                 "Known limits: x2 speed also speeds the boss tells; god mode only blocks damage (no knock-back change); floor jumps build a fresh random layout.";
-            TmRow(); GUI.Label(new Rect(_gx, _gy, P.width - 28, 330), s, _tmTxt);
+            TmRow(); GUI.Label(new Rect(_gx, _gy, _gw * 3f + 16, 330), s, _tmTxt); _gy += 330;
         }
 
         // ---------- actions ----------

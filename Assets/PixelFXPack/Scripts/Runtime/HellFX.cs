@@ -241,6 +241,8 @@ namespace PixelFXPack
     public static class HellFX
     {
         public static float PPU = 16f;
+        /// <summary>t1822: 3/4-view ground oval, height/width. One source for Disk/AuraField/FireRing and every Hellord ellipse hit test.</summary>
+        public const float GroundYSquash = 0.6f;
         static Material _spriteDefault;
         internal static Material DefaultSpriteMaterial(SpriteRenderer sr) { if (_spriteDefault == null) _spriteDefault = sr.sharedMaterial; return _spriteDefault; }
         static HellFXRunner R => HellFXRunner.I;
@@ -390,7 +392,7 @@ namespace PixelFXPack
         public static HellFXRunner.Job AuraField(Transform target, float radiusPx, Color color, float seconds, float tickSeconds = 0.5f, Action onTick = null, int order = 4)
         {
             int r = Mathf.RoundToInt(radiusPx);
-            return R.Spawn(HellSprites.Disk(r, 0.6f, PPU), target.position, color, order, seconds, true, (j, k) =>
+            return R.Spawn(HellSprites.Disk(r, GroundYSquash, PPU), target.position, color, order, seconds, true, (j, k) =>
             {
                 if (!target) { j.life = -1; return; }
                 j.sr.transform.position = Snap(target.position);
@@ -404,7 +406,7 @@ namespace PixelFXPack
                     for (int e = 0; e < 3; e++)
                     {
                         float a = UnityEngine.Random.value * Mathf.PI * 2, d = UnityEngine.Random.value * radiusPx * U;
-                        PixelParticles.Burst(Embers(1), target.position + new Vector3(Mathf.Cos(a) * d, Mathf.Sin(a) * d * 0.6f, 0));
+                        PixelParticles.Burst(Embers(1), target.position + new Vector3(Mathf.Cos(a) * d, Mathf.Sin(a) * d * GroundYSquash, 0));
                     }
                 }
             });

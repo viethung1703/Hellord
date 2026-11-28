@@ -50,7 +50,7 @@ namespace Hellord
                 var tc = pass == 0 ? HInk : c; tc.a *= _guiA; GUI.color = tc;
                 for (int i = 0; i < s.Length; i++)
                 {
-                    char ch = char.ToUpperInvariant(s[i]); if (ch == ' ') continue; int k = FontMap.IndexOf(ch == 'X' ? 'X' : ch); if (k < 0) k = FontMap.IndexOf('?');
+                    char ch = FontGlyph(s[i]); if (ch == ' ') continue; int k = FontMap.IndexOf(ch); if (k < 0) k = FontMap.IndexOf('?');
                     Blit(_tFont, k * 5, 0, 5, 7, x + i * 6 * sc, y + (pass == 0 ? sc : 0), 5 * sc, 7 * sc);
                 }
             }
@@ -58,9 +58,18 @@ namespace Hellord
         }
         /// <summary>v0.0.26: alpha multiplier for Text/blits (LevelUpFX card reveal); 1 everywhere else.</summary>
         static float _guiA = 1f;
+        /// <summary>t1822: map punctuation the 5x7 FontMap lacks (middle dot, em-dash, equals, ...) onto a glyph it has, so Text never falls back to '?'.</summary>
+        static char FontGlyph(char c)
+        {
+            c = char.ToUpperInvariant(c);
+            if (c == '·' || c == '•' || c == '|' || c == '–' || c == '—' || c == '−') return '-';
+            if (c == '=' || c == ';') return ':';
+            if (c == ',') return '.';
+            return c;
+        }
         static string Sanitize(string s)
         {
-            var sb = new System.Text.StringBuilder(); foreach (char c0 in s.ToUpperInvariant()) { char c = c0 == ',' || c0 == ';' ? '.' : c0 == '=' ? ':' : c0 == '(' || c0 == '[' ? ' ' : c0; if (c0 == ')' || c0 == ']') continue; sb.Append(c); }
+            var sb = new System.Text.StringBuilder(); foreach (char c0 in s) { char c = FontGlyph(c0); c = c == '(' || c == '[' ? ' ' : c; if (c0 == ')' || c0 == ']') continue; sb.Append(c); }
             for (int i = sb.Length - 1; i > 0; i--) if (sb[i] == ' ' && (sb[i - 1] == ' ' || (i + 1 < sb.Length && (sb[i + 1] == '.' || sb[i + 1] == ':')))) sb.Remove(i, 1);
             return sb.ToString();
         }
